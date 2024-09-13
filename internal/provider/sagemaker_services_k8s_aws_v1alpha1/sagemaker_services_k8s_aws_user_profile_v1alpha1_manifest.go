@@ -230,24 +230,24 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"single_sign_on_user_identifier": schema.StringAttribute{
-						Description:         "A specifier for the type of value specified in SingleSignOnUserValue. Currently,the only supported value is 'UserName'. If the Domain's AuthMode is IAM IdentityCenter, this field is required. If the Domain's AuthMode is not IAM IdentityCenter, this field cannot be specified.",
-						MarkdownDescription: "A specifier for the type of value specified in SingleSignOnUserValue. Currently,the only supported value is 'UserName'. If the Domain's AuthMode is IAM IdentityCenter, this field is required. If the Domain's AuthMode is not IAM IdentityCenter, this field cannot be specified.",
+						Description:         "A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is 'UserName'. If the Domain's AuthMode is IAM Identity Center, this field is required. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified.",
+						MarkdownDescription: "A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is 'UserName'. If the Domain's AuthMode is IAM Identity Center, this field is required. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"single_sign_on_user_value": schema.StringAttribute{
-						Description:         "The username of the associated Amazon Web Services Single Sign-On User forthis UserProfile. If the Domain's AuthMode is IAM Identity Center, this fieldis required, and must match a valid username of a user in your directory.If the Domain's AuthMode is not IAM Identity Center, this field cannot bespecified.",
-						MarkdownDescription: "The username of the associated Amazon Web Services Single Sign-On User forthis UserProfile. If the Domain's AuthMode is IAM Identity Center, this fieldis required, and must match a valid username of a user in your directory.If the Domain's AuthMode is not IAM Identity Center, this field cannot bespecified.",
+						Description:         "The username of the associated Amazon Web Services Single Sign-On User for this UserProfile. If the Domain's AuthMode is IAM Identity Center, this field is required, and must match a valid username of a user in your directory. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified.",
+						MarkdownDescription: "The username of the associated Amazon Web Services Single Sign-On User for this UserProfile. If the Domain's AuthMode is IAM Identity Center, this field is required, and must match a valid username of a user in your directory. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "Each tag consists of a key and an optional value. Tag keys must be uniqueper resource.Tags that you specify for the User Profile are also added to all Apps thatthe User Profile launches.",
-						MarkdownDescription: "Each tag consists of a key and an optional value. Tag keys must be uniqueper resource.Tags that you specify for the User Profile are also added to all Apps thatthe User Profile launches.",
+						Description:         "Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags that you specify for the User Profile are also added to all Apps that the User Profile launches.",
+						MarkdownDescription: "Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags that you specify for the User Profile are also added to all Apps that the User Profile launches.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -285,12 +285,12 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 						MarkdownDescription: "A collection of settings.",
 						Attributes: map[string]schema.Attribute{
 							"code_editor_app_settings": schema.SingleNestedAttribute{
-								Description:         "The Code Editor application settings.For more information about Code Editor, see Get started with Code Editorin Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/code-editor.html).",
-								MarkdownDescription: "The Code Editor application settings.For more information about Code Editor, see Get started with Code Editorin Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/code-editor.html).",
+								Description:         "The Code Editor application settings. For more information about Code Editor, see Get started with Code Editor in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/code-editor.html).",
+								MarkdownDescription: "The Code Editor application settings. For more information about Code Editor, see Get started with Code Editor in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/code-editor.html).",
 								Attributes: map[string]schema.Attribute{
 									"default_resource_spec": schema.SingleNestedAttribute{
-										Description:         "Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on.",
-										MarkdownDescription: "Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on.",
+										Description:         "Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.",
+										MarkdownDescription: "Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.",
 										Attributes: map[string]schema.Attribute{
 											"instance_type": schema.StringAttribute{
 												Description:         "",
@@ -357,8 +357,8 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"efs_file_system_config": schema.SingleNestedAttribute{
-											Description:         "The settings for assigning a custom Amazon EFS file system to a user profileor space for an Amazon SageMaker Domain.",
-											MarkdownDescription: "The settings for assigning a custom Amazon EFS file system to a user profileor space for an Amazon SageMaker Domain.",
+											Description:         "The settings for assigning a custom Amazon EFS file system to a user profile or space for an Amazon SageMaker Domain.",
+											MarkdownDescription: "The settings for assigning a custom Amazon EFS file system to a user profile or space for an Amazon SageMaker Domain.",
 											Attributes: map[string]schema.Attribute{
 												"file_system_id": schema.StringAttribute{
 													Description:         "",
@@ -468,8 +468,8 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 									},
 
 									"default_resource_spec": schema.SingleNestedAttribute{
-										Description:         "Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on.",
-										MarkdownDescription: "Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on.",
+										Description:         "Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.",
+										MarkdownDescription: "Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.",
 										Attributes: map[string]schema.Attribute{
 											"instance_type": schema.StringAttribute{
 												Description:         "",
@@ -535,8 +535,8 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 								MarkdownDescription: "The JupyterServer app settings.",
 								Attributes: map[string]schema.Attribute{
 									"default_resource_spec": schema.SingleNestedAttribute{
-										Description:         "Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on.",
-										MarkdownDescription: "Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on.",
+										Description:         "Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.",
+										MarkdownDescription: "Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.",
 										Attributes: map[string]schema.Attribute{
 											"instance_type": schema.StringAttribute{
 												Description:         "",
@@ -637,8 +637,8 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 									},
 
 									"default_resource_spec": schema.SingleNestedAttribute{
-										Description:         "Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on.",
-										MarkdownDescription: "Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on.",
+										Description:         "Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.",
+										MarkdownDescription: "Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.",
 										Attributes: map[string]schema.Attribute{
 											"instance_type": schema.StringAttribute{
 												Description:         "",
@@ -700,8 +700,8 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"r_studio_server_pro_app_settings": schema.SingleNestedAttribute{
-								Description:         "A collection of settings that configure user interaction with the RStudioServerProapp.",
-								MarkdownDescription: "A collection of settings that configure user interaction with the RStudioServerProapp.",
+								Description:         "A collection of settings that configure user interaction with the RStudioServerPro app.",
+								MarkdownDescription: "A collection of settings that configure user interaction with the RStudioServerPro app.",
 								Attributes: map[string]schema.Attribute{
 									"access_status": schema.StringAttribute{
 										Description:         "",
@@ -734,8 +734,8 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"sharing_settings": schema.SingleNestedAttribute{
-								Description:         "Specifies options for sharing Amazon SageMaker Studio notebooks. These settingsare specified as part of DefaultUserSettings when the CreateDomain API iscalled, and as part of UserSettings when the CreateUserProfile API is called.When SharingSettings is not specified, notebook sharing isn't allowed.",
-								MarkdownDescription: "Specifies options for sharing Amazon SageMaker Studio notebooks. These settingsare specified as part of DefaultUserSettings when the CreateDomain API iscalled, and as part of UserSettings when the CreateUserProfile API is called.When SharingSettings is not specified, notebook sharing isn't allowed.",
+								Description:         "Specifies options for sharing Amazon SageMaker Studio notebooks. These settings are specified as part of DefaultUserSettings when the CreateDomain API is called, and as part of UserSettings when the CreateUserProfile API is called. When SharingSettings is not specified, notebook sharing isn't allowed.",
+								MarkdownDescription: "Specifies options for sharing Amazon SageMaker Studio notebooks. These settings are specified as part of DefaultUserSettings when the CreateDomain API is called, and as part of UserSettings when the CreateUserProfile API is called. When SharingSettings is not specified, notebook sharing isn't allowed.",
 								Attributes: map[string]schema.Attribute{
 									"notebook_output_option": schema.StringAttribute{
 										Description:         "",
@@ -771,8 +771,8 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 								MarkdownDescription: "The default storage settings for a private space.",
 								Attributes: map[string]schema.Attribute{
 									"default_ebs_storage_settings": schema.SingleNestedAttribute{
-										Description:         "A collection of default EBS storage settings that applies to private spacescreated within a domain or user profile.",
-										MarkdownDescription: "A collection of default EBS storage settings that applies to private spacescreated within a domain or user profile.",
+										Description:         "A collection of default EBS storage settings that applies to private spaces created within a domain or user profile.",
+										MarkdownDescription: "A collection of default EBS storage settings that applies to private spaces created within a domain or user profile.",
 										Attributes: map[string]schema.Attribute{
 											"default_ebs_volume_size_in_gb": schema.Int64Attribute{
 												Description:         "",
@@ -813,8 +813,8 @@ func (r *SagemakerServicesK8SAwsUserProfileV1Alpha1Manifest) Schema(_ context.Co
 								MarkdownDescription: "The TensorBoard app settings.",
 								Attributes: map[string]schema.Attribute{
 									"default_resource_spec": schema.SingleNestedAttribute{
-										Description:         "Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on.",
-										MarkdownDescription: "Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on.",
+										Description:         "Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.",
+										MarkdownDescription: "Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.",
 										Attributes: map[string]schema.Attribute{
 											"instance_type": schema.StringAttribute{
 												Description:         "",

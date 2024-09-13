@@ -27,7 +27,7 @@ data "k8s_postgresql_cnpg_io_backup_v1_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) Specification of the desired behavior of the backup.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Specification of the desired behavior of the backup. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,11 +56,11 @@ Required:
 
 Optional:
 
-- `method` (String) The backup method to be used, possible options are 'barmanObjectStore','volumeSnapshot' or 'plugin'. Defaults to: 'barmanObjectStore'.
-- `online` (Boolean) Whether the default type of backup with volume snapshots isonline/hot ('true', default) or offline/cold ('false')Overrides the default setting specified in the cluster field '.spec.backup.volumeSnapshot.online'
-- `online_configuration` (Attributes) Configuration parameters to control the online/hot backup with volume snapshotsOverrides the default settings specified in the cluster '.backup.volumeSnapshot.onlineConfiguration' stanza (see [below for nested schema](#nestedatt--spec--online_configuration))
+- `method` (String) The backup method to be used, possible options are 'barmanObjectStore', 'volumeSnapshot' or 'plugin'. Defaults to: 'barmanObjectStore'.
+- `online` (Boolean) Whether the default type of backup with volume snapshots is online/hot ('true', default) or offline/cold ('false') Overrides the default setting specified in the cluster field '.spec.backup.volumeSnapshot.online'
+- `online_configuration` (Attributes) Configuration parameters to control the online/hot backup with volume snapshots Overrides the default settings specified in the cluster '.backup.volumeSnapshot.onlineConfiguration' stanza (see [below for nested schema](#nestedatt--spec--online_configuration))
 - `plugin_configuration` (Attributes) Configuration parameters passed to the plugin managing this backup (see [below for nested schema](#nestedatt--spec--plugin_configuration))
-- `target` (String) The policy to decide which instance should perform this backup. If empty,it defaults to 'cluster.spec.backup.target'.Available options are empty string, 'primary' and 'prefer-standby'.'primary' to have backups run always on primary instances,'prefer-standby' to have backups run preferably on the most updatedstandby, if available.
+- `target` (String) The policy to decide which instance should perform this backup. If empty, it defaults to 'cluster.spec.backup.target'. Available options are empty string, 'primary' and 'prefer-standby'. 'primary' to have backups run always on primary instances, 'prefer-standby' to have backups run preferably on the most updated standby, if available.
 
 <a id="nestedatt--spec--cluster"></a>
 ### Nested Schema for `spec.cluster`
@@ -75,8 +75,8 @@ Required:
 
 Optional:
 
-- `immediate_checkpoint` (Boolean) Control whether the I/O workload for the backup initial checkpoint willbe limited, according to the 'checkpoint_completion_target' setting onthe PostgreSQL server. If set to true, an immediate checkpoint will beused, meaning PostgreSQL will complete the checkpoint as soon aspossible. 'false' by default.
-- `wait_for_archive` (Boolean) If false, the function will return immediately after the backup is completed,without waiting for WAL to be archived.This behavior is only useful with backup software that independently monitors WAL archiving.Otherwise, WAL required to make the backup consistent might be missing and make the backup useless.By default, or when this parameter is true, pg_backup_stop will wait for WAL to be archived when archiving isenabled.On a standby, this means that it will wait only when archive_mode = always.If write activity on the primary is low, it may be useful to run pg_switch_wal on the primary in order to triggeran immediate segment switch.
+- `immediate_checkpoint` (Boolean) Control whether the I/O workload for the backup initial checkpoint will be limited, according to the 'checkpoint_completion_target' setting on the PostgreSQL server. If set to true, an immediate checkpoint will be used, meaning PostgreSQL will complete the checkpoint as soon as possible. 'false' by default.
+- `wait_for_archive` (Boolean) If false, the function will return immediately after the backup is completed, without waiting for WAL to be archived. This behavior is only useful with backup software that independently monitors WAL archiving. Otherwise, WAL required to make the backup consistent might be missing and make the backup useless. By default, or when this parameter is true, pg_backup_stop will wait for WAL to be archived when archiving is enabled. On a standby, this means that it will wait only when archive_mode = always. If write activity on the primary is low, it may be useful to run pg_switch_wal on the primary in order to trigger an immediate segment switch.
 
 
 <a id="nestedatt--spec--plugin_configuration"></a>
@@ -88,4 +88,4 @@ Required:
 
 Optional:
 
-- `parameters` (Map of String) Parameters are the configuration parameters passed to the backupplugin for this backup
+- `parameters` (Map of String) Parameters are the configuration parameters passed to the backup plugin for this backup

@@ -189,8 +189,8 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "IngressRouteSpec defines the desired state of IngressRoute.",
 				Attributes: map[string]schema.Attribute{
 					"entry_points": schema.ListAttribute{
-						Description:         "EntryPoints defines the list of entry point names to bind to.Entry points have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/Default: all.",
-						MarkdownDescription: "EntryPoints defines the list of entry point names to bind to.Entry points have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/Default: all.",
+						Description:         "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/ Default: all.",
+						MarkdownDescription: "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/ Default: all.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -203,8 +203,8 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"kind": schema.StringAttribute{
-									Description:         "Kind defines the kind of the route.Rule is the only supported kind.",
-									MarkdownDescription: "Kind defines the kind of the route.Rule is the only supported kind.",
+									Description:         "Kind defines the kind of the route. Rule is the only supported kind.",
+									MarkdownDescription: "Kind defines the kind of the route. Rule is the only supported kind.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -214,16 +214,16 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"match": schema.StringAttribute{
-									Description:         "Match defines the router's rule.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#rule",
-									MarkdownDescription: "Match defines the router's rule.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#rule",
+									Description:         "Match defines the router's rule. More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#rule",
+									MarkdownDescription: "Match defines the router's rule. More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#rule",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"middlewares": schema.ListNestedAttribute{
-									Description:         "Middlewares defines the list of references to Middleware resources.More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-middleware",
-									MarkdownDescription: "Middlewares defines the list of references to Middleware resources.More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-middleware",
+									Description:         "Middlewares defines the list of references to Middleware resources. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-middleware",
+									MarkdownDescription: "Middlewares defines the list of references to Middleware resources. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-middleware",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
@@ -249,16 +249,16 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"priority": schema.Int64Attribute{
-									Description:         "Priority defines the router's priority.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#priority",
-									MarkdownDescription: "Priority defines the router's priority.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#priority",
+									Description:         "Priority defines the router's priority. More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#priority",
+									MarkdownDescription: "Priority defines the router's priority. More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#priority",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"services": schema.ListNestedAttribute{
-									Description:         "Services defines the list of Service.It can contain any combination of TraefikService and/or reference to a Kubernetes Service.",
-									MarkdownDescription: "Services defines the list of Service.It can contain any combination of TraefikService and/or reference to a Kubernetes Service.",
+									Description:         "Services defines the list of Service. It can contain any combination of TraefikService and/or reference to a Kubernetes Service.",
+									MarkdownDescription: "Services defines the list of Service. It can contain any combination of TraefikService and/or reference to a Kubernetes Service.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"health_check": schema.SingleNestedAttribute{
@@ -266,8 +266,8 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "Healthcheck defines health checks for ExternalName services.",
 												Attributes: map[string]schema.Attribute{
 													"follow_redirects": schema.BoolAttribute{
-														Description:         "FollowRedirects defines whether redirects should be followed during the health check calls.Default: true",
-														MarkdownDescription: "FollowRedirects defines whether redirects should be followed during the health check calls.Default: true",
+														Description:         "FollowRedirects defines whether redirects should be followed during the health check calls. Default: true",
+														MarkdownDescription: "FollowRedirects defines whether redirects should be followed during the health check calls. Default: true",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -291,8 +291,8 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"interval": schema.StringAttribute{
-														Description:         "Interval defines the frequency of the health check calls.Default: 30s",
-														MarkdownDescription: "Interval defines the frequency of the health check calls.Default: 30s",
+														Description:         "Interval defines the frequency of the health check calls. Default: 30s",
+														MarkdownDescription: "Interval defines the frequency of the health check calls. Default: 30s",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -307,8 +307,8 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"mode": schema.StringAttribute{
-														Description:         "Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http",
-														MarkdownDescription: "Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http",
+														Description:         "Mode defines the health check mode. If defined to grpc, will use the gRPC health check protocol to probe the server. Default: http",
+														MarkdownDescription: "Mode defines the health check mode. If defined to grpc, will use the gRPC health check protocol to probe the server. Default: http",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -347,8 +347,8 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"timeout": schema.StringAttribute{
-														Description:         "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s",
-														MarkdownDescription: "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s",
+														Description:         "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy. Default: 5s",
+														MarkdownDescription: "Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy. Default: 5s",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -371,8 +371,8 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.",
-												MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.",
+												Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+												MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -387,32 +387,32 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"native_lb": schema.BoolAttribute{
-												Description:         "NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.",
-												MarkdownDescription: "NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.",
+												Description:         "NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.",
+												MarkdownDescription: "NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"node_port_lb": schema.BoolAttribute{
-												Description:         "NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.",
-												MarkdownDescription: "NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.",
+												Description:         "NodePortLB controls, when creating the load-balancer, whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort. It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes. By default, NodePortLB is false.",
+												MarkdownDescription: "NodePortLB controls, when creating the load-balancer, whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort. It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes. By default, NodePortLB is false.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"pass_host_header": schema.BoolAttribute{
-												Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.",
-												MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.",
+												Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
+												MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"port": schema.StringAttribute{
-												Description:         "Port defines the port of a Kubernetes Service.This can be a reference to a named port.",
-												MarkdownDescription: "Port defines the port of a Kubernetes Service.This can be a reference to a named port.",
+												Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+												MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -423,8 +423,8 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
 												Attributes: map[string]schema.Attribute{
 													"flush_interval": schema.StringAttribute{
-														Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms",
-														MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms",
+														Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
+														MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -436,24 +436,24 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"scheme": schema.StringAttribute{
-												Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.",
-												MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.",
+												Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
+												MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"servers_transport": schema.StringAttribute{
-												Description:         "ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.",
-												MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.",
+												Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
+												MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"sticky": schema.SingleNestedAttribute{
-												Description:         "Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
-												MarkdownDescription: "Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
+												Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
+												MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
 												Attributes: map[string]schema.Attribute{
 													"cookie": schema.SingleNestedAttribute{
 														Description:         "Cookie defines the sticky cookie configuration.",
@@ -468,8 +468,8 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"max_age": schema.Int64Attribute{
-																Description:         "MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.",
-																MarkdownDescription: "MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.",
+																Description:         "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
+																MarkdownDescription: "MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -484,8 +484,8 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"same_site": schema.StringAttribute{
-																Description:         "SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-																MarkdownDescription: "SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+																Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+																MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -510,16 +510,16 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 											},
 
 											"strategy": schema.StringAttribute{
-												Description:         "Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.",
-												MarkdownDescription: "Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.",
+												Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+												MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"weight": schema.Int64Attribute{
-												Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).",
-												MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).",
+												Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+												MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -532,8 +532,8 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"syntax": schema.StringAttribute{
-									Description:         "Syntax defines the router's rule syntax.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#rulesyntax",
-									MarkdownDescription: "Syntax defines the router's rule syntax.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#rulesyntax",
+									Description:         "Syntax defines the router's rule syntax. More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#rulesyntax",
+									MarkdownDescription: "Syntax defines the router's rule syntax. More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#rulesyntax",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -546,20 +546,20 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"tls": schema.SingleNestedAttribute{
-						Description:         "TLS defines the TLS configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#tls",
-						MarkdownDescription: "TLS defines the TLS configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#tls",
+						Description:         "TLS defines the TLS configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#tls",
+						MarkdownDescription: "TLS defines the TLS configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#tls",
 						Attributes: map[string]schema.Attribute{
 							"cert_resolver": schema.StringAttribute{
-								Description:         "CertResolver defines the name of the certificate resolver to use.Cert resolvers have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/https/acme/#certificate-resolvers",
-								MarkdownDescription: "CertResolver defines the name of the certificate resolver to use.Cert resolvers have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/https/acme/#certificate-resolvers",
+								Description:         "CertResolver defines the name of the certificate resolver to use. Cert resolvers have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/https/acme/#certificate-resolvers",
+								MarkdownDescription: "CertResolver defines the name of the certificate resolver to use. Cert resolvers have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/https/acme/#certificate-resolvers",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"domains": schema.ListNestedAttribute{
-								Description:         "Domains defines the list of domains that will be used to issue certificates.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#domains",
-								MarkdownDescription: "Domains defines the list of domains that will be used to issue certificates.More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#domains",
+								Description:         "Domains defines the list of domains that will be used to issue certificates. More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#domains",
+								MarkdownDescription: "Domains defines the list of domains that will be used to issue certificates. More info: https://doc.traefik.io/traefik/v3.1/routing/routers/#domains",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"main": schema.StringAttribute{
@@ -586,20 +586,20 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"options": schema.SingleNestedAttribute{
-								Description:         "Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection.If not defined, the 'default' TLSOption is used.More info: https://doc.traefik.io/traefik/v3.1/https/tls/#tls-options",
-								MarkdownDescription: "Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection.If not defined, the 'default' TLSOption is used.More info: https://doc.traefik.io/traefik/v3.1/https/tls/#tls-options",
+								Description:         "Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection. If not defined, the 'default' TLSOption is used. More info: https://doc.traefik.io/traefik/v3.1/https/tls/#tls-options",
+								MarkdownDescription: "Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection. If not defined, the 'default' TLSOption is used. More info: https://doc.traefik.io/traefik/v3.1/https/tls/#tls-options",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
-										Description:         "Name defines the name of the referenced TLSOption.More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsoption",
-										MarkdownDescription: "Name defines the name of the referenced TLSOption.More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsoption",
+										Description:         "Name defines the name of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsoption",
+										MarkdownDescription: "Name defines the name of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsoption",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"namespace": schema.StringAttribute{
-										Description:         "Namespace defines the namespace of the referenced TLSOption.More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsoption",
-										MarkdownDescription: "Namespace defines the namespace of the referenced TLSOption.More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsoption",
+										Description:         "Namespace defines the namespace of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsoption",
+										MarkdownDescription: "Namespace defines the namespace of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsoption",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -619,20 +619,20 @@ func (r *TraefikIoIngressRouteV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"store": schema.SingleNestedAttribute{
-								Description:         "Store defines the reference to the TLSStore, that will be used to store certificates.Please note that only 'default' TLSStore can be used.",
-								MarkdownDescription: "Store defines the reference to the TLSStore, that will be used to store certificates.Please note that only 'default' TLSStore can be used.",
+								Description:         "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
+								MarkdownDescription: "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
-										Description:         "Name defines the name of the referenced TLSStore.More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsstore",
-										MarkdownDescription: "Name defines the name of the referenced TLSStore.More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsstore",
+										Description:         "Name defines the name of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsstore",
+										MarkdownDescription: "Name defines the name of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsstore",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"namespace": schema.StringAttribute{
-										Description:         "Namespace defines the namespace of the referenced TLSStore.More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsstore",
-										MarkdownDescription: "Namespace defines the namespace of the referenced TLSStore.More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsstore",
+										Description:         "Namespace defines the namespace of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsstore",
+										MarkdownDescription: "Namespace defines the namespace of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-tlsstore",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

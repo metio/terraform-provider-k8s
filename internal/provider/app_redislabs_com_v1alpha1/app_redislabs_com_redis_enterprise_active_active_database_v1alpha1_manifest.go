@@ -912,8 +912,8 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Sch
 							},
 
 							"default_user": schema.BoolAttribute{
-								Description:         "Is connecting with a default user allowed?  If disabled, the DatabaseSecret will not be created or updated",
-								MarkdownDescription: "Is connecting with a default user allowed?  If disabled, the DatabaseSecret will not be created or updated",
+								Description:         "Is connecting with a default user allowed? If disabled, the DatabaseSecret will not be created or updated",
+								MarkdownDescription: "Is connecting with a default user allowed? If disabled, the DatabaseSecret will not be created or updated",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

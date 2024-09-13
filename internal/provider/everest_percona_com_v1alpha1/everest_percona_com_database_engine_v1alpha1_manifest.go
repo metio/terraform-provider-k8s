@@ -135,8 +135,8 @@ func (r *EverestPerconaComDatabaseEngineV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "EngineType stands for the supported database engines. Right now it's only pxcand psmdb. However, it can be ps, pg and any other source.",
-						MarkdownDescription: "EngineType stands for the supported database engines. Right now it's only pxcand psmdb. However, it can be ps, pg and any other source.",
+						Description:         "EngineType stands for the supported database engines. Right now it's only pxc and psmdb. However, it can be ps, pg and any other source.",
+						MarkdownDescription: "EngineType stands for the supported database engines. Right now it's only pxc and psmdb. However, it can be ps, pg and any other source.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

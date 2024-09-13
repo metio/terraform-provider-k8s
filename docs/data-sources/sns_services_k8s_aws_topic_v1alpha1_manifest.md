@@ -30,7 +30,7 @@ data "k8s_sns_services_k8s_aws_topic_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) TopicSpec defines the desired state of Topic.A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve atopic's attributes, use GetTopicAttributes. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) TopicSpec defines the desired state of Topic. A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve a topic's attributes, use GetTopicAttributes. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,21 +55,21 @@ Optional:
 
 Required:
 
-- `name` (String) The name of the topic you want to create.Constraints: Topic names must be made up of only uppercase and lowercaseASCII letters, numbers, underscores, and hyphens, and must be between 1 and256 characters long.For a FIFO (first-in-first-out) topic, the name must end with the .fifo suffix.
+- `name` (String) The name of the topic you want to create. Constraints: Topic names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. For a FIFO (first-in-first-out) topic, the name must end with the .fifo suffix.
 
 Optional:
 
 - `content_based_deduplication` (String)
-- `data_protection_policy` (String) The body of the policy document you want to use for this topic.You can only add one policy per topic.The policy must be in JSON string format.Length Constraints: Maximum length of 30,720.
+- `data_protection_policy` (String) The body of the policy document you want to use for this topic. You can only add one policy per topic. The policy must be in JSON string format. Length Constraints: Maximum length of 30,720.
 - `delivery_policy` (String)
 - `display_name` (String)
 - `fifo_topic` (String)
 - `kms_master_key_id` (String)
-- `kms_master_key_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--kms_master_key_ref))
+- `kms_master_key_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--kms_master_key_ref))
 - `policy` (String)
-- `policy_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--policy_ref))
+- `policy_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--policy_ref))
 - `signature_version` (String)
-- `tags` (Attributes List) The list of tags to add to a new topic.To be able to tag a topic on creation, you must have the sns:CreateTopicand sns:TagResource permissions. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) The list of tags to add to a new topic. To be able to tag a topic on creation, you must have the sns:CreateTopic and sns:TagResource permissions. (see [below for nested schema](#nestedatt--spec--tags))
 - `tracing_config` (String)
 
 <a id="nestedatt--spec--kms_master_key_ref"></a>
@@ -77,7 +77,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--kms_master_key_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--kms_master_key_ref--from))
 
 <a id="nestedatt--spec--kms_master_key_ref--from"></a>
 ### Nested Schema for `spec.kms_master_key_ref.from`
@@ -94,7 +94,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--policy_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--policy_ref--from))
 
 <a id="nestedatt--spec--policy_ref--from"></a>
 ### Nested Schema for `spec.policy_ref.from`

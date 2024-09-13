@@ -161,8 +161,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetBindingV1Beta1Manifest) Schema(_ c
 											},
 
 											"hash": schema.StringAttribute{
-												Description:         "Hash is the hash of a resource's data. This can be used to decide if a resource is changed.For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
-												MarkdownDescription: "Hash is the hash of a resource's data. This can be used to decide if a resource is changed.For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
+												Description:         "Hash is the hash of a resource's data. This can be used to decide if a resource is changed. For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
+												MarkdownDescription: "Hash is the hash of a resource's data. This can be used to decide if a resource is changed. For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -214,8 +214,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetBindingV1Beta1Manifest) Schema(_ c
 					},
 
 					"cluster_name": schema.StringAttribute{
-						Description:         "ClusterName is the name of the Cluster this binding applies to.Note: this field mandatory in v1beta2.",
-						MarkdownDescription: "ClusterName is the name of the Cluster this binding applies to.Note: this field mandatory in v1beta2.",
+						Description:         "ClusterName is the name of the Cluster this binding applies to. Note: this field mandatory in v1beta2.",
+						MarkdownDescription: "ClusterName is the name of the Cluster this binding applies to. Note: this field mandatory in v1beta2.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

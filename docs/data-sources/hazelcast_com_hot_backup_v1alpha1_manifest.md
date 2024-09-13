@@ -59,6 +59,6 @@ Required:
 
 Optional:
 
-- `bucket_uri` (String) URL of the bucket to download HotBackup folders. AWS S3, GCP Bucket and Azure Blob storage buckets are supported. Example bucket URIs: - AWS S3     -> s3://bucket-name/path/to/folder - GCP Bucket -> gs://bucket-name/path/to/folder - Azure Blob -> azblob://bucket-name/path/to/folder
+- `bucket_uri` (String) URL of the bucket to download HotBackup folders. AWS S3, GCP Bucket and Azure Blob storage buckets are supported. Example bucket URIs: - AWS S3 -> s3://bucket-name/path/to/folder - GCP Bucket -> gs://bucket-name/path/to/folder - Azure Blob -> azblob://bucket-name/path/to/folder
 - `secret` (String) secret is a deprecated alias for secretName.
 - `secret_name` (String) Name of the secret with credentials for cloud providers.

@@ -3,12 +3,12 @@
 page_title: "k8s_couchbase_com_couchbase_migration_replication_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "couchbase.com"
 description: |-
-  The CouchbaseScopeMigration resource represents the use of the special migration mappingwithin XDCR to take a filtered list from the default scope and collection of the source bucket,replicate it to named scopes and collections within the target bucket.The bucket-to-bucket replication cannot duplicate any used by the CouchbaseReplication resource,as these two types of replication are mutually exclusive between buckets.https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.html#migration
+  The CouchbaseScopeMigration resource represents the use of the special migration mapping within XDCR to take a filtered list from the default scope and collection of the source bucket, replicate it to named scopes and collections within the target bucket. The bucket-to-bucket replication cannot duplicate any used by the CouchbaseReplication resource, as these two types of replication are mutually exclusive between buckets. https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.html#migration
 ---
 
 # k8s_couchbase_com_couchbase_migration_replication_v2_manifest (Data Source)
 
-The CouchbaseScopeMigration resource represents the use of the special migration mappingwithin XDCR to take a filtered list from the default scope and collection of the source bucket,replicate it to named scopes and collections within the target bucket.The bucket-to-bucket replication cannot duplicate any used by the CouchbaseReplication resource,as these two types of replication are mutually exclusive between buckets.https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.html#migration
+The CouchbaseScopeMigration resource represents the use of the special migration mapping within XDCR to take a filtered list from the default scope and collection of the source bucket, replicate it to named scopes and collections within the target bucket. The bucket-to-bucket replication cannot duplicate any used by the CouchbaseReplication resource, as these two types of replication are mutually exclusive between buckets. https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.html#migration
 
 ## Example Usage
 
@@ -71,7 +71,7 @@ Required:
 
 Optional:
 
-- `filter` (String) A filter to select from the source default scope and collection.Defaults to select everything in the default scope and collection.
+- `filter` (String) A filter to select from the source default scope and collection. Defaults to select everything in the default scope and collection.
 
 <a id="nestedatt--migration_mapping--mappings--target_keyspace"></a>
 ### Nested Schema for `migration_mapping.mappings.target_keyspace`
@@ -92,11 +92,11 @@ Optional:
 
 Required:
 
-- `bucket` (String) Bucket is the source bucket to replicate from.  This refers to the Couchbasebucket name, not the resource name of the bucket.  A bucket with this name mustbe defined on this cluster.  Legal bucket names have a maximum length of 100characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.
-- `remote_bucket` (String) RemoteBucket is the remote bucket name to synchronize to.  This refers to theCouchbase bucket name, not the resource name of the bucket.  Legal bucket nameshave a maximum length of 100 characters and may be composed of any character from'a-z', 'A-Z', '0-9' and '-_%.'.
+- `bucket` (String) Bucket is the source bucket to replicate from. This refers to the Couchbase bucket name, not the resource name of the bucket. A bucket with this name must be defined on this cluster. Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.
+- `remote_bucket` (String) RemoteBucket is the remote bucket name to synchronize to. This refers to the Couchbase bucket name, not the resource name of the bucket. Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.
 
 Optional:
 
-- `compression_type` (String) CompressionType is the type of compression to apply to the replication.When None, no compression will be applied to documents as they aretransferred between clusters.  When Auto, Couchbase server will automaticallycompress documents as they are transferred to reduce bandwidth requirements.This field must be one of 'None' or 'Auto', defaulting to 'Auto'.
+- `compression_type` (String) CompressionType is the type of compression to apply to the replication. When None, no compression will be applied to documents as they are transferred between clusters. When Auto, Couchbase server will automatically compress documents as they are transferred to reduce bandwidth requirements. This field must be one of 'None' or 'Auto', defaulting to 'Auto'.
 - `filter_expression` (String) FilterExpression allows certain documents to be filtered out of the replication.
-- `paused` (Boolean) Paused allows a replication to be stopped and restarted without having torestart the replication from the beginning.
+- `paused` (Boolean) Paused allows a replication to be stopped and restarted without having to restart the replication from the beginning.

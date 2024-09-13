@@ -149,8 +149,8 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta1Manifest) Schema(_ context.Co
 					},
 
 					"cert_secret_ref": schema.SingleNestedAttribute{
-						Description:         "CertSecretRef can be given the name of a secret containinga PEM-encoded CA certificate ('caFile')",
-						MarkdownDescription: "CertSecretRef can be given the name of a secret containinga PEM-encoded CA certificate ('caFile')",
+						Description:         "CertSecretRef can be given the name of a secret containing a PEM-encoded CA certificate ('caFile')",
+						MarkdownDescription: "CertSecretRef can be given the name of a secret containing a PEM-encoded CA certificate ('caFile')",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -185,8 +185,8 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta1Manifest) Schema(_ context.Co
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "Secret reference containing the provider webhook URLusing 'address' as data key",
-						MarkdownDescription: "Secret reference containing the provider webhook URLusing 'address' as data key",
+						Description:         "Secret reference containing the provider webhook URL using 'address' as data key",
+						MarkdownDescription: "Secret reference containing the provider webhook URL using 'address' as data key",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -202,8 +202,8 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta1Manifest) Schema(_ context.Co
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "This flag tells the controller to suspend subsequent events handling.Defaults to false.",
-						MarkdownDescription: "This flag tells the controller to suspend subsequent events handling.Defaults to false.",
+						Description:         "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
+						MarkdownDescription: "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

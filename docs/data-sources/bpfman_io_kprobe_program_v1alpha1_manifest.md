@@ -54,14 +54,14 @@ Required:
 - `bpffunctionname` (String) BpfFunctionName is the name of the function that is the entry point for the BPF program
 - `bytecode` (Attributes) Bytecode configures where the bpf program's bytecode should be loaded from. (see [below for nested schema](#nestedatt--spec--bytecode))
 - `func_name` (String) Functions to attach the kprobe to.
-- `nodeselector` (Attributes) NodeSelector allows the user to specify which nodes to deploy the bpf program to.  This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty. (see [below for nested schema](#nestedatt--spec--nodeselector))
+- `nodeselector` (Attributes) NodeSelector allows the user to specify which nodes to deploy the bpf program to. This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty. (see [below for nested schema](#nestedatt--spec--nodeselector))
 
 Optional:
 
 - `globaldata` (Map of String) GlobalData allows the user to to set global variables when the program is loaded with an array of raw bytes. This is a very low level primitive. The caller is responsible for formatting the byte string appropriately considering such things as size, endianness, alignment and packing of data structures.
 - `mapownerselector` (Attributes) MapOwnerSelector is used to select the loaded eBPF program this eBPF program will share a map with. The value is a label applied to the BpfProgram to select. The selector must resolve to exactly one instance of a BpfProgram on a given node or the eBPF program will not load. (see [below for nested schema](#nestedatt--spec--mapownerselector))
 - `offset` (Number) Offset added to the address of the function for kprobe. Not allowed for kretprobes.
-- `retprobe` (Boolean) Whether the program is a kretprobe.  Default is false
+- `retprobe` (Boolean) Whether the program is a kretprobe. Default is false
 
 <a id="nestedatt--spec--bytecode"></a>
 ### Nested Schema for `spec.bytecode`

@@ -3,12 +3,12 @@
 page_title: "k8s_gateway_nginx_org_observability_policy_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "gateway.nginx.org"
 description: |-
-  ObservabilityPolicy is a Direct Attached Policy. It provides a way to configure observability settings forthe NGINX Gateway Fabric data plane. Used in conjunction with the NginxProxy CRD that is attached to theGatewayClass parametersRef.
+  ObservabilityPolicy is a Direct Attached Policy. It provides a way to configure observability settings for the NGINX Gateway Fabric data plane. Used in conjunction with the NginxProxy CRD that is attached to the GatewayClass parametersRef.
 ---
 
 # k8s_gateway_nginx_org_observability_policy_v1alpha1_manifest (Data Source)
 
-ObservabilityPolicy is a Direct Attached Policy. It provides a way to configure observability settings forthe NGINX Gateway Fabric data plane. Used in conjunction with the NginxProxy CRD that is attached to theGatewayClass parametersRef.
+ObservabilityPolicy is a Direct Attached Policy. It provides a way to configure observability settings for the NGINX Gateway Fabric data plane. Used in conjunction with the NginxProxy CRD that is attached to the GatewayClass parametersRef.
 
 ## Example Usage
 
@@ -59,7 +59,7 @@ Optional:
 
 Required:
 
-- `target_refs` (Attributes List) TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute, GRPCRoute. (see [below for nested schema](#nestedatt--spec--target_refs))
+- `target_refs` (Attributes List) TargetRefs identifies the API object(s) to apply the policy to. Objects must be in the same namespace as the policy. Support: HTTPRoute, GRPCRoute. (see [below for nested schema](#nestedatt--spec--target_refs))
 
 Optional:
 
@@ -84,15 +84,15 @@ Required:
 
 Optional:
 
-- `context` (String) Context specifies how to propagate traceparent/tracestate headers.Default: https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context
-- `ratio` (Number) Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100.By default, 100% of http requests are traced. Not applicable for parent-based tracing.If ratio is set to 0, tracing is disabled.
+- `context` (String) Context specifies how to propagate traceparent/tracestate headers. Default: https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context
+- `ratio` (Number) Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100. By default, 100% of http requests are traced. Not applicable for parent-based tracing. If ratio is set to 0, tracing is disabled.
 - `span_attributes` (Attributes List) SpanAttributes are custom key/value attributes that are added to each span. (see [below for nested schema](#nestedatt--spec--tracing--span_attributes))
-- `span_name` (String) SpanName defines the name of the Otel span. By default is the name of the location for a request.If specified, applies to all locations that are created for a route.Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''Examples of invalid names: some-$value, quoted-'value'-name, unescaped
+- `span_name` (String) SpanName defines the name of the Otel span. By default is the name of the location for a request. If specified, applies to all locations that are created for a route. Format: must have all ''' escaped and must not contain any '$' or end with an unescaped '' Examples of invalid names: some-$value, quoted-'value'-name, unescaped
 
 <a id="nestedatt--spec--tracing--span_attributes"></a>
 ### Nested Schema for `spec.tracing.span_attributes`
 
 Required:
 
-- `key` (String) Key is the key for a span attribute.Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''
-- `value` (String) Value is the value for a span attribute.Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''
+- `key` (String) Key is the key for a span attribute. Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''
+- `value` (String) Value is the value for a span attribute. Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''

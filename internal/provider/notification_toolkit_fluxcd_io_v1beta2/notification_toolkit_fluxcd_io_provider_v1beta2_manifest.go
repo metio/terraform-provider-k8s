@@ -139,8 +139,8 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta2Manifest) Schema(_ context.Co
 				MarkdownDescription: "ProviderSpec defines the desired state of the Provider.",
 				Attributes: map[string]schema.Attribute{
 					"address": schema.StringAttribute{
-						Description:         "Address specifies the endpoint, in a generic sense, to where alerts are sent.What kind of endpoint depends on the specific Provider type being used.For the generic Provider, for example, this is an HTTP/S address.For other Provider types this could be a project ID or a namespace.",
-						MarkdownDescription: "Address specifies the endpoint, in a generic sense, to where alerts are sent.What kind of endpoint depends on the specific Provider type being used.For the generic Provider, for example, this is an HTTP/S address.For other Provider types this could be a project ID or a namespace.",
+						Description:         "Address specifies the endpoint, in a generic sense, to where alerts are sent. What kind of endpoint depends on the specific Provider type being used. For the generic Provider, for example, this is an HTTP/S address. For other Provider types this could be a project ID or a namespace.",
+						MarkdownDescription: "Address specifies the endpoint, in a generic sense, to where alerts are sent. What kind of endpoint depends on the specific Provider type being used. For the generic Provider, for example, this is an HTTP/S address. For other Provider types this could be a project ID or a namespace.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -150,8 +150,8 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta2Manifest) Schema(_ context.Co
 					},
 
 					"cert_secret_ref": schema.SingleNestedAttribute{
-						Description:         "CertSecretRef specifies the Secret containinga PEM-encoded CA certificate (in the 'ca.crt' key).Note: Support for the 'caFile' key hasbeen deprecated.",
-						MarkdownDescription: "CertSecretRef specifies the Secret containinga PEM-encoded CA certificate (in the 'ca.crt' key).Note: Support for the 'caFile' key hasbeen deprecated.",
+						Description:         "CertSecretRef specifies the Secret containing a PEM-encoded CA certificate (in the 'ca.crt' key). Note: Support for the 'caFile' key has been deprecated.",
+						MarkdownDescription: "CertSecretRef specifies the Secret containing a PEM-encoded CA certificate (in the 'ca.crt' key). Note: Support for the 'caFile' key has been deprecated.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -201,8 +201,8 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta2Manifest) Schema(_ context.Co
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "SecretRef specifies the Secret containing the authenticationcredentials for this Provider.",
-						MarkdownDescription: "SecretRef specifies the Secret containing the authenticationcredentials for this Provider.",
+						Description:         "SecretRef specifies the Secret containing the authentication credentials for this Provider.",
+						MarkdownDescription: "SecretRef specifies the Secret containing the authentication credentials for this Provider.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -218,8 +218,8 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta2Manifest) Schema(_ context.Co
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "Suspend tells the controller to suspend subsequentevents handling for this Provider.",
-						MarkdownDescription: "Suspend tells the controller to suspend subsequentevents handling for this Provider.",
+						Description:         "Suspend tells the controller to suspend subsequent events handling for this Provider.",
+						MarkdownDescription: "Suspend tells the controller to suspend subsequent events handling for this Provider.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

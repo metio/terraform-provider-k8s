@@ -162,8 +162,8 @@ func (r *ElasticacheServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"passwords": schema.ListNestedAttribute{
-						Description:         "Passwords used for this user. You can create up to two passwords for eachuser.",
-						MarkdownDescription: "Passwords used for this user. You can create up to two passwords for eachuser.",
+						Description:         "Passwords used for this user. You can create up to two passwords for each user.",
+						MarkdownDescription: "Passwords used for this user. You can create up to two passwords for each user.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -197,8 +197,8 @@ func (r *ElasticacheServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
-						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
+						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

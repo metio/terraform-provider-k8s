@@ -3,12 +3,12 @@
 page_title: "k8s_tinkerbell_org_template_v1alpha2_manifest Data Source - terraform-provider-k8s"
 subcategory: "tinkerbell.org"
 description: |-
-  Template defines a set of actions to be run on a target machine. The template is renderedprior to execution where it is exposed to Hardware and user defined data. Most fields within theTemplateSpec may contain templates values excluding .TemplateSpec.Actions[].Name.See https://pkg.go.dev/text/template for more details.
+  Template defines a set of actions to be run on a target machine. The template is rendered prior to execution where it is exposed to Hardware and user defined data. Most fields within the TemplateSpec may contain templates values excluding .TemplateSpec.Actions[].Name. See https://pkg.go.dev/text/template for more details.
 ---
 
 # k8s_tinkerbell_org_template_v1alpha2_manifest (Data Source)
 
-Template defines a set of actions to be run on a target machine. The template is renderedprior to execution where it is exposed to Hardware and user defined data. Most fields within theTemplateSpec may contain templates values excluding .TemplateSpec.Actions[].Name.See https://pkg.go.dev/text/template for more details.
+Template defines a set of actions to be run on a target machine. The template is rendered prior to execution where it is exposed to Hardware and user defined data. Most fields within the TemplateSpec may contain templates values excluding .TemplateSpec.Actions[].Name. See https://pkg.go.dev/text/template for more details.
 
 ## Example Usage
 
@@ -55,9 +55,9 @@ Optional:
 
 Optional:
 
-- `actions` (Attributes List) Actions defines the set of actions to be run on a target machine. Actions are run sequentiallyin the order they are specified. At least 1 action must be specified. Names of actionsmust be unique within a Template. (see [below for nested schema](#nestedatt--spec--actions))
-- `env` (Map of String) Env defines environment variables to be available in all actions. If an action specifiesthe same environment variable it will take precedence.
-- `volumes` (List of String) Volumes to be mounted on all actions. If an action specifies the same volume it will takeprecedence.
+- `actions` (Attributes List) Actions defines the set of actions to be run on a target machine. Actions are run sequentially in the order they are specified. At least 1 action must be specified. Names of actions must be unique within a Template. (see [below for nested schema](#nestedatt--spec--actions))
+- `env` (Map of String) Env defines environment variables to be available in all actions. If an action specifies the same environment variable it will take precedence.
+- `volumes` (List of String) Volumes to be mounted on all actions. If an action specifies the same volume it will take precedence.
 
 <a id="nestedatt--spec--actions"></a>
 ### Nested Schema for `spec.actions`
@@ -69,8 +69,8 @@ Required:
 
 Optional:
 
-- `args` (List of String) Args are a set of arguments to be passed to the command executed by the container onlaunch.
-- `cmd` (String) Cmd defines the command to use when launching the image. It overrides the default commandof the action. It must be a unix path to an executable program.
+- `args` (List of String) Args are a set of arguments to be passed to the command executed by the container on launch.
+- `cmd` (String) Cmd defines the command to use when launching the image. It overrides the default command of the action. It must be a unix path to an executable program.
 - `env` (Map of String) Env defines environment variables used when launching the container.
 - `namespaces` (Attributes) Namespace defines the Linux namespaces this container should execute in. (see [below for nested schema](#nestedatt--spec--actions--namespaces))
 - `volumes` (List of String) Volumes defines the volumes to mount into the container.

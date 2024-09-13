@@ -30,7 +30,7 @@ data "k8s_cloudfront_services_k8s_aws_cache_policy_v1alpha1_manifest" "example" 
 
 ### Optional
 
-- `spec` (Attributes) CachePolicySpec defines the desired state of CachePolicy.A cache policy.When it's attached to a cache behavior, the cache policy determines the following:   * The values that CloudFront includes in the cache key. These values can   include HTTP headers, cookies, and URL query strings. CloudFront uses   the cache key to find an object in its cache that it can return to the   viewer.   * The default, minimum, and maximum time to live (TTL) values that you   want objects to stay in the CloudFront cache.The headers, cookies, and query strings that are included in the cache keyare also included in requests that CloudFront sends to the origin. CloudFrontsends a request when it can't find a valid object in its cache that matchesthe request's cache key. If you want to send values to the origin but notinclude them in the cache key, use OriginRequestPolicy. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) CachePolicySpec defines the desired state of CachePolicy. A cache policy. When it's attached to a cache behavior, the cache policy determines the following: * The values that CloudFront includes in the cache key. These values can include HTTP headers, cookies, and URL query strings. CloudFront uses the cache key to find an object in its cache that it can return to the viewer. * The default, minimum, and maximum time to live (TTL) values that you want objects to stay in the CloudFront cache. The headers, cookies, and query strings that are included in the cache key are also included in requests that CloudFront sends to the origin. CloudFront sends a request when it can't find a valid object in its cache that matches the request's cache key. If you want to send values to the origin but not include them in the cache key, use OriginRequestPolicy. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -67,18 +67,18 @@ Optional:
 - `max_ttl` (Number)
 - `min_ttl` (Number)
 - `name` (String)
-- `parameters_in_cache_key_and_forwarded_to_origin` (Attributes) This object determines the values that CloudFront includes in the cache key.These values can include HTTP headers, cookies, and URL query strings. CloudFrontuses the cache key to find an object in its cache that it can return to theviewer.The headers, cookies, and query strings that are included in the cache keyare also included in requests that CloudFront sends to the origin. CloudFrontsends a request when it can't find an object in its cache that matches therequest's cache key. If you want to send values to the origin but not includethem in the cache key, use OriginRequestPolicy. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin))
+- `parameters_in_cache_key_and_forwarded_to_origin` (Attributes) This object determines the values that CloudFront includes in the cache key. These values can include HTTP headers, cookies, and URL query strings. CloudFront uses the cache key to find an object in its cache that it can return to the viewer. The headers, cookies, and query strings that are included in the cache key are also included in requests that CloudFront sends to the origin. CloudFront sends a request when it can't find an object in its cache that matches the request's cache key. If you want to send values to the origin but not include them in the cache key, use OriginRequestPolicy. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin))
 
 <a id="nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin"></a>
 ### Nested Schema for `spec.cache_policy_config.parameters_in_cache_key_and_forwarded_to_origin`
 
 Optional:
 
-- `cookies_config` (Attributes) An object that determines whether any cookies in viewer requests (and ifso, which cookies) are included in the cache key and in requests that CloudFrontsends to the origin. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--cookies_config))
+- `cookies_config` (Attributes) An object that determines whether any cookies in viewer requests (and if so, which cookies) are included in the cache key and in requests that CloudFront sends to the origin. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--cookies_config))
 - `enable_accept_encoding_brotli` (Boolean)
 - `enable_accept_encoding_gzip` (Boolean)
-- `headers_config` (Attributes) An object that determines whether any HTTP headers (and if so, which headers)are included in the cache key and in requests that CloudFront sends to theorigin. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--headers_config))
-- `query_strings_config` (Attributes) An object that determines whether any URL query strings in viewer requests(and if so, which query strings) are included in the cache key and in requeststhat CloudFront sends to the origin. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--query_strings_config))
+- `headers_config` (Attributes) An object that determines whether any HTTP headers (and if so, which headers) are included in the cache key and in requests that CloudFront sends to the origin. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--headers_config))
+- `query_strings_config` (Attributes) An object that determines whether any URL query strings in viewer requests (and if so, which query strings) are included in the cache key and in requests that CloudFront sends to the origin. (see [below for nested schema](#nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--query_strings_config))
 
 <a id="nestedatt--spec--cache_policy_config--parameters_in_cache_key_and_forwarded_to_origin--cookies_config"></a>
 ### Nested Schema for `spec.cache_policy_config.parameters_in_cache_key_and_forwarded_to_origin.cookies_config`

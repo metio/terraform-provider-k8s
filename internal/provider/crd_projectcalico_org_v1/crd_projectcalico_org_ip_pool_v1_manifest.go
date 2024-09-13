@@ -124,8 +124,8 @@ func (r *CrdProjectcalicoOrgIppoolV1Manifest) Schema(_ context.Context, _ dataso
 				MarkdownDescription: "IPPoolSpec contains the specification for an IPPool resource.",
 				Attributes: map[string]schema.Attribute{
 					"allowed_uses": schema.ListAttribute{
-						Description:         "AllowedUse controls what the IP pool will be used for.  If not specified or empty, defaults to ['Tunnel', 'Workload'] for back-compatibility",
-						MarkdownDescription: "AllowedUse controls what the IP pool will be used for.  If not specified or empty, defaults to ['Tunnel', 'Workload'] for back-compatibility",
+						Description:         "AllowedUse controls what the IP pool will be used for. If not specified or empty, defaults to ['Tunnel', 'Workload'] for back-compatibility",
+						MarkdownDescription: "AllowedUse controls what the IP pool will be used for. If not specified or empty, defaults to ['Tunnel', 'Workload'] for back-compatibility",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -177,8 +177,8 @@ func (r *CrdProjectcalicoOrgIppoolV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"mode": schema.StringAttribute{
-								Description:         "The IPIP mode.  This can be one of 'always' or 'cross-subnet'.  A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool.  A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node.  The default value (if not specified) is 'always'.",
-								MarkdownDescription: "The IPIP mode.  This can be one of 'always' or 'cross-subnet'.  A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool.  A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node.  The default value (if not specified) is 'always'.",
+								Description:         "The IPIP mode. This can be one of 'always' or 'cross-subnet'. A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool. A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node. The default value (if not specified) is 'always'.",
+								MarkdownDescription: "The IPIP mode. This can be one of 'always' or 'cross-subnet'. A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool. A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node. The default value (if not specified) is 'always'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

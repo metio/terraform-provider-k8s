@@ -30,7 +30,7 @@ data "k8s_rds_services_k8s_aws_global_cluster_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) GlobalClusterSpec defines the desired state of GlobalCluster.A data type representing an Aurora global database. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) GlobalClusterSpec defines the desired state of GlobalCluster. A data type representing an Aurora global database. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,10 +55,10 @@ Optional:
 
 Optional:
 
-- `database_name` (String) The name for your database of up to 64 alphanumeric characters. If you donot provide a name, Amazon Aurora will not create a database in the globaldatabase cluster you are creating.
-- `deletion_protection` (Boolean) The deletion protection setting for the new global database. The global databasecan't be deleted when deletion protection is enabled.
+- `database_name` (String) The name for your database of up to 64 alphanumeric characters. If you do not provide a name, Amazon Aurora will not create a database in the global database cluster you are creating.
+- `deletion_protection` (Boolean) The deletion protection setting for the new global database. The global database can't be deleted when deletion protection is enabled.
 - `engine` (String) The name of the database engine to be used for this DB cluster.
 - `engine_version` (String) The engine version of the Aurora global database.
 - `global_cluster_identifier` (String) The cluster identifier of the new global database cluster.
-- `source_db_cluster_identifier` (String) The Amazon Resource Name (ARN) to use as the primary cluster of the globaldatabase. This parameter is optional.
+- `source_db_cluster_identifier` (String) The Amazon Resource Name (ARN) to use as the primary cluster of the global database. This parameter is optional.
 - `storage_encrypted` (Boolean) The storage encryption setting for the new global database cluster.

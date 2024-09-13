@@ -61,7 +61,7 @@ Required:
 
 Optional:
 
-- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is:  ambassador_id: - 'default'
+- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is: ambassador_id: - 'default'
 - `l7_depth` (Number) L7Depth specifies how many layer 7 load balancers are between us and the edge of the network.
 - `protocol` (String) Protocol is a shorthand for certain predefined stacks. Exactly one of Protocol or ProtocolStack must be supplied.
 - `protocol_stack` (List of String) ProtocolStack explicitly specifies the protocol stack to set up. Exactly one of Protocol or ProtocolStack must be supplied.

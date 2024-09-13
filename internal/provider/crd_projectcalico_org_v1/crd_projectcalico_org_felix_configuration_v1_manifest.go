@@ -315,8 +315,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_connect_time_load_balancing_enabled": schema.BoolAttribute{
-						Description:         "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer.  The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections.  The only reason to disable it is for debugging purposes. This will be deprecated. Use BPFConnectTimeLoadBalancing [Default: true]",
-						MarkdownDescription: "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer.  The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections.  The only reason to disable it is for debugging purposes. This will be deprecated. Use BPFConnectTimeLoadBalancing [Default: true]",
+						Description:         "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer. The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections. The only reason to disable it is for debugging purposes. This will be deprecated. Use BPFConnectTimeLoadBalancing [Default: true]",
+						MarkdownDescription: "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer. The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections. The only reason to disable it is for debugging purposes. This will be deprecated. Use BPFConnectTimeLoadBalancing [Default: true]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -332,24 +332,24 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_data_iface_pattern": schema.StringAttribute{
-						Description:         "BPFDataIfacePattern is a regular expression that controls which interfaces Felix should attach BPF programs to in order to catch traffic to/from the network.  This needs to match the interfaces that Calico workload traffic flows over as well as any interfaces that handle incoming traffic to nodeports and services from outside the cluster.  It should not match the workload interfaces (usually named cali...).",
-						MarkdownDescription: "BPFDataIfacePattern is a regular expression that controls which interfaces Felix should attach BPF programs to in order to catch traffic to/from the network.  This needs to match the interfaces that Calico workload traffic flows over as well as any interfaces that handle incoming traffic to nodeports and services from outside the cluster.  It should not match the workload interfaces (usually named cali...).",
+						Description:         "BPFDataIfacePattern is a regular expression that controls which interfaces Felix should attach BPF programs to in order to catch traffic to/from the network. This needs to match the interfaces that Calico workload traffic flows over as well as any interfaces that handle incoming traffic to nodeports and services from outside the cluster. It should not match the workload interfaces (usually named cali...).",
+						MarkdownDescription: "BPFDataIfacePattern is a regular expression that controls which interfaces Felix should attach BPF programs to in order to catch traffic to/from the network. This needs to match the interfaces that Calico workload traffic flows over as well as any interfaces that handle incoming traffic to nodeports and services from outside the cluster. It should not match the workload interfaces (usually named cali...).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"bpf_disable_gro_for_ifaces": schema.StringAttribute{
-						Description:         "BPFDisableGROForIfaces is a regular expression that controls which interfaces Felix should disable the Generic Receive Offload [GRO] option.  It should not match the workload interfaces (usually named cali...).",
-						MarkdownDescription: "BPFDisableGROForIfaces is a regular expression that controls which interfaces Felix should disable the Generic Receive Offload [GRO] option.  It should not match the workload interfaces (usually named cali...).",
+						Description:         "BPFDisableGROForIfaces is a regular expression that controls which interfaces Felix should disable the Generic Receive Offload [GRO] option. It should not match the workload interfaces (usually named cali...).",
+						MarkdownDescription: "BPFDisableGROForIfaces is a regular expression that controls which interfaces Felix should disable the Generic Receive Offload [GRO] option. It should not match the workload interfaces (usually named cali...).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"bpf_disable_unprivileged": schema.BoolAttribute{
-						Description:         "BPFDisableUnprivileged, if enabled, Felix sets the kernel.unprivileged_bpf_disabled sysctl to disable unprivileged use of BPF.  This ensures that unprivileged users cannot access Calico's BPF maps and cannot insert their own BPF programs to interfere with Calico's. [Default: true]",
-						MarkdownDescription: "BPFDisableUnprivileged, if enabled, Felix sets the kernel.unprivileged_bpf_disabled sysctl to disable unprivileged use of BPF.  This ensures that unprivileged users cannot access Calico's BPF maps and cannot insert their own BPF programs to interfere with Calico's. [Default: true]",
+						Description:         "BPFDisableUnprivileged, if enabled, Felix sets the kernel.unprivileged_bpf_disabled sysctl to disable unprivileged use of BPF. This ensures that unprivileged users cannot access Calico's BPF maps and cannot insert their own BPF programs to interfere with Calico's. [Default: true]",
+						MarkdownDescription: "BPFDisableUnprivileged, if enabled, Felix sets the kernel.unprivileged_bpf_disabled sysctl to disable unprivileged use of BPF. This ensures that unprivileged users cannot access Calico's BPF maps and cannot insert their own BPF programs to interfere with Calico's. [Default: true]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -392,8 +392,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_external_service_mode": schema.StringAttribute{
-						Description:         "BPFExternalServiceMode in BPF mode, controls how connections from outside the cluster to services (node ports and cluster IPs) are forwarded to remote workloads.  If set to 'Tunnel' then both request and response traffic is tunneled to the remote node.  If set to 'DSR', the request traffic is tunneled but the response traffic is sent directly from the remote node.  In 'DSR' mode, the remote node appears to use the IP of the ingress node; this requires a permissive L2 network.  [Default: Tunnel]",
-						MarkdownDescription: "BPFExternalServiceMode in BPF mode, controls how connections from outside the cluster to services (node ports and cluster IPs) are forwarded to remote workloads.  If set to 'Tunnel' then both request and response traffic is tunneled to the remote node.  If set to 'DSR', the request traffic is tunneled but the response traffic is sent directly from the remote node.  In 'DSR' mode, the remote node appears to use the IP of the ingress node; this requires a permissive L2 network.  [Default: Tunnel]",
+						Description:         "BPFExternalServiceMode in BPF mode, controls how connections from outside the cluster to services (node ports and cluster IPs) are forwarded to remote workloads. If set to 'Tunnel' then both request and response traffic is tunneled to the remote node. If set to 'DSR', the request traffic is tunneled but the response traffic is sent directly from the remote node. In 'DSR' mode, the remote node appears to use the IP of the ingress node; this requires a permissive L2 network. [Default: Tunnel]",
+						MarkdownDescription: "BPFExternalServiceMode in BPF mode, controls how connections from outside the cluster to services (node ports and cluster IPs) are forwarded to remote workloads. If set to 'Tunnel' then both request and response traffic is tunneled to the remote node. If set to 'DSR', the request traffic is tunneled but the response traffic is sent directly from the remote node. In 'DSR' mode, the remote node appears to use the IP of the ingress node; this requires a permissive L2 network. [Default: Tunnel]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -403,8 +403,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_force_track_packets_from_ifaces": schema.ListAttribute{
-						Description:         "BPFForceTrackPacketsFromIfaces in BPF mode, forces traffic from these interfaces to skip Calico's iptables NOTRACK rule, allowing traffic from those interfaces to be tracked by Linux conntrack.  Should only be used for interfaces that are not used for the Calico fabric.  For example, a docker bridge device for non-Calico-networked containers. [Default: docker+]",
-						MarkdownDescription: "BPFForceTrackPacketsFromIfaces in BPF mode, forces traffic from these interfaces to skip Calico's iptables NOTRACK rule, allowing traffic from those interfaces to be tracked by Linux conntrack.  Should only be used for interfaces that are not used for the Calico fabric.  For example, a docker bridge device for non-Calico-networked containers. [Default: docker+]",
+						Description:         "BPFForceTrackPacketsFromIfaces in BPF mode, forces traffic from these interfaces to skip Calico's iptables NOTRACK rule, allowing traffic from those interfaces to be tracked by Linux conntrack. Should only be used for interfaces that are not used for the Calico fabric. For example, a docker bridge device for non-Calico-networked containers. [Default: docker+]",
+						MarkdownDescription: "BPFForceTrackPacketsFromIfaces in BPF mode, forces traffic from these interfaces to skip Calico's iptables NOTRACK rule, allowing traffic from those interfaces to be tracked by Linux conntrack. Should only be used for interfaces that are not used for the Calico fabric. For example, a docker bridge device for non-Calico-networked containers. [Default: docker+]",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -439,16 +439,16 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_kube_proxy_iptables_cleanup_enabled": schema.BoolAttribute{
-						Description:         "BPFKubeProxyIptablesCleanupEnabled, if enabled in BPF mode, Felix will proactively clean up the upstream Kubernetes kube-proxy's iptables chains.  Should only be enabled if kube-proxy is not running.  [Default: true]",
-						MarkdownDescription: "BPFKubeProxyIptablesCleanupEnabled, if enabled in BPF mode, Felix will proactively clean up the upstream Kubernetes kube-proxy's iptables chains.  Should only be enabled if kube-proxy is not running.  [Default: true]",
+						Description:         "BPFKubeProxyIptablesCleanupEnabled, if enabled in BPF mode, Felix will proactively clean up the upstream Kubernetes kube-proxy's iptables chains. Should only be enabled if kube-proxy is not running. [Default: true]",
+						MarkdownDescription: "BPFKubeProxyIptablesCleanupEnabled, if enabled in BPF mode, Felix will proactively clean up the upstream Kubernetes kube-proxy's iptables chains. Should only be enabled if kube-proxy is not running. [Default: true]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"bpf_kube_proxy_min_sync_period": schema.StringAttribute{
-						Description:         "BPFKubeProxyMinSyncPeriod, in BPF mode, controls the minimum time between updates to the dataplane for Felix's embedded kube-proxy.  Lower values give reduced set-up latency.  Higher values reduce Felix CPU usage by batching up more work.  [Default: 1s]",
-						MarkdownDescription: "BPFKubeProxyMinSyncPeriod, in BPF mode, controls the minimum time between updates to the dataplane for Felix's embedded kube-proxy.  Lower values give reduced set-up latency.  Higher values reduce Felix CPU usage by batching up more work.  [Default: 1s]",
+						Description:         "BPFKubeProxyMinSyncPeriod, in BPF mode, controls the minimum time between updates to the dataplane for Felix's embedded kube-proxy. Lower values give reduced set-up latency. Higher values reduce Felix CPU usage by batching up more work. [Default: 1s]",
+						MarkdownDescription: "BPFKubeProxyMinSyncPeriod, in BPF mode, controls the minimum time between updates to the dataplane for Felix's embedded kube-proxy. Lower values give reduced set-up latency. Higher values reduce Felix CPU usage by batching up more work. [Default: 1s]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -466,8 +466,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_log_filters": schema.MapAttribute{
-						Description:         "BPFLogFilters is a map of key=values where the value is a pcap filter expression and the key is an interface name with 'all' denoting all interfaces, 'weps' all workload endpoints and 'heps' all host endpoints.  When specified as an env var, it accepts a comma-separated list of key=values. [Default: unset - means all debug logs are emitted]",
-						MarkdownDescription: "BPFLogFilters is a map of key=values where the value is a pcap filter expression and the key is an interface name with 'all' denoting all interfaces, 'weps' all workload endpoints and 'heps' all host endpoints.  When specified as an env var, it accepts a comma-separated list of key=values. [Default: unset - means all debug logs are emitted]",
+						Description:         "BPFLogFilters is a map of key=values where the value is a pcap filter expression and the key is an interface name with 'all' denoting all interfaces, 'weps' all workload endpoints and 'heps' all host endpoints. When specified as an env var, it accepts a comma-separated list of key=values. [Default: unset - means all debug logs are emitted]",
+						MarkdownDescription: "BPFLogFilters is a map of key=values where the value is a pcap filter expression and the key is an interface name with 'all' denoting all interfaces, 'weps' all workload endpoints and 'heps' all host endpoints. When specified as an env var, it accepts a comma-separated list of key=values. [Default: unset - means all debug logs are emitted]",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -475,8 +475,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_log_level": schema.StringAttribute{
-						Description:         "BPFLogLevel controls the log level of the BPF programs when in BPF dataplane mode.  One of 'Off', 'Info', or 'Debug'.  The logs are emitted to the BPF trace pipe, accessible with the command 'tc exec bpf debug'. [Default: Off].",
-						MarkdownDescription: "BPFLogLevel controls the log level of the BPF programs when in BPF dataplane mode.  One of 'Off', 'Info', or 'Debug'.  The logs are emitted to the BPF trace pipe, accessible with the command 'tc exec bpf debug'. [Default: Off].",
+						Description:         "BPFLogLevel controls the log level of the BPF programs when in BPF dataplane mode. One of 'Off', 'Info', or 'Debug'. The logs are emitted to the BPF trace pipe, accessible with the command 'tc exec bpf debug'. [Default: Off].",
+						MarkdownDescription: "BPFLogLevel controls the log level of the BPF programs when in BPF dataplane mode. One of 'Off', 'Info', or 'Debug'. The logs are emitted to the BPF trace pipe, accessible with the command 'tc exec bpf debug'. [Default: Off].",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -486,24 +486,24 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_map_size_conntrack": schema.Int64Attribute{
-						Description:         "BPFMapSizeConntrack sets the size for the conntrack map.  This map must be large enough to hold an entry for each active connection.  Warning: changing the size of the conntrack map can cause disruption.",
-						MarkdownDescription: "BPFMapSizeConntrack sets the size for the conntrack map.  This map must be large enough to hold an entry for each active connection.  Warning: changing the size of the conntrack map can cause disruption.",
+						Description:         "BPFMapSizeConntrack sets the size for the conntrack map. This map must be large enough to hold an entry for each active connection. Warning: changing the size of the conntrack map can cause disruption.",
+						MarkdownDescription: "BPFMapSizeConntrack sets the size for the conntrack map. This map must be large enough to hold an entry for each active connection. Warning: changing the size of the conntrack map can cause disruption.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"bpf_map_size_ip_sets": schema.Int64Attribute{
-						Description:         "BPFMapSizeIPSets sets the size for ipsets map.  The IP sets map must be large enough to hold an entry for each endpoint matched by every selector in the source/destination matches in network policy.  Selectors such as 'all()' can result in large numbers of entries (one entry per endpoint in that case).",
-						MarkdownDescription: "BPFMapSizeIPSets sets the size for ipsets map.  The IP sets map must be large enough to hold an entry for each endpoint matched by every selector in the source/destination matches in network policy.  Selectors such as 'all()' can result in large numbers of entries (one entry per endpoint in that case).",
+						Description:         "BPFMapSizeIPSets sets the size for ipsets map. The IP sets map must be large enough to hold an entry for each endpoint matched by every selector in the source/destination matches in network policy. Selectors such as 'all()' can result in large numbers of entries (one entry per endpoint in that case).",
+						MarkdownDescription: "BPFMapSizeIPSets sets the size for ipsets map. The IP sets map must be large enough to hold an entry for each endpoint matched by every selector in the source/destination matches in network policy. Selectors such as 'all()' can result in large numbers of entries (one entry per endpoint in that case).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"bpf_map_size_if_state": schema.Int64Attribute{
-						Description:         "BPFMapSizeIfState sets the size for ifstate map.  The ifstate map must be large enough to hold an entry for each device (host + workloads) on a host.",
-						MarkdownDescription: "BPFMapSizeIfState sets the size for ifstate map.  The ifstate map must be large enough to hold an entry for each device (host + workloads) on a host.",
+						Description:         "BPFMapSizeIfState sets the size for ifstate map. The ifstate map must be large enough to hold an entry for each device (host + workloads) on a host.",
+						MarkdownDescription: "BPFMapSizeIfState sets the size for ifstate map. The ifstate map must be large enough to hold an entry for each device (host + workloads) on a host.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -534,16 +534,16 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_map_size_route": schema.Int64Attribute{
-						Description:         "BPFMapSizeRoute sets the size for the routes map.  The routes map should be large enough to hold one entry per workload and a handful of entries per host (enough to cover its own IPs and tunnel IPs).",
-						MarkdownDescription: "BPFMapSizeRoute sets the size for the routes map.  The routes map should be large enough to hold one entry per workload and a handful of entries per host (enough to cover its own IPs and tunnel IPs).",
+						Description:         "BPFMapSizeRoute sets the size for the routes map. The routes map should be large enough to hold one entry per workload and a handful of entries per host (enough to cover its own IPs and tunnel IPs).",
+						MarkdownDescription: "BPFMapSizeRoute sets the size for the routes map. The routes map should be large enough to hold one entry per workload and a handful of entries per host (enough to cover its own IPs and tunnel IPs).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"bpf_psnat_ports": schema.StringAttribute{
-						Description:         "BPFPSNATPorts sets the range from which we randomly pick a port if there is a source port collision. This should be within the ephemeral range as defined by RFC 6056 (1024–65535) and preferably outside the  ephemeral ranges used by common operating systems. Linux uses 32768–60999, while others mostly use the IANA defined range 49152–65535. It is not necessarily a problem if this range overlaps with the operating systems. Both ends of the range are inclusive. [Default: 20000:29999]",
-						MarkdownDescription: "BPFPSNATPorts sets the range from which we randomly pick a port if there is a source port collision. This should be within the ephemeral range as defined by RFC 6056 (1024–65535) and preferably outside the  ephemeral ranges used by common operating systems. Linux uses 32768–60999, while others mostly use the IANA defined range 49152–65535. It is not necessarily a problem if this range overlaps with the operating systems. Both ends of the range are inclusive. [Default: 20000:29999]",
+						Description:         "BPFPSNATPorts sets the range from which we randomly pick a port if there is a source port collision. This should be within the ephemeral range as defined by RFC 6056 (1024–65535) and preferably outside the ephemeral ranges used by common operating systems. Linux uses 32768–60999, while others mostly use the IANA defined range 49152–65535. It is not necessarily a problem if this range overlaps with the operating systems. Both ends of the range are inclusive. [Default: 20000:29999]",
+						MarkdownDescription: "BPFPSNATPorts sets the range from which we randomly pick a port if there is a source port collision. This should be within the ephemeral range as defined by RFC 6056 (1024–65535) and preferably outside the ephemeral ranges used by common operating systems. Linux uses 32768–60999, while others mostly use the IANA defined range 49152–65535. It is not necessarily a problem if this range overlaps with the operating systems. Both ends of the range are inclusive. [Default: 20000:29999]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -569,16 +569,16 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"dataplane_driver": schema.StringAttribute{
-						Description:         "DataplaneDriver filename of the external dataplane driver to use.  Only used if UseInternalDataplaneDriver is set to false.",
-						MarkdownDescription: "DataplaneDriver filename of the external dataplane driver to use.  Only used if UseInternalDataplaneDriver is set to false.",
+						Description:         "DataplaneDriver filename of the external dataplane driver to use. Only used if UseInternalDataplaneDriver is set to false.",
+						MarkdownDescription: "DataplaneDriver filename of the external dataplane driver to use. Only used if UseInternalDataplaneDriver is set to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"dataplane_watchdog_timeout": schema.StringAttribute{
-						Description:         "DataplaneWatchdogTimeout is the readiness/liveness timeout used for Felix's (internal) dataplane driver. Increase this value if you experience spurious non-ready or non-live events when Felix is under heavy load. Decrease the value to get felix to report non-live or non-ready more quickly. [Default: 90s]  Deprecated: replaced by the generic HealthTimeoutOverrides.",
-						MarkdownDescription: "DataplaneWatchdogTimeout is the readiness/liveness timeout used for Felix's (internal) dataplane driver. Increase this value if you experience spurious non-ready or non-live events when Felix is under heavy load. Decrease the value to get felix to report non-live or non-ready more quickly. [Default: 90s]  Deprecated: replaced by the generic HealthTimeoutOverrides.",
+						Description:         "DataplaneWatchdogTimeout is the readiness/liveness timeout used for Felix's (internal) dataplane driver. Increase this value if you experience spurious non-ready or non-live events when Felix is under heavy load. Decrease the value to get felix to report non-live or non-ready more quickly. [Default: 90s] Deprecated: replaced by the generic HealthTimeoutOverrides.",
+						MarkdownDescription: "DataplaneWatchdogTimeout is the readiness/liveness timeout used for Felix's (internal) dataplane driver. Increase this value if you experience spurious non-ready or non-live events when Felix is under heavy load. Decrease the value to get felix to report non-live or non-ready more quickly. [Default: 90s] Deprecated: replaced by the generic HealthTimeoutOverrides.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -593,8 +593,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"debug_host": schema.StringAttribute{
-						Description:         "DebugHost is the host IP or hostname to bind the debug port to.  Only used if DebugPort is set. [Default:localhost]",
-						MarkdownDescription: "DebugHost is the host IP or hostname to bind the debug port to.  Only used if DebugPort is set. [Default:localhost]",
+						Description:         "DebugHost is the host IP or hostname to bind the debug port to. Only used if DebugPort is set. [Default:localhost]",
+						MarkdownDescription: "DebugHost is the host IP or hostname to bind the debug port to. Only used if DebugPort is set. [Default:localhost]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -609,8 +609,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"debug_port": schema.Int64Attribute{
-						Description:         "DebugPort if set, enables Felix's debug HTTP port, which allows memory and CPU profiles to be retrieved.  The debug port is not secure, it should not be exposed to the internet.",
-						MarkdownDescription: "DebugPort if set, enables Felix's debug HTTP port, which allows memory and CPU profiles to be retrieved.  The debug port is not secure, it should not be exposed to the internet.",
+						Description:         "DebugPort if set, enables Felix's debug HTTP port, which allows memory and CPU profiles to be retrieved. The debug port is not secure, it should not be exposed to the internet.",
+						MarkdownDescription: "DebugPort if set, enables Felix's debug HTTP port, which allows memory and CPU profiles to be retrieved. The debug port is not secure, it should not be exposed to the internet.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -712,8 +712,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"endpoint_status_path_prefix": schema.StringAttribute{
-						Description:         "EndpointStatusPathPrefix is the path to the directory where endpoint status will be written. Endpoint status file reporting is disabled if field is left empty.  Chosen directory should match the directory used by the CNI for PodStartupDelay. [Default: '']",
-						MarkdownDescription: "EndpointStatusPathPrefix is the path to the directory where endpoint status will be written. Endpoint status file reporting is disabled if field is left empty.  Chosen directory should match the directory used by the CNI for PodStartupDelay. [Default: '']",
+						Description:         "EndpointStatusPathPrefix is the path to the directory where endpoint status will be written. Endpoint status file reporting is disabled if field is left empty. Chosen directory should match the directory used by the CNI for PodStartupDelay. [Default: '']",
+						MarkdownDescription: "EndpointStatusPathPrefix is the path to the directory where endpoint status will be written. Endpoint status file reporting is disabled if field is left empty. Chosen directory should match the directory used by the CNI for PodStartupDelay. [Default: '']",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -799,8 +799,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"feature_detect_override": schema.StringAttribute{
-						Description:         "FeatureDetectOverride is used to override feature detection based on auto-detected platform capabilities.  Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='.  'true' or 'false' will force the feature, empty or omitted values are auto-detected.",
-						MarkdownDescription: "FeatureDetectOverride is used to override feature detection based on auto-detected platform capabilities.  Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='.  'true' or 'false' will force the feature, empty or omitted values are auto-detected.",
+						Description:         "FeatureDetectOverride is used to override feature detection based on auto-detected platform capabilities. Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='. 'true' or 'false' will force the feature, empty or omitted values are auto-detected.",
+						MarkdownDescription: "FeatureDetectOverride is used to override feature detection based on auto-detected platform capabilities. Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='. 'true' or 'false' will force the feature, empty or omitted values are auto-detected.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -821,8 +821,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"floating_i_ps": schema.StringAttribute{
-						Description:         "FloatingIPs configures whether or not Felix will program non-OpenStack floating IP addresses.  (OpenStack-derived floating IPs are always programmed, regardless of this setting.)",
-						MarkdownDescription: "FloatingIPs configures whether or not Felix will program non-OpenStack floating IP addresses.  (OpenStack-derived floating IPs are always programmed, regardless of this setting.)",
+						Description:         "FloatingIPs configures whether or not Felix will program non-OpenStack floating IP addresses. (OpenStack-derived floating IPs are always programmed, regardless of this setting.)",
+						MarkdownDescription: "FloatingIPs configures whether or not Felix will program non-OpenStack floating IP addresses. (OpenStack-derived floating IPs are always programmed, regardless of this setting.)",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -840,24 +840,24 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"go_gc_threshold": schema.Int64Attribute{
-						Description:         "GoGCThreshold Sets the Go runtime's garbage collection threshold.  I.e. the percentage that the heap is allowed to grow before garbage collection is triggered.  In general, doubling the value halves the CPU time spent doing GC, but it also doubles peak GC memory overhead.  A special value of -1 can be used to disable GC entirely; this should only be used in conjunction with the GoMemoryLimitMB setting.  This setting is overridden by the GOGC environment variable.  [Default: 40]",
-						MarkdownDescription: "GoGCThreshold Sets the Go runtime's garbage collection threshold.  I.e. the percentage that the heap is allowed to grow before garbage collection is triggered.  In general, doubling the value halves the CPU time spent doing GC, but it also doubles peak GC memory overhead.  A special value of -1 can be used to disable GC entirely; this should only be used in conjunction with the GoMemoryLimitMB setting.  This setting is overridden by the GOGC environment variable.  [Default: 40]",
+						Description:         "GoGCThreshold Sets the Go runtime's garbage collection threshold. I.e. the percentage that the heap is allowed to grow before garbage collection is triggered. In general, doubling the value halves the CPU time spent doing GC, but it also doubles peak GC memory overhead. A special value of -1 can be used to disable GC entirely; this should only be used in conjunction with the GoMemoryLimitMB setting. This setting is overridden by the GOGC environment variable. [Default: 40]",
+						MarkdownDescription: "GoGCThreshold Sets the Go runtime's garbage collection threshold. I.e. the percentage that the heap is allowed to grow before garbage collection is triggered. In general, doubling the value halves the CPU time spent doing GC, but it also doubles peak GC memory overhead. A special value of -1 can be used to disable GC entirely; this should only be used in conjunction with the GoMemoryLimitMB setting. This setting is overridden by the GOGC environment variable. [Default: 40]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"go_max_procs": schema.Int64Attribute{
-						Description:         "GoMaxProcs sets the maximum number of CPUs that the Go runtime will use concurrently.  A value of -1 means 'use the system default'; typically the number of real CPUs on the system.  this setting is overridden by the GOMAXPROCS environment variable.  [Default: -1]",
-						MarkdownDescription: "GoMaxProcs sets the maximum number of CPUs that the Go runtime will use concurrently.  A value of -1 means 'use the system default'; typically the number of real CPUs on the system.  this setting is overridden by the GOMAXPROCS environment variable.  [Default: -1]",
+						Description:         "GoMaxProcs sets the maximum number of CPUs that the Go runtime will use concurrently. A value of -1 means 'use the system default'; typically the number of real CPUs on the system. this setting is overridden by the GOMAXPROCS environment variable. [Default: -1]",
+						MarkdownDescription: "GoMaxProcs sets the maximum number of CPUs that the Go runtime will use concurrently. A value of -1 means 'use the system default'; typically the number of real CPUs on the system. this setting is overridden by the GOMAXPROCS environment variable. [Default: -1]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"go_memory_limit_mb": schema.Int64Attribute{
-						Description:         "GoMemoryLimitMB sets a (soft) memory limit for the Go runtime in MB.  The Go runtime will try to keep its memory usage under the limit by triggering GC as needed.  To avoid thrashing, it will exceed the limit if GC starts to take more than 50% of the process's CPU time.  A value of -1 disables the memory limit.  Note that the memory limit, if used, must be considerably less than any hard resource limit set at the container or pod level.  This is because felix is not the only process that must run in the container or pod.  This setting is overridden by the GOMEMLIMIT environment variable.  [Default: -1]",
-						MarkdownDescription: "GoMemoryLimitMB sets a (soft) memory limit for the Go runtime in MB.  The Go runtime will try to keep its memory usage under the limit by triggering GC as needed.  To avoid thrashing, it will exceed the limit if GC starts to take more than 50% of the process's CPU time.  A value of -1 disables the memory limit.  Note that the memory limit, if used, must be considerably less than any hard resource limit set at the container or pod level.  This is because felix is not the only process that must run in the container or pod.  This setting is overridden by the GOMEMLIMIT environment variable.  [Default: -1]",
+						Description:         "GoMemoryLimitMB sets a (soft) memory limit for the Go runtime in MB. The Go runtime will try to keep its memory usage under the limit by triggering GC as needed. To avoid thrashing, it will exceed the limit if GC starts to take more than 50% of the process's CPU time. A value of -1 disables the memory limit. Note that the memory limit, if used, must be considerably less than any hard resource limit set at the container or pod level. This is because felix is not the only process that must run in the container or pod. This setting is overridden by the GOMEMLIMIT environment variable. [Default: -1]",
+						MarkdownDescription: "GoMemoryLimitMB sets a (soft) memory limit for the Go runtime in MB. The Go runtime will try to keep its memory usage under the limit by triggering GC as needed. To avoid thrashing, it will exceed the limit if GC starts to take more than 50% of the process's CPU time. A value of -1 disables the memory limit. Note that the memory limit, if used, must be considerably less than any hard resource limit set at the container or pod level. This is because felix is not the only process that must run in the container or pod. This setting is overridden by the GOMEMLIMIT environment variable. [Default: -1]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -888,8 +888,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"health_timeout_overrides": schema.ListNestedAttribute{
-						Description:         "HealthTimeoutOverrides allows the internal watchdog timeouts of individual subcomponents to be overridden.  This is useful for working around 'false positive' liveness timeouts that can occur in particularly stressful workloads or if CPU is constrained.  For a list of active subcomponents, see Felix's logs.",
-						MarkdownDescription: "HealthTimeoutOverrides allows the internal watchdog timeouts of individual subcomponents to be overridden.  This is useful for working around 'false positive' liveness timeouts that can occur in particularly stressful workloads or if CPU is constrained.  For a list of active subcomponents, see Felix's logs.",
+						Description:         "HealthTimeoutOverrides allows the internal watchdog timeouts of individual subcomponents to be overridden. This is useful for working around 'false positive' liveness timeouts that can occur in particularly stressful workloads or if CPU is constrained. For a list of active subcomponents, see Felix's logs.",
+						MarkdownDescription: "HealthTimeoutOverrides allows the internal watchdog timeouts of individual subcomponents to be overridden. This is useful for working around 'false positive' liveness timeouts that can occur in particularly stressful workloads or if CPU is constrained. For a list of active subcomponents, see Felix's logs.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -1098,8 +1098,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"log_debug_filename_regex": schema.StringAttribute{
-						Description:         "LogDebugFilenameRegex controls which source code files have their Debug log output included in the logs. Only logs from files with names that match the given regular expression are included.  The filter only applies to Debug level logs.",
-						MarkdownDescription: "LogDebugFilenameRegex controls which source code files have their Debug log output included in the logs. Only logs from files with names that match the given regular expression are included.  The filter only applies to Debug level logs.",
+						Description:         "LogDebugFilenameRegex controls which source code files have their Debug log output included in the logs. Only logs from files with names that match the given regular expression are included. The filter only applies to Debug level logs.",
+						MarkdownDescription: "LogDebugFilenameRegex controls which source code files have their Debug log output included in the logs. Only logs from files with names that match the given regular expression are included. The filter only applies to Debug level logs.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1447,8 +1447,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"use_internal_dataplane_driver": schema.BoolAttribute{
-						Description:         "UseInternalDataplaneDriver, if true, Felix will use its internal dataplane programming logic.  If false, it will launch an external dataplane driver and communicate with it over protobuf.",
-						MarkdownDescription: "UseInternalDataplaneDriver, if true, Felix will use its internal dataplane programming logic.  If false, it will launch an external dataplane driver and communicate with it over protobuf.",
+						Description:         "UseInternalDataplaneDriver, if true, Felix will use its internal dataplane programming logic. If false, it will launch an external dataplane driver and communicate with it over protobuf.",
+						MarkdownDescription: "UseInternalDataplaneDriver, if true, Felix will use its internal dataplane programming logic. If false, it will launch an external dataplane driver and communicate with it over protobuf.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

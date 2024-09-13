@@ -82,19 +82,19 @@ Optional:
 - `agent_tls_key` (String)
 - `agent_tls_secret_name` (String)
 - `agent_zone_name` (String)
-- `cluster` (Attributes) Name of the cluster, that will be assigned to this cluster in Instana. Either specifying the 'cluster.name' or 'zone.name'is mandatory. (see [below for nested schema](#nestedatt--spec--cluster))
+- `cluster` (Attributes) Name of the cluster, that will be assigned to this cluster in Instana. Either specifying the 'cluster.name' or 'zone.name' is mandatory. (see [below for nested schema](#nestedatt--spec--cluster))
 - `cluster_name` (String)
 - `config_files` (Map of String)
 - `k8s_sensor` (Attributes) (see [below for nested schema](#nestedatt--spec--k8s_sensor))
-- `kubernetes` (Attributes) Allows for installment of the Kubernetes Sensor as separate pod. Which allows for better tailored resource settings(mainly memory) both for the Agent pods and the Kubernetes Sensor pod. (see [below for nested schema](#nestedatt--spec--kubernetes))
-- `openshift` (Boolean) Set to 'True' to indicate the Operator is being deployed in a OpenShift cluster. Provides a hint so that RBAC etc isconfigured correctly.
+- `kubernetes` (Attributes) Allows for installment of the Kubernetes Sensor as separate pod. Which allows for better tailored resource settings (mainly memory) both for the Agent pods and the Kubernetes Sensor pod. (see [below for nested schema](#nestedatt--spec--kubernetes))
+- `openshift` (Boolean) Set to 'True' to indicate the Operator is being deployed in a OpenShift cluster. Provides a hint so that RBAC etc is configured correctly.
 - `opentelemetry` (Attributes) Enables the OpenTelemetry gRPC endpoint on the Agent. If true, it will also apply 'service.create: true'. (see [below for nested schema](#nestedatt--spec--opentelemetry))
 - `opentelemetry_enabled` (Boolean)
-- `pinned_chart_version` (String) Specifying the PinnedChartVersion allows for 'pinning' the Helm Chart used by the Operator for installing the AgentDaemonSet. Normally the Operator will always install and update to the latest Helm Chart version.The Operator will check and make sure no 'unsupported' Chart versions can be selected.
+- `pinned_chart_version` (String) Specifying the PinnedChartVersion allows for 'pinning' the Helm Chart used by the Operator for installing the Agent DaemonSet. Normally the Operator will always install and update to the latest Helm Chart version. The Operator will check and make sure no 'unsupported' Chart versions can be selected.
 - `pod_security_policy` (Attributes) Specify a PodSecurityPolicy for the Instana Agent Pods. If enabled requires 'rbac.create: true'. (see [below for nested schema](#nestedatt--spec--pod_security_policy))
 - `prometheus` (Attributes) Enables the Prometheus endpoint on the Agent. If true, it will also apply 'service.create: true'. (see [below for nested schema](#nestedatt--spec--prometheus))
 - `rbac` (Attributes) Specifies whether RBAC resources should be created. (see [below for nested schema](#nestedatt--spec--rbac))
-- `service` (Attributes) Specifies whether to create the instana-agent 'Service' to expose within the cluster. The Service can then be used e.g.for the Prometheus remote-write, OpenTelemetry GRCP endpoint and other APIs.Note: Requires Kubernetes 1.17+, as it uses topologyKeys. (see [below for nested schema](#nestedatt--spec--service))
+- `service` (Attributes) Specifies whether to create the instana-agent 'Service' to expose within the cluster. The Service can then be used e.g. for the Prometheus remote-write, OpenTelemetry GRCP endpoint and other APIs. Note: Requires Kubernetes 1.17+, as it uses topologyKeys. (see [below for nested schema](#nestedatt--spec--service))
 - `service_account` (Attributes) Specifies whether a ServiceAccount should be created (default 'true'), and possibly the name to use. (see [below for nested schema](#nestedatt--spec--service_account))
 - `zone` (Attributes) Name of the zone in which the host(s) will be displayed on the map. Optional, but then 'cluster.name' must be specified. (see [below for nested schema](#nestedatt--spec--zone))
 
@@ -108,20 +108,20 @@ Required:
 
 Optional:
 
-- `additional_backends` (Attributes List) These are additional backends the Instana agent will report to besidesthe one configured via the 'agent.endpointHost', 'agent.endpointPort' and 'agent.key' setting. (see [below for nested schema](#nestedatt--spec--agent--additional_backends))
+- `additional_backends` (Attributes List) These are additional backends the Instana agent will report to besides the one configured via the 'agent.endpointHost', 'agent.endpointPort' and 'agent.key' setting. (see [below for nested schema](#nestedatt--spec--agent--additional_backends))
 - `charts_url` (String) Custom agent charts url.
 - `configuration` (Attributes) Mount in a ConfigMap with Agent configuration. Alternative to the 'configuration_yaml' field. (see [below for nested schema](#nestedatt--spec--agent--configuration))
 - `configuration_yaml` (String) Supply Agent configuration e.g. for configuring certain Sensors.
-- `download_key` (String) The DownloadKey, sometimes known as 'sales key', that allows you to download software from Instana. It might be needed tospecify this in addition to the Key.
-- `env` (Map of String) Use the 'env' field to set additional environment variables for the Instana Agent, for example:env:  INSTANA_AGENT_TAGS: dev
+- `download_key` (String) The DownloadKey, sometimes known as 'sales key', that allows you to download software from Instana. It might be needed to specify this in addition to the Key.
+- `env` (Map of String) Use the 'env' field to set additional environment variables for the Instana Agent, for example: env: INSTANA_AGENT_TAGS: dev
 - `host` (Attributes) Host sets a host path to be mounted as the Agent Maven repository (mainly for debugging or development purposes) (see [below for nested schema](#nestedatt--spec--agent--host))
 - `image` (Attributes) Override the container image used for the Instana Agent pods. (see [below for nested schema](#nestedatt--spec--agent--image))
-- `instana_mvn_repo_url` (String) Override for the Maven repository URL when the Agent needs to connect to a locally provided Maven repository 'proxy'Alternative to 'Host' for referencing a different Maven repo.
+- `instana_mvn_repo_url` (String) Override for the Maven repository URL when the Agent needs to connect to a locally provided Maven repository 'proxy' Alternative to 'Host' for referencing a different Maven repo.
 - `key` (String) Key is the secret token which your agent uses to authenticate to Instana's servers.
-- `keys_secret` (String) Rather than specifying the Key and optionally the DownloadKey, you can 'bring yourown secret' creating it in the namespace in which you install the 'instana-agent' andspecify its name in the 'KeysSecret' field. The secret you create must contain a field called 'key' and optionally onecalled 'downloadKey', which contain, respectively, the values you'd otherwise set in '.agent.key' and 'agent.downloadKey'.
-- `listen_address` (String) ListenAddress is the IP addresses the Agent HTTP server will listen on. Normally this will just be localhost ('127.0.0.1'),the pod public IP and any container runtime bridge interfaces. Set 'listenAddress: *' for making the Agent listen on allnetwork interfaces.
+- `keys_secret` (String) Rather than specifying the Key and optionally the DownloadKey, you can 'bring your own secret' creating it in the namespace in which you install the 'instana-agent' and specify its name in the 'KeysSecret' field. The secret you create must contain a field called 'key' and optionally one called 'downloadKey', which contain, respectively, the values you'd otherwise set in '.agent.key' and 'agent.downloadKey'.
+- `listen_address` (String) ListenAddress is the IP addresses the Agent HTTP server will listen on. Normally this will just be localhost ('127.0.0.1'), the pod public IP and any container runtime bridge interfaces. Set 'listenAddress: *' for making the Agent listen on all network interfaces.
 - `min_ready_seconds` (Number) The minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available
-- `mode` (String) Set agent mode, possible options are APM, INFRASTRUCTURE or AWS. KUBERNETES should not be used but instead enabled via'kubernetes.deployment.enabled: true'.
+- `mode` (String) Set agent mode, possible options are APM, INFRASTRUCTURE or AWS. KUBERNETES should not be used but instead enabled via 'kubernetes.deployment.enabled: true'.
 - `pod` (Attributes) Override Agent Pod specific settings such as annotations, labels and resources. (see [below for nested schema](#nestedatt--spec--agent--pod))
 - `proxy_host` (String) proxyHost sets the INSTANA_AGENT_PROXY_HOST environment variable.
 - `proxy_password` (String) proxyPassword sets the INSTANA_AGENT_PROXY_PASSWORD environment variable.
@@ -130,7 +130,7 @@ Optional:
 - `proxy_use_dns` (Boolean) proxyUseDNS sets the INSTANA_AGENT_PROXY_USE_DNS environment variable.
 - `proxy_user` (String) proxyUser sets the INSTANA_AGENT_PROXY_USER environment variable.
 - `redact_kubernetes_secrets` (String) RedactKubernetesSecrets sets the INSTANA_KUBERNETES_REDACT_SECRETS environment variable.
-- `tls` (Attributes) TLS for end-to-end encryption between the Instana Agent and clients accessing the Agent.The Instana Agent does not yet allow enforcing TLS encryption, enabling makes it possible for clients to 'opt-in'.So TLS is only enabled on a connection when requested by the client. (see [below for nested schema](#nestedatt--spec--agent--tls))
+- `tls` (Attributes) TLS for end-to-end encryption between the Instana Agent and clients accessing the Agent. The Instana Agent does not yet allow enforcing TLS encryption, enabling makes it possible for clients to 'opt-in'. So TLS is only enabled on a connection when requested by the client. (see [below for nested schema](#nestedatt--spec--agent--tls))
 - `update_strategy` (Attributes) Control how to update the Agent DaemonSet (see [below for nested schema](#nestedatt--spec--agent--update_strategy))
 
 <a id="nestedatt--spec--agent--additional_backends"></a>
@@ -148,7 +148,7 @@ Required:
 
 Optional:
 
-- `auto_mount_config_entries` (Boolean) When setting this to true, the Helm chart will automatically look up the entriesof the default instana-agent ConfigMap, and mount as agent configuration filesunder /opt/instana/agent/etc/instana all entries with keys that match the'configuration-*.yaml' scheme
+- `auto_mount_config_entries` (Boolean) When setting this to true, the Helm chart will automatically look up the entries of the default instana-agent ConfigMap, and mount as agent configuration files under /opt/instana/agent/etc/instana all entries with keys that match the 'configuration-*.yaml' scheme
 
 
 <a id="nestedatt--spec--agent--host"></a>
@@ -164,10 +164,10 @@ Optional:
 
 Optional:
 
-- `digest` (String) Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag',which will then be ignored.
+- `digest` (String) Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag', which will then be ignored.
 - `name` (String) Name is the name of the container image of the Instana agent.
 - `pull_policy` (String) PullPolicy specifies when to pull the image container.
-- `pull_secrets` (Attributes List) PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret. (see [below for nested schema](#nestedatt--spec--agent--image--pull_secrets))
+- `pull_secrets` (Attributes List) PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with 'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret. (see [below for nested schema](#nestedatt--spec--agent--image--pull_secrets))
 - `tag` (String) Tag is the name of the agent container image; if 'agent.image.digest' is specified, this property is ignored.
 
 <a id="nestedatt--spec--agent--image--pull_secrets"></a>
@@ -184,12 +184,12 @@ Optional:
 
 Optional:
 
-- `affinity` (Attributes) agent.pod.affinity are affinities to influence agent pod assignment.https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ (see [below for nested schema](#nestedatt--spec--agent--pod--affinity))
+- `affinity` (Attributes) agent.pod.affinity are affinities to influence agent pod assignment. https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ (see [below for nested schema](#nestedatt--spec--agent--pod--affinity))
 - `annotations` (Map of String) agent.pod.annotations are additional annotations to be added to the agent pods.
 - `labels` (Map of String) agent.pod.labels are additional labels to be added to the agent pods.
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `priority_class_name` (String) agent.pod.priorityClassName is the name of an existing PriorityClass that should be set on the agent podshttps://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `priority_class_name` (String) agent.pod.priorityClassName is the name of an existing PriorityClass that should be set on the agent pods https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `tolerations` (Attributes List) agent.pod.tolerations are tolerations to influence agent pod assignment. (see [below for nested schema](#nestedatt--spec--agent--pod--tolerations))
 
 <a id="nestedatt--spec--agent--pod--affinity"></a>
@@ -206,8 +206,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--agent--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.agent.pod.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -231,11 +231,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--agent--pod--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -244,11 +244,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 
@@ -274,11 +274,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--agent--pod--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -287,11 +287,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 
@@ -302,8 +302,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -311,20 +311,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -332,7 +332,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
@@ -340,11 +340,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -354,7 +354,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
@@ -362,11 +362,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -377,13 +377,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -391,7 +391,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -399,11 +399,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -413,7 +413,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -421,11 +421,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -436,8 +436,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -445,20 +445,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -466,7 +466,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
@@ -474,11 +474,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -488,7 +488,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
@@ -496,11 +496,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -511,13 +511,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -525,7 +525,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -533,11 +533,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -547,7 +547,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--agent--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--agent--pod--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.agent.pod.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -555,11 +555,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -571,11 +571,11 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -594,7 +594,7 @@ Optional:
 
 Optional:
 
-- `rolling_update` (Attributes) Rolling update config params. Present only if type = 'RollingUpdate'.---TODO: Update this to follow our convention for oneOf, whatever we decide itto be. Same as Deployment 'strategy.rollingUpdate'.See https://github.com/kubernetes/kubernetes/issues/35345 (see [below for nested schema](#nestedatt--spec--agent--update_strategy--rolling_update))
+- `rolling_update` (Attributes) Rolling update config params. Present only if type = 'RollingUpdate'. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be. Same as Deployment 'strategy.rollingUpdate'. See https://github.com/kubernetes/kubernetes/issues/35345 (see [below for nested schema](#nestedatt--spec--agent--update_strategy--rolling_update))
 - `type` (String) Type of daemon set update. Can be 'RollingUpdate' or 'OnDelete'. Default is RollingUpdate.
 
 <a id="nestedatt--spec--agent--update_strategy--rolling_update"></a>
@@ -602,8 +602,8 @@ Optional:
 
 Optional:
 
-- `max_surge` (String) The maximum number of nodes with an existing available DaemonSet pod thatcan have an updated DaemonSet pod during during an update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up to a minimum of 1.Default value is 0.Example: when this is set to 30%, at most 30% of the total number of nodesthat should be running the daemon pod (i.e. status.desiredNumberScheduled)can have their a new pod created before the old pod is marked as deleted.The update starts by launching new pods on 30% of nodes. Once an updatedpod is available (Ready for at least minReadySeconds) the old DaemonSet podon that node is marked deleted. If the old pod becomes unavailable for anyreason (Ready transitions to false, is evicted, or is drained) an updatedpod is immediatedly created on that node without considering surge limits.Allowing surge implies the possibility that the resources consumed by thedaemonset on any given node can double if the readiness check fails, andso resource intensive daemonsets should take into account that they maycause evictions during disruption.This is beta field and enabled/disabled by DaemonSetUpdateSurge feature gate.
-- `max_unavailable` (String) The maximum number of DaemonSet pods that can be unavailable during theupdate. Value can be an absolute number (ex: 5) or a percentage of totalnumber of DaemonSet pods at the start of the update (ex: 10%). Absolutenumber is calculated from percentage by rounding up.This cannot be 0 if MaxSurge is 0Default value is 1.Example: when this is set to 30%, at most 30% of the total number of nodesthat should be running the daemon pod (i.e. status.desiredNumberScheduled)can have their pods stopped for an update at any given time. The updatestarts by stopping at most 30% of those DaemonSet pods and then bringsup new DaemonSet pods in their place. Once the new pods are available,it then proceeds onto other DaemonSet pods, thus ensuring that at least70% of original number of DaemonSet pods are available at all times duringthe update.
+- `max_surge` (String) The maximum number of nodes with an existing available DaemonSet pod that can have an updated DaemonSet pod during during an update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up to a minimum of 1. Default value is 0. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their a new pod created before the old pod is marked as deleted. The update starts by launching new pods on 30% of nodes. Once an updated pod is available (Ready for at least minReadySeconds) the old DaemonSet pod on that node is marked deleted. If the old pod becomes unavailable for any reason (Ready transitions to false, is evicted, or is drained) an updated pod is immediatedly created on that node without considering surge limits. Allowing surge implies the possibility that the resources consumed by the daemonset on any given node can double if the readiness check fails, and so resource intensive daemonsets should take into account that they may cause evictions during disruption. This is beta field and enabled/disabled by DaemonSetUpdateSurge feature gate.
+- `max_unavailable` (String) The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxSurge is 0 Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.
 
 
 
@@ -639,8 +639,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 
@@ -649,10 +649,10 @@ Optional:
 
 Optional:
 
-- `digest` (String) Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag',which will then be ignored.
+- `digest` (String) Digest (a.k.a. Image ID) of the agent container image. If specified, it has priority over 'agent.image.tag', which will then be ignored.
 - `name` (String) Name is the name of the container image of the Instana agent.
 - `pull_policy` (String) PullPolicy specifies when to pull the image container.
-- `pull_secrets` (Attributes List) PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret. (see [below for nested schema](#nestedatt--spec--k8s_sensor--image--pull_secrets))
+- `pull_secrets` (Attributes List) PullSecrets allows you to override the default pull secret that is created when 'agent.image.name' starts with 'containers.instana.io'. Setting 'agent.image.pullSecrets' prevents the creation of the default 'containers-instana-io' secret. (see [below for nested schema](#nestedatt--spec--k8s_sensor--image--pull_secrets))
 - `tag` (String) Tag is the name of the agent container image; if 'agent.image.digest' is specified, this property is ignored.
 
 <a id="nestedatt--spec--k8s_sensor--image--pull_secrets"></a>
@@ -687,8 +687,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 

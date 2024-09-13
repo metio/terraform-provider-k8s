@@ -195,8 +195,8 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Manifest) Schema(_ context.Context, 
 					},
 
 					"mode": schema.StringAttribute{
-						Description:         "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'.If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster.* 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers.* 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed.",
-						MarkdownDescription: "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'.If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster.* 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers.* 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed.",
+						Description:         "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'. If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster. * 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers. * 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed. ",
+						MarkdownDescription: "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'. If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster. * 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers. * 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed. ",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

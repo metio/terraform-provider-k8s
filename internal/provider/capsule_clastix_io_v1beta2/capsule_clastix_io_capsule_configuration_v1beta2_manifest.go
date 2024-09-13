@@ -130,24 +130,24 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest) Schema(_ context.C
 				MarkdownDescription: "CapsuleConfigurationSpec defines the Capsule configuration.",
 				Attributes: map[string]schema.Attribute{
 					"enable_tls_reconciler": schema.BoolAttribute{
-						Description:         "Toggles the TLS reconciler, the controller that is able to generate CA and certificates for the webhookswhen not using an already provided CA and certificate, or when these are managed externally with Vault, or cert-manager.",
-						MarkdownDescription: "Toggles the TLS reconciler, the controller that is able to generate CA and certificates for the webhookswhen not using an already provided CA and certificate, or when these are managed externally with Vault, or cert-manager.",
+						Description:         "Toggles the TLS reconciler, the controller that is able to generate CA and certificates for the webhooks when not using an already provided CA and certificate, or when these are managed externally with Vault, or cert-manager.",
+						MarkdownDescription: "Toggles the TLS reconciler, the controller that is able to generate CA and certificates for the webhooks when not using an already provided CA and certificate, or when these are managed externally with Vault, or cert-manager.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"force_tenant_prefix": schema.BoolAttribute{
-						Description:         "Enforces the Tenant owner, during Namespace creation, to name it using the selected Tenant name as prefix,separated by a dash. This is useful to avoid Namespace name collision in a public CaaS environment.",
-						MarkdownDescription: "Enforces the Tenant owner, during Namespace creation, to name it using the selected Tenant name as prefix,separated by a dash. This is useful to avoid Namespace name collision in a public CaaS environment.",
+						Description:         "Enforces the Tenant owner, during Namespace creation, to name it using the selected Tenant name as prefix, separated by a dash. This is useful to avoid Namespace name collision in a public CaaS environment.",
+						MarkdownDescription: "Enforces the Tenant owner, during Namespace creation, to name it using the selected Tenant name as prefix, separated by a dash. This is useful to avoid Namespace name collision in a public CaaS environment.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"node_metadata": schema.SingleNestedAttribute{
-						Description:         "Allows to set the forbidden metadata for the worker nodes that could be patched by a Tenant.This applies only if the Tenant has an active NodeSelector, and the Owner have right to patch their nodes.",
-						MarkdownDescription: "Allows to set the forbidden metadata for the worker nodes that could be patched by a Tenant.This applies only if the Tenant has an active NodeSelector, and the Owner have right to patch their nodes.",
+						Description:         "Allows to set the forbidden metadata for the worker nodes that could be patched by a Tenant. This applies only if the Tenant has an active NodeSelector, and the Owner have right to patch their nodes.",
+						MarkdownDescription: "Allows to set the forbidden metadata for the worker nodes that could be patched by a Tenant. This applies only if the Tenant has an active NodeSelector, and the Owner have right to patch their nodes.",
 						Attributes: map[string]schema.Attribute{
 							"forbidden_annotations": schema.SingleNestedAttribute{
 								Description:         "Define the annotations that a Tenant Owner cannot set for their nodes.",
@@ -207,12 +207,12 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest) Schema(_ context.C
 					},
 
 					"overrides": schema.SingleNestedAttribute{
-						Description:         "Allows to set different name rather than the canonical one for the Capsule configuration objects,such as webhook secret or configurations.",
-						MarkdownDescription: "Allows to set different name rather than the canonical one for the Capsule configuration objects,such as webhook secret or configurations.",
+						Description:         "Allows to set different name rather than the canonical one for the Capsule configuration objects, such as webhook secret or configurations.",
+						MarkdownDescription: "Allows to set different name rather than the canonical one for the Capsule configuration objects, such as webhook secret or configurations.",
 						Attributes: map[string]schema.Attribute{
 							"tls_secret_name": schema.StringAttribute{
-								Description:         "Defines the Secret name used for the webhook server.Must be in the same Namespace where the Capsule Deployment is deployed.",
-								MarkdownDescription: "Defines the Secret name used for the webhook server.Must be in the same Namespace where the Capsule Deployment is deployed.",
+								Description:         "Defines the Secret name used for the webhook server. Must be in the same Namespace where the Capsule Deployment is deployed.",
+								MarkdownDescription: "Defines the Secret name used for the webhook server. Must be in the same Namespace where the Capsule Deployment is deployed.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

@@ -173,8 +173,8 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Sc
 										MarkdownDescription: "HardwareAffinity allows filtering for hardware.",
 										Attributes: map[string]schema.Attribute{
 											"preferred": schema.ListNestedAttribute{
-												Description:         "Preferred are the preferred hardware affinity terms. Hardware matching these terms are preferred according to theweights provided, but are not required.",
-												MarkdownDescription: "Preferred are the preferred hardware affinity terms. Hardware matching these terms are preferred according to theweights provided, but are not required.",
+												Description:         "Preferred are the preferred hardware affinity terms. Hardware matching these terms are preferred according to the weights provided, but are not required.",
+												MarkdownDescription: "Preferred are the preferred hardware affinity terms. Hardware matching these terms are preferred according to the weights provided, but are not required.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"hardware_affinity_term": schema.SingleNestedAttribute{
@@ -199,16 +199,16 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Sc
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -222,8 +222,8 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Sc
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -259,8 +259,8 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Sc
 											},
 
 											"required": schema.ListNestedAttribute{
-												Description:         "Required are the required hardware affinity terms.  The terms are OR'd together, hardware must match one term tobe considered.",
-												MarkdownDescription: "Required are the required hardware affinity terms.  The terms are OR'd together, hardware must match one term tobe considered.",
+												Description:         "Required are the required hardware affinity terms. The terms are OR'd together, hardware must match one term to be considered.",
+												MarkdownDescription: "Required are the required hardware affinity terms. The terms are OR'd together, hardware must match one term to be considered.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
@@ -281,16 +281,16 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Sc
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -304,8 +304,8 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Sc
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -329,40 +329,40 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Sc
 									},
 
 									"hardware_name": schema.StringAttribute{
-										Description:         "Those fields are set programmatically, but they cannot be re-constructed from 'state of the world', sowe put them in spec instead of status.",
-										MarkdownDescription: "Those fields are set programmatically, but they cannot be re-constructed from 'state of the world', sowe put them in spec instead of status.",
+										Description:         "Those fields are set programmatically, but they cannot be re-constructed from 'state of the world', so we put them in spec instead of status.",
+										MarkdownDescription: "Those fields are set programmatically, but they cannot be re-constructed from 'state of the world', so we put them in spec instead of status.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"image_lookup_base_registry": schema.StringAttribute{
-										Description:         "ImageLookupBaseRegistry is the base Registry URL that is used for pulling images,if not set, the default will be to use ghcr.io/tinkerbell/cluster-api-provider-tinkerbell.",
-										MarkdownDescription: "ImageLookupBaseRegistry is the base Registry URL that is used for pulling images,if not set, the default will be to use ghcr.io/tinkerbell/cluster-api-provider-tinkerbell.",
+										Description:         "ImageLookupBaseRegistry is the base Registry URL that is used for pulling images, if not set, the default will be to use ghcr.io/tinkerbell/cluster-api-provider-tinkerbell.",
+										MarkdownDescription: "ImageLookupBaseRegistry is the base Registry URL that is used for pulling images, if not set, the default will be to use ghcr.io/tinkerbell/cluster-api-provider-tinkerbell.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"image_lookup_format": schema.StringAttribute{
-										Description:         "ImageLookupFormat is the URL naming format to use for machine images whena machine does not specify. When set, this will be used for all cluster machinesunless a machine specifies a different ImageLookupFormat. Supports substitutionsfor {{.BaseRegistry}}, {{.OSDistro}}, {{.OSVersion}} and {{.KubernetesVersion}} withthe basse URL, OS distribution, OS version, and kubernetes version, respectively.BaseRegistry will be the value in ImageLookupBaseRegistry or ghcr.io/tinkerbell/cluster-api-provider-tinkerbell(the default), OSDistro will be the value in ImageLookupOSDistro or ubuntu (the default),OSVersion will be the value in ImageLookupOSVersion or default based on the OSDistro(if known), and the kubernetes version as defined by the packages produced bykubernetes/release: v1.13.0, v1.12.5-mybuild.1, or v1.17.3. For example, the defaultimage format of {{.BaseRegistry}}/{{.OSDistro}}-{{.OSVersion}}:{{.KubernetesVersion}}.gz willattempt to pull the image from that location. See also: https://golang.org/pkg/text/template/",
-										MarkdownDescription: "ImageLookupFormat is the URL naming format to use for machine images whena machine does not specify. When set, this will be used for all cluster machinesunless a machine specifies a different ImageLookupFormat. Supports substitutionsfor {{.BaseRegistry}}, {{.OSDistro}}, {{.OSVersion}} and {{.KubernetesVersion}} withthe basse URL, OS distribution, OS version, and kubernetes version, respectively.BaseRegistry will be the value in ImageLookupBaseRegistry or ghcr.io/tinkerbell/cluster-api-provider-tinkerbell(the default), OSDistro will be the value in ImageLookupOSDistro or ubuntu (the default),OSVersion will be the value in ImageLookupOSVersion or default based on the OSDistro(if known), and the kubernetes version as defined by the packages produced bykubernetes/release: v1.13.0, v1.12.5-mybuild.1, or v1.17.3. For example, the defaultimage format of {{.BaseRegistry}}/{{.OSDistro}}-{{.OSVersion}}:{{.KubernetesVersion}}.gz willattempt to pull the image from that location. See also: https://golang.org/pkg/text/template/",
+										Description:         "ImageLookupFormat is the URL naming format to use for machine images when a machine does not specify. When set, this will be used for all cluster machines unless a machine specifies a different ImageLookupFormat. Supports substitutions for {{.BaseRegistry}}, {{.OSDistro}}, {{.OSVersion}} and {{.KubernetesVersion}} with the basse URL, OS distribution, OS version, and kubernetes version, respectively. BaseRegistry will be the value in ImageLookupBaseRegistry or ghcr.io/tinkerbell/cluster-api-provider-tinkerbell (the default), OSDistro will be the value in ImageLookupOSDistro or ubuntu (the default), OSVersion will be the value in ImageLookupOSVersion or default based on the OSDistro (if known), and the kubernetes version as defined by the packages produced by kubernetes/release: v1.13.0, v1.12.5-mybuild.1, or v1.17.3. For example, the default image format of {{.BaseRegistry}}/{{.OSDistro}}-{{.OSVersion}}:{{.KubernetesVersion}}.gz will attempt to pull the image from that location. See also: https://golang.org/pkg/text/template/",
+										MarkdownDescription: "ImageLookupFormat is the URL naming format to use for machine images when a machine does not specify. When set, this will be used for all cluster machines unless a machine specifies a different ImageLookupFormat. Supports substitutions for {{.BaseRegistry}}, {{.OSDistro}}, {{.OSVersion}} and {{.KubernetesVersion}} with the basse URL, OS distribution, OS version, and kubernetes version, respectively. BaseRegistry will be the value in ImageLookupBaseRegistry or ghcr.io/tinkerbell/cluster-api-provider-tinkerbell (the default), OSDistro will be the value in ImageLookupOSDistro or ubuntu (the default), OSVersion will be the value in ImageLookupOSVersion or default based on the OSDistro (if known), and the kubernetes version as defined by the packages produced by kubernetes/release: v1.13.0, v1.12.5-mybuild.1, or v1.17.3. For example, the default image format of {{.BaseRegistry}}/{{.OSDistro}}-{{.OSVersion}}:{{.KubernetesVersion}}.gz will attempt to pull the image from that location. See also: https://golang.org/pkg/text/template/",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"image_lookup_os_distro": schema.StringAttribute{
-										Description:         "ImageLookupOSDistro is the name of the OS distro to use when fetching machine images,if not set it will default to ubuntu.",
-										MarkdownDescription: "ImageLookupOSDistro is the name of the OS distro to use when fetching machine images,if not set it will default to ubuntu.",
+										Description:         "ImageLookupOSDistro is the name of the OS distro to use when fetching machine images, if not set it will default to ubuntu.",
+										MarkdownDescription: "ImageLookupOSDistro is the name of the OS distro to use when fetching machine images, if not set it will default to ubuntu.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"image_lookup_os_version": schema.StringAttribute{
-										Description:         "ImageLookupOSVersion is the version of the OS distribution to use when fetching machineimages. If not set it will default based on ImageLookupOSDistro.",
-										MarkdownDescription: "ImageLookupOSVersion is the version of the OS distribution to use when fetching machineimages. If not set it will default based on ImageLookupOSDistro.",
+										Description:         "ImageLookupOSVersion is the version of the OS distribution to use when fetching machine images. If not set it will default based on ImageLookupOSDistro.",
+										MarkdownDescription: "ImageLookupOSVersion is the version of the OS distribution to use when fetching machine images. If not set it will default based on ImageLookupOSDistro.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -377,8 +377,8 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Sc
 									},
 
 									"template_override": schema.StringAttribute{
-										Description:         "TemplateOverride overrides the default Tinkerbell template used by CAPT.You can learn more about Tinkerbell templates here: https://tinkerbell.org/docs/concepts/templates/",
-										MarkdownDescription: "TemplateOverride overrides the default Tinkerbell template used by CAPT.You can learn more about Tinkerbell templates here: https://tinkerbell.org/docs/concepts/templates/",
+										Description:         "TemplateOverride overrides the default Tinkerbell template used by CAPT. You can learn more about Tinkerbell templates here: https://tinkerbell.org/docs/concepts/templates/",
+										MarkdownDescription: "TemplateOverride overrides the default Tinkerbell template used by CAPT. You can learn more about Tinkerbell templates here: https://tinkerbell.org/docs/concepts/templates/",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

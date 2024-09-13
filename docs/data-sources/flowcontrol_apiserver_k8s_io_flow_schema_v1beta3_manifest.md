@@ -59,7 +59,7 @@ Required:
 Optional:
 
 - `distinguisher_method` (Attributes) FlowDistinguisherMethod specifies the method of a flow distinguisher. (see [below for nested schema](#nestedatt--spec--distinguisher_method))
-- `matching_precedence` (Number) 'matchingPrecedence' is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.
+- `matching_precedence` (Number) 'matchingPrecedence' is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence. Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.
 - `rules` (Attributes List) 'rules' describes which requests will match this flow schema. This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema. (see [below for nested schema](#nestedatt--spec--rules))
 
 <a id="nestedatt--spec--priority_level_configuration"></a>
@@ -134,7 +134,7 @@ Required:
 
 Required:
 
-- `non_resource_urls` (List of String) 'nonResourceURLs' is a set of url prefixes that a user should have access to and may not be empty. For example:  - '/healthz' is legal  - '/hea*' is illegal  - '/hea' is legal but matches nothing  - '/hea/*' also matches nothing  - '/healthz/*' matches all per-component health checks.'*' matches all non-resource urls. if it is present, it must be the only entry. Required.
+- `non_resource_urls` (List of String) 'nonResourceURLs' is a set of url prefixes that a user should have access to and may not be empty. For example: - '/healthz' is legal - '/hea*' is illegal - '/hea' is legal but matches nothing - '/hea/*' also matches nothing - '/healthz/*' matches all per-component health checks. '*' matches all non-resource urls. if it is present, it must be the only entry. Required.
 - `verbs` (List of String) 'verbs' is a list of matching verbs and may not be empty. '*' matches all verbs. If it is present, it must be the only entry. Required.
 
 
@@ -144,10 +144,10 @@ Required:
 Required:
 
 - `api_groups` (List of String) 'apiGroups' is a list of matching API groups and may not be empty. '*' matches all API groups and, if present, must be the only entry. Required.
-- `resources` (List of String) 'resources' is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, [ 'services', 'nodes/status' ].  This list may not be empty. '*' matches all resources and, if present, must be the only entry. Required.
+- `resources` (List of String) 'resources' is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource. For example, [ 'services', 'nodes/status' ]. This list may not be empty. '*' matches all resources and, if present, must be the only entry. Required.
 - `verbs` (List of String) 'verbs' is a list of matching verbs and may not be empty. '*' matches all verbs and, if present, must be the only entry. Required.
 
 Optional:
 
 - `cluster_scope` (Boolean) 'clusterScope' indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces). If this field is omitted or false then the 'namespaces' field must contain a non-empty list.
-- `namespaces` (List of String) 'namespaces' is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains '*'.  Note that '*' matches any specified namespace but does not match a request that _does not specify_ a namespace (see the 'clusterScope' field for that). This list may be empty, but only if 'clusterScope' is true.
+- `namespaces` (List of String) 'namespaces' is a list of target namespaces that restricts matches. A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains '*'. Note that '*' matches any specified namespace but does not match a request that _does not specify_ a namespace (see the 'clusterScope' field for that). This list may be empty, but only if 'clusterScope' is true.

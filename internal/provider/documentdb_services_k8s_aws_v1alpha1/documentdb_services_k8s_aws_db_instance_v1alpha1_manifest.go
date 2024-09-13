@@ -142,36 +142,36 @@ func (r *DocumentdbServicesK8SAwsDbinstanceV1Alpha1Manifest) Schema(_ context.Co
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "DBInstanceSpec defines the desired state of DBInstance.Detailed information about an instance.",
-				MarkdownDescription: "DBInstanceSpec defines the desired state of DBInstance.Detailed information about an instance.",
+				Description:         "DBInstanceSpec defines the desired state of DBInstance. Detailed information about an instance.",
+				MarkdownDescription: "DBInstanceSpec defines the desired state of DBInstance. Detailed information about an instance.",
 				Attributes: map[string]schema.Attribute{
 					"auto_minor_version_upgrade": schema.BoolAttribute{
-						Description:         "This parameter does not apply to Amazon DocumentDB. Amazon DocumentDB doesnot perform minor version upgrades regardless of the value set.Default: false",
-						MarkdownDescription: "This parameter does not apply to Amazon DocumentDB. Amazon DocumentDB doesnot perform minor version upgrades regardless of the value set.Default: false",
+						Description:         "This parameter does not apply to Amazon DocumentDB. Amazon DocumentDB does not perform minor version upgrades regardless of the value set. Default: false",
+						MarkdownDescription: "This parameter does not apply to Amazon DocumentDB. Amazon DocumentDB does not perform minor version upgrades regardless of the value set. Default: false",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"availability_zone": schema.StringAttribute{
-						Description:         "The Amazon EC2 Availability Zone that the instance is created in.Default: A random, system-chosen Availability Zone in the endpoint's AmazonWeb Services Region.Example: us-east-1d",
-						MarkdownDescription: "The Amazon EC2 Availability Zone that the instance is created in.Default: A random, system-chosen Availability Zone in the endpoint's AmazonWeb Services Region.Example: us-east-1d",
+						Description:         "The Amazon EC2 Availability Zone that the instance is created in. Default: A random, system-chosen Availability Zone in the endpoint's Amazon Web Services Region. Example: us-east-1d",
+						MarkdownDescription: "The Amazon EC2 Availability Zone that the instance is created in. Default: A random, system-chosen Availability Zone in the endpoint's Amazon Web Services Region. Example: us-east-1d",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ca_certificate_identifier": schema.StringAttribute{
-						Description:         "The CA certificate identifier to use for the DB instance's server certificate.For more information, see Updating Your Amazon DocumentDB TLS Certificates(https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html)and Encrypting Data in Transit (https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html)in the Amazon DocumentDB Developer Guide.",
-						MarkdownDescription: "The CA certificate identifier to use for the DB instance's server certificate.For more information, see Updating Your Amazon DocumentDB TLS Certificates(https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html)and Encrypting Data in Transit (https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html)in the Amazon DocumentDB Developer Guide.",
+						Description:         "The CA certificate identifier to use for the DB instance's server certificate. For more information, see Updating Your Amazon DocumentDB TLS Certificates (https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html) and Encrypting Data in Transit (https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html) in the Amazon DocumentDB Developer Guide.",
+						MarkdownDescription: "The CA certificate identifier to use for the DB instance's server certificate. For more information, see Updating Your Amazon DocumentDB TLS Certificates (https://docs.aws.amazon.com/documentdb/latest/developerguide/ca_cert_rotation.html) and Encrypting Data in Transit (https://docs.aws.amazon.com/documentdb/latest/developerguide/security.encryption.ssl.html) in the Amazon DocumentDB Developer Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"copy_tags_to_snapshot": schema.BoolAttribute{
-						Description:         "A value that indicates whether to copy tags from the DB instance to snapshotsof the DB instance. By default, tags are not copied.",
-						MarkdownDescription: "A value that indicates whether to copy tags from the DB instance to snapshotsof the DB instance. By default, tags are not copied.",
+						Description:         "A value that indicates whether to copy tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.",
+						MarkdownDescription: "A value that indicates whether to copy tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -194,44 +194,44 @@ func (r *DocumentdbServicesK8SAwsDbinstanceV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"db_instance_identifier": schema.StringAttribute{
-						Description:         "The instance identifier. This parameter is stored as a lowercase string.Constraints:   * Must contain from 1 to 63 letters, numbers, or hyphens.   * The first character must be a letter.   * Cannot end with a hyphen or contain two consecutive hyphens.Example: mydbinstance",
-						MarkdownDescription: "The instance identifier. This parameter is stored as a lowercase string.Constraints:   * Must contain from 1 to 63 letters, numbers, or hyphens.   * The first character must be a letter.   * Cannot end with a hyphen or contain two consecutive hyphens.Example: mydbinstance",
+						Description:         "The instance identifier. This parameter is stored as a lowercase string. Constraints: * Must contain from 1 to 63 letters, numbers, or hyphens. * The first character must be a letter. * Cannot end with a hyphen or contain two consecutive hyphens. Example: mydbinstance",
+						MarkdownDescription: "The instance identifier. This parameter is stored as a lowercase string. Constraints: * Must contain from 1 to 63 letters, numbers, or hyphens. * The first character must be a letter. * Cannot end with a hyphen or contain two consecutive hyphens. Example: mydbinstance",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"engine": schema.StringAttribute{
-						Description:         "The name of the database engine to be used for this instance.Valid value: docdb",
-						MarkdownDescription: "The name of the database engine to be used for this instance.Valid value: docdb",
+						Description:         "The name of the database engine to be used for this instance. Valid value: docdb",
+						MarkdownDescription: "The name of the database engine to be used for this instance. Valid value: docdb",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"performance_insights_enabled": schema.BoolAttribute{
-						Description:         "A value that indicates whether to enable Performance Insights for the DBInstance. For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/documentdb/latest/developerguide/performance-insights.html).",
-						MarkdownDescription: "A value that indicates whether to enable Performance Insights for the DBInstance. For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/documentdb/latest/developerguide/performance-insights.html).",
+						Description:         "A value that indicates whether to enable Performance Insights for the DB Instance. For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/documentdb/latest/developerguide/performance-insights.html).",
+						MarkdownDescription: "A value that indicates whether to enable Performance Insights for the DB Instance. For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/documentdb/latest/developerguide/performance-insights.html).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"performance_insights_kms_key_id": schema.StringAttribute{
-						Description:         "The KMS key identifier for encryption of Performance Insights data.The KMS key identifier is the key ARN, key ID, alias ARN, or alias name forthe KMS key.If you do not specify a value for PerformanceInsightsKMSKeyId, then AmazonDocumentDB uses your default KMS key. There is a default KMS key for yourAmazon Web Services account. Your Amazon Web Services account has a differentdefault KMS key for each Amazon Web Services region.",
-						MarkdownDescription: "The KMS key identifier for encryption of Performance Insights data.The KMS key identifier is the key ARN, key ID, alias ARN, or alias name forthe KMS key.If you do not specify a value for PerformanceInsightsKMSKeyId, then AmazonDocumentDB uses your default KMS key. There is a default KMS key for yourAmazon Web Services account. Your Amazon Web Services account has a differentdefault KMS key for each Amazon Web Services region.",
+						Description:         "The KMS key identifier for encryption of Performance Insights data. The KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key. If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon DocumentDB uses your default KMS key. There is a default KMS key for your Amazon Web Services account. Your Amazon Web Services account has a different default KMS key for each Amazon Web Services region.",
+						MarkdownDescription: "The KMS key identifier for encryption of Performance Insights data. The KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key. If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon DocumentDB uses your default KMS key. There is a default KMS key for your Amazon Web Services account. Your Amazon Web Services account has a different default KMS key for each Amazon Web Services region.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"performance_insights_kms_key_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -260,24 +260,24 @@ func (r *DocumentdbServicesK8SAwsDbinstanceV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"preferred_maintenance_window": schema.StringAttribute{
-						Description:         "The time range each week during which system maintenance can occur, in UniversalCoordinated Time (UTC).Format: ddd:hh24:mi-ddd:hh24:miThe default is a 30-minute window selected at random from an 8-hour blockof time for each Amazon Web Services Region, occurring on a random day ofthe week.Valid days: Mon, Tue, Wed, Thu, Fri, Sat, SunConstraints: Minimum 30-minute window.",
-						MarkdownDescription: "The time range each week during which system maintenance can occur, in UniversalCoordinated Time (UTC).Format: ddd:hh24:mi-ddd:hh24:miThe default is a 30-minute window selected at random from an 8-hour blockof time for each Amazon Web Services Region, occurring on a random day ofthe week.Valid days: Mon, Tue, Wed, Thu, Fri, Sat, SunConstraints: Minimum 30-minute window.",
+						Description:         "The time range each week during which system maintenance can occur, in Universal Coordinated Time (UTC). Format: ddd:hh24:mi-ddd:hh24:mi The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region, occurring on a random day of the week. Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun Constraints: Minimum 30-minute window.",
+						MarkdownDescription: "The time range each week during which system maintenance can occur, in Universal Coordinated Time (UTC). Format: ddd:hh24:mi-ddd:hh24:mi The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region, occurring on a random day of the week. Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun Constraints: Minimum 30-minute window.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"promotion_tier": schema.Int64Attribute{
-						Description:         "A value that specifies the order in which an Amazon DocumentDB replica ispromoted to the primary instance after a failure of the existing primaryinstance.Default: 1Valid values: 0-15",
-						MarkdownDescription: "A value that specifies the order in which an Amazon DocumentDB replica ispromoted to the primary instance after a failure of the existing primaryinstance.Default: 1Valid values: 0-15",
+						Description:         "A value that specifies the order in which an Amazon DocumentDB replica is promoted to the primary instance after a failure of the existing primary instance. Default: 1 Valid values: 0-15",
+						MarkdownDescription: "A value that specifies the order in which an Amazon DocumentDB replica is promoted to the primary instance after a failure of the existing primary instance. Default: 1 Valid values: 0-15",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "The tags to be assigned to the instance. You can assign up to 10 tags toan instance.",
-						MarkdownDescription: "The tags to be assigned to the instance. You can assign up to 10 tags toan instance.",
+						Description:         "The tags to be assigned to the instance. You can assign up to 10 tags to an instance.",
+						MarkdownDescription: "The tags to be assigned to the instance. You can assign up to 10 tags to an instance.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

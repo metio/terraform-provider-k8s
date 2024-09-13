@@ -30,7 +30,7 @@ data "k8s_documentdb_services_k8s_aws_db_subnet_group_v1alpha1_manifest" "exampl
 
 ### Optional
 
-- `spec` (Attributes) DBSubnetGroupSpec defines the desired state of DBSubnetGroup.Detailed information about a subnet group. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) DBSubnetGroupSpec defines the desired state of DBSubnetGroup. Detailed information about a subnet group. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,7 +56,7 @@ Optional:
 Required:
 
 - `description` (String) The description for the subnet group.
-- `name` (String) The name for the subnet group. This value is stored as a lowercase string.Constraints: Must contain no more than 255 letters, numbers, periods, underscores,spaces, or hyphens. Must not be default.Example: mySubnetgroup
+- `name` (String) The name for the subnet group. This value is stored as a lowercase string. Constraints: Must contain no more than 255 letters, numbers, periods, underscores, spaces, or hyphens. Must not be default. Example: mySubnetgroup
 
 Optional:
 
@@ -69,7 +69,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_refs--from))
 
 <a id="nestedatt--spec--subnet_refs--from"></a>
 ### Nested Schema for `spec.subnet_refs.from`

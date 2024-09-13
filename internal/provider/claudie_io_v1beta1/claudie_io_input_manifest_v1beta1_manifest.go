@@ -145,8 +145,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Metadata(_ context.Context, requ
 
 func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "InputManifest is a definition of the user's infrastructure.It contains cloud provider specification,nodepool specification, Kubernetes and loadbalancer clusters.",
-		MarkdownDescription: "InputManifest is a definition of the user's infrastructure.It contains cloud provider specification,nodepool specification, Kubernetes and loadbalancer clusters.",
+		Description:         "InputManifest is a definition of the user's infrastructure. It contains cloud provider specification, nodepool specification, Kubernetes and loadbalancer clusters.",
+		MarkdownDescription: "InputManifest is a definition of the user's infrastructure. It contains cloud provider specification, nodepool specification, Kubernetes and loadbalancer clusters.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -269,8 +269,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"version": schema.StringAttribute{
-											Description:         "Version should be defined in format vX.Y. In terms of supported versions of Kubernetes,Claudie follows kubeone releases and their supported versions.The current kubeone version used in Claudie is 1.5.To see the list of supported versions, please refer to kubeone documentation.https://docs.kubermatic.com/kubeone/v1.8/architecture/compatibility/supported-versions/",
-											MarkdownDescription: "Version should be defined in format vX.Y. In terms of supported versions of Kubernetes,Claudie follows kubeone releases and their supported versions.The current kubeone version used in Claudie is 1.5.To see the list of supported versions, please refer to kubeone documentation.https://docs.kubermatic.com/kubeone/v1.8/architecture/compatibility/supported-versions/",
+											Description:         "Version should be defined in format vX.Y. In terms of supported versions of Kubernetes, Claudie follows kubeone releases and their supported versions. The current kubeone version used in Claudie is 1.5. To see the list of supported versions, please refer to kubeone documentation. https://docs.kubermatic.com/kubeone/v1.8/architecture/compatibility/supported-versions/",
+											MarkdownDescription: "Version should be defined in format vX.Y. In terms of supported versions of Kubernetes, Claudie follows kubeone releases and their supported versions. The current kubeone version used in Claudie is 1.5. To see the list of supported versions, please refer to kubeone documentation. https://docs.kubermatic.com/kubeone/v1.8/architecture/compatibility/supported-versions/",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -338,8 +338,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"pools": schema.ListAttribute{
-											Description:         "List of nodepool names this loadbalancer will use. Remember, that nodepools definedin nodepools are only 'blueprints'. The actual nodepool will be created once referenced here.",
-											MarkdownDescription: "List of nodepool names this loadbalancer will use. Remember, that nodepools definedin nodepools are only 'blueprints'. The actual nodepool will be created once referenced here.",
+											Description:         "List of nodepool names this loadbalancer will use. Remember, that nodepools defined in nodepools are only 'blueprints'. The actual nodepool will be created once referenced here.",
+											MarkdownDescription: "List of nodepool names this loadbalancer will use. Remember, that nodepools defined in nodepools are only 'blueprints'. The actual nodepool will be created once referenced here.",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,
@@ -430,8 +430,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"node_pools": schema.SingleNestedAttribute{
-						Description:         "NodePool is a map of dynamic nodepools and static nodepools which will be used toform kubernetes or loadbalancer clusters.",
-						MarkdownDescription: "NodePool is a map of dynamic nodepools and static nodepools which will be used toform kubernetes or loadbalancer clusters.",
+						Description:         "NodePool is a map of dynamic nodepools and static nodepools which will be used to form kubernetes or loadbalancer clusters.",
+						MarkdownDescription: "NodePool is a map of dynamic nodepools and static nodepools which will be used to form kubernetes or loadbalancer clusters.",
 						Attributes: map[string]schema.Attribute{
 							"dynamic": schema.ListNestedAttribute{
 								Description:         "Dynamic nodepools define nodepools dynamically created by Claudie.",
@@ -564,16 +564,16 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"server_type": schema.StringAttribute{
-											Description:         "	Type of the machines in the nodepool. Currently, only AMD64 machines are supported.",
-											MarkdownDescription: "	Type of the machines in the nodepool. Currently, only AMD64 machines are supported.",
+											Description:         " Type of the machines in the nodepool. Currently, only AMD64 machines are supported.",
+											MarkdownDescription: " Type of the machines in the nodepool. Currently, only AMD64 machines are supported.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"storage_disk_size": schema.Int64Attribute{
-											Description:         "Size of the storage disk on the nodes in the nodepool in GB. The OS disk is created automaticallywith predefined size of 100GB for kubernetes nodes and 50GB for Loadbalancer nodes.The value must be either -1 (no disk is created), or >= 50. If no value is specified, 50 is used.",
-											MarkdownDescription: "Size of the storage disk on the nodes in the nodepool in GB. The OS disk is created automaticallywith predefined size of 100GB for kubernetes nodes and 50GB for Loadbalancer nodes.The value must be either -1 (no disk is created), or >= 50. If no value is specified, 50 is used.",
+											Description:         "Size of the storage disk on the nodes in the nodepool in GB. The OS disk is created automatically with predefined size of 100GB for kubernetes nodes and 50GB for Loadbalancer nodes. The value must be either -1 (no disk is created), or >= 50. If no value is specified, 50 is used.",
+											MarkdownDescription: "Size of the storage disk on the nodes in the nodepool in GB. The OS disk is created automatically with predefined size of 100GB for kubernetes nodes and 50GB for Loadbalancer nodes. The value must be either -1 (no disk is created), or >= 50. If no value is specified, 50 is used.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -585,8 +585,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"effect": schema.StringAttribute{
-														Description:         "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
-														MarkdownDescription: "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+														Description:         "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+														MarkdownDescription: "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -601,8 +601,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"time_added": schema.StringAttribute{
-														Description:         "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
-														MarkdownDescription: "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
+														Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+														MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -720,8 +720,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"effect": schema.StringAttribute{
-														Description:         "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
-														MarkdownDescription: "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+														Description:         "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+														MarkdownDescription: "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -736,8 +736,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"time_added": schema.StringAttribute{
-														Description:         "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
-														MarkdownDescription: "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
+														Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+														MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -772,8 +772,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"providers": schema.ListNestedAttribute{
-						Description:         "Providers list of defined cloud provider configurationthat will be used while infrastructure provisioning.",
-						MarkdownDescription: "Providers list of defined cloud provider configurationthat will be used while infrastructure provisioning.",
+						Description:         "Providers list of defined cloud provider configuration that will be used while infrastructure provisioning.",
+						MarkdownDescription: "Providers list of defined cloud provider configuration that will be used while infrastructure provisioning.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -789,8 +789,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"provider_type": schema.StringAttribute{
-									Description:         "ProviderType type of a provider.A list of available providers can be found at https://docs.claudie.io/v0.8.1/input-manifest/providers/aws/",
-									MarkdownDescription: "ProviderType type of a provider.A list of available providers can be found at https://docs.claudie.io/v0.8.1/input-manifest/providers/aws/",
+									Description:         "ProviderType type of a provider. A list of available providers can be found at https://docs.claudie.io/v0.8.1/input-manifest/providers/aws/",
+									MarkdownDescription: "ProviderType type of a provider. A list of available providers can be found at https://docs.claudie.io/v0.8.1/input-manifest/providers/aws/",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -800,8 +800,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"secret_ref": schema.SingleNestedAttribute{
-									Description:         "SecretReference represents a Secret Reference. It has enough information to retrieve secretin any namespace",
-									MarkdownDescription: "SecretReference represents a Secret Reference. It has enough information to retrieve secretin any namespace",
+									Description:         "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace",
+									MarkdownDescription: "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "name is unique within a namespace to reference a secret resource.",

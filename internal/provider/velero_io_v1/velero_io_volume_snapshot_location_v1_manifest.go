@@ -144,16 +144,16 @@ func (r *VeleroIoVolumeSnapshotLocationV1Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "Credential contains the credential information intended to be used with this location",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
-								Description:         "The key of the secret to select from.  Must be a valid secret key.",
-								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+								Description:         "The key of the secret to select from. Must be a valid secret key.",
+								MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

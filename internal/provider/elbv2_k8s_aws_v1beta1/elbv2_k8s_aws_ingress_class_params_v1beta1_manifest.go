@@ -212,8 +212,8 @@ func (r *Elbv2K8SAwsIngressClassParamsV1Beta1Manifest) Schema(_ context.Context,
 					},
 
 					"namespace_selector": schema.SingleNestedAttribute{
-						Description:         "NamespaceSelector restrict the namespaces of Ingresses that are allowed to specify the IngressClass with this IngressClassParams.* if absent or present but empty, it selects all namespaces.",
-						MarkdownDescription: "NamespaceSelector restrict the namespaces of Ingresses that are allowed to specify the IngressClass with this IngressClassParams.* if absent or present but empty, it selects all namespaces.",
+						Description:         "NamespaceSelector restrict the namespaces of Ingresses that are allowed to specify the IngressClass with this IngressClassParams. * if absent or present but empty, it selects all namespaces.",
+						MarkdownDescription: "NamespaceSelector restrict the namespaces of Ingresses that are allowed to specify the IngressClass with this IngressClassParams. * if absent or present but empty, it selects all namespaces.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -229,16 +229,16 @@ func (r *Elbv2K8SAwsIngressClassParamsV1Beta1Manifest) Schema(_ context.Context,
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -252,8 +252,8 @@ func (r *Elbv2K8SAwsIngressClassParamsV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -298,8 +298,8 @@ func (r *Elbv2K8SAwsIngressClassParamsV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"tags": schema.MapAttribute{
-								Description:         "Tags specifies subnets in the load balancer's VPC where eachtag specified in the map key contains one of the values in the correspondingvalue list.Exactly one of this or 'ids' must be specified.",
-								MarkdownDescription: "Tags specifies subnets in the load balancer's VPC where eachtag specified in the map key contains one of the values in the correspondingvalue list.Exactly one of this or 'ids' must be specified.",
+								Description:         "Tags specifies subnets in the load balancer's VPC where each tag specified in the map key contains one of the values in the corresponding value list. Exactly one of this or 'ids' must be specified.",
+								MarkdownDescription: "Tags specifies subnets in the load balancer's VPC where each tag specified in the map key contains one of the values in the corresponding value list. Exactly one of this or 'ids' must be specified.",
 								ElementType:         types.ListType{ElemType: types.StringType},
 								Required:            false,
 								Optional:            true,

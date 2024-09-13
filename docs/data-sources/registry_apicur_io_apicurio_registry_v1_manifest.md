@@ -63,10 +63,10 @@ Optional:
 
 Optional:
 
-- `env` (Attributes List) Environment variables:  List of additional environment variables that will be provided to the Apicurio Registry application. (see [below for nested schema](#nestedatt--spec--configuration--env))
+- `env` (Attributes List) Environment variables: List of additional environment variables that will be provided to the Apicurio Registry application. (see [below for nested schema](#nestedatt--spec--configuration--env))
 - `kafkasql` (Attributes) Configuration of Apicurio Registry KafkaSQL storage (see [below for nested schema](#nestedatt--spec--configuration--kafkasql))
 - `log_level` (String) Third-party (non-Apicurio) library log level
-- `persistence` (String) Storage:  Type of storage used by Apicurio Registry, one of: mem, sql, kafkasql. Default value is 'mem'.
+- `persistence` (String) Storage: Type of storage used by Apicurio Registry, one of: mem, sql, kafkasql. Default value is 'mem'.
 - `registry_log_level` (String) Apicurio Registry application log level
 - `security` (Attributes) Security configuration (see [below for nested schema](#nestedatt--spec--configuration--security))
 - `sql` (Attributes) Configuration of Apicurio Registry SQL storage (see [below for nested schema](#nestedatt--spec--configuration--sql))
@@ -137,7 +137,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
@@ -152,25 +152,25 @@ Optional:
 
 Optional:
 
-- `bootstrap_servers` (String) Kafka bootstrap servers URL:  URL of one of the Kafka brokers, which provide initial metadata about the Kafka cluster, for example: '<service name>.<namespace>.svc:9092'.
-- `security` (Attributes) Kafka security configuration:  Provide the following configuration options if your Kafka cluster is secured using TLS or SCRAM. (see [below for nested schema](#nestedatt--spec--configuration--kafkasql--security))
+- `bootstrap_servers` (String) Kafka bootstrap servers URL: URL of one of the Kafka brokers, which provide initial metadata about the Kafka cluster, for example: '<service name>.<namespace>.svc:9092'.
+- `security` (Attributes) Kafka security configuration: Provide the following configuration options if your Kafka cluster is secured using TLS or SCRAM. (see [below for nested schema](#nestedatt--spec--configuration--kafkasql--security))
 
 <a id="nestedatt--spec--configuration--kafkasql--security"></a>
 ### Nested Schema for `spec.configuration.kafkasql.security`
 
 Optional:
 
-- `scram` (Attributes) SCRAM:  Kafka is secured using SCRAM. (see [below for nested schema](#nestedatt--spec--configuration--kafkasql--security--scram))
-- `tls` (Attributes) TLS:  Kafka is secured using TLS. (see [below for nested schema](#nestedatt--spec--configuration--kafkasql--security--tls))
+- `scram` (Attributes) SCRAM: Kafka is secured using SCRAM. (see [below for nested schema](#nestedatt--spec--configuration--kafkasql--security--scram))
+- `tls` (Attributes) TLS: Kafka is secured using TLS. (see [below for nested schema](#nestedatt--spec--configuration--kafkasql--security--tls))
 
 <a id="nestedatt--spec--configuration--kafkasql--security--scram"></a>
 ### Nested Schema for `spec.configuration.kafkasql.security.scram`
 
 Optional:
 
-- `mechanism` (String) Mechanism:  Name of the SCRAM mechanism, default value is SCRAM-SHA-512.
-- `password_secret_name` (String) User password Secret name:  Name of a Secret that contains password of the SCRAM user under the 'password' key.
-- `truststore_secret_name` (String) Truststore Secret name:  Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.
+- `mechanism` (String) Mechanism: Name of the SCRAM mechanism, default value is SCRAM-SHA-512.
+- `password_secret_name` (String) User password Secret name: Name of a Secret that contains password of the SCRAM user under the 'password' key.
+- `truststore_secret_name` (String) Truststore Secret name: Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.
 - `user` (String) User name
 
 
@@ -179,8 +179,8 @@ Optional:
 
 Optional:
 
-- `keystore_secret_name` (String) Keystore Secret name:  Name of a Secret that contains TLS keystore (in PKCS12 format) under the 'user.p12' key, and keystore password under the 'user.password' key.
-- `truststore_secret_name` (String) Truststore Secret name:  Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.
+- `keystore_secret_name` (String) Keystore Secret name: Name of a Secret that contains TLS keystore (in PKCS12 format) under the 'user.p12' key, and keystore password under the 'user.password' key.
+- `truststore_secret_name` (String) Truststore Secret name: Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.
 
 
 
@@ -190,16 +190,16 @@ Optional:
 
 Optional:
 
-- `https` (Attributes) HTTPS:  Configure Apicurio Registry to be accessible using HTTPS. (see [below for nested schema](#nestedatt--spec--configuration--security--https))
-- `keycloak` (Attributes) Keycloak:  Configure Apicurio Registry to use Keycloak for Identity and Access Management (IAM). (see [below for nested schema](#nestedatt--spec--configuration--security--keycloak))
+- `https` (Attributes) HTTPS: Configure Apicurio Registry to be accessible using HTTPS. (see [below for nested schema](#nestedatt--spec--configuration--security--https))
+- `keycloak` (Attributes) Keycloak: Configure Apicurio Registry to use Keycloak for Identity and Access Management (IAM). (see [below for nested schema](#nestedatt--spec--configuration--security--keycloak))
 
 <a id="nestedatt--spec--configuration--security--https"></a>
 ### Nested Schema for `spec.configuration.security.https`
 
 Optional:
 
-- `disable_http` (Boolean) Disable HTTP:  Disable HTTP if HTTPS is enabled.
-- `secret_name` (String) HTTPS certificate and private key Secret name:  Name of a Secret that contains HTTPS certificate under the 'tls.crt' key, and the private key under the 'tls.key' key.
+- `disable_http` (Boolean) Disable HTTP: Disable HTTP if HTTPS is enabled.
+- `secret_name` (String) HTTPS certificate and private key Secret name: Name of a Secret that contains HTTPS certificate under the 'tls.crt' key, and the private key under the 'tls.key' key.
 
 
 <a id="nestedatt--spec--configuration--security--keycloak"></a>
@@ -210,7 +210,7 @@ Optional:
 - `api_client_id` (String) Client ID for the REST API
 - `realm` (String) Keycloak realm
 - `ui_client_id` (String) Client ID for the UI
-- `url` (String) Keycloak auth URL:  URL of the Keycloak auth endpoint, must end with '/auth'.
+- `url` (String) Keycloak auth URL: URL of the Keycloak auth endpoint, must end with '/auth'.
 
 
 
@@ -227,7 +227,7 @@ Optional:
 Optional:
 
 - `password` (String) Data source password
-- `url` (String) Data source URL:  URL of the PostgreSQL database, for example: 'jdbc:postgresql://<service name>.<namespace>.svc:5432/<database name>'.
+- `url` (String) Data source URL: URL of the PostgreSQL database, for example: 'jdbc:postgresql://<service name>.<namespace>.svc:5432/<database name>'.
 - `user_name` (String) Data source username
 
 
@@ -237,7 +237,7 @@ Optional:
 
 Optional:
 
-- `read_only` (Boolean) Read-only:  Set the web console to read-only mode. WARNING: This does not affect access to the Apicurio REST API.
+- `read_only` (Boolean) Read-only: Set the web console to read-only mode. WARNING: This does not affect access to the Apicurio REST API.
 
 
 
@@ -247,13 +247,13 @@ Optional:
 Optional:
 
 - `affinity` (Attributes) Affinity (see [below for nested schema](#nestedatt--spec--deployment--affinity))
-- `host` (String) Hostname:  Apicurio Registry application hostname (part of the URL without the protocol and path).
-- `image` (String) Apicurio Registry image:  Replaces the default Apicurio Registry application image. Overrides the values in the REGISTRY_IMAGE_MEM, REGISTRY_IMAGE_KAFKASQL and REGISTRY_IMAGE_SQL Operator environment variables.
-- `image_pull_secrets` (Attributes List) Apicurio Registry image pull secrets:  List of Secrets to use when pulling the Apicurio Registry image. (see [below for nested schema](#nestedatt--spec--deployment--image_pull_secrets))
-- `managed_resources` (Attributes) Apicurio Registry managed resources:  Configure how the Operator manages Kubernetes resources. (see [below for nested schema](#nestedatt--spec--deployment--managed_resources))
+- `host` (String) Hostname: Apicurio Registry application hostname (part of the URL without the protocol and path).
+- `image` (String) Apicurio Registry image: Replaces the default Apicurio Registry application image. Overrides the values in the REGISTRY_IMAGE_MEM, REGISTRY_IMAGE_KAFKASQL and REGISTRY_IMAGE_SQL Operator environment variables.
+- `image_pull_secrets` (Attributes List) Apicurio Registry image pull secrets: List of Secrets to use when pulling the Apicurio Registry image. (see [below for nested schema](#nestedatt--spec--deployment--image_pull_secrets))
+- `managed_resources` (Attributes) Apicurio Registry managed resources: Configure how the Operator manages Kubernetes resources. (see [below for nested schema](#nestedatt--spec--deployment--managed_resources))
 - `metadata` (Attributes) Metadata of the Apicurio Registry pod (see [below for nested schema](#nestedatt--spec--deployment--metadata))
 - `pod_template_spec_preview` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview))
-- `replicas` (Number) Replicas:  The required number of Apicurio Registry pods. Default value is 1.
+- `replicas` (Number) Replicas: The required number of Apicurio Registry pods. Default value is 1.
 - `tolerations` (Attributes List) Tolerations (see [below for nested schema](#nestedatt--spec--deployment--tolerations))
 
 <a id="nestedatt--spec--deployment--affinity"></a>
@@ -651,9 +651,9 @@ Optional:
 
 Optional:
 
-- `disable_ingress` (Boolean) Disable Ingress:  Operator will not create or manage an Ingress for Apicurio Registry, so it can be done manually.
-- `disable_network_policy` (Boolean) Disable NetworkPolicy:  Operator will not create or manage a NetworkPolicy for Apicurio Registry, so it can be done manually.
-- `disable_pod_disruption_budget` (Boolean) Disable PodDisruptionBudget:  Operator will not create or manage a PodDisruptionBudget for Apicurio Registry, so it can be done manually.
+- `disable_ingress` (Boolean) Disable Ingress: Operator will not create or manage an Ingress for Apicurio Registry, so it can be done manually.
+- `disable_network_policy` (Boolean) Disable NetworkPolicy: Operator will not create or manage a NetworkPolicy for Apicurio Registry, so it can be done manually.
+- `disable_pod_disruption_budget` (Boolean) Disable PodDisruptionBudget: Operator will not create or manage a PodDisruptionBudget for Apicurio Registry, so it can be done manually.
 
 
 <a id="nestedatt--spec--deployment--metadata"></a>
@@ -661,8 +661,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations:  Additional Apicurio Registry Pod annotations.
-- `labels` (Map of String) Labels:  Additional Apicurio Registry Pod labels.
+- `annotations` (Map of String) Annotations: Additional Apicurio Registry Pod annotations.
+- `labels` (Map of String) Labels: Additional Apicurio Registry Pod labels.
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview"></a>

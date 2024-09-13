@@ -55,7 +55,7 @@ Optional:
 
 Required:
 
-- `num_history_shards` (Number) NumHistoryShards is the desired number of history shards.This field is immutable.
+- `num_history_shards` (Number) NumHistoryShards is the desired number of history shards. This field is immutable.
 - `persistence` (Attributes) Persistence defines temporal persistence configuration. (see [below for nested schema](#nestedatt--spec--persistence))
 
 Optional:
@@ -65,16 +65,16 @@ Optional:
 - `authorization` (Attributes) Authorization allows authorization configuration for the temporal cluster. (see [below for nested schema](#nestedatt--spec--authorization))
 - `dynamic_config` (Attributes) DynamicConfig allows advanced configuration for the temporal cluster. (see [below for nested schema](#nestedatt--spec--dynamic_config))
 - `image` (String) Image defines the temporal server docker image the cluster should use for each services.
-- `image_pull_secrets` (Attributes List) An optional list of references to secrets in the same namespaceto use for pulling temporal images from registries. (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
+- `image_pull_secrets` (Attributes List) An optional list of references to secrets in the same namespace to use for pulling temporal images from registries. (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `job_init_containers` (List of Map of String) JobInitContainers adds a list of init containers to the setup's jobs.
 - `job_resources` (Attributes) JobResources allows set resources for setup/update jobs. (see [below for nested schema](#nestedatt--spec--job_resources))
-- `job_ttl_seconds_after_finished` (Number) JobTTLSecondsAfterFinished is amount of time to keep job pods after jobs are completed.Defaults to 300 seconds.
+- `job_ttl_seconds_after_finished` (Number) JobTTLSecondsAfterFinished is amount of time to keep job pods after jobs are completed. Defaults to 300 seconds.
 - `log` (Attributes) Log defines temporal cluster's logger configuration. (see [below for nested schema](#nestedatt--spec--log))
 - `m_tls` (Attributes) MTLS allows configuration of the network traffic encryption for the cluster. (see [below for nested schema](#nestedatt--spec--m_tls))
 - `metrics` (Attributes) Metrics allows configuration of scraping endpoints for stats. prometheus or m3. (see [below for nested schema](#nestedatt--spec--metrics))
 - `services` (Attributes) Services allows customizations for each temporal services deployment. (see [below for nested schema](#nestedatt--spec--services))
 - `ui` (Attributes) UI allows configuration of the optional temporal web ui deployed alongside the cluster. (see [below for nested schema](#nestedatt--spec--ui))
-- `version` (String) Version defines the temporal version the cluster to be deployed.This version impacts the underlying persistence schemas versions.
+- `version` (String) Version defines the temporal version the cluster to be deployed. This version impacts the underlying persistence schemas versions.
 
 <a id="nestedatt--spec--persistence"></a>
 ### Nested Schema for `spec.persistence`
@@ -87,16 +87,16 @@ Required:
 Optional:
 
 - `advanced_visibility_store` (Attributes) AdvancedVisibilityStore holds the advanced visibility datastore specs. (see [below for nested schema](#nestedatt--spec--persistence--advanced_visibility_store))
-- `secondary_visibility_store` (Attributes) SecondaryVisibilityStore holds the secondary visibility datastore specs.Feature only available for clusters >= 1.21.0. (see [below for nested schema](#nestedatt--spec--persistence--secondary_visibility_store))
+- `secondary_visibility_store` (Attributes) SecondaryVisibilityStore holds the secondary visibility datastore specs. Feature only available for clusters >= 1.21.0. (see [below for nested schema](#nestedatt--spec--persistence--secondary_visibility_store))
 
 <a id="nestedatt--spec--persistence--default_store"></a>
 ### Nested Schema for `spec.persistence.default_store`
 
 Optional:
 
-- `cassandra` (Attributes) Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store. (see [below for nested schema](#nestedatt--spec--persistence--default_store--cassandra))
+- `cassandra` (Attributes) Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store. (see [below for nested schema](#nestedatt--spec--persistence--default_store--cassandra))
 - `elasticsearch` (Attributes) Elasticsearch holds all connection parameters for Elasticsearch datastores. (see [below for nested schema](#nestedatt--spec--persistence--default_store--elasticsearch))
-- `name` (String) Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.
+- `name` (String) Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.
 - `password_secret_ref` (Attributes) PasswordSecret is the reference to the secret holding the password. (see [below for nested schema](#nestedatt--spec--persistence--default_store--password_secret_ref))
 - `skip_create` (Boolean) SkipCreate instructs the operator to skip creating the database for SQL datastores or to skip creating keyspace for Cassandra. Use this option if your database or keyspace has already been provisioned by an administrator.
 - `sql` (Attributes) SQL holds all connection parameters for SQL datastores. (see [below for nested schema](#nestedatt--spec--persistence--default_store--sql))
@@ -125,8 +125,8 @@ Optional:
 
 Optional:
 
-- `consistency` (Number) Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).
-- `serial_consistency` (Number) SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)
+- `consistency` (Number) Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).
+- `serial_consistency` (Number) SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)
 
 
 
@@ -251,9 +251,9 @@ Optional:
 
 Optional:
 
-- `cassandra` (Attributes) Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store. (see [below for nested schema](#nestedatt--spec--persistence--visibility_store--cassandra))
+- `cassandra` (Attributes) Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store. (see [below for nested schema](#nestedatt--spec--persistence--visibility_store--cassandra))
 - `elasticsearch` (Attributes) Elasticsearch holds all connection parameters for Elasticsearch datastores. (see [below for nested schema](#nestedatt--spec--persistence--visibility_store--elasticsearch))
-- `name` (String) Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.
+- `name` (String) Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.
 - `password_secret_ref` (Attributes) PasswordSecret is the reference to the secret holding the password. (see [below for nested schema](#nestedatt--spec--persistence--visibility_store--password_secret_ref))
 - `skip_create` (Boolean) SkipCreate instructs the operator to skip creating the database for SQL datastores or to skip creating keyspace for Cassandra. Use this option if your database or keyspace has already been provisioned by an administrator.
 - `sql` (Attributes) SQL holds all connection parameters for SQL datastores. (see [below for nested schema](#nestedatt--spec--persistence--visibility_store--sql))
@@ -282,8 +282,8 @@ Optional:
 
 Optional:
 
-- `consistency` (Number) Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).
-- `serial_consistency` (Number) SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)
+- `consistency` (Number) Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).
+- `serial_consistency` (Number) SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)
 
 
 
@@ -408,9 +408,9 @@ Optional:
 
 Optional:
 
-- `cassandra` (Attributes) Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store. (see [below for nested schema](#nestedatt--spec--persistence--advanced_visibility_store--cassandra))
+- `cassandra` (Attributes) Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store. (see [below for nested schema](#nestedatt--spec--persistence--advanced_visibility_store--cassandra))
 - `elasticsearch` (Attributes) Elasticsearch holds all connection parameters for Elasticsearch datastores. (see [below for nested schema](#nestedatt--spec--persistence--advanced_visibility_store--elasticsearch))
-- `name` (String) Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.
+- `name` (String) Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.
 - `password_secret_ref` (Attributes) PasswordSecret is the reference to the secret holding the password. (see [below for nested schema](#nestedatt--spec--persistence--advanced_visibility_store--password_secret_ref))
 - `skip_create` (Boolean) SkipCreate instructs the operator to skip creating the database for SQL datastores or to skip creating keyspace for Cassandra. Use this option if your database or keyspace has already been provisioned by an administrator.
 - `sql` (Attributes) SQL holds all connection parameters for SQL datastores. (see [below for nested schema](#nestedatt--spec--persistence--advanced_visibility_store--sql))
@@ -439,8 +439,8 @@ Optional:
 
 Optional:
 
-- `consistency` (Number) Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).
-- `serial_consistency` (Number) SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)
+- `consistency` (Number) Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).
+- `serial_consistency` (Number) SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)
 
 
 
@@ -565,9 +565,9 @@ Optional:
 
 Optional:
 
-- `cassandra` (Attributes) Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store. (see [below for nested schema](#nestedatt--spec--persistence--secondary_visibility_store--cassandra))
+- `cassandra` (Attributes) Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store. (see [below for nested schema](#nestedatt--spec--persistence--secondary_visibility_store--cassandra))
 - `elasticsearch` (Attributes) Elasticsearch holds all connection parameters for Elasticsearch datastores. (see [below for nested schema](#nestedatt--spec--persistence--secondary_visibility_store--elasticsearch))
-- `name` (String) Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.
+- `name` (String) Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.
 - `password_secret_ref` (Attributes) PasswordSecret is the reference to the secret holding the password. (see [below for nested schema](#nestedatt--spec--persistence--secondary_visibility_store--password_secret_ref))
 - `skip_create` (Boolean) SkipCreate instructs the operator to skip creating the database for SQL datastores or to skip creating keyspace for Cassandra. Use this option if your database or keyspace has already been provisioned by an administrator.
 - `sql` (Attributes) SQL holds all connection parameters for SQL datastores. (see [below for nested schema](#nestedatt--spec--persistence--secondary_visibility_store--sql))
@@ -596,8 +596,8 @@ Optional:
 
 Optional:
 
-- `consistency` (Number) Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).
-- `serial_consistency` (Number) SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)
+- `consistency` (Number) Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).
+- `serial_consistency` (Number) SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)
 
 
 
@@ -726,7 +726,7 @@ Optional:
 - `enabled` (Boolean) Enabled defines if the operator should deploy the admin tools alongside the cluster.
 - `image` (String) Image defines the temporal admin tools docker image the instance should run.
 - `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the ui. (see [below for nested schema](#nestedatt--spec--admintools--overrides))
-- `resources` (Attributes) Compute Resources required by the ui.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--admintools--resources))
+- `resources` (Attributes) Compute Resources required by the ui. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--admintools--resources))
 
 <a id="nestedatt--spec--admintools--overrides"></a>
 ### Nested Schema for `spec.admintools.overrides`
@@ -740,7 +740,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--admintools--overrides--deployment--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--admintools--overrides--deployment--metadata))
 - `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--admintools--overrides--deployment--spec))
 
 <a id="nestedatt--spec--admintools--overrides--deployment--metadata"></a>
@@ -748,8 +748,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 <a id="nestedatt--spec--admintools--overrides--deployment--spec"></a>
@@ -764,7 +764,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--admintools--overrides--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--admintools--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
 <a id="nestedatt--spec--admintools--overrides--deployment--spec--template--metadata"></a>
@@ -772,8 +772,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 
@@ -785,16 +785,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--admintools--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--admintools--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--admintools--resources--claims"></a>
 ### Nested Schema for `spec.admintools.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -806,7 +806,7 @@ Optional:
 
 - `enabled` (Boolean) Enabled defines if the archival is enabled for the cluster.
 - `history` (Attributes) History is the default config for the history archival. (see [below for nested schema](#nestedatt--spec--archival--history))
-- `provider` (Attributes) Provider defines the archival provider for the cluster.The same provider is used for both history and visibility,but some config can be changed using spec.archival.[history|visibility].config. (see [below for nested schema](#nestedatt--spec--archival--provider))
+- `provider` (Attributes) Provider defines the archival provider for the cluster. The same provider is used for both history and visibility, but some config can be changed using spec.archival.[history|visibility].config. (see [below for nested schema](#nestedatt--spec--archival--provider))
 - `visibility` (Attributes) Visibility is the default config for visibility archival. (see [below for nested schema](#nestedatt--spec--archival--visibility))
 
 <a id="nestedatt--spec--archival--history"></a>
@@ -820,7 +820,7 @@ Required:
 
 Optional:
 
-- `enabled` (Boolean) Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).
+- `enabled` (Boolean) Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).
 
 
 <a id="nestedatt--spec--archival--provider"></a>
@@ -837,8 +837,8 @@ Optional:
 
 Required:
 
-- `dir_permissions` (String) DirPermissions sets the directory permissions of the archive directory.It's recommend to leave it empty and use the default value of '0766' to avoid read/write issues.
-- `file_permissions` (String) FilePermissions sets the file permissions of the archived files.It's recommend to leave it empty and use the default value of '0666' to avoid read/write issues.
+- `dir_permissions` (String) DirPermissions sets the directory permissions of the archive directory. It's recommend to leave it empty and use the default value of '0766' to avoid read/write issues.
+- `file_permissions` (String) FilePermissions sets the file permissions of the archived files. It's recommend to leave it empty and use the default value of '0666' to avoid read/write issues.
 
 
 <a id="nestedatt--spec--archival--provider--gcs"></a>
@@ -853,11 +853,11 @@ Required:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -873,7 +873,7 @@ Optional:
 
 - `credentials` (Attributes) Use credentials if you want to use aws credentials from secret. (see [below for nested schema](#nestedatt--spec--archival--provider--s3--credentials))
 - `endpoint` (String) Use Endpoint if you want to use s3-compatible object storage.
-- `role_name` (String) Use RoleName if you want the temporal service accountto assume an AWS Identity and Access Management (IAM) role.
+- `role_name` (String) Use RoleName if you want the temporal service account to assume an AWS Identity and Access Management (IAM) role.
 - `s3_force_path_style` (Boolean) Use s3ForcePathStyle if you want to use s3 path style.
 
 <a id="nestedatt--spec--archival--provider--s3--credentials"></a>
@@ -889,11 +889,11 @@ Required:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -902,11 +902,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -924,7 +924,7 @@ Required:
 
 Optional:
 
-- `enabled` (Boolean) Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).
+- `enabled` (Boolean) Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).
 
 
 
@@ -933,8 +933,8 @@ Optional:
 
 Optional:
 
-- `authorizer` (String) Authorizer defines the authorization mechanism to be used. It can be left as an empty string touse a no-operation authorizer (noopAuthorizer), or set to 'default' to use the temporal's defaultauthorizer (defaultAuthorizer).
-- `claim_mapper` (String) ClaimMapper specifies the claim mapping mechanism used for handling JWT claims. Similar to the Authorizer,it can be left as an empty string to use a no-operation claim mapper (noopClaimMapper), or set to 'default'to use the default JWT claim mapper (defaultJWTClaimMapper).
+- `authorizer` (String) Authorizer defines the authorization mechanism to be used. It can be left as an empty string to use a no-operation authorizer (noopAuthorizer), or set to 'default' to use the temporal's default authorizer (defaultAuthorizer).
+- `claim_mapper` (String) ClaimMapper specifies the claim mapping mechanism used for handling JWT claims. Similar to the Authorizer, it can be left as an empty string to use a no-operation claim mapper (noopClaimMapper), or set to 'default' to use the default JWT claim mapper (defaultJWTClaimMapper).
 - `jwt_key_provider` (Attributes) JWTKeyProvider specifies the signing key provider used for validating JWT tokens. (see [below for nested schema](#nestedatt--spec--authorization--jwt_key_provider))
 - `permissions_claim_name` (String) PermissionsClaimName is the name of the claim within the JWT token that contains the user's permissions.
 
@@ -943,8 +943,8 @@ Optional:
 
 Optional:
 
-- `key_source_ur_is` (List of String) KeySourceURIs is a list of URIs where the JWT signing keys can be obtained. These URIs are used by theauthorization system to fetch the public keys necessary for validating JWT tokens.
-- `refresh_interval` (String) RefreshInterval defines the time interval at which temporal should refresh the JWT signing keys fromthe specified URIs.
+- `key_source_ur_is` (List of String) KeySourceURIs is a list of URIs where the JWT signing keys can be obtained. These URIs are used by the authorization system to fetch the public keys necessary for validating JWT tokens.
+- `refresh_interval` (String) RefreshInterval defines the time interval at which temporal should refresh the JWT signing keys from the specified URIs.
 
 
 
@@ -957,7 +957,7 @@ Required:
 
 Optional:
 
-- `poll_interval` (String) PollInterval defines how often the config should be updated by checking provided values.Defaults to 10s.
+- `poll_interval` (String) PollInterval defines how often the config should be updated by checking provided values. Defaults to 10s.
 
 
 <a id="nestedatt--spec--image_pull_secrets"></a>
@@ -965,7 +965,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--job_resources"></a>
@@ -973,16 +973,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--job_resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--job_resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--job_resources--claims"></a>
 ### Nested Schema for `spec.job_resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -991,8 +991,8 @@ Required:
 
 Optional:
 
-- `development` (Boolean) Development determines whether the logger is run in Development (== Test) or inProduction mode.  Default is Production.  Production-stage disables panics fromDPanic logging.
-- `format` (String) Format determines the format of each log file printed to the output.Use 'console' if you want stack traces to appear on multiple lines.
+- `development` (Boolean) Development determines whether the logger is run in Development (== Test) or in Production mode. Default is Production. Production-stage disables panics from DPanic logging.
+- `format` (String) Format determines the format of each log file printed to the output. Use 'console' if you want stack traces to appear on multiple lines.
 - `level` (String) Level is the desired log level; see colocated zap_logger.go::parseZapLevel()
 - `output_file` (String) OutputFile is the path to the log output file.
 - `stdout` (Boolean) Stdout is true if the output needs to goto standard out; default is stderr.
@@ -1003,23 +1003,23 @@ Optional:
 
 Optional:
 
-- `certificates_duration` (Attributes) CertificatesDuration allows configuration of maximum certificates lifetime.Useless if mTLS provider is not cert-manager. (see [below for nested schema](#nestedatt--spec--m_tls--certificates_duration))
-- `frontend` (Attributes) Frontend allows configuration of the frontend's public endpoint traffic encryption.Useless if mTLS provider is not cert-manager. (see [below for nested schema](#nestedatt--spec--m_tls--frontend))
-- `internode` (Attributes) Internode allows configuration of the internode traffic encryption.Useless if mTLS provider is not cert-manager. (see [below for nested schema](#nestedatt--spec--m_tls--internode))
+- `certificates_duration` (Attributes) CertificatesDuration allows configuration of maximum certificates lifetime. Useless if mTLS provider is not cert-manager. (see [below for nested schema](#nestedatt--spec--m_tls--certificates_duration))
+- `frontend` (Attributes) Frontend allows configuration of the frontend's public endpoint traffic encryption. Useless if mTLS provider is not cert-manager. (see [below for nested schema](#nestedatt--spec--m_tls--frontend))
+- `internode` (Attributes) Internode allows configuration of the internode traffic encryption. Useless if mTLS provider is not cert-manager. (see [below for nested schema](#nestedatt--spec--m_tls--internode))
 - `provider` (String) Provider defines the tool used to manage mTLS certificates.
-- `refresh_interval` (String) RefreshInterval defines interval between refreshes of certificates in the cluster components.Defaults to 1 hour.Useless if mTLS provider is not cert-manager.
-- `renew_before` (String) RenewBefore is defines how long before the currently issued certificate's expirycert-manager should renew the certificate. The default is 2/3 of theissued certificate's duration. Minimum accepted value is 5 minutes.Useless if mTLS provider is not cert-manager.
+- `refresh_interval` (String) RefreshInterval defines interval between refreshes of certificates in the cluster components. Defaults to 1 hour. Useless if mTLS provider is not cert-manager.
+- `renew_before` (String) RenewBefore is defines how long before the currently issued certificate's expiry cert-manager should renew the certificate. The default is 2/3 of the issued certificate's duration. Minimum accepted value is 5 minutes. Useless if mTLS provider is not cert-manager.
 
 <a id="nestedatt--spec--m_tls--certificates_duration"></a>
 ### Nested Schema for `spec.m_tls.certificates_duration`
 
 Optional:
 
-- `client_certificates` (String) ClientCertificates is the 'duration' (i.e. lifetime) of the client certificates.It defaults to 1 year.
-- `frontend_certificate` (String) FrontendCertificate is the 'duration' (i.e. lifetime) of the frontend certificate.It defaults to 1 year.
-- `intermediate_c_as_certificates` (String) IntermediateCACertificates is the 'duration' (i.e. lifetime) of the intermediate CAs Certificates.It defaults to 5 years.
-- `internode_certificate` (String) InternodeCertificate is the 'duration' (i.e. lifetime) of the internode certificate.It defaults to 1 year.
-- `root_ca_certificate` (String) RootCACertificate is the 'duration' (i.e. lifetime) of the Root CA Certificate.It defaults to 10 years.
+- `client_certificates` (String) ClientCertificates is the 'duration' (i.e. lifetime) of the client certificates. It defaults to 1 year.
+- `frontend_certificate` (String) FrontendCertificate is the 'duration' (i.e. lifetime) of the frontend certificate. It defaults to 1 year.
+- `intermediate_c_as_certificates` (String) IntermediateCACertificates is the 'duration' (i.e. lifetime) of the intermediate CAs Certificates. It defaults to 5 years.
+- `internode_certificate` (String) InternodeCertificate is the 'duration' (i.e. lifetime) of the internode certificate. It defaults to 1 year.
+- `root_ca_certificate` (String) RootCACertificate is the 'duration' (i.e. lifetime) of the Root CA Certificate. It defaults to 10 years.
 
 
 <a id="nestedatt--spec--m_tls--frontend"></a>
@@ -1028,7 +1028,7 @@ Optional:
 Optional:
 
 - `enabled` (Boolean) Enabled defines if the operator should enable mTLS for cluster's public endpoints.
-- `extra_dns_names` (List of String) ExtraDNSNames is a list of additional DNS names associated with the TemporalCluster.These DNS names can be used for accessing the TemporalCluster from external services.The DNS names specified here will be added to the TLS certificate for secure communication.
+- `extra_dns_names` (List of String) ExtraDNSNames is a list of additional DNS names associated with the TemporalCluster. These DNS names can be used for accessing the TemporalCluster from external services. The DNS names specified here will be added to the TLS certificate for secure communication.
 
 
 <a id="nestedatt--spec--m_tls--internode"></a>
@@ -1049,8 +1049,8 @@ Required:
 
 Optional:
 
-- `exclude_tags` (Map of List of String) ExcludeTags is a map from tag name string to tag values string list.Each value present in keys will have relevant tag value replaced with '_tag_excluded_'Each value in values list will white-list tag values to be reported as usual.
-- `per_unit_histogram_boundaries` (Map of List of String) PerUnitHistogramBoundaries defines the default histogram bucket boundaries.Configuration of histogram boundaries for given metric unit.Supported values:- 'dimensionless'- 'milliseconds'- 'bytes'
+- `exclude_tags` (Map of List of String) ExcludeTags is a map from tag name string to tag values string list. Each value present in keys will have relevant tag value replaced with '_tag_excluded_' Each value in values list will white-list tag values to be reported as usual.
+- `per_unit_histogram_boundaries` (Map of List of String) PerUnitHistogramBoundaries defines the default histogram bucket boundaries. Configuration of histogram boundaries for given metric unit. Supported values: - 'dimensionless' - 'milliseconds' - 'bytes'
 - `prefix` (String) Prefix sets the prefix to all outgoing metrics
 - `prometheus` (Attributes) Prometheus reporter configuration. (see [below for nested schema](#nestedatt--spec--metrics--prometheus))
 
@@ -1079,20 +1079,20 @@ Optional:
 - `enabled` (Boolean) Enabled defines if the operator should create a ServiceMonitor for each services.
 - `labels` (Map of String) Labels adds extra labels to the ServiceMonitor.
 - `metric_relabelings` (Attributes List) MetricRelabelConfigs to apply to samples before ingestion. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--metric_relabelings))
-- `override` (Attributes) Override allows customization of the created ServiceMonitor.All fields can be overwritten except 'endpoints', 'selector' and 'namespaceSelector'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override))
+- `override` (Attributes) Override allows customization of the created ServiceMonitor. All fields can be overwritten except 'endpoints', 'selector' and 'namespaceSelector'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override))
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--metric_relabelings"></a>
 ### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.metric_relabelings`
 
 Optional:
 
-- `action` (String) Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'
-- `modulus` (Number) Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.
+- `action` (String) Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.
 - `regex` (String) Regular expression against which the extracted value is matched.
-- `replacement` (String) Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.
+- `replacement` (String) Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.
 - `separator` (String) Separator is the string between concatenated SourceLabels.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
-- `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override"></a>
@@ -1104,21 +1104,21 @@ Required:
 
 Optional:
 
-- `attach_metadata` (Attributes) 'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.37.0. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--attach_metadata))
-- `body_size_limit` (String) When defined, bodySizeLimit specifies a job level limit on the sizeof uncompressed response body that will be accepted by Prometheus.It requires Prometheus >= v2.28.0.
+- `attach_metadata` (Attributes) 'attachMetadata' defines additional metadata which is added to the discovered targets. It requires Prometheus >= v2.37.0. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--attach_metadata))
+- `body_size_limit` (String) When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus. It requires Prometheus >= v2.28.0.
 - `endpoints` (Attributes List) List of endpoints part of this ServiceMonitor. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints))
-- `job_label` (String) 'jobLabel' selects the label from the associated Kubernetes 'Service'object which will be used as the 'job' label for all metrics.For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service'object is labeled with 'foo: bar', then Prometheus adds the 'job='bar''label to all ingested metrics.If the value of this field is empty or if the label doesn't exist forthe given Service, the 'job' label of the metrics defaults to the nameof the associated Kubernetes 'Service'.
-- `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.
-- `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample.It requires Prometheus >= v2.27.0.
-- `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample.It requires Prometheus >= v2.27.0.
-- `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample.It requires Prometheus >= v2.27.0.
-- `namespace_selector` (Attributes) Selector to select which namespaces the Kubernetes 'Endpoints' objectsare discovered from. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--namespace_selector))
-- `pod_target_labels` (List of String) 'podTargetLabels' defines the labels which are transferred from theassociated Kubernetes 'Pod' object onto the ingested metrics.
-- `sample_limit` (Number) 'sampleLimit' defines a per-scrape limit on the number of scraped samplesthat will be accepted.
+- `job_label` (String) 'jobLabel' selects the label from the associated Kubernetes 'Service' object which will be used as the 'job' label for all metrics. For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics. If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the associated Kubernetes 'Service'.
+- `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit. It requires Prometheus >= v2.47.0.
+- `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample. It requires Prometheus >= v2.27.0.
+- `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample. It requires Prometheus >= v2.27.0.
+- `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample. It requires Prometheus >= v2.27.0.
+- `namespace_selector` (Attributes) Selector to select which namespaces the Kubernetes 'Endpoints' objects are discovered from. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--namespace_selector))
+- `pod_target_labels` (List of String) 'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.
+- `sample_limit` (Number) 'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.
 - `scrape_class` (String) The scrape class to apply.
-- `scrape_protocols` (List of String) 'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients theprotocols supported by Prometheus in order of preference (from most to least preferred).If unset, Prometheus uses its default value.It requires Prometheus >= v2.49.0.
-- `target_labels` (List of String) 'targetLabels' defines the labels which are transferred from theassociated Kubernetes 'Service' object onto the ingested metrics.
-- `target_limit` (Number) 'targetLimit' defines a limit on the number of scraped targets that willbe accepted.
+- `scrape_protocols` (List of String) 'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0.
+- `target_labels` (List of String) 'targetLabels' defines the labels which are transferred from the associated Kubernetes 'Service' object onto the ingested metrics.
+- `target_limit` (Number) 'targetLimit' defines a limit on the number of scraped targets that will be accepted.
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector"></a>
 ### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.selector`
@@ -1126,7 +1126,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--selector--match_expressions"></a>
 ### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.selector.match_expressions`
@@ -1134,11 +1134,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1147,7 +1147,7 @@ Optional:
 
 Optional:
 
-- `node` (Boolean) When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.
+- `node` (Boolean) When set to true, Prometheus must have the 'get' permission on the 'Nodes' objects.
 
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints"></a>
@@ -1155,28 +1155,28 @@ Optional:
 
 Optional:
 
-- `authorization` (Attributes) 'authorization' configures the Authorization header credentials to use whenscraping the target.Cannot be set at the same time as 'basicAuth', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--authorization))
-- `basic_auth` (Attributes) 'basicAuth' configures the Basic Authentication credentials to use whenscraping the target.Cannot be set at the same time as 'authorization', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth))
-- `bearer_token_file` (String) File to read bearer token for scraping the target.Deprecated: use 'authorization' instead.
-- `bearer_token_secret` (Attributes) 'bearerTokenSecret' specifies a key of a Secret containing the bearertoken for scraping targets. The secret needs to be in the same namespaceas the ServiceMonitor object and readable by the Prometheus Operator.Deprecated: use 'authorization' instead. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--bearer_token_secret))
+- `authorization` (Attributes) 'authorization' configures the Authorization header credentials to use when scraping the target. Cannot be set at the same time as 'basicAuth', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--authorization))
+- `basic_auth` (Attributes) 'basicAuth' configures the Basic Authentication credentials to use when scraping the target. Cannot be set at the same time as 'authorization', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth))
+- `bearer_token_file` (String) File to read bearer token for scraping the target. Deprecated: use 'authorization' instead.
+- `bearer_token_secret` (Attributes) 'bearerTokenSecret' specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator. Deprecated: use 'authorization' instead. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--bearer_token_secret))
 - `enable_http2` (Boolean) 'enableHttp2' can be used to disable HTTP2 when scraping the target.
-- `filter_running` (Boolean) When true, the pods which are not running (e.g. either in Failed orSucceeded state) are dropped during the target discovery.If unset, the filtering is enabled.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase
-- `follow_redirects` (Boolean) 'followRedirects' defines whether the scrape requests should follow HTTP3xx redirects.
-- `honor_labels` (Boolean) When true, 'honorLabels' preserves the metric's labels when they collidewith the target's labels.
-- `honor_timestamps` (Boolean) 'honorTimestamps' controls whether Prometheus preserves the timestampswhen exposed by the target.
-- `interval` (String) Interval at which Prometheus scrapes the metrics from the target.If empty, Prometheus uses the global scrape interval.
-- `metric_relabelings` (Attributes List) 'metricRelabelings' configures the relabeling rules to apply to thesamples before ingestion. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--metric_relabelings))
-- `oauth2` (Attributes) 'oauth2' configures the OAuth2 settings to use when scraping the target.It requires Prometheus >= 2.27.0.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2))
+- `filter_running` (Boolean) When true, the pods which are not running (e.g. either in Failed or Succeeded state) are dropped during the target discovery. If unset, the filtering is enabled. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase
+- `follow_redirects` (Boolean) 'followRedirects' defines whether the scrape requests should follow HTTP 3xx redirects.
+- `honor_labels` (Boolean) When true, 'honorLabels' preserves the metric's labels when they collide with the target's labels.
+- `honor_timestamps` (Boolean) 'honorTimestamps' controls whether Prometheus preserves the timestamps when exposed by the target.
+- `interval` (String) Interval at which Prometheus scrapes the metrics from the target. If empty, Prometheus uses the global scrape interval.
+- `metric_relabelings` (Attributes List) 'metricRelabelings' configures the relabeling rules to apply to the samples before ingestion. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--metric_relabelings))
+- `oauth2` (Attributes) 'oauth2' configures the OAuth2 settings to use when scraping the target. It requires Prometheus >= 2.27.0. Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2))
 - `params` (Map of List of String) params define optional HTTP URL parameters.
-- `path` (String) HTTP path from which to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').
-- `port` (String) Name of the Service port which this endpoint refers to.It takes precedence over 'targetPort'.
-- `proxy_url` (String) 'proxyURL' configures the HTTP Proxy URL (e.g.'http://proxyserver:2195') to go through when scraping the target.
-- `relabelings` (Attributes List) 'relabelings' configures the relabeling rules to apply the target'smetadata labels.The Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--relabelings))
-- `scheme` (String) HTTP scheme to use for scraping.'http' and 'https' are the expected values unless you rewrite the'__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.
-- `scrape_timeout` (String) Timeout after which Prometheus considers the scrape to be failed.If empty, Prometheus uses the global scrape timeout unless it is lessthan the target's scrape interval value in which the latter is used.
-- `target_port` (String) Name or number of the target port of the 'Pod' object behind theService. The port must be specified with the container's port property.
+- `path` (String) HTTP path from which to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').
+- `port` (String) Name of the Service port which this endpoint refers to. It takes precedence over 'targetPort'.
+- `proxy_url` (String) 'proxyURL' configures the HTTP Proxy URL (e.g. 'http://proxyserver:2195') to go through when scraping the target.
+- `relabelings` (Attributes List) 'relabelings' configures the relabeling rules to apply the target's metadata labels. The Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--relabelings))
+- `scheme` (String) HTTP scheme to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.
+- `scrape_timeout` (String) Timeout after which Prometheus considers the scrape to be failed. If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.
+- `target_port` (String) Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.
 - `tls_config` (Attributes) TLS configuration to use when scraping the target. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config))
-- `track_timestamps_staleness` (Boolean) 'trackTimestampsStaleness' defines whether Prometheus tracks staleness ofthe metrics that have an explicit timestamp present in scraped data.Has no effect if 'honorTimestamps' is false.It requires Prometheus >= v2.48.0.
+- `track_timestamps_staleness` (Boolean) 'trackTimestampsStaleness' defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false. It requires Prometheus >= v2.48.0.
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--authorization"></a>
 ### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.authorization`
@@ -1184,18 +1184,18 @@ Optional:
 Optional:
 
 - `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--authorization--credentials))
-- `type` (String) Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'
+- `type` (String) Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--authorization--credentials"></a>
 ### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.authorization.credentials`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1205,19 +1205,19 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) 'password' specifies a key of a Secret containing the password forauthentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth--password))
-- `username` (Attributes) 'username' specifies a key of a Secret containing the username forauthentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth--username))
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--basic_auth--password"></a>
 ### Nested Schema for `spec.metrics.prometheus.scrape_config.service_monitor.override.endpoints.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1226,11 +1226,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1240,11 +1240,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1253,13 +1253,13 @@ Optional:
 
 Optional:
 
-- `action` (String) Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'
-- `modulus` (Number) Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.
+- `action` (String) Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.
 - `regex` (String) Regular expression against which the extracted value is matched.
-- `replacement` (String) Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.
+- `replacement` (String) Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.
 - `separator` (String) Separator is the string between concatenated SourceLabels.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
-- `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2"></a>
@@ -1267,13 +1267,13 @@ Optional:
 
 Required:
 
-- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_id))
-- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2client's secret. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_secret))
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_secret))
 - `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--oauth2--client_id"></a>
@@ -1293,7 +1293,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1302,11 +1302,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1316,11 +1316,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1330,13 +1330,13 @@ Optional:
 
 Optional:
 
-- `action` (String) Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'
-- `modulus` (Number) Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.
+- `action` (String) Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.
 - `regex` (String) Regular expression against which the extracted value is matched.
-- `replacement` (String) Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.
+- `replacement` (String) Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.
 - `separator` (String) Separator is the string between concatenated SourceLabels.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
-- `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--metrics--prometheus--scrape_config--service_monitor--override--endpoints--tls_config"></a>
@@ -1370,7 +1370,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1379,11 +1379,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1405,7 +1405,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1414,11 +1414,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1428,11 +1428,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1443,7 +1443,7 @@ Optional:
 
 Optional:
 
-- `any` (Boolean) Boolean describing whether all namespaces are selected in contrast to alist restricting them.
+- `any` (Boolean) Boolean describing whether all namespaces are selected in contrast to a list restricting them.
 - `match_names` (List of String) List of namespace names to select from.
 
 
@@ -1459,9 +1459,9 @@ Optional:
 
 - `frontend` (Attributes) Frontend service custom specifications. (see [below for nested schema](#nestedatt--spec--services--frontend))
 - `history` (Attributes) History service custom specifications. (see [below for nested schema](#nestedatt--spec--services--history))
-- `internal_frontend` (Attributes) Internal Frontend service custom specifications.Only compatible with temporal >= 1.20.0 (see [below for nested schema](#nestedatt--spec--services--internal_frontend))
+- `internal_frontend` (Attributes) Internal Frontend service custom specifications. Only compatible with temporal >= 1.20.0 (see [below for nested schema](#nestedatt--spec--services--internal_frontend))
 - `matching` (Attributes) Matching service custom specifications. (see [below for nested schema](#nestedatt--spec--services--matching))
-- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for all temporal services services.Those overrides can be customized per service using spec.services.<serviceName>.overrides. (see [below for nested schema](#nestedatt--spec--services--overrides))
+- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for all temporal services services. Those overrides can be customized per service using spec.services.<serviceName>.overrides. (see [below for nested schema](#nestedatt--spec--services--overrides))
 - `worker` (Attributes) Worker service custom specifications. (see [below for nested schema](#nestedatt--spec--services--worker))
 
 <a id="nestedatt--spec--services--frontend"></a>
@@ -1469,13 +1469,13 @@ Optional:
 
 Optional:
 
-- `http_port` (Number) HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service
+- `http_port` (Number) HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service
 - `init_containers` (List of Map of String) InitContainers adds a list of init containers to the service's deployment.
-- `membership_port` (Number) MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service
-- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides))
-- `port` (Number) Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service
+- `membership_port` (Number) MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service
+- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides))
+- `port` (Number) Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service
 - `replicas` (Number) Number of desired replicas for the service. Default to 1.
-- `resources` (Attributes) Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--services--frontend--resources))
+- `resources` (Attributes) Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--services--frontend--resources))
 
 <a id="nestedatt--spec--services--frontend--overrides"></a>
 ### Nested Schema for `spec.services.frontend.overrides`
@@ -1489,7 +1489,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides--deployment--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides--deployment--metadata))
 - `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides--deployment--spec))
 
 <a id="nestedatt--spec--services--frontend--overrides--deployment--metadata"></a>
@@ -1497,8 +1497,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 <a id="nestedatt--spec--services--frontend--overrides--deployment--spec"></a>
@@ -1513,7 +1513,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--frontend--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
 <a id="nestedatt--spec--services--frontend--overrides--deployment--spec--template--metadata"></a>
@@ -1521,8 +1521,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 
@@ -1534,16 +1534,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--services--frontend--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--services--frontend--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--services--frontend--resources--claims"></a>
 ### Nested Schema for `spec.services.frontend.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -1553,13 +1553,13 @@ Required:
 
 Optional:
 
-- `http_port` (Number) HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service
+- `http_port` (Number) HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service
 - `init_containers` (List of Map of String) InitContainers adds a list of init containers to the service's deployment.
-- `membership_port` (Number) MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service
-- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides. (see [below for nested schema](#nestedatt--spec--services--history--overrides))
-- `port` (Number) Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service
+- `membership_port` (Number) MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service
+- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides. (see [below for nested schema](#nestedatt--spec--services--history--overrides))
+- `port` (Number) Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service
 - `replicas` (Number) Number of desired replicas for the service. Default to 1.
-- `resources` (Attributes) Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--services--history--resources))
+- `resources` (Attributes) Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--services--history--resources))
 
 <a id="nestedatt--spec--services--history--overrides"></a>
 ### Nested Schema for `spec.services.history.overrides`
@@ -1573,7 +1573,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--history--overrides--deployment--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--history--overrides--deployment--metadata))
 - `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--history--overrides--deployment--spec))
 
 <a id="nestedatt--spec--services--history--overrides--deployment--metadata"></a>
@@ -1581,8 +1581,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 <a id="nestedatt--spec--services--history--overrides--deployment--spec"></a>
@@ -1597,7 +1597,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--history--overrides--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--history--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
 <a id="nestedatt--spec--services--history--overrides--deployment--spec--template--metadata"></a>
@@ -1605,8 +1605,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 
@@ -1618,16 +1618,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--services--history--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--services--history--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--services--history--resources--claims"></a>
 ### Nested Schema for `spec.services.history.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -1638,13 +1638,13 @@ Required:
 Optional:
 
 - `enabled` (Boolean) Enabled defines if we want to spawn the internal frontend service.
-- `http_port` (Number) HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service
+- `http_port` (Number) HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service
 - `init_containers` (List of Map of String) InitContainers adds a list of init containers to the service's deployment.
-- `membership_port` (Number) MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service
-- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides))
-- `port` (Number) Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service
+- `membership_port` (Number) MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service
+- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides))
+- `port` (Number) Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service
 - `replicas` (Number) Number of desired replicas for the service. Default to 1.
-- `resources` (Attributes) Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--services--internal_frontend--resources))
+- `resources` (Attributes) Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--services--internal_frontend--resources))
 
 <a id="nestedatt--spec--services--internal_frontend--overrides"></a>
 ### Nested Schema for `spec.services.internal_frontend.overrides`
@@ -1658,7 +1658,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides--deployment--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides--deployment--metadata))
 - `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides--deployment--spec))
 
 <a id="nestedatt--spec--services--internal_frontend--overrides--deployment--metadata"></a>
@@ -1666,8 +1666,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 <a id="nestedatt--spec--services--internal_frontend--overrides--deployment--spec"></a>
@@ -1682,7 +1682,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
 <a id="nestedatt--spec--services--internal_frontend--overrides--deployment--spec--template--metadata"></a>
@@ -1690,8 +1690,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 
@@ -1703,16 +1703,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--services--internal_frontend--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--services--internal_frontend--resources--claims"></a>
 ### Nested Schema for `spec.services.internal_frontend.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -1722,13 +1722,13 @@ Required:
 
 Optional:
 
-- `http_port` (Number) HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service
+- `http_port` (Number) HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service
 - `init_containers` (List of Map of String) InitContainers adds a list of init containers to the service's deployment.
-- `membership_port` (Number) MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service
-- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides. (see [below for nested schema](#nestedatt--spec--services--matching--overrides))
-- `port` (Number) Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service
+- `membership_port` (Number) MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service
+- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides. (see [below for nested schema](#nestedatt--spec--services--matching--overrides))
+- `port` (Number) Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service
 - `replicas` (Number) Number of desired replicas for the service. Default to 1.
-- `resources` (Attributes) Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--services--matching--resources))
+- `resources` (Attributes) Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--services--matching--resources))
 
 <a id="nestedatt--spec--services--matching--overrides"></a>
 ### Nested Schema for `spec.services.matching.overrides`
@@ -1742,7 +1742,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--matching--overrides--deployment--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--matching--overrides--deployment--metadata))
 - `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--matching--overrides--deployment--spec))
 
 <a id="nestedatt--spec--services--matching--overrides--deployment--metadata"></a>
@@ -1750,8 +1750,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 <a id="nestedatt--spec--services--matching--overrides--deployment--spec"></a>
@@ -1766,7 +1766,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--matching--overrides--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--matching--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
 <a id="nestedatt--spec--services--matching--overrides--deployment--spec--template--metadata"></a>
@@ -1774,8 +1774,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 
@@ -1787,16 +1787,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--services--matching--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--services--matching--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--services--matching--resources--claims"></a>
 ### Nested Schema for `spec.services.matching.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -1813,7 +1813,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--overrides--deployment--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--overrides--deployment--metadata))
 - `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--overrides--deployment--spec))
 
 <a id="nestedatt--spec--services--overrides--deployment--metadata"></a>
@@ -1821,8 +1821,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 <a id="nestedatt--spec--services--overrides--deployment--spec"></a>
@@ -1837,7 +1837,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--overrides--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
 <a id="nestedatt--spec--services--overrides--deployment--spec--template--metadata"></a>
@@ -1845,8 +1845,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 
@@ -1858,13 +1858,13 @@ Optional:
 
 Optional:
 
-- `http_port` (Number) HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service
+- `http_port` (Number) HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service
 - `init_containers` (List of Map of String) InitContainers adds a list of init containers to the service's deployment.
-- `membership_port` (Number) MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service
-- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides. (see [below for nested schema](#nestedatt--spec--services--worker--overrides))
-- `port` (Number) Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service
+- `membership_port` (Number) MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service
+- `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides. (see [below for nested schema](#nestedatt--spec--services--worker--overrides))
+- `port` (Number) Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service
 - `replicas` (Number) Number of desired replicas for the service. Default to 1.
-- `resources` (Attributes) Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--services--worker--resources))
+- `resources` (Attributes) Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--services--worker--resources))
 
 <a id="nestedatt--spec--services--worker--overrides"></a>
 ### Nested Schema for `spec.services.worker.overrides`
@@ -1878,7 +1878,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--worker--overrides--deployment--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--worker--overrides--deployment--metadata))
 - `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--services--worker--overrides--deployment--spec))
 
 <a id="nestedatt--spec--services--worker--overrides--deployment--metadata"></a>
@@ -1886,8 +1886,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 <a id="nestedatt--spec--services--worker--overrides--deployment--spec"></a>
@@ -1902,7 +1902,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--worker--overrides--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--services--worker--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
 <a id="nestedatt--spec--services--worker--overrides--deployment--spec--template--metadata"></a>
@@ -1910,8 +1910,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 
@@ -1923,16 +1923,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--services--worker--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--services--worker--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--services--worker--resources--claims"></a>
 ### Nested Schema for `spec.services.worker.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -1945,10 +1945,10 @@ Optional:
 
 - `enabled` (Boolean) Enabled defines if the operator should deploy the web ui alongside the cluster.
 - `image` (String) Image defines the temporal ui docker image the instance should run.
-- `ingress` (Attributes) Ingress is an optional ingress configuration for the UI.If lived empty, no ingress configuration will be created and the UI will only by available trough ClusterIP service. (see [below for nested schema](#nestedatt--spec--ui--ingress))
+- `ingress` (Attributes) Ingress is an optional ingress configuration for the UI. If lived empty, no ingress configuration will be created and the UI will only by available trough ClusterIP service. (see [below for nested schema](#nestedatt--spec--ui--ingress))
 - `overrides` (Attributes) Overrides adds some overrides to the resources deployed for the ui. (see [below for nested schema](#nestedatt--spec--ui--overrides))
 - `replicas` (Number) Number of desired replicas for the ui. Default to 1.
-- `resources` (Attributes) Compute Resources required by the ui.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--ui--resources))
+- `resources` (Attributes) Compute Resources required by the ui. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--ui--resources))
 - `service` (Attributes) Service is an optional service resource configuration for the UI. (see [below for nested schema](#nestedatt--spec--ui--service))
 - `version` (String) Version defines the temporal ui version the instance should run.
 
@@ -1970,8 +1970,8 @@ Optional:
 
 Optional:
 
-- `hosts` (List of String) hosts is a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.
-- `secret_name` (String) secretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the 'Host' header is used for routing.
+- `hosts` (List of String) hosts is a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
+- `secret_name` (String) secretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the 'Host' header field used by an IngressRule, the SNI host is used for termination and value of the 'Host' header is used for routing.
 
 
 
@@ -1987,7 +1987,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--ui--overrides--deployment--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--ui--overrides--deployment--metadata))
 - `spec` (Attributes) Specification of the desired behavior of the Deployment. (see [below for nested schema](#nestedatt--spec--ui--overrides--deployment--spec))
 
 <a id="nestedatt--spec--ui--overrides--deployment--metadata"></a>
@@ -1995,8 +1995,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 <a id="nestedatt--spec--ui--overrides--deployment--spec"></a>
@@ -2011,7 +2011,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--ui--overrides--deployment--spec--template--metadata))
+- `metadata` (Attributes) ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta. (see [below for nested schema](#nestedatt--spec--ui--overrides--deployment--spec--template--metadata))
 - `spec` (Map of String) Specification of the desired behavior of the pod.
 
 <a id="nestedatt--spec--ui--overrides--deployment--spec--template--metadata"></a>
@@ -2019,8 +2019,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 
 
@@ -2032,16 +2032,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--ui--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--ui--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--ui--resources--claims"></a>
 ### Nested Schema for `spec.ui.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -2050,5 +2050,5 @@ Required:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects.

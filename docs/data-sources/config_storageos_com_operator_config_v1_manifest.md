@@ -30,7 +30,7 @@ data "k8s_config_storageos_com_operator_config_v1_manifest" "example" {
 
 ### Optional
 
-- `cache_namespace` (String) CacheNamespace if specified restricts the manager's cache to watch objects in the desired namespace Defaults to all namespaces  Note: If a namespace is specified, controllers can still Watch for a cluster-scoped resource (e.g Node).  For namespaced resources the cache will only hold objects from the desired namespace.
+- `cache_namespace` (String) CacheNamespace if specified restricts the manager's cache to watch objects in the desired namespace Defaults to all namespaces Note: If a namespace is specified, controllers can still Watch for a cluster-scoped resource (e.g Node). For namespaced resources the cache will only hold objects from the desired namespace.
 - `controller` (Attributes) Controller contains global configuration options for controllers registered within this manager. (see [below for nested schema](#nestedatt--controller))
 - `graceful_shut_down` (String) GracefulShutdownTimeout is the duration given to runnable to stop before the manager actually returns on stop. To disable graceful shutdown, set to time.Duration(0) To use graceful shutdown without timeout, set to a negative duration, e.G. time.Duration(-1) The graceful shutdown is skipped for safety reasons in case the leader election lease is lost.
 - `health` (Attributes) Health contains the controller health configuration (see [below for nested schema](#nestedatt--health))
@@ -68,7 +68,7 @@ Optional:
 Optional:
 
 - `cache_sync_timeout` (Number) CacheSyncTimeout refers to the time limit set to wait for syncing caches. Defaults to 2 minutes if not set.
-- `group_kind_concurrency` (Map of String) GroupKindConcurrency is a map from a Kind to the number of concurrent reconciliation allowed for that controller.  When a controller is registered within this manager using the builder utilities, users have to specify the type the controller reconciles in the For(...) call. If the object's kind passed matches one of the keys in this map, the concurrency for that controller is set to the number specified.  The key is expected to be consistent in form with GroupKind.String(), e.g. ReplicaSet in apps group (regardless of version) would be 'ReplicaSet.apps'.
+- `group_kind_concurrency` (Map of String) GroupKindConcurrency is a map from a Kind to the number of concurrent reconciliation allowed for that controller. When a controller is registered within this manager using the builder utilities, users have to specify the type the controller reconciles in the For(...) call. If the object's kind passed matches one of the keys in this map, the concurrency for that controller is set to the number specified. The key is expected to be consistent in form with GroupKind.String(), e.g. ReplicaSet in apps group (regardless of version) would be 'ReplicaSet.apps'.
 
 
 <a id="nestedatt--health"></a>

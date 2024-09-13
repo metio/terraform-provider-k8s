@@ -185,8 +185,8 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"bucket": schema.StringAttribute{
-									Description:         "Bucket name for bucket admin roles.  When not specified for a role that can be scopedto a specific bucket, the role will apply to all buckets in the cluster.Deprecated:  Couchbase Autonomous Operator 2.3",
-									MarkdownDescription: "Bucket name for bucket admin roles.  When not specified for a role that can be scopedto a specific bucket, the role will apply to all buckets in the cluster.Deprecated:  Couchbase Autonomous Operator 2.3",
+									Description:         "Bucket name for bucket admin roles. When not specified for a role that can be scoped to a specific bucket, the role will apply to all buckets in the cluster. Deprecated: Couchbase Autonomous Operator 2.3",
+									MarkdownDescription: "Bucket name for bucket admin roles. When not specified for a role that can be scoped to a specific bucket, the role will apply to all buckets in the cluster. Deprecated: Couchbase Autonomous Operator 2.3",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -196,17 +196,17 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"buckets": schema.SingleNestedAttribute{
-									Description:         "Bucket level access to apply to specified role. The bucket must exist.  When not specified,the bucket field will be checked. If both are empty and the role can be scoped to a specific bucket, the rolewill apply to all buckets in the cluster",
-									MarkdownDescription: "Bucket level access to apply to specified role. The bucket must exist.  When not specified,the bucket field will be checked. If both are empty and the role can be scoped to a specific bucket, the rolewill apply to all buckets in the cluster",
+									Description:         "Bucket level access to apply to specified role. The bucket must exist. When not specified, the bucket field will be checked. If both are empty and the role can be scoped to a specific bucket, the role will apply to all buckets in the cluster",
+									MarkdownDescription: "Bucket level access to apply to specified role. The bucket must exist. When not specified, the bucket field will be checked. If both are empty and the role can be scoped to a specific bucket, the role will apply to all buckets in the cluster",
 									Attributes: map[string]schema.Attribute{
 										"resources": schema.ListNestedAttribute{
-											Description:         "Resources is an explicit list of named bucket resources that will be consideredfor inclusion in this role.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency.",
-											MarkdownDescription: "Resources is an explicit list of named bucket resources that will be consideredfor inclusion in this role.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency.",
+											Description:         "Resources is an explicit list of named bucket resources that will be considered for inclusion in this role. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
+											MarkdownDescription: "Resources is an explicit list of named bucket resources that will be considered for inclusion in this role. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"kind": schema.StringAttribute{
-														Description:         "Kind indicates the kind of resource that is being referenced.  A Rolecan only reference 'CouchbaseBucket' kind.  This field defaultsto 'CouchbaseBucket' if not specified.",
-														MarkdownDescription: "Kind indicates the kind of resource that is being referenced.  A Rolecan only reference 'CouchbaseBucket' kind.  This field defaultsto 'CouchbaseBucket' if not specified.",
+														Description:         "Kind indicates the kind of resource that is being referenced. A Role can only reference 'CouchbaseBucket' kind. This field defaults to 'CouchbaseBucket' if not specified.",
+														MarkdownDescription: "Kind indicates the kind of resource that is being referenced. A Role can only reference 'CouchbaseBucket' kind. This field defaults to 'CouchbaseBucket' if not specified.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -230,8 +230,8 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"selector": schema.SingleNestedAttribute{
-											Description:         "Selector allows resources to be implicitly considered for inclusion in thisrole.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
-											MarkdownDescription: "Selector allows resources to be implicitly considered for inclusion in thisrole.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
+											Description:         "Selector allows resources to be implicitly considered for inclusion in this role. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
+											MarkdownDescription: "Selector allows resources to be implicitly considered for inclusion in this role. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -247,16 +247,16 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -270,8 +270,8 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -289,17 +289,17 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"collections": schema.SingleNestedAttribute{
-									Description:         "Collection level access to apply to the specified role.  The collection must exist.When not specified, the role is subject to scope or bucket level access.",
-									MarkdownDescription: "Collection level access to apply to the specified role.  The collection must exist.When not specified, the role is subject to scope or bucket level access.",
+									Description:         "Collection level access to apply to the specified role. The collection must exist. When not specified, the role is subject to scope or bucket level access.",
+									MarkdownDescription: "Collection level access to apply to the specified role. The collection must exist. When not specified, the role is subject to scope or bucket level access.",
 									Attributes: map[string]schema.Attribute{
 										"resources": schema.ListNestedAttribute{
-											Description:         "Resources is an explicit list of named resources that will be consideredfor inclusion in this collection or collections.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency.",
-											MarkdownDescription: "Resources is an explicit list of named resources that will be consideredfor inclusion in this collection or collections.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency.",
+											Description:         "Resources is an explicit list of named resources that will be considered for inclusion in this collection or collections. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
+											MarkdownDescription: "Resources is an explicit list of named resources that will be considered for inclusion in this collection or collections. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"kind": schema.StringAttribute{
-														Description:         "Kind indicates the kind of resource that is being referenced.  A scopecan only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup'resource kinds.  This field defaults to 'CouchbaseCollection' if notspecified.",
-														MarkdownDescription: "Kind indicates the kind of resource that is being referenced.  A scopecan only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup'resource kinds.  This field defaults to 'CouchbaseCollection' if notspecified.",
+														Description:         "Kind indicates the kind of resource that is being referenced. A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds. This field defaults to 'CouchbaseCollection' if not specified.",
+														MarkdownDescription: "Kind indicates the kind of resource that is being referenced. A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds. This field defaults to 'CouchbaseCollection' if not specified.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -309,8 +309,8 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name is the name of the Kubernetes resource name that is being referenced.Legal collection names have a maximum length of 251characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
-														MarkdownDescription: "Name is the name of the Kubernetes resource name that is being referenced.Legal collection names have a maximum length of 251characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
+														Description:         "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
+														MarkdownDescription: "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -328,8 +328,8 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"selector": schema.SingleNestedAttribute{
-											Description:         "Selector allows resources to be implicitly considered for inclusion in thiscollection or collections.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
-											MarkdownDescription: "Selector allows resources to be implicitly considered for inclusion in thiscollection or collections.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
+											Description:         "Selector allows resources to be implicitly considered for inclusion in this collection or collections. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
+											MarkdownDescription: "Selector allows resources to be implicitly considered for inclusion in this collection or collections. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -345,16 +345,16 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -368,8 +368,8 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -398,17 +398,17 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"scopes": schema.SingleNestedAttribute{
-									Description:         "Scope level access to apply to specified role.  The scope must exist.  When not specified,the role will apply to selected bucket or all buckets in the cluster.",
-									MarkdownDescription: "Scope level access to apply to specified role.  The scope must exist.  When not specified,the role will apply to selected bucket or all buckets in the cluster.",
+									Description:         "Scope level access to apply to specified role. The scope must exist. When not specified, the role will apply to selected bucket or all buckets in the cluster.",
+									MarkdownDescription: "Scope level access to apply to specified role. The scope must exist. When not specified, the role will apply to selected bucket or all buckets in the cluster.",
 									Attributes: map[string]schema.Attribute{
 										"resources": schema.ListNestedAttribute{
-											Description:         "Resources is an explicit list of named resources that will be consideredfor inclusion in this scope or scopes.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency.",
-											MarkdownDescription: "Resources is an explicit list of named resources that will be consideredfor inclusion in this scope or scopes.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency.",
+											Description:         "Resources is an explicit list of named resources that will be considered for inclusion in this scope or scopes. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
+											MarkdownDescription: "Resources is an explicit list of named resources that will be considered for inclusion in this scope or scopes. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"kind": schema.StringAttribute{
-														Description:         "Kind indicates the kind of resource that is being referenced.  A scopecan only reference 'CouchbaseScope' and 'CouchbaseScopeGroup'resource kinds.  This field defaults to 'CouchbaseScope' if notspecified.",
-														MarkdownDescription: "Kind indicates the kind of resource that is being referenced.  A scopecan only reference 'CouchbaseScope' and 'CouchbaseScopeGroup'resource kinds.  This field defaults to 'CouchbaseScope' if notspecified.",
+														Description:         "Kind indicates the kind of resource that is being referenced. A scope can only reference 'CouchbaseScope' and 'CouchbaseScopeGroup' resource kinds. This field defaults to 'CouchbaseScope' if not specified.",
+														MarkdownDescription: "Kind indicates the kind of resource that is being referenced. A scope can only reference 'CouchbaseScope' and 'CouchbaseScopeGroup' resource kinds. This field defaults to 'CouchbaseScope' if not specified.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -418,8 +418,8 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name is the name of the Kubernetes resource name that is being referenced.Legal scope names have a maximum length of 251characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
-														MarkdownDescription: "Name is the name of the Kubernetes resource name that is being referenced.Legal scope names have a maximum length of 251characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
+														Description:         "Name is the name of the Kubernetes resource name that is being referenced. Legal scope names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
+														MarkdownDescription: "Name is the name of the Kubernetes resource name that is being referenced. Legal scope names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -437,8 +437,8 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"selector": schema.SingleNestedAttribute{
-											Description:         "Selector allows resources to be implicitly considered for inclusion in thisscope or scopes.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
-											MarkdownDescription: "Selector allows resources to be implicitly considered for inclusion in thisscope or scopes.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
+											Description:         "Selector allows resources to be implicitly considered for inclusion in this scope or scopes. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
+											MarkdownDescription: "Selector allows resources to be implicitly considered for inclusion in this scope or scopes. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -454,16 +454,16 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -477,8 +477,8 @@ func (r *CouchbaseComCouchbaseGroupV2Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,

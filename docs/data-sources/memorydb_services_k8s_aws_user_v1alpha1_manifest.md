@@ -30,7 +30,7 @@ data "k8s_memorydb_services_k8s_aws_user_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) UserSpec defines the desired state of User.You create users and assign them specific permissions by using an accessstring. You assign the users to Access Control Lists aligned with a specificrole (administrators, human resources) that are then deployed to one or moreMemoryDB clusters. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) UserSpec defines the desired state of User. You create users and assign them specific permissions by using an access string. You assign the users to Access Control Lists aligned with a specific role (administrators, human resources) that are then deployed to one or more MemoryDB clusters. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,12 +56,12 @@ Optional:
 Required:
 
 - `access_string` (String) Access permissions string used for this user.
-- `authentication_mode` (Attributes) Denotes the user's authentication properties, such as whether it requiresa password to authenticate. (see [below for nested schema](#nestedatt--spec--authentication_mode))
-- `name` (String) The name of the user. This value must be unique as it also serves as theuser identifier.
+- `authentication_mode` (Attributes) Denotes the user's authentication properties, such as whether it requires a password to authenticate. (see [below for nested schema](#nestedatt--spec--authentication_mode))
+- `name` (String) The name of the user. This value must be unique as it also serves as the user identifier.
 
 Optional:
 
-- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--authentication_mode"></a>
 ### Nested Schema for `spec.authentication_mode`

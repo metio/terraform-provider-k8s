@@ -146,8 +146,8 @@ func (r *TestsTestkubeIoScriptV1Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"input_type": schema.StringAttribute{
-						Description:         "script content type can be:  - direct content - created from file, - git repo directory checkout in case when test is some kind of project or have more than one file,",
-						MarkdownDescription: "script content type can be:  - direct content - created from file, - git repo directory checkout in case when test is some kind of project or have more than one file,",
+						Description:         "script content type can be: - direct content - created from file, - git repo directory checkout in case when test is some kind of project or have more than one file,",
+						MarkdownDescription: "script content type can be: - direct content - created from file, - git repo directory checkout in case when test is some kind of project or have more than one file,",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -258,12 +258,12 @@ func (r *TinkerbellOrgHardwareV1Alpha1Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "HardwareSpec defines the desired state of Hardware.",
 				Attributes: map[string]schema.Attribute{
 					"bmc_ref": schema.SingleNestedAttribute{
-						Description:         "BMCRef contains a relation to a BMC state management type in the samenamespace as the Hardware. This may be used for BMC management byorchestrators.",
-						MarkdownDescription: "BMCRef contains a relation to a BMC state management type in the samenamespace as the Hardware. This may be used for BMC management byorchestrators.",
+						Description:         "BMCRef contains a relation to a BMC state management type in the same namespace as the Hardware. This may be used for BMC management by orchestrators.",
+						MarkdownDescription: "BMCRef contains a relation to a BMC state management type in the same namespace as the Hardware. This may be used for BMC management by orchestrators.",
 						Attributes: map[string]schema.Attribute{
 							"api_group": schema.StringAttribute{
-								Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
-								MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+								MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1151,8 +1151,8 @@ func (r *TinkerbellOrgHardwareV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"resources": schema.MapAttribute{
-						Description:         "Resources represents known resources that are available on a machine.Resources may be used for scheduling by orchestrators.",
-						MarkdownDescription: "Resources represents known resources that are available on a machine.Resources may be used for scheduling by orchestrators.",
+						Description:         "Resources represents known resources that are available on a machine. Resources may be used for scheduling by orchestrators.",
+						MarkdownDescription: "Resources represents known resources that are available on a machine. Resources may be used for scheduling by orchestrators.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1168,16 +1168,16 @@ func (r *TinkerbellOrgHardwareV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"user_data": schema.StringAttribute{
-						Description:         "UserData is the user data to configure in the hardware'smetadata",
-						MarkdownDescription: "UserData is the user data to configure in the hardware'smetadata",
+						Description:         "UserData is the user data to configure in the hardware's metadata",
+						MarkdownDescription: "UserData is the user data to configure in the hardware's metadata",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"vendor_data": schema.StringAttribute{
-						Description:         "VendorData is the vendor data to configure in the hardware'smetadata",
-						MarkdownDescription: "VendorData is the vendor data to configure in the hardware'smetadata",
+						Description:         "VendorData is the vendor data to configure in the hardware's metadata",
+						MarkdownDescription: "VendorData is the vendor data to configure in the hardware's metadata",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

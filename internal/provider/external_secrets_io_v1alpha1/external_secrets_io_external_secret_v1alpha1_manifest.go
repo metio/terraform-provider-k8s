@@ -237,8 +237,8 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"data_from": schema.ListNestedAttribute{
-						Description:         "DataFrom is used to fetch all properties from a specific Provider dataIf multiple entries are specified, the Secret keys are merged in the specified order",
-						MarkdownDescription: "DataFrom is used to fetch all properties from a specific Provider dataIf multiple entries are specified, the Secret keys are merged in the specified order",
+						Description:         "DataFrom is used to fetch all properties from a specific Provider data If multiple entries are specified, the Secret keys are merged in the specified order",
+						MarkdownDescription: "DataFrom is used to fetch all properties from a specific Provider data If multiple entries are specified, the Secret keys are merged in the specified order",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"conversion_strategy": schema.StringAttribute{
@@ -283,8 +283,8 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"refresh_interval": schema.StringAttribute{
-						Description:         "RefreshInterval is the amount of time before the values are read again from the SecretStore providerValid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'May be set to zero to fetch and create it once. Defaults to 1h.",
-						MarkdownDescription: "RefreshInterval is the amount of time before the values are read again from the SecretStore providerValid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'May be set to zero to fetch and create it once. Defaults to 1h.",
+						Description:         "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
+						MarkdownDescription: "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -295,8 +295,8 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
-								MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
+								Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+								MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -316,12 +316,12 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"target": schema.SingleNestedAttribute{
-						Description:         "ExternalSecretTarget defines the Kubernetes Secret to be createdThere can be only one target per ExternalSecret.",
-						MarkdownDescription: "ExternalSecretTarget defines the Kubernetes Secret to be createdThere can be only one target per ExternalSecret.",
+						Description:         "ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.",
+						MarkdownDescription: "ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.",
 						Attributes: map[string]schema.Attribute{
 							"creation_policy": schema.StringAttribute{
-								Description:         "CreationPolicy defines rules on how to create the resulting SecretDefaults to 'Owner'",
-								MarkdownDescription: "CreationPolicy defines rules on how to create the resulting SecretDefaults to 'Owner'",
+								Description:         "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
+								MarkdownDescription: "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -339,8 +339,8 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name defines the name of the Secret resource to be managedThis field is immutableDefaults to the .metadata.name of the ExternalSecret resource",
-								MarkdownDescription: "Name defines the name of the Secret resource to be managedThis field is immutableDefaults to the .metadata.name of the ExternalSecret resource",
+								Description:         "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
+								MarkdownDescription: "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -360,8 +360,8 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 									},
 
 									"engine_version": schema.StringAttribute{
-										Description:         "EngineVersion specifies the template engine versionthat should be used to compile/execute thetemplate specified in .data and .templateFrom[].",
-										MarkdownDescription: "EngineVersion specifies the template engine versionthat should be used to compile/execute thetemplate specified in .data and .templateFrom[].",
+										Description:         "EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].",
+										MarkdownDescription: "EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

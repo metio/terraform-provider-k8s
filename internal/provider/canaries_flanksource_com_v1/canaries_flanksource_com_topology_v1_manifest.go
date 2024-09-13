@@ -816,8 +816,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"for_each": schema.MapAttribute{
-									Description:         "Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself",
-									MarkdownDescription: "Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself",
+									Description:         "Only applies when using lookup, when specified the components and properties specified under ForEach will be templated using the components returned by the lookup ${.properties} can be used to reference the properties of the component ${.component} can be used to reference the component itself",
+									MarkdownDescription: "Only applies when using lookup, when specified the components and properties specified under ForEach will be templated using the components returned by the lookup ${.properties} can be used to reference the properties of the component ${.component} can be used to reference the component itself",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -833,8 +833,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"health_expr": schema.StringAttribute{
-									Description:         "healthExpr allows defining a cel expression to evaluate the health of a componentbased on the summary.",
-									MarkdownDescription: "healthExpr allows defining a cel expression to evaluate the health of a componentbased on the summary.",
+									Description:         "healthExpr allows defining a cel expression to evaluate the health of a component based on the summary.",
+									MarkdownDescription: "healthExpr allows defining a cel expression to evaluate the health of a component based on the summary.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -951,8 +951,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"lookup": schema.MapAttribute{
-									Description:         "Lookup component definitions from an external source, use theforEach property to iterate over the results to further enrich each component.",
-									MarkdownDescription: "Lookup component definitions from an external source, use theforEach property to iterate over the results to further enrich each component.",
+									Description:         "Lookup component definitions from an external source, use the forEach property to iterate over the results to further enrich each component.",
+									MarkdownDescription: "Lookup component definitions from an external source, use the forEach property to iterate over the results to further enrich each component.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1186,8 +1186,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"status_expr": schema.StringAttribute{
-									Description:         "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.",
-									MarkdownDescription: "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.",
+									Description:         "statusExpr allows defining a cel expression to evaluate the status of a component based on the summary.",
+									MarkdownDescription: "statusExpr allows defining a cel expression to evaluate the status of a component based on the summary.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1434,8 +1434,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"group_by": schema.SingleNestedAttribute{
-						Description:         "Specify the catalog tag (& optionally the tag selector) to groupthe topology.",
-						MarkdownDescription: "Specify the catalog tag (& optionally the tag selector) to groupthe topology.",
+						Description:         "Specify the catalog tag (& optionally the tag selector) to group the topology.",
+						MarkdownDescription: "Specify the catalog tag (& optionally the tag selector) to group the topology.",
 						Attributes: map[string]schema.Attribute{
 							"selector": schema.SingleNestedAttribute{
 								Description:         "",
@@ -1566,8 +1566,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"health_expr": schema.StringAttribute{
-						Description:         "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.",
-						MarkdownDescription: "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.",
+						Description:         "statusExpr allows defining a cel expression to evaluate the status of a component based on the summary.",
+						MarkdownDescription: "statusExpr allows defining a cel expression to evaluate the status of a component based on the summary.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1639,8 +1639,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"properties": schema.ListNestedAttribute{
-						Description:         "Properties are created once the full component tree is created, property lookup functionscan return a map of coomponent name => properties to allow for bulk property lookupsbeing applied to multiple components in the tree",
-						MarkdownDescription: "Properties are created once the full component tree is created, property lookup functionscan return a map of coomponent name => properties to allow for bulk property lookupsbeing applied to multiple components in the tree",
+						Description:         "Properties are created once the full component tree is created, property lookup functions can return a map of coomponent name => properties to allow for bulk property lookups being applied to multiple components in the tree",
+						MarkdownDescription: "Properties are created once the full component tree is created, property lookup functions can return a map of coomponent name => properties to allow for bulk property lookups being applied to multiple components in the tree",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"color": schema.StringAttribute{
@@ -2878,8 +2878,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"insecure_skip_verify": schema.BoolAttribute{
-										Description:         "InsecureSkipVerify controls whether a client verifies the server'scertificate chain and host name",
-										MarkdownDescription: "InsecureSkipVerify controls whether a client verifies the server'scertificate chain and host name",
+										Description:         "InsecureSkipVerify controls whether a client verifies the server's certificate chain and host name",
+										MarkdownDescription: "InsecureSkipVerify controls whether a client verifies the server's certificate chain and host name",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3146,8 +3146,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"status_expr": schema.StringAttribute{
-						Description:         "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.",
-						MarkdownDescription: "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.",
+						Description:         "statusExpr allows defining a cel expression to evaluate the status of a component based on the summary.",
+						MarkdownDescription: "statusExpr allows defining a cel expression to evaluate the status of a component based on the summary.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

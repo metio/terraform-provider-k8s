@@ -137,8 +137,8 @@ func (r *SecurityIstioIoPeerAuthenticationV1Beta1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "Mutual TLS settings for workload.",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
-								Description:         "Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT",
-								MarkdownDescription: "Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT",
+								Description:         "Defines the mTLS mode used for peer authentication. Valid Options: DISABLE, PERMISSIVE, STRICT",
+								MarkdownDescription: "Defines the mTLS mode used for peer authentication. Valid Options: DISABLE, PERMISSIVE, STRICT",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -157,8 +157,8 @@ func (r *SecurityIstioIoPeerAuthenticationV1Beta1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "Port specific mutual TLS settings.",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
-								Description:         "Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT",
-								MarkdownDescription: "Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT",
+								Description:         "Defines the mTLS mode used for peer authentication. Valid Options: DISABLE, PERMISSIVE, STRICT",
+								MarkdownDescription: "Defines the mTLS mode used for peer authentication. Valid Options: DISABLE, PERMISSIVE, STRICT",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

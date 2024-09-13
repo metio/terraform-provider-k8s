@@ -734,16 +734,16 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"revision": schema.StringAttribute{
-								Description:         "Revision is the revision (Git) or chart version (Helm) which to sync the application toIf omitted, will use the revision specified in app spec.",
-								MarkdownDescription: "Revision is the revision (Git) or chart version (Helm) which to sync the application toIf omitted, will use the revision specified in app spec.",
+								Description:         "Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.",
+								MarkdownDescription: "Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"revisions": schema.ListAttribute{
-								Description:         "Revisions is the list of revision (Git) or chart version (Helm) which to sync each source in sources field for the application toIf omitted, will use the revision specified in app spec.",
-								MarkdownDescription: "Revisions is the list of revision (Git) or chart version (Helm) which to sync each source in sources field for the application toIf omitted, will use the revision specified in app spec.",
+								Description:         "Revisions is the list of revision (Git) or chart version (Helm) which to sync each source in sources field for the application to If omitted, will use the revision specified in app spec.",
+								MarkdownDescription: "Revisions is the list of revision (Git) or chart version (Helm) which to sync each source in sources field for the application to If omitted, will use the revision specified in app spec.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -751,8 +751,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"source": schema.SingleNestedAttribute{
-								Description:         "Source overrides the source definition set in the application.This is typically set in a Rollback operation and is nil during a Sync operation",
-								MarkdownDescription: "Source overrides the source definition set in the application.This is typically set in a Rollback operation and is nil during a Sync operation",
+								Description:         "Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation",
+								MarkdownDescription: "Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation",
 								Attributes: map[string]schema.Attribute{
 									"chart": schema.StringAttribute{
 										Description:         "Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.",
@@ -1371,8 +1371,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 									},
 
 									"target_revision": schema.StringAttribute{
-										Description:         "TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.",
-										MarkdownDescription: "TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.",
+										Description:         "TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.",
+										MarkdownDescription: "TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1384,8 +1384,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"sources": schema.ListNestedAttribute{
-								Description:         "Sources overrides the source definition set in the application.This is typically set in a Rollback operation and is nil during a Sync operation",
-								MarkdownDescription: "Sources overrides the source definition set in the application.This is typically set in a Rollback operation and is nil during a Sync operation",
+								Description:         "Sources overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation",
+								MarkdownDescription: "Sources overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"chart": schema.StringAttribute{
@@ -2005,8 +2005,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"target_revision": schema.StringAttribute{
-											Description:         "TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.",
-											MarkdownDescription: "TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.",
+											Description:         "TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.",
+											MarkdownDescription: "TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2036,8 +2036,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 										MarkdownDescription: "Apply will perform a 'kubectl apply' to perform the sync.",
 										Attributes: map[string]schema.Attribute{
 											"force": schema.BoolAttribute{
-												Description:         "Force indicates whether or not to supply the --force flag to 'kubectl apply'.The --force flag deletes and re-create the resource, when PATCH encounters conflict and hasretried for 5 times.",
-												MarkdownDescription: "Force indicates whether or not to supply the --force flag to 'kubectl apply'.The --force flag deletes and re-create the resource, when PATCH encounters conflict and hasretried for 5 times.",
+												Description:         "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
+												MarkdownDescription: "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2053,8 +2053,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 										MarkdownDescription: "Hook will submit any referenced resources to perform the sync. This is the default strategy",
 										Attributes: map[string]schema.Attribute{
 											"force": schema.BoolAttribute{
-												Description:         "Force indicates whether or not to supply the --force flag to 'kubectl apply'.The --force flag deletes and re-create the resource, when PATCH encounters conflict and hasretried for 5 times.",
-												MarkdownDescription: "Force indicates whether or not to supply the --force flag to 'kubectl apply'.The --force flag deletes and re-create the resource, when PATCH encounters conflict and hasretried for 5 times.",
+												Description:         "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
+												MarkdownDescription: "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2097,8 +2097,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace specifies the target namespace for the application's resources.The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
-								MarkdownDescription: "Namespace specifies the target namespace for the application's resources.The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
+								Description:         "Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
+								MarkdownDescription: "Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2157,8 +2157,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"managed_fields_managers": schema.ListAttribute{
-									Description:         "ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over thedesired state defined in the SCM and won't be displayed in diffs",
-									MarkdownDescription: "ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over thedesired state defined in the SCM and won't be displayed in diffs",
+									Description:         "ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over the desired state defined in the SCM and won't be displayed in diffs",
+									MarkdownDescription: "ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over the desired state defined in the SCM and won't be displayed in diffs",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -2215,16 +2215,16 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"project": schema.StringAttribute{
-						Description:         "Project is a reference to the project this application belongs to.The empty string means that application belongs to the 'default' project.",
-						MarkdownDescription: "Project is a reference to the project this application belongs to.The empty string means that application belongs to the 'default' project.",
+						Description:         "Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.",
+						MarkdownDescription: "Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"revision_history_limit": schema.Int64Attribute{
-						Description:         "RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions.This should only be changed in exceptional circumstances.Setting to zero will store no history. This will reduce storage used.Increasing will increase the space used to store the history, so we do not recommend increasing it.Default is 10.",
-						MarkdownDescription: "RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions.This should only be changed in exceptional circumstances.Setting to zero will store no history. This will reduce storage used.Increasing will increase the space used to store the history, so we do not recommend increasing it.Default is 10.",
+						Description:         "RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.",
+						MarkdownDescription: "RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2851,8 +2851,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"target_revision": schema.StringAttribute{
-								Description:         "TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.",
-								MarkdownDescription: "TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.",
+								Description:         "TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.",
+								MarkdownDescription: "TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3485,8 +3485,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"target_revision": schema.StringAttribute{
-									Description:         "TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.",
-									MarkdownDescription: "TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.",
+									Description:         "TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.",
+									MarkdownDescription: "TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

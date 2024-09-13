@@ -238,5 +238,5 @@ Optional:
 Required:
 
 - `alias` (String) A unique name to refer to the name:key combination
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 - `name` (String) The name of the secret in the pod's namespace to select from.

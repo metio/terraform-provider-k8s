@@ -69,10 +69,10 @@ Required:
 
 Optional:
 
-- `cluster_modules` (Attributes List) ClusterModules hosts information regarding the anti-affinity vSphere constructsfor each of the objects responsible for creation of VM objects belonging to the cluster. (see [below for nested schema](#nestedatt--spec--template--spec--cluster_modules))
+- `cluster_modules` (Attributes List) ClusterModules hosts information regarding the anti-affinity vSphere constructs for each of the objects responsible for creation of VM objects belonging to the cluster. (see [below for nested schema](#nestedatt--spec--template--spec--cluster_modules))
 - `control_plane_endpoint` (Attributes) ControlPlaneEndpoint represents the endpoint used to communicate with the control plane. (see [below for nested schema](#nestedatt--spec--template--spec--control_plane_endpoint))
-- `failure_domain_selector` (Attributes) FailureDomainSelector is the label selector to use for failure domain selectionfor the control plane nodes of the cluster.If not set ('nil'), selecting failure domains will be disabled.An empty value ('{}') selects all existing failure domains.A valid selector will select all failure domains which match the selector. (see [below for nested schema](#nestedatt--spec--template--spec--failure_domain_selector))
-- `identity_ref` (Attributes) IdentityRef is a reference to either a Secret or VSphereClusterIdentity that containsthe identity to use when reconciling the cluster. (see [below for nested schema](#nestedatt--spec--template--spec--identity_ref))
+- `failure_domain_selector` (Attributes) FailureDomainSelector is the label selector to use for failure domain selection for the control plane nodes of the cluster. If not set ('nil'), selecting failure domains will be disabled. An empty value ('{}') selects all existing failure domains. A valid selector will select all failure domains which match the selector. (see [below for nested schema](#nestedatt--spec--template--spec--failure_domain_selector))
+- `identity_ref` (Attributes) IdentityRef is a reference to either a Secret or VSphereClusterIdentity that contains the identity to use when reconciling the cluster. (see [below for nested schema](#nestedatt--spec--template--spec--identity_ref))
 - `server` (String) Server is the address of the vSphere endpoint.
 - `thumbprint` (String) Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate
 
@@ -81,9 +81,9 @@ Optional:
 
 Required:
 
-- `control_plane` (Boolean) ControlPlane indicates whether the referred object is responsible for control plane nodes.Currently, only the KubeadmControlPlane objects have this flag set to true.Only a single object in the slice can have this value set to true.
+- `control_plane` (Boolean) ControlPlane indicates whether the referred object is responsible for control plane nodes. Currently, only the KubeadmControlPlane objects have this flag set to true. Only a single object in the slice can have this value set to true.
 - `module_uuid` (String) ModuleUUID is the unique identifier of the 'ClusterModule' used by the object.
-- `target_object_name` (String) TargetObjectName points to the object that uses the Cluster Module information to enforceanti-affinity amongst its descendant VM objects.
+- `target_object_name` (String) TargetObjectName points to the object that uses the Cluster Module information to enforce anti-affinity amongst its descendant VM objects.
 
 
 <a id="nestedatt--spec--template--spec--control_plane_endpoint"></a>
@@ -101,7 +101,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--template--spec--failure_domain_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--template--spec--failure_domain_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.spec.failure_domain_selector.match_expressions`
@@ -109,11 +109,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 

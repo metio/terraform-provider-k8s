@@ -203,7 +203,7 @@ Optional:
 Required:
 
 - `ip` (String) IP is the local IP to listen on to serve TFTP binaries.
-- `port` (Number) Port is the  local port to listen on to serve TFTP binaries.
+- `port` (Number) Port is the local port to listen on to serve TFTP binaries.
 
 Optional:
 
@@ -220,7 +220,7 @@ Optional:
 Required:
 
 - `ip` (String) IP is the local IP to listen on to serve TFTP binaries.
-- `port` (Number) Port is the  local port to listen on to serve TFTP binaries.
+- `port` (Number) Port is the local port to listen on to serve TFTP binaries.
 
 Optional:
 
@@ -238,7 +238,7 @@ Optional:
 Required:
 
 - `bind_address` (String) IP is the local IP to listen on for syslog messages.
-- `port` (Number) Port is the  local port to listen on for syslog messages.
+- `port` (Number) Port is the local port to listen on for syslog messages.
 
 
 <a id="nestedatt--spec--services--smee--tftp_configs"></a>
@@ -247,7 +247,7 @@ Required:
 Required:
 
 - `ip` (String) IP is the local IP to listen on to serve TFTP binaries.
-- `port` (Number) Port is the  local port to listen on to serve TFTP binaries.
+- `port` (Number) Port is the local port to listen on to serve TFTP binaries.
 
 Optional:
 

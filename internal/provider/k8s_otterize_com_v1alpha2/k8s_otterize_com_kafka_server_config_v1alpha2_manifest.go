@@ -148,8 +148,8 @@ func (r *K8SOtterizeComKafkaServerConfigV1Alpha2Manifest) Schema(_ context.Conte
 					},
 
 					"no_auto_create_intents_for_operator": schema.BoolAttribute{
-						Description:         "If Intents for network policies are enabled, and there are other Intents to this Kafka server,will automatically create an Intent so that the Intents Operator can connect. Set to true to disable.",
-						MarkdownDescription: "If Intents for network policies are enabled, and there are other Intents to this Kafka server,will automatically create an Intent so that the Intents Operator can connect. Set to true to disable.",
+						Description:         "If Intents for network policies are enabled, and there are other Intents to this Kafka server, will automatically create an Intent so that the Intents Operator can connect. Set to true to disable.",
+						MarkdownDescription: "If Intents for network policies are enabled, and there are other Intents to this Kafka server, will automatically create an Intent so that the Intents Operator can connect. Set to true to disable.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

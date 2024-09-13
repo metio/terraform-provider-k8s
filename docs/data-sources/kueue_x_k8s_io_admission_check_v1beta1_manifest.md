@@ -54,12 +54,12 @@ Optional:
 
 Required:
 
-- `controller_name` (String) controllerName identifies the controller that processes the AdmissionCheck,not necessarily a Kubernetes Pod or Deployment name. Cannot be empty.
+- `controller_name` (String) controllerName identifies the controller that processes the AdmissionCheck, not necessarily a Kubernetes Pod or Deployment name. Cannot be empty.
 
 Optional:
 
-- `parameters` (Attributes) Parameters identifies a configuration with additional parameters for thecheck. (see [below for nested schema](#nestedatt--spec--parameters))
-- `retry_delay_minutes` (Number) RetryDelayMinutes **deprecated** specifies how long to keep the workload suspended aftera failed check (after it transitioned to False). When the delay period has passed, the checkstate goes to 'Unknown'. The default is 15 min.The default is 15 min.
+- `parameters` (Attributes) Parameters identifies a configuration with additional parameters for the check. (see [below for nested schema](#nestedatt--spec--parameters))
+- `retry_delay_minutes` (Number) RetryDelayMinutes **deprecated** specifies how long to keep the workload suspended after a failed check (after it transitioned to False). When the delay period has passed, the check state goes to 'Unknown'. The default is 15 min. The default is 15 min.
 
 <a id="nestedatt--spec--parameters"></a>
 ### Nested Schema for `spec.parameters`

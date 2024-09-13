@@ -30,7 +30,7 @@ data "k8s_route53resolver_services_k8s_aws_resolver_rule_v1alpha1_manifest" "exa
 
 ### Optional
 
-- `spec` (Attributes) ResolverRuleSpec defines the desired state of ResolverRule.For queries that originate in your VPC, detailed information about a Resolverrule, which specifies how to route DNS queries out of the VPC. The ResolverRuleparameter appears in the response to a CreateResolverRule (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverRule.html),DeleteResolverRule (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverRule.html),GetResolverRule (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverRule.html),ListResolverRules (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverRules.html),or UpdateResolverRule (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverRule.html)request. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ResolverRuleSpec defines the desired state of ResolverRule. For queries that originate in your VPC, detailed information about a Resolver rule, which specifies how to route DNS queries out of the VPC. The ResolverRule parameter appears in the response to a CreateResolverRule (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverRule.html), DeleteResolverRule (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverRule.html), GetResolverRule (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverRule.html), ListResolverRules (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverRules.html), or UpdateResolverRule (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverRule.html) request. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,16 +55,16 @@ Optional:
 
 Required:
 
-- `domain_name` (String) DNS queries for this domain name are forwarded to the IP addresses that youspecify in TargetIps. If a query matches multiple Resolver rules (example.comand www.example.com), outbound DNS queries are routed using the Resolverrule that contains the most specific domain name (www.example.com).
-- `rule_type` (String) When you want to forward DNS queries for specified domain name to resolverson your network, specify FORWARD.When you have a forwarding rule to forward DNS queries for a domain to yournetwork and you want Resolver to process queries for a subdomain of thatdomain, specify SYSTEM.For example, to forward DNS queries for example.com to resolvers on yournetwork, you create a rule and specify FORWARD for RuleType. To then haveResolver process queries for apex.example.com, you create a rule and specifySYSTEM for RuleType.Currently, only Resolver can create rules that have a value of RECURSIVEfor RuleType.
+- `domain_name` (String) DNS queries for this domain name are forwarded to the IP addresses that you specify in TargetIps. If a query matches multiple Resolver rules (example.com and www.example.com), outbound DNS queries are routed using the Resolver rule that contains the most specific domain name (www.example.com).
+- `rule_type` (String) When you want to forward DNS queries for specified domain name to resolvers on your network, specify FORWARD. When you have a forwarding rule to forward DNS queries for a domain to your network and you want Resolver to process queries for a subdomain of that domain, specify SYSTEM. For example, to forward DNS queries for example.com to resolvers on your network, you create a rule and specify FORWARD for RuleType. To then have Resolver process queries for apex.example.com, you create a rule and specify SYSTEM for RuleType. Currently, only Resolver can create rules that have a value of RECURSIVE for RuleType.
 
 Optional:
 
 - `associations` (Attributes List) (see [below for nested schema](#nestedatt--spec--associations))
-- `name` (String) A friendly name that lets you easily find a rule in the Resolver dashboardin the Route 53 console.
-- `resolver_endpoint_id` (String) The ID of the outbound Resolver endpoint that you want to use to route DNSqueries to the IP addresses that you specify in TargetIps.
+- `name` (String) A friendly name that lets you easily find a rule in the Resolver dashboard in the Route 53 console.
+- `resolver_endpoint_id` (String) The ID of the outbound Resolver endpoint that you want to use to route DNS queries to the IP addresses that you specify in TargetIps.
 - `tags` (Attributes List) A list of the tag keys and values that you want to associate with the endpoint. (see [below for nested schema](#nestedatt--spec--tags))
-- `target_i_ps` (Attributes List) The IPs that you want Resolver to forward DNS queries to. You can specifyonly IPv4 addresses. Separate IP addresses with a space.TargetIps is available only when the value of Rule type is FORWARD. (see [below for nested schema](#nestedatt--spec--target_i_ps))
+- `target_i_ps` (Attributes List) The IPs that you want Resolver to forward DNS queries to. You can specify only IPv4 addresses. Separate IP addresses with a space. TargetIps is available only when the value of Rule type is FORWARD. (see [below for nested schema](#nestedatt--spec--target_i_ps))
 
 <a id="nestedatt--spec--associations"></a>
 ### Nested Schema for `spec.associations`

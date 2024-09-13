@@ -91,8 +91,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Metadata(_ context.Co
 
 func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ExtensionService is the schema for the Contour extension services API.An ExtensionService resource binds a network service to the ContourAPI so that Contour API features can be implemented by collaboratingcomponents.",
-		MarkdownDescription: "ExtensionService is the schema for the Contour extension services API.An ExtensionService resource binds a network service to the ContourAPI so that Contour API features can be implemented by collaboratingcomponents.",
+		Description:         "ExtensionService is the schema for the Contour extension services API. An ExtensionService resource binds a network service to the Contour API so that Contour API features can be implemented by collaborating components.",
+		MarkdownDescription: "ExtensionService is the schema for the Contour extension services API. An ExtensionService resource binds a network service to the Contour API so that Contour API features can be implemented by collaborating components.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -163,8 +163,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 				MarkdownDescription: "ExtensionServiceSpec defines the desired state of an ExtensionService resource.",
 				Attributes: map[string]schema.Attribute{
 					"circuit_breaker_policy": schema.SingleNestedAttribute{
-						Description:         "CircuitBreakerPolicy specifies the circuit breaker budget across the extension service.If defined this overrides the global circuit breaker budget.",
-						MarkdownDescription: "CircuitBreakerPolicy specifies the circuit breaker budget across the extension service.If defined this overrides the global circuit breaker budget.",
+						Description:         "CircuitBreakerPolicy specifies the circuit breaker budget across the extension service. If defined this overrides the global circuit breaker budget.",
+						MarkdownDescription: "CircuitBreakerPolicy specifies the circuit breaker budget across the extension service. If defined this overrides the global circuit breaker budget.",
 						Attributes: map[string]schema.Attribute{
 							"max_connections": schema.Int64Attribute{
 								Description:         "The maximum number of connections that a single Envoy instance allows to the Kubernetes Service; defaults to 1024.",
@@ -199,8 +199,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"per_host_max_connections": schema.Int64Attribute{
-								Description:         "PerHostMaxConnections is the maximum number of connectionsthat Envoy will allow to each individual host in a cluster.",
-								MarkdownDescription: "PerHostMaxConnections is the maximum number of connectionsthat Envoy will allow to each individual host in a cluster.",
+								Description:         "PerHostMaxConnections is the maximum number of connections that Envoy will allow to each individual host in a cluster.",
+								MarkdownDescription: "PerHostMaxConnections is the maximum number of connections that Envoy will allow to each individual host in a cluster.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -212,29 +212,29 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"load_balancer_policy": schema.SingleNestedAttribute{
-						Description:         "The policy for load balancing GRPC service requests. Note that the'Cookie' and 'RequestHash' load balancing strategies cannot be usedhere.",
-						MarkdownDescription: "The policy for load balancing GRPC service requests. Note that the'Cookie' and 'RequestHash' load balancing strategies cannot be usedhere.",
+						Description:         "The policy for load balancing GRPC service requests. Note that the 'Cookie' and 'RequestHash' load balancing strategies cannot be used here.",
+						MarkdownDescription: "The policy for load balancing GRPC service requests. Note that the 'Cookie' and 'RequestHash' load balancing strategies cannot be used here.",
 						Attributes: map[string]schema.Attribute{
 							"request_hash_policies": schema.ListNestedAttribute{
-								Description:         "RequestHashPolicies contains a list of hash policies to apply when the'RequestHash' load balancing strategy is chosen. If an element of thesupplied list of hash policies is invalid, it will be ignored. If thelist of hash policies is empty after validation, the load balancingstrategy will fall back to the default 'RoundRobin'.",
-								MarkdownDescription: "RequestHashPolicies contains a list of hash policies to apply when the'RequestHash' load balancing strategy is chosen. If an element of thesupplied list of hash policies is invalid, it will be ignored. If thelist of hash policies is empty after validation, the load balancingstrategy will fall back to the default 'RoundRobin'.",
+								Description:         "RequestHashPolicies contains a list of hash policies to apply when the 'RequestHash' load balancing strategy is chosen. If an element of the supplied list of hash policies is invalid, it will be ignored. If the list of hash policies is empty after validation, the load balancing strategy will fall back to the default 'RoundRobin'.",
+								MarkdownDescription: "RequestHashPolicies contains a list of hash policies to apply when the 'RequestHash' load balancing strategy is chosen. If an element of the supplied list of hash policies is invalid, it will be ignored. If the list of hash policies is empty after validation, the load balancing strategy will fall back to the default 'RoundRobin'.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"hash_source_ip": schema.BoolAttribute{
-											Description:         "HashSourceIP should be set to true when request source IP hash basedload balancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
-											MarkdownDescription: "HashSourceIP should be set to true when request source IP hash basedload balancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
+											Description:         "HashSourceIP should be set to true when request source IP hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
+											MarkdownDescription: "HashSourceIP should be set to true when request source IP hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"header_hash_options": schema.SingleNestedAttribute{
-											Description:         "HeaderHashOptions should be set when request header hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
-											MarkdownDescription: "HeaderHashOptions should be set when request header hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
+											Description:         "HeaderHashOptions should be set when request header hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
+											MarkdownDescription: "HeaderHashOptions should be set when request header hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
 											Attributes: map[string]schema.Attribute{
 												"header_name": schema.StringAttribute{
-													Description:         "HeaderName is the name of the HTTP request header that will be used tocalculate the hash key. If the header specified is not present on arequest, no hash will be produced.",
-													MarkdownDescription: "HeaderName is the name of the HTTP request header that will be used tocalculate the hash key. If the header specified is not present on arequest, no hash will be produced.",
+													Description:         "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
+													MarkdownDescription: "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -249,12 +249,12 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 										},
 
 										"query_parameter_hash_options": schema.SingleNestedAttribute{
-											Description:         "QueryParameterHashOptions should be set when request query parameter hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
-											MarkdownDescription: "QueryParameterHashOptions should be set when request query parameter hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
+											Description:         "QueryParameterHashOptions should be set when request query parameter hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
+											MarkdownDescription: "QueryParameterHashOptions should be set when request query parameter hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
 											Attributes: map[string]schema.Attribute{
 												"parameter_name": schema.StringAttribute{
-													Description:         "ParameterName is the name of the HTTP request query parameter that will be used tocalculate the hash key. If the query parameter specified is not present on arequest, no hash will be produced.",
-													MarkdownDescription: "ParameterName is the name of the HTTP request query parameter that will be used tocalculate the hash key. If the query parameter specified is not present on arequest, no hash will be produced.",
+													Description:         "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
+													MarkdownDescription: "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -269,8 +269,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 										},
 
 										"terminal": schema.BoolAttribute{
-											Description:         "Terminal is a flag that allows for short-circuiting computing of a hashfor a given request. If set to true, and the request attribute specifiedin the attribute hash options is present, no further hash policies willbe used to calculate a hash for the request.",
-											MarkdownDescription: "Terminal is a flag that allows for short-circuiting computing of a hashfor a given request. If set to true, and the request attribute specifiedin the attribute hash options is present, no further hash policies willbe used to calculate a hash for the request.",
+											Description:         "Terminal is a flag that allows for short-circuiting computing of a hash for a given request. If set to true, and the request attribute specified in the attribute hash options is present, no further hash policies will be used to calculate a hash for the request.",
+											MarkdownDescription: "Terminal is a flag that allows for short-circuiting computing of a hash for a given request. If set to true, and the request attribute specified in the attribute hash options is present, no further hash policies will be used to calculate a hash for the request.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -283,8 +283,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"strategy": schema.StringAttribute{
-								Description:         "Strategy specifies the policy used to balance requestsacross the pool of backend pods. Valid policy names are'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie',and 'RequestHash'. If an unknown strategy name is specifiedor no policy is supplied, the default 'RoundRobin' policyis used.",
-								MarkdownDescription: "Strategy specifies the policy used to balance requestsacross the pool of backend pods. Valid policy names are'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie',and 'RequestHash'. If an unknown strategy name is specifiedor no policy is supplied, the default 'RoundRobin' policyis used.",
+								Description:         "Strategy specifies the policy used to balance requests across the pool of backend pods. Valid policy names are 'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie', and 'RequestHash'. If an unknown strategy name is specified or no policy is supplied, the default 'RoundRobin' policy is used.",
+								MarkdownDescription: "Strategy specifies the policy used to balance requests across the pool of backend pods. Valid policy names are 'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie', and 'RequestHash'. If an unknown strategy name is specified or no policy is supplied, the default 'RoundRobin' policy is used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -296,8 +296,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"protocol": schema.StringAttribute{
-						Description:         "Protocol may be used to specify (or override) the protocol used to reach this Service.Values may be h2 or h2c. If omitted, protocol-selection falls back on Service annotations.",
-						MarkdownDescription: "Protocol may be used to specify (or override) the protocol used to reach this Service.Values may be h2 or h2c. If omitted, protocol-selection falls back on Service annotations.",
+						Description:         "Protocol may be used to specify (or override) the protocol used to reach this Service. Values may be h2 or h2c. If omitted, protocol-selection falls back on Service annotations.",
+						MarkdownDescription: "Protocol may be used to specify (or override) the protocol used to reach this Service. Values may be h2 or h2c. If omitted, protocol-selection falls back on Service annotations.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -307,8 +307,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"protocol_version": schema.StringAttribute{
-						Description:         "This field sets the version of the GRPC protocol that Envoy uses tosend requests to the extension service. Since Contour always uses thev3 Envoy API, this is currently fixed at 'v3'. However, otherprotocol options will be available in future.",
-						MarkdownDescription: "This field sets the version of the GRPC protocol that Envoy uses tosend requests to the extension service. Since Contour always uses thev3 Envoy API, this is currently fixed at 'v3'. However, otherprotocol options will be available in future.",
+						Description:         "This field sets the version of the GRPC protocol that Envoy uses to send requests to the extension service. Since Contour always uses the v3 Envoy API, this is currently fixed at 'v3'. However, other protocol options will be available in future.",
+						MarkdownDescription: "This field sets the version of the GRPC protocol that Envoy uses to send requests to the extension service. Since Contour always uses the v3 Envoy API, this is currently fixed at 'v3'. However, other protocol options will be available in future.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -318,13 +318,13 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"services": schema.ListNestedAttribute{
-						Description:         "Services specifies the set of Kubernetes Service resources thatreceive GRPC extension API requests.If no weights are specified for any of the entries inthis array, traffic will be spread evenly across all theservices.Otherwise, traffic is balanced proportionally to theWeight field in each entry.",
-						MarkdownDescription: "Services specifies the set of Kubernetes Service resources thatreceive GRPC extension API requests.If no weights are specified for any of the entries inthis array, traffic will be spread evenly across all theservices.Otherwise, traffic is balanced proportionally to theWeight field in each entry.",
+						Description:         "Services specifies the set of Kubernetes Service resources that receive GRPC extension API requests. If no weights are specified for any of the entries in this array, traffic will be spread evenly across all the services. Otherwise, traffic is balanced proportionally to the Weight field in each entry.",
+						MarkdownDescription: "Services specifies the set of Kubernetes Service resources that receive GRPC extension API requests. If no weights are specified for any of the entries in this array, traffic will be spread evenly across all the services. Otherwise, traffic is balanced proportionally to the Weight field in each entry.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name is the name of Kubernetes service that will accept servicetraffic.",
-									MarkdownDescription: "Name is the name of Kubernetes service that will accept servicetraffic.",
+									Description:         "Name is the name of Kubernetes service that will accept service traffic.",
+									MarkdownDescription: "Name is the name of Kubernetes service that will accept service traffic.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -361,8 +361,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "The timeout policy for requests to the services.",
 						Attributes: map[string]schema.Attribute{
 							"idle": schema.StringAttribute{
-								Description:         "Timeout for how long the proxy should wait while there is no activity during single request/response (for HTTP/1.1) or stream (for HTTP/2).Timeout will not trigger while HTTP/1.1 connection is idle between two consecutive requests.If not specified, there is no per-route idle timeout, though a connection manager-widestream_idle_timeout default of 5m still applies.",
-								MarkdownDescription: "Timeout for how long the proxy should wait while there is no activity during single request/response (for HTTP/1.1) or stream (for HTTP/2).Timeout will not trigger while HTTP/1.1 connection is idle between two consecutive requests.If not specified, there is no per-route idle timeout, though a connection manager-widestream_idle_timeout default of 5m still applies.",
+								Description:         "Timeout for how long the proxy should wait while there is no activity during single request/response (for HTTP/1.1) or stream (for HTTP/2). Timeout will not trigger while HTTP/1.1 connection is idle between two consecutive requests. If not specified, there is no per-route idle timeout, though a connection manager-wide stream_idle_timeout default of 5m still applies.",
+								MarkdownDescription: "Timeout for how long the proxy should wait while there is no activity during single request/response (for HTTP/1.1) or stream (for HTTP/2). Timeout will not trigger while HTTP/1.1 connection is idle between two consecutive requests. If not specified, there is no per-route idle timeout, though a connection manager-wide stream_idle_timeout default of 5m still applies.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -372,8 +372,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"idle_connection": schema.StringAttribute{
-								Description:         "Timeout for how long connection from the proxy to the upstream service is kept when there are no active requests.If not supplied, Envoy's default value of 1h applies.",
-								MarkdownDescription: "Timeout for how long connection from the proxy to the upstream service is kept when there are no active requests.If not supplied, Envoy's default value of 1h applies.",
+								Description:         "Timeout for how long connection from the proxy to the upstream service is kept when there are no active requests. If not supplied, Envoy's default value of 1h applies.",
+								MarkdownDescription: "Timeout for how long connection from the proxy to the upstream service is kept when there are no active requests. If not supplied, Envoy's default value of 1h applies.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -383,8 +383,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"response": schema.StringAttribute{
-								Description:         "Timeout for receiving a response from the server after processing a request from client.If not supplied, Envoy's default value of 15s applies.",
-								MarkdownDescription: "Timeout for receiving a response from the server after processing a request from client.If not supplied, Envoy's default value of 15s applies.",
+								Description:         "Timeout for receiving a response from the server after processing a request from client. If not supplied, Envoy's default value of 15s applies.",
+								MarkdownDescription: "Timeout for receiving a response from the server after processing a request from client. If not supplied, Envoy's default value of 15s applies.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -403,8 +403,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "UpstreamValidation defines how to verify the backend service's certificate",
 						Attributes: map[string]schema.Attribute{
 							"ca_secret": schema.StringAttribute{
-								Description:         "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend.The secret must contain key named ca.crt.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
-								MarkdownDescription: "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend.The secret must contain key named ca.crt.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
+								Description:         "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend. The secret must contain key named ca.crt. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret. Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
+								MarkdownDescription: "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend. The secret must contain key named ca.crt. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret. Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -415,8 +415,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"subject_name": schema.StringAttribute{
-								Description:         "Key which is expected to be present in the 'subjectAltName' of the presented certificate.Deprecated: migrate to using the plural field subjectNames.",
-								MarkdownDescription: "Key which is expected to be present in the 'subjectAltName' of the presented certificate.Deprecated: migrate to using the plural field subjectNames.",
+								Description:         "Key which is expected to be present in the 'subjectAltName' of the presented certificate. Deprecated: migrate to using the plural field subjectNames.",
+								MarkdownDescription: "Key which is expected to be present in the 'subjectAltName' of the presented certificate. Deprecated: migrate to using the plural field subjectNames.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -427,8 +427,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"subject_names": schema.ListAttribute{
-								Description:         "List of keys, of which at least one is expected to be present in the 'subjectAltName of thepresented certificate.",
-								MarkdownDescription: "List of keys, of which at least one is expected to be present in the 'subjectAltName of thepresented certificate.",
+								Description:         "List of keys, of which at least one is expected to be present in the 'subjectAltName of the presented certificate.",
+								MarkdownDescription: "List of keys, of which at least one is expected to be present in the 'subjectAltName of the presented certificate.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

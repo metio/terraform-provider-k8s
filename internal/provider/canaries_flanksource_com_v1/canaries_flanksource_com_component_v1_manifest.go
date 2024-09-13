@@ -388,8 +388,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"for_each": schema.MapAttribute{
-						Description:         "Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself",
-						MarkdownDescription: "Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself",
+						Description:         "Only applies when using lookup, when specified the components and properties specified under ForEach will be templated using the components returned by the lookup ${.properties} can be used to reference the properties of the component ${.component} can be used to reference the component itself",
+						MarkdownDescription: "Only applies when using lookup, when specified the components and properties specified under ForEach will be templated using the components returned by the lookup ${.properties} can be used to reference the properties of the component ${.component} can be used to reference the component itself",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -405,8 +405,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"health_expr": schema.StringAttribute{
-						Description:         "healthExpr allows defining a cel expression to evaluate the health of a componentbased on the summary.",
-						MarkdownDescription: "healthExpr allows defining a cel expression to evaluate the health of a componentbased on the summary.",
+						Description:         "healthExpr allows defining a cel expression to evaluate the health of a component based on the summary.",
+						MarkdownDescription: "healthExpr allows defining a cel expression to evaluate the health of a component based on the summary.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -523,8 +523,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"lookup": schema.MapAttribute{
-						Description:         "Lookup component definitions from an external source, use theforEach property to iterate over the results to further enrich each component.",
-						MarkdownDescription: "Lookup component definitions from an external source, use theforEach property to iterate over the results to further enrich each component.",
+						Description:         "Lookup component definitions from an external source, use the forEach property to iterate over the results to further enrich each component.",
+						MarkdownDescription: "Lookup component definitions from an external source, use the forEach property to iterate over the results to further enrich each component.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -758,8 +758,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"status_expr": schema.StringAttribute{
-						Description:         "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.",
-						MarkdownDescription: "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.",
+						Description:         "statusExpr allows defining a cel expression to evaluate the status of a component based on the summary.",
+						MarkdownDescription: "statusExpr allows defining a cel expression to evaluate the status of a component based on the summary.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -170,8 +170,8 @@ func (r *KuadrantIoManagedZoneV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"id": schema.StringAttribute{
-						Description:         "id is the provider assigned id of this  zone (i.e. route53.HostedZone.ID).",
-						MarkdownDescription: "id is the provider assigned id of this  zone (i.e. route53.HostedZone.ID).",
+						Description:         "id is the provider assigned id of this zone (i.e. route53.HostedZone.ID).",
+						MarkdownDescription: "id is the provider assigned id of this zone (i.e. route53.HostedZone.ID).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -182,8 +182,8 @@ func (r *KuadrantIoManagedZoneV1Alpha1Manifest) Schema(_ context.Context, _ data
 						MarkdownDescription: "parentManagedZone reference to another managed zone that this managed zone belongs to.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "'name' is the name of the managed zone.Required",
-								MarkdownDescription: "'name' is the name of the managed zone.Required",
+								Description:         "'name' is the name of the managed zone. Required",
+								MarkdownDescription: "'name' is the name of the managed zone. Required",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

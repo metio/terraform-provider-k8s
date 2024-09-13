@@ -236,12 +236,12 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"health_check": schema.SingleNestedAttribute{
-						Description:         "HealthCheckSpec configures health checks in the DNS provider.By default this health check will be applied to each unique DNS A Record forthe listeners assigned to the target gateway",
-						MarkdownDescription: "HealthCheckSpec configures health checks in the DNS provider.By default this health check will be applied to each unique DNS A Record forthe listeners assigned to the target gateway",
+						Description:         "HealthCheckSpec configures health checks in the DNS provider. By default this health check will be applied to each unique DNS A Record for the listeners assigned to the target gateway",
+						MarkdownDescription: "HealthCheckSpec configures health checks in the DNS provider. By default this health check will be applied to each unique DNS A Record for the listeners assigned to the target gateway",
 						Attributes: map[string]schema.Attribute{
 							"endpoint": schema.StringAttribute{
-								Description:         "Endpoint is the path to append to the host to reach the expected health check.Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common",
-								MarkdownDescription: "Endpoint is the path to append to the host to reach the expected health check.Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common",
+								Description:         "Endpoint is the path to append to the host to reach the expected health check. Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common",
+								MarkdownDescription: "Endpoint is the path to append to the host to reach the expected health check. Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -280,8 +280,8 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"owner_id": schema.StringAttribute{
-						Description:         "ownerID is a unique string used to identify the owner of this record.If unset or set to an empty string the record UID will be used.",
-						MarkdownDescription: "ownerID is a unique string used to identify the owner of this record.If unset or set to an empty string the record UID will be used.",
+						Description:         "ownerID is a unique string used to identify the owner of this record. If unset or set to an empty string the record UID will be used.",
+						MarkdownDescription: "ownerID is a unique string used to identify the owner of this record. If unset or set to an empty string the record UID will be used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -312,8 +312,8 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"root_host": schema.StringAttribute{
-						Description:         "rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHostMust contain at least two groups of valid URL characters separated by a '.'",
-						MarkdownDescription: "rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHostMust contain at least two groups of valid URL characters separated by a '.'",
+						Description:         "rootHost is the single root for all endpoints in a DNSRecord. it is expected all defined endpoints are children of or equal to this rootHost Must contain at least two groups of valid URL characters separated by a '.'",
+						MarkdownDescription: "rootHost is the single root for all endpoints in a DNSRecord. it is expected all defined endpoints are children of or equal to this rootHost Must contain at least two groups of valid URL characters separated by a '.'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

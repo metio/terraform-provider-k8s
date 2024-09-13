@@ -200,8 +200,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 				MarkdownDescription: "Spec is the specification of the Kuma MeshRetry resource.",
 				Attributes: map[string]schema.Attribute{
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
-						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
+						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
+						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
@@ -215,8 +215,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 							},
 
 							"labels": schema.MapAttribute{
-								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -232,24 +232,24 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"proxy_types": schema.ListAttribute{
-								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -257,16 +257,16 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 							},
 
 							"section_name": schema.StringAttribute{
-								Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-								MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tags": schema.MapAttribute{
-								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -284,28 +284,28 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.SingleNestedAttribute{
-									Description:         "Default is a configuration specific to the group of destinations referenced in'targetRef'",
-									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in'targetRef'",
+									Description:         "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
+									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
 									Attributes: map[string]schema.Attribute{
 										"grpc": schema.SingleNestedAttribute{
 											Description:         "GRPC defines a configuration of retries for GRPC traffic",
 											MarkdownDescription: "GRPC defines a configuration of retries for GRPC traffic",
 											Attributes: map[string]schema.Attribute{
 												"back_off": schema.SingleNestedAttribute{
-													Description:         "BackOff is a configuration of durations which will be used in an exponentialbackoff strategy between retries.",
-													MarkdownDescription: "BackOff is a configuration of durations which will be used in an exponentialbackoff strategy between retries.",
+													Description:         "BackOff is a configuration of durations which will be used in an exponential backoff strategy between retries.",
+													MarkdownDescription: "BackOff is a configuration of durations which will be used in an exponential backoff strategy between retries.",
 													Attributes: map[string]schema.Attribute{
 														"base_interval": schema.StringAttribute{
-															Description:         "BaseInterval is an amount of time which should be taken between retries.Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
-															MarkdownDescription: "BaseInterval is an amount of time which should be taken between retries.Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
+															Description:         "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
+															MarkdownDescription: "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"max_interval": schema.StringAttribute{
-															Description:         "MaxInterval is a maximal amount of time which will be taken between retries.Default is 10 times the 'BaseInterval'.",
-															MarkdownDescription: "MaxInterval is a maximal amount of time which will be taken between retries.Default is 10 times the 'BaseInterval'.",
+															Description:         "MaxInterval is a maximal amount of time which will be taken between retries. Default is 10 times the 'BaseInterval'.",
+															MarkdownDescription: "MaxInterval is a maximal amount of time which will be taken between retries. Default is 10 times the 'BaseInterval'.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -317,24 +317,24 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 												},
 
 												"num_retries": schema.Int64Attribute{
-													Description:         "NumRetries is the number of attempts that will be made on failed (andretriable) requests. If not set, the default value is 1.",
-													MarkdownDescription: "NumRetries is the number of attempts that will be made on failed (andretriable) requests. If not set, the default value is 1.",
+													Description:         "NumRetries is the number of attempts that will be made on failed (and retriable) requests. If not set, the default value is 1.",
+													MarkdownDescription: "NumRetries is the number of attempts that will be made on failed (and retriable) requests. If not set, the default value is 1.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"per_try_timeout": schema.StringAttribute{
-													Description:         "PerTryTimeout is the maximum amount of time each retry attempt can takebefore it times out. If not set, the global request timeout for the routewill be used. Setting this value to 0 will disable the per-try timeout.",
-													MarkdownDescription: "PerTryTimeout is the maximum amount of time each retry attempt can takebefore it times out. If not set, the global request timeout for the routewill be used. Setting this value to 0 will disable the per-try timeout.",
+													Description:         "PerTryTimeout is the maximum amount of time each retry attempt can take before it times out. If not set, the global request timeout for the route will be used. Setting this value to 0 will disable the per-try timeout.",
+													MarkdownDescription: "PerTryTimeout is the maximum amount of time each retry attempt can take before it times out. If not set, the global request timeout for the route will be used. Setting this value to 0 will disable the per-try timeout.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"rate_limited_back_off": schema.SingleNestedAttribute{
-													Description:         "RateLimitedBackOff is a configuration of backoff which will be used whenthe upstream returns one of the headers configured.",
-													MarkdownDescription: "RateLimitedBackOff is a configuration of backoff which will be used whenthe upstream returns one of the headers configured.",
+													Description:         "RateLimitedBackOff is a configuration of backoff which will be used when the upstream returns one of the headers configured.",
+													MarkdownDescription: "RateLimitedBackOff is a configuration of backoff which will be used when the upstream returns one of the headers configured.",
 													Attributes: map[string]schema.Attribute{
 														"max_interval": schema.StringAttribute{
 															Description:         "MaxInterval is a maximal amount of time which will be taken between retries.",
@@ -345,8 +345,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 														},
 
 														"reset_headers": schema.ListNestedAttribute{
-															Description:         "ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset)to match against the response. Headers are tried in order, and matchedcase-insensitive. The first header to be parsed successfully is used.If no headers match the default exponential BackOff is used instead.",
-															MarkdownDescription: "ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset)to match against the response. Headers are tried in order, and matchedcase-insensitive. The first header to be parsed successfully is used.If no headers match the default exponential BackOff is used instead.",
+															Description:         "ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset) to match against the response. Headers are tried in order, and matched case-insensitive. The first header to be parsed successfully is used. If no headers match the default exponential BackOff is used instead.",
+															MarkdownDescription: "ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset) to match against the response. Headers are tried in order, and matched case-insensitive. The first header to be parsed successfully is used. If no headers match the default exponential BackOff is used instead.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"format": schema.StringAttribute{
@@ -403,20 +403,20 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 											MarkdownDescription: "HTTP defines a configuration of retries for HTTP traffic",
 											Attributes: map[string]schema.Attribute{
 												"back_off": schema.SingleNestedAttribute{
-													Description:         "BackOff is a configuration of durations which will be used in exponentialbackoff strategy between retries.",
-													MarkdownDescription: "BackOff is a configuration of durations which will be used in exponentialbackoff strategy between retries.",
+													Description:         "BackOff is a configuration of durations which will be used in exponential backoff strategy between retries.",
+													MarkdownDescription: "BackOff is a configuration of durations which will be used in exponential backoff strategy between retries.",
 													Attributes: map[string]schema.Attribute{
 														"base_interval": schema.StringAttribute{
-															Description:         "BaseInterval is an amount of time which should be taken between retries.Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
-															MarkdownDescription: "BaseInterval is an amount of time which should be taken between retries.Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
+															Description:         "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
+															MarkdownDescription: "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"max_interval": schema.StringAttribute{
-															Description:         "MaxInterval is a maximal amount of time which will be taken between retries.Default is 10 times the 'BaseInterval'.",
-															MarkdownDescription: "MaxInterval is a maximal amount of time which will be taken between retries.Default is 10 times the 'BaseInterval'.",
+															Description:         "MaxInterval is a maximal amount of time which will be taken between retries. Default is 10 times the 'BaseInterval'.",
+															MarkdownDescription: "MaxInterval is a maximal amount of time which will be taken between retries. Default is 10 times the 'BaseInterval'.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -428,8 +428,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 												},
 
 												"host_selection": schema.ListNestedAttribute{
-													Description:         "HostSelection is a list of predicates that dictate how hosts should be selectedwhen requests are retried.",
-													MarkdownDescription: "HostSelection is a list of predicates that dictate how hosts should be selectedwhen requests are retried.",
+													Description:         "HostSelection is a list of predicates that dictate how hosts should be selected when requests are retried.",
+													MarkdownDescription: "HostSelection is a list of predicates that dictate how hosts should be selected when requests are retried.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"predicate": schema.StringAttribute{
@@ -444,8 +444,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 															},
 
 															"tags": schema.MapAttribute{
-																Description:         "Tags is a map of metadata to match against for selecting the omitted hosts. Required if Type isOmitHostsWithTags",
-																MarkdownDescription: "Tags is a map of metadata to match against for selecting the omitted hosts. Required if Type isOmitHostsWithTags",
+																Description:         "Tags is a map of metadata to match against for selecting the omitted hosts. Required if Type is OmitHostsWithTags",
+																MarkdownDescription: "Tags is a map of metadata to match against for selecting the omitted hosts. Required if Type is OmitHostsWithTags",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -453,8 +453,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 															},
 
 															"update_frequency": schema.Int64Attribute{
-																Description:         "UpdateFrequency is how often the priority load should be updated based on previously attempted priorities.Used for OmitPreviousPriorities.",
-																MarkdownDescription: "UpdateFrequency is how often the priority load should be updated based on previously attempted priorities.Used for OmitPreviousPriorities.",
+																Description:         "UpdateFrequency is how often the priority load should be updated based on previously attempted priorities. Used for OmitPreviousPriorities.",
+																MarkdownDescription: "UpdateFrequency is how often the priority load should be updated based on previously attempted priorities. Used for OmitPreviousPriorities.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -467,32 +467,32 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 												},
 
 												"host_selection_max_attempts": schema.Int64Attribute{
-													Description:         "HostSelectionMaxAttempts is the maximum number of times host selection will bereattempted before giving up, at which point the host that was last selected willbe routed to. If unspecified, this will default to retrying once.",
-													MarkdownDescription: "HostSelectionMaxAttempts is the maximum number of times host selection will bereattempted before giving up, at which point the host that was last selected willbe routed to. If unspecified, this will default to retrying once.",
+													Description:         "HostSelectionMaxAttempts is the maximum number of times host selection will be reattempted before giving up, at which point the host that was last selected will be routed to. If unspecified, this will default to retrying once.",
+													MarkdownDescription: "HostSelectionMaxAttempts is the maximum number of times host selection will be reattempted before giving up, at which point the host that was last selected will be routed to. If unspecified, this will default to retrying once.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"num_retries": schema.Int64Attribute{
-													Description:         "NumRetries is the number of attempts that will be made on failed (andretriable) requests.  If not set, the default value is 1.",
-													MarkdownDescription: "NumRetries is the number of attempts that will be made on failed (andretriable) requests.  If not set, the default value is 1.",
+													Description:         "NumRetries is the number of attempts that will be made on failed (and retriable) requests. If not set, the default value is 1.",
+													MarkdownDescription: "NumRetries is the number of attempts that will be made on failed (and retriable) requests. If not set, the default value is 1.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"per_try_timeout": schema.StringAttribute{
-													Description:         "PerTryTimeout is the amount of time after which retry attempt should time out.If left unspecified, the global route timeout for the request will be used.Consequently, when using a 5xx based retry policy, a request that times outwill not be retried as the total timeout budget would have been exhausted.Setting this timeout to 0 will disable it.",
-													MarkdownDescription: "PerTryTimeout is the amount of time after which retry attempt should time out.If left unspecified, the global route timeout for the request will be used.Consequently, when using a 5xx based retry policy, a request that times outwill not be retried as the total timeout budget would have been exhausted.Setting this timeout to 0 will disable it.",
+													Description:         "PerTryTimeout is the amount of time after which retry attempt should time out. If left unspecified, the global route timeout for the request will be used. Consequently, when using a 5xx based retry policy, a request that times out will not be retried as the total timeout budget would have been exhausted. Setting this timeout to 0 will disable it.",
+													MarkdownDescription: "PerTryTimeout is the amount of time after which retry attempt should time out. If left unspecified, the global route timeout for the request will be used. Consequently, when using a 5xx based retry policy, a request that times out will not be retried as the total timeout budget would have been exhausted. Setting this timeout to 0 will disable it.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"rate_limited_back_off": schema.SingleNestedAttribute{
-													Description:         "RateLimitedBackOff is a configuration of backoff which will be usedwhen the upstream returns one of the headers configured.",
-													MarkdownDescription: "RateLimitedBackOff is a configuration of backoff which will be usedwhen the upstream returns one of the headers configured.",
+													Description:         "RateLimitedBackOff is a configuration of backoff which will be used when the upstream returns one of the headers configured.",
+													MarkdownDescription: "RateLimitedBackOff is a configuration of backoff which will be used when the upstream returns one of the headers configured.",
 													Attributes: map[string]schema.Attribute{
 														"max_interval": schema.StringAttribute{
 															Description:         "MaxInterval is a maximal amount of time which will be taken between retries.",
@@ -503,8 +503,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 														},
 
 														"reset_headers": schema.ListNestedAttribute{
-															Description:         "ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset)to match against the response. Headers are tried in order, and matchedcase-insensitive. The first header to be parsed successfully is used.If no headers match the default exponential BackOff is used instead.",
-															MarkdownDescription: "ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset)to match against the response. Headers are tried in order, and matchedcase-insensitive. The first header to be parsed successfully is used.If no headers match the default exponential BackOff is used instead.",
+															Description:         "ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset) to match against the response. Headers are tried in order, and matched case-insensitive. The first header to be parsed successfully is used. If no headers match the default exponential BackOff is used instead.",
+															MarkdownDescription: "ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset) to match against the response. Headers are tried in order, and matched case-insensitive. The first header to be parsed successfully is used. If no headers match the default exponential BackOff is used instead.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"format": schema.StringAttribute{
@@ -543,13 +543,13 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 												},
 
 												"retriable_request_headers": schema.ListNestedAttribute{
-													Description:         "RetriableRequestHeaders is an HTTP headers which must be present in the requestfor retries to be attempted.",
-													MarkdownDescription: "RetriableRequestHeaders is an HTTP headers which must be present in the requestfor retries to be attempted.",
+													Description:         "RetriableRequestHeaders is an HTTP headers which must be present in the request for retries to be attempted.",
+													MarkdownDescription: "RetriableRequestHeaders is an HTTP headers which must be present in the request for retries to be attempted.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name is the name of the HTTP Header to be matched. Name MUST be lower caseas they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
-																MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name MUST be lower caseas they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
+																Description:         "Name is the name of the HTTP Header to be matched. Name MUST be lower case as they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
+																MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name MUST be lower case as they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -586,13 +586,13 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 												},
 
 												"retriable_response_headers": schema.ListNestedAttribute{
-													Description:         "RetriableResponseHeaders is an HTTP response headers that trigger a retryif present in the response. A retry will be triggered if any of the headermatches the upstream response headers.",
-													MarkdownDescription: "RetriableResponseHeaders is an HTTP response headers that trigger a retryif present in the response. A retry will be triggered if any of the headermatches the upstream response headers.",
+													Description:         "RetriableResponseHeaders is an HTTP response headers that trigger a retry if present in the response. A retry will be triggered if any of the header matches the upstream response headers.",
+													MarkdownDescription: "RetriableResponseHeaders is an HTTP response headers that trigger a retry if present in the response. A retry will be triggered if any of the header matches the upstream response headers.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name is the name of the HTTP Header to be matched. Name MUST be lower caseas they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
-																MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name MUST be lower caseas they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
+																Description:         "Name is the name of the HTTP Header to be matched. Name MUST be lower case as they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
+																MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name MUST be lower case as they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -629,8 +629,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 												},
 
 												"retry_on": schema.ListAttribute{
-													Description:         "RetryOn is a list of conditions which will cause a retry. Available values are:[5XX, GatewayError, Reset, Retriable4xx, ConnectFailure, EnvoyRatelimited,RefusedStream, Http3PostConnectFailure, HttpMethodConnect, HttpMethodDelete,HttpMethodGet, HttpMethodHead, HttpMethodOptions, HttpMethodPatch,HttpMethodPost, HttpMethodPut, HttpMethodTrace].Also, any HTTP status code (500, 503, etc.).",
-													MarkdownDescription: "RetryOn is a list of conditions which will cause a retry. Available values are:[5XX, GatewayError, Reset, Retriable4xx, ConnectFailure, EnvoyRatelimited,RefusedStream, Http3PostConnectFailure, HttpMethodConnect, HttpMethodDelete,HttpMethodGet, HttpMethodHead, HttpMethodOptions, HttpMethodPatch,HttpMethodPost, HttpMethodPut, HttpMethodTrace].Also, any HTTP status code (500, 503, etc.).",
+													Description:         "RetryOn is a list of conditions which will cause a retry. Available values are: [5XX, GatewayError, Reset, Retriable4xx, ConnectFailure, EnvoyRatelimited, RefusedStream, Http3PostConnectFailure, HttpMethodConnect, HttpMethodDelete, HttpMethodGet, HttpMethodHead, HttpMethodOptions, HttpMethodPatch, HttpMethodPost, HttpMethodPut, HttpMethodTrace]. Also, any HTTP status code (500, 503, etc.).",
+													MarkdownDescription: "RetryOn is a list of conditions which will cause a retry. Available values are: [5XX, GatewayError, Reset, Retriable4xx, ConnectFailure, EnvoyRatelimited, RefusedStream, Http3PostConnectFailure, HttpMethodConnect, HttpMethodDelete, HttpMethodGet, HttpMethodHead, HttpMethodOptions, HttpMethodPatch, HttpMethodPost, HttpMethodPut, HttpMethodTrace]. Also, any HTTP status code (500, 503, etc.).",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -647,8 +647,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 											MarkdownDescription: "TCP defines a configuration of retries for TCP traffic",
 											Attributes: map[string]schema.Attribute{
 												"max_connect_attempt": schema.Int64Attribute{
-													Description:         "MaxConnectAttempt is a maximal amount of TCP connection attemptswhich will be made before giving up",
-													MarkdownDescription: "MaxConnectAttempt is a maximal amount of TCP connection attemptswhich will be made before giving up",
+													Description:         "MaxConnectAttempt is a maximal amount of TCP connection attempts which will be made before giving up",
+													MarkdownDescription: "MaxConnectAttempt is a maximal amount of TCP connection attempts which will be made before giving up",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -665,8 +665,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group ofdestinations.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofdestinations.",
+									Description:         "TargetRef is a reference to the resource that represents a group of destinations.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of destinations.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -680,8 +680,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -697,24 +697,24 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_types": schema.ListAttribute{
-											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -722,16 +722,16 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 										},
 
 										"section_name": schema.StringAttribute{
-											Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-											MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

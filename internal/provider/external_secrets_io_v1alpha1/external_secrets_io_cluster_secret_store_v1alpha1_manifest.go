@@ -498,8 +498,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 				MarkdownDescription: "SecretStoreSpec defines the desired state of SecretStore.",
 				Attributes: map[string]schema.Attribute{
 					"controller": schema.StringAttribute{
-						Description:         "Used to select the correct ESO controller (think: ingress.ingressClassName)The ESO controller is instantiated with a specific controller name and filters ES based on this property",
-						MarkdownDescription: "Used to select the correct ESO controller (think: ingress.ingressClassName)The ESO controller is instantiated with a specific controller name and filters ES based on this property",
+						Description:         "Used to select the correct ESO controller (think: ingress.ingressClassName) The ESO controller is instantiated with a specific controller name and filters ES based on this property",
+						MarkdownDescription: "Used to select the correct ESO controller (think: ingress.ingressClassName) The ESO controller is instantiated with a specific controller name and filters ES based on this property",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -526,8 +526,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 										MarkdownDescription: "Auth configures how the operator authenticates with Akeyless.",
 										Attributes: map[string]schema.Attribute{
 											"kubernetes_auth": schema.SingleNestedAttribute{
-												Description:         "Kubernetes authenticates with Akeyless by passing the ServiceAccounttoken stored in the named Secret resource.",
-												MarkdownDescription: "Kubernetes authenticates with Akeyless by passing the ServiceAccounttoken stored in the named Secret resource.",
+												Description:         "Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource.",
+												MarkdownDescription: "Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource.",
 												Attributes: map[string]schema.Attribute{
 													"access_id": schema.StringAttribute{
 														Description:         "the Akeyless Kubernetes auth-method access-id",
@@ -546,12 +546,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"secret_ref": schema.SingleNestedAttribute{
-														Description:         "Optional secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Akeyless. If a name is specified without a key,'token' is the default. If one is not specified, the one bound tothe controller will be used.",
-														MarkdownDescription: "Optional secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Akeyless. If a name is specified without a key,'token' is the default. If one is not specified, the one bound tothe controller will be used.",
+														Description:         "Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used.",
+														MarkdownDescription: "Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -566,8 +566,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -579,12 +579,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"service_account_ref": schema.SingleNestedAttribute{
-														Description:         "Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Akeyless. If the service account selector is not supplied,the secretRef will be used instead.",
-														MarkdownDescription: "Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Akeyless. If the service account selector is not supplied,the secretRef will be used instead.",
+														Description:         "Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.",
+														MarkdownDescription: "Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.",
 														Attributes: map[string]schema.Attribute{
 															"audiences": schema.ListAttribute{
-																Description:         "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
-																MarkdownDescription: "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
+																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -600,8 +600,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -618,16 +618,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"secret_ref": schema.SingleNestedAttribute{
-												Description:         "Reference to a Secret that contains the detailsto authenticate with Akeyless.",
-												MarkdownDescription: "Reference to a Secret that contains the detailsto authenticate with Akeyless.",
+												Description:         "Reference to a Secret that contains the details to authenticate with Akeyless.",
+												MarkdownDescription: "Reference to a Secret that contains the details to authenticate with Akeyless.",
 												Attributes: map[string]schema.Attribute{
 													"access_id": schema.SingleNestedAttribute{
 														Description:         "The SecretAccessID is used for authentication",
 														MarkdownDescription: "The SecretAccessID is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -642,8 +642,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -655,12 +655,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"access_type": schema.SingleNestedAttribute{
-														Description:         "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
+														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -675,8 +675,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -688,12 +688,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"access_type_param": schema.SingleNestedAttribute{
-														Description:         "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
+														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -708,8 +708,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -731,8 +731,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"ca_bundle": schema.StringAttribute{
-										Description:         "PEM/base64 encoded CA bundle used to validate Akeyless Gateway certificate. Only usedif the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificatesare used to validate the TLS connection.",
-										MarkdownDescription: "PEM/base64 encoded CA bundle used to validate Akeyless Gateway certificate. Only usedif the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificatesare used to validate the TLS connection.",
+										Description:         "PEM/base64 encoded CA bundle used to validate Akeyless Gateway certificate. Only used if the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificates are used to validate the TLS connection.",
+										MarkdownDescription: "PEM/base64 encoded CA bundle used to validate Akeyless Gateway certificate. Only used if the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificates are used to validate the TLS connection.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -851,8 +851,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The AccessKeyID is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -867,8 +867,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -884,8 +884,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The AccessKeySecret is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -900,8 +900,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -943,8 +943,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 								MarkdownDescription: "AWS configures this store to sync secrets using AWS Secret Manager provider",
 								Attributes: map[string]schema.Attribute{
 									"auth": schema.SingleNestedAttribute{
-										Description:         "Auth defines the information necessary to authenticate against AWSif not set aws sdk will infer credentials from your environmentsee: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-										MarkdownDescription: "Auth defines the information necessary to authenticate against AWSif not set aws sdk will infer credentials from your environmentsee: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+										Description:         "Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+										MarkdownDescription: "Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
 										Attributes: map[string]schema.Attribute{
 											"jwt": schema.SingleNestedAttribute{
 												Description:         "Authenticate against AWS using service account tokens.",
@@ -955,8 +955,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "A reference to a ServiceAccount resource.",
 														Attributes: map[string]schema.Attribute{
 															"audiences": schema.ListAttribute{
-																Description:         "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
-																MarkdownDescription: "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
+																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -972,8 +972,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -990,16 +990,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"secret_ref": schema.SingleNestedAttribute{
-												Description:         "AWSAuthSecretRef holds secret references for AWS credentialsboth AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.",
-												MarkdownDescription: "AWSAuthSecretRef holds secret references for AWS credentialsboth AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.",
+												Description:         "AWSAuthSecretRef holds secret references for AWS credentials both AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.",
+												MarkdownDescription: "AWSAuthSecretRef holds secret references for AWS credentials both AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.",
 												Attributes: map[string]schema.Attribute{
 													"access_key_id_secret_ref": schema.SingleNestedAttribute{
 														Description:         "The AccessKeyID is used for authentication",
 														MarkdownDescription: "The AccessKeyID is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1014,8 +1014,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1031,8 +1031,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The SecretAccessKey is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1047,8 +1047,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1117,8 +1117,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "The Azure clientId of the service principle used for authentication.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1133,8 +1133,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1150,8 +1150,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "The Azure ClientSecret of the service principle used for authentication.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1166,8 +1166,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1184,8 +1184,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"auth_type": schema.StringAttribute{
-										Description:         "Auth type defines how to authenticate to the keyvault service.Valid values are:- 'ServicePrincipal' (default): Using a service principal (tenantId, clientId, clientSecret)- 'ManagedIdentity': Using Managed Identity assigned to the pod (see aad-pod-identity)",
-										MarkdownDescription: "Auth type defines how to authenticate to the keyvault service.Valid values are:- 'ServicePrincipal' (default): Using a service principal (tenantId, clientId, clientSecret)- 'ManagedIdentity': Using Managed Identity assigned to the pod (see aad-pod-identity)",
+										Description:         "Auth type defines how to authenticate to the keyvault service. Valid values are: - 'ServicePrincipal' (default): Using a service principal (tenantId, clientId, clientSecret) - 'ManagedIdentity': Using Managed Identity assigned to the pod (see aad-pod-identity)",
+										MarkdownDescription: "Auth type defines how to authenticate to the keyvault service. Valid values are: - 'ServicePrincipal' (default): Using a service principal (tenantId, clientId, clientSecret) - 'ManagedIdentity': Using Managed Identity assigned to the pod (see aad-pod-identity)",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1203,12 +1203,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"service_account_ref": schema.SingleNestedAttribute{
-										Description:         "ServiceAccountRef specified the service accountthat should be used when authenticating with WorkloadIdentity.",
-										MarkdownDescription: "ServiceAccountRef specified the service accountthat should be used when authenticating with WorkloadIdentity.",
+										Description:         "ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.",
+										MarkdownDescription: "ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.",
 										Attributes: map[string]schema.Attribute{
 											"audiences": schema.ListAttribute{
-												Description:         "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
-												MarkdownDescription: "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
+												Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+												MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1224,8 +1224,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-												MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+												Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+												MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1333,8 +1333,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The SecretAccessKey is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1349,8 +1349,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1399,8 +1399,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "A reference to a ServiceAccount resource.",
 														Attributes: map[string]schema.Attribute{
 															"audiences": schema.ListAttribute{
-																Description:         "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
-																MarkdownDescription: "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
+																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1416,8 +1416,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1471,8 +1471,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "AccessToken is used for authentication.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1487,8 +1487,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1550,8 +1550,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "The SecretAccessKey is used for authentication",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1566,8 +1566,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1617,12 +1617,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "has both clientCert and clientKey as secretKeySelector",
 												Attributes: map[string]schema.Attribute{
 													"client_cert": schema.SingleNestedAttribute{
-														Description:         "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
+														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1637,8 +1637,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1650,12 +1650,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"client_key": schema.SingleNestedAttribute{
-														Description:         "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
+														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1670,8 +1670,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1699,8 +1699,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "A reference to a ServiceAccount resource.",
 														Attributes: map[string]schema.Attribute{
 															"audiences": schema.ListAttribute{
-																Description:         "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
-																MarkdownDescription: "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
+																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1716,8 +1716,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1741,12 +1741,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "use static token to authenticate with",
 												Attributes: map[string]schema.Attribute{
 													"bearer_token": schema.SingleNestedAttribute{
-														Description:         "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
+														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1761,8 +1761,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1879,8 +1879,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 								MarkdownDescription: "Oracle configures this store to sync secrets using Oracle Vault provider",
 								Attributes: map[string]schema.Attribute{
 									"auth": schema.SingleNestedAttribute{
-										Description:         "Auth configures how secret-manager authenticates with the Oracle Vault.If empty, instance principal is used. Optionally, the authenticating principal typeand/or user data may be supplied for the use of workload identity and user principal.",
-										MarkdownDescription: "Auth configures how secret-manager authenticates with the Oracle Vault.If empty, instance principal is used. Optionally, the authenticating principal typeand/or user data may be supplied for the use of workload identity and user principal.",
+										Description:         "Auth configures how secret-manager authenticates with the Oracle Vault. If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.",
+										MarkdownDescription: "Auth configures how secret-manager authenticates with the Oracle Vault. If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.",
 										Attributes: map[string]schema.Attribute{
 											"secret_ref": schema.SingleNestedAttribute{
 												Description:         "SecretRef to pass through sensitive information.",
@@ -1891,8 +1891,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "Fingerprint is the fingerprint of the API private key.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1907,8 +1907,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1924,8 +1924,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "PrivateKey is the user's API Signing Key in PEM format, used for authentication.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1940,8 +1940,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1979,24 +1979,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"compartment": schema.StringAttribute{
-										Description:         "Compartment is the vault compartment OCID.Required for PushSecret",
-										MarkdownDescription: "Compartment is the vault compartment OCID.Required for PushSecret",
+										Description:         "Compartment is the vault compartment OCID. Required for PushSecret",
+										MarkdownDescription: "Compartment is the vault compartment OCID. Required for PushSecret",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"encryption_key": schema.StringAttribute{
-										Description:         "EncryptionKey is the OCID of the encryption key within the vault.Required for PushSecret",
-										MarkdownDescription: "EncryptionKey is the OCID of the encryption key within the vault.Required for PushSecret",
+										Description:         "EncryptionKey is the OCID of the encryption key within the vault. Required for PushSecret",
+										MarkdownDescription: "EncryptionKey is the OCID of the encryption key within the vault. Required for PushSecret",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"principal_type": schema.StringAttribute{
-										Description:         "The type of principal to use for authentication. If left blank, the Auth struct willdetermine the principal type. This optional field must be specified if usingworkload identity.",
-										MarkdownDescription: "The type of principal to use for authentication. If left blank, the Auth struct willdetermine the principal type. This optional field must be specified if usingworkload identity.",
+										Description:         "The type of principal to use for authentication. If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.",
+										MarkdownDescription: "The type of principal to use for authentication. If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2014,12 +2014,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"service_account_ref": schema.SingleNestedAttribute{
-										Description:         "ServiceAccountRef specified the service accountthat should be used when authenticating with WorkloadIdentity.",
-										MarkdownDescription: "ServiceAccountRef specified the service accountthat should be used when authenticating with WorkloadIdentity.",
+										Description:         "ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.",
+										MarkdownDescription: "ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.",
 										Attributes: map[string]schema.Attribute{
 											"audiences": schema.ListAttribute{
-												Description:         "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
-												MarkdownDescription: "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
+												Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+												MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2035,8 +2035,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-												MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+												Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+												MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2080,8 +2080,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														MarkdownDescription: "Username / Password is used for authentication.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2096,8 +2096,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2151,32 +2151,32 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 										MarkdownDescription: "Auth configures how secret-manager authenticates with the Vault server.",
 										Attributes: map[string]schema.Attribute{
 											"app_role": schema.SingleNestedAttribute{
-												Description:         "AppRole authenticates with Vault using the App Role auth mechanism,with the role and secret stored in a Kubernetes Secret resource.",
-												MarkdownDescription: "AppRole authenticates with Vault using the App Role auth mechanism,with the role and secret stored in a Kubernetes Secret resource.",
+												Description:         "AppRole authenticates with Vault using the App Role auth mechanism, with the role and secret stored in a Kubernetes Secret resource.",
+												MarkdownDescription: "AppRole authenticates with Vault using the App Role auth mechanism, with the role and secret stored in a Kubernetes Secret resource.",
 												Attributes: map[string]schema.Attribute{
 													"path": schema.StringAttribute{
-														Description:         "Path where the App Role authentication backend is mountedin Vault, e.g: 'approle'",
-														MarkdownDescription: "Path where the App Role authentication backend is mountedin Vault, e.g: 'approle'",
+														Description:         "Path where the App Role authentication backend is mounted in Vault, e.g: 'approle'",
+														MarkdownDescription: "Path where the App Role authentication backend is mounted in Vault, e.g: 'approle'",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"role_id": schema.StringAttribute{
-														Description:         "RoleID configured in the App Role authentication backend when settingup the authentication backend in Vault.",
-														MarkdownDescription: "RoleID configured in the App Role authentication backend when settingup the authentication backend in Vault.",
+														Description:         "RoleID configured in the App Role authentication backend when setting up the authentication backend in Vault.",
+														MarkdownDescription: "RoleID configured in the App Role authentication backend when setting up the authentication backend in Vault.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"secret_ref": schema.SingleNestedAttribute{
-														Description:         "Reference to a key in a Secret that contains the App Role secret usedto authenticate with Vault.The 'key' field must be specified and denotes which entry within the Secretresource is used as the app role secret.",
-														MarkdownDescription: "Reference to a key in a Secret that contains the App Role secret usedto authenticate with Vault.The 'key' field must be specified and denotes which entry within the Secretresource is used as the app role secret.",
+														Description:         "Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault. The 'key' field must be specified and denotes which entry within the Secret resource is used as the app role secret.",
+														MarkdownDescription: "Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault. The 'key' field must be specified and denotes which entry within the Secret resource is used as the app role secret.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2191,8 +2191,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2209,16 +2209,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"cert": schema.SingleNestedAttribute{
-												Description:         "Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificateCert authentication method",
-												MarkdownDescription: "Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificateCert authentication method",
+												Description:         "Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificate Cert authentication method",
+												MarkdownDescription: "Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificate Cert authentication method",
 												Attributes: map[string]schema.Attribute{
 													"client_cert": schema.SingleNestedAttribute{
-														Description:         "ClientCert is a certificate to authenticate using the Cert Vaultauthentication method",
-														MarkdownDescription: "ClientCert is a certificate to authenticate using the Cert Vaultauthentication method",
+														Description:         "ClientCert is a certificate to authenticate using the Cert Vault authentication method",
+														MarkdownDescription: "ClientCert is a certificate to authenticate using the Cert Vault authentication method",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2233,8 +2233,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2246,12 +2246,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"secret_ref": schema.SingleNestedAttribute{
-														Description:         "SecretRef to a key in a Secret resource containing client private key toauthenticate with Vault using the Cert authentication method",
-														MarkdownDescription: "SecretRef to a key in a Secret resource containing client private key toauthenticate with Vault using the Cert authentication method",
+														Description:         "SecretRef to a key in a Secret resource containing client private key to authenticate with Vault using the Cert authentication method",
+														MarkdownDescription: "SecretRef to a key in a Secret resource containing client private key to authenticate with Vault using the Cert authentication method",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2266,8 +2266,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2284,16 +2284,16 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"jwt": schema.SingleNestedAttribute{
-												Description:         "Jwt authenticates with Vault by passing role and JWT token using theJWT/OIDC authentication method",
-												MarkdownDescription: "Jwt authenticates with Vault by passing role and JWT token using theJWT/OIDC authentication method",
+												Description:         "Jwt authenticates with Vault by passing role and JWT token using the JWT/OIDC authentication method",
+												MarkdownDescription: "Jwt authenticates with Vault by passing role and JWT token using the JWT/OIDC authentication method",
 												Attributes: map[string]schema.Attribute{
 													"kubernetes_service_account_token": schema.SingleNestedAttribute{
-														Description:         "Optional ServiceAccountToken specifies the Kubernetes service account for which to requesta token for with the 'TokenRequest' API.",
-														MarkdownDescription: "Optional ServiceAccountToken specifies the Kubernetes service account for which to requesta token for with the 'TokenRequest' API.",
+														Description:         "Optional ServiceAccountToken specifies the Kubernetes service account for which to request a token for with the 'TokenRequest' API.",
+														MarkdownDescription: "Optional ServiceAccountToken specifies the Kubernetes service account for which to request a token for with the 'TokenRequest' API.",
 														Attributes: map[string]schema.Attribute{
 															"audiences": schema.ListAttribute{
-																Description:         "Optional audiences field that will be used to request a temporary Kubernetes serviceaccount token for the service account referenced by 'serviceAccountRef'.Defaults to a single audience 'vault' it not specified.",
-																MarkdownDescription: "Optional audiences field that will be used to request a temporary Kubernetes serviceaccount token for the service account referenced by 'serviceAccountRef'.Defaults to a single audience 'vault' it not specified.",
+																Description:         "Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Defaults to a single audience 'vault' it not specified.",
+																MarkdownDescription: "Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Defaults to a single audience 'vault' it not specified.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2301,8 +2301,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"expiration_seconds": schema.Int64Attribute{
-																Description:         "Optional expiration time in seconds that will be used to request a temporaryKubernetes service account token for the service account referenced by'serviceAccountRef'.Defaults to 10 minutes.",
-																MarkdownDescription: "Optional expiration time in seconds that will be used to request a temporaryKubernetes service account token for the service account referenced by'serviceAccountRef'.Defaults to 10 minutes.",
+																Description:         "Optional expiration time in seconds that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Defaults to 10 minutes.",
+																MarkdownDescription: "Optional expiration time in seconds that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Defaults to 10 minutes.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2313,8 +2313,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																MarkdownDescription: "Service account field containing the name of a kubernetes ServiceAccount.",
 																Attributes: map[string]schema.Attribute{
 																	"audiences": schema.ListAttribute{
-																		Description:         "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
-																		MarkdownDescription: "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
+																		Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																		MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -2330,8 +2330,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 																	},
 
 																	"namespace": schema.StringAttribute{
-																		Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																		MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																		Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																		MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2348,28 +2348,28 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"path": schema.StringAttribute{
-														Description:         "Path where the JWT authentication backend is mountedin Vault, e.g: 'jwt'",
-														MarkdownDescription: "Path where the JWT authentication backend is mountedin Vault, e.g: 'jwt'",
+														Description:         "Path where the JWT authentication backend is mounted in Vault, e.g: 'jwt'",
+														MarkdownDescription: "Path where the JWT authentication backend is mounted in Vault, e.g: 'jwt'",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"role": schema.StringAttribute{
-														Description:         "Role is a JWT role to authenticate using the JWT/OIDC Vaultauthentication method",
-														MarkdownDescription: "Role is a JWT role to authenticate using the JWT/OIDC Vaultauthentication method",
+														Description:         "Role is a JWT role to authenticate using the JWT/OIDC Vault authentication method",
+														MarkdownDescription: "Role is a JWT role to authenticate using the JWT/OIDC Vault authentication method",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"secret_ref": schema.SingleNestedAttribute{
-														Description:         "Optional SecretRef that refers to a key in a Secret resource containing JWT token toauthenticate with Vault using the JWT/OIDC authentication method.",
-														MarkdownDescription: "Optional SecretRef that refers to a key in a Secret resource containing JWT token toauthenticate with Vault using the JWT/OIDC authentication method.",
+														Description:         "Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Vault using the JWT/OIDC authentication method.",
+														MarkdownDescription: "Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Vault using the JWT/OIDC authentication method.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2384,8 +2384,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2402,32 +2402,32 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"kubernetes": schema.SingleNestedAttribute{
-												Description:         "Kubernetes authenticates with Vault by passing the ServiceAccounttoken stored in the named Secret resource to the Vault server.",
-												MarkdownDescription: "Kubernetes authenticates with Vault by passing the ServiceAccounttoken stored in the named Secret resource to the Vault server.",
+												Description:         "Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.",
+												MarkdownDescription: "Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.",
 												Attributes: map[string]schema.Attribute{
 													"mount_path": schema.StringAttribute{
-														Description:         "Path where the Kubernetes authentication backend is mounted in Vault, e.g:'kubernetes'",
-														MarkdownDescription: "Path where the Kubernetes authentication backend is mounted in Vault, e.g:'kubernetes'",
+														Description:         "Path where the Kubernetes authentication backend is mounted in Vault, e.g: 'kubernetes'",
+														MarkdownDescription: "Path where the Kubernetes authentication backend is mounted in Vault, e.g: 'kubernetes'",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"role": schema.StringAttribute{
-														Description:         "A required field containing the Vault Role to assume. A Role binds aKubernetes ServiceAccount with a set of Vault policies.",
-														MarkdownDescription: "A required field containing the Vault Role to assume. A Role binds aKubernetes ServiceAccount with a set of Vault policies.",
+														Description:         "A required field containing the Vault Role to assume. A Role binds a Kubernetes ServiceAccount with a set of Vault policies.",
+														MarkdownDescription: "A required field containing the Vault Role to assume. A Role binds a Kubernetes ServiceAccount with a set of Vault policies.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"secret_ref": schema.SingleNestedAttribute{
-														Description:         "Optional secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Vault. If a name is specified without a key,'token' is the default. If one is not specified, the one bound tothe controller will be used.",
-														MarkdownDescription: "Optional secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Vault. If a name is specified without a key,'token' is the default. If one is not specified, the one bound tothe controller will be used.",
+														Description:         "Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used.",
+														MarkdownDescription: "Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2442,8 +2442,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2455,12 +2455,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"service_account_ref": schema.SingleNestedAttribute{
-														Description:         "Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Vault. If the service account selector is not supplied,the secretRef will be used instead.",
-														MarkdownDescription: "Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Vault. If the service account selector is not supplied,the secretRef will be used instead.",
+														Description:         "Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.",
+														MarkdownDescription: "Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.",
 														Attributes: map[string]schema.Attribute{
 															"audiences": schema.ListAttribute{
-																Description:         "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
-																MarkdownDescription: "Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list",
+																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2476,8 +2476,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2494,24 +2494,24 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"ldap": schema.SingleNestedAttribute{
-												Description:         "Ldap authenticates with Vault by passing username/password pair usingthe LDAP authentication method",
-												MarkdownDescription: "Ldap authenticates with Vault by passing username/password pair usingthe LDAP authentication method",
+												Description:         "Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method",
+												MarkdownDescription: "Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method",
 												Attributes: map[string]schema.Attribute{
 													"path": schema.StringAttribute{
-														Description:         "Path where the LDAP authentication backend is mountedin Vault, e.g: 'ldap'",
-														MarkdownDescription: "Path where the LDAP authentication backend is mountedin Vault, e.g: 'ldap'",
+														Description:         "Path where the LDAP authentication backend is mounted in Vault, e.g: 'ldap'",
+														MarkdownDescription: "Path where the LDAP authentication backend is mounted in Vault, e.g: 'ldap'",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"secret_ref": schema.SingleNestedAttribute{
-														Description:         "SecretRef to a key in a Secret resource containing password for the LDAPuser used to authenticate with Vault using the LDAP authenticationmethod",
-														MarkdownDescription: "SecretRef to a key in a Secret resource containing password for the LDAPuser used to authenticate with Vault using the LDAP authenticationmethod",
+														Description:         "SecretRef to a key in a Secret resource containing password for the LDAP user used to authenticate with Vault using the LDAP authentication method",
+														MarkdownDescription: "SecretRef to a key in a Secret resource containing password for the LDAP user used to authenticate with Vault using the LDAP authentication method",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2526,8 +2526,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2539,8 +2539,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"username": schema.StringAttribute{
-														Description:         "Username is a LDAP user name used to authenticate using the LDAP Vaultauthentication method",
-														MarkdownDescription: "Username is a LDAP user name used to authenticate using the LDAP Vaultauthentication method",
+														Description:         "Username is a LDAP user name used to authenticate using the LDAP Vault authentication method",
+														MarkdownDescription: "Username is a LDAP user name used to authenticate using the LDAP Vault authentication method",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -2556,8 +2556,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "TokenSecretRef authenticates with Vault by presenting a token.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2572,8 +2572,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2590,8 +2590,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"ca_bundle": schema.StringAttribute{
-										Description:         "PEM encoded CA bundle used to validate Vault server certificate. Only usedif the Server URL is using HTTPS protocol. This parameter is ignored forplain HTTP protocol connection. If not set the system root certificatesare used to validate the TLS connection.",
-										MarkdownDescription: "PEM encoded CA bundle used to validate Vault server certificate. Only usedif the Server URL is using HTTPS protocol. This parameter is ignored forplain HTTP protocol connection. If not set the system root certificatesare used to validate the TLS connection.",
+										Description:         "PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.",
+										MarkdownDescription: "PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2645,32 +2645,32 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"forward_inconsistent": schema.BoolAttribute{
-										Description:         "ForwardInconsistent tells Vault to forward read-after-write requests to the Vaultleader instead of simply retrying within a loop. This can increase performance ifthe option is enabled serverside.https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header",
-										MarkdownDescription: "ForwardInconsistent tells Vault to forward read-after-write requests to the Vaultleader instead of simply retrying within a loop. This can increase performance ifthe option is enabled serverside.https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header",
+										Description:         "ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop. This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header",
+										MarkdownDescription: "ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop. This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"namespace": schema.StringAttribute{
-										Description:         "Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allowsVault environments to support Secure Multi-tenancy. e.g: 'ns1'.More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces",
-										MarkdownDescription: "Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allowsVault environments to support Secure Multi-tenancy. e.g: 'ns1'.More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces",
+										Description:         "Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: 'ns1'. More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces",
+										MarkdownDescription: "Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: 'ns1'. More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"path": schema.StringAttribute{
-										Description:         "Path is the mount path of the Vault KV backend endpoint, e.g:'secret'. The v2 KV secret engine version specific '/data' path suffixfor fetching secrets from Vault is optional and will be appendedif not present in specified path.",
-										MarkdownDescription: "Path is the mount path of the Vault KV backend endpoint, e.g:'secret'. The v2 KV secret engine version specific '/data' path suffixfor fetching secrets from Vault is optional and will be appendedif not present in specified path.",
+										Description:         "Path is the mount path of the Vault KV backend endpoint, e.g: 'secret'. The v2 KV secret engine version specific '/data' path suffix for fetching secrets from Vault is optional and will be appended if not present in specified path.",
+										MarkdownDescription: "Path is the mount path of the Vault KV backend endpoint, e.g: 'secret'. The v2 KV secret engine version specific '/data' path suffix for fetching secrets from Vault is optional and will be appended if not present in specified path.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"read_your_writes": schema.BoolAttribute{
-										Description:         "ReadYourWrites ensures isolated read-after-write semantics byproviding discovered cluster replication states in each request.More information about eventual consistency in Vault can be found herehttps://www.vaultproject.io/docs/enterprise/consistency",
-										MarkdownDescription: "ReadYourWrites ensures isolated read-after-write semantics byproviding discovered cluster replication states in each request.More information about eventual consistency in Vault can be found herehttps://www.vaultproject.io/docs/enterprise/consistency",
+										Description:         "ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request. More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency",
+										MarkdownDescription: "ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request. More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2685,8 +2685,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"version": schema.StringAttribute{
-										Description:         "Version is the Vault KV secret engine version. This can be either 'v1' or'v2'. Version defaults to 'v2'.",
-										MarkdownDescription: "Version is the Vault KV secret engine version. This can be either 'v1' or'v2'. Version defaults to 'v2'.",
+										Description:         "Version is the Vault KV secret engine version. This can be either 'v1' or 'v2'. Version defaults to 'v2'.",
+										MarkdownDescription: "Version is the Vault KV secret engine version. This can be either 'v1' or 'v2'. Version defaults to 'v2'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2716,8 +2716,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"ca_bundle": schema.StringAttribute{
-										Description:         "PEM encoded CA bundle used to validate webhook server certificate. Only usedif the Server URL is using HTTPS protocol. This parameter is ignored forplain HTTP protocol connection. If not set the system root certificatesare used to validate the TLS connection.",
-										MarkdownDescription: "PEM encoded CA bundle used to validate webhook server certificate. Only usedif the Server URL is using HTTPS protocol. This parameter is ignored forplain HTTP protocol connection. If not set the system root certificatesare used to validate the TLS connection.",
+										Description:         "PEM encoded CA bundle used to validate webhook server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.",
+										MarkdownDescription: "PEM encoded CA bundle used to validate webhook server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2805,8 +2805,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"secrets": schema.ListNestedAttribute{
-										Description:         "Secrets to fill in templatesThese secrets will be passed to the templating function as key value pairs under the given name",
-										MarkdownDescription: "Secrets to fill in templatesThese secrets will be passed to the templating function as key value pairs under the given name",
+										Description:         "Secrets to fill in templates These secrets will be passed to the templating function as key value pairs under the given name",
+										MarkdownDescription: "Secrets to fill in templates These secrets will be passed to the templating function as key value pairs under the given name",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -2822,8 +2822,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													MarkdownDescription: "Secret ref to fill in credentials",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-															MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+															Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+															MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2838,8 +2838,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-															MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+															Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+															MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2901,8 +2901,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 												MarkdownDescription: "The authorized key used for authentication",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2917,8 +2917,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2939,12 +2939,12 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 										MarkdownDescription: "The provider for the CA bundle to use to validate Yandex.Cloud server certificate.",
 										Attributes: map[string]schema.Attribute{
 											"cert_secret_ref": schema.SingleNestedAttribute{
-												Description:         "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
-												MarkdownDescription: "A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field.",
+												Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+												MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.",
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2959,8 +2959,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.C
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.",
+														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

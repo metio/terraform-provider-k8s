@@ -133,8 +133,8 @@ func (r *EverestPerconaComBackupStorageV1Alpha1Manifest) Schema(_ context.Contex
 				MarkdownDescription: "BackupStorageSpec defines the desired state of BackupStorage.",
 				Attributes: map[string]schema.Attribute{
 					"allowed_namespaces": schema.ListAttribute{
-						Description:         "AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName.Deprecated: BackupStorages are now used only in the namespaces where they are created.",
-						MarkdownDescription: "AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName.Deprecated: BackupStorages are now used only in the namespaces where they are created.",
+						Description:         "AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName. Deprecated: BackupStorages are now used only in the namespaces where they are created.",
+						MarkdownDescription: "AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName. Deprecated: BackupStorages are now used only in the namespaces where they are created.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -174,8 +174,8 @@ func (r *EverestPerconaComBackupStorageV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"force_path_style": schema.BoolAttribute{
-						Description:         "ForcePathStyle is set to use path-style URLs.If unspecified, the default value is false.",
-						MarkdownDescription: "ForcePathStyle is set to use path-style URLs.If unspecified, the default value is false.",
+						Description:         "ForcePathStyle is set to use path-style URLs. If unspecified, the default value is false.",
+						MarkdownDescription: "ForcePathStyle is set to use path-style URLs. If unspecified, the default value is false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -201,8 +201,8 @@ func (r *EverestPerconaComBackupStorageV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"verify_tls": schema.BoolAttribute{
-						Description:         "VerifyTLS is set to ensure TLS/SSL verification.If unspecified, the default value is true.",
-						MarkdownDescription: "VerifyTLS is set to ensure TLS/SSL verification.If unspecified, the default value is true.",
+						Description:         "VerifyTLS is set to ensure TLS/SSL verification. If unspecified, the default value is true.",
+						MarkdownDescription: "VerifyTLS is set to ensure TLS/SSL verification. If unspecified, the default value is true.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

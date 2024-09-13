@@ -276,8 +276,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 					},
 
 					"disable_route": schema.BoolAttribute{
-						Description:         "A flag indicating that routes are disabled. Usable just on OpenShift.  If not provided, defaults to 'false'.",
-						MarkdownDescription: "A flag indicating that routes are disabled. Usable just on OpenShift.  If not provided, defaults to 'false'.",
+						Description:         "A flag indicating that routes are disabled. Usable just on OpenShift. If not provided, defaults to 'false'.",
+						MarkdownDescription: "A flag indicating that routes are disabled. Usable just on OpenShift. If not provided, defaults to 'false'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -404,8 +404,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 											MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -444,8 +444,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 					},
 
 					"image": schema.StringAttribute{
-						Description:         "Image definition for the service. Example: 'quay.io/kiegroup/kogito-service:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
-						MarkdownDescription: "Image definition for the service. Example: 'quay.io/kiegroup/kogito-service:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+						Description:         "Image definition for the service. Example: 'quay.io/kiegroup/kogito-service:latest'. On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+						MarkdownDescription: "Image definition for the service. Example: 'quay.io/kiegroup/kogito-service:latest'. On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -461,8 +461,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 					},
 
 					"insecure_image_registry": schema.BoolAttribute{
-						Description:         "A flag indicating that image streams created by Kogito Operator should be configured to allow pulling from insecure registries. Usable just on OpenShift.  Defaults to 'false'.",
-						MarkdownDescription: "A flag indicating that image streams created by Kogito Operator should be configured to allow pulling from insecure registries. Usable just on OpenShift.  Defaults to 'false'.",
+						Description:         "A flag indicating that image streams created by Kogito Operator should be configured to allow pulling from insecure registries. Usable just on OpenShift. Defaults to 'false'.",
+						MarkdownDescription: "A flag indicating that image streams created by Kogito Operator should be configured to allow pulling from insecure registries. Usable just on OpenShift. Defaults to 'false'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -506,8 +506,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 										MarkdownDescription: "Exec specifies the action to take.",
 										Attributes: map[string]schema.Attribute{
 											"command": schema.ListAttribute{
-												Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+												Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -540,8 +540,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 											},
 
 											"service": schema.StringAttribute{
-												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
-												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
+												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -699,8 +699,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 										MarkdownDescription: "Exec specifies the action to take.",
 										Attributes: map[string]schema.Attribute{
 											"command": schema.ListAttribute{
-												Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+												Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -733,8 +733,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 											},
 
 											"service": schema.StringAttribute{
-												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
-												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
+												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -892,8 +892,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 										MarkdownDescription: "Exec specifies the action to take.",
 										Attributes: map[string]schema.Attribute{
 											"command": schema.ListAttribute{
-												Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+												Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -926,8 +926,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 											},
 
 											"service": schema.StringAttribute{
-												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
-												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
+												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1082,16 +1082,16 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 					},
 
 					"properties_config_map": schema.StringAttribute{
-						Description:         "Custom ConfigMap with application.properties file to be mounted for the Kogito service.  The ConfigMap must be created in the same namespace.  Use this property if you need custom properties to be mounted before the application deployment.  If left empty, one will be created for you. Later it can be updated to add any custom properties to apply to the service.",
-						MarkdownDescription: "Custom ConfigMap with application.properties file to be mounted for the Kogito service.  The ConfigMap must be created in the same namespace.  Use this property if you need custom properties to be mounted before the application deployment.  If left empty, one will be created for you. Later it can be updated to add any custom properties to apply to the service.",
+						Description:         "Custom ConfigMap with application.properties file to be mounted for the Kogito service. The ConfigMap must be created in the same namespace. Use this property if you need custom properties to be mounted before the application deployment. If left empty, one will be created for you. Later it can be updated to add any custom properties to apply to the service.",
+						MarkdownDescription: "Custom ConfigMap with application.properties file to be mounted for the Kogito service. The ConfigMap must be created in the same namespace. Use this property if you need custom properties to be mounted before the application deployment. If left empty, one will be created for you. Later it can be updated to add any custom properties to apply to the service.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"replicas": schema.Int64Attribute{
-						Description:         "Number of replicas that the service will have deployed in the cluster.  Default value: 1.",
-						MarkdownDescription: "Number of replicas that the service will have deployed in the cluster.  Default value: 1.",
+						Description:         "Number of replicas that the service will have deployed in the cluster. Default value: 1.",
+						MarkdownDescription: "Number of replicas that the service will have deployed in the cluster. Default value: 1.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1148,8 +1148,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Manifest) Schema(_ context.
 					},
 
 					"trust_store_secret": schema.StringAttribute{
-						Description:         "Custom JKS TrustStore that will be used by this service to make calls to TLS endpoints.  It's expected that the secret has two keys: 'keyStorePassword' containing the password for the KeyStore and 'cacerts' containing the binary data of the given KeyStore.",
-						MarkdownDescription: "Custom JKS TrustStore that will be used by this service to make calls to TLS endpoints.  It's expected that the secret has two keys: 'keyStorePassword' containing the password for the KeyStore and 'cacerts' containing the binary data of the given KeyStore.",
+						Description:         "Custom JKS TrustStore that will be used by this service to make calls to TLS endpoints. It's expected that the secret has two keys: 'keyStorePassword' containing the password for the KeyStore and 'cacerts' containing the binary data of the given KeyStore.",
+						MarkdownDescription: "Custom JKS TrustStore that will be used by this service to make calls to TLS endpoints. It's expected that the secret has two keys: 'keyStorePassword' containing the password for the KeyStore and 'cacerts' containing the binary data of the given KeyStore.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

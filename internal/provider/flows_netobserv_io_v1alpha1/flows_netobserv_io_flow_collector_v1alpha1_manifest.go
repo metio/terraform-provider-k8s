@@ -446,8 +446,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Metadata(_ context.Conte
 
 func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "FlowCollector is the Schema for the flowcollectors API, which pilots and configures netflow collection.  Deprecated: This package will be removed in one of the next releases.",
-		MarkdownDescription: "FlowCollector is the Schema for the flowcollectors API, which pilots and configures netflow collection.  Deprecated: This package will be removed in one of the next releases.",
+		Description:         "FlowCollector is the Schema for the flowcollectors API, which pilots and configures netflow collection. Deprecated: This package will be removed in one of the next releases.",
+		MarkdownDescription: "FlowCollector is the Schema for the flowcollectors API, which pilots and configures netflow collection. Deprecated: This package will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -614,8 +614,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context
 										MarkdownDescription: "resources are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										Attributes: map[string]schema.Attribute{
 											"claims": schema.ListNestedAttribute{
-												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
@@ -702,8 +702,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context
 										MarkdownDescription: "clusterNetworkOperator defines the settings related to the OpenShift Cluster Network Operator, when available.",
 										Attributes: map[string]schema.Attribute{
 											"namespace": schema.StringAttribute{
-												Description:         "namespace  where the config map is going to be deployed.",
-												MarkdownDescription: "namespace  where the config map is going to be deployed.",
+												Description:         "namespace where the config map is going to be deployed.",
+												MarkdownDescription: "namespace where the config map is going to be deployed.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1150,8 +1150,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context
 												},
 
 												"pods": schema.SingleNestedAttribute{
-													Description:         "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.",
-													MarkdownDescription: "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.",
+													Description:         "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.",
+													MarkdownDescription: "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.",
 													Attributes: map[string]schema.Attribute{
 														"metric": schema.SingleNestedAttribute{
 															Description:         "metric identifies the target metric by name and selector",
@@ -1329,8 +1329,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
-													MarkdownDescription: "type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
+													Description:         "type is the type of metric source. It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
+													MarkdownDescription: "type is the type of metric source. It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1343,8 +1343,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context
 									},
 
 									"min_replicas": schema.Int64Attribute{
-										Description:         "minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.",
-										MarkdownDescription: "minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.",
+										Description:         "minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
+										MarkdownDescription: "minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1486,8 +1486,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context
 								MarkdownDescription: "resources, in terms of compute resources, required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -2797,8 +2797,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context
 												},
 
 												"pods": schema.SingleNestedAttribute{
-													Description:         "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.",
-													MarkdownDescription: "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.",
+													Description:         "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.",
+													MarkdownDescription: "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.",
 													Attributes: map[string]schema.Attribute{
 														"metric": schema.SingleNestedAttribute{
 															Description:         "metric identifies the target metric by name and selector",
@@ -2976,8 +2976,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
-													MarkdownDescription: "type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
+													Description:         "type is the type of metric source. It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
+													MarkdownDescription: "type is the type of metric source. It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2990,8 +2990,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context
 									},
 
 									"min_replicas": schema.Int64Attribute{
-										Description:         "minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.",
-										MarkdownDescription: "minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.",
+										Description:         "minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
+										MarkdownDescription: "minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3191,8 +3191,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context
 								MarkdownDescription: "resources are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{

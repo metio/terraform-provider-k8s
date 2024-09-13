@@ -242,8 +242,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 				MarkdownDescription: "Spec is the specification of the Kuma MeshHTTPRoute resource.",
 				Attributes: map[string]schema.Attribute{
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
-						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
+						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
+						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
@@ -257,8 +257,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"labels": schema.MapAttribute{
-								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -274,24 +274,24 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"proxy_types": schema.ListAttribute{
-								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -299,16 +299,16 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"section_name": schema.StringAttribute{
-								Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-								MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tags": schema.MapAttribute{
-								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -326,8 +326,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"hostnames": schema.ListAttribute{
-									Description:         "Hostnames is only valid when targeting MeshGateway and limits theeffects of the rules to requests to this hostname.Given hostnames must intersect with the hostname of the listeners theroute attaches to.",
-									MarkdownDescription: "Hostnames is only valid when targeting MeshGateway and limits theeffects of the rules to requests to this hostname.Given hostnames must intersect with the hostname of the listeners theroute attaches to.",
+									Description:         "Hostnames is only valid when targeting MeshGateway and limits the effects of the rules to requests to this hostname. Given hostnames must intersect with the hostname of the listeners the route attaches to.",
+									MarkdownDescription: "Hostnames is only valid when targeting MeshGateway and limits the effects of the rules to requests to this hostname. Given hostnames must intersect with the hostname of the listeners the route attaches to.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -335,13 +335,13 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"rules": schema.ListNestedAttribute{
-									Description:         "Rules contains the routing rules applies to a combination of top-leveltargetRef and the targetRef in this entry.",
-									MarkdownDescription: "Rules contains the routing rules applies to a combination of top-leveltargetRef and the targetRef in this entry.",
+									Description:         "Rules contains the routing rules applies to a combination of top-level targetRef and the targetRef in this entry.",
+									MarkdownDescription: "Rules contains the routing rules applies to a combination of top-level targetRef and the targetRef in this entry.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"default": schema.SingleNestedAttribute{
-												Description:         "Default holds routing rules that can be merged with rules from otherpolicies.",
-												MarkdownDescription: "Default holds routing rules that can be merged with rules from otherpolicies.",
+												Description:         "Default holds routing rules that can be merged with rules from other policies.",
+												MarkdownDescription: "Default holds routing rules that can be merged with rules from other policies.",
 												Attributes: map[string]schema.Attribute{
 													"backend_refs": schema.ListNestedAttribute{
 														Description:         "",
@@ -360,8 +360,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																},
 
 																"labels": schema.MapAttribute{
-																	Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-																	MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+																	Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+																	MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -377,16 +377,16 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-																	MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+																	Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+																	MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-																	MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+																	Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+																	MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -401,8 +401,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																},
 
 																"proxy_types": schema.ListAttribute{
-																	Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-																	MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+																	Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+																	MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -410,16 +410,16 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																},
 
 																"section_name": schema.StringAttribute{
-																	Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-																	MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+																	Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+																	MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"tags": schema.MapAttribute{
-																	Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-																	MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+																	Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+																	MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -449,8 +449,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"request_header_modifier": schema.SingleNestedAttribute{
-																	Description:         "Only one action is supported per header name.Configuration to set or add multiple values for a header must use RFC 7230header value formatting, separating each value with a comma.",
-																	MarkdownDescription: "Only one action is supported per header name.Configuration to set or add multiple values for a header must use RFC 7230header value formatting, separating each value with a comma.",
+																	Description:         "Only one action is supported per header name. Configuration to set or add multiple values for a header must use RFC 7230 header value formatting, separating each value with a comma.",
+																	MarkdownDescription: "Only one action is supported per header name. Configuration to set or add multiple values for a header must use RFC 7230 header value formatting, separating each value with a comma.",
 																	Attributes: map[string]schema.Attribute{
 																		"add": schema.ListNestedAttribute{
 																			Description:         "",
@@ -550,8 +550,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																				},
 
 																				"labels": schema.MapAttribute{
-																					Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-																					MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+																					Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+																					MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -567,16 +567,16 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-																					MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+																					Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+																					MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"namespace": schema.StringAttribute{
-																					Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-																					MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+																					Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+																					MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -591,8 +591,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																				},
 
 																				"proxy_types": schema.ListAttribute{
-																					Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-																					MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+																					Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+																					MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -600,16 +600,16 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																				},
 
 																				"section_name": schema.StringAttribute{
-																					Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-																					MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+																					Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+																					MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"tags": schema.MapAttribute{
-																					Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-																					MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+																					Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+																					MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -633,8 +633,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																		},
 
 																		"percentage": schema.StringAttribute{
-																			Description:         "Percentage of requests to mirror. If not specified, all requeststo the target cluster will be mirrored.",
-																			MarkdownDescription: "Percentage of requests to mirror. If not specified, all requeststo the target cluster will be mirrored.",
+																			Description:         "Percentage of requests to mirror. If not specified, all requests to the target cluster will be mirrored.",
+																			MarkdownDescription: "Percentage of requests to mirror. If not specified, all requests to the target cluster will be mirrored.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -650,8 +650,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"hostname": schema.StringAttribute{
-																			Description:         "PreciseHostname is the fully qualified domain name of a network host. Thismatches the RFC 1123 definition of a hostname with 1 notable exception thatnumeric IP addresses are not allowed.Note that as per RFC1035 and RFC1123, a *label* must consist of lower casealphanumeric characters or '-', and must start and end with an alphanumericcharacter. No other punctuation is allowed.",
-																			MarkdownDescription: "PreciseHostname is the fully qualified domain name of a network host. Thismatches the RFC 1123 definition of a hostname with 1 notable exception thatnumeric IP addresses are not allowed.Note that as per RFC1035 and RFC1123, a *label* must consist of lower casealphanumeric characters or '-', and must start and end with an alphanumericcharacter. No other punctuation is allowed.",
+																			Description:         "PreciseHostname is the fully qualified domain name of a network host. This matches the RFC 1123 definition of a hostname with 1 notable exception that numeric IP addresses are not allowed. Note that as per RFC1035 and RFC1123, a *label* must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character. No other punctuation is allowed.",
+																			MarkdownDescription: "PreciseHostname is the fully qualified domain name of a network host. This matches the RFC 1123 definition of a hostname with 1 notable exception that numeric IP addresses are not allowed. Note that as per RFC1035 and RFC1123, a *label* must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character. No other punctuation is allowed.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -663,8 +663,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																		},
 
 																		"path": schema.SingleNestedAttribute{
-																			Description:         "Path defines parameters used to modify the path of the incoming request.The modified path is then used to construct the location header.When empty, the request path is used as-is.",
-																			MarkdownDescription: "Path defines parameters used to modify the path of the incoming request.The modified path is then used to construct the location header.When empty, the request path is used as-is.",
+																			Description:         "Path defines parameters used to modify the path of the incoming request. The modified path is then used to construct the location header. When empty, the request path is used as-is.",
+																			MarkdownDescription: "Path defines parameters used to modify the path of the incoming request. The modified path is then used to construct the location header. When empty, the request path is used as-is.",
 																			Attributes: map[string]schema.Attribute{
 																				"replace_full_path": schema.StringAttribute{
 																					Description:         "",
@@ -699,8 +699,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																		},
 
 																		"port": schema.Int64Attribute{
-																			Description:         "Port is the port to be used in the value of the 'Location'header in the response.When empty, port (if specified) of the request is used.",
-																			MarkdownDescription: "Port is the port to be used in the value of the 'Location'header in the response.When empty, port (if specified) of the request is used.",
+																			Description:         "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.",
+																			MarkdownDescription: "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -738,8 +738,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																},
 
 																"response_header_modifier": schema.SingleNestedAttribute{
-																	Description:         "Only one action is supported per header name.Configuration to set or add multiple values for a header must use RFC 7230header value formatting, separating each value with a comma.",
-																	MarkdownDescription: "Only one action is supported per header name.Configuration to set or add multiple values for a header must use RFC 7230header value formatting, separating each value with a comma.",
+																	Description:         "Only one action is supported per header name. Configuration to set or add multiple values for a header must use RFC 7230 header value formatting, separating each value with a comma.",
+																	MarkdownDescription: "Only one action is supported per header name. Configuration to set or add multiple values for a header must use RFC 7230 header value formatting, separating each value with a comma.",
 																	Attributes: map[string]schema.Attribute{
 																		"add": schema.ListNestedAttribute{
 																			Description:         "",
@@ -835,8 +835,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"host_to_backend_hostname": schema.BoolAttribute{
-																			Description:         "HostToBackendHostname rewrites the hostname to the hostname of theupstream host. This option is only available when targeting MeshGateways.",
-																			MarkdownDescription: "HostToBackendHostname rewrites the hostname to the hostname of theupstream host. This option is only available when targeting MeshGateways.",
+																			Description:         "HostToBackendHostname rewrites the hostname to the hostname of the upstream host. This option is only available when targeting MeshGateways.",
+																			MarkdownDescription: "HostToBackendHostname rewrites the hostname to the hostname of the upstream host. This option is only available when targeting MeshGateways.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -908,8 +908,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"matches": schema.ListNestedAttribute{
-												Description:         "Matches describes how to match HTTP requests this rule should be appliedto.",
-												MarkdownDescription: "Matches describes how to match HTTP requests this rule should be appliedto.",
+												Description:         "Matches describes how to match HTTP requests this rule should be applied to.",
+												MarkdownDescription: "Matches describes how to match HTTP requests this rule should be applied to.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"headers": schema.ListNestedAttribute{
@@ -918,8 +918,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "Name is the name of the HTTP Header to be matched. Name MUST be lower caseas they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
-																		MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name MUST be lower caseas they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
+																		Description:         "Name is the name of the HTTP Header to be matched. Name MUST be lower case as they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
+																		MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name MUST be lower case as they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -982,8 +982,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																},
 
 																"value": schema.StringAttribute{
-																	Description:         "Exact or prefix matches must be an absolute path. A prefix matches onlyif separated by a slash or the entire path.",
-																	MarkdownDescription: "Exact or prefix matches must be an absolute path. A prefix matches onlyif separated by a slash or the entire path.",
+																	Description:         "Exact or prefix matches must be an absolute path. A prefix matches only if separated by a slash or the entire path.",
+																	MarkdownDescription: "Exact or prefix matches must be an absolute path. A prefix matches only if separated by a slash or the entire path.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -998,8 +998,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"query_params": schema.ListNestedAttribute{
-															Description:         "QueryParams matches based on HTTP URL query parameters. Multiple matchesare ANDed together such that all listed matches must succeed.",
-															MarkdownDescription: "QueryParams matches based on HTTP URL query parameters. Multiple matchesare ANDed together such that all listed matches must succeed.",
+															Description:         "QueryParams matches based on HTTP URL query parameters. Multiple matches are ANDed together such that all listed matches must succeed.",
+															MarkdownDescription: "QueryParams matches based on HTTP URL query parameters. Multiple matches are ANDed together such that all listed matches must succeed.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
@@ -1051,8 +1051,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group ofrequest destinations.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofrequest destinations.",
+									Description:         "TargetRef is a reference to the resource that represents a group of request destinations.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of request destinations.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -1066,8 +1066,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1083,24 +1083,24 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_types": schema.ListAttribute{
-											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1108,16 +1108,16 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"section_name": schema.StringAttribute{
-											Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-											MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

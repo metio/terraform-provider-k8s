@@ -57,7 +57,7 @@ Optional:
 
 - `aws` (Attributes) If provided, an automatic database backup will be created on AWS S3 instead of a local Persistent Volume. If this property is not provided - a local Persistent Volume backup will be chosen. (see [below for nested schema](#nestedatt--spec--aws))
 - `instance_selector` (Attributes) Selector for looking up Keycloak Custom Resources. (see [below for nested schema](#nestedatt--spec--instance_selector))
-- `restore` (Boolean) Controls automatic restore behavior. Currently not implemented.  In the future this will be used to trigger automatic restore for a given KeycloakBackup. Each backup will correspond to a single snapshot of the database (stored either in a Persistent Volume or AWS). If a user wants to restore it, all he/she needs to do is to change this flag to true. Potentially, it will be possible to restore a single backup multiple times.
+- `restore` (Boolean) Controls automatic restore behavior. Currently not implemented. In the future this will be used to trigger automatic restore for a given KeycloakBackup. Each backup will correspond to a single snapshot of the database (stored either in a Persistent Volume or AWS). If a user wants to restore it, all he/she needs to do is to change this flag to true. Potentially, it will be possible to restore a single backup multiple times.
 - `storage_class_name` (String) Name of the StorageClass for Postgresql Backup Persistent Volume Claim
 
 <a id="nestedatt--spec--aws"></a>
@@ -65,8 +65,8 @@ Optional:
 
 Optional:
 
-- `credentials_secret_name` (String) Provides a secret name used for connecting to AWS S3 Service. The secret needs to be in the following form:      apiVersion: v1     kind: Secret     metadata:       name: <Secret name>     type: Opaque     stringData:       AWS_S3_BUCKET_NAME: <S3 Bucket Name>       AWS_ACCESS_KEY_ID: <AWS Access Key ID>       AWS_SECRET_ACCESS_KEY: <AWS Secret Key>  For more information, please refer to the Operator documentation.
-- `encryption_key_secret_name` (String) If provided, the database backup will be encrypted. Provides a secret name used for encrypting database data. The secret needs to be in the following form:      apiVersion: v1     kind: Secret     metadata:       name: <Secret name>     type: Opaque     stringData:       GPG_PUBLIC_KEY: <GPG Public Key>       GPG_TRUST_MODEL: <GPG Trust Model>       GPG_RECIPIENT: <GPG Recipient>  For more information, please refer to the Operator documentation.
+- `credentials_secret_name` (String) Provides a secret name used for connecting to AWS S3 Service. The secret needs to be in the following form: apiVersion: v1 kind: Secret metadata: name: <Secret name> type: Opaque stringData: AWS_S3_BUCKET_NAME: <S3 Bucket Name> AWS_ACCESS_KEY_ID: <AWS Access Key ID> AWS_SECRET_ACCESS_KEY: <AWS Secret Key> For more information, please refer to the Operator documentation.
+- `encryption_key_secret_name` (String) If provided, the database backup will be encrypted. Provides a secret name used for encrypting database data. The secret needs to be in the following form: apiVersion: v1 kind: Secret metadata: name: <Secret name> type: Opaque stringData: GPG_PUBLIC_KEY: <GPG Public Key> GPG_TRUST_MODEL: <GPG Trust Model> GPG_RECIPIENT: <GPG Recipient> For more information, please refer to the Operator documentation.
 - `schedule` (String) If specified, it will be used as a schedule for creating a CronJob.
 
 

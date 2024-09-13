@@ -555,8 +555,8 @@ func (r *Marin3R3ScaleNetEnvoyConfigV1Alpha1Manifest) Schema(_ context.Context, 
 										},
 
 										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Description:         "The key of the secret to select from. Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,

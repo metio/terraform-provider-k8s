@@ -820,8 +820,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Metadata(_ context.Context, req
 
 func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "The CouchbaseCluster resource represents a Couchbase cluster.  It allows configurationof cluster topology, networking, storage and security options.",
-		MarkdownDescription: "The CouchbaseCluster resource represents a Couchbase cluster.  It allows configurationof cluster topology, networking, storage and security options.",
+		Description:         "The CouchbaseCluster resource represents a Couchbase cluster. It allows configuration of cluster topology, networking, storage and security options.",
+		MarkdownDescription: "The CouchbaseCluster resource represents a Couchbase cluster. It allows configuration of cluster topology, networking, storage and security options.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -888,24 +888,24 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterSpec is the specification for a CouchbaseCluster resources, and allowsthe cluster to be customized.",
-				MarkdownDescription: "ClusterSpec is the specification for a CouchbaseCluster resources, and allowsthe cluster to be customized.",
+				Description:         "ClusterSpec is the specification for a CouchbaseCluster resources, and allows the cluster to be customized.",
+				MarkdownDescription: "ClusterSpec is the specification for a CouchbaseCluster resources, and allows the cluster to be customized.",
 				Attributes: map[string]schema.Attribute{
 					"anti_affinity": schema.BoolAttribute{
-						Description:         "AntiAffinity forces the Operator to schedule different Couchbase server pods ondifferent Kubernetes nodes.  Anti-affinity reduces the likelihood of unrecoverablefailure in the event of a node issue.  Use of anti-affinity is highly recommended forproduction clusters.",
-						MarkdownDescription: "AntiAffinity forces the Operator to schedule different Couchbase server pods ondifferent Kubernetes nodes.  Anti-affinity reduces the likelihood of unrecoverablefailure in the event of a node issue.  Use of anti-affinity is highly recommended forproduction clusters.",
+						Description:         "AntiAffinity forces the Operator to schedule different Couchbase server pods on different Kubernetes nodes. Anti-affinity reduces the likelihood of unrecoverable failure in the event of a node issue. Use of anti-affinity is highly recommended for production clusters.",
+						MarkdownDescription: "AntiAffinity forces the Operator to schedule different Couchbase server pods on different Kubernetes nodes. Anti-affinity reduces the likelihood of unrecoverable failure in the event of a node issue. Use of anti-affinity is highly recommended for production clusters.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"auto_resource_allocation": schema.SingleNestedAttribute{
-						Description:         "AutoResourceAllocation populates pod resource requests based on the services runningon that pod.  When enabled, this feature will calculate the memory request as thetotal of service allocations defined in 'spec.cluster', plus an overhead definedby 'spec.autoResourceAllocation.overheadPercent'.Changing individual allocations fora service will cause a cluster upgrade as allocations are modified in the underlyingpods.  This field also allows default pod CPU requests and limits to be applied.All resource allocations can be overridden by explicitly configuring them in the'spec.servers.resources' field.",
-						MarkdownDescription: "AutoResourceAllocation populates pod resource requests based on the services runningon that pod.  When enabled, this feature will calculate the memory request as thetotal of service allocations defined in 'spec.cluster', plus an overhead definedby 'spec.autoResourceAllocation.overheadPercent'.Changing individual allocations fora service will cause a cluster upgrade as allocations are modified in the underlyingpods.  This field also allows default pod CPU requests and limits to be applied.All resource allocations can be overridden by explicitly configuring them in the'spec.servers.resources' field.",
+						Description:         "AutoResourceAllocation populates pod resource requests based on the services running on that pod. When enabled, this feature will calculate the memory request as the total of service allocations defined in 'spec.cluster', plus an overhead defined by 'spec.autoResourceAllocation.overheadPercent'.Changing individual allocations for a service will cause a cluster upgrade as allocations are modified in the underlying pods. This field also allows default pod CPU requests and limits to be applied. All resource allocations can be overridden by explicitly configuring them in the 'spec.servers.resources' field.",
+						MarkdownDescription: "AutoResourceAllocation populates pod resource requests based on the services running on that pod. When enabled, this feature will calculate the memory request as the total of service allocations defined in 'spec.cluster', plus an overhead defined by 'spec.autoResourceAllocation.overheadPercent'.Changing individual allocations for a service will cause a cluster upgrade as allocations are modified in the underlying pods. This field also allows default pod CPU requests and limits to be applied. All resource allocations can be overridden by explicitly configuring them in the 'spec.servers.resources' field.",
 						Attributes: map[string]schema.Attribute{
 							"cpu_limits": schema.StringAttribute{
-								Description:         "CPULimits automatically populates the CPU limits across all Couchbaseserver pods.  This field defaults to '4' CPUs.  Explicitly specifying the CPUlimit for a particular server class will override this value.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-								MarkdownDescription: "CPULimits automatically populates the CPU limits across all Couchbaseserver pods.  This field defaults to '4' CPUs.  Explicitly specifying the CPUlimit for a particular server class will override this value.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								Description:         "CPULimits automatically populates the CPU limits across all Couchbase server pods. This field defaults to '4' CPUs. Explicitly specifying the CPU limit for a particular server class will override this value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								MarkdownDescription: "CPULimits automatically populates the CPU limits across all Couchbase server pods. This field defaults to '4' CPUs. Explicitly specifying the CPU limit for a particular server class will override this value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -915,8 +915,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"cpu_requests": schema.StringAttribute{
-								Description:         "CPURequests automatically populates the CPU requests across all Couchbaseserver pods.  The default value of '2', is the minimum recommended number ofCPUs required to run Couchbase Server.  Explicitly specifying the CPU requestfor a particular server class will override this value. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-								MarkdownDescription: "CPURequests automatically populates the CPU requests across all Couchbaseserver pods.  The default value of '2', is the minimum recommended number ofCPUs required to run Couchbase Server.  Explicitly specifying the CPU requestfor a particular server class will override this value. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								Description:         "CPURequests automatically populates the CPU requests across all Couchbase server pods. The default value of '2', is the minimum recommended number of CPUs required to run Couchbase Server. Explicitly specifying the CPU request for a particular server class will override this value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								MarkdownDescription: "CPURequests automatically populates the CPU requests across all Couchbase server pods. The default value of '2', is the minimum recommended number of CPUs required to run Couchbase Server. Explicitly specifying the CPU request for a particular server class will override this value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -934,8 +934,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"overhead_percent": schema.Int64Attribute{
-								Description:         "OverheadPercent defines the amount of memory above that required for individualservices on a pod.  For Couchbase Server this should be approximately 25%.",
-								MarkdownDescription: "OverheadPercent defines the amount of memory above that required for individualservices on a pod.  For Couchbase Server this should be approximately 25%.",
+								Description:         "OverheadPercent defines the amount of memory above that required for individual services on a pod. For Couchbase Server this should be approximately 25%.",
+								MarkdownDescription: "OverheadPercent defines the amount of memory above that required for individual services on a pod. For Couchbase Server this should be approximately 25%.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -950,16 +950,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"autoscale_stabilization_period": schema.StringAttribute{
-						Description:         "AutoscaleStabilizationPeriod defines how long after a rebalance thecorresponding HorizontalPodAutoscaler should remain in maintenance mode.During maintenance mode all autoscaling is disabled since every HorizontalPodAutoscalerassociated with the cluster becomes inactive.Since certain metrics can be unpredictable when Couchbase is rebalancing or upgrading,setting a stabilization period helps to prevent scaling recommendations from theHorizontalPodAutoscaler for a provided period of time.Values must be a valid Kubernetes duration of 0s or higher:https://golang.org/pkg/time/#ParseDurationA value of 0, puts the cluster in maintenance mode during rebalance butimmediately exits this mode once the rebalance has completed.When undefined, the HPA is never put into maintenance mode during rebalance.",
-						MarkdownDescription: "AutoscaleStabilizationPeriod defines how long after a rebalance thecorresponding HorizontalPodAutoscaler should remain in maintenance mode.During maintenance mode all autoscaling is disabled since every HorizontalPodAutoscalerassociated with the cluster becomes inactive.Since certain metrics can be unpredictable when Couchbase is rebalancing or upgrading,setting a stabilization period helps to prevent scaling recommendations from theHorizontalPodAutoscaler for a provided period of time.Values must be a valid Kubernetes duration of 0s or higher:https://golang.org/pkg/time/#ParseDurationA value of 0, puts the cluster in maintenance mode during rebalance butimmediately exits this mode once the rebalance has completed.When undefined, the HPA is never put into maintenance mode during rebalance.",
+						Description:         "AutoscaleStabilizationPeriod defines how long after a rebalance the corresponding HorizontalPodAutoscaler should remain in maintenance mode. During maintenance mode all autoscaling is disabled since every HorizontalPodAutoscaler associated with the cluster becomes inactive. Since certain metrics can be unpredictable when Couchbase is rebalancing or upgrading, setting a stabilization period helps to prevent scaling recommendations from the HorizontalPodAutoscaler for a provided period of time. Values must be a valid Kubernetes duration of 0s or higher: https://golang.org/pkg/time/#ParseDuration A value of 0, puts the cluster in maintenance mode during rebalance but immediately exits this mode once the rebalance has completed. When undefined, the HPA is never put into maintenance mode during rebalance.",
+						MarkdownDescription: "AutoscaleStabilizationPeriod defines how long after a rebalance the corresponding HorizontalPodAutoscaler should remain in maintenance mode. During maintenance mode all autoscaling is disabled since every HorizontalPodAutoscaler associated with the cluster becomes inactive. Since certain metrics can be unpredictable when Couchbase is rebalancing or upgrading, setting a stabilization period helps to prevent scaling recommendations from the HorizontalPodAutoscaler for a provided period of time. Values must be a valid Kubernetes duration of 0s or higher: https://golang.org/pkg/time/#ParseDuration A value of 0, puts the cluster in maintenance mode during rebalance but immediately exits this mode once the rebalance has completed. When undefined, the HPA is never put into maintenance mode during rebalance.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"backup": schema.SingleNestedAttribute{
-						Description:         "Backup defines whether the Operator should manage automated backups, and howto lookup backup resources.",
-						MarkdownDescription: "Backup defines whether the Operator should manage automated backups, and howto lookup backup resources.",
+						Description:         "Backup defines whether the Operator should manage automated backups, and how to lookup backup resources.",
+						MarkdownDescription: "Backup defines whether the Operator should manage automated backups, and how to lookup backup resources.",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
 								Description:         "Annotations defines additional annotations to appear on the backup/restore pods.",
@@ -979,13 +979,13 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"image_pull_secrets": schema.ListNestedAttribute{
-								Description:         "ImagePullSecrets allow you to use an image from privaterepositories and non-dockerhub ones.",
-								MarkdownDescription: "ImagePullSecrets allow you to use an image from privaterepositories and non-dockerhub ones.",
+								Description:         "ImagePullSecrets allow you to use an image from private repositories and non-dockerhub ones.",
+								MarkdownDescription: "ImagePullSecrets allow you to use an image from private repositories and non-dockerhub ones.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1015,8 +1015,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"node_selector": schema.MapAttribute{
-								Description:         "NodeSelector defines which nodes to constrain the pods thatrun any backup and restore operations to.",
-								MarkdownDescription: "NodeSelector defines which nodes to constrain the pods thatrun any backup and restore operations to.",
+								Description:         "NodeSelector defines which nodes to constrain the pods that run any backup and restore operations to.",
+								MarkdownDescription: "NodeSelector defines which nodes to constrain the pods that run any backup and restore operations to.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1024,12 +1024,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"object_endpoint": schema.SingleNestedAttribute{
-								Description:         "Deprecated: by CouchbaseBackup.spec.objectStore.EndpointObjectEndpoint contains the configuration for connecting to a custom S3 compliant object store.",
-								MarkdownDescription: "Deprecated: by CouchbaseBackup.spec.objectStore.EndpointObjectEndpoint contains the configuration for connecting to a custom S3 compliant object store.",
+								Description:         "Deprecated: by CouchbaseBackup.spec.objectStore.Endpoint ObjectEndpoint contains the configuration for connecting to a custom S3 compliant object store.",
+								MarkdownDescription: "Deprecated: by CouchbaseBackup.spec.objectStore.Endpoint ObjectEndpoint contains the configuration for connecting to a custom S3 compliant object store.",
 								Attributes: map[string]schema.Attribute{
 									"secret": schema.StringAttribute{
-										Description:         "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpointThe secret must have the key with the name 'tls.crt'",
-										MarkdownDescription: "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpointThe secret must have the key with the name 'tls.crt'",
+										Description:         "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint The secret must have the key with the name 'tls.crt'",
+										MarkdownDescription: "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint The secret must have the key with the name 'tls.crt'",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1044,8 +1044,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"use_virtual_path": schema.BoolAttribute{
-										Description:         "UseVirtualPath will force the AWS SDK to use the new virtual style pathswhich are often required by S3 compatible object stores.",
-										MarkdownDescription: "UseVirtualPath will force the AWS SDK to use the new virtual style pathswhich are often required by S3 compatible object stores.",
+										Description:         "UseVirtualPath will force the AWS SDK to use the new virtual style paths which are often required by S3 compatible object stores.",
+										MarkdownDescription: "UseVirtualPath will force the AWS SDK to use the new virtual style paths which are often required by S3 compatible object stores.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1057,17 +1057,17 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"resources": schema.SingleNestedAttribute{
-								Description:         "Resources is the resource requirements for the backup and restorecontainers.  Will be populated by defaults if not specified.",
-								MarkdownDescription: "Resources is the resource requirements for the backup and restorecontainers.  Will be populated by defaults if not specified.",
+								Description:         "Resources is the resource requirements for the backup and restore containers. Will be populated by defaults if not specified.",
+								MarkdownDescription: "Resources is the resource requirements for the backup and restore containers. Will be populated by defaults if not specified.",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1080,8 +1080,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1089,8 +1089,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1103,16 +1103,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"s3_secret": schema.StringAttribute{
-								Description:         "Deprecated: by CouchbaseBackup.spec.objectStore.secretS3Secret contains the key region and optionally access-key-id and secret-access-key for operating backups in S3.This field must be popluated when the 'spec.s3bucket' field is specifiedfor a backup or restore resource.",
-								MarkdownDescription: "Deprecated: by CouchbaseBackup.spec.objectStore.secretS3Secret contains the key region and optionally access-key-id and secret-access-key for operating backups in S3.This field must be popluated when the 'spec.s3bucket' field is specifiedfor a backup or restore resource.",
+								Description:         "Deprecated: by CouchbaseBackup.spec.objectStore.secret S3Secret contains the key region and optionally access-key-id and secret-access-key for operating backups in S3. This field must be popluated when the 'spec.s3bucket' field is specified for a backup or restore resource.",
+								MarkdownDescription: "Deprecated: by CouchbaseBackup.spec.objectStore.secret S3Secret contains the key region and optionally access-key-id and secret-access-key for operating backups in S3. This field must be popluated when the 'spec.s3bucket' field is specified for a backup or restore resource.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"selector": schema.SingleNestedAttribute{
-								Description:         "Selector allows CouchbaseBackup and CouchbaseBackupRestoreresources to be filtered based on labels.",
-								MarkdownDescription: "Selector allows CouchbaseBackup and CouchbaseBackupRestoreresources to be filtered based on labels.",
+								Description:         "Selector allows CouchbaseBackup and CouchbaseBackupRestore resources to be filtered based on labels.",
+								MarkdownDescription: "Selector allows CouchbaseBackup and CouchbaseBackupRestore resources to be filtered based on labels.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1128,16 +1128,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1151,8 +1151,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1165,8 +1165,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"service_account_name": schema.StringAttribute{
-								Description:         "The Service Account to run backup (and restore) pods under.Without this backup pods will not be able to update status.",
-								MarkdownDescription: "The Service Account to run backup (and restore) pods under.Without this backup pods will not be able to update status.",
+								Description:         "The Service Account to run backup (and restore) pods under. Without this backup pods will not be able to update status.",
+								MarkdownDescription: "The Service Account to run backup (and restore) pods under. Without this backup pods will not be able to update status.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1178,40 +1178,40 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"effect": schema.StringAttribute{
-											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"key": schema.StringAttribute{
-											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
-											MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+											Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+											MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"toleration_seconds": schema.Int64Attribute{
-											Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
-											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+											Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
-											MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1224,8 +1224,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"use_iam_role": schema.BoolAttribute{
-								Description:         "Deprecated: by CouchbaseBackup.spec.objectStore.useIAMUseIAMRole enables backup to fetch EC2 instance metadata.This allows the AWS SDK to use the EC2's IAM Role for S3 access.UseIAMRole will ignore credentials in s3Secret.",
-								MarkdownDescription: "Deprecated: by CouchbaseBackup.spec.objectStore.useIAMUseIAMRole enables backup to fetch EC2 instance metadata.This allows the AWS SDK to use the EC2's IAM Role for S3 access.UseIAMRole will ignore credentials in s3Secret.",
+								Description:         "Deprecated: by CouchbaseBackup.spec.objectStore.useIAM UseIAMRole enables backup to fetch EC2 instance metadata. This allows the AWS SDK to use the EC2's IAM Role for S3 access. UseIAMRole will ignore credentials in s3Secret.",
+								MarkdownDescription: "Deprecated: by CouchbaseBackup.spec.objectStore.useIAM UseIAMRole enables backup to fetch EC2 instance metadata. This allows the AWS SDK to use the EC2's IAM Role for S3 access. UseIAMRole will ignore credentials in s3Secret.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1237,20 +1237,20 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"buckets": schema.SingleNestedAttribute{
-						Description:         "Buckets defines whether the Operator should manage buckets, and how to lookupbucket resources.",
-						MarkdownDescription: "Buckets defines whether the Operator should manage buckets, and how to lookupbucket resources.",
+						Description:         "Buckets defines whether the Operator should manage buckets, and how to lookup bucket resources.",
+						MarkdownDescription: "Buckets defines whether the Operator should manage buckets, and how to lookup bucket resources.",
 						Attributes: map[string]schema.Attribute{
 							"managed": schema.BoolAttribute{
-								Description:         "Managed defines whether buckets are managed by the Operator (true), or user managed (false).When Operator managed, all buckets must be defined with either CouchbaseBucket,CouchbaseEphemeralBucket or CouchbaseMemcachedBucket resources.  Manual additionof buckets will be reverted by the Operator.  When user managed, the Operatorwill not interrogate buckets at all.  This field defaults to false.",
-								MarkdownDescription: "Managed defines whether buckets are managed by the Operator (true), or user managed (false).When Operator managed, all buckets must be defined with either CouchbaseBucket,CouchbaseEphemeralBucket or CouchbaseMemcachedBucket resources.  Manual additionof buckets will be reverted by the Operator.  When user managed, the Operatorwill not interrogate buckets at all.  This field defaults to false.",
+								Description:         "Managed defines whether buckets are managed by the Operator (true), or user managed (false). When Operator managed, all buckets must be defined with either CouchbaseBucket, CouchbaseEphemeralBucket or CouchbaseMemcachedBucket resources. Manual addition of buckets will be reverted by the Operator. When user managed, the Operator will not interrogate buckets at all. This field defaults to false.",
+								MarkdownDescription: "Managed defines whether buckets are managed by the Operator (true), or user managed (false). When Operator managed, all buckets must be defined with either CouchbaseBucket, CouchbaseEphemeralBucket or CouchbaseMemcachedBucket resources. Manual addition of buckets will be reverted by the Operator. When user managed, the Operator will not interrogate buckets at all. This field defaults to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"selector": schema.SingleNestedAttribute{
-								Description:         "Selector is a label selector used to list buckets in the namespacethat are managed by the Operator.",
-								MarkdownDescription: "Selector is a label selector used to list buckets in the namespacethat are managed by the Operator.",
+								Description:         "Selector is a label selector used to list buckets in the namespace that are managed by the Operator.",
+								MarkdownDescription: "Selector is a label selector used to list buckets in the namespace that are managed by the Operator.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1266,16 +1266,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1289,8 +1289,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1303,8 +1303,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"synchronize": schema.BoolAttribute{
-								Description:         "Synchronize allows unmanaged buckets, scopes, and collections to be synchronized asKubernetes resources by the Operator.  This feature is intended for development onlyand should not be used for production workloads.  The synchronization workflow startswith 'spec.buckets.managed' being set to false, the user can manually create buckets,scopes, and collections using the Couchbase UI, or other tooling.  When you wish tocommit to Kubernetes resources, you must specify a unique label selector in the'spec.buckets.selector' field, and this field is set to true.  The Operator willcreate Kubernetes resources for you, and upon completion set the cluster's 'Synchronized'status condition. Synchronizing will not create a Kubernetes resource for the CouchbaseServer maintained _system scope. You may then safely set 'spec.buckets.managed' totrue and the Operator will manage these resources as per usual.  To update an alreadymanaged data topology, you must first set it to unmanaged, make any changes, and deleteany old resources, then follow the standard synchronization workflow.  The Operatorcan not, and will not, ever delete, or make modifications to resource specificationsthat are intended to be user managed, or managed by a life cycle management tool. Theseactions must be instigated by an end user.  For a more complete experience, refer tothe documentation for the 'cao save' and 'cao restore' CLI commands.",
-								MarkdownDescription: "Synchronize allows unmanaged buckets, scopes, and collections to be synchronized asKubernetes resources by the Operator.  This feature is intended for development onlyand should not be used for production workloads.  The synchronization workflow startswith 'spec.buckets.managed' being set to false, the user can manually create buckets,scopes, and collections using the Couchbase UI, or other tooling.  When you wish tocommit to Kubernetes resources, you must specify a unique label selector in the'spec.buckets.selector' field, and this field is set to true.  The Operator willcreate Kubernetes resources for you, and upon completion set the cluster's 'Synchronized'status condition. Synchronizing will not create a Kubernetes resource for the CouchbaseServer maintained _system scope. You may then safely set 'spec.buckets.managed' totrue and the Operator will manage these resources as per usual.  To update an alreadymanaged data topology, you must first set it to unmanaged, make any changes, and deleteany old resources, then follow the standard synchronization workflow.  The Operatorcan not, and will not, ever delete, or make modifications to resource specificationsthat are intended to be user managed, or managed by a life cycle management tool. Theseactions must be instigated by an end user.  For a more complete experience, refer tothe documentation for the 'cao save' and 'cao restore' CLI commands.",
+								Description:         "Synchronize allows unmanaged buckets, scopes, and collections to be synchronized as Kubernetes resources by the Operator. This feature is intended for development only and should not be used for production workloads. The synchronization workflow starts with 'spec.buckets.managed' being set to false, the user can manually create buckets, scopes, and collections using the Couchbase UI, or other tooling. When you wish to commit to Kubernetes resources, you must specify a unique label selector in the 'spec.buckets.selector' field, and this field is set to true. The Operator will create Kubernetes resources for you, and upon completion set the cluster's 'Synchronized' status condition. Synchronizing will not create a Kubernetes resource for the Couchbase Server maintained _system scope. You may then safely set 'spec.buckets.managed' to true and the Operator will manage these resources as per usual. To update an already managed data topology, you must first set it to unmanaged, make any changes, and delete any old resources, then follow the standard synchronization workflow. The Operator can not, and will not, ever delete, or make modifications to resource specifications that are intended to be user managed, or managed by a life cycle management tool. These actions must be instigated by an end user. For a more complete experience, refer to the documentation for the 'cao save' and 'cao restore' CLI commands.",
+								MarkdownDescription: "Synchronize allows unmanaged buckets, scopes, and collections to be synchronized as Kubernetes resources by the Operator. This feature is intended for development only and should not be used for production workloads. The synchronization workflow starts with 'spec.buckets.managed' being set to false, the user can manually create buckets, scopes, and collections using the Couchbase UI, or other tooling. When you wish to commit to Kubernetes resources, you must specify a unique label selector in the 'spec.buckets.selector' field, and this field is set to true. The Operator will create Kubernetes resources for you, and upon completion set the cluster's 'Synchronized' status condition. Synchronizing will not create a Kubernetes resource for the Couchbase Server maintained _system scope. You may then safely set 'spec.buckets.managed' to true and the Operator will manage these resources as per usual. To update an already managed data topology, you must first set it to unmanaged, make any changes, and delete any old resources, then follow the standard synchronization workflow. The Operator can not, and will not, ever delete, or make modifications to resource specifications that are intended to be user managed, or managed by a life cycle management tool. These actions must be instigated by an end user. For a more complete experience, refer to the documentation for the 'cao save' and 'cao restore' CLI commands.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1316,12 +1316,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"cluster": schema.SingleNestedAttribute{
-						Description:         "ClusterSettings define Couchbase cluster-wide settings such as memory allocation,failover characteristics and index settings.",
-						MarkdownDescription: "ClusterSettings define Couchbase cluster-wide settings such as memory allocation,failover characteristics and index settings.",
+						Description:         "ClusterSettings define Couchbase cluster-wide settings such as memory allocation, failover characteristics and index settings.",
+						MarkdownDescription: "ClusterSettings define Couchbase cluster-wide settings such as memory allocation, failover characteristics and index settings.",
 						Attributes: map[string]schema.Attribute{
 							"analytics_service_memory_quota": schema.StringAttribute{
-								Description:         "AnalyticsServiceMemQuota is the amount of memory that should be allocated to the analytics service.This value is per-pod, and only applicable to pods belonging to server classes runningthe analytics service.  This field must be a quantity greater than or equal to 1Gi.  Thisfield defaults to 1Gi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-								MarkdownDescription: "AnalyticsServiceMemQuota is the amount of memory that should be allocated to the analytics service.This value is per-pod, and only applicable to pods belonging to server classes runningthe analytics service.  This field must be a quantity greater than or equal to 1Gi.  Thisfield defaults to 1Gi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								Description:         "AnalyticsServiceMemQuota is the amount of memory that should be allocated to the analytics service. This value is per-pod, and only applicable to pods belonging to server classes running the analytics service. This field must be a quantity greater than or equal to 1Gi. This field defaults to 1Gi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								MarkdownDescription: "AnalyticsServiceMemQuota is the amount of memory that should be allocated to the analytics service. This value is per-pod, and only applicable to pods belonging to server classes running the analytics service. This field must be a quantity greater than or equal to 1Gi. This field defaults to 1Gi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1331,16 +1331,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"auto_compaction": schema.SingleNestedAttribute{
-								Description:         "AutoCompaction allows the configuration of auto-compaction, including on whatconditions disk space is reclaimed and when it is allowed to run.",
-								MarkdownDescription: "AutoCompaction allows the configuration of auto-compaction, including on whatconditions disk space is reclaimed and when it is allowed to run.",
+								Description:         "AutoCompaction allows the configuration of auto-compaction, including on what conditions disk space is reclaimed and when it is allowed to run.",
+								MarkdownDescription: "AutoCompaction allows the configuration of auto-compaction, including on what conditions disk space is reclaimed and when it is allowed to run.",
 								Attributes: map[string]schema.Attribute{
 									"database_fragmentation_threshold": schema.SingleNestedAttribute{
 										Description:         "DatabaseFragmentationThreshold defines triggers for when database compaction should start.",
 										MarkdownDescription: "DatabaseFragmentationThreshold defines triggers for when database compaction should start.",
 										Attributes: map[string]schema.Attribute{
 											"percent": schema.Int64Attribute{
-												Description:         "Percent is the percentage of disk fragmentation after which to decompaction will betriggered. This field must be in the range 2-100, defaulting to 30.",
-												MarkdownDescription: "Percent is the percentage of disk fragmentation after which to decompaction will betriggered. This field must be in the range 2-100, defaulting to 30.",
+												Description:         "Percent is the percentage of disk fragmentation after which to decompaction will be triggered. This field must be in the range 2-100, defaulting to 30.",
+												MarkdownDescription: "Percent is the percentage of disk fragmentation after which to decompaction will be triggered. This field must be in the range 2-100, defaulting to 30.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1351,8 +1351,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"size": schema.StringAttribute{
-												Description:         "Size is the amount of disk framentation, that once exceeded, will trigger decompaction.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-												MarkdownDescription: "Size is the amount of disk framentation, that once exceeded, will trigger decompaction.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+												Description:         "Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+												MarkdownDescription: "Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1367,8 +1367,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"parallel_compaction": schema.BoolAttribute{
-										Description:         "ParallelCompaction controls whether database and view compactions can happenin parallel.",
-										MarkdownDescription: "ParallelCompaction controls whether database and view compactions can happenin parallel.",
+										Description:         "ParallelCompaction controls whether database and view compactions can happen in parallel.",
+										MarkdownDescription: "ParallelCompaction controls whether database and view compactions can happen in parallel.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1379,8 +1379,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										MarkdownDescription: "TimeWindow allows restriction of when compaction can occur.",
 										Attributes: map[string]schema.Attribute{
 											"abort_compaction_outside_window": schema.BoolAttribute{
-												Description:         "AbortCompactionOutsideWindow stops compaction processes when theprocess moves outside the window.",
-												MarkdownDescription: "AbortCompactionOutsideWindow stops compaction processes when theprocess moves outside the window.",
+												Description:         "AbortCompactionOutsideWindow stops compaction processes when the process moves outside the window.",
+												MarkdownDescription: "AbortCompactionOutsideWindow stops compaction processes when the process moves outside the window.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1414,8 +1414,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tombstone_purge_interval": schema.StringAttribute{
-										Description:         "TombstonePurgeInterval controls how long to wait before purging tombstones.This field must be in the range 1h-1440h, defaulting to 72h.More info:  https://golang.org/pkg/time/#ParseDuration",
-										MarkdownDescription: "TombstonePurgeInterval controls how long to wait before purging tombstones.This field must be in the range 1h-1440h, defaulting to 72h.More info:  https://golang.org/pkg/time/#ParseDuration",
+										Description:         "TombstonePurgeInterval controls how long to wait before purging tombstones. This field must be in the range 1h-1440h, defaulting to 72h. More info: https://golang.org/pkg/time/#ParseDuration",
+										MarkdownDescription: "TombstonePurgeInterval controls how long to wait before purging tombstones. This field must be in the range 1h-1440h, defaulting to 72h. More info: https://golang.org/pkg/time/#ParseDuration",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1426,8 +1426,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										MarkdownDescription: "ViewFragmentationThreshold defines triggers for when view compaction should start.",
 										Attributes: map[string]schema.Attribute{
 											"percent": schema.Int64Attribute{
-												Description:         "Percent is the percentage of disk fragmentation after which to decompaction will betriggered. This field must be in the range 2-100, defaulting to 30.",
-												MarkdownDescription: "Percent is the percentage of disk fragmentation after which to decompaction will betriggered. This field must be in the range 2-100, defaulting to 30.",
+												Description:         "Percent is the percentage of disk fragmentation after which to decompaction will be triggered. This field must be in the range 2-100, defaulting to 30.",
+												MarkdownDescription: "Percent is the percentage of disk fragmentation after which to decompaction will be triggered. This field must be in the range 2-100, defaulting to 30.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1438,8 +1438,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"size": schema.StringAttribute{
-												Description:         "Size is the amount of disk framentation, that once exceeded, will trigger decompaction.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-												MarkdownDescription: "Size is the amount of disk framentation, that once exceeded, will trigger decompaction.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+												Description:         "Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+												MarkdownDescription: "Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1459,8 +1459,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"auto_failover_max_count": schema.Int64Attribute{
-								Description:         "AutoFailoverMaxCount is the maximum number of automatic failovers Couchbase serverwill allow before not allowing any more.  This field must be between 1-3 for server versions prior to 7.1.0default is 1.",
-								MarkdownDescription: "AutoFailoverMaxCount is the maximum number of automatic failovers Couchbase serverwill allow before not allowing any more.  This field must be between 1-3 for server versions prior to 7.1.0default is 1.",
+								Description:         "AutoFailoverMaxCount is the maximum number of automatic failovers Couchbase server will allow before not allowing any more. This field must be between 1-3 for server versions prior to 7.1.0 default is 1.",
+								MarkdownDescription: "AutoFailoverMaxCount is the maximum number of automatic failovers Couchbase server will allow before not allowing any more. This field must be between 1-3 for server versions prior to 7.1.0 default is 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1470,40 +1470,40 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"auto_failover_on_data_disk_issues": schema.BoolAttribute{
-								Description:         "AutoFailoverOnDataDiskIssues defines whether Couchbase server should failover a podif a disk issue was detected.",
-								MarkdownDescription: "AutoFailoverOnDataDiskIssues defines whether Couchbase server should failover a podif a disk issue was detected.",
+								Description:         "AutoFailoverOnDataDiskIssues defines whether Couchbase server should failover a pod if a disk issue was detected.",
+								MarkdownDescription: "AutoFailoverOnDataDiskIssues defines whether Couchbase server should failover a pod if a disk issue was detected.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"auto_failover_on_data_disk_issues_time_period": schema.StringAttribute{
-								Description:         "AutoFailoverOnDataDiskIssuesTimePeriod defines how long to wait for transient errorsbefore failing over a faulty disk.  This field must be in the range 5-3600s, defaultingto 120s.  More info:  https://golang.org/pkg/time/#ParseDuration",
-								MarkdownDescription: "AutoFailoverOnDataDiskIssuesTimePeriod defines how long to wait for transient errorsbefore failing over a faulty disk.  This field must be in the range 5-3600s, defaultingto 120s.  More info:  https://golang.org/pkg/time/#ParseDuration",
+								Description:         "AutoFailoverOnDataDiskIssuesTimePeriod defines how long to wait for transient errors before failing over a faulty disk. This field must be in the range 5-3600s, defaulting to 120s. More info: https://golang.org/pkg/time/#ParseDuration",
+								MarkdownDescription: "AutoFailoverOnDataDiskIssuesTimePeriod defines how long to wait for transient errors before failing over a faulty disk. This field must be in the range 5-3600s, defaulting to 120s. More info: https://golang.org/pkg/time/#ParseDuration",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"auto_failover_server_group": schema.BoolAttribute{
-								Description:         "AutoFailoverServerGroup whether to enable failing over a server group.This field is ignored in server versions 7.1+ as it has been removed from the Couchbase API",
-								MarkdownDescription: "AutoFailoverServerGroup whether to enable failing over a server group.This field is ignored in server versions 7.1+ as it has been removed from the Couchbase API",
+								Description:         "AutoFailoverServerGroup whether to enable failing over a server group. This field is ignored in server versions 7.1+ as it has been removed from the Couchbase API",
+								MarkdownDescription: "AutoFailoverServerGroup whether to enable failing over a server group. This field is ignored in server versions 7.1+ as it has been removed from the Couchbase API",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"auto_failover_timeout": schema.StringAttribute{
-								Description:         "AutoFailoverTimeout defines how long Couchbase server will wait between a podbeing witnessed as down, until when it will failover the pod.  Couchbase serverwill only failover pods if it deems it safe to do so, and not result in dataloss.  This field must be in the range 5-3600s, defaulting to 120s.More info:  https://golang.org/pkg/time/#ParseDuration",
-								MarkdownDescription: "AutoFailoverTimeout defines how long Couchbase server will wait between a podbeing witnessed as down, until when it will failover the pod.  Couchbase serverwill only failover pods if it deems it safe to do so, and not result in dataloss.  This field must be in the range 5-3600s, defaulting to 120s.More info:  https://golang.org/pkg/time/#ParseDuration",
+								Description:         "AutoFailoverTimeout defines how long Couchbase server will wait between a pod being witnessed as down, until when it will failover the pod. Couchbase server will only failover pods if it deems it safe to do so, and not result in data loss. This field must be in the range 5-3600s, defaulting to 120s. More info: https://golang.org/pkg/time/#ParseDuration",
+								MarkdownDescription: "AutoFailoverTimeout defines how long Couchbase server will wait between a pod being witnessed as down, until when it will failover the pod. Couchbase server will only failover pods if it deems it safe to do so, and not result in data loss. This field must be in the range 5-3600s, defaulting to 120s. More info: https://golang.org/pkg/time/#ParseDuration",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"cluster_name": schema.StringAttribute{
-								Description:         "ClusterName defines the name of the cluster, as displayed in the Couchbase UI.By default, the cluster name is that specified in the CouchbaseCluster resource'smetadata.",
-								MarkdownDescription: "ClusterName defines the name of the cluster, as displayed in the Couchbase UI.By default, the cluster name is that specified in the CouchbaseCluster resource'smetadata.",
+								Description:         "ClusterName defines the name of the cluster, as displayed in the Couchbase UI. By default, the cluster name is that specified in the CouchbaseCluster resource's metadata.",
+								MarkdownDescription: "ClusterName defines the name of the cluster, as displayed in the Couchbase UI. By default, the cluster name is that specified in the CouchbaseCluster resource's metadata.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1514,8 +1514,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "Data allows the data service to be configured.",
 								Attributes: map[string]schema.Attribute{
 									"aux_io_threads": schema.Int64Attribute{
-										Description:         "AuxIOThreads allows the number of threads used by the data service,per pod, to be altered.  This indicates the number of threads that areto be used in the AuxIO thread pool to run auxiliary I/O tasks.This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use. If not specified, this defaults to thedefault value set by Couchbase Server.",
-										MarkdownDescription: "AuxIOThreads allows the number of threads used by the data service,per pod, to be altered.  This indicates the number of threads that areto be used in the AuxIO thread pool to run auxiliary I/O tasks.This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use. If not specified, this defaults to thedefault value set by Couchbase Server.",
+										Description:         "AuxIOThreads allows the number of threads used by the data service, per pod, to be altered. This indicates the number of threads that are to be used in the AuxIO thread pool to run auxiliary I/O tasks. This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+. and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.",
+										MarkdownDescription: "AuxIOThreads allows the number of threads used by the data service, per pod, to be altered. This indicates the number of threads that are to be used in the AuxIO thread pool to run auxiliary I/O tasks. This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+. and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1526,16 +1526,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"min_replicas_count": schema.Int64Attribute{
-										Description:         "MinReplicasCount allows the minimum number of replicas required forbuckets to be set. New buckets cannot be created with less than this minimum.Defaults to 0.",
-										MarkdownDescription: "MinReplicasCount allows the minimum number of replicas required forbuckets to be set. New buckets cannot be created with less than this minimum.Defaults to 0.",
+										Description:         "MinReplicasCount allows the minimum number of replicas required for buckets to be set. New buckets cannot be created with less than this minimum. Defaults to 0.",
+										MarkdownDescription: "MinReplicasCount allows the minimum number of replicas required for buckets to be set. New buckets cannot be created with less than this minimum. Defaults to 0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"non_io_threads": schema.Int64Attribute{
-										Description:         "NonIOThreads allows the number of threads used by the data service,per pod, to be altered.  This indicates the number of threads that areto be used in the NonIO thread pool to run in memory tasks.This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use. If not specified, this defaults to thedefault value set by Couchbase Server.",
-										MarkdownDescription: "NonIOThreads allows the number of threads used by the data service,per pod, to be altered.  This indicates the number of threads that areto be used in the NonIO thread pool to run in memory tasks.This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use. If not specified, this defaults to thedefault value set by Couchbase Server.",
+										Description:         "NonIOThreads allows the number of threads used by the data service, per pod, to be altered. This indicates the number of threads that are to be used in the NonIO thread pool to run in memory tasks. This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+. and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.",
+										MarkdownDescription: "NonIOThreads allows the number of threads used by the data service, per pod, to be altered. This indicates the number of threads that are to be used in the NonIO thread pool to run in memory tasks. This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+. and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1546,8 +1546,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"reader_threads": schema.Int64Attribute{
-										Description:         "ReaderThreads allows the number of threads used by the data service,per pod, to be altered.  This value must be between 4 and 64 threads for CB versions below 7.1.0 and,or 1 and 64 for CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use.  If not specified, this defaults to thedefault value set by Couchbase Server.",
-										MarkdownDescription: "ReaderThreads allows the number of threads used by the data service,per pod, to be altered.  This value must be between 4 and 64 threads for CB versions below 7.1.0 and,or 1 and 64 for CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use.  If not specified, this defaults to thedefault value set by Couchbase Server.",
+										Description:         "ReaderThreads allows the number of threads used by the data service, per pod, to be altered. This value must be between 4 and 64 threads for CB versions below 7.1.0 and, or 1 and 64 for CB versions 7.1.0+. and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.",
+										MarkdownDescription: "ReaderThreads allows the number of threads used by the data service, per pod, to be altered. This value must be between 4 and 64 threads for CB versions below 7.1.0 and, or 1 and 64 for CB versions 7.1.0+. and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1558,8 +1558,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"writer_threads": schema.Int64Attribute{
-										Description:         "WriterThreads allows the number of threads used by the data service,per pod, to be altered.  This setting is especially relevant whenusing 'durable writes', increasing this field will have a largeimpact on performance.  This value must be between 4 and 64 threads for CB versions below 7.1.0 and,	// or 1 and 64 for CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use. If not specified, this defaults to thedefault value set by Couchbase Server.",
-										MarkdownDescription: "WriterThreads allows the number of threads used by the data service,per pod, to be altered.  This setting is especially relevant whenusing 'durable writes', increasing this field will have a largeimpact on performance.  This value must be between 4 and 64 threads for CB versions below 7.1.0 and,	// or 1 and 64 for CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use. If not specified, this defaults to thedefault value set by Couchbase Server.",
+										Description:         "WriterThreads allows the number of threads used by the data service, per pod, to be altered. This setting is especially relevant when using 'durable writes', increasing this field will have a large impact on performance. This value must be between 4 and 64 threads for CB versions below 7.1.0 and, // or 1 and 64 for CB versions 7.1.0+. and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.",
+										MarkdownDescription: "WriterThreads allows the number of threads used by the data service, per pod, to be altered. This setting is especially relevant when using 'durable writes', increasing this field will have a large impact on performance. This value must be between 4 and 64 threads for CB versions below 7.1.0 and, // or 1 and 64 for CB versions 7.1.0+. and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1575,8 +1575,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"data_service_memory_quota": schema.StringAttribute{
-								Description:         "DataServiceMemQuota is the amount of memory that should be allocated to the data service.This value is per-pod, and only applicable to pods belonging to server classes runningthe data service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-								MarkdownDescription: "DataServiceMemQuota is the amount of memory that should be allocated to the data service.This value is per-pod, and only applicable to pods belonging to server classes runningthe data service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								Description:         "DataServiceMemQuota is the amount of memory that should be allocated to the data service. This value is per-pod, and only applicable to pods belonging to server classes running the data service. This field must be a quantity greater than or equal to 256Mi. This field defaults to 256Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								MarkdownDescription: "DataServiceMemQuota is the amount of memory that should be allocated to the data service. This value is per-pod, and only applicable to pods belonging to server classes running the data service. This field must be a quantity greater than or equal to 256Mi. This field defaults to 256Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1586,8 +1586,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"eventing_service_memory_quota": schema.StringAttribute{
-								Description:         "EventingServiceMemQuota is the amount of memory that should be allocated to the eventing service.This value is per-pod, and only applicable to pods belonging to server classes runningthe eventing service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-								MarkdownDescription: "EventingServiceMemQuota is the amount of memory that should be allocated to the eventing service.This value is per-pod, and only applicable to pods belonging to server classes runningthe eventing service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								Description:         "EventingServiceMemQuota is the amount of memory that should be allocated to the eventing service. This value is per-pod, and only applicable to pods belonging to server classes running the eventing service. This field must be a quantity greater than or equal to 256Mi. This field defaults to 256Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								MarkdownDescription: "EventingServiceMemQuota is the amount of memory that should be allocated to the eventing service. This value is per-pod, and only applicable to pods belonging to server classes running the eventing service. This field must be a quantity greater than or equal to 256Mi. This field defaults to 256Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1597,8 +1597,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"index_service_memory_quota": schema.StringAttribute{
-								Description:         "IndexServiceMemQuota is the amount of memory that should be allocated to the index service.This value is per-pod, and only applicable to pods belonging to server classes runningthe index service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-								MarkdownDescription: "IndexServiceMemQuota is the amount of memory that should be allocated to the index service.This value is per-pod, and only applicable to pods belonging to server classes runningthe index service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								Description:         "IndexServiceMemQuota is the amount of memory that should be allocated to the index service. This value is per-pod, and only applicable to pods belonging to server classes running the index service. This field must be a quantity greater than or equal to 256Mi. This field defaults to 256Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								MarkdownDescription: "IndexServiceMemQuota is the amount of memory that should be allocated to the index service. This value is per-pod, and only applicable to pods belonging to server classes running the index service. This field must be a quantity greater than or equal to 256Mi. This field defaults to 256Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1608,8 +1608,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"index_storage_setting": schema.StringAttribute{
-								Description:         "DEPRECATED - by indexer.The index storage mode to use for secondary indexing.  This field must be one of'memory_optimized' or 'plasma', defaulting to 'memory_optimized'.  This field isimmutable and cannot be changed unless there are no server classes running theindex service in the cluster.",
-								MarkdownDescription: "DEPRECATED - by indexer.The index storage mode to use for secondary indexing.  This field must be one of'memory_optimized' or 'plasma', defaulting to 'memory_optimized'.  This field isimmutable and cannot be changed unless there are no server classes running theindex service in the cluster.",
+								Description:         "DEPRECATED - by indexer. The index storage mode to use for secondary indexing. This field must be one of 'memory_optimized' or 'plasma', defaulting to 'memory_optimized'. This field is immutable and cannot be changed unless there are no server classes running the index service in the cluster.",
+								MarkdownDescription: "DEPRECATED - by indexer. The index storage mode to use for secondary indexing. This field must be one of 'memory_optimized' or 'plasma', defaulting to 'memory_optimized'. This field is immutable and cannot be changed unless there are no server classes running the index service in the cluster.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1623,16 +1623,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "Indexer allows the indexer to be configured.",
 								Attributes: map[string]schema.Attribute{
 									"enable_shard_affinity": schema.BoolAttribute{
-										Description:         "EnableShardAffinity when false Index Servers rebuild any index thatare newly assigned to them during a rebalance. When set to true,Couchbase Server moves a reassigned index’s files between Index Servers.This field is only supported on CB versions 7.6.0+.",
-										MarkdownDescription: "EnableShardAffinity when false Index Servers rebuild any index thatare newly assigned to them during a rebalance. When set to true,Couchbase Server moves a reassigned index’s files between Index Servers.This field is only supported on CB versions 7.6.0+.",
+										Description:         "EnableShardAffinity when false Index Servers rebuild any index that are newly assigned to them during a rebalance. When set to true, Couchbase Server moves a reassigned index’s files between Index Servers. This field is only supported on CB versions 7.6.0+.",
+										MarkdownDescription: "EnableShardAffinity when false Index Servers rebuild any index that are newly assigned to them during a rebalance. When set to true, Couchbase Server moves a reassigned index’s files between Index Servers. This field is only supported on CB versions 7.6.0+.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"log_level": schema.StringAttribute{
-										Description:         "LogLevel controls the verbosity of indexer logs.  This field must be one of'silent', 'fatal', 'error', 'warn', 'info', 'verbose', 'timing', 'debug' or'trace', defaulting to 'info'.",
-										MarkdownDescription: "LogLevel controls the verbosity of indexer logs.  This field must be one of'silent', 'fatal', 'error', 'warn', 'info', 'verbose', 'timing', 'debug' or'trace', defaulting to 'info'.",
+										Description:         "LogLevel controls the verbosity of indexer logs. This field must be one of 'silent', 'fatal', 'error', 'warn', 'info', 'verbose', 'timing', 'debug' or 'trace', defaulting to 'info'.",
+										MarkdownDescription: "LogLevel controls the verbosity of indexer logs. This field must be one of 'silent', 'fatal', 'error', 'warn', 'info', 'verbose', 'timing', 'debug' or 'trace', defaulting to 'info'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1642,8 +1642,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"max_rollback_points": schema.Int64Attribute{
-										Description:         "MaxRollbackPoints controls the number of checkpoints that can be rolledback to.  The default is 2, with a minimum of 1.",
-										MarkdownDescription: "MaxRollbackPoints controls the number of checkpoints that can be rolledback to.  The default is 2, with a minimum of 1.",
+										Description:         "MaxRollbackPoints controls the number of checkpoints that can be rolled back to. The default is 2, with a minimum of 1.",
+										MarkdownDescription: "MaxRollbackPoints controls the number of checkpoints that can be rolled back to. The default is 2, with a minimum of 1.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1653,16 +1653,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"memory_snapshot_interval": schema.StringAttribute{
-										Description:         "MemorySnapshotInterval controls when memory indexes should be snapshotted.This defaults to 200ms, and must be greater than or equal to 1ms.",
-										MarkdownDescription: "MemorySnapshotInterval controls when memory indexes should be snapshotted.This defaults to 200ms, and must be greater than or equal to 1ms.",
+										Description:         "MemorySnapshotInterval controls when memory indexes should be snapshotted. This defaults to 200ms, and must be greater than or equal to 1ms.",
+										MarkdownDescription: "MemorySnapshotInterval controls when memory indexes should be snapshotted. This defaults to 200ms, and must be greater than or equal to 1ms.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"num_replica": schema.Int64Attribute{
-										Description:         "NumberOfReplica specifies number of secondary index replicas to be createdby the Index Service whenever CREATE INDEX is invoked, which ensureshigh availability and high performance.Note, if nodes and num_replica are both specified in the WITH clause,the specified number of nodes must be one greater than num_replicaThis defaults to 0, which means no index replicas to be created by default.Minimum must be 0.",
-										MarkdownDescription: "NumberOfReplica specifies number of secondary index replicas to be createdby the Index Service whenever CREATE INDEX is invoked, which ensureshigh availability and high performance.Note, if nodes and num_replica are both specified in the WITH clause,the specified number of nodes must be one greater than num_replicaThis defaults to 0, which means no index replicas to be created by default.Minimum must be 0.",
+										Description:         "NumberOfReplica specifies number of secondary index replicas to be created by the Index Service whenever CREATE INDEX is invoked, which ensures high availability and high performance. Note, if nodes and num_replica are both specified in the WITH clause, the specified number of nodes must be one greater than num_replica This defaults to 0, which means no index replicas to be created by default. Minimum must be 0.",
+										MarkdownDescription: "NumberOfReplica specifies number of secondary index replicas to be created by the Index Service whenever CREATE INDEX is invoked, which ensures high availability and high performance. Note, if nodes and num_replica are both specified in the WITH clause, the specified number of nodes must be one greater than num_replica This defaults to 0, which means no index replicas to be created by default. Minimum must be 0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1672,24 +1672,24 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"redistribute_indexes": schema.BoolAttribute{
-										Description:         "RedistributeIndexes when true, Couchbase Server redistributes indexeswhen rebalance occurs, in order to optimize performance.If false (the default), such redistribution does not occur.",
-										MarkdownDescription: "RedistributeIndexes when true, Couchbase Server redistributes indexeswhen rebalance occurs, in order to optimize performance.If false (the default), such redistribution does not occur.",
+										Description:         "RedistributeIndexes when true, Couchbase Server redistributes indexes when rebalance occurs, in order to optimize performance. If false (the default), such redistribution does not occur.",
+										MarkdownDescription: "RedistributeIndexes when true, Couchbase Server redistributes indexes when rebalance occurs, in order to optimize performance. If false (the default), such redistribution does not occur.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"stable_snapshot_interval": schema.StringAttribute{
-										Description:         "StableSnapshotInterval controls when disk indexes should be snapshotted.This defaults to 5s, and must be greater than or equal to 1ms.",
-										MarkdownDescription: "StableSnapshotInterval controls when disk indexes should be snapshotted.This defaults to 5s, and must be greater than or equal to 1ms.",
+										Description:         "StableSnapshotInterval controls when disk indexes should be snapshotted. This defaults to 5s, and must be greater than or equal to 1ms.",
+										MarkdownDescription: "StableSnapshotInterval controls when disk indexes should be snapshotted. This defaults to 5s, and must be greater than or equal to 1ms.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"storage_mode": schema.StringAttribute{
-										Description:         "StorageMode controls the underlying storage engine for indexes.  Once setit can only be modified if there are no nodes in the cluster running theindex service.  The field must be one of 'memory_optimized' or 'plasma',defaulting to 'memory_optimized'.",
-										MarkdownDescription: "StorageMode controls the underlying storage engine for indexes.  Once setit can only be modified if there are no nodes in the cluster running theindex service.  The field must be one of 'memory_optimized' or 'plasma',defaulting to 'memory_optimized'.",
+										Description:         "StorageMode controls the underlying storage engine for indexes. Once set it can only be modified if there are no nodes in the cluster running the index service. The field must be one of 'memory_optimized' or 'plasma', defaulting to 'memory_optimized'.",
+										MarkdownDescription: "StorageMode controls the underlying storage engine for indexes. Once set it can only be modified if there are no nodes in the cluster running the index service. The field must be one of 'memory_optimized' or 'plasma', defaulting to 'memory_optimized'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1699,8 +1699,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"threads": schema.Int64Attribute{
-										Description:         "Threads controls the number of processor threads to use for indexing.A value of 0 means 1 per CPU.  This attribute must be greaterthan or equal to 0, defaulting to 0.",
-										MarkdownDescription: "Threads controls the number of processor threads to use for indexing.A value of 0 means 1 per CPU.  This attribute must be greaterthan or equal to 0, defaulting to 0.",
+										Description:         "Threads controls the number of processor threads to use for indexing. A value of 0 means 1 per CPU. This attribute must be greater than or equal to 0, defaulting to 0.",
+										MarkdownDescription: "Threads controls the number of processor threads to use for indexing. A value of 0 means 1 per CPU. This attribute must be greater than or equal to 0, defaulting to 0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1727,48 +1727,48 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"cbo_enabled": schema.BoolAttribute{
-										Description:         "CBOEnabled specifies whether the cost-based optimizer is enabled.Defaults to true.",
-										MarkdownDescription: "CBOEnabled specifies whether the cost-based optimizer is enabled.Defaults to true.",
+										Description:         "CBOEnabled specifies whether the cost-based optimizer is enabled. Defaults to true.",
+										MarkdownDescription: "CBOEnabled specifies whether the cost-based optimizer is enabled. Defaults to true.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"cleanup_client_attempts_enabled": schema.BoolAttribute{
-										Description:         "CleanupClientAttemptsEnabled specifies whether the Query service preferentially aims to clean up justtransactions that it has created, leaving transactions for the distributed cleanup process onlywhen it is forced to.Defaults to true.",
-										MarkdownDescription: "CleanupClientAttemptsEnabled specifies whether the Query service preferentially aims to clean up justtransactions that it has created, leaving transactions for the distributed cleanup process onlywhen it is forced to.Defaults to true.",
+										Description:         "CleanupClientAttemptsEnabled specifies whether the Query service preferentially aims to clean up just transactions that it has created, leaving transactions for the distributed cleanup process only when it is forced to. Defaults to true.",
+										MarkdownDescription: "CleanupClientAttemptsEnabled specifies whether the Query service preferentially aims to clean up just transactions that it has created, leaving transactions for the distributed cleanup process only when it is forced to. Defaults to true.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"cleanup_lost_attempts_enabled": schema.BoolAttribute{
-										Description:         "CleanupLostAttemptsEnabled specifies the Query service takes part in the distributed cleanupprocess, and cleans up expired transactions created by any client.Defaults to true.",
-										MarkdownDescription: "CleanupLostAttemptsEnabled specifies the Query service takes part in the distributed cleanupprocess, and cleans up expired transactions created by any client.Defaults to true.",
+										Description:         "CleanupLostAttemptsEnabled specifies the Query service takes part in the distributed cleanup process, and cleans up expired transactions created by any client. Defaults to true.",
+										MarkdownDescription: "CleanupLostAttemptsEnabled specifies the Query service takes part in the distributed cleanup process, and cleans up expired transactions created by any client. Defaults to true.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"cleanup_window": schema.StringAttribute{
-										Description:         "CleanupWindow specifies how frequently the Query service checks its subset of activetransaction records for cleanup.Defaults to 60s",
-										MarkdownDescription: "CleanupWindow specifies how frequently the Query service checks its subset of activetransaction records for cleanup.Defaults to 60s",
+										Description:         "CleanupWindow specifies how frequently the Query service checks its subset of active transaction records for cleanup. Defaults to 60s",
+										MarkdownDescription: "CleanupWindow specifies how frequently the Query service checks its subset of active transaction records for cleanup. Defaults to 60s",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"completed_limit": schema.Int64Attribute{
-										Description:         "CompletedLimit sets the number of requests to be logged in the completedrequests catalog. As new completed requests are added, old ones are removed.",
-										MarkdownDescription: "CompletedLimit sets the number of requests to be logged in the completedrequests catalog. As new completed requests are added, old ones are removed.",
+										Description:         "CompletedLimit sets the number of requests to be logged in the completed requests catalog. As new completed requests are added, old ones are removed.",
+										MarkdownDescription: "CompletedLimit sets the number of requests to be logged in the completed requests catalog. As new completed requests are added, old ones are removed.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"completed_max_plan_size": schema.StringAttribute{
-										Description:         "CompletedMaxPlanSize limits the size of query execution plans that can be logged in thecompleted requests catalog. Queries with plans larger than this are not logged.This field is only supported on CB versions 7.6.0+.Defaults to 262144, maximum value is 20840448, and minimum value is 0.",
-										MarkdownDescription: "CompletedMaxPlanSize limits the size of query execution plans that can be logged in thecompleted requests catalog. Queries with plans larger than this are not logged.This field is only supported on CB versions 7.6.0+.Defaults to 262144, maximum value is 20840448, and minimum value is 0.",
+										Description:         "CompletedMaxPlanSize limits the size of query execution plans that can be logged in the completed requests catalog. Queries with plans larger than this are not logged. This field is only supported on CB versions 7.6.0+. Defaults to 262144, maximum value is 20840448, and minimum value is 0.",
+										MarkdownDescription: "CompletedMaxPlanSize limits the size of query execution plans that can be logged in the completed requests catalog. Queries with plans larger than this are not logged. This field is only supported on CB versions 7.6.0+. Defaults to 262144, maximum value is 20840448, and minimum value is 0.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -1778,32 +1778,32 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"completed_tracking_all_requests": schema.BoolAttribute{
-										Description:         "CompletedTrackingAllRequests allows all requests to be tracked regardless of theirtime. This field requires 'completedTrackingEnabled' to be true.",
-										MarkdownDescription: "CompletedTrackingAllRequests allows all requests to be tracked regardless of theirtime. This field requires 'completedTrackingEnabled' to be true.",
+										Description:         "CompletedTrackingAllRequests allows all requests to be tracked regardless of their time. This field requires 'completedTrackingEnabled' to be true.",
+										MarkdownDescription: "CompletedTrackingAllRequests allows all requests to be tracked regardless of their time. This field requires 'completedTrackingEnabled' to be true.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"completed_tracking_enabled": schema.BoolAttribute{
-										Description:         "CompletedTrackingEnabled allows completed requests to be tracked in the requestscatalog.",
-										MarkdownDescription: "CompletedTrackingEnabled allows completed requests to be tracked in the requestscatalog.",
+										Description:         "CompletedTrackingEnabled allows completed requests to be tracked in the requests catalog.",
+										MarkdownDescription: "CompletedTrackingEnabled allows completed requests to be tracked in the requests catalog.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"completed_tracking_threshold": schema.StringAttribute{
-										Description:         "CompletedThreshold is a trigger for queries to be logged in the completedrequests catalog. All completed queries lasting longer than this thresholdare logged in the completed requests catalog. This field requires 'completedTrackingEnabled'to be set to true and 'completedTrackingAllRequests' to be false to have any effect.",
-										MarkdownDescription: "CompletedThreshold is a trigger for queries to be logged in the completedrequests catalog. All completed queries lasting longer than this thresholdare logged in the completed requests catalog. This field requires 'completedTrackingEnabled'to be set to true and 'completedTrackingAllRequests' to be false to have any effect.",
+										Description:         "CompletedThreshold is a trigger for queries to be logged in the completed requests catalog. All completed queries lasting longer than this threshold are logged in the completed requests catalog. This field requires 'completedTrackingEnabled' to be set to true and 'completedTrackingAllRequests' to be false to have any effect.",
+										MarkdownDescription: "CompletedThreshold is a trigger for queries to be logged in the completed requests catalog. All completed queries lasting longer than this threshold are logged in the completed requests catalog. This field requires 'completedTrackingEnabled' to be set to true and 'completedTrackingAllRequests' to be false to have any effect.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"log_level": schema.StringAttribute{
-										Description:         "LogLevel controls the verbosity of query logs. This field must be one of'debug', 'trace', 'info', 'warn', 'error', 'severe', or 'none', defaulting to 'info'.",
-										MarkdownDescription: "LogLevel controls the verbosity of query logs. This field must be one of'debug', 'trace', 'info', 'warn', 'error', 'severe', or 'none', defaulting to 'info'.",
+										Description:         "LogLevel controls the verbosity of query logs. This field must be one of 'debug', 'trace', 'info', 'warn', 'error', 'severe', or 'none', defaulting to 'info'.",
+										MarkdownDescription: "LogLevel controls the verbosity of query logs. This field must be one of 'debug', 'trace', 'info', 'warn', 'error', 'severe', or 'none', defaulting to 'info'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1813,16 +1813,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"max_parallelism": schema.Int64Attribute{
-										Description:         "MaxParallelism specifies the maximum parallelism for queries on all Query nodes in the cluster.If the value is zero, negative, or larger than the number of allowed cored the maximum parallelismis restricted to the number of allowed cores.Defaults to 1.",
-										MarkdownDescription: "MaxParallelism specifies the maximum parallelism for queries on all Query nodes in the cluster.If the value is zero, negative, or larger than the number of allowed cored the maximum parallelismis restricted to the number of allowed cores.Defaults to 1.",
+										Description:         "MaxParallelism specifies the maximum parallelism for queries on all Query nodes in the cluster. If the value is zero, negative, or larger than the number of allowed cored the maximum parallelism is restricted to the number of allowed cores. Defaults to 1.",
+										MarkdownDescription: "MaxParallelism specifies the maximum parallelism for queries on all Query nodes in the cluster. If the value is zero, negative, or larger than the number of allowed cored the maximum parallelism is restricted to the number of allowed cores. Defaults to 1.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"memory_quota": schema.StringAttribute{
-										Description:         "MemoryQuota specifies the maximum amount of memory a request may use on any Query node in the cluster.This parameter enforces a ceiling on the memory used for the tracked documents required for processinga request. It does not take into account any other memory that might be used to process a request,such as the stack, the operators, or some intermediate values.Defaults to 0.",
-										MarkdownDescription: "MemoryQuota specifies the maximum amount of memory a request may use on any Query node in the cluster.This parameter enforces a ceiling on the memory used for the tracked documents required for processinga request. It does not take into account any other memory that might be used to process a request,such as the stack, the operators, or some intermediate values.Defaults to 0.",
+										Description:         "MemoryQuota specifies the maximum amount of memory a request may use on any Query node in the cluster. This parameter enforces a ceiling on the memory used for the tracked documents required for processing a request. It does not take into account any other memory that might be used to process a request, such as the stack, the operators, or some intermediate values. Defaults to 0.",
+										MarkdownDescription: "MemoryQuota specifies the maximum amount of memory a request may use on any Query node in the cluster. This parameter enforces a ceiling on the memory used for the tracked documents required for processing a request. It does not take into account any other memory that might be used to process a request, such as the stack, the operators, or some intermediate values. Defaults to 0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1832,8 +1832,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"node_quota_val_percent": schema.Int64Attribute{
-										Description:         "NodeQuotaValPercent sets the  percentage of the 'useReplica' that is dedicated to trackedvalue content memory across all active requests for every Query node in the cluster.This field is only supported on CB versions 7.6.0+.Defaults to 67.",
-										MarkdownDescription: "NodeQuotaValPercent sets the  percentage of the 'useReplica' that is dedicated to trackedvalue content memory across all active requests for every Query node in the cluster.This field is only supported on CB versions 7.6.0+.Defaults to 67.",
+										Description:         "NodeQuotaValPercent sets the percentage of the 'useReplica' that is dedicated to tracked value content memory across all active requests for every Query node in the cluster. This field is only supported on CB versions 7.6.0+. Defaults to 67.",
+										MarkdownDescription: "NodeQuotaValPercent sets the percentage of the 'useReplica' that is dedicated to tracked value content memory across all active requests for every Query node in the cluster. This field is only supported on CB versions 7.6.0+. Defaults to 67.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -1844,8 +1844,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"num_active_transaction_records": schema.Int64Attribute{
-										Description:         "NumActiveTransactionRecords specifies the total number of active transaction records forall Query nodes in the cluster.Default to 1024 and has a minimum of 1.",
-										MarkdownDescription: "NumActiveTransactionRecords specifies the total number of active transaction records forall Query nodes in the cluster.Default to 1024 and has a minimum of 1.",
+										Description:         "NumActiveTransactionRecords specifies the total number of active transaction records for all Query nodes in the cluster. Default to 1024 and has a minimum of 1.",
+										MarkdownDescription: "NumActiveTransactionRecords specifies the total number of active transaction records for all Query nodes in the cluster. Default to 1024 and has a minimum of 1.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -1855,8 +1855,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"num_cpus": schema.Int64Attribute{
-										Description:         "NumCpus is the number of CPUs the Query service can use on any Query node in the cluster.When set to 0 (the default), the Query service can use all available CPUs, up to the limits described below.The number of CPUs can never be greater than the number of logical CPUs.In Community Edition, the number of allowed CPUs cannot be greater than 4.In Enterprise Edition, there is no limit to the number of allowed CPUs.This field is only supported on CB versions 7.6.0+.NOTE: This change requires a restart of the Query service to take effect which can be done by reschedulingnodes that are running the query service.Defaults to 0",
-										MarkdownDescription: "NumCpus is the number of CPUs the Query service can use on any Query node in the cluster.When set to 0 (the default), the Query service can use all available CPUs, up to the limits described below.The number of CPUs can never be greater than the number of logical CPUs.In Community Edition, the number of allowed CPUs cannot be greater than 4.In Enterprise Edition, there is no limit to the number of allowed CPUs.This field is only supported on CB versions 7.6.0+.NOTE: This change requires a restart of the Query service to take effect which can be done by reschedulingnodes that are running the query service.Defaults to 0",
+										Description:         "NumCpus is the number of CPUs the Query service can use on any Query node in the cluster. When set to 0 (the default), the Query service can use all available CPUs, up to the limits described below. The number of CPUs can never be greater than the number of logical CPUs. In Community Edition, the number of allowed CPUs cannot be greater than 4. In Enterprise Edition, there is no limit to the number of allowed CPUs. This field is only supported on CB versions 7.6.0+. NOTE: This change requires a restart of the Query service to take effect which can be done by rescheduling nodes that are running the query service. Defaults to 0",
+										MarkdownDescription: "NumCpus is the number of CPUs the Query service can use on any Query node in the cluster. When set to 0 (the default), the Query service can use all available CPUs, up to the limits described below. The number of CPUs can never be greater than the number of logical CPUs. In Community Edition, the number of allowed CPUs cannot be greater than 4. In Enterprise Edition, there is no limit to the number of allowed CPUs. This field is only supported on CB versions 7.6.0+. NOTE: This change requires a restart of the Query service to take effect which can be done by rescheduling nodes that are running the query service. Defaults to 0",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -1866,40 +1866,40 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"pipeline_batch": schema.Int64Attribute{
-										Description:         "PipelineBatch controls the number of items execution operators can batch forFetch from the KV. Defaults to 16.",
-										MarkdownDescription: "PipelineBatch controls the number of items execution operators can batch forFetch from the KV. Defaults to 16.",
+										Description:         "PipelineBatch controls the number of items execution operators can batch for Fetch from the KV. Defaults to 16.",
+										MarkdownDescription: "PipelineBatch controls the number of items execution operators can batch for Fetch from the KV. Defaults to 16.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"pipeline_cap": schema.Int64Attribute{
-										Description:         "PipelineCap controls the maximum number of items each executionoperator can buffer between various operators. Defaults to 512.",
-										MarkdownDescription: "PipelineCap controls the maximum number of items each executionoperator can buffer between various operators. Defaults to 512.",
+										Description:         "PipelineCap controls the maximum number of items each execution operator can buffer between various operators. Defaults to 512.",
+										MarkdownDescription: "PipelineCap controls the maximum number of items each execution operator can buffer between various operators. Defaults to 512.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"prepared_limit": schema.Int64Attribute{
-										Description:         "PreparedLimit is the maximum number of prepared statements in the cache.When this cache reaches the limit, the least recently used preparedstatements will be discarded as new prepared statements are created.",
-										MarkdownDescription: "PreparedLimit is the maximum number of prepared statements in the cache.When this cache reaches the limit, the least recently used preparedstatements will be discarded as new prepared statements are created.",
+										Description:         "PreparedLimit is the maximum number of prepared statements in the cache. When this cache reaches the limit, the least recently used prepared statements will be discarded as new prepared statements are created.",
+										MarkdownDescription: "PreparedLimit is the maximum number of prepared statements in the cache. When this cache reaches the limit, the least recently used prepared statements will be discarded as new prepared statements are created.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"scan_cap": schema.Int64Attribute{
-										Description:         "ScapCan sets the maximum buffered channel size between the indexer clientand the query service for index scans.Defaults to 512.",
-										MarkdownDescription: "ScapCan sets the maximum buffered channel size between the indexer clientand the query service for index scans.Defaults to 512.",
+										Description:         "ScapCan sets the maximum buffered channel size between the indexer client and the query service for index scans. Defaults to 512.",
+										MarkdownDescription: "ScapCan sets the maximum buffered channel size between the indexer client and the query service for index scans. Defaults to 512.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"temporary_space": schema.StringAttribute{
-										Description:         "TemporarySpace allows the temporary storage used by the queryservice backfill, per-pod, to be modified.  This field requires'backfillEnabled' to be set to true in order to have any effect.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-										MarkdownDescription: "TemporarySpace allows the temporary storage used by the queryservice backfill, per-pod, to be modified.  This field requires'backfillEnabled' to be set to true in order to have any effect.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+										Description:         "TemporarySpace allows the temporary storage used by the query service backfill, per-pod, to be modified. This field requires 'backfillEnabled' to be set to true in order to have any effect. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+										MarkdownDescription: "TemporarySpace allows the temporary storage used by the query service backfill, per-pod, to be modified. This field requires 'backfillEnabled' to be set to true in order to have any effect. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1909,32 +1909,32 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"temporary_space_unlimited": schema.BoolAttribute{
-										Description:         "TemporarySpaceUnlimited allows the temporary storage used bythe query service backfill, per-pod, to be unconstrained.  This fieldrequires 'backfillEnabled' to be set to true in order to have any effect.This field overrides 'temporarySpace'.",
-										MarkdownDescription: "TemporarySpaceUnlimited allows the temporary storage used bythe query service backfill, per-pod, to be unconstrained.  This fieldrequires 'backfillEnabled' to be set to true in order to have any effect.This field overrides 'temporarySpace'.",
+										Description:         "TemporarySpaceUnlimited allows the temporary storage used by the query service backfill, per-pod, to be unconstrained. This field requires 'backfillEnabled' to be set to true in order to have any effect. This field overrides 'temporarySpace'.",
+										MarkdownDescription: "TemporarySpaceUnlimited allows the temporary storage used by the query service backfill, per-pod, to be unconstrained. This field requires 'backfillEnabled' to be set to true in order to have any effect. This field overrides 'temporarySpace'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"timeout": schema.StringAttribute{
-										Description:         "Timeout is the maximum time to spend on the request before timing out.If this field is not set then there will be no timeout.",
-										MarkdownDescription: "Timeout is the maximum time to spend on the request before timing out.If this field is not set then there will be no timeout.",
+										Description:         "Timeout is the maximum time to spend on the request before timing out. If this field is not set then there will be no timeout.",
+										MarkdownDescription: "Timeout is the maximum time to spend on the request before timing out. If this field is not set then there will be no timeout.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"tx_timeout": schema.StringAttribute{
-										Description:         "TxTimeout is the maximum time to spend on a transaction before timing out. This settingonly applies to requests containing the BEGIN TRANSACTION statement, or to requests wherethe tximplicit parameter is set. For all other requests, it is ignored.Defaults to 0ms (no timeout).",
-										MarkdownDescription: "TxTimeout is the maximum time to spend on a transaction before timing out. This settingonly applies to requests containing the BEGIN TRANSACTION statement, or to requests wherethe tximplicit parameter is set. For all other requests, it is ignored.Defaults to 0ms (no timeout).",
+										Description:         "TxTimeout is the maximum time to spend on a transaction before timing out. This setting only applies to requests containing the BEGIN TRANSACTION statement, or to requests where the tximplicit parameter is set. For all other requests, it is ignored. Defaults to 0ms (no timeout).",
+										MarkdownDescription: "TxTimeout is the maximum time to spend on a transaction before timing out. This setting only applies to requests containing the BEGIN TRANSACTION statement, or to requests where the tximplicit parameter is set. For all other requests, it is ignored. Defaults to 0ms (no timeout).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"use_replica": schema.BoolAttribute{
-										Description:         "UseReplica specifies whether a query can fetch data from a replica vBucket if active vBucketsare inaccessible. If set to true then read from replica is enabled for all queries, but canbe disabled at request level. If set to false read from replica is disabled for all queriesand cannot be overridden at request level. If this field is unset then it is enabled/disabledat the request level.This field is only supported on CB versions 7.6.0+.",
-										MarkdownDescription: "UseReplica specifies whether a query can fetch data from a replica vBucket if active vBucketsare inaccessible. If set to true then read from replica is enabled for all queries, but canbe disabled at request level. If set to false read from replica is disabled for all queriesand cannot be overridden at request level. If this field is unset then it is enabled/disabledat the request level.This field is only supported on CB versions 7.6.0+.",
+										Description:         "UseReplica specifies whether a query can fetch data from a replica vBucket if active vBuckets are inaccessible. If set to true then read from replica is enabled for all queries, but can be disabled at request level. If set to false read from replica is disabled for all queries and cannot be overridden at request level. If this field is unset then it is enabled/disabled at the request level. This field is only supported on CB versions 7.6.0+.",
+										MarkdownDescription: "UseReplica specifies whether a query can fetch data from a replica vBucket if active vBuckets are inaccessible. If set to true then read from replica is enabled for all queries, but can be disabled at request level. If set to false read from replica is disabled for all queries and cannot be overridden at request level. If this field is unset then it is enabled/disabled at the request level. This field is only supported on CB versions 7.6.0+.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1946,8 +1946,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"query_service_memory_quota": schema.StringAttribute{
-								Description:         "QueryServiceMemQuota is used when the spec.autoResourceAllocation feature is enabled,and is used to define the amount of memory reserved by the query service for use withKubernetes resource scheduling. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetesIn CB Server 7.6.0+ QueryServiceMemQuota also sets a soft memory limit for every Query node in the cluster.The garbage collector tries to keep below this target. It is not a hard, absolute limit, and memoryusage may exceed this value.",
-								MarkdownDescription: "QueryServiceMemQuota is used when the spec.autoResourceAllocation feature is enabled,and is used to define the amount of memory reserved by the query service for use withKubernetes resource scheduling. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetesIn CB Server 7.6.0+ QueryServiceMemQuota also sets a soft memory limit for every Query node in the cluster.The garbage collector tries to keep below this target. It is not a hard, absolute limit, and memoryusage may exceed this value.",
+								Description:         "QueryServiceMemQuota is used when the spec.autoResourceAllocation feature is enabled, and is used to define the amount of memory reserved by the query service for use with Kubernetes resource scheduling. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes In CB Server 7.6.0+ QueryServiceMemQuota also sets a soft memory limit for every Query node in the cluster. The garbage collector tries to keep below this target. It is not a hard, absolute limit, and memory usage may exceed this value.",
+								MarkdownDescription: "QueryServiceMemQuota is used when the spec.autoResourceAllocation feature is enabled, and is used to define the amount of memory reserved by the query service for use with Kubernetes resource scheduling. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes In CB Server 7.6.0+ QueryServiceMemQuota also sets a soft memory limit for every Query node in the cluster. The garbage collector tries to keep below this target. It is not a hard, absolute limit, and memory usage may exceed this value.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1957,8 +1957,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"search_service_memory_quota": schema.StringAttribute{
-								Description:         "SearchServiceMemQuota is the amount of memory that should be allocated to the search service.This value is per-pod, and only applicable to pods belonging to server classes runningthe search service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-								MarkdownDescription: "SearchServiceMemQuota is the amount of memory that should be allocated to the search service.This value is per-pod, and only applicable to pods belonging to server classes runningthe search service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								Description:         "SearchServiceMemQuota is the amount of memory that should be allocated to the search service. This value is per-pod, and only applicable to pods belonging to server classes running the search service. This field must be a quantity greater than or equal to 256Mi. This field defaults to 256Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								MarkdownDescription: "SearchServiceMemQuota is the amount of memory that should be allocated to the search service. This value is per-pod, and only applicable to pods belonging to server classes running the search service. This field must be a quantity greater than or equal to 256Mi. This field defaults to 256Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1973,24 +1973,24 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"enable_online_volume_expansion": schema.BoolAttribute{
-						Description:         "EnableOnlineVolumeExpansion enables online expansion of Persistent Volumes.You can only expand a PVC if its storage class's 'allowVolumeExpansion' field is set to true.Additionally, Kubernetes feature 'ExpandInUsePersistentVolumes' must be enabled in order toexpand the volumes which are actively bound to Pods.Volumes can only be expanded and not reduced to a smaller size.See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#resizing-an-in-use-persistentvolumeclaimIf 'EnableOnlineVolumeExpansion' is enabled for use within an environment that doesnot actually support online volume and file system expansion then the cluster will fallback torolling upgrade procedure to create a new set of Pods for use with resized Volumes.More info:  https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims",
-						MarkdownDescription: "EnableOnlineVolumeExpansion enables online expansion of Persistent Volumes.You can only expand a PVC if its storage class's 'allowVolumeExpansion' field is set to true.Additionally, Kubernetes feature 'ExpandInUsePersistentVolumes' must be enabled in order toexpand the volumes which are actively bound to Pods.Volumes can only be expanded and not reduced to a smaller size.See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#resizing-an-in-use-persistentvolumeclaimIf 'EnableOnlineVolumeExpansion' is enabled for use within an environment that doesnot actually support online volume and file system expansion then the cluster will fallback torolling upgrade procedure to create a new set of Pods for use with resized Volumes.More info:  https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims",
+						Description:         "EnableOnlineVolumeExpansion enables online expansion of Persistent Volumes. You can only expand a PVC if its storage class's 'allowVolumeExpansion' field is set to true. Additionally, Kubernetes feature 'ExpandInUsePersistentVolumes' must be enabled in order to expand the volumes which are actively bound to Pods. Volumes can only be expanded and not reduced to a smaller size. See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#resizing-an-in-use-persistentvolumeclaim If 'EnableOnlineVolumeExpansion' is enabled for use within an environment that does not actually support online volume and file system expansion then the cluster will fallback to rolling upgrade procedure to create a new set of Pods for use with resized Volumes. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims",
+						MarkdownDescription: "EnableOnlineVolumeExpansion enables online expansion of Persistent Volumes. You can only expand a PVC if its storage class's 'allowVolumeExpansion' field is set to true. Additionally, Kubernetes feature 'ExpandInUsePersistentVolumes' must be enabled in order to expand the volumes which are actively bound to Pods. Volumes can only be expanded and not reduced to a smaller size. See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#resizing-an-in-use-persistentvolumeclaim If 'EnableOnlineVolumeExpansion' is enabled for use within an environment that does not actually support online volume and file system expansion then the cluster will fallback to rolling upgrade procedure to create a new set of Pods for use with resized Volumes. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"enable_preview_scaling": schema.BoolAttribute{
-						Description:         "DEPRECATED - This option only exists for backwards compatibility and no longerrestricts autoscaling to ephemeral services.EnablePreviewScaling enables autoscaling for stateful services and buckets.",
-						MarkdownDescription: "DEPRECATED - This option only exists for backwards compatibility and no longerrestricts autoscaling to ephemeral services.EnablePreviewScaling enables autoscaling for stateful services and buckets.",
+						Description:         "DEPRECATED - This option only exists for backwards compatibility and no longer restricts autoscaling to ephemeral services. EnablePreviewScaling enables autoscaling for stateful services and buckets.",
+						MarkdownDescription: "DEPRECATED - This option only exists for backwards compatibility and no longer restricts autoscaling to ephemeral services. EnablePreviewScaling enables autoscaling for stateful services and buckets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"env_image_precedence": schema.BoolAttribute{
-						Description:         "EnvImagePrecedence gives precedence over the default container image name in'spec.Image' to an image name provided through Operator environment variables.For more info on using Operator environment variables:https://docs.couchbase.com/operator/current/reference-operator-configuration.html",
-						MarkdownDescription: "EnvImagePrecedence gives precedence over the default container image name in'spec.Image' to an image name provided through Operator environment variables.For more info on using Operator environment variables:https://docs.couchbase.com/operator/current/reference-operator-configuration.html",
+						Description:         "EnvImagePrecedence gives precedence over the default container image name in 'spec.Image' to an image name provided through Operator environment variables. For more info on using Operator environment variables: https://docs.couchbase.com/operator/current/reference-operator-configuration.html",
+						MarkdownDescription: "EnvImagePrecedence gives precedence over the default container image name in 'spec.Image' to an image name provided through Operator environment variables. For more info on using Operator environment variables: https://docs.couchbase.com/operator/current/reference-operator-configuration.html",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2005,8 +2005,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"hibernation_strategy": schema.StringAttribute{
-						Description:         "HibernationStrategy defines how to hibernate the cluster.  When Immediatethe Operator will immediately delete all pods and take no further action untilthe hibernate field is set to false.",
-						MarkdownDescription: "HibernationStrategy defines how to hibernate the cluster.  When Immediatethe Operator will immediately delete all pods and take no further action untilthe hibernate field is set to false.",
+						Description:         "HibernationStrategy defines how to hibernate the cluster. When Immediate the Operator will immediately delete all pods and take no further action until the hibernate field is set to false.",
+						MarkdownDescription: "HibernationStrategy defines how to hibernate the cluster. When Immediate the Operator will immediately delete all pods and take no further action until the hibernate field is set to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2016,8 +2016,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"image": schema.StringAttribute{
-						Description:         "Image is the container image name that will be used to launch Couchbaseserver instances.  Updating this field will cause an automatic upgrade ofthe cluster. Explicitly specifying the image for a server class will overridethis value for the server class.",
-						MarkdownDescription: "Image is the container image name that will be used to launch Couchbaseserver instances.  Updating this field will cause an automatic upgrade ofthe cluster. Explicitly specifying the image for a server class will overridethis value for the server class.",
+						Description:         "Image is the container image name that will be used to launch Couchbase server instances. Updating this field will cause an automatic upgrade of the cluster. Explicitly specifying the image for a server class will override this value for the server class.",
+						MarkdownDescription: "Image is the container image name that will be used to launch Couchbase server instances. Updating this field will cause an automatic upgrade of the cluster. Explicitly specifying the image for a server class will override this value for the server class.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -2035,8 +2035,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "Used to manage the audit configuration directly",
 								Attributes: map[string]schema.Attribute{
 									"disabled_events": schema.ListAttribute{
-										Description:         "The list of event ids to disable for auditing purposes.This is passed to the REST API with no verification by the operator.Refer to the documentation for details:https://docs.couchbase.com/server/current/audit-event-reference/audit-event-reference.html",
-										MarkdownDescription: "The list of event ids to disable for auditing purposes.This is passed to the REST API with no verification by the operator.Refer to the documentation for details:https://docs.couchbase.com/server/current/audit-event-reference/audit-event-reference.html",
+										Description:         "The list of event ids to disable for auditing purposes. This is passed to the REST API with no verification by the operator. Refer to the documentation for details: https://docs.couchbase.com/server/current/audit-event-reference/audit-event-reference.html",
+										MarkdownDescription: "The list of event ids to disable for auditing purposes. This is passed to the REST API with no verification by the operator. Refer to the documentation for details: https://docs.couchbase.com/server/current/audit-event-reference/audit-event-reference.html",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2044,8 +2044,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"disabled_users": schema.ListAttribute{
-										Description:         "The list of users to ignore for auditing purposes.This is passed to the REST API with minimal validation it meets an acceptable regex pattern.Refer to the documentation for full details on how to configure this:https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html#ignoring-events-by-user",
-										MarkdownDescription: "The list of users to ignore for auditing purposes.This is passed to the REST API with minimal validation it meets an acceptable regex pattern.Refer to the documentation for full details on how to configure this:https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html#ignoring-events-by-user",
+										Description:         "The list of users to ignore for auditing purposes. This is passed to the REST API with minimal validation it meets an acceptable regex pattern. Refer to the documentation for full details on how to configure this: https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html#ignoring-events-by-user",
+										MarkdownDescription: "The list of users to ignore for auditing purposes. This is passed to the REST API with minimal validation it meets an acceptable regex pattern. Refer to the documentation for full details on how to configure this: https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html#ignoring-events-by-user",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2061,12 +2061,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"garbage_collection": schema.SingleNestedAttribute{
-										Description:         "Handle all optional garbage collection (GC) configuration for the audit functionality.This is not part of the audit REST API, it is intended to handle GC automatically for the audit logs.By default the Couchbase Server rotates the audit logs but does not clean up the rotated logs.This is left as an operation for the cluster administrator to manage, the operator allows for us to automate this:https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html",
-										MarkdownDescription: "Handle all optional garbage collection (GC) configuration for the audit functionality.This is not part of the audit REST API, it is intended to handle GC automatically for the audit logs.By default the Couchbase Server rotates the audit logs but does not clean up the rotated logs.This is left as an operation for the cluster administrator to manage, the operator allows for us to automate this:https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html",
+										Description:         "Handle all optional garbage collection (GC) configuration for the audit functionality. This is not part of the audit REST API, it is intended to handle GC automatically for the audit logs. By default the Couchbase Server rotates the audit logs but does not clean up the rotated logs. This is left as an operation for the cluster administrator to manage, the operator allows for us to automate this: https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html",
+										MarkdownDescription: "Handle all optional garbage collection (GC) configuration for the audit functionality. This is not part of the audit REST API, it is intended to handle GC automatically for the audit logs. By default the Couchbase Server rotates the audit logs but does not clean up the rotated logs. This is left as an operation for the cluster administrator to manage, the operator allows for us to automate this: https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html",
 										Attributes: map[string]schema.Attribute{
 											"sidecar": schema.SingleNestedAttribute{
-												Description:         "DEPRECATED - by spec.logging.audit.nativePruning for Couchbase Server 7.2.4+Provide the sidecar configuration required (if so desired) to automatically clean up audit logs.",
-												MarkdownDescription: "DEPRECATED - by spec.logging.audit.nativePruning for Couchbase Server 7.2.4+Provide the sidecar configuration required (if so desired) to automatically clean up audit logs.",
+												Description:         "DEPRECATED - by spec.logging.audit.nativePruning for Couchbase Server 7.2.4+ Provide the sidecar configuration required (if so desired) to automatically clean up audit logs.",
+												MarkdownDescription: "DEPRECATED - by spec.logging.audit.nativePruning for Couchbase Server 7.2.4+ Provide the sidecar configuration required (if so desired) to automatically clean up audit logs.",
 												Attributes: map[string]schema.Attribute{
 													"age": schema.StringAttribute{
 														Description:         "The minimum age of rotated log files to remove, defaults to one hour.",
@@ -2085,8 +2085,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 													},
 
 													"image": schema.StringAttribute{
-														Description:         "Image is the image to be used to run the audit sidecar helper.No validation is carried out as this can be any arbitrary repo and tag.",
-														MarkdownDescription: "Image is the image to be used to run the audit sidecar helper.No validation is carried out as this can be any arbitrary repo and tag.",
+														Description:         "Image is the image to be used to run the audit sidecar helper. No validation is carried out as this can be any arbitrary repo and tag.",
+														MarkdownDescription: "Image is the image to be used to run the audit sidecar helper. No validation is carried out as this can be any arbitrary repo and tag.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2101,17 +2101,17 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 													},
 
 													"resources": schema.SingleNestedAttribute{
-														Description:         "Resources is the resource requirements for the cleanup container.Will be populated by Kubernetes defaults if not specified.",
-														MarkdownDescription: "Resources is the resource requirements for the cleanup container.Will be populated by Kubernetes defaults if not specified.",
+														Description:         "Resources is the resource requirements for the cleanup container. Will be populated by Kubernetes defaults if not specified.",
+														MarkdownDescription: "Resources is the resource requirements for the cleanup container. Will be populated by Kubernetes defaults if not specified.",
 														Attributes: map[string]schema.Attribute{
 															"claims": schema.ListNestedAttribute{
-																Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-																MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																			MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																			Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																			MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -2124,8 +2124,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 															},
 
 															"limits": schema.MapAttribute{
-																Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2133,8 +2133,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 															},
 
 															"requests": schema.MapAttribute{
-																Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2157,8 +2157,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"rotation": schema.SingleNestedAttribute{
-										Description:         "The interval to optionally rotate the audit log.This is passed to the REST API, see here for details:https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html",
-										MarkdownDescription: "The interval to optionally rotate the audit log.This is passed to the REST API, see here for details:https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html",
+										Description:         "The interval to optionally rotate the audit log. This is passed to the REST API, see here for details: https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html",
+										MarkdownDescription: "The interval to optionally rotate the audit log. This is passed to the REST API, see here for details: https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html",
 										Attributes: map[string]schema.Attribute{
 											"interval": schema.StringAttribute{
 												Description:         "The interval at which to rotate log files, defaults to 15 minutes.",
@@ -2169,16 +2169,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"prune_age": schema.StringAttribute{
-												Description:         "How long Couchbase Server keeps rotated audit logs.If set to 0 (the default) then audit logs won't be pruned.Has a maximum of 35791394 seconds.",
-												MarkdownDescription: "How long Couchbase Server keeps rotated audit logs.If set to 0 (the default) then audit logs won't be pruned.Has a maximum of 35791394 seconds.",
+												Description:         "How long Couchbase Server keeps rotated audit logs. If set to 0 (the default) then audit logs won't be pruned. Has a maximum of 35791394 seconds.",
+												MarkdownDescription: "How long Couchbase Server keeps rotated audit logs. If set to 0 (the default) then audit logs won't be pruned. Has a maximum of 35791394 seconds.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"size": schema.StringAttribute{
-												Description:         "Size allows the specification of a rotation size for the log, defaults to 20Mi.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-												MarkdownDescription: "Size allows the specification of a rotation size for the log, defaults to 20Mi.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+												Description:         "Size allows the specification of a rotation size for the log, defaults to 20Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+												MarkdownDescription: "Size allows the specification of a rotation size for the log, defaults to 20Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2224,8 +2224,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "Specification of all logging configuration required to manage the sidecar containers in each pod.",
 								Attributes: map[string]schema.Attribute{
 									"configuration_name": schema.StringAttribute{
-										Description:         "ConfigurationName is the name of the Secret to use holding the logging configuration in the namespace.A Secret is used to ensure we can safely store credentials but this can be populated from plaintext if acceptable too.If it does not exist then one will be created with defaults in the namespace so it can be easily updated whilst running.Note that if running multiple clusters in the same kubernetes namespace then you should use a separate Secret for each,otherwise the first cluster will take ownership (if created) and the Secret will be cleaned up when that cluster isremoved. If running clusters in separate namespaces then they will be separate Secrets anyway.",
-										MarkdownDescription: "ConfigurationName is the name of the Secret to use holding the logging configuration in the namespace.A Secret is used to ensure we can safely store credentials but this can be populated from plaintext if acceptable too.If it does not exist then one will be created with defaults in the namespace so it can be easily updated whilst running.Note that if running multiple clusters in the same kubernetes namespace then you should use a separate Secret for each,otherwise the first cluster will take ownership (if created) and the Secret will be cleaned up when that cluster isremoved. If running clusters in separate namespaces then they will be separate Secrets anyway.",
+										Description:         "ConfigurationName is the name of the Secret to use holding the logging configuration in the namespace. A Secret is used to ensure we can safely store credentials but this can be populated from plaintext if acceptable too. If it does not exist then one will be created with defaults in the namespace so it can be easily updated whilst running. Note that if running multiple clusters in the same kubernetes namespace then you should use a separate Secret for each, otherwise the first cluster will take ownership (if created) and the Secret will be cleaned up when that cluster is removed. If running clusters in separate namespaces then they will be separate Secrets anyway.",
+										MarkdownDescription: "ConfigurationName is the name of the Secret to use holding the logging configuration in the namespace. A Secret is used to ensure we can safely store credentials but this can be populated from plaintext if acceptable too. If it does not exist then one will be created with defaults in the namespace so it can be easily updated whilst running. Note that if running multiple clusters in the same kubernetes namespace then you should use a separate Secret for each, otherwise the first cluster will take ownership (if created) and the Secret will be cleaned up when that cluster is removed. If running clusters in separate namespaces then they will be separate Secrets anyway.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2240,8 +2240,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"manage_configuration": schema.BoolAttribute{
-										Description:         "A boolean which indicates whether the operator should manage the configuration or not.If omitted then this defaults to true which means the operator will attempt to reconcile it to default values.To use a custom configuration make sure to set this to false.Note that the ownership of any Secret is not changed so if a Secret is created externally it can be updated bythe operator but it's ownership stays the same so it will be cleaned up when it's owner is.",
-										MarkdownDescription: "A boolean which indicates whether the operator should manage the configuration or not.If omitted then this defaults to true which means the operator will attempt to reconcile it to default values.To use a custom configuration make sure to set this to false.Note that the ownership of any Secret is not changed so if a Secret is created externally it can be updated bythe operator but it's ownership stays the same so it will be cleaned up when it's owner is.",
+										Description:         "A boolean which indicates whether the operator should manage the configuration or not. If omitted then this defaults to true which means the operator will attempt to reconcile it to default values. To use a custom configuration make sure to set this to false. Note that the ownership of any Secret is not changed so if a Secret is created externally it can be updated by the operator but it's ownership stays the same so it will be cleaned up when it's owner is.",
+										MarkdownDescription: "A boolean which indicates whether the operator should manage the configuration or not. If omitted then this defaults to true which means the operator will attempt to reconcile it to default values. To use a custom configuration make sure to set this to false. Note that the ownership of any Secret is not changed so if a Secret is created externally it can be updated by the operator but it's ownership stays the same so it will be cleaned up when it's owner is.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2252,33 +2252,33 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										MarkdownDescription: "Any specific logging sidecar container configuration.",
 										Attributes: map[string]schema.Attribute{
 											"configuration_mount_path": schema.StringAttribute{
-												Description:         "ConfigurationMountPath is the location to mount the ConfigurationName Secret into the image.If another log shipping image is used that needs a different mount then modify this.Note that the configuration file must be called 'fluent-bit.conf' at the root of this path,there is no provision for overriding the name of the config file passed as theCOUCHBASE_LOGS_CONFIG_FILE environment variable.",
-												MarkdownDescription: "ConfigurationMountPath is the location to mount the ConfigurationName Secret into the image.If another log shipping image is used that needs a different mount then modify this.Note that the configuration file must be called 'fluent-bit.conf' at the root of this path,there is no provision for overriding the name of the config file passed as theCOUCHBASE_LOGS_CONFIG_FILE environment variable.",
+												Description:         "ConfigurationMountPath is the location to mount the ConfigurationName Secret into the image. If another log shipping image is used that needs a different mount then modify this. Note that the configuration file must be called 'fluent-bit.conf' at the root of this path, there is no provision for overriding the name of the config file passed as the COUCHBASE_LOGS_CONFIG_FILE environment variable.",
+												MarkdownDescription: "ConfigurationMountPath is the location to mount the ConfigurationName Secret into the image. If another log shipping image is used that needs a different mount then modify this. Note that the configuration file must be called 'fluent-bit.conf' at the root of this path, there is no provision for overriding the name of the config file passed as the COUCHBASE_LOGS_CONFIG_FILE environment variable.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Image is the image to be used to deal with logging as a sidecar.No validation is carried out as this can be any arbitrary repo and tag.It will default to the latest supported version of Fluent Bit.",
-												MarkdownDescription: "Image is the image to be used to deal with logging as a sidecar.No validation is carried out as this can be any arbitrary repo and tag.It will default to the latest supported version of Fluent Bit.",
+												Description:         "Image is the image to be used to deal with logging as a sidecar. No validation is carried out as this can be any arbitrary repo and tag. It will default to the latest supported version of Fluent Bit.",
+												MarkdownDescription: "Image is the image to be used to deal with logging as a sidecar. No validation is carried out as this can be any arbitrary repo and tag. It will default to the latest supported version of Fluent Bit.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"resources": schema.SingleNestedAttribute{
-												Description:         "Resources is the resource requirements for the sidecar container.Will be populated by Kubernetes defaults if not specified.",
-												MarkdownDescription: "Resources is the resource requirements for the sidecar container.Will be populated by Kubernetes defaults if not specified.",
+												Description:         "Resources is the resource requirements for the sidecar container. Will be populated by Kubernetes defaults if not specified.",
+												MarkdownDescription: "Resources is the resource requirements for the sidecar container. Will be populated by Kubernetes defaults if not specified.",
 												Attributes: map[string]schema.Attribute{
 													"claims": schema.ListNestedAttribute{
-														Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-														MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+														Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+														MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																	MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																	Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																	MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -2291,8 +2291,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 													},
 
 													"limits": schema.MapAttribute{
-														Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -2300,8 +2300,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 													},
 
 													"requests": schema.MapAttribute{
-														Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-														MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -2329,40 +2329,40 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"monitoring": schema.SingleNestedAttribute{
-						Description:         "DEPRECATED - By Couchbase Server metrics endpoint on version 7.0+Monitoring defines any Operator managed integration into 3rd party monitoringinfrastructure.",
-						MarkdownDescription: "DEPRECATED - By Couchbase Server metrics endpoint on version 7.0+Monitoring defines any Operator managed integration into 3rd party monitoringinfrastructure.",
+						Description:         "DEPRECATED - By Couchbase Server metrics endpoint on version 7.0+ Monitoring defines any Operator managed integration into 3rd party monitoring infrastructure.",
+						MarkdownDescription: "DEPRECATED - By Couchbase Server metrics endpoint on version 7.0+ Monitoring defines any Operator managed integration into 3rd party monitoring infrastructure.",
 						Attributes: map[string]schema.Attribute{
 							"prometheus": schema.SingleNestedAttribute{
-								Description:         "DEPRECATED - By Couchbase Server metrics endpoint on version 7.0+Prometheus provides integration with Prometheus monitoring.",
-								MarkdownDescription: "DEPRECATED - By Couchbase Server metrics endpoint on version 7.0+Prometheus provides integration with Prometheus monitoring.",
+								Description:         "DEPRECATED - By Couchbase Server metrics endpoint on version 7.0+ Prometheus provides integration with Prometheus monitoring.",
+								MarkdownDescription: "DEPRECATED - By Couchbase Server metrics endpoint on version 7.0+ Prometheus provides integration with Prometheus monitoring.",
 								Attributes: map[string]schema.Attribute{
 									"authorization_secret": schema.StringAttribute{
-										Description:         "AuthorizationSecret is the name of a Kubernetes secret that contains abearer token to authorize GET requests to the metrics endpoint",
-										MarkdownDescription: "AuthorizationSecret is the name of a Kubernetes secret that contains abearer token to authorize GET requests to the metrics endpoint",
+										Description:         "AuthorizationSecret is the name of a Kubernetes secret that contains a bearer token to authorize GET requests to the metrics endpoint",
+										MarkdownDescription: "AuthorizationSecret is the name of a Kubernetes secret that contains a bearer token to authorize GET requests to the metrics endpoint",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"enabled": schema.BoolAttribute{
-										Description:         "Enabled is a boolean that enables/disables the metrics sidecar container.This must be set to true, when image is provided.",
-										MarkdownDescription: "Enabled is a boolean that enables/disables the metrics sidecar container.This must be set to true, when image is provided.",
+										Description:         "Enabled is a boolean that enables/disables the metrics sidecar container. This must be set to true, when image is provided.",
+										MarkdownDescription: "Enabled is a boolean that enables/disables the metrics sidecar container. This must be set to true, when image is provided.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"image": schema.StringAttribute{
-										Description:         "Image is the metrics image to be used to collect metrics.No validation is carried out as this can be any arbitrary repo and tag.enabled must be set to true, when image is provided.",
-										MarkdownDescription: "Image is the metrics image to be used to collect metrics.No validation is carried out as this can be any arbitrary repo and tag.enabled must be set to true, when image is provided.",
+										Description:         "Image is the metrics image to be used to collect metrics. No validation is carried out as this can be any arbitrary repo and tag. enabled must be set to true, when image is provided.",
+										MarkdownDescription: "Image is the metrics image to be used to collect metrics. No validation is carried out as this can be any arbitrary repo and tag. enabled must be set to true, when image is provided.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"refresh_rate": schema.Int64Attribute{
-										Description:         "RefreshRate is the frequency in which cached statistics are updated in seconds.Shorter intervals will add additional resource overhead to clusters running Couchbase Server 7.0+Default is 60 seconds, Maximum value is 600 seconds, and minimum value is 1 second.",
-										MarkdownDescription: "RefreshRate is the frequency in which cached statistics are updated in seconds.Shorter intervals will add additional resource overhead to clusters running Couchbase Server 7.0+Default is 60 seconds, Maximum value is 600 seconds, and minimum value is 1 second.",
+										Description:         "RefreshRate is the frequency in which cached statistics are updated in seconds. Shorter intervals will add additional resource overhead to clusters running Couchbase Server 7.0+ Default is 60 seconds, Maximum value is 600 seconds, and minimum value is 1 second.",
+										MarkdownDescription: "RefreshRate is the frequency in which cached statistics are updated in seconds. Shorter intervals will add additional resource overhead to clusters running Couchbase Server 7.0+ Default is 60 seconds, Maximum value is 600 seconds, and minimum value is 1 second.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2373,17 +2373,17 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Resources is the resource requirements for the metrics container.Will be populated by Kubernetes defaults if not specified.",
-										MarkdownDescription: "Resources is the resource requirements for the metrics container.Will be populated by Kubernetes defaults if not specified.",
+										Description:         "Resources is the resource requirements for the metrics container. Will be populated by Kubernetes defaults if not specified.",
+										MarkdownDescription: "Resources is the resource requirements for the metrics container. Will be populated by Kubernetes defaults if not specified.",
 										Attributes: map[string]schema.Attribute{
 											"claims": schema.ListNestedAttribute{
-												Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2396,8 +2396,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"limits": schema.MapAttribute{
-												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2405,8 +2405,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2429,12 +2429,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"networking": schema.SingleNestedAttribute{
-						Description:         "Networking defines Couchbase cluster networking options such as networktopology, TLS and DDNS settings.",
-						MarkdownDescription: "Networking defines Couchbase cluster networking options such as networktopology, TLS and DDNS settings.",
+						Description:         "Networking defines Couchbase cluster networking options such as network topology, TLS and DDNS settings.",
+						MarkdownDescription: "Networking defines Couchbase cluster networking options such as network topology, TLS and DDNS settings.",
 						Attributes: map[string]schema.Attribute{
 							"address_family": schema.StringAttribute{
-								Description:         "AddressFamily allows the manual selection of the address family to use.When this field is not set, Couchbase server will default to using IPv4for internal communication and also support IPv6 on dual stack systems.Setting this field to either IPv4 or IPv6 will force Couchbase to use theselected protocol for internal communication, and also disable all otherprotocols to provide added security and simplicty when defining firewallrules.  Disabling of address families is only supported in CouchbaseServer 7.0.2+.",
-								MarkdownDescription: "AddressFamily allows the manual selection of the address family to use.When this field is not set, Couchbase server will default to using IPv4for internal communication and also support IPv6 on dual stack systems.Setting this field to either IPv4 or IPv6 will force Couchbase to use theselected protocol for internal communication, and also disable all otherprotocols to provide added security and simplicty when defining firewallrules.  Disabling of address families is only supported in CouchbaseServer 7.0.2+.",
+								Description:         "AddressFamily allows the manual selection of the address family to use. When this field is not set, Couchbase server will default to using IPv4 for internal communication and also support IPv6 on dual stack systems. Setting this field to either IPv4 or IPv6 will force Couchbase to use the selected protocol for internal communication, and also disable all other protocols to provide added security and simplicty when defining firewall rules. Disabling of address families is only supported in Couchbase Server 7.0.2+.",
+								MarkdownDescription: "AddressFamily allows the manual selection of the address family to use. When this field is not set, Couchbase server will default to using IPv4 for internal communication and also support IPv6 on dual stack systems. Setting this field to either IPv4 or IPv6 will force Couchbase to use the selected protocol for internal communication, and also disable all other protocols to provide added security and simplicty when defining firewall rules. Disabling of address families is only supported in Couchbase Server 7.0.2+.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2444,16 +2444,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"admin_console_service_template": schema.SingleNestedAttribute{
-								Description:         "AdminConsoleServiceTemplate provides a template used by the Operator to createand manage the admin console service.  This allows services to be annotated, theservice type defined and any other options that Kubernetes provides.  When usinga LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operatorreserves the right to modify or replace any field.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core",
-								MarkdownDescription: "AdminConsoleServiceTemplate provides a template used by the Operator to createand manage the admin console service.  This allows services to be annotated, theservice type defined and any other options that Kubernetes provides.  When usinga LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operatorreserves the right to modify or replace any field.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core",
+								Description:         "AdminConsoleServiceTemplate provides a template used by the Operator to create and manage the admin console service. This allows services to be annotated, the service type defined and any other options that Kubernetes provides. When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operator reserves the right to modify or replace any field. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core",
+								MarkdownDescription: "AdminConsoleServiceTemplate provides a template used by the Operator to create and manage the admin console service. This allows services to be annotated, the service type defined and any other options that Kubernetes provides. When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operator reserves the right to modify or replace any field. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core",
 								Attributes: map[string]schema.Attribute{
 									"metadata": schema.SingleNestedAttribute{
-										Description:         "Standard objects metadata.  This is a curated version for use with Couchbaseresource templates.",
-										MarkdownDescription: "Standard objects metadata.  This is a curated version for use with Couchbaseresource templates.",
+										Description:         "Standard objects metadata. This is a curated version for use with Couchbase resource templates.",
+										MarkdownDescription: "Standard objects metadata. This is a curated version for use with Couchbase resource templates.",
 										Attributes: map[string]schema.Attribute{
 											"annotations": schema.MapAttribute{
-												Description:         "Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations",
-												MarkdownDescription: "Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations",
+												Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+												MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2461,8 +2461,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"labels": schema.MapAttribute{
-												Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels",
-												MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels",
+												Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+												MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2479,24 +2479,24 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										MarkdownDescription: "ServiceSpec describes the attributes that a user creates on a service.",
 										Attributes: map[string]schema.Attribute{
 											"allocate_load_balancer_node_ports": schema.BoolAttribute{
-												Description:         "allocateLoadBalancerNodePorts defines if NodePorts will be automaticallyallocated for services with type LoadBalancer.  Default is 'true'. Itmay be set to 'false' if the cluster load-balancer does not rely onNodePorts.  If the caller requests specific NodePorts (by specifying avalue), those requests will be respected, regardless of this field.This field may only be set for services with type LoadBalancer and willbe cleared if the type is changed to any other type.",
-												MarkdownDescription: "allocateLoadBalancerNodePorts defines if NodePorts will be automaticallyallocated for services with type LoadBalancer.  Default is 'true'. Itmay be set to 'false' if the cluster load-balancer does not rely onNodePorts.  If the caller requests specific NodePorts (by specifying avalue), those requests will be respected, regardless of this field.This field may only be set for services with type LoadBalancer and willbe cleared if the type is changed to any other type.",
+												Description:         "allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer. Default is 'true'. It may be set to 'false' if the cluster load-balancer does not rely on NodePorts. If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type.",
+												MarkdownDescription: "allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer. Default is 'true'. It may be set to 'false' if the cluster load-balancer does not rely on NodePorts. If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"cluster_ip": schema.StringAttribute{
-												Description:         "clusterIP is the IP address of the service and is usually assignedrandomly. If an address is specified manually, is in-range (as persystem configuration), and is not in use, it will be allocated to theservice; otherwise creation of the service will fail. This field may notbe changed through updates unless the type field is also being changedto ExternalName (which requires this field to be blank) or the typefield is being changed from ExternalName (in which case this field mayoptionally be specified, as describe above).  Valid values are 'None',empty string (''), or a valid IP address. Setting this to 'None' makes a'headless service' (no virtual IP), which is useful when direct endpointconnections are preferred and proxying is not required.  Only applies totypes ClusterIP, NodePort, and LoadBalancer. If this field is specifiedwhen creating a Service of type ExternalName, creation will fail. Thisfield will be wiped when updating a Service to type ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
-												MarkdownDescription: "clusterIP is the IP address of the service and is usually assignedrandomly. If an address is specified manually, is in-range (as persystem configuration), and is not in use, it will be allocated to theservice; otherwise creation of the service will fail. This field may notbe changed through updates unless the type field is also being changedto ExternalName (which requires this field to be blank) or the typefield is being changed from ExternalName (in which case this field mayoptionally be specified, as describe above).  Valid values are 'None',empty string (''), or a valid IP address. Setting this to 'None' makes a'headless service' (no virtual IP), which is useful when direct endpointconnections are preferred and proxying is not required.  Only applies totypes ClusterIP, NodePort, and LoadBalancer. If this field is specifiedwhen creating a Service of type ExternalName, creation will fail. Thisfield will be wiped when updating a Service to type ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												Description:         "clusterIP is the IP address of the service and is usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be blank) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above). Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												MarkdownDescription: "clusterIP is the IP address of the service and is usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be blank) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above). Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"cluster_i_ps": schema.ListAttribute{
-												Description:         "ClusterIPs is a list of IP addresses assigned to this service, and areusually assigned randomly.  If an address is specified manually, isin-range (as per system configuration), and is not in use, it will beallocated to the service; otherwise creation of the service will fail.This field may not be changed through updates unless the type field isalso being changed to ExternalName (which requires this field to beempty) or the type field is being changed from ExternalName (in whichcase this field may optionally be specified, as describe above).  Validvalues are 'None', empty string (''), or a valid IP address.  Settingthis to 'None' makes a 'headless service' (no virtual IP), which isuseful when direct endpoint connections are preferred and proxying isnot required.  Only applies to types ClusterIP, NodePort, andLoadBalancer. If this field is specified when creating a Service of typeExternalName, creation will fail. This field will be wiped when updatinga Service to type ExternalName.  If this field is not specified, it willbe initialized from the clusterIP field.  If this field is specified,clients must ensure that clusterIPs[0] and clusterIP have the samevalue.This field may hold a maximum of two entries (dual-stack IPs, in either order).These IPs must correspond to the values of the ipFamilies field. BothclusterIPs and ipFamilies are governed by the ipFamilyPolicy field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
-												MarkdownDescription: "ClusterIPs is a list of IP addresses assigned to this service, and areusually assigned randomly.  If an address is specified manually, isin-range (as per system configuration), and is not in use, it will beallocated to the service; otherwise creation of the service will fail.This field may not be changed through updates unless the type field isalso being changed to ExternalName (which requires this field to beempty) or the type field is being changed from ExternalName (in whichcase this field may optionally be specified, as describe above).  Validvalues are 'None', empty string (''), or a valid IP address.  Settingthis to 'None' makes a 'headless service' (no virtual IP), which isuseful when direct endpoint connections are preferred and proxying isnot required.  Only applies to types ClusterIP, NodePort, andLoadBalancer. If this field is specified when creating a Service of typeExternalName, creation will fail. This field will be wiped when updatinga Service to type ExternalName.  If this field is not specified, it willbe initialized from the clusterIP field.  If this field is specified,clients must ensure that clusterIPs[0] and clusterIP have the samevalue.This field may hold a maximum of two entries (dual-stack IPs, in either order).These IPs must correspond to the values of the ipFamilies field. BothclusterIPs and ipFamilies are governed by the ipFamilyPolicy field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												Description:         "ClusterIPs is a list of IP addresses assigned to this service, and are usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be empty) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above). Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. If this field is not specified, it will be initialized from the clusterIP field. If this field is specified, clients must ensure that clusterIPs[0] and clusterIP have the same value. This field may hold a maximum of two entries (dual-stack IPs, in either order). These IPs must correspond to the values of the ipFamilies field. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												MarkdownDescription: "ClusterIPs is a list of IP addresses assigned to this service, and are usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be empty) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above). Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. If this field is not specified, it will be initialized from the clusterIP field. If this field is specified, clients must ensure that clusterIPs[0] and clusterIP have the same value. This field may hold a maximum of two entries (dual-stack IPs, in either order). These IPs must correspond to the values of the ipFamilies field. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2504,8 +2504,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"external_i_ps": schema.ListAttribute{
-												Description:         "externalIPs is a list of IP addresses for which nodes in the clusterwill also accept traffic for this service.  These IPs are not managed byKubernetes.  The user is responsible for ensuring that traffic arrivesat a node with this IP.  A common example is external load-balancersthat are not part of the Kubernetes system.",
-												MarkdownDescription: "externalIPs is a list of IP addresses for which nodes in the clusterwill also accept traffic for this service.  These IPs are not managed byKubernetes.  The user is responsible for ensuring that traffic arrivesat a node with this IP.  A common example is external load-balancersthat are not part of the Kubernetes system.",
+												Description:         "externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service. These IPs are not managed by Kubernetes. The user is responsible for ensuring that traffic arrives at a node with this IP. A common example is external load-balancers that are not part of the Kubernetes system.",
+												MarkdownDescription: "externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service. These IPs are not managed by Kubernetes. The user is responsible for ensuring that traffic arrives at a node with this IP. A common example is external load-balancers that are not part of the Kubernetes system.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2513,40 +2513,40 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"external_name": schema.StringAttribute{
-												Description:         "externalName is the external reference that discovery mechanisms willreturn as an alias for this service (e.g. a DNS CNAME record). Noproxying will be involved.  Must be a lowercase RFC-1123 hostname(https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.",
-												MarkdownDescription: "externalName is the external reference that discovery mechanisms willreturn as an alias for this service (e.g. a DNS CNAME record). Noproxying will be involved.  Must be a lowercase RFC-1123 hostname(https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.",
+												Description:         "externalName is the external reference that discovery mechanisms will return as an alias for this service (e.g. a DNS CNAME record). No proxying will be involved. Must be a lowercase RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.",
+												MarkdownDescription: "externalName is the external reference that discovery mechanisms will return as an alias for this service (e.g. a DNS CNAME record). No proxying will be involved. Must be a lowercase RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"external_traffic_policy": schema.StringAttribute{
-												Description:         "externalTrafficPolicy describes how nodes distribute service traffic theyreceive on one of the Service's 'externally-facing' addresses (NodePorts,ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configurethe service in a way that assumes that external load balancers will take careof balancing the service traffic between nodes, and so each node will delivertraffic only to the node-local endpoints of the service, without masqueradingthe client source IP. (Traffic mistakenly sent to a node with no endpoints willbe dropped.) The default value, 'Cluster', uses the standard behavior ofrouting to all endpoints evenly (possibly modified by topology and otherfeatures). Note that traffic sent to an External IP or LoadBalancer IP fromwithin the cluster will always get 'Cluster' semantics, but clients sending toa NodePort from within the cluster may need to take traffic policy into accountwhen picking a node.",
-												MarkdownDescription: "externalTrafficPolicy describes how nodes distribute service traffic theyreceive on one of the Service's 'externally-facing' addresses (NodePorts,ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configurethe service in a way that assumes that external load balancers will take careof balancing the service traffic between nodes, and so each node will delivertraffic only to the node-local endpoints of the service, without masqueradingthe client source IP. (Traffic mistakenly sent to a node with no endpoints willbe dropped.) The default value, 'Cluster', uses the standard behavior ofrouting to all endpoints evenly (possibly modified by topology and otherfeatures). Note that traffic sent to an External IP or LoadBalancer IP fromwithin the cluster will always get 'Cluster' semantics, but clients sending toa NodePort from within the cluster may need to take traffic policy into accountwhen picking a node.",
+												Description:         "externalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service's 'externally-facing' addresses (NodePorts, ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configure the service in a way that assumes that external load balancers will take care of balancing the service traffic between nodes, and so each node will deliver traffic only to the node-local endpoints of the service, without masquerading the client source IP. (Traffic mistakenly sent to a node with no endpoints will be dropped.) The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features). Note that traffic sent to an External IP or LoadBalancer IP from within the cluster will always get 'Cluster' semantics, but clients sending to a NodePort from within the cluster may need to take traffic policy into account when picking a node.",
+												MarkdownDescription: "externalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service's 'externally-facing' addresses (NodePorts, ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configure the service in a way that assumes that external load balancers will take care of balancing the service traffic between nodes, and so each node will deliver traffic only to the node-local endpoints of the service, without masquerading the client source IP. (Traffic mistakenly sent to a node with no endpoints will be dropped.) The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features). Note that traffic sent to an External IP or LoadBalancer IP from within the cluster will always get 'Cluster' semantics, but clients sending to a NodePort from within the cluster may need to take traffic policy into account when picking a node.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"health_check_node_port": schema.Int64Attribute{
-												Description:         "healthCheckNodePort specifies the healthcheck nodePort for the service.This only applies when type is set to LoadBalancer andexternalTrafficPolicy is set to Local. If a value is specified, isin-range, and is not in use, it will be used.  If not specified, a valuewill be automatically allocated.  External systems (e.g. load-balancers)can use this port to determine if a given node holds endpoints for thisservice or not.  If this field is specified when creating a Servicewhich does not need it, creation will fail. This field will be wipedwhen updating a Service to no longer need it (e.g. changing type).This field cannot be updated once set.",
-												MarkdownDescription: "healthCheckNodePort specifies the healthcheck nodePort for the service.This only applies when type is set to LoadBalancer andexternalTrafficPolicy is set to Local. If a value is specified, isin-range, and is not in use, it will be used.  If not specified, a valuewill be automatically allocated.  External systems (e.g. load-balancers)can use this port to determine if a given node holds endpoints for thisservice or not.  If this field is specified when creating a Servicewhich does not need it, creation will fail. This field will be wipedwhen updating a Service to no longer need it (e.g. changing type).This field cannot be updated once set.",
+												Description:         "healthCheckNodePort specifies the healthcheck nodePort for the service. This only applies when type is set to LoadBalancer and externalTrafficPolicy is set to Local. If a value is specified, is in-range, and is not in use, it will be used. If not specified, a value will be automatically allocated. External systems (e.g. load-balancers) can use this port to determine if a given node holds endpoints for this service or not. If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type). This field cannot be updated once set.",
+												MarkdownDescription: "healthCheckNodePort specifies the healthcheck nodePort for the service. This only applies when type is set to LoadBalancer and externalTrafficPolicy is set to Local. If a value is specified, is in-range, and is not in use, it will be used. If not specified, a value will be automatically allocated. External systems (e.g. load-balancers) can use this port to determine if a given node holds endpoints for this service or not. If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type). This field cannot be updated once set.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"internal_traffic_policy": schema.StringAttribute{
-												Description:         "InternalTrafficPolicy describes how nodes distribute service traffic theyreceive on the ClusterIP. If set to 'Local', the proxy will assume that podsonly want to talk to endpoints of the service on the same node as the pod,dropping the traffic if there are no local endpoints. The default value,'Cluster', uses the standard behavior of routing to all endpoints evenly(possibly modified by topology and other features).",
-												MarkdownDescription: "InternalTrafficPolicy describes how nodes distribute service traffic theyreceive on the ClusterIP. If set to 'Local', the proxy will assume that podsonly want to talk to endpoints of the service on the same node as the pod,dropping the traffic if there are no local endpoints. The default value,'Cluster', uses the standard behavior of routing to all endpoints evenly(possibly modified by topology and other features).",
+												Description:         "InternalTrafficPolicy describes how nodes distribute service traffic they receive on the ClusterIP. If set to 'Local', the proxy will assume that pods only want to talk to endpoints of the service on the same node as the pod, dropping the traffic if there are no local endpoints. The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features).",
+												MarkdownDescription: "InternalTrafficPolicy describes how nodes distribute service traffic they receive on the ClusterIP. If set to 'Local', the proxy will assume that pods only want to talk to endpoints of the service on the same node as the pod, dropping the traffic if there are no local endpoints. The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features).",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"ip_families": schema.ListAttribute{
-												Description:         "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to thisservice. This field is usually assigned automatically based on clusterconfiguration and the ipFamilyPolicy field. If this field is specifiedmanually, the requested family is available in the cluster,and ipFamilyPolicy allows it, it will be used; otherwise creation ofthe service will fail. This field is conditionally mutable: it allowsfor adding or removing a secondary IP family, but it does not allowchanging the primary IP family of the Service. Valid values are 'IPv4'and 'IPv6'.  This field only applies to Services of types ClusterIP,NodePort, and LoadBalancer, and does apply to 'headless' services.This field will be wiped when updating a Service to type ExternalName.This field may hold a maximum of two entries (dual-stack families, ineither order).  These families must correspond to the values of theclusterIPs field, if specified. Both clusterIPs and ipFamilies aregoverned by the ipFamilyPolicy field.",
-												MarkdownDescription: "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to thisservice. This field is usually assigned automatically based on clusterconfiguration and the ipFamilyPolicy field. If this field is specifiedmanually, the requested family is available in the cluster,and ipFamilyPolicy allows it, it will be used; otherwise creation ofthe service will fail. This field is conditionally mutable: it allowsfor adding or removing a secondary IP family, but it does not allowchanging the primary IP family of the Service. Valid values are 'IPv4'and 'IPv6'.  This field only applies to Services of types ClusterIP,NodePort, and LoadBalancer, and does apply to 'headless' services.This field will be wiped when updating a Service to type ExternalName.This field may hold a maximum of two entries (dual-stack families, ineither order).  These families must correspond to the values of theclusterIPs field, if specified. Both clusterIPs and ipFamilies aregoverned by the ipFamilyPolicy field.",
+												Description:         "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'. This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName. This field may hold a maximum of two entries (dual-stack families, in either order). These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.",
+												MarkdownDescription: "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'. This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName. This field may hold a maximum of two entries (dual-stack families, in either order). These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2554,32 +2554,32 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"ip_family_policy": schema.StringAttribute{
-												Description:         "IPFamilyPolicy represents the dual-stack-ness requested or required bythis Service. If there is no value provided, then this field will be setto SingleStack. Services can be 'SingleStack' (a single IP family),'PreferDualStack' (two IP families on dual-stack configured clusters ora single IP family on single-stack clusters), or 'RequireDualStack'(two IP families on dual-stack configured clusters, otherwise fail). TheipFamilies and clusterIPs fields depend on the value of this field. Thisfield will be wiped when updating a service to type ExternalName.",
-												MarkdownDescription: "IPFamilyPolicy represents the dual-stack-ness requested or required bythis Service. If there is no value provided, then this field will be setto SingleStack. Services can be 'SingleStack' (a single IP family),'PreferDualStack' (two IP families on dual-stack configured clusters ora single IP family on single-stack clusters), or 'RequireDualStack'(two IP families on dual-stack configured clusters, otherwise fail). TheipFamilies and clusterIPs fields depend on the value of this field. Thisfield will be wiped when updating a service to type ExternalName.",
+												Description:         "IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.",
+												MarkdownDescription: "IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"load_balancer_class": schema.StringAttribute{
-												Description:         "loadBalancerClass is the class of the load balancer implementation this Service belongs to.If specified, the value of this field must be a label-style identifier, with an optional prefix,e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users.This field can only be set when the Service type is 'LoadBalancer'. If not set, the default loadbalancer implementation is used, today this is typically done through the cloud provider integration,but should apply for any default implementation. If set, it is assumed that a load balancerimplementation is watching for Services with a matching class. Any default load balancerimplementation (e.g. cloud providers) should ignore Services that set this field.This field can only be set when creating or updating a Service to type 'LoadBalancer'.Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.",
-												MarkdownDescription: "loadBalancerClass is the class of the load balancer implementation this Service belongs to.If specified, the value of this field must be a label-style identifier, with an optional prefix,e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users.This field can only be set when the Service type is 'LoadBalancer'. If not set, the default loadbalancer implementation is used, today this is typically done through the cloud provider integration,but should apply for any default implementation. If set, it is assumed that a load balancerimplementation is watching for Services with a matching class. Any default load balancerimplementation (e.g. cloud providers) should ignore Services that set this field.This field can only be set when creating or updating a Service to type 'LoadBalancer'.Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.",
+												Description:         "loadBalancerClass is the class of the load balancer implementation this Service belongs to. If specified, the value of this field must be a label-style identifier, with an optional prefix, e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users. This field can only be set when the Service type is 'LoadBalancer'. If not set, the default load balancer implementation is used, today this is typically done through the cloud provider integration, but should apply for any default implementation. If set, it is assumed that a load balancer implementation is watching for Services with a matching class. Any default load balancer implementation (e.g. cloud providers) should ignore Services that set this field. This field can only be set when creating or updating a Service to type 'LoadBalancer'. Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.",
+												MarkdownDescription: "loadBalancerClass is the class of the load balancer implementation this Service belongs to. If specified, the value of this field must be a label-style identifier, with an optional prefix, e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users. This field can only be set when the Service type is 'LoadBalancer'. If not set, the default load balancer implementation is used, today this is typically done through the cloud provider integration, but should apply for any default implementation. If set, it is assumed that a load balancer implementation is watching for Services with a matching class. Any default load balancer implementation (e.g. cloud providers) should ignore Services that set this field. This field can only be set when creating or updating a Service to type 'LoadBalancer'. Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"load_balancer_ip": schema.StringAttribute{
-												Description:         "Only applies to Service Type: LoadBalancer.This feature depends on whether the underlying cloud-provider supports specifyingthe loadBalancerIP when a load balancer is created.This field will be ignored if the cloud-provider does not support the feature.Deprecated: This field was under-specified and its meaning varies across implementations.Using it is non-portable and it may not support dual-stack.Users are encouraged to use implementation-specific annotations when available.",
-												MarkdownDescription: "Only applies to Service Type: LoadBalancer.This feature depends on whether the underlying cloud-provider supports specifyingthe loadBalancerIP when a load balancer is created.This field will be ignored if the cloud-provider does not support the feature.Deprecated: This field was under-specified and its meaning varies across implementations.Using it is non-portable and it may not support dual-stack.Users are encouraged to use implementation-specific annotations when available.",
+												Description:         "Only applies to Service Type: LoadBalancer. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations. Using it is non-portable and it may not support dual-stack. Users are encouraged to use implementation-specific annotations when available.",
+												MarkdownDescription: "Only applies to Service Type: LoadBalancer. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations. Using it is non-portable and it may not support dual-stack. Users are encouraged to use implementation-specific annotations when available.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"load_balancer_source_ranges": schema.ListAttribute{
-												Description:         "If specified and supported by the platform, this will restrict traffic through the cloud-providerload-balancer will be restricted to the specified client IPs. This field will be ignored if thecloud-provider does not support the feature.'More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
-												MarkdownDescription: "If specified and supported by the platform, this will restrict traffic through the cloud-providerload-balancer will be restricted to the specified client IPs. This field will be ignored if thecloud-provider does not support the feature.'More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
+												Description:         "If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature.' More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
+												MarkdownDescription: "If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature.' More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2587,8 +2587,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"session_affinity": schema.StringAttribute{
-												Description:         "Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
-												MarkdownDescription: "Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												Description:         "Supports 'ClientIP' and 'None'. Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												MarkdownDescription: "Supports 'ClientIP' and 'None'. Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2603,8 +2603,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 														MarkdownDescription: "clientIP contains the configurations of Client IP based session affinity.",
 														Attributes: map[string]schema.Attribute{
 															"timeout_seconds": schema.Int64Attribute{
-																Description:         "timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).",
-																MarkdownDescription: "timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).",
+																Description:         "timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).",
+																MarkdownDescription: "timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2621,8 +2621,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"type": schema.StringAttribute{
-												Description:         "type determines how the Service is exposed. Defaults to ClusterIP. Validoptions are ExternalName, ClusterIP, NodePort, and LoadBalancer.'ClusterIP' allocates a cluster-internal IP address for load-balancingto endpoints. Endpoints are determined by the selector or if that is notspecified, by manual construction of an Endpoints object orEndpointSlice objects. If clusterIP is 'None', no virtual IP isallocated and the endpoints are published as a set of endpoints ratherthan a virtual IP.'NodePort' builds on ClusterIP and allocates a port on every node whichroutes to the same endpoints as the clusterIP.'LoadBalancer' builds on NodePort and creates an external load-balancer(if supported in the current cloud) which routes to the same endpointsas the clusterIP.'ExternalName' aliases this service to the specified externalName.Several other fields do not apply to ExternalName services.More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
-												MarkdownDescription: "type determines how the Service is exposed. Defaults to ClusterIP. Validoptions are ExternalName, ClusterIP, NodePort, and LoadBalancer.'ClusterIP' allocates a cluster-internal IP address for load-balancingto endpoints. Endpoints are determined by the selector or if that is notspecified, by manual construction of an Endpoints object orEndpointSlice objects. If clusterIP is 'None', no virtual IP isallocated and the endpoints are published as a set of endpoints ratherthan a virtual IP.'NodePort' builds on ClusterIP and allocates a port on every node whichroutes to the same endpoints as the clusterIP.'LoadBalancer' builds on NodePort and creates an external load-balancer(if supported in the current cloud) which routes to the same endpointsas the clusterIP.'ExternalName' aliases this service to the specified externalName.Several other fields do not apply to ExternalName services.More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
+												Description:         "type determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. 'ExternalName' aliases this service to the specified externalName. Several other fields do not apply to ExternalName services. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
+												MarkdownDescription: "type determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. 'ExternalName' aliases this service to the specified externalName. Several other fields do not apply to ExternalName services. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2639,8 +2639,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"admin_console_service_type": schema.StringAttribute{
-								Description:         "DEPRECATED - by adminConsoleServiceTemplate.AdminConsoleServiceType defines whether to create a node port or load balancer service.When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled.This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.",
-								MarkdownDescription: "DEPRECATED - by adminConsoleServiceTemplate.AdminConsoleServiceType defines whether to create a node port or load balancer service.When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled.This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.",
+								Description:         "DEPRECATED - by adminConsoleServiceTemplate. AdminConsoleServiceType defines whether to create a node port or load balancer service. When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.",
+								MarkdownDescription: "DEPRECATED - by adminConsoleServiceTemplate. AdminConsoleServiceType defines whether to create a node port or load balancer service. When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2650,8 +2650,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"admin_console_services": schema.ListAttribute{
-								Description:         "DEPRECATED - not required by Couchbase Server.AdminConsoleServices is a selector to choose specific services to expose via the adminconsole. This field may contain any of 'data', 'index', 'query', 'search', 'eventing'and 'analytics'.  Each service may only be included once.",
-								MarkdownDescription: "DEPRECATED - not required by Couchbase Server.AdminConsoleServices is a selector to choose specific services to expose via the adminconsole. This field may contain any of 'data', 'index', 'query', 'search', 'eventing'and 'analytics'.  Each service may only be included once.",
+								Description:         "DEPRECATED - not required by Couchbase Server. AdminConsoleServices is a selector to choose specific services to expose via the admin console. This field may contain any of 'data', 'index', 'query', 'search', 'eventing' and 'analytics'. Each service may only be included once.",
+								MarkdownDescription: "DEPRECATED - not required by Couchbase Server. AdminConsoleServices is a selector to choose specific services to expose via the admin console. This field may contain any of 'data', 'index', 'query', 'search', 'eventing' and 'analytics'. Each service may only be included once.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -2659,20 +2659,20 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"cloud_native_gateway": schema.SingleNestedAttribute{
-								Description:         "CloudNativeGateway is used to provision a gRPC gateway proxying a Couchbasecluster.",
-								MarkdownDescription: "CloudNativeGateway is used to provision a gRPC gateway proxying a Couchbasecluster.",
+								Description:         "CloudNativeGateway is used to provision a gRPC gateway proxying a Couchbase cluster.",
+								MarkdownDescription: "CloudNativeGateway is used to provision a gRPC gateway proxying a Couchbase cluster.",
 								Attributes: map[string]schema.Attribute{
 									"image": schema.StringAttribute{
-										Description:         "Image is the Cloud Native Gateway image to be used to run the sidecar container.No validation is carried out as this can be any arbitrary repo and tag.TODO: provide a default kubebuilder default image tag as field is mandatory.",
-										MarkdownDescription: "Image is the Cloud Native Gateway image to be used to run the sidecar container.No validation is carried out as this can be any arbitrary repo and tag.TODO: provide a default kubebuilder default image tag as field is mandatory.",
+										Description:         "Image is the Cloud Native Gateway image to be used to run the sidecar container. No validation is carried out as this can be any arbitrary repo and tag. TODO: provide a default kubebuilder default image tag as field is mandatory.",
+										MarkdownDescription: "Image is the Cloud Native Gateway image to be used to run the sidecar container. No validation is carried out as this can be any arbitrary repo and tag. TODO: provide a default kubebuilder default image tag as field is mandatory.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"log_level": schema.StringAttribute{
-										Description:         "DEVELOPER PREVIEW - This feature is in developer preview.LogLevel controls the verbosity of cloud native logs.  This field must be one of'fatal', 'panic', 'dpanic', 'error', 'warn', 'info', 'debug' defaulting to 'info'.",
-										MarkdownDescription: "DEVELOPER PREVIEW - This feature is in developer preview.LogLevel controls the verbosity of cloud native logs.  This field must be one of'fatal', 'panic', 'dpanic', 'error', 'warn', 'info', 'debug' defaulting to 'info'.",
+										Description:         "DEVELOPER PREVIEW - This feature is in developer preview. LogLevel controls the verbosity of cloud native logs. This field must be one of 'fatal', 'panic', 'dpanic', 'error', 'warn', 'info', 'debug' defaulting to 'info'.",
+										MarkdownDescription: "DEVELOPER PREVIEW - This feature is in developer preview. LogLevel controls the verbosity of cloud native logs. This field must be one of 'fatal', 'panic', 'dpanic', 'error', 'warn', 'info', 'debug' defaulting to 'info'.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -2682,20 +2682,20 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"termination_grace_period_seconds": schema.Int64Attribute{
-										Description:         "TerminationGracePeriodSeconds specifies the grace period for the container toterminate. Defaults to 75 seconds.",
-										MarkdownDescription: "TerminationGracePeriodSeconds specifies the grace period for the container toterminate. Defaults to 75 seconds.",
+										Description:         "TerminationGracePeriodSeconds specifies the grace period for the container to terminate. Defaults to 75 seconds.",
+										MarkdownDescription: "TerminationGracePeriodSeconds specifies the grace period for the container to terminate. Defaults to 75 seconds.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"tls": schema.SingleNestedAttribute{
-										Description:         "TLS defines the TLS configuration for the Cloud Native Gateway server includingserver and client certificate configuration, and TLS security policies.If no TLS config are explicitly provided, the operator generates/manages self-signed certs/keysand creates a k8s secret named 'couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>'unique to a Couchbase cluster, which is volume mounted to the cb k8s pod.This action could be overidden at the outset or later, by using the belowTLS config or generating the secret of same name as'couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>' with certificatesconforming to the keys of well-known type 'kubernetes.io/tls' with 'tls.crt' and 'tls.key'.N.B. The secret is on per cluster basis so it's advised to use the unique cluster name elsewould be ignored.",
-										MarkdownDescription: "TLS defines the TLS configuration for the Cloud Native Gateway server includingserver and client certificate configuration, and TLS security policies.If no TLS config are explicitly provided, the operator generates/manages self-signed certs/keysand creates a k8s secret named 'couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>'unique to a Couchbase cluster, which is volume mounted to the cb k8s pod.This action could be overidden at the outset or later, by using the belowTLS config or generating the secret of same name as'couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>' with certificatesconforming to the keys of well-known type 'kubernetes.io/tls' with 'tls.crt' and 'tls.key'.N.B. The secret is on per cluster basis so it's advised to use the unique cluster name elsewould be ignored.",
+										Description:         "TLS defines the TLS configuration for the Cloud Native Gateway server including server and client certificate configuration, and TLS security policies. If no TLS config are explicitly provided, the operator generates/manages self-signed certs/keys and creates a k8s secret named 'couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>' unique to a Couchbase cluster, which is volume mounted to the cb k8s pod. This action could be overidden at the outset or later, by using the below TLS config or generating the secret of same name as 'couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>' with certificates conforming to the keys of well-known type 'kubernetes.io/tls' with 'tls.crt' and 'tls.key'. N.B. The secret is on per cluster basis so it's advised to use the unique cluster name else would be ignored.",
+										MarkdownDescription: "TLS defines the TLS configuration for the Cloud Native Gateway server including server and client certificate configuration, and TLS security policies. If no TLS config are explicitly provided, the operator generates/manages self-signed certs/keys and creates a k8s secret named 'couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>' unique to a Couchbase cluster, which is volume mounted to the cb k8s pod. This action could be overidden at the outset or later, by using the below TLS config or generating the secret of same name as 'couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>' with certificates conforming to the keys of well-known type 'kubernetes.io/tls' with 'tls.crt' and 'tls.key'. N.B. The secret is on per cluster basis so it's advised to use the unique cluster name else would be ignored.",
 										Attributes: map[string]schema.Attribute{
 											"server_secret_name": schema.StringAttribute{
-												Description:         "ServerSecretName specifies the secret name, in the same namespace as the cluster,that contains Cloud Native Gateway gRPC server TLS data.The secret is expected to contain 'tls.crt' and'tls.key' as per the kubernetes.io/tls secret type.",
-												MarkdownDescription: "ServerSecretName specifies the secret name, in the same namespace as the cluster,that contains Cloud Native Gateway gRPC server TLS data.The secret is expected to contain 'tls.crt' and'tls.key' as per the kubernetes.io/tls secret type.",
+												Description:         "ServerSecretName specifies the secret name, in the same namespace as the cluster, that contains Cloud Native Gateway gRPC server TLS data. The secret is expected to contain 'tls.crt' and 'tls.key' as per the kubernetes.io/tls secret type.",
+												MarkdownDescription: "ServerSecretName specifies the secret name, in the same namespace as the cluster, that contains Cloud Native Gateway gRPC server TLS data. The secret is expected to contain 'tls.crt' and 'tls.key' as per the kubernetes.io/tls secret type.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2712,16 +2712,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"disable_ui_over_http": schema.BoolAttribute{
-								Description:         "DisableUIOverHTTP is used to explicitly enable and disable UI access overthe HTTP protocol.  If not specified, this field defaults to false.",
-								MarkdownDescription: "DisableUIOverHTTP is used to explicitly enable and disable UI access overthe HTTP protocol.  If not specified, this field defaults to false.",
+								Description:         "DisableUIOverHTTP is used to explicitly enable and disable UI access over the HTTP protocol. If not specified, this field defaults to false.",
+								MarkdownDescription: "DisableUIOverHTTP is used to explicitly enable and disable UI access over the HTTP protocol. If not specified, this field defaults to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"disable_ui_over_https": schema.BoolAttribute{
-								Description:         "DisableUIOverHTTPS is used to explicitly enable and disable UI access overthe HTTPS protocol.  If not specified, this field defaults to false.",
-								MarkdownDescription: "DisableUIOverHTTPS is used to explicitly enable and disable UI access overthe HTTPS protocol.  If not specified, this field defaults to false.",
+								Description:         "DisableUIOverHTTPS is used to explicitly enable and disable UI access over the HTTPS protocol. If not specified, this field defaults to false.",
+								MarkdownDescription: "DisableUIOverHTTPS is used to explicitly enable and disable UI access over the HTTPS protocol. If not specified, this field defaults to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2732,8 +2732,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "DNS defines information required for Dynamic DNS support.",
 								Attributes: map[string]schema.Attribute{
 									"domain": schema.StringAttribute{
-										Description:         "Domain is the domain to create pods in.  When populated the Operatorwill annotate the admin console and per-pod services with the key'external-dns.alpha.kubernetes.io/hostname'.  These annotations canbe used directly by a Kubernetes External-DNS controller to replicateload balancer service IP addresses into a public DNS server.",
-										MarkdownDescription: "Domain is the domain to create pods in.  When populated the Operatorwill annotate the admin console and per-pod services with the key'external-dns.alpha.kubernetes.io/hostname'.  These annotations canbe used directly by a Kubernetes External-DNS controller to replicateload balancer service IP addresses into a public DNS server.",
+										Description:         "Domain is the domain to create pods in. When populated the Operator will annotate the admin console and per-pod services with the key 'external-dns.alpha.kubernetes.io/hostname'. These annotations can be used directly by a Kubernetes External-DNS controller to replicate load balancer service IP addresses into a public DNS server.",
+										MarkdownDescription: "Domain is the domain to create pods in. When populated the Operator will annotate the admin console and per-pod services with the key 'external-dns.alpha.kubernetes.io/hostname'. These annotations can be used directly by a Kubernetes External-DNS controller to replicate load balancer service IP addresses into a public DNS server.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2745,24 +2745,24 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"expose_admin_console": schema.BoolAttribute{
-								Description:         "ExposeAdminConsole creates a service referencing the admin console.The service is configured by the adminConsoleServiceTemplate field.",
-								MarkdownDescription: "ExposeAdminConsole creates a service referencing the admin console.The service is configured by the adminConsoleServiceTemplate field.",
+								Description:         "ExposeAdminConsole creates a service referencing the admin console. The service is configured by the adminConsoleServiceTemplate field.",
+								MarkdownDescription: "ExposeAdminConsole creates a service referencing the admin console. The service is configured by the adminConsoleServiceTemplate field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"exposed_feature_service_template": schema.SingleNestedAttribute{
-								Description:         "ExposedFeatureServiceTemplate provides a template used by the Operator to createand manage per-pod services.  This allows services to be annotated, theservice type defined and any other options that Kubernetes provides.  When usinga LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operatorreserves the right to modify or replace any field.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core",
-								MarkdownDescription: "ExposedFeatureServiceTemplate provides a template used by the Operator to createand manage per-pod services.  This allows services to be annotated, theservice type defined and any other options that Kubernetes provides.  When usinga LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operatorreserves the right to modify or replace any field.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core",
+								Description:         "ExposedFeatureServiceTemplate provides a template used by the Operator to create and manage per-pod services. This allows services to be annotated, the service type defined and any other options that Kubernetes provides. When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operator reserves the right to modify or replace any field. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core",
+								MarkdownDescription: "ExposedFeatureServiceTemplate provides a template used by the Operator to create and manage per-pod services. This allows services to be annotated, the service type defined and any other options that Kubernetes provides. When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operator reserves the right to modify or replace any field. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core",
 								Attributes: map[string]schema.Attribute{
 									"metadata": schema.SingleNestedAttribute{
-										Description:         "Standard objects metadata.  This is a curated version for use with Couchbaseresource templates.",
-										MarkdownDescription: "Standard objects metadata.  This is a curated version for use with Couchbaseresource templates.",
+										Description:         "Standard objects metadata. This is a curated version for use with Couchbase resource templates.",
+										MarkdownDescription: "Standard objects metadata. This is a curated version for use with Couchbase resource templates.",
 										Attributes: map[string]schema.Attribute{
 											"annotations": schema.MapAttribute{
-												Description:         "Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations",
-												MarkdownDescription: "Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations",
+												Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+												MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2770,8 +2770,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"labels": schema.MapAttribute{
-												Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels",
-												MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels",
+												Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+												MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2788,24 +2788,24 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										MarkdownDescription: "ServiceSpec describes the attributes that a user creates on a service.",
 										Attributes: map[string]schema.Attribute{
 											"allocate_load_balancer_node_ports": schema.BoolAttribute{
-												Description:         "allocateLoadBalancerNodePorts defines if NodePorts will be automaticallyallocated for services with type LoadBalancer.  Default is 'true'. Itmay be set to 'false' if the cluster load-balancer does not rely onNodePorts.  If the caller requests specific NodePorts (by specifying avalue), those requests will be respected, regardless of this field.This field may only be set for services with type LoadBalancer and willbe cleared if the type is changed to any other type.",
-												MarkdownDescription: "allocateLoadBalancerNodePorts defines if NodePorts will be automaticallyallocated for services with type LoadBalancer.  Default is 'true'. Itmay be set to 'false' if the cluster load-balancer does not rely onNodePorts.  If the caller requests specific NodePorts (by specifying avalue), those requests will be respected, regardless of this field.This field may only be set for services with type LoadBalancer and willbe cleared if the type is changed to any other type.",
+												Description:         "allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer. Default is 'true'. It may be set to 'false' if the cluster load-balancer does not rely on NodePorts. If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type.",
+												MarkdownDescription: "allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer. Default is 'true'. It may be set to 'false' if the cluster load-balancer does not rely on NodePorts. If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"cluster_ip": schema.StringAttribute{
-												Description:         "clusterIP is the IP address of the service and is usually assignedrandomly. If an address is specified manually, is in-range (as persystem configuration), and is not in use, it will be allocated to theservice; otherwise creation of the service will fail. This field may notbe changed through updates unless the type field is also being changedto ExternalName (which requires this field to be blank) or the typefield is being changed from ExternalName (in which case this field mayoptionally be specified, as describe above).  Valid values are 'None',empty string (''), or a valid IP address. Setting this to 'None' makes a'headless service' (no virtual IP), which is useful when direct endpointconnections are preferred and proxying is not required.  Only applies totypes ClusterIP, NodePort, and LoadBalancer. If this field is specifiedwhen creating a Service of type ExternalName, creation will fail. Thisfield will be wiped when updating a Service to type ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
-												MarkdownDescription: "clusterIP is the IP address of the service and is usually assignedrandomly. If an address is specified manually, is in-range (as persystem configuration), and is not in use, it will be allocated to theservice; otherwise creation of the service will fail. This field may notbe changed through updates unless the type field is also being changedto ExternalName (which requires this field to be blank) or the typefield is being changed from ExternalName (in which case this field mayoptionally be specified, as describe above).  Valid values are 'None',empty string (''), or a valid IP address. Setting this to 'None' makes a'headless service' (no virtual IP), which is useful when direct endpointconnections are preferred and proxying is not required.  Only applies totypes ClusterIP, NodePort, and LoadBalancer. If this field is specifiedwhen creating a Service of type ExternalName, creation will fail. Thisfield will be wiped when updating a Service to type ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												Description:         "clusterIP is the IP address of the service and is usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be blank) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above). Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												MarkdownDescription: "clusterIP is the IP address of the service and is usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be blank) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above). Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"cluster_i_ps": schema.ListAttribute{
-												Description:         "ClusterIPs is a list of IP addresses assigned to this service, and areusually assigned randomly.  If an address is specified manually, isin-range (as per system configuration), and is not in use, it will beallocated to the service; otherwise creation of the service will fail.This field may not be changed through updates unless the type field isalso being changed to ExternalName (which requires this field to beempty) or the type field is being changed from ExternalName (in whichcase this field may optionally be specified, as describe above).  Validvalues are 'None', empty string (''), or a valid IP address.  Settingthis to 'None' makes a 'headless service' (no virtual IP), which isuseful when direct endpoint connections are preferred and proxying isnot required.  Only applies to types ClusterIP, NodePort, andLoadBalancer. If this field is specified when creating a Service of typeExternalName, creation will fail. This field will be wiped when updatinga Service to type ExternalName.  If this field is not specified, it willbe initialized from the clusterIP field.  If this field is specified,clients must ensure that clusterIPs[0] and clusterIP have the samevalue.This field may hold a maximum of two entries (dual-stack IPs, in either order).These IPs must correspond to the values of the ipFamilies field. BothclusterIPs and ipFamilies are governed by the ipFamilyPolicy field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
-												MarkdownDescription: "ClusterIPs is a list of IP addresses assigned to this service, and areusually assigned randomly.  If an address is specified manually, isin-range (as per system configuration), and is not in use, it will beallocated to the service; otherwise creation of the service will fail.This field may not be changed through updates unless the type field isalso being changed to ExternalName (which requires this field to beempty) or the type field is being changed from ExternalName (in whichcase this field may optionally be specified, as describe above).  Validvalues are 'None', empty string (''), or a valid IP address.  Settingthis to 'None' makes a 'headless service' (no virtual IP), which isuseful when direct endpoint connections are preferred and proxying isnot required.  Only applies to types ClusterIP, NodePort, andLoadBalancer. If this field is specified when creating a Service of typeExternalName, creation will fail. This field will be wiped when updatinga Service to type ExternalName.  If this field is not specified, it willbe initialized from the clusterIP field.  If this field is specified,clients must ensure that clusterIPs[0] and clusterIP have the samevalue.This field may hold a maximum of two entries (dual-stack IPs, in either order).These IPs must correspond to the values of the ipFamilies field. BothclusterIPs and ipFamilies are governed by the ipFamilyPolicy field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												Description:         "ClusterIPs is a list of IP addresses assigned to this service, and are usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be empty) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above). Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. If this field is not specified, it will be initialized from the clusterIP field. If this field is specified, clients must ensure that clusterIPs[0] and clusterIP have the same value. This field may hold a maximum of two entries (dual-stack IPs, in either order). These IPs must correspond to the values of the ipFamilies field. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												MarkdownDescription: "ClusterIPs is a list of IP addresses assigned to this service, and are usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be empty) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above). Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. If this field is not specified, it will be initialized from the clusterIP field. If this field is specified, clients must ensure that clusterIPs[0] and clusterIP have the same value. This field may hold a maximum of two entries (dual-stack IPs, in either order). These IPs must correspond to the values of the ipFamilies field. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2813,8 +2813,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"external_i_ps": schema.ListAttribute{
-												Description:         "externalIPs is a list of IP addresses for which nodes in the clusterwill also accept traffic for this service.  These IPs are not managed byKubernetes.  The user is responsible for ensuring that traffic arrivesat a node with this IP.  A common example is external load-balancersthat are not part of the Kubernetes system.",
-												MarkdownDescription: "externalIPs is a list of IP addresses for which nodes in the clusterwill also accept traffic for this service.  These IPs are not managed byKubernetes.  The user is responsible for ensuring that traffic arrivesat a node with this IP.  A common example is external load-balancersthat are not part of the Kubernetes system.",
+												Description:         "externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service. These IPs are not managed by Kubernetes. The user is responsible for ensuring that traffic arrives at a node with this IP. A common example is external load-balancers that are not part of the Kubernetes system.",
+												MarkdownDescription: "externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service. These IPs are not managed by Kubernetes. The user is responsible for ensuring that traffic arrives at a node with this IP. A common example is external load-balancers that are not part of the Kubernetes system.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2822,40 +2822,40 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"external_name": schema.StringAttribute{
-												Description:         "externalName is the external reference that discovery mechanisms willreturn as an alias for this service (e.g. a DNS CNAME record). Noproxying will be involved.  Must be a lowercase RFC-1123 hostname(https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.",
-												MarkdownDescription: "externalName is the external reference that discovery mechanisms willreturn as an alias for this service (e.g. a DNS CNAME record). Noproxying will be involved.  Must be a lowercase RFC-1123 hostname(https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.",
+												Description:         "externalName is the external reference that discovery mechanisms will return as an alias for this service (e.g. a DNS CNAME record). No proxying will be involved. Must be a lowercase RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.",
+												MarkdownDescription: "externalName is the external reference that discovery mechanisms will return as an alias for this service (e.g. a DNS CNAME record). No proxying will be involved. Must be a lowercase RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"external_traffic_policy": schema.StringAttribute{
-												Description:         "externalTrafficPolicy describes how nodes distribute service traffic theyreceive on one of the Service's 'externally-facing' addresses (NodePorts,ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configurethe service in a way that assumes that external load balancers will take careof balancing the service traffic between nodes, and so each node will delivertraffic only to the node-local endpoints of the service, without masqueradingthe client source IP. (Traffic mistakenly sent to a node with no endpoints willbe dropped.) The default value, 'Cluster', uses the standard behavior ofrouting to all endpoints evenly (possibly modified by topology and otherfeatures). Note that traffic sent to an External IP or LoadBalancer IP fromwithin the cluster will always get 'Cluster' semantics, but clients sending toa NodePort from within the cluster may need to take traffic policy into accountwhen picking a node.",
-												MarkdownDescription: "externalTrafficPolicy describes how nodes distribute service traffic theyreceive on one of the Service's 'externally-facing' addresses (NodePorts,ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configurethe service in a way that assumes that external load balancers will take careof balancing the service traffic between nodes, and so each node will delivertraffic only to the node-local endpoints of the service, without masqueradingthe client source IP. (Traffic mistakenly sent to a node with no endpoints willbe dropped.) The default value, 'Cluster', uses the standard behavior ofrouting to all endpoints evenly (possibly modified by topology and otherfeatures). Note that traffic sent to an External IP or LoadBalancer IP fromwithin the cluster will always get 'Cluster' semantics, but clients sending toa NodePort from within the cluster may need to take traffic policy into accountwhen picking a node.",
+												Description:         "externalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service's 'externally-facing' addresses (NodePorts, ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configure the service in a way that assumes that external load balancers will take care of balancing the service traffic between nodes, and so each node will deliver traffic only to the node-local endpoints of the service, without masquerading the client source IP. (Traffic mistakenly sent to a node with no endpoints will be dropped.) The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features). Note that traffic sent to an External IP or LoadBalancer IP from within the cluster will always get 'Cluster' semantics, but clients sending to a NodePort from within the cluster may need to take traffic policy into account when picking a node.",
+												MarkdownDescription: "externalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service's 'externally-facing' addresses (NodePorts, ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configure the service in a way that assumes that external load balancers will take care of balancing the service traffic between nodes, and so each node will deliver traffic only to the node-local endpoints of the service, without masquerading the client source IP. (Traffic mistakenly sent to a node with no endpoints will be dropped.) The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features). Note that traffic sent to an External IP or LoadBalancer IP from within the cluster will always get 'Cluster' semantics, but clients sending to a NodePort from within the cluster may need to take traffic policy into account when picking a node.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"health_check_node_port": schema.Int64Attribute{
-												Description:         "healthCheckNodePort specifies the healthcheck nodePort for the service.This only applies when type is set to LoadBalancer andexternalTrafficPolicy is set to Local. If a value is specified, isin-range, and is not in use, it will be used.  If not specified, a valuewill be automatically allocated.  External systems (e.g. load-balancers)can use this port to determine if a given node holds endpoints for thisservice or not.  If this field is specified when creating a Servicewhich does not need it, creation will fail. This field will be wipedwhen updating a Service to no longer need it (e.g. changing type).This field cannot be updated once set.",
-												MarkdownDescription: "healthCheckNodePort specifies the healthcheck nodePort for the service.This only applies when type is set to LoadBalancer andexternalTrafficPolicy is set to Local. If a value is specified, isin-range, and is not in use, it will be used.  If not specified, a valuewill be automatically allocated.  External systems (e.g. load-balancers)can use this port to determine if a given node holds endpoints for thisservice or not.  If this field is specified when creating a Servicewhich does not need it, creation will fail. This field will be wipedwhen updating a Service to no longer need it (e.g. changing type).This field cannot be updated once set.",
+												Description:         "healthCheckNodePort specifies the healthcheck nodePort for the service. This only applies when type is set to LoadBalancer and externalTrafficPolicy is set to Local. If a value is specified, is in-range, and is not in use, it will be used. If not specified, a value will be automatically allocated. External systems (e.g. load-balancers) can use this port to determine if a given node holds endpoints for this service or not. If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type). This field cannot be updated once set.",
+												MarkdownDescription: "healthCheckNodePort specifies the healthcheck nodePort for the service. This only applies when type is set to LoadBalancer and externalTrafficPolicy is set to Local. If a value is specified, is in-range, and is not in use, it will be used. If not specified, a value will be automatically allocated. External systems (e.g. load-balancers) can use this port to determine if a given node holds endpoints for this service or not. If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type). This field cannot be updated once set.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"internal_traffic_policy": schema.StringAttribute{
-												Description:         "InternalTrafficPolicy describes how nodes distribute service traffic theyreceive on the ClusterIP. If set to 'Local', the proxy will assume that podsonly want to talk to endpoints of the service on the same node as the pod,dropping the traffic if there are no local endpoints. The default value,'Cluster', uses the standard behavior of routing to all endpoints evenly(possibly modified by topology and other features).",
-												MarkdownDescription: "InternalTrafficPolicy describes how nodes distribute service traffic theyreceive on the ClusterIP. If set to 'Local', the proxy will assume that podsonly want to talk to endpoints of the service on the same node as the pod,dropping the traffic if there are no local endpoints. The default value,'Cluster', uses the standard behavior of routing to all endpoints evenly(possibly modified by topology and other features).",
+												Description:         "InternalTrafficPolicy describes how nodes distribute service traffic they receive on the ClusterIP. If set to 'Local', the proxy will assume that pods only want to talk to endpoints of the service on the same node as the pod, dropping the traffic if there are no local endpoints. The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features).",
+												MarkdownDescription: "InternalTrafficPolicy describes how nodes distribute service traffic they receive on the ClusterIP. If set to 'Local', the proxy will assume that pods only want to talk to endpoints of the service on the same node as the pod, dropping the traffic if there are no local endpoints. The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features).",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"ip_families": schema.ListAttribute{
-												Description:         "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to thisservice. This field is usually assigned automatically based on clusterconfiguration and the ipFamilyPolicy field. If this field is specifiedmanually, the requested family is available in the cluster,and ipFamilyPolicy allows it, it will be used; otherwise creation ofthe service will fail. This field is conditionally mutable: it allowsfor adding or removing a secondary IP family, but it does not allowchanging the primary IP family of the Service. Valid values are 'IPv4'and 'IPv6'.  This field only applies to Services of types ClusterIP,NodePort, and LoadBalancer, and does apply to 'headless' services.This field will be wiped when updating a Service to type ExternalName.This field may hold a maximum of two entries (dual-stack families, ineither order).  These families must correspond to the values of theclusterIPs field, if specified. Both clusterIPs and ipFamilies aregoverned by the ipFamilyPolicy field.",
-												MarkdownDescription: "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to thisservice. This field is usually assigned automatically based on clusterconfiguration and the ipFamilyPolicy field. If this field is specifiedmanually, the requested family is available in the cluster,and ipFamilyPolicy allows it, it will be used; otherwise creation ofthe service will fail. This field is conditionally mutable: it allowsfor adding or removing a secondary IP family, but it does not allowchanging the primary IP family of the Service. Valid values are 'IPv4'and 'IPv6'.  This field only applies to Services of types ClusterIP,NodePort, and LoadBalancer, and does apply to 'headless' services.This field will be wiped when updating a Service to type ExternalName.This field may hold a maximum of two entries (dual-stack families, ineither order).  These families must correspond to the values of theclusterIPs field, if specified. Both clusterIPs and ipFamilies aregoverned by the ipFamilyPolicy field.",
+												Description:         "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'. This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName. This field may hold a maximum of two entries (dual-stack families, in either order). These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.",
+												MarkdownDescription: "IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'. This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName. This field may hold a maximum of two entries (dual-stack families, in either order). These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2863,32 +2863,32 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"ip_family_policy": schema.StringAttribute{
-												Description:         "IPFamilyPolicy represents the dual-stack-ness requested or required bythis Service. If there is no value provided, then this field will be setto SingleStack. Services can be 'SingleStack' (a single IP family),'PreferDualStack' (two IP families on dual-stack configured clusters ora single IP family on single-stack clusters), or 'RequireDualStack'(two IP families on dual-stack configured clusters, otherwise fail). TheipFamilies and clusterIPs fields depend on the value of this field. Thisfield will be wiped when updating a service to type ExternalName.",
-												MarkdownDescription: "IPFamilyPolicy represents the dual-stack-ness requested or required bythis Service. If there is no value provided, then this field will be setto SingleStack. Services can be 'SingleStack' (a single IP family),'PreferDualStack' (two IP families on dual-stack configured clusters ora single IP family on single-stack clusters), or 'RequireDualStack'(two IP families on dual-stack configured clusters, otherwise fail). TheipFamilies and clusterIPs fields depend on the value of this field. Thisfield will be wiped when updating a service to type ExternalName.",
+												Description:         "IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.",
+												MarkdownDescription: "IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"load_balancer_class": schema.StringAttribute{
-												Description:         "loadBalancerClass is the class of the load balancer implementation this Service belongs to.If specified, the value of this field must be a label-style identifier, with an optional prefix,e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users.This field can only be set when the Service type is 'LoadBalancer'. If not set, the default loadbalancer implementation is used, today this is typically done through the cloud provider integration,but should apply for any default implementation. If set, it is assumed that a load balancerimplementation is watching for Services with a matching class. Any default load balancerimplementation (e.g. cloud providers) should ignore Services that set this field.This field can only be set when creating or updating a Service to type 'LoadBalancer'.Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.",
-												MarkdownDescription: "loadBalancerClass is the class of the load balancer implementation this Service belongs to.If specified, the value of this field must be a label-style identifier, with an optional prefix,e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users.This field can only be set when the Service type is 'LoadBalancer'. If not set, the default loadbalancer implementation is used, today this is typically done through the cloud provider integration,but should apply for any default implementation. If set, it is assumed that a load balancerimplementation is watching for Services with a matching class. Any default load balancerimplementation (e.g. cloud providers) should ignore Services that set this field.This field can only be set when creating or updating a Service to type 'LoadBalancer'.Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.",
+												Description:         "loadBalancerClass is the class of the load balancer implementation this Service belongs to. If specified, the value of this field must be a label-style identifier, with an optional prefix, e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users. This field can only be set when the Service type is 'LoadBalancer'. If not set, the default load balancer implementation is used, today this is typically done through the cloud provider integration, but should apply for any default implementation. If set, it is assumed that a load balancer implementation is watching for Services with a matching class. Any default load balancer implementation (e.g. cloud providers) should ignore Services that set this field. This field can only be set when creating or updating a Service to type 'LoadBalancer'. Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.",
+												MarkdownDescription: "loadBalancerClass is the class of the load balancer implementation this Service belongs to. If specified, the value of this field must be a label-style identifier, with an optional prefix, e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users. This field can only be set when the Service type is 'LoadBalancer'. If not set, the default load balancer implementation is used, today this is typically done through the cloud provider integration, but should apply for any default implementation. If set, it is assumed that a load balancer implementation is watching for Services with a matching class. Any default load balancer implementation (e.g. cloud providers) should ignore Services that set this field. This field can only be set when creating or updating a Service to type 'LoadBalancer'. Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"load_balancer_ip": schema.StringAttribute{
-												Description:         "Only applies to Service Type: LoadBalancer.This feature depends on whether the underlying cloud-provider supports specifyingthe loadBalancerIP when a load balancer is created.This field will be ignored if the cloud-provider does not support the feature.Deprecated: This field was under-specified and its meaning varies across implementations.Using it is non-portable and it may not support dual-stack.Users are encouraged to use implementation-specific annotations when available.",
-												MarkdownDescription: "Only applies to Service Type: LoadBalancer.This feature depends on whether the underlying cloud-provider supports specifyingthe loadBalancerIP when a load balancer is created.This field will be ignored if the cloud-provider does not support the feature.Deprecated: This field was under-specified and its meaning varies across implementations.Using it is non-portable and it may not support dual-stack.Users are encouraged to use implementation-specific annotations when available.",
+												Description:         "Only applies to Service Type: LoadBalancer. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations. Using it is non-portable and it may not support dual-stack. Users are encouraged to use implementation-specific annotations when available.",
+												MarkdownDescription: "Only applies to Service Type: LoadBalancer. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations. Using it is non-portable and it may not support dual-stack. Users are encouraged to use implementation-specific annotations when available.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"load_balancer_source_ranges": schema.ListAttribute{
-												Description:         "If specified and supported by the platform, this will restrict traffic through the cloud-providerload-balancer will be restricted to the specified client IPs. This field will be ignored if thecloud-provider does not support the feature.'More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
-												MarkdownDescription: "If specified and supported by the platform, this will restrict traffic through the cloud-providerload-balancer will be restricted to the specified client IPs. This field will be ignored if thecloud-provider does not support the feature.'More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
+												Description:         "If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature.' More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
+												MarkdownDescription: "If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature.' More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -2896,8 +2896,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"session_affinity": schema.StringAttribute{
-												Description:         "Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
-												MarkdownDescription: "Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												Description:         "Supports 'ClientIP' and 'None'. Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+												MarkdownDescription: "Supports 'ClientIP' and 'None'. Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2912,8 +2912,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 														MarkdownDescription: "clientIP contains the configurations of Client IP based session affinity.",
 														Attributes: map[string]schema.Attribute{
 															"timeout_seconds": schema.Int64Attribute{
-																Description:         "timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).",
-																MarkdownDescription: "timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).",
+																Description:         "timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).",
+																MarkdownDescription: "timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2930,8 +2930,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"type": schema.StringAttribute{
-												Description:         "type determines how the Service is exposed. Defaults to ClusterIP. Validoptions are ExternalName, ClusterIP, NodePort, and LoadBalancer.'ClusterIP' allocates a cluster-internal IP address for load-balancingto endpoints. Endpoints are determined by the selector or if that is notspecified, by manual construction of an Endpoints object orEndpointSlice objects. If clusterIP is 'None', no virtual IP isallocated and the endpoints are published as a set of endpoints ratherthan a virtual IP.'NodePort' builds on ClusterIP and allocates a port on every node whichroutes to the same endpoints as the clusterIP.'LoadBalancer' builds on NodePort and creates an external load-balancer(if supported in the current cloud) which routes to the same endpointsas the clusterIP.'ExternalName' aliases this service to the specified externalName.Several other fields do not apply to ExternalName services.More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
-												MarkdownDescription: "type determines how the Service is exposed. Defaults to ClusterIP. Validoptions are ExternalName, ClusterIP, NodePort, and LoadBalancer.'ClusterIP' allocates a cluster-internal IP address for load-balancingto endpoints. Endpoints are determined by the selector or if that is notspecified, by manual construction of an Endpoints object orEndpointSlice objects. If clusterIP is 'None', no virtual IP isallocated and the endpoints are published as a set of endpoints ratherthan a virtual IP.'NodePort' builds on ClusterIP and allocates a port on every node whichroutes to the same endpoints as the clusterIP.'LoadBalancer' builds on NodePort and creates an external load-balancer(if supported in the current cloud) which routes to the same endpointsas the clusterIP.'ExternalName' aliases this service to the specified externalName.Several other fields do not apply to ExternalName services.More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
+												Description:         "type determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. 'ExternalName' aliases this service to the specified externalName. Several other fields do not apply to ExternalName services. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
+												MarkdownDescription: "type determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. 'ExternalName' aliases this service to the specified externalName. Several other fields do not apply to ExternalName services. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2948,8 +2948,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"exposed_feature_service_type": schema.StringAttribute{
-								Description:         "DEPRECATED - by exposedFeatureServiceTemplate.ExposedFeatureServiceType defines whether to create a node port or load balancer service.When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled.This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.",
-								MarkdownDescription: "DEPRECATED - by exposedFeatureServiceTemplate.ExposedFeatureServiceType defines whether to create a node port or load balancer service.When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled.This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.",
+								Description:         "DEPRECATED - by exposedFeatureServiceTemplate. ExposedFeatureServiceType defines whether to create a node port or load balancer service. When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.",
+								MarkdownDescription: "DEPRECATED - by exposedFeatureServiceTemplate. ExposedFeatureServiceType defines whether to create a node port or load balancer service. When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2959,8 +2959,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"exposed_feature_traffic_policy": schema.StringAttribute{
-								Description:         "DEPRECATED  - by exposedFeatureServiceTemplate.ExposedFeatureTrafficPolicy defines how packets should be routed from a load balancerservice to a Couchbase pod.  When local, traffic is routed directly to the pod.  Whencluster, traffic is routed to any node, then forwarded on.  While cluster routing may beslower, there are some situations where it is required for connectivity.  This fieldmust be either 'Cluster' or 'Local', defaulting to 'Local',",
-								MarkdownDescription: "DEPRECATED  - by exposedFeatureServiceTemplate.ExposedFeatureTrafficPolicy defines how packets should be routed from a load balancerservice to a Couchbase pod.  When local, traffic is routed directly to the pod.  Whencluster, traffic is routed to any node, then forwarded on.  While cluster routing may beslower, there are some situations where it is required for connectivity.  This fieldmust be either 'Cluster' or 'Local', defaulting to 'Local',",
+								Description:         "DEPRECATED - by exposedFeatureServiceTemplate. ExposedFeatureTrafficPolicy defines how packets should be routed from a load balancer service to a Couchbase pod. When local, traffic is routed directly to the pod. When cluster, traffic is routed to any node, then forwarded on. While cluster routing may be slower, there are some situations where it is required for connectivity. This field must be either 'Cluster' or 'Local', defaulting to 'Local',",
+								MarkdownDescription: "DEPRECATED - by exposedFeatureServiceTemplate. ExposedFeatureTrafficPolicy defines how packets should be routed from a load balancer service to a Couchbase pod. When local, traffic is routed directly to the pod. When cluster, traffic is routed to any node, then forwarded on. While cluster routing may be slower, there are some situations where it is required for connectivity. This field must be either 'Cluster' or 'Local', defaulting to 'Local',",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2970,8 +2970,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"exposed_features": schema.ListAttribute{
-								Description:         "ExposedFeatures is a list of Couchbase features to expose when using a networkingmodel that exposes the Couchbase cluster externally to Kubernetes.  This field alsotriggers the creation of per-pod services used by clients to connect to the Couchbasecluster.  When admin, only the administrator port is exposed, allowing remoteadministration.  When xdcr, only the services required for remote replication are exposed.The xdcr feature is only required when the cluster is the destination of an XDCRreplication.  When client, all services are exposed as required for client SDK operation.This field may contain any of 'admin', 'xdcr' and 'client'.  Each feature may only beincluded once.",
-								MarkdownDescription: "ExposedFeatures is a list of Couchbase features to expose when using a networkingmodel that exposes the Couchbase cluster externally to Kubernetes.  This field alsotriggers the creation of per-pod services used by clients to connect to the Couchbasecluster.  When admin, only the administrator port is exposed, allowing remoteadministration.  When xdcr, only the services required for remote replication are exposed.The xdcr feature is only required when the cluster is the destination of an XDCRreplication.  When client, all services are exposed as required for client SDK operation.This field may contain any of 'admin', 'xdcr' and 'client'.  Each feature may only beincluded once.",
+								Description:         "ExposedFeatures is a list of Couchbase features to expose when using a networking model that exposes the Couchbase cluster externally to Kubernetes. This field also triggers the creation of per-pod services used by clients to connect to the Couchbase cluster. When admin, only the administrator port is exposed, allowing remote administration. When xdcr, only the services required for remote replication are exposed. The xdcr feature is only required when the cluster is the destination of an XDCR replication. When client, all services are exposed as required for client SDK operation. This field may contain any of 'admin', 'xdcr' and 'client'. Each feature may only be included once.",
+								MarkdownDescription: "ExposedFeatures is a list of Couchbase features to expose when using a networking model that exposes the Couchbase cluster externally to Kubernetes. This field also triggers the creation of per-pod services used by clients to connect to the Couchbase cluster. When admin, only the administrator port is exposed, allowing remote administration. When xdcr, only the services required for remote replication are exposed. The xdcr feature is only required when the cluster is the destination of an XDCR replication. When client, all services are exposed as required for client SDK operation. This field may contain any of 'admin', 'xdcr' and 'client'. Each feature may only be included once.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -2979,8 +2979,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"load_balancer_source_ranges": schema.ListAttribute{
-								Description:         "DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate.LoadBalancerSourceRanges applies only when an exposed service is of typeLoadBalancer and limits the source IP ranges that are allowed to use theservice.  Items must use IPv4 class-less interdomain routing (CIDR) notatione.g. 10.0.0.0/16.",
-								MarkdownDescription: "DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate.LoadBalancerSourceRanges applies only when an exposed service is of typeLoadBalancer and limits the source IP ranges that are allowed to use theservice.  Items must use IPv4 class-less interdomain routing (CIDR) notatione.g. 10.0.0.0/16.",
+								Description:         "DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate. LoadBalancerSourceRanges applies only when an exposed service is of type LoadBalancer and limits the source IP ranges that are allowed to use the service. Items must use IPv4 class-less interdomain routing (CIDR) notation e.g. 10.0.0.0/16.",
+								MarkdownDescription: "DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate. LoadBalancerSourceRanges applies only when an exposed service is of type LoadBalancer and limits the source IP ranges that are allowed to use the service. Items must use IPv4 class-less interdomain routing (CIDR) notation e.g. 10.0.0.0/16.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -2988,8 +2988,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"network_platform": schema.StringAttribute{
-								Description:         "NetworkPlatform is used to enable support for various networkingtechnologies.  This field must be one of 'Istio'.",
-								MarkdownDescription: "NetworkPlatform is used to enable support for various networkingtechnologies.  This field must be one of 'Istio'.",
+								Description:         "NetworkPlatform is used to enable support for various networking technologies. This field must be one of 'Istio'.",
+								MarkdownDescription: "NetworkPlatform is used to enable support for various networking technologies. This field must be one of 'Istio'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2999,8 +2999,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"service_annotations": schema.MapAttribute{
-								Description:         "DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate.ServiceAnnotations allows services to be annotated with custom labels.Operator annotations are merged on top of these so have precedence asthey are required for correct operation.",
-								MarkdownDescription: "DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate.ServiceAnnotations allows services to be annotated with custom labels.Operator annotations are merged on top of these so have precedence asthey are required for correct operation.",
+								Description:         "DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate. ServiceAnnotations allows services to be annotated with custom labels. Operator annotations are merged on top of these so have precedence as they are required for correct operation.",
+								MarkdownDescription: "DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate. ServiceAnnotations allows services to be annotated with custom labels. Operator annotations are merged on top of these so have precedence as they are required for correct operation.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -3008,20 +3008,20 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"tls": schema.SingleNestedAttribute{
-								Description:         "TLS defines the TLS configuration for the cluster includingserver and client certificate configuration, and TLS security policies.",
-								MarkdownDescription: "TLS defines the TLS configuration for the cluster includingserver and client certificate configuration, and TLS security policies.",
+								Description:         "TLS defines the TLS configuration for the cluster including server and client certificate configuration, and TLS security policies.",
+								MarkdownDescription: "TLS defines the TLS configuration for the cluster including server and client certificate configuration, and TLS security policies.",
 								Attributes: map[string]schema.Attribute{
 									"allow_plain_text_cert_reload": schema.BoolAttribute{
-										Description:         "AllowPlainTextCertReload allows the reload of TLS certificates in plain text.This option should only be enabled as a means to recover connectivity withserver in the event that any of the server certificates expire. When enabledthe Operator only attempts plain text cert reloading when expired certificatesare detected.",
-										MarkdownDescription: "AllowPlainTextCertReload allows the reload of TLS certificates in plain text.This option should only be enabled as a means to recover connectivity withserver in the event that any of the server certificates expire. When enabledthe Operator only attempts plain text cert reloading when expired certificatesare detected.",
+										Description:         "AllowPlainTextCertReload allows the reload of TLS certificates in plain text. This option should only be enabled as a means to recover connectivity with server in the event that any of the server certificates expire. When enabled the Operator only attempts plain text cert reloading when expired certificates are detected.",
+										MarkdownDescription: "AllowPlainTextCertReload allows the reload of TLS certificates in plain text. This option should only be enabled as a means to recover connectivity with server in the event that any of the server certificates expire. When enabled the Operator only attempts plain text cert reloading when expired certificates are detected.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"cipher_suites": schema.ListAttribute{
-										Description:         "CipherSuites specifies a list of cipher suites for Couchbase server to selectfrom when negotiating TLS handshakes with a client.  Suites are not validatedby the Operator.  Run 'openssl ciphers -v' in a Couchbase server pod tointerrogate supported values.",
-										MarkdownDescription: "CipherSuites specifies a list of cipher suites for Couchbase server to selectfrom when negotiating TLS handshakes with a client.  Suites are not validatedby the Operator.  Run 'openssl ciphers -v' in a Couchbase server pod tointerrogate supported values.",
+										Description:         "CipherSuites specifies a list of cipher suites for Couchbase server to select from when negotiating TLS handshakes with a client. Suites are not validated by the Operator. Run 'openssl ciphers -v' in a Couchbase server pod to interrogate supported values.",
+										MarkdownDescription: "CipherSuites specifies a list of cipher suites for Couchbase server to select from when negotiating TLS handshakes with a client. Suites are not validated by the Operator. Run 'openssl ciphers -v' in a Couchbase server pod to interrogate supported values.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3029,21 +3029,21 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"client_certificate_paths": schema.ListNestedAttribute{
-										Description:         "ClientCertificatePaths defines where to look in client certificates in orderto extract the user name.",
-										MarkdownDescription: "ClientCertificatePaths defines where to look in client certificates in orderto extract the user name.",
+										Description:         "ClientCertificatePaths defines where to look in client certificates in order to extract the user name.",
+										MarkdownDescription: "ClientCertificatePaths defines where to look in client certificates in order to extract the user name.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"delimiter": schema.StringAttribute{
-													Description:         "Delimiter if specified allows a suffix to be stripped from the username, onceextracted from the certificate path.",
-													MarkdownDescription: "Delimiter if specified allows a suffix to be stripped from the username, onceextracted from the certificate path.",
+													Description:         "Delimiter if specified allows a suffix to be stripped from the username, once extracted from the certificate path.",
+													MarkdownDescription: "Delimiter if specified allows a suffix to be stripped from the username, once extracted from the certificate path.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"path": schema.StringAttribute{
-													Description:         "Path defines where in the X.509 specification to extract the username from.This field must be either 'subject.cn', 'san.uri', 'san.dnsname' or  'san.email'.",
-													MarkdownDescription: "Path defines where in the X.509 specification to extract the username from.This field must be either 'subject.cn', 'san.uri', 'san.dnsname' or  'san.email'.",
+													Description:         "Path defines where in the X.509 specification to extract the username from. This field must be either 'subject.cn', 'san.uri', 'san.dnsname' or 'san.email'.",
+													MarkdownDescription: "Path defines where in the X.509 specification to extract the username from. This field must be either 'subject.cn', 'san.uri', 'san.dnsname' or 'san.email'.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -3053,8 +3053,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"prefix": schema.StringAttribute{
-													Description:         "Prefix allows a prefix to be stripped from the username, once extracted from thecertificate path.",
-													MarkdownDescription: "Prefix allows a prefix to be stripped from the username, once extracted from thecertificate path.",
+													Description:         "Prefix allows a prefix to be stripped from the username, once extracted from the certificate path.",
+													MarkdownDescription: "Prefix allows a prefix to be stripped from the username, once extracted from the certificate path.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3067,8 +3067,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"client_certificate_policy": schema.StringAttribute{
-										Description:         "ClientCertificatePolicy defines the client authentication policy to use.If set, the Operator expects TLS configuration to contain a valid certificate/key pairfor the Administrator account.",
-										MarkdownDescription: "ClientCertificatePolicy defines the client authentication policy to use.If set, the Operator expects TLS configuration to contain a valid certificate/key pairfor the Administrator account.",
+										Description:         "ClientCertificatePolicy defines the client authentication policy to use. If set, the Operator expects TLS configuration to contain a valid certificate/key pair for the Administrator account.",
+										MarkdownDescription: "ClientCertificatePolicy defines the client authentication policy to use. If set, the Operator expects TLS configuration to contain a valid certificate/key pair for the Administrator account.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3078,8 +3078,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"node_to_node_encryption": schema.StringAttribute{
-										Description:         "NodeToNodeEncryption specifies whether to encrypt data between Couchbase nodeswithin the same cluster.  This may come at the expense of performance.  Whencontrol plane only encryption is used, only cluster management traffic is encryptedbetween nodes.  When all, all traffic is encrypted, including database documents.When strict mode is used, it is the same as all, but also disables all plaintextports.  Strict mode is only available on Couchbase Server versions 7.1 and greater.Node to node encryption can only be used when TLS certificates are managed by theOperator.  This field must be either 'ControlPlaneOnly', 'All', or 'Strict'.",
-										MarkdownDescription: "NodeToNodeEncryption specifies whether to encrypt data between Couchbase nodeswithin the same cluster.  This may come at the expense of performance.  Whencontrol plane only encryption is used, only cluster management traffic is encryptedbetween nodes.  When all, all traffic is encrypted, including database documents.When strict mode is used, it is the same as all, but also disables all plaintextports.  Strict mode is only available on Couchbase Server versions 7.1 and greater.Node to node encryption can only be used when TLS certificates are managed by theOperator.  This field must be either 'ControlPlaneOnly', 'All', or 'Strict'.",
+										Description:         "NodeToNodeEncryption specifies whether to encrypt data between Couchbase nodes within the same cluster. This may come at the expense of performance. When control plane only encryption is used, only cluster management traffic is encrypted between nodes. When all, all traffic is encrypted, including database documents. When strict mode is used, it is the same as all, but also disables all plaintext ports. Strict mode is only available on Couchbase Server versions 7.1 and greater. Node to node encryption can only be used when TLS certificates are managed by the Operator. This field must be either 'ControlPlaneOnly', 'All', or 'Strict'.",
+										MarkdownDescription: "NodeToNodeEncryption specifies whether to encrypt data between Couchbase nodes within the same cluster. This may come at the expense of performance. When control plane only encryption is used, only cluster management traffic is encrypted between nodes. When all, all traffic is encrypted, including database documents. When strict mode is used, it is the same as all, but also disables all plaintext ports. Strict mode is only available on Couchbase Server versions 7.1 and greater. Node to node encryption can only be used when TLS certificates are managed by the Operator. This field must be either 'ControlPlaneOnly', 'All', or 'Strict'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3089,12 +3089,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"passphrase": schema.SingleNestedAttribute{
-										Description:         "PassphraseConfig configures the passphrase key to use with encrypted certificates.The passphrase may be registered with Couchbase Server using a local script or arest endpoint. Private key encryption is only available on Couchbase Serverversions 7.1 and greater.",
-										MarkdownDescription: "PassphraseConfig configures the passphrase key to use with encrypted certificates.The passphrase may be registered with Couchbase Server using a local script or arest endpoint. Private key encryption is only available on Couchbase Serverversions 7.1 and greater.",
+										Description:         "PassphraseConfig configures the passphrase key to use with encrypted certificates. The passphrase may be registered with Couchbase Server using a local script or a rest endpoint. Private key encryption is only available on Couchbase Server versions 7.1 and greater.",
+										MarkdownDescription: "PassphraseConfig configures the passphrase key to use with encrypted certificates. The passphrase may be registered with Couchbase Server using a local script or a rest endpoint. Private key encryption is only available on Couchbase Server versions 7.1 and greater.",
 										Attributes: map[string]schema.Attribute{
 											"rest": schema.SingleNestedAttribute{
-												Description:         "PassphraseRestConfig is the configuration to register a private key passphrase with a rest endpoint.When the private key is accessed, Couchbase Server attempts to extract the password by means of thespecified endpoint. The response status must be 200 and the response text must be the exact passphraseexcluding newlines and extraneous spaces.",
-												MarkdownDescription: "PassphraseRestConfig is the configuration to register a private key passphrase with a rest endpoint.When the private key is accessed, Couchbase Server attempts to extract the password by means of thespecified endpoint. The response status must be 200 and the response text must be the exact passphraseexcluding newlines and extraneous spaces.",
+												Description:         "PassphraseRestConfig is the configuration to register a private key passphrase with a rest endpoint. When the private key is accessed, Couchbase Server attempts to extract the password by means of the specified endpoint. The response status must be 200 and the response text must be the exact passphrase excluding newlines and extraneous spaces.",
+												MarkdownDescription: "PassphraseRestConfig is the configuration to register a private key passphrase with a rest endpoint. When the private key is accessed, Couchbase Server attempts to extract the password by means of the specified endpoint. The response status must be 200 and the response text must be the exact passphrase excluding newlines and extraneous spaces.",
 												Attributes: map[string]schema.Attribute{
 													"address_family": schema.StringAttribute{
 														Description:         "AddressFamily is the address family to use. By default inet (meaning IPV4) is used.",
@@ -3117,16 +3117,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 													},
 
 													"timeout": schema.Int64Attribute{
-														Description:         "Timeout is  the number of milliseconds that must elapse before the call is timed out.",
-														MarkdownDescription: "Timeout is  the number of milliseconds that must elapse before the call is timed out.",
+														Description:         "Timeout is the number of milliseconds that must elapse before the call is timed out.",
+														MarkdownDescription: "Timeout is the number of milliseconds that must elapse before the call is timed out.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"url": schema.StringAttribute{
-														Description:         "URL is the endpoint to be called to retrieve the passphrase.URL will be called using the GET method and may use http/https protocol.",
-														MarkdownDescription: "URL is the endpoint to be called to retrieve the passphrase.URL will be called using the GET method and may use http/https protocol.",
+														Description:         "URL is the endpoint to be called to retrieve the passphrase. URL will be called using the GET method and may use http/https protocol.",
+														MarkdownDescription: "URL is the endpoint to be called to retrieve the passphrase. URL will be called using the GET method and may use http/https protocol.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -3146,12 +3146,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"script": schema.SingleNestedAttribute{
-												Description:         "PassphraseScriptConfig is the configuration to register a private key passphrase with a script.The Operator auto-provisions the underlying script so this config simply provides a mechanismto perform the decryption of the Couchbase Private Key using a local script.",
-												MarkdownDescription: "PassphraseScriptConfig is the configuration to register a private key passphrase with a script.The Operator auto-provisions the underlying script so this config simply provides a mechanismto perform the decryption of the Couchbase Private Key using a local script.",
+												Description:         "PassphraseScriptConfig is the configuration to register a private key passphrase with a script. The Operator auto-provisions the underlying script so this config simply provides a mechanism to perform the decryption of the Couchbase Private Key using a local script.",
+												MarkdownDescription: "PassphraseScriptConfig is the configuration to register a private key passphrase with a script. The Operator auto-provisions the underlying script so this config simply provides a mechanism to perform the decryption of the Couchbase Private Key using a local script.",
 												Attributes: map[string]schema.Attribute{
 													"secret": schema.StringAttribute{
-														Description:         "Secret is the secret containing the passphrase string. The secret is expectedto contain 'passphrase' key with the passphrase string as a value.",
-														MarkdownDescription: "Secret is the secret containing the passphrase string. The secret is expectedto contain 'passphrase' key with the passphrase string as a value.",
+														Description:         "Secret is the secret containing the passphrase string. The secret is expected to contain 'passphrase' key with the passphrase string as a value.",
+														MarkdownDescription: "Secret is the secret containing the passphrase string. The secret is expected to contain 'passphrase' key with the passphrase string as a value.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -3168,8 +3168,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"root_c_as": schema.ListAttribute{
-										Description:         "RootCAs defines a set of secrets that reside in this namespace that containadditional CA certificates that should be installed in Couchbase.  The CAcertificates that are defined here are in addition to those defined for thecluster, optionally by couchbaseclusters.spec.networking.tls.secretSource, andthus should not be duplicated.  Each Secret referred to must be of well-known type'kubernetes.io/tls' and must contain one or more CA certificates under the key 'tls.crt'.Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater,and not with legacy couchbaseclusters.spec.networking.tls.static configuration.",
-										MarkdownDescription: "RootCAs defines a set of secrets that reside in this namespace that containadditional CA certificates that should be installed in Couchbase.  The CAcertificates that are defined here are in addition to those defined for thecluster, optionally by couchbaseclusters.spec.networking.tls.secretSource, andthus should not be duplicated.  Each Secret referred to must be of well-known type'kubernetes.io/tls' and must contain one or more CA certificates under the key 'tls.crt'.Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater,and not with legacy couchbaseclusters.spec.networking.tls.static configuration.",
+										Description:         "RootCAs defines a set of secrets that reside in this namespace that contain additional CA certificates that should be installed in Couchbase. The CA certificates that are defined here are in addition to those defined for the cluster, optionally by couchbaseclusters.spec.networking.tls.secretSource, and thus should not be duplicated. Each Secret referred to must be of well-known type 'kubernetes.io/tls' and must contain one or more CA certificates under the key 'tls.crt'. Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater, and not with legacy couchbaseclusters.spec.networking.tls.static configuration.",
+										MarkdownDescription: "RootCAs defines a set of secrets that reside in this namespace that contain additional CA certificates that should be installed in Couchbase. The CA certificates that are defined here are in addition to those defined for the cluster, optionally by couchbaseclusters.spec.networking.tls.secretSource, and thus should not be duplicated. Each Secret referred to must be of well-known type 'kubernetes.io/tls' and must contain one or more CA certificates under the key 'tls.crt'. Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater, and not with legacy couchbaseclusters.spec.networking.tls.static configuration.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3177,20 +3177,20 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"secret_source": schema.SingleNestedAttribute{
-										Description:         "SecretSource enables the user to specify a secret conforming to the Kubernetes TLSsecret specification that is used for the Couchbase server certificate, and optionallythe Operator's client certificate, providing cert-manager compatibility without havingto specify a separate root CA.  A server CA certificate must be supplied by one of theprovided methods. Certificates referred to must conform to the keys of well-known type'kubernetes.io/tls' with 'tls.crt' and 'tls.key'. If the 'tls.key' is an encryptedprivate key then the secret type can be the generic Opaque type since 'kubernetes.io/tls'type secrets cannot verify encrypted keys.",
-										MarkdownDescription: "SecretSource enables the user to specify a secret conforming to the Kubernetes TLSsecret specification that is used for the Couchbase server certificate, and optionallythe Operator's client certificate, providing cert-manager compatibility without havingto specify a separate root CA.  A server CA certificate must be supplied by one of theprovided methods. Certificates referred to must conform to the keys of well-known type'kubernetes.io/tls' with 'tls.crt' and 'tls.key'. If the 'tls.key' is an encryptedprivate key then the secret type can be the generic Opaque type since 'kubernetes.io/tls'type secrets cannot verify encrypted keys.",
+										Description:         "SecretSource enables the user to specify a secret conforming to the Kubernetes TLS secret specification that is used for the Couchbase server certificate, and optionally the Operator's client certificate, providing cert-manager compatibility without having to specify a separate root CA. A server CA certificate must be supplied by one of the provided methods. Certificates referred to must conform to the keys of well-known type 'kubernetes.io/tls' with 'tls.crt' and 'tls.key'. If the 'tls.key' is an encrypted private key then the secret type can be the generic Opaque type since 'kubernetes.io/tls' type secrets cannot verify encrypted keys.",
+										MarkdownDescription: "SecretSource enables the user to specify a secret conforming to the Kubernetes TLS secret specification that is used for the Couchbase server certificate, and optionally the Operator's client certificate, providing cert-manager compatibility without having to specify a separate root CA. A server CA certificate must be supplied by one of the provided methods. Certificates referred to must conform to the keys of well-known type 'kubernetes.io/tls' with 'tls.crt' and 'tls.key'. If the 'tls.key' is an encrypted private key then the secret type can be the generic Opaque type since 'kubernetes.io/tls' type secrets cannot verify encrypted keys.",
 										Attributes: map[string]schema.Attribute{
 											"client_secret_name": schema.StringAttribute{
-												Description:         "ClientSecretName specifies the secret name, in the same namespace as the cluster,the contains client TLS data.  The secret is expected to contain 'tls.crt' and'tls.key' as per the Kubernetes.io/tls secret type.",
-												MarkdownDescription: "ClientSecretName specifies the secret name, in the same namespace as the cluster,the contains client TLS data.  The secret is expected to contain 'tls.crt' and'tls.key' as per the Kubernetes.io/tls secret type.",
+												Description:         "ClientSecretName specifies the secret name, in the same namespace as the cluster, the contains client TLS data. The secret is expected to contain 'tls.crt' and 'tls.key' as per the Kubernetes.io/tls secret type.",
+												MarkdownDescription: "ClientSecretName specifies the secret name, in the same namespace as the cluster, the contains client TLS data. The secret is expected to contain 'tls.crt' and 'tls.key' as per the Kubernetes.io/tls secret type.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"server_secret_name": schema.StringAttribute{
-												Description:         "ServerSecretName specifies the secret name, in the same namespace as the cluster,that contains server TLS data.  The secret is expected to contain 'tls.crt' and'tls.key' as per the kubernetes.io/tls secret type.  It may also contain 'ca.crt'.Only a single PEM formated x509 certificate can be provided to 'ca.crt'.The single certificate may also bundle together multiple root CA certificates.Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater.",
-												MarkdownDescription: "ServerSecretName specifies the secret name, in the same namespace as the cluster,that contains server TLS data.  The secret is expected to contain 'tls.crt' and'tls.key' as per the kubernetes.io/tls secret type.  It may also contain 'ca.crt'.Only a single PEM formated x509 certificate can be provided to 'ca.crt'.The single certificate may also bundle together multiple root CA certificates.Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater.",
+												Description:         "ServerSecretName specifies the secret name, in the same namespace as the cluster, that contains server TLS data. The secret is expected to contain 'tls.crt' and 'tls.key' as per the kubernetes.io/tls secret type. It may also contain 'ca.crt'. Only a single PEM formated x509 certificate can be provided to 'ca.crt'. The single certificate may also bundle together multiple root CA certificates. Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater.",
+												MarkdownDescription: "ServerSecretName specifies the secret name, in the same namespace as the cluster, that contains server TLS data. The secret is expected to contain 'tls.crt' and 'tls.key' as per the kubernetes.io/tls secret type. It may also contain 'ca.crt'. Only a single PEM formated x509 certificate can be provided to 'ca.crt'. The single certificate may also bundle together multiple root CA certificates. Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -3202,20 +3202,20 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"static": schema.SingleNestedAttribute{
-										Description:         "DEPRECATED - by couchbaseclusters.spec.networking.tls.secretSource.Static enables user to generate static x509 certificates and keys,put them into Kubernetes secrets, and specify them here.  Static secretsare Couchbase specific, and follow no well-known standards.",
-										MarkdownDescription: "DEPRECATED - by couchbaseclusters.spec.networking.tls.secretSource.Static enables user to generate static x509 certificates and keys,put them into Kubernetes secrets, and specify them here.  Static secretsare Couchbase specific, and follow no well-known standards.",
+										Description:         "DEPRECATED - by couchbaseclusters.spec.networking.tls.secretSource. Static enables user to generate static x509 certificates and keys, put them into Kubernetes secrets, and specify them here. Static secrets are Couchbase specific, and follow no well-known standards.",
+										MarkdownDescription: "DEPRECATED - by couchbaseclusters.spec.networking.tls.secretSource. Static enables user to generate static x509 certificates and keys, put them into Kubernetes secrets, and specify them here. Static secrets are Couchbase specific, and follow no well-known standards.",
 										Attributes: map[string]schema.Attribute{
 											"operator_secret": schema.StringAttribute{
-												Description:         "OperatorSecret is a secret name containing TLS certs used by operator totalk securely to this cluster.  The secret must contain a CA certificate (data keyca.crt).  If client authentication is enabled, then the secret must also containa client certificate chain (data key 'couchbase-operator.crt') and private key(data key 'couchbase-operator.key').",
-												MarkdownDescription: "OperatorSecret is a secret name containing TLS certs used by operator totalk securely to this cluster.  The secret must contain a CA certificate (data keyca.crt).  If client authentication is enabled, then the secret must also containa client certificate chain (data key 'couchbase-operator.crt') and private key(data key 'couchbase-operator.key').",
+												Description:         "OperatorSecret is a secret name containing TLS certs used by operator to talk securely to this cluster. The secret must contain a CA certificate (data key ca.crt). If client authentication is enabled, then the secret must also contain a client certificate chain (data key 'couchbase-operator.crt') and private key (data key 'couchbase-operator.key').",
+												MarkdownDescription: "OperatorSecret is a secret name containing TLS certs used by operator to talk securely to this cluster. The secret must contain a CA certificate (data key ca.crt). If client authentication is enabled, then the secret must also contain a client certificate chain (data key 'couchbase-operator.crt') and private key (data key 'couchbase-operator.key').",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"server_secret": schema.StringAttribute{
-												Description:         "ServerSecret is a secret name containing TLS certs used by each Couchbase member podfor the communication between Couchbase server and its clients.  The secret mustcontain a certificate chain (data key 'chain.pem') and a privatekey (data key 'pkey.key').  The private key must be in the PKCS#1 RSAformat.  The certificate chain must have a required set of X.509v3 subject alternativenames for all cluster addressing modes.  See the Operator TLS documentation for moreinformation.",
-												MarkdownDescription: "ServerSecret is a secret name containing TLS certs used by each Couchbase member podfor the communication between Couchbase server and its clients.  The secret mustcontain a certificate chain (data key 'chain.pem') and a privatekey (data key 'pkey.key').  The private key must be in the PKCS#1 RSAformat.  The certificate chain must have a required set of X.509v3 subject alternativenames for all cluster addressing modes.  See the Operator TLS documentation for moreinformation.",
+												Description:         "ServerSecret is a secret name containing TLS certs used by each Couchbase member pod for the communication between Couchbase server and its clients. The secret must contain a certificate chain (data key 'chain.pem') and a private key (data key 'pkey.key'). The private key must be in the PKCS#1 RSA format. The certificate chain must have a required set of X.509v3 subject alternative names for all cluster addressing modes. See the Operator TLS documentation for more information.",
+												MarkdownDescription: "ServerSecret is a secret name containing TLS certs used by each Couchbase member pod for the communication between Couchbase server and its clients. The secret must contain a certificate chain (data key 'chain.pem') and a private key (data key 'pkey.key'). The private key must be in the PKCS#1 RSA format. The certificate chain must have a required set of X.509v3 subject alternative names for all cluster addressing modes. See the Operator TLS documentation for more information.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3227,8 +3227,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tls_minimum_version": schema.StringAttribute{
-										Description:         "TLSMinimumVersion specifies the minimum TLS version the Couchbase server cannegotiate with a client.  Must be one of TLS1.0, TLS1.1 TLS1.2 or TLS1.3,defaulting to TLS1.2.  TLS1.3 is only valid for Couchbase Server 7.1.0 onward.TLS1.0 and TLS1.1 are not valid for Couchbase Server 7.6.0 onward.",
-										MarkdownDescription: "TLSMinimumVersion specifies the minimum TLS version the Couchbase server cannegotiate with a client.  Must be one of TLS1.0, TLS1.1 TLS1.2 or TLS1.3,defaulting to TLS1.2.  TLS1.3 is only valid for Couchbase Server 7.1.0 onward.TLS1.0 and TLS1.1 are not valid for Couchbase Server 7.6.0 onward.",
+										Description:         "TLSMinimumVersion specifies the minimum TLS version the Couchbase server can negotiate with a client. Must be one of TLS1.0, TLS1.1 TLS1.2 or TLS1.3, defaulting to TLS1.2. TLS1.3 is only valid for Couchbase Server 7.1.0 onward. TLS1.0 and TLS1.1 are not valid for Couchbase Server 7.6.0 onward.",
+										MarkdownDescription: "TLSMinimumVersion specifies the minimum TLS version the Couchbase server can negotiate with a client. Must be one of TLS1.0, TLS1.1 TLS1.2 or TLS1.3, defaulting to TLS1.2. TLS1.3 is only valid for Couchbase Server 7.1.0 onward. TLS1.0 and TLS1.1 are not valid for Couchbase Server 7.6.0 onward.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3243,16 +3243,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"wait_for_address_reachable": schema.StringAttribute{
-								Description:         "WaitForAddressReachable is used to set the timeout between when polling ofexternal addresses is started, and when it is deemed a failure.  Polling ofDNS name availability inherently dangerous due to negative caching, so preferthe use of an initial 'waitForAddressReachableDelay' to allow propagation.",
-								MarkdownDescription: "WaitForAddressReachable is used to set the timeout between when polling ofexternal addresses is started, and when it is deemed a failure.  Polling ofDNS name availability inherently dangerous due to negative caching, so preferthe use of an initial 'waitForAddressReachableDelay' to allow propagation.",
+								Description:         "WaitForAddressReachable is used to set the timeout between when polling of external addresses is started, and when it is deemed a failure. Polling of DNS name availability inherently dangerous due to negative caching, so prefer the use of an initial 'waitForAddressReachableDelay' to allow propagation.",
+								MarkdownDescription: "WaitForAddressReachable is used to set the timeout between when polling of external addresses is started, and when it is deemed a failure. Polling of DNS name availability inherently dangerous due to negative caching, so prefer the use of an initial 'waitForAddressReachableDelay' to allow propagation.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"wait_for_address_reachable_delay": schema.StringAttribute{
-								Description:         "WaitForAddressReachableDelay is used to defer operator checks thatensure external addresses are reachable before new nodes are balancedin to the cluster.  This prevents negative DNS caching while waitingfor external-DDNS controllers to propagate addresses.",
-								MarkdownDescription: "WaitForAddressReachableDelay is used to defer operator checks thatensure external addresses are reachable before new nodes are balancedin to the cluster.  This prevents negative DNS caching while waitingfor external-DDNS controllers to propagate addresses.",
+								Description:         "WaitForAddressReachableDelay is used to defer operator checks that ensure external addresses are reachable before new nodes are balanced in to the cluster. This prevents negative DNS caching while waiting for external-DDNS controllers to propagate addresses.",
+								MarkdownDescription: "WaitForAddressReachableDelay is used to defer operator checks that ensure external addresses are reachable before new nodes are balanced in to the cluster. This prevents negative DNS caching while waiting for external-DDNS controllers to propagate addresses.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3264,8 +3264,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"online_volume_expansion_timeout_in_mins": schema.Int64Attribute{
-						Description:         "OnlineVolumeExpansionTimeoutInMins must be provided as a retry mechanism with a timeout in minutesfor expanding volumes. This must only be provided, if EnableOnlineVolumeExpansion is set to true.Value must be between 0 and 30.If no value is provided, then it defaults to 10 minutes.",
-						MarkdownDescription: "OnlineVolumeExpansionTimeoutInMins must be provided as a retry mechanism with a timeout in minutesfor expanding volumes. This must only be provided, if EnableOnlineVolumeExpansion is set to true.Value must be between 0 and 30.If no value is provided, then it defaults to 10 minutes.",
+						Description:         "OnlineVolumeExpansionTimeoutInMins must be provided as a retry mechanism with a timeout in minutes for expanding volumes. This must only be provided, if EnableOnlineVolumeExpansion is set to true. Value must be between 0 and 30. If no value is provided, then it defaults to 10 minutes.",
+						MarkdownDescription: "OnlineVolumeExpansionTimeoutInMins must be provided as a retry mechanism with a timeout in minutes for expanding volumes. This must only be provided, if EnableOnlineVolumeExpansion is set to true. Value must be between 0 and 30. If no value is provided, then it defaults to 10 minutes.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -3276,16 +3276,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"paused": schema.BoolAttribute{
-						Description:         "Paused is to pause the control of the operator for the Couchbase cluster.This does not pause the cluster itself, instead stopping the operator fromtaking any action.",
-						MarkdownDescription: "Paused is to pause the control of the operator for the Couchbase cluster.This does not pause the cluster itself, instead stopping the operator fromtaking any action.",
+						Description:         "Paused is to pause the control of the operator for the Couchbase cluster. This does not pause the cluster itself, instead stopping the operator from taking any action.",
+						MarkdownDescription: "Paused is to pause the control of the operator for the Couchbase cluster. This does not pause the cluster itself, instead stopping the operator from taking any action.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"platform": schema.StringAttribute{
-						Description:         "Platform gives a hint as to what platform we are running on and howto configure services.  This field must be one of 'aws', 'gke' or 'azure'.",
-						MarkdownDescription: "Platform gives a hint as to what platform we are running on and howto configure services.  This field must be one of 'aws', 'gke' or 'azure'.",
+						Description:         "Platform gives a hint as to what platform we are running on and how to configure services. This field must be one of 'aws', 'gke' or 'azure'.",
+						MarkdownDescription: "Platform gives a hint as to what platform we are running on and how to configure services. This field must be one of 'aws', 'gke' or 'azure'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -3295,8 +3295,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"recovery_policy": schema.StringAttribute{
-						Description:         "RecoveryPolicy controls how aggressive the Operator is when recovering clustertopology.  When PrioritizeDataIntegrity, the Operator will delegate failoverexclusively to Couchbase server, relying on it to only allow recovery when safe todo so.  When PrioritizeUptime, the Operator will wait for a period after theexpected auto-failover of the cluster, before forcefully failing-over the pods.This may cause data loss, and is only expected to be used on clusters with ephemeraldata, where the loss of the pod means that the data is known to be unrecoverable.This field must be either 'PrioritizeDataIntegrity' or 'PrioritizeUptime', defaultingto 'PrioritizeDataIntegrity'.",
-						MarkdownDescription: "RecoveryPolicy controls how aggressive the Operator is when recovering clustertopology.  When PrioritizeDataIntegrity, the Operator will delegate failoverexclusively to Couchbase server, relying on it to only allow recovery when safe todo so.  When PrioritizeUptime, the Operator will wait for a period after theexpected auto-failover of the cluster, before forcefully failing-over the pods.This may cause data loss, and is only expected to be used on clusters with ephemeraldata, where the loss of the pod means that the data is known to be unrecoverable.This field must be either 'PrioritizeDataIntegrity' or 'PrioritizeUptime', defaultingto 'PrioritizeDataIntegrity'.",
+						Description:         "RecoveryPolicy controls how aggressive the Operator is when recovering cluster topology. When PrioritizeDataIntegrity, the Operator will delegate failover exclusively to Couchbase server, relying on it to only allow recovery when safe to do so. When PrioritizeUptime, the Operator will wait for a period after the expected auto-failover of the cluster, before forcefully failing-over the pods. This may cause data loss, and is only expected to be used on clusters with ephemeral data, where the loss of the pod means that the data is known to be unrecoverable. This field must be either 'PrioritizeDataIntegrity' or 'PrioritizeUptime', defaulting to 'PrioritizeDataIntegrity'.",
+						MarkdownDescription: "RecoveryPolicy controls how aggressive the Operator is when recovering cluster topology. When PrioritizeDataIntegrity, the Operator will delegate failover exclusively to Couchbase server, relying on it to only allow recovery when safe to do so. When PrioritizeUptime, the Operator will wait for a period after the expected auto-failover of the cluster, before forcefully failing-over the pods. This may cause data loss, and is only expected to be used on clusters with ephemeral data, where the loss of the pod means that the data is known to be unrecoverable. This field must be either 'PrioritizeDataIntegrity' or 'PrioritizeUptime', defaulting to 'PrioritizeDataIntegrity'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -3306,12 +3306,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"rolling_upgrade": schema.SingleNestedAttribute{
-						Description:         "When 'spec.upgradeStrategy' is set to 'RollingUpgrade' it will, by default, upgrade one podat a time.  If this field is specified then that number can be increased.",
-						MarkdownDescription: "When 'spec.upgradeStrategy' is set to 'RollingUpgrade' it will, by default, upgrade one podat a time.  If this field is specified then that number can be increased.",
+						Description:         "When 'spec.upgradeStrategy' is set to 'RollingUpgrade' it will, by default, upgrade one pod at a time. If this field is specified then that number can be increased.",
+						MarkdownDescription: "When 'spec.upgradeStrategy' is set to 'RollingUpgrade' it will, by default, upgrade one pod at a time. If this field is specified then that number can be increased.",
 						Attributes: map[string]schema.Attribute{
 							"max_upgradable": schema.Int64Attribute{
-								Description:         "MaxUpgradable allows the number of pods affected by an upgrade at anyone time to be increased.  By default a rolling upgrade willupgrade one pod at a time.  This field allows that limit to be removed.This field must be greater than zero.The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence ifboth are defined.",
-								MarkdownDescription: "MaxUpgradable allows the number of pods affected by an upgrade at anyone time to be increased.  By default a rolling upgrade willupgrade one pod at a time.  This field allows that limit to be removed.This field must be greater than zero.The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence ifboth are defined.",
+								Description:         "MaxUpgradable allows the number of pods affected by an upgrade at any one time to be increased. By default a rolling upgrade will upgrade one pod at a time. This field allows that limit to be removed. This field must be greater than zero. The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence if both are defined.",
+								MarkdownDescription: "MaxUpgradable allows the number of pods affected by an upgrade at any one time to be increased. By default a rolling upgrade will upgrade one pod at a time. This field allows that limit to be removed. This field must be greater than zero. The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence if both are defined.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3321,8 +3321,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"max_upgradable_percent": schema.StringAttribute{
-								Description:         "MaxUpgradablePercent allows the number of pods affected by an upgrade at anyone time to be increased.  By default a rolling upgrade willupgrade one pod at a time.  This field allows that limit to be removed.This field must be an integer percentage, e.g. '10%', in the range 1% to 100%.Percentages are relative to the total cluster size, and rounded down tothe nearest whole number, with a minimum of 1.  For example, a 10 podcluster, and 25% allowed to upgrade, would yield 2.5 pods per iteration,rounded down to 2.The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence ifboth are defined.",
-								MarkdownDescription: "MaxUpgradablePercent allows the number of pods affected by an upgrade at anyone time to be increased.  By default a rolling upgrade willupgrade one pod at a time.  This field allows that limit to be removed.This field must be an integer percentage, e.g. '10%', in the range 1% to 100%.Percentages are relative to the total cluster size, and rounded down tothe nearest whole number, with a minimum of 1.  For example, a 10 podcluster, and 25% allowed to upgrade, would yield 2.5 pods per iteration,rounded down to 2.The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence ifboth are defined.",
+								Description:         "MaxUpgradablePercent allows the number of pods affected by an upgrade at any one time to be increased. By default a rolling upgrade will upgrade one pod at a time. This field allows that limit to be removed. This field must be an integer percentage, e.g. '10%', in the range 1% to 100%. Percentages are relative to the total cluster size, and rounded down to the nearest whole number, with a minimum of 1. For example, a 10 pod cluster, and 25% allowed to upgrade, would yield 2.5 pods per iteration, rounded down to 2. The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence if both are defined.",
+								MarkdownDescription: "MaxUpgradablePercent allows the number of pods affected by an upgrade at any one time to be increased. By default a rolling upgrade will upgrade one pod at a time. This field allows that limit to be removed. This field must be an integer percentage, e.g. '10%', in the range 1% to 100%. Percentages are relative to the total cluster size, and rounded down to the nearest whole number, with a minimum of 1. For example, a 10 pod cluster, and 25% allowed to upgrade, would yield 2.5 pods per iteration, rounded down to 2. The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence if both are defined.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3337,72 +3337,72 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"security": schema.SingleNestedAttribute{
-						Description:         "Security defines Couchbase cluster security options such as the administratoraccount username and password, and user RBAC settings.",
-						MarkdownDescription: "Security defines Couchbase cluster security options such as the administratoraccount username and password, and user RBAC settings.",
+						Description:         "Security defines Couchbase cluster security options such as the administrator account username and password, and user RBAC settings.",
+						MarkdownDescription: "Security defines Couchbase cluster security options such as the administrator account username and password, and user RBAC settings.",
 						Attributes: map[string]schema.Attribute{
 							"admin_secret": schema.StringAttribute{
-								Description:         "AdminSecret is the name of a Kubernetes secret to use for administrator authentication.The admin secret must contain the keys 'username' and 'password'.  The password datamust be at least 6 characters in length, and not contain the any of the characters'()<>,;:'/[]?={}'.",
-								MarkdownDescription: "AdminSecret is the name of a Kubernetes secret to use for administrator authentication.The admin secret must contain the keys 'username' and 'password'.  The password datamust be at least 6 characters in length, and not contain the any of the characters'()<>,;:'/[]?={}'.",
+								Description:         "AdminSecret is the name of a Kubernetes secret to use for administrator authentication. The admin secret must contain the keys 'username' and 'password'. The password data must be at least 6 characters in length, and not contain the any of the characters '()<>,;:'/[]?={}'.",
+								MarkdownDescription: "AdminSecret is the name of a Kubernetes secret to use for administrator authentication. The admin secret must contain the keys 'username' and 'password'. The password data must be at least 6 characters in length, and not contain the any of the characters '()<>,;:'/[]?={}'.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"ldap": schema.SingleNestedAttribute{
-								Description:         "LDAP provides settings to authenticate and authorize LDAP users with Couchbase Server.When specified, the Operator keeps these settings in sync with Cocuhbase Server'sLDAP configuration. Leave empty to manually manage LDAP configuration.",
-								MarkdownDescription: "LDAP provides settings to authenticate and authorize LDAP users with Couchbase Server.When specified, the Operator keeps these settings in sync with Cocuhbase Server'sLDAP configuration. Leave empty to manually manage LDAP configuration.",
+								Description:         "LDAP provides settings to authenticate and authorize LDAP users with Couchbase Server. When specified, the Operator keeps these settings in sync with Cocuhbase Server's LDAP configuration. Leave empty to manually manage LDAP configuration.",
+								MarkdownDescription: "LDAP provides settings to authenticate and authorize LDAP users with Couchbase Server. When specified, the Operator keeps these settings in sync with Cocuhbase Server's LDAP configuration. Leave empty to manually manage LDAP configuration.",
 								Attributes: map[string]schema.Attribute{
 									"authentication_enabled": schema.BoolAttribute{
-										Description:         "AuthenticationEnabled allows users who attempt to access Couchbase Server without having beenadded as local users to be authenticated against the specified LDAP Host(s).",
-										MarkdownDescription: "AuthenticationEnabled allows users who attempt to access Couchbase Server without having beenadded as local users to be authenticated against the specified LDAP Host(s).",
+										Description:         "AuthenticationEnabled allows users who attempt to access Couchbase Server without having been added as local users to be authenticated against the specified LDAP Host(s).",
+										MarkdownDescription: "AuthenticationEnabled allows users who attempt to access Couchbase Server without having been added as local users to be authenticated against the specified LDAP Host(s).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"authorization_enabled": schema.BoolAttribute{
-										Description:         "AuthorizationEnabled allows authenticated LDAP users to be authorized with RBAC roles granted toany Couchbase Server group associated with the user.",
-										MarkdownDescription: "AuthorizationEnabled allows authenticated LDAP users to be authorized with RBAC roles granted toany Couchbase Server group associated with the user.",
+										Description:         "AuthorizationEnabled allows authenticated LDAP users to be authorized with RBAC roles granted to any Couchbase Server group associated with the user.",
+										MarkdownDescription: "AuthorizationEnabled allows authenticated LDAP users to be authorized with RBAC roles granted to any Couchbase Server group associated with the user.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"bind_dn": schema.StringAttribute{
-										Description:         "DN to use for searching users and groups synchronization. More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
-										MarkdownDescription: "DN to use for searching users and groups synchronization. More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										Description:         "DN to use for searching users and groups synchronization. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										MarkdownDescription: "DN to use for searching users and groups synchronization. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"bind_secret": schema.StringAttribute{
-										Description:         "BindSecret is the name of a Kubernetes secret to use containing password for LDAP user binding.The bindSecret must have a key with the name 'password' and a value which corresponds to thepassword of the binding LDAP user.",
-										MarkdownDescription: "BindSecret is the name of a Kubernetes secret to use containing password for LDAP user binding.The bindSecret must have a key with the name 'password' and a value which corresponds to thepassword of the binding LDAP user.",
+										Description:         "BindSecret is the name of a Kubernetes secret to use containing password for LDAP user binding. The bindSecret must have a key with the name 'password' and a value which corresponds to the password of the binding LDAP user.",
+										MarkdownDescription: "BindSecret is the name of a Kubernetes secret to use containing password for LDAP user binding. The bindSecret must have a key with the name 'password' and a value which corresponds to the password of the binding LDAP user.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"cacert": schema.StringAttribute{
-										Description:         "DEPRECATED - Field is ignored, use tlsSecret.CA Certificate in PEM format to be used in LDAP server certificate validation.This cert is the string form of the secret provided to 'spec.tls.tlsSecret'.",
-										MarkdownDescription: "DEPRECATED - Field is ignored, use tlsSecret.CA Certificate in PEM format to be used in LDAP server certificate validation.This cert is the string form of the secret provided to 'spec.tls.tlsSecret'.",
+										Description:         "DEPRECATED - Field is ignored, use tlsSecret. CA Certificate in PEM format to be used in LDAP server certificate validation. This cert is the string form of the secret provided to 'spec.tls.tlsSecret'.",
+										MarkdownDescription: "DEPRECATED - Field is ignored, use tlsSecret. CA Certificate in PEM format to be used in LDAP server certificate validation. This cert is the string form of the secret provided to 'spec.tls.tlsSecret'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"cache_value_lifetime": schema.Int64Attribute{
-										Description:         "Lifetime of values in cache in milliseconds. Default 300000 ms.  More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
-										MarkdownDescription: "Lifetime of values in cache in milliseconds. Default 300000 ms.  More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										Description:         "Lifetime of values in cache in milliseconds. Default 300000 ms. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										MarkdownDescription: "Lifetime of values in cache in milliseconds. Default 300000 ms. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"encryption": schema.StringAttribute{
-										Description:         "Encryption determines how the connection with the LDAP server should be encrypted.Encryption may set as either StartTLSExtension, TLS, or false.When set to 'false' then no verification of the LDAP hostname is performed.When Encryption is StartTLSExtension, or TLS is set then the default behavior is touse the certificate already loaded into the Couchbase Cluster for certificate validation,otherwise 'ldap.tlsSecret' may be set to override The Couchbase certificate.",
-										MarkdownDescription: "Encryption determines how the connection with the LDAP server should be encrypted.Encryption may set as either StartTLSExtension, TLS, or false.When set to 'false' then no verification of the LDAP hostname is performed.When Encryption is StartTLSExtension, or TLS is set then the default behavior is touse the certificate already loaded into the Couchbase Cluster for certificate validation,otherwise 'ldap.tlsSecret' may be set to override The Couchbase certificate.",
+										Description:         "Encryption determines how the connection with the LDAP server should be encrypted. Encryption may set as either StartTLSExtension, TLS, or false. When set to 'false' then no verification of the LDAP hostname is performed. When Encryption is StartTLSExtension, or TLS is set then the default behavior is to use the certificate already loaded into the Couchbase Cluster for certificate validation, otherwise 'ldap.tlsSecret' may be set to override The Couchbase certificate.",
+										MarkdownDescription: "Encryption determines how the connection with the LDAP server should be encrypted. Encryption may set as either StartTLSExtension, TLS, or false. When set to 'false' then no verification of the LDAP hostname is performed. When Encryption is StartTLSExtension, or TLS is set then the default behavior is to use the certificate already loaded into the Couchbase Cluster for certificate validation, otherwise 'ldap.tlsSecret' may be set to override The Couchbase certificate.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3412,16 +3412,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"groups_query": schema.StringAttribute{
-										Description:         "LDAP query, to get the users' groups by username in RFC4516 format.  More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
-										MarkdownDescription: "LDAP query, to get the users' groups by username in RFC4516 format.  More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										Description:         "LDAP query, to get the users' groups by username in RFC4516 format. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										MarkdownDescription: "LDAP query, to get the users' groups by username in RFC4516 format. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"hosts": schema.ListAttribute{
-										Description:         "List of LDAP hosts to provide authentication-support for Couchbase Server.Host name must be a valid IP address or DNS Name e.g openldap.default.svc, 10.0.92.147.",
-										MarkdownDescription: "List of LDAP hosts to provide authentication-support for Couchbase Server.Host name must be a valid IP address or DNS Name e.g openldap.default.svc, 10.0.92.147.",
+										Description:         "List of LDAP hosts to provide authentication-support for Couchbase Server. Host name must be a valid IP address or DNS Name e.g openldap.default.svc, 10.0.92.147.",
+										MarkdownDescription: "List of LDAP hosts to provide authentication-support for Couchbase Server. Host name must be a valid IP address or DNS Name e.g openldap.default.svc, 10.0.92.147.",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -3429,24 +3429,24 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"middlebox_comp_mode": schema.BoolAttribute{
-										Description:         "Sets middlebox compatibility mode for LDAP. This option is only available onCouchbase Server 7.6.0+.",
-										MarkdownDescription: "Sets middlebox compatibility mode for LDAP. This option is only available onCouchbase Server 7.6.0+.",
+										Description:         "Sets middlebox compatibility mode for LDAP. This option is only available on Couchbase Server 7.6.0+.",
+										MarkdownDescription: "Sets middlebox compatibility mode for LDAP. This option is only available on Couchbase Server 7.6.0+.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"nested_groups_enabled": schema.BoolAttribute{
-										Description:         "If enabled Couchbase server will try to recursively search for groupsfor every discovered ldap group. groups_query will be user for the search.More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
-										MarkdownDescription: "If enabled Couchbase server will try to recursively search for groupsfor every discovered ldap group. groups_query will be user for the search.More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										Description:         "If enabled Couchbase server will try to recursively search for groups for every discovered ldap group. groups_query will be user for the search. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										MarkdownDescription: "If enabled Couchbase server will try to recursively search for groups for every discovered ldap group. groups_query will be user for the search. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"nested_groups_max_depth": schema.Int64Attribute{
-										Description:         "Maximum number of recursive groups requests the server is allowed to perform.Requires NestedGroupsEnabled.  Values between 1 and 100: the default is 10.More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
-										MarkdownDescription: "Maximum number of recursive groups requests the server is allowed to perform.Requires NestedGroupsEnabled.  Values between 1 and 100: the default is 10.More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										Description:         "Maximum number of recursive groups requests the server is allowed to perform. Requires NestedGroupsEnabled. Values between 1 and 100: the default is 10. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										MarkdownDescription: "Maximum number of recursive groups requests the server is allowed to perform. Requires NestedGroupsEnabled. Values between 1 and 100: the default is 10. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3457,8 +3457,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "LDAP port.This is typically 389 for LDAP, and 636 for LDAPS.",
-										MarkdownDescription: "LDAP port.This is typically 389 for LDAP, and 636 for LDAPS.",
+										Description:         "LDAP port. This is typically 389 for LDAP, and 636 for LDAPS.",
+										MarkdownDescription: "LDAP port. This is typically 389 for LDAP, and 636 for LDAPS.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -3473,16 +3473,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tls_secret": schema.StringAttribute{
-										Description:         "TLSSecret is the name of a Kubernetes secret to use explcitly for LDAP ca cert.If TLSSecret is not provided, certificates found in 'couchbaseclusters.spec.networking.tls.rootCAs'will be used instead.If provided, the secret must contain the ca to be used under the name 'ca.crt'.",
-										MarkdownDescription: "TLSSecret is the name of a Kubernetes secret to use explcitly for LDAP ca cert.If TLSSecret is not provided, certificates found in 'couchbaseclusters.spec.networking.tls.rootCAs'will be used instead.If provided, the secret must contain the ca to be used under the name 'ca.crt'.",
+										Description:         "TLSSecret is the name of a Kubernetes secret to use explcitly for LDAP ca cert. If TLSSecret is not provided, certificates found in 'couchbaseclusters.spec.networking.tls.rootCAs' will be used instead. If provided, the secret must contain the ca to be used under the name 'ca.crt'.",
+										MarkdownDescription: "TLSSecret is the name of a Kubernetes secret to use explcitly for LDAP ca cert. If TLSSecret is not provided, certificates found in 'couchbaseclusters.spec.networking.tls.rootCAs' will be used instead. If provided, the secret must contain the ca to be used under the name 'ca.crt'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"user_dn_mapping": schema.SingleNestedAttribute{
-										Description:         "User to distinguished name (DN) mapping. If none is specified,the username is used as the user’s distinguished name.  More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
-										MarkdownDescription: "User to distinguished name (DN) mapping. If none is specified,the username is used as the user’s distinguished name.  More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										Description:         "User to distinguished name (DN) mapping. If none is specified, the username is used as the user’s distinguished name. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
+										MarkdownDescription: "User to distinguished name (DN) mapping. If none is specified, the username is used as the user’s distinguished name. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html",
 										Attributes: map[string]schema.Attribute{
 											"query": schema.StringAttribute{
 												Description:         "Query is the LDAP query to run to map from Couchbase user to LDAP distinguished name.",
@@ -3493,8 +3493,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"template": schema.StringAttribute{
-												Description:         "This field specifies list of templates to use for providing username to DN mapping.The template may contain a placeholder specified as '%u' to represent the Couchbaseuser who is attempting to gain access.",
-												MarkdownDescription: "This field specifies list of templates to use for providing username to DN mapping.The template may contain a placeholder specified as '%u' to represent the Couchbaseuser who is attempting to gain access.",
+												Description:         "This field specifies list of templates to use for providing username to DN mapping. The template may contain a placeholder specified as '%u' to represent the Couchbase user who is attempting to gain access.",
+												MarkdownDescription: "This field specifies list of templates to use for providing username to DN mapping. The template may contain a placeholder specified as '%u' to represent the Couchbase user who is attempting to gain access.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3511,52 +3511,52 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"pod_security_context": schema.SingleNestedAttribute{
-								Description:         "PodSecurityContext allows the configuration of the security context for allCouchbase server pods.  When using persistent volumes you may need to setthe fsGroup field in order to write to the volume.  For non-root clustersyou must also set runAsUser to 1000, corresponding to the Couchbase userin official container images.  More info:https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
-								MarkdownDescription: "PodSecurityContext allows the configuration of the security context for allCouchbase server pods.  When using persistent volumes you may need to setthe fsGroup field in order to write to the volume.  For non-root clustersyou must also set runAsUser to 1000, corresponding to the Couchbase userin official container images.  More info:https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+								Description:         "PodSecurityContext allows the configuration of the security context for all Couchbase server pods. When using persistent volumes you may need to set the fsGroup field in order to write to the volume. For non-root clusters you must also set runAsUser to 1000, corresponding to the Couchbase user in official container images. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+								MarkdownDescription: "PodSecurityContext allows the configuration of the security context for all Couchbase server pods. When using persistent volumes you may need to set the fsGroup field in order to write to the volume. For non-root clusters you must also set runAsUser to 1000, corresponding to the Couchbase user in official container images. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 								Attributes: map[string]schema.Attribute{
 									"fs_group": schema.Int64Attribute{
-										Description:         "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"fs_group_change_policy": schema.StringAttribute{
-										Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"run_as_group": schema.Int64Attribute{
-										Description:         "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"run_as_non_root": schema.BoolAttribute{
-										Description:         "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
-										MarkdownDescription: "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+										Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+										MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"run_as_user": schema.Int64Attribute{
-										Description:         "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"se_linux_options": schema.SingleNestedAttribute{
-										Description:         "The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 										Attributes: map[string]schema.Attribute{
 											"level": schema.StringAttribute{
 												Description:         "Level is SELinux level label that applies to the container.",
@@ -3596,20 +3596,20 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"seccomp_profile": schema.SingleNestedAttribute{
-										Description:         "The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
 										Attributes: map[string]schema.Attribute{
 											"localhost_profile": schema.StringAttribute{
-												Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
-												MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+												Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+												MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"type": schema.StringAttribute{
-												Description:         "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
-												MarkdownDescription: "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
+												Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+												MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -3621,8 +3621,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"supplemental_groups": schema.ListAttribute{
-										Description:         "A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3630,8 +3630,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"sysctls": schema.ListNestedAttribute{
-										Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -3657,12 +3657,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"windows_options": schema.SingleNestedAttribute{
-										Description:         "The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
-										MarkdownDescription: "The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
+										Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+										MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
 										Attributes: map[string]schema.Attribute{
 											"gmsa_credential_spec": schema.StringAttribute{
-												Description:         "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
-												MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
+												Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+												MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3677,16 +3677,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"host_process": schema.BoolAttribute{
-												Description:         "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
-												MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
+												Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+												MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"run_as_user_name": schema.StringAttribute{
-												Description:         "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
-												MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+												Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+												MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3715,8 +3715,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"selector": schema.SingleNestedAttribute{
-										Description:         "Selector is a label selector used to list RBAC resources in the namespacethat are managed by the Operator.",
-										MarkdownDescription: "Selector is a label selector used to list RBAC resources in the namespacethat are managed by the Operator.",
+										Description:         "Selector is a label selector used to list RBAC resources in the namespace that are managed by the Operator.",
+										MarkdownDescription: "Selector is a label selector used to list RBAC resources in the namespace that are managed by the Operator.",
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
 												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3732,16 +3732,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3755,8 +3755,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -3774,20 +3774,20 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"security_context": schema.SingleNestedAttribute{
-								Description:         "SecurityContext defines the security options the container should be run with.If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.Use securityContext.allowPrivilegeEscalation field to grant more privileges than its parent process.More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
-								MarkdownDescription: "SecurityContext defines the security options the container should be run with.If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.Use securityContext.allowPrivilegeEscalation field to grant more privileges than its parent process.More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+								Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. Use securityContext.allowPrivilegeEscalation field to grant more privileges than its parent process. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+								MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. Use securityContext.allowPrivilegeEscalation field to grant more privileges than its parent process. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 								Attributes: map[string]schema.Attribute{
 									"allow_privilege_escalation": schema.BoolAttribute{
-										Description:         "AllowPrivilegeEscalation controls whether a process can gain moreprivileges than its parent process. This bool directly controls ifthe no_new_privs flag will be set on the container process.AllowPrivilegeEscalation is true always when the container is:1) run as Privileged2) has CAP_SYS_ADMINNote that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain moreprivileges than its parent process. This bool directly controls ifthe no_new_privs flag will be set on the container process.AllowPrivilegeEscalation is true always when the container is:1) run as Privileged2) has CAP_SYS_ADMINNote that this field cannot be set when spec.os.name is windows.",
+										Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"capabilities": schema.SingleNestedAttribute{
-										Description:         "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 										Attributes: map[string]schema.Attribute{
 											"add": schema.ListAttribute{
 												Description:         "Added capabilities",
@@ -3813,56 +3813,56 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"privileged": schema.BoolAttribute{
-										Description:         "Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"proc_mount": schema.StringAttribute{
-										Description:         "procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"read_only_root_filesystem": schema.BoolAttribute{
-										Description:         "Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"run_as_group": schema.Int64Attribute{
-										Description:         "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"run_as_non_root": schema.BoolAttribute{
-										Description:         "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
-										MarkdownDescription: "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+										Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+										MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"run_as_user": schema.Int64Attribute{
-										Description:         "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"se_linux_options": schema.SingleNestedAttribute{
-										Description:         "The SELinux context to be applied to the container.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "The SELinux context to be applied to the container.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
 										Attributes: map[string]schema.Attribute{
 											"level": schema.StringAttribute{
 												Description:         "Level is SELinux level label that applies to the container.",
@@ -3902,20 +3902,20 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"seccomp_profile": schema.SingleNestedAttribute{
-										Description:         "The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 										Attributes: map[string]schema.Attribute{
 											"localhost_profile": schema.StringAttribute{
-												Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
-												MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+												Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+												MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"type": schema.StringAttribute{
-												Description:         "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
-												MarkdownDescription: "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
+												Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+												MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -3927,12 +3927,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"windows_options": schema.SingleNestedAttribute{
-										Description:         "The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
-										MarkdownDescription: "The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
+										Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+										MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
 										Attributes: map[string]schema.Attribute{
 											"gmsa_credential_spec": schema.StringAttribute{
-												Description:         "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
-												MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
+												Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+												MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3947,16 +3947,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"host_process": schema.BoolAttribute{
-												Description:         "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
-												MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
+												Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+												MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"run_as_user_name": schema.StringAttribute{
-												Description:         "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
-												MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+												Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+												MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3973,8 +3973,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"ui_session_timeout": schema.Int64Attribute{
-								Description:         "UISessionTimeout sets how long, in minutes, before a user is declared inactiveand signed out from the Couchbase Server UI.0 represents no time out.",
-								MarkdownDescription: "UISessionTimeout sets how long, in minutes, before a user is declared inactiveand signed out from the Couchbase Server UI.0 represents no time out.",
+								Description:         "UISessionTimeout sets how long, in minutes, before a user is declared inactive and signed out from the Couchbase Server UI. 0 represents no time out.",
+								MarkdownDescription: "UISessionTimeout sets how long, in minutes, before a user is declared inactive and signed out from the Couchbase Server UI. 0 represents no time out.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3990,52 +3990,52 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"security_context": schema.SingleNestedAttribute{
-						Description:         "DEPRECATED - by spec.security.securityContextSecurityContext allows the configuration of the security context for allCouchbase server pods.  When using persistent volumes you may need to setthe fsGroup field in order to write to the volume.  For non-root clustersyou must also set runAsUser to 1000, corresponding to the Couchbase userin official container images.  More info:https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
-						MarkdownDescription: "DEPRECATED - by spec.security.securityContextSecurityContext allows the configuration of the security context for allCouchbase server pods.  When using persistent volumes you may need to setthe fsGroup field in order to write to the volume.  For non-root clustersyou must also set runAsUser to 1000, corresponding to the Couchbase userin official container images.  More info:https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+						Description:         "DEPRECATED - by spec.security.securityContext SecurityContext allows the configuration of the security context for all Couchbase server pods. When using persistent volumes you may need to set the fsGroup field in order to write to the volume. For non-root clusters you must also set runAsUser to 1000, corresponding to the Couchbase user in official container images. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+						MarkdownDescription: "DEPRECATED - by spec.security.securityContext SecurityContext allows the configuration of the security context for all Couchbase server pods. When using persistent volumes you may need to set the fsGroup field in order to write to the volume. For non-root clusters you must also set runAsUser to 1000, corresponding to the Couchbase user in official container images. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 						Attributes: map[string]schema.Attribute{
 							"fs_group": schema.Int64Attribute{
-								Description:         "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"fs_group_change_policy": schema.StringAttribute{
-								Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"run_as_group": schema.Int64Attribute{
-								Description:         "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"run_as_non_root": schema.BoolAttribute{
-								Description:         "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
-								MarkdownDescription: "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+								Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+								MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"run_as_user": schema.Int64Attribute{
-								Description:         "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"se_linux_options": schema.SingleNestedAttribute{
-								Description:         "The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 								Attributes: map[string]schema.Attribute{
 									"level": schema.StringAttribute{
 										Description:         "Level is SELinux level label that applies to the container.",
@@ -4075,20 +4075,20 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"seccomp_profile": schema.SingleNestedAttribute{
-								Description:         "The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
 								Attributes: map[string]schema.Attribute{
 									"localhost_profile": schema.StringAttribute{
-										Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
-										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+										Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"type": schema.StringAttribute{
-										Description:         "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
-										MarkdownDescription: "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
+										Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+										MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -4100,8 +4100,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"supplemental_groups": schema.ListAttribute{
-								Description:         "A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -4109,8 +4109,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"sysctls": schema.ListNestedAttribute{
-								Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
@@ -4136,12 +4136,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"windows_options": schema.SingleNestedAttribute{
-								Description:         "The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
-								MarkdownDescription: "The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux.",
+								Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+								MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
 								Attributes: map[string]schema.Attribute{
 									"gmsa_credential_spec": schema.StringAttribute{
-										Description:         "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
-										MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.",
+										Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+										MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4156,16 +4156,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"host_process": schema.BoolAttribute{
-										Description:         "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
-										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"run_as_user_name": schema.StringAttribute{
-										Description:         "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
-										MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+										Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+										MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4182,8 +4182,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"server_groups": schema.ListAttribute{
-						Description:         "ServerGroups define the set of availability zones you want to distributepods over, and construct Couchbase server groups for.  By default, mostcloud providers will label nodes with the key 'topology.kubernetes.io/zone',the values associated with that key are used here to provide explicitscheduling by the Operator.  You may manually label nodes using the'topology.kubernetes.io/zone' key, to provide failure-domainaware scheduling when none is provided for you.  Global server groups areapplied to all server classes, and may be overridden on a per-server classbasis to give more control over scheduling and server groups.",
-						MarkdownDescription: "ServerGroups define the set of availability zones you want to distributepods over, and construct Couchbase server groups for.  By default, mostcloud providers will label nodes with the key 'topology.kubernetes.io/zone',the values associated with that key are used here to provide explicitscheduling by the Operator.  You may manually label nodes using the'topology.kubernetes.io/zone' key, to provide failure-domainaware scheduling when none is provided for you.  Global server groups areapplied to all server classes, and may be overridden on a per-server classbasis to give more control over scheduling and server groups.",
+						Description:         "ServerGroups define the set of availability zones you want to distribute pods over, and construct Couchbase server groups for. By default, most cloud providers will label nodes with the key 'topology.kubernetes.io/zone', the values associated with that key are used here to provide explicit scheduling by the Operator. You may manually label nodes using the 'topology.kubernetes.io/zone' key, to provide failure-domain aware scheduling when none is provided for you. Global server groups are applied to all server classes, and may be overridden on a per-server class basis to give more control over scheduling and server groups.",
+						MarkdownDescription: "ServerGroups define the set of availability zones you want to distribute pods over, and construct Couchbase server groups for. By default, most cloud providers will label nodes with the key 'topology.kubernetes.io/zone', the values associated with that key are used here to provide explicit scheduling by the Operator. You may manually label nodes using the 'topology.kubernetes.io/zone' key, to provide failure-domain aware scheduling when none is provided for you. Global server groups are applied to all server classes, and may be overridden on a per-server class basis to give more control over scheduling and server groups.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -4191,13 +4191,13 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"servers": schema.ListNestedAttribute{
-						Description:         "Servers defines server classes for the Operator to provision and manage.A server class defines what services are running and how many members makeup that class.  Specifying multiple server classes allows the Operator toprovision clusters with Multi-Dimensional Scaling (MDS).  At least one serverclass must be defined, and at least one server class must be running the dataservice.",
-						MarkdownDescription: "Servers defines server classes for the Operator to provision and manage.A server class defines what services are running and how many members makeup that class.  Specifying multiple server classes allows the Operator toprovision clusters with Multi-Dimensional Scaling (MDS).  At least one serverclass must be defined, and at least one server class must be running the dataservice.",
+						Description:         "Servers defines server classes for the Operator to provision and manage. A server class defines what services are running and how many members make up that class. Specifying multiple server classes allows the Operator to provision clusters with Multi-Dimensional Scaling (MDS). At least one server class must be defined, and at least one server class must be running the data service.",
+						MarkdownDescription: "Servers defines server classes for the Operator to provision and manage. A server class defines what services are running and how many members make up that class. Specifying multiple server classes allows the Operator to provision clusters with Multi-Dimensional Scaling (MDS). At least one server class must be defined, and at least one server class must be running the data service.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"autoscale_enabled": schema.BoolAttribute{
-									Description:         "AutoscaledEnabled defines whether the autoscaling feature is enabled for this class.When true, the Operator will create a CouchbaseAutoscaler resource for thisserver class.  The CouchbaseAutoscaler implements the Kubernetes scale API andcan be controlled by the Kubernetes horizontal pod autoscaler (HPA).",
-									MarkdownDescription: "AutoscaledEnabled defines whether the autoscaling feature is enabled for this class.When true, the Operator will create a CouchbaseAutoscaler resource for thisserver class.  The CouchbaseAutoscaler implements the Kubernetes scale API andcan be controlled by the Kubernetes horizontal pod autoscaler (HPA).",
+									Description:         "AutoscaledEnabled defines whether the autoscaling feature is enabled for this class. When true, the Operator will create a CouchbaseAutoscaler resource for this server class. The CouchbaseAutoscaler implements the Kubernetes scale API and can be controlled by the Kubernetes horizontal pod autoscaler (HPA).",
+									MarkdownDescription: "AutoscaledEnabled defines whether the autoscaling feature is enabled for this class. When true, the Operator will create a CouchbaseAutoscaler resource for this server class. The CouchbaseAutoscaler implements the Kubernetes scale API and can be controlled by the Kubernetes horizontal pod autoscaler (HPA).",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4217,8 +4217,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"value": schema.StringAttribute{
-												Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-												MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+												Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+												MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4241,8 +4241,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4262,8 +4262,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 													},
 
 													"field_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-														MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+														Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+														MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 														Attributes: map[string]schema.Attribute{
 															"api_version": schema.StringAttribute{
 																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -4287,8 +4287,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 													},
 
 													"resource_field_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-														MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+														Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+														MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 														Attributes: map[string]schema.Attribute{
 															"container_name": schema.StringAttribute{
 																Description:         "Container name: required for volumes, optional for env vars",
@@ -4324,16 +4324,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 														MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4373,8 +4373,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												MarkdownDescription: "The ConfigMap to select from",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4406,8 +4406,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												MarkdownDescription: "The Secret to select from",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4433,8 +4433,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"image": schema.StringAttribute{
-									Description:         "Image is the container image name that will be used to launch Couchbaseserver instances in this server class. You cannot downgrade the Couchbaseversion. Across spec.image and all server classes there can only be twodifferent Couchbase images. Updating this field to a value different thanspec.image will cause an automatic upgrade of the server class. If it isn'tspecified then the cluster image will be used.",
-									MarkdownDescription: "Image is the container image name that will be used to launch Couchbaseserver instances in this server class. You cannot downgrade the Couchbaseversion. Across spec.image and all server classes there can only be twodifferent Couchbase images. Updating this field to a value different thanspec.image will cause an automatic upgrade of the server class. If it isn'tspecified then the cluster image will be used.",
+									Description:         "Image is the container image name that will be used to launch Couchbase server instances in this server class. You cannot downgrade the Couchbase version. Across spec.image and all server classes there can only be two different Couchbase images. Updating this field to a value different than spec.image will cause an automatic upgrade of the server class. If it isn't specified then the cluster image will be used.",
+									MarkdownDescription: "Image is the container image name that will be used to launch Couchbase server instances in this server class. You cannot downgrade the Couchbase version. Across spec.image and all server classes there can only be two different Couchbase images. Updating this field to a value different than spec.image will cause an automatic upgrade of the server class. If it isn't specified then the cluster image will be used.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4444,24 +4444,24 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name is a textual name for the server configuration and must be unique.The name is used by the operator to uniquely identify a server class,and map pods back to an intended configuration.",
-									MarkdownDescription: "Name is a textual name for the server configuration and must be unique.The name is used by the operator to uniquely identify a server class,and map pods back to an intended configuration.",
+									Description:         "Name is a textual name for the server configuration and must be unique. The name is used by the operator to uniquely identify a server class, and map pods back to an intended configuration.",
+									MarkdownDescription: "Name is a textual name for the server configuration and must be unique. The name is used by the operator to uniquely identify a server class, and map pods back to an intended configuration.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"pod": schema.SingleNestedAttribute{
-									Description:         "Pod defines a template used to create pod for each Couchbase serverinstance.  Modifying pod metadata such as labels and annotations willupdate the pod in-place.  Any other modification will result in a clusterupgrade in order to fulfill the request. The Operator reserves the rightto modify or replace any field.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#pod-v1-core",
-									MarkdownDescription: "Pod defines a template used to create pod for each Couchbase serverinstance.  Modifying pod metadata such as labels and annotations willupdate the pod in-place.  Any other modification will result in a clusterupgrade in order to fulfill the request. The Operator reserves the rightto modify or replace any field.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#pod-v1-core",
+									Description:         "Pod defines a template used to create pod for each Couchbase server instance. Modifying pod metadata such as labels and annotations will update the pod in-place. Any other modification will result in a cluster upgrade in order to fulfill the request. The Operator reserves the right to modify or replace any field. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#pod-v1-core",
+									MarkdownDescription: "Pod defines a template used to create pod for each Couchbase server instance. Modifying pod metadata such as labels and annotations will update the pod in-place. Any other modification will result in a cluster upgrade in order to fulfill the request. The Operator reserves the right to modify or replace any field. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#pod-v1-core",
 									Attributes: map[string]schema.Attribute{
 										"metadata": schema.SingleNestedAttribute{
-											Description:         "Standard objects metadata.  This is a curated version for use with Couchbaseresource templates.",
-											MarkdownDescription: "Standard objects metadata.  This is a curated version for use with Couchbaseresource templates.",
+											Description:         "Standard objects metadata. This is a curated version for use with Couchbase resource templates.",
+											MarkdownDescription: "Standard objects metadata. This is a curated version for use with Couchbase resource templates.",
 											Attributes: map[string]schema.Attribute{
 												"annotations": schema.MapAttribute{
-													Description:         "Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations",
-													MarkdownDescription: "Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations",
+													Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+													MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4469,8 +4469,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"labels": schema.MapAttribute{
-													Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels",
-													MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels",
+													Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+													MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4487,8 +4487,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 											MarkdownDescription: "PodSpec is a description of a pod.",
 											Attributes: map[string]schema.Attribute{
 												"active_deadline_seconds": schema.Int64Attribute{
-													Description:         "Optional duration in seconds the pod may be active on the node relative toStartTime before the system will actively try to mark it failed and kill associated containers.Value must be a positive integer.",
-													MarkdownDescription: "Optional duration in seconds the pod may be active on the node relative toStartTime before the system will actively try to mark it failed and kill associated containers.Value must be a positive integer.",
+													Description:         "Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.",
+													MarkdownDescription: "Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4503,8 +4503,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 															MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
 															Attributes: map[string]schema.Attribute{
 																"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																	Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
-																	MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+																	Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+																	MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"preference": schema.SingleNestedAttribute{
@@ -4525,16 +4525,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																								},
 
 																								"operator": schema.StringAttribute{
-																									Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																									MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																									Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																									MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"values": schema.ListAttribute{
-																									Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																									MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																									Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																									MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -4561,16 +4561,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																								},
 
 																								"operator": schema.StringAttribute{
-																									Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																									MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																									Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																									MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"values": schema.ListAttribute{
-																									Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																									MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																									Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																									MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -4603,8 +4603,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																},
 
 																"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-																	Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
-																	MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+																	Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+																	MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
 																	Attributes: map[string]schema.Attribute{
 																		"node_selector_terms": schema.ListNestedAttribute{
 																			Description:         "Required. A list of node selector terms. The terms are ORed.",
@@ -4625,16 +4625,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																								},
 
 																								"operator": schema.StringAttribute{
-																									Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																									MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																									Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																									MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"values": schema.ListAttribute{
-																									Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																									MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																									Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																									MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -4661,16 +4661,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																								},
 
 																								"operator": schema.StringAttribute{
-																									Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																									MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																									Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																									MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"values": schema.ListAttribute{
-																									Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																									MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																									Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																									MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -4704,8 +4704,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 															MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
 															Attributes: map[string]schema.Attribute{
 																"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																	Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
-																	MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																	Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																	MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"pod_affinity_term": schema.SingleNestedAttribute{
@@ -4730,16 +4730,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																										},
 
 																										"operator": schema.StringAttribute{
-																											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
 																										},
 
 																										"values": schema.ListAttribute{
-																											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -4753,8 +4753,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																							},
 
 																							"match_labels": schema.MapAttribute{
-																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            true,
@@ -4767,8 +4767,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																					},
 
 																					"namespace_selector": schema.SingleNestedAttribute{
-																						Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																						MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																						Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																						MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																						Attributes: map[string]schema.Attribute{
 																							"match_expressions": schema.ListNestedAttribute{
 																								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4784,16 +4784,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																										},
 
 																										"operator": schema.StringAttribute{
-																											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
 																										},
 
 																										"values": schema.ListAttribute{
-																											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -4807,8 +4807,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																							},
 
 																							"match_labels": schema.MapAttribute{
-																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            true,
@@ -4821,8 +4821,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																					},
 
 																					"namespaces": schema.ListAttribute{
-																						Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																						MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																						Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																						MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -4830,8 +4830,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																					},
 
 																					"topology_key": schema.StringAttribute{
-																						Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																						MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																						Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																						MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -4843,8 +4843,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																			},
 
 																			"weight": schema.Int64Attribute{
-																				Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
-																				MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																				Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																				MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -4857,8 +4857,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																},
 
 																"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																	Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
-																	MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																	Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																	MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"label_selector": schema.SingleNestedAttribute{
@@ -4879,16 +4879,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																								},
 
 																								"operator": schema.StringAttribute{
-																									Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																									MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"values": schema.ListAttribute{
-																									Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																									MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																									Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																									MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -4902,8 +4902,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																					},
 
 																					"match_labels": schema.MapAttribute{
-																						Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																						MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -4916,8 +4916,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																			},
 
 																			"namespace_selector": schema.SingleNestedAttribute{
-																				Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																				MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																				Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																				MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																				Attributes: map[string]schema.Attribute{
 																					"match_expressions": schema.ListNestedAttribute{
 																						Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4933,16 +4933,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																								},
 
 																								"operator": schema.StringAttribute{
-																									Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																									MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"values": schema.ListAttribute{
-																									Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																									MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																									Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																									MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -4956,8 +4956,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																					},
 
 																					"match_labels": schema.MapAttribute{
-																						Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																						MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -4970,8 +4970,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																			},
 
 																			"namespaces": schema.ListAttribute{
-																				Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																				Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -4979,8 +4979,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																			},
 
 																			"topology_key": schema.StringAttribute{
-																				Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																				MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																				Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																				MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -5002,8 +5002,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 															MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
 															Attributes: map[string]schema.Attribute{
 																"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																	Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
-																	MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																	Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																	MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"pod_affinity_term": schema.SingleNestedAttribute{
@@ -5028,16 +5028,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																										},
 
 																										"operator": schema.StringAttribute{
-																											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
 																										},
 
 																										"values": schema.ListAttribute{
-																											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -5051,8 +5051,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																							},
 
 																							"match_labels": schema.MapAttribute{
-																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            true,
@@ -5065,8 +5065,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																					},
 
 																					"namespace_selector": schema.SingleNestedAttribute{
-																						Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																						MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																						Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																						MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																						Attributes: map[string]schema.Attribute{
 																							"match_expressions": schema.ListNestedAttribute{
 																								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -5082,16 +5082,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																										},
 
 																										"operator": schema.StringAttribute{
-																											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
 																										},
 
 																										"values": schema.ListAttribute{
-																											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -5105,8 +5105,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																							},
 
 																							"match_labels": schema.MapAttribute{
-																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            true,
@@ -5119,8 +5119,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																					},
 
 																					"namespaces": schema.ListAttribute{
-																						Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																						MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																						Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																						MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -5128,8 +5128,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																					},
 
 																					"topology_key": schema.StringAttribute{
-																						Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																						MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																						Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																						MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -5141,8 +5141,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																			},
 
 																			"weight": schema.Int64Attribute{
-																				Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
-																				MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																				Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																				MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -5155,8 +5155,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																},
 
 																"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																	Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
-																	MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																	Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																	MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"label_selector": schema.SingleNestedAttribute{
@@ -5177,16 +5177,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																								},
 
 																								"operator": schema.StringAttribute{
-																									Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																									MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"values": schema.ListAttribute{
-																									Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																									MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																									Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																									MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -5200,8 +5200,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																					},
 
 																					"match_labels": schema.MapAttribute{
-																						Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																						MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -5214,8 +5214,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																			},
 
 																			"namespace_selector": schema.SingleNestedAttribute{
-																				Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																				MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																				Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																				MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																				Attributes: map[string]schema.Attribute{
 																					"match_expressions": schema.ListNestedAttribute{
 																						Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -5231,16 +5231,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																								},
 
 																								"operator": schema.StringAttribute{
-																									Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																									MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																									MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"values": schema.ListAttribute{
-																									Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																									MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																									Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																									MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -5254,8 +5254,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																					},
 
 																					"match_labels": schema.MapAttribute{
-																						Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																						MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																						MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -5268,8 +5268,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																			},
 
 																			"namespaces": schema.ListAttribute{
-																				Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																				Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -5277,8 +5277,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																			},
 
 																			"topology_key": schema.StringAttribute{
-																				Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																				MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																				Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																				MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -5309,12 +5309,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"dns_config": schema.SingleNestedAttribute{
-													Description:         "Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy.",
-													MarkdownDescription: "Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy.",
+													Description:         "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
+													MarkdownDescription: "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
 													Attributes: map[string]schema.Attribute{
 														"nameservers": schema.ListAttribute{
-															Description:         "A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.",
-															MarkdownDescription: "A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.",
+															Description:         "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
+															MarkdownDescription: "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -5322,8 +5322,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 														},
 
 														"options": schema.ListNestedAttribute{
-															Description:         "A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy.",
-															MarkdownDescription: "A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy.",
+															Description:         "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+															MarkdownDescription: "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
@@ -5349,8 +5349,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 														},
 
 														"searches": schema.ListAttribute{
-															Description:         "A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.",
-															MarkdownDescription: "A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.",
+															Description:         "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
+															MarkdownDescription: "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -5363,61 +5363,61 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"dns_policy": schema.StringAttribute{
-													Description:         "Set DNS policy for the pod.Defaults to 'ClusterFirst'.Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy.To have DNS options set along with hostNetwork, you have to specify DNS policyexplicitly to 'ClusterFirstWithHostNet'.",
-													MarkdownDescription: "Set DNS policy for the pod.Defaults to 'ClusterFirst'.Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy.To have DNS options set along with hostNetwork, you have to specify DNS policyexplicitly to 'ClusterFirstWithHostNet'.",
+													Description:         "Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.",
+													MarkdownDescription: "Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"enable_service_links": schema.BoolAttribute{
-													Description:         "EnableServiceLinks indicates whether information about services should be injected into pod'senvironment variables, matching the syntax of Docker links.Optional: Defaults to true.",
-													MarkdownDescription: "EnableServiceLinks indicates whether information about services should be injected into pod'senvironment variables, matching the syntax of Docker links.Optional: Defaults to true.",
+													Description:         "EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.",
+													MarkdownDescription: "EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"host_ipc": schema.BoolAttribute{
-													Description:         "Use the host's ipc namespace.Optional: Default to false.",
-													MarkdownDescription: "Use the host's ipc namespace.Optional: Default to false.",
+													Description:         "Use the host's ipc namespace. Optional: Default to false.",
+													MarkdownDescription: "Use the host's ipc namespace. Optional: Default to false.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"host_network": schema.BoolAttribute{
-													Description:         "Host networking requested for this pod. Use the host's network namespace.If this option is set, the ports that will be used must be specified.Default to false.",
-													MarkdownDescription: "Host networking requested for this pod. Use the host's network namespace.If this option is set, the ports that will be used must be specified.Default to false.",
+													Description:         "Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.",
+													MarkdownDescription: "Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"host_pid": schema.BoolAttribute{
-													Description:         "Use the host's pid namespace.Optional: Default to false.",
-													MarkdownDescription: "Use the host's pid namespace.Optional: Default to false.",
+													Description:         "Use the host's pid namespace. Optional: Default to false.",
+													MarkdownDescription: "Use the host's pid namespace. Optional: Default to false.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"host_users": schema.BoolAttribute{
-													Description:         "Use the host's user namespace.Optional: Default to true.If set to true or not present, the pod will be run in the host user namespace, usefulfor when the pod needs a feature only available to the host user namespace, such asloading a kernel module with CAP_SYS_MODULE.When set to false, a new userns is created for the pod. Setting false is useful formitigating container breakout vulnerabilities even allowing users to run theircontainers as root without actually having root privileges on the host.This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.",
-													MarkdownDescription: "Use the host's user namespace.Optional: Default to true.If set to true or not present, the pod will be run in the host user namespace, usefulfor when the pod needs a feature only available to the host user namespace, such asloading a kernel module with CAP_SYS_MODULE.When set to false, a new userns is created for the pod. Setting false is useful formitigating container breakout vulnerabilities even allowing users to run theircontainers as root without actually having root privileges on the host.This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.",
+													Description:         "Use the host's user namespace. Optional: Default to true. If set to true or not present, the pod will be run in the host user namespace, useful for when the pod needs a feature only available to the host user namespace, such as loading a kernel module with CAP_SYS_MODULE. When set to false, a new userns is created for the pod. Setting false is useful for mitigating container breakout vulnerabilities even allowing users to run their containers as root without actually having root privileges on the host. This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.",
+													MarkdownDescription: "Use the host's user namespace. Optional: Default to true. If set to true or not present, the pod will be run in the host user namespace, useful for when the pod needs a feature only available to the host user namespace, such as loading a kernel module with CAP_SYS_MODULE. When set to false, a new userns is created for the pod. Setting false is useful for mitigating container breakout vulnerabilities even allowing users to run their containers as root without actually having root privileges on the host. This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"image_pull_secrets": schema.ListNestedAttribute{
-													Description:         "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec.If specified, these secrets will be passed to individual puller implementations for them to use.More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
-													MarkdownDescription: "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec.If specified, these secrets will be passed to individual puller implementations for them to use.More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
+													Description:         "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
+													MarkdownDescription: "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5430,16 +5430,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"node_name": schema.StringAttribute{
-													Description:         "NodeName is a request to schedule this pod onto a specific node. If it is non-empty,the scheduler simply schedules this pod onto that node, assuming that it fits resourcerequirements.",
-													MarkdownDescription: "NodeName is a request to schedule this pod onto a specific node. If it is non-empty,the scheduler simply schedules this pod onto that node, assuming that it fits resourcerequirements.",
+													Description:         "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
+													MarkdownDescription: "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"node_selector": schema.MapAttribute{
-													Description:         "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-													MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+													Description:         "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+													MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5447,12 +5447,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"os": schema.SingleNestedAttribute{
-													Description:         "Specifies the OS of the containers in the pod.Some pod and container fields are restricted if this is set.If the OS field is set to linux, the following fields must be unset:-securityContext.windowsOptionsIf the OS field is set to windows, following fields must be unset:- spec.hostPID- spec.hostIPC- spec.hostUsers- spec.securityContext.seLinuxOptions- spec.securityContext.seccompProfile- spec.securityContext.fsGroup- spec.securityContext.fsGroupChangePolicy- spec.securityContext.sysctls- spec.shareProcessNamespace- spec.securityContext.runAsUser- spec.securityContext.runAsGroup- spec.securityContext.supplementalGroups- spec.containers[*].securityContext.seLinuxOptions- spec.containers[*].securityContext.seccompProfile- spec.containers[*].securityContext.capabilities- spec.containers[*].securityContext.readOnlyRootFilesystem- spec.containers[*].securityContext.privileged- spec.containers[*].securityContext.allowPrivilegeEscalation- spec.containers[*].securityContext.procMount- spec.containers[*].securityContext.runAsUser- spec.containers[*].securityContext.runAsGroup",
-													MarkdownDescription: "Specifies the OS of the containers in the pod.Some pod and container fields are restricted if this is set.If the OS field is set to linux, the following fields must be unset:-securityContext.windowsOptionsIf the OS field is set to windows, following fields must be unset:- spec.hostPID- spec.hostIPC- spec.hostUsers- spec.securityContext.seLinuxOptions- spec.securityContext.seccompProfile- spec.securityContext.fsGroup- spec.securityContext.fsGroupChangePolicy- spec.securityContext.sysctls- spec.shareProcessNamespace- spec.securityContext.runAsUser- spec.securityContext.runAsGroup- spec.securityContext.supplementalGroups- spec.containers[*].securityContext.seLinuxOptions- spec.containers[*].securityContext.seccompProfile- spec.containers[*].securityContext.capabilities- spec.containers[*].securityContext.readOnlyRootFilesystem- spec.containers[*].securityContext.privileged- spec.containers[*].securityContext.allowPrivilegeEscalation- spec.containers[*].securityContext.procMount- spec.containers[*].securityContext.runAsUser- spec.containers[*].securityContext.runAsGroup",
+													Description:         "Specifies the OS of the containers in the pod. Some pod and container fields are restricted if this is set. If the OS field is set to linux, the following fields must be unset: -securityContext.windowsOptions If the OS field is set to windows, following fields must be unset: - spec.hostPID - spec.hostIPC - spec.hostUsers - spec.securityContext.seLinuxOptions - spec.securityContext.seccompProfile - spec.securityContext.fsGroup - spec.securityContext.fsGroupChangePolicy - spec.securityContext.sysctls - spec.shareProcessNamespace - spec.securityContext.runAsUser - spec.securityContext.runAsGroup - spec.securityContext.supplementalGroups - spec.containers[*].securityContext.seLinuxOptions - spec.containers[*].securityContext.seccompProfile - spec.containers[*].securityContext.capabilities - spec.containers[*].securityContext.readOnlyRootFilesystem - spec.containers[*].securityContext.privileged - spec.containers[*].securityContext.allowPrivilegeEscalation - spec.containers[*].securityContext.procMount - spec.containers[*].securityContext.runAsUser - spec.containers[*].securityContext.runAsGroup",
+													MarkdownDescription: "Specifies the OS of the containers in the pod. Some pod and container fields are restricted if this is set. If the OS field is set to linux, the following fields must be unset: -securityContext.windowsOptions If the OS field is set to windows, following fields must be unset: - spec.hostPID - spec.hostIPC - spec.hostUsers - spec.securityContext.seLinuxOptions - spec.securityContext.seccompProfile - spec.securityContext.fsGroup - spec.securityContext.fsGroupChangePolicy - spec.securityContext.sysctls - spec.shareProcessNamespace - spec.securityContext.runAsUser - spec.securityContext.runAsGroup - spec.securityContext.supplementalGroups - spec.containers[*].securityContext.seLinuxOptions - spec.containers[*].securityContext.seccompProfile - spec.containers[*].securityContext.capabilities - spec.containers[*].securityContext.readOnlyRootFilesystem - spec.containers[*].securityContext.privileged - spec.containers[*].securityContext.allowPrivilegeEscalation - spec.containers[*].securityContext.procMount - spec.containers[*].securityContext.runAsUser - spec.containers[*].securityContext.runAsGroup",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name is the name of the operating system. The currently supported values are linux and windows.Additional value may be defined in future and can be one of:https://github.com/opencontainers/runtime-spec/blob/master/config.md#platform-specific-configurationClients should expect to handle additional values and treat unrecognized values in this field as os: null",
-															MarkdownDescription: "Name is the name of the operating system. The currently supported values are linux and windows.Additional value may be defined in future and can be one of:https://github.com/opencontainers/runtime-spec/blob/master/config.md#platform-specific-configurationClients should expect to handle additional values and treat unrecognized values in this field as os: null",
+															Description:         "Name is the name of the operating system. The currently supported values are linux and windows. Additional value may be defined in future and can be one of: https://github.com/opencontainers/runtime-spec/blob/master/config.md#platform-specific-configuration Clients should expect to handle additional values and treat unrecognized values in this field as os: null",
+															MarkdownDescription: "Name is the name of the operating system. The currently supported values are linux and windows. Additional value may be defined in future and can be one of: https://github.com/opencontainers/runtime-spec/blob/master/config.md#platform-specific-configuration Clients should expect to handle additional values and treat unrecognized values in this field as os: null",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -5464,8 +5464,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"overhead": schema.MapAttribute{
-													Description:         "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass.This field will be autopopulated at admission time by the RuntimeClass admission controller. Ifthe RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests.The RuntimeClass admission controller will reject Pod create requests which have the overhead alreadyset. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the valuedefined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero.More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md",
-													MarkdownDescription: "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass.This field will be autopopulated at admission time by the RuntimeClass admission controller. Ifthe RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests.The RuntimeClass admission controller will reject Pod create requests which have the overhead alreadyset. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the valuedefined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero.More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md",
+													Description:         "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md",
+													MarkdownDescription: "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5473,37 +5473,37 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"preemption_policy": schema.StringAttribute{
-													Description:         "PreemptionPolicy is the Policy for preempting pods with lower priority.One of Never, PreemptLowerPriority.Defaults to PreemptLowerPriority if unset.",
-													MarkdownDescription: "PreemptionPolicy is the Policy for preempting pods with lower priority.One of Never, PreemptLowerPriority.Defaults to PreemptLowerPriority if unset.",
+													Description:         "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.",
+													MarkdownDescription: "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"priority": schema.Int64Attribute{
-													Description:         "The priority value. Various system components use this field to find thepriority of the pod. When Priority Admission Controller is enabled, itprevents users from setting this field. The admission controller populatesthis field from PriorityClassName.The higher the value, the higher the priority.",
-													MarkdownDescription: "The priority value. Various system components use this field to find thepriority of the pod. When Priority Admission Controller is enabled, itprevents users from setting this field. The admission controller populatesthis field from PriorityClassName.The higher the value, the higher the priority.",
+													Description:         "The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.",
+													MarkdownDescription: "The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"priority_class_name": schema.StringAttribute{
-													Description:         "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
-													MarkdownDescription: "If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.",
+													Description:         "If specified, indicates the pod's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.",
+													MarkdownDescription: "If specified, indicates the pod's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"resource_claims": schema.ListNestedAttribute{
-													Description:         "ResourceClaims defines which ResourceClaims must be allocatedand reserved before the Pod is allowed to start. The resourceswill be made available to those containers which consume themby name.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable.",
-													MarkdownDescription: "ResourceClaims defines which ResourceClaims must be allocatedand reserved before the Pod is allowed to start. The resourceswill be made available to those containers which consume themby name.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable.",
+													Description:         "ResourceClaims defines which ResourceClaims must be allocated and reserved before the Pod is allowed to start. The resources will be made available to those containers which consume them by name. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable.",
+													MarkdownDescription: "ResourceClaims defines which ResourceClaims must be allocated and reserved before the Pod is allowed to start. The resources will be made available to those containers which consume them by name. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name uniquely identifies this resource claim inside the pod.This must be a DNS_LABEL.",
-																MarkdownDescription: "Name uniquely identifies this resource claim inside the pod.This must be a DNS_LABEL.",
+																Description:         "Name uniquely identifies this resource claim inside the pod. This must be a DNS_LABEL.",
+																MarkdownDescription: "Name uniquely identifies this resource claim inside the pod. This must be a DNS_LABEL.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5514,16 +5514,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																MarkdownDescription: "Source describes where to find the ResourceClaim.",
 																Attributes: map[string]schema.Attribute{
 																	"resource_claim_name": schema.StringAttribute{
-																		Description:         "ResourceClaimName is the name of a ResourceClaim object in the samenamespace as this pod.",
-																		MarkdownDescription: "ResourceClaimName is the name of a ResourceClaim object in the samenamespace as this pod.",
+																		Description:         "ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.",
+																		MarkdownDescription: "ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"resource_claim_template_name": schema.StringAttribute{
-																		Description:         "ResourceClaimTemplateName is the name of a ResourceClaimTemplateobject in the same namespace as this pod.The template will be used to create a new ResourceClaim, which willbe bound to this pod. When this pod is deleted, the ResourceClaimwill also be deleted. The pod name and resource name, along with agenerated component, will be used to form a unique name for theResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.This field is immutable and no changes will be made to thecorresponding ResourceClaim by the control plane after creating theResourceClaim.",
-																		MarkdownDescription: "ResourceClaimTemplateName is the name of a ResourceClaimTemplateobject in the same namespace as this pod.The template will be used to create a new ResourceClaim, which willbe bound to this pod. When this pod is deleted, the ResourceClaimwill also be deleted. The pod name and resource name, along with agenerated component, will be used to form a unique name for theResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.This field is immutable and no changes will be made to thecorresponding ResourceClaim by the control plane after creating theResourceClaim.",
+																		Description:         "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
+																		MarkdownDescription: "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5541,29 +5541,29 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"runtime_class_name": schema.StringAttribute{
-													Description:         "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class",
-													MarkdownDescription: "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class",
+													Description:         "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod. If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class",
+													MarkdownDescription: "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod. If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"scheduler_name": schema.StringAttribute{
-													Description:         "If specified, the pod will be dispatched by specified scheduler.If not specified, the pod will be dispatched by default scheduler.",
-													MarkdownDescription: "If specified, the pod will be dispatched by specified scheduler.If not specified, the pod will be dispatched by default scheduler.",
+													Description:         "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
+													MarkdownDescription: "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"scheduling_gates": schema.ListNestedAttribute{
-													Description:         "SchedulingGates is an opaque list of values that if specified will block scheduling the pod.If schedulingGates is not empty, the pod will stay in the SchedulingGated state and thescheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.This is a beta feature enabled by the PodSchedulingReadiness feature gate.",
-													MarkdownDescription: "SchedulingGates is an opaque list of values that if specified will block scheduling the pod.If schedulingGates is not empty, the pod will stay in the SchedulingGated state and thescheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.This is a beta feature enabled by the PodSchedulingReadiness feature gate.",
+													Description:         "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod. SchedulingGates can only be set at pod creation time, and be removed only afterwards. This is a beta feature enabled by the PodSchedulingReadiness feature gate.",
+													MarkdownDescription: "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod. SchedulingGates can only be set at pod creation time, and be removed only afterwards. This is a beta feature enabled by the PodSchedulingReadiness feature gate.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the scheduling gate.Each scheduling gate must have a unique name field.",
-																MarkdownDescription: "Name of the scheduling gate.Each scheduling gate must have a unique name field.",
+																Description:         "Name of the scheduling gate. Each scheduling gate must have a unique name field.",
+																MarkdownDescription: "Name of the scheduling gate. Each scheduling gate must have a unique name field.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5576,40 +5576,40 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"service_account": schema.StringAttribute{
-													Description:         "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName.Deprecated: Use serviceAccountName instead.",
-													MarkdownDescription: "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName.Deprecated: Use serviceAccountName instead.",
+													Description:         "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
+													MarkdownDescription: "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"service_account_name": schema.StringAttribute{
-													Description:         "ServiceAccountName is the name of the ServiceAccount to use to run this pod.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
-													MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run this pod.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+													Description:         "ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+													MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"set_hostname_as_fqdn": schema.BoolAttribute{
-													Description:         "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default).In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname).In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN.If a pod does not have FQDN, this has no effect.Default to false.",
-													MarkdownDescription: "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default).In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname).In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN.If a pod does not have FQDN, this has no effect.Default to false.",
+													Description:         "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.",
+													MarkdownDescription: "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"share_process_namespace": schema.BoolAttribute{
-													Description:         "Share a single process namespace between all of the containers in a pod.When this is set containers will be able to view and signal processes from other containersin the same pod, and the first process in each container will not be assigned PID 1.HostPID and ShareProcessNamespace cannot both be set.Optional: Default to false.",
-													MarkdownDescription: "Share a single process namespace between all of the containers in a pod.When this is set containers will be able to view and signal processes from other containersin the same pod, and the first process in each container will not be assigned PID 1.HostPID and ShareProcessNamespace cannot both be set.Optional: Default to false.",
+													Description:         "Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false.",
+													MarkdownDescription: "Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"termination_grace_period_seconds": schema.Int64Attribute{
-													Description:         "Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).If this value is nil, the default grace period will be used instead.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.Defaults to 30 seconds.",
-													MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).If this value is nil, the default grace period will be used instead.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.Defaults to 30 seconds.",
+													Description:         "Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. Defaults to 30 seconds.",
+													MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. Defaults to 30 seconds.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5621,40 +5621,40 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"effect": schema.StringAttribute{
-																Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-																MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"key": schema.StringAttribute{
-																Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-																MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
-																MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+																Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+																MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"toleration_seconds": schema.Int64Attribute{
-																Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
-																MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+																Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+																MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"value": schema.StringAttribute{
-																Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
-																MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5667,13 +5667,13 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"topology_spread_constraints": schema.ListNestedAttribute{
-													Description:         "TopologySpreadConstraints describes how a group of pods ought to spread across topologydomains. Scheduler will schedule pods in a way which abides by the constraints.All topologySpreadConstraints are ANDed.",
-													MarkdownDescription: "TopologySpreadConstraints describes how a group of pods ought to spread across topologydomains. Scheduler will schedule pods in a way which abides by the constraints.All topologySpreadConstraints are ANDed.",
+													Description:         "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
+													MarkdownDescription: "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"label_selector": schema.SingleNestedAttribute{
-																Description:         "LabelSelector is used to find matching pods.Pods that match this label selector are counted to determine the number of podsin their corresponding topology domain.",
-																MarkdownDescription: "LabelSelector is used to find matching pods.Pods that match this label selector are counted to determine the number of podsin their corresponding topology domain.",
+																Description:         "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
+																MarkdownDescription: "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
 																Attributes: map[string]schema.Attribute{
 																	"match_expressions": schema.ListNestedAttribute{
 																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -5689,16 +5689,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -5712,8 +5712,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																	},
 
 																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -5726,8 +5726,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 															},
 
 															"match_label_keys": schema.ListAttribute{
-																Description:         "MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
-																MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+																Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector. This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+																MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector. This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5735,48 +5735,48 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 															},
 
 															"max_skew": schema.Int64Attribute{
-																Description:         "MaxSkew describes the degree to which pods may be unevenly distributed.When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted differencebetween the number of matching pods in the target topology and the global minimum.The global minimum is the minimum number of matching pods in an eligible domainor zero if the number of eligible domains is less than MinDomains.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 2/2/1:In this case, the global minimum is 1.| zone1 | zone2 | zone3 ||  P P  |  P P  |   P   |- if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2;scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2)violate MaxSkew(1).- if MaxSkew is 2, incoming pod can be scheduled onto any zone.When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedenceto topologies that satisfy it.It's a required field. Default value is 1 and 0 is not allowed.",
-																MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed.When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted differencebetween the number of matching pods in the target topology and the global minimum.The global minimum is the minimum number of matching pods in an eligible domainor zero if the number of eligible domains is less than MinDomains.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 2/2/1:In this case, the global minimum is 1.| zone1 | zone2 | zone3 ||  P P  |  P P  |   P   |- if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2;scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2)violate MaxSkew(1).- if MaxSkew is 2, incoming pod can be scheduled onto any zone.When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedenceto topologies that satisfy it.It's a required field. Default value is 1 and 0 is not allowed.",
+																Description:         "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | | P P | P P | P | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
+																MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | | P P | P P | P | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"min_domains": schema.Int64Attribute{
-																Description:         "MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
-																MarkdownDescription: "MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+																Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+																MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"node_affinity_policy": schema.StringAttribute{
-																Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelectorwhen calculating pod topology spread skew. Options are:- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-																MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelectorwhen calculating pod topology spread skew. Options are:- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"node_taints_policy": schema.StringAttribute{
-																Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculatingpod topology spread skew. Options are:- Honor: nodes without taints, along with tainted nodes for which the incoming podhas a toleration, are included.- Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-																MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculatingpod topology spread skew. Options are:- Honor: nodes without taints, along with tainted nodes for which the incoming podhas a toleration, are included.- Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"topology_key": schema.StringAttribute{
-																Description:         "TopologyKey is the key of node labels. Nodes that have a label with this keyand identical values are considered to be in the same topology.We consider each <key, value> as a 'bucket', and try to put balanced numberof pods into each bucket.We define a domain as a particular instance of a topology.Also, we define an eligible domain as a domain whose nodes meet the requirements ofnodeAffinityPolicy and nodeTaintsPolicy.e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology.And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology.It's a required field.",
-																MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this keyand identical values are considered to be in the same topology.We consider each <key, value> as a 'bucket', and try to put balanced numberof pods into each bucket.We define a domain as a particular instance of a topology.Also, we define an eligible domain as a domain whose nodes meet the requirements ofnodeAffinityPolicy and nodeTaintsPolicy.e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology.And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology.It's a required field.",
+																Description:         "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.",
+																MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"when_unsatisfiable": schema.StringAttribute{
-																Description:         "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfythe spread constraint.- DoNotSchedule (default) tells the scheduler not to schedule it.- ScheduleAnyway tells the scheduler to schedule the pod in any location,  but giving higher precedence to topologies that would help reduce the  skew.A constraint is considered 'Unsatisfiable' for an incoming podif and only if every possible node assignment for that pod would violate'MaxSkew' on some topology.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 3/1/1:| zone1 | zone2 | zone3 || P P P |   P   |   P   |If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduledto zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfiesMaxSkew(1). In other words, the cluster can still be imbalanced, but schedulerwon't make it *more* imbalanced.It's a required field.",
-																MarkdownDescription: "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfythe spread constraint.- DoNotSchedule (default) tells the scheduler not to schedule it.- ScheduleAnyway tells the scheduler to schedule the pod in any location,  but giving higher precedence to topologies that would help reduce the  skew.A constraint is considered 'Unsatisfiable' for an incoming podif and only if every possible node assignment for that pod would violate'MaxSkew' on some topology.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 3/1/1:| zone1 | zone2 | zone3 || P P P |   P   |   P   |If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduledto zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfiesMaxSkew(1). In other words, the cluster can still be imbalanced, but schedulerwon't make it *more* imbalanced.It's a required field.",
+																Description:         "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P | P | P | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.",
+																MarkdownDescription: "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P | P | P | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5799,17 +5799,17 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"resources": schema.SingleNestedAttribute{
-									Description:         "Resources are the resource requirements for the Couchbase server container.This field overrides any automatic allocation as defined by'spec.autoResourceAllocation'.",
-									MarkdownDescription: "Resources are the resource requirements for the Couchbase server container.This field overrides any automatic allocation as defined by'spec.autoResourceAllocation'.",
+									Description:         "Resources are the resource requirements for the Couchbase server container. This field overrides any automatic allocation as defined by 'spec.autoResourceAllocation'.",
+									MarkdownDescription: "Resources are the resource requirements for the Couchbase server container. This field overrides any automatic allocation as defined by 'spec.autoResourceAllocation'.",
 									Attributes: map[string]schema.Attribute{
 										"claims": schema.ListNestedAttribute{
-											Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-											MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+											Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+											MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-														MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+														Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+														MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -5822,8 +5822,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"limits": schema.MapAttribute{
-											Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-											MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -5831,8 +5831,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"requests": schema.MapAttribute{
-											Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-											MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -5845,8 +5845,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"server_groups": schema.ListAttribute{
-									Description:         "ServerGroups define the set of availability zones you want to distributepods over, and construct Couchbase server groups for.  By default, mostcloud providers will label nodes with the key 'topology.kubernetes.io/zone',the values associated with that key are used here to provide explicitscheduling by the Operator.  You may manually label nodes using the'topology.kubernetes.io/zone' key, to provide failure-domainaware scheduling when none is provided for you.  Global server groups areapplied to all server classes, and may be overridden on a per-server classbasis to give more control over scheduling and server groups.",
-									MarkdownDescription: "ServerGroups define the set of availability zones you want to distributepods over, and construct Couchbase server groups for.  By default, mostcloud providers will label nodes with the key 'topology.kubernetes.io/zone',the values associated with that key are used here to provide explicitscheduling by the Operator.  You may manually label nodes using the'topology.kubernetes.io/zone' key, to provide failure-domainaware scheduling when none is provided for you.  Global server groups areapplied to all server classes, and may be overridden on a per-server classbasis to give more control over scheduling and server groups.",
+									Description:         "ServerGroups define the set of availability zones you want to distribute pods over, and construct Couchbase server groups for. By default, most cloud providers will label nodes with the key 'topology.kubernetes.io/zone', the values associated with that key are used here to provide explicit scheduling by the Operator. You may manually label nodes using the 'topology.kubernetes.io/zone' key, to provide failure-domain aware scheduling when none is provided for you. Global server groups are applied to all server classes, and may be overridden on a per-server class basis to give more control over scheduling and server groups.",
+									MarkdownDescription: "ServerGroups define the set of availability zones you want to distribute pods over, and construct Couchbase server groups for. By default, most cloud providers will label nodes with the key 'topology.kubernetes.io/zone', the values associated with that key are used here to provide explicit scheduling by the Operator. You may manually label nodes using the 'topology.kubernetes.io/zone' key, to provide failure-domain aware scheduling when none is provided for you. Global server groups are applied to all server classes, and may be overridden on a per-server class basis to give more control over scheduling and server groups.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -5854,8 +5854,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"services": schema.ListAttribute{
-									Description:         "Services is the set of Couchbase services to run on this server class.At least one class must contain the data service.  The field may containany of 'data', 'index', 'query', 'search', 'eventing' or 'analytics'.Each service may only be specified once.",
-									MarkdownDescription: "Services is the set of Couchbase services to run on this server class.At least one class must contain the data service.  The field may containany of 'data', 'index', 'query', 'search', 'eventing' or 'analytics'.Each service may only be specified once.",
+									Description:         "Services is the set of Couchbase services to run on this server class. At least one class must contain the data service. The field may contain any of 'data', 'index', 'query', 'search', 'eventing' or 'analytics'. Each service may only be specified once.",
+									MarkdownDescription: "Services is the set of Couchbase services to run on this server class. At least one class must contain the data service. The field may contain any of 'data', 'index', 'query', 'search', 'eventing' or 'analytics'. Each service may only be specified once.",
 									ElementType:         types.StringType,
 									Required:            true,
 									Optional:            false,
@@ -5863,8 +5863,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"size": schema.Int64Attribute{
-									Description:         "Size is the expected requested of the server class.  This fieldmust be greater than or equal to 1.",
-									MarkdownDescription: "Size is the expected requested of the server class.  This fieldmust be greater than or equal to 1.",
+									Description:         "Size is the expected requested of the server class. This field must be greater than or equal to 1.",
+									MarkdownDescription: "Size is the expected requested of the server class. This field must be greater than or equal to 1.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -5878,8 +5878,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 									MarkdownDescription: "VolumeMounts define persistent volume claims to attach to pod.",
 									Attributes: map[string]schema.Attribute{
 										"analytics": schema.ListAttribute{
-											Description:         "AnalyticsClaims are persistent volumes that encompass analytics storage associatedwith the analytics service.  Analytics claims can only be used on server classesrunning the analytics service, and must be used in conjunction with the default claim.This field allows the analytics service to use different storage media (e.g. SSD), andscale horizontally, to improve performance of this service.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.",
-											MarkdownDescription: "AnalyticsClaims are persistent volumes that encompass analytics storage associatedwith the analytics service.  Analytics claims can only be used on server classesrunning the analytics service, and must be used in conjunction with the default claim.This field allows the analytics service to use different storage media (e.g. SSD), andscale horizontally, to improve performance of this service.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.",
+											Description:         "AnalyticsClaims are persistent volumes that encompass analytics storage associated with the analytics service. Analytics claims can only be used on server classes running the analytics service, and must be used in conjunction with the default claim. This field allows the analytics service to use different storage media (e.g. SSD), and scale horizontally, to improve performance of this service. This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'.",
+											MarkdownDescription: "AnalyticsClaims are persistent volumes that encompass analytics storage associated with the analytics service. Analytics claims can only be used on server classes running the analytics service, and must be used in conjunction with the default claim. This field allows the analytics service to use different storage media (e.g. SSD), and scale horizontally, to improve performance of this service. This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -5887,32 +5887,32 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"data": schema.StringAttribute{
-											Description:         "DataClaim is a persistent volume that encompasses key/value storage associatedwith the data service.  The data claim can only be used on server classes runningthe data service, and must be used in conjunction with the default claim.  Thisfield allows the data service to use different storage media (e.g. SSD) toimprove performance of this service.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.",
-											MarkdownDescription: "DataClaim is a persistent volume that encompasses key/value storage associatedwith the data service.  The data claim can only be used on server classes runningthe data service, and must be used in conjunction with the default claim.  Thisfield allows the data service to use different storage media (e.g. SSD) toimprove performance of this service.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.",
+											Description:         "DataClaim is a persistent volume that encompasses key/value storage associated with the data service. The data claim can only be used on server classes running the data service, and must be used in conjunction with the default claim. This field allows the data service to use different storage media (e.g. SSD) to improve performance of this service. This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'.",
+											MarkdownDescription: "DataClaim is a persistent volume that encompasses key/value storage associated with the data service. The data claim can only be used on server classes running the data service, and must be used in conjunction with the default claim. This field allows the data service to use different storage media (e.g. SSD) to improve performance of this service. This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"default": schema.StringAttribute{
-											Description:         "DefaultClaim is a persistent volume that encompasses all Couchbase persistentdata, including document storage, indexes and logs.  The default volume can beused with any server class.  Use of the default claim allows the Operator torecover failed pods from the persistent volume far quicker than if the pod wereusing ephemeral storage.  The default claim cannot be used at the same timeas the logs claim within the same server class.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.",
-											MarkdownDescription: "DefaultClaim is a persistent volume that encompasses all Couchbase persistentdata, including document storage, indexes and logs.  The default volume can beused with any server class.  Use of the default claim allows the Operator torecover failed pods from the persistent volume far quicker than if the pod wereusing ephemeral storage.  The default claim cannot be used at the same timeas the logs claim within the same server class.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.",
+											Description:         "DefaultClaim is a persistent volume that encompasses all Couchbase persistent data, including document storage, indexes and logs. The default volume can be used with any server class. Use of the default claim allows the Operator to recover failed pods from the persistent volume far quicker than if the pod were using ephemeral storage. The default claim cannot be used at the same time as the logs claim within the same server class. This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'.",
+											MarkdownDescription: "DefaultClaim is a persistent volume that encompasses all Couchbase persistent data, including document storage, indexes and logs. The default volume can be used with any server class. Use of the default claim allows the Operator to recover failed pods from the persistent volume far quicker than if the pod were using ephemeral storage. The default claim cannot be used at the same time as the logs claim within the same server class. This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"index": schema.StringAttribute{
-											Description:         "IndexClaim s a persistent volume that encompasses index storage associatedwith the index and search services.  The index claim can only be used on server classes runningthe index or search services, and must be used in conjunction with the default claim.  Thisfield allows the index and/or search service to use different storage media (e.g. SSD) toimprove performance of this service. This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.Whilst this references index primarily, note that the full text search (FTS) servicealso uses this same mount.",
-											MarkdownDescription: "IndexClaim s a persistent volume that encompasses index storage associatedwith the index and search services.  The index claim can only be used on server classes runningthe index or search services, and must be used in conjunction with the default claim.  Thisfield allows the index and/or search service to use different storage media (e.g. SSD) toimprove performance of this service. This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.Whilst this references index primarily, note that the full text search (FTS) servicealso uses this same mount.",
+											Description:         "IndexClaim s a persistent volume that encompasses index storage associated with the index and search services. The index claim can only be used on server classes running the index or search services, and must be used in conjunction with the default claim. This field allows the index and/or search service to use different storage media (e.g. SSD) to improve performance of this service. This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'. Whilst this references index primarily, note that the full text search (FTS) service also uses this same mount.",
+											MarkdownDescription: "IndexClaim s a persistent volume that encompasses index storage associated with the index and search services. The index claim can only be used on server classes running the index or search services, and must be used in conjunction with the default claim. This field allows the index and/or search service to use different storage media (e.g. SSD) to improve performance of this service. This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'. Whilst this references index primarily, note that the full text search (FTS) service also uses this same mount.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"logs": schema.StringAttribute{
-											Description:         "LogsClaim is a persistent volume that encompasses only Couchbase server logs to aidwith supporting the product.  The logs claim can only be used on server classes runningthe following services: query, search & eventing.  The logs claim cannot be used at the sametime as the default claim within the same server class.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.Whilst the logs claim can be used with the search service, the recommendation is to use thedefault claim for these. The reason for this is that a failure of these nodes will requireindexes to be rebuilt and subsequent performance impact.",
-											MarkdownDescription: "LogsClaim is a persistent volume that encompasses only Couchbase server logs to aidwith supporting the product.  The logs claim can only be used on server classes runningthe following services: query, search & eventing.  The logs claim cannot be used at the sametime as the default claim within the same server class.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.Whilst the logs claim can be used with the search service, the recommendation is to use thedefault claim for these. The reason for this is that a failure of these nodes will requireindexes to be rebuilt and subsequent performance impact.",
+											Description:         "LogsClaim is a persistent volume that encompasses only Couchbase server logs to aid with supporting the product. The logs claim can only be used on server classes running the following services: query, search & eventing. The logs claim cannot be used at the same time as the default claim within the same server class. This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'. Whilst the logs claim can be used with the search service, the recommendation is to use the default claim for these. The reason for this is that a failure of these nodes will require indexes to be rebuilt and subsequent performance impact.",
+											MarkdownDescription: "LogsClaim is a persistent volume that encompasses only Couchbase server logs to aid with supporting the product. The logs claim can only be used on server classes running the following services: query, search & eventing. The logs claim cannot be used at the same time as the default claim within the same server class. This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'. Whilst the logs claim can be used with the search service, the recommendation is to use the default claim for these. The reason for this is that a failure of these nodes will require indexes to be rebuilt and subsequent performance impact.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -5930,16 +5930,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"software_update_notifications": schema.BoolAttribute{
-						Description:         "SoftwareUpdateNotifications enables software update notifications in the UI.When enabled, the UI will alert when a Couchbase server upgrade is available.",
-						MarkdownDescription: "SoftwareUpdateNotifications enables software update notifications in the UI.When enabled, the UI will alert when a Couchbase server upgrade is available.",
+						Description:         "SoftwareUpdateNotifications enables software update notifications in the UI. When enabled, the UI will alert when a Couchbase server upgrade is available.",
+						MarkdownDescription: "SoftwareUpdateNotifications enables software update notifications in the UI. When enabled, the UI will alert when a Couchbase server upgrade is available.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"upgrade_process": schema.StringAttribute{
-						Description:         "UpgradeProcess defines the process that will be used when performing a couchbase cluster upgrade.When SwapRebalance is requested (default), pods will be upgraded using either a RollingUpgrade orImmediateUpgrade (determined by UpgradeStrategy). When InPlaceUpgrade is requested, the operator willperform an in-place upgrade on a best effort basis. InPlaceUpgrade cannot be used if the UpgradeStrategyis set to ImmediateUpgrade.",
-						MarkdownDescription: "UpgradeProcess defines the process that will be used when performing a couchbase cluster upgrade.When SwapRebalance is requested (default), pods will be upgraded using either a RollingUpgrade orImmediateUpgrade (determined by UpgradeStrategy). When InPlaceUpgrade is requested, the operator willperform an in-place upgrade on a best effort basis. InPlaceUpgrade cannot be used if the UpgradeStrategyis set to ImmediateUpgrade.",
+						Description:         "UpgradeProcess defines the process that will be used when performing a couchbase cluster upgrade. When SwapRebalance is requested (default), pods will be upgraded using either a RollingUpgrade or ImmediateUpgrade (determined by UpgradeStrategy). When InPlaceUpgrade is requested, the operator will perform an in-place upgrade on a best effort basis. InPlaceUpgrade cannot be used if the UpgradeStrategy is set to ImmediateUpgrade.",
+						MarkdownDescription: "UpgradeProcess defines the process that will be used when performing a couchbase cluster upgrade. When SwapRebalance is requested (default), pods will be upgraded using either a RollingUpgrade or ImmediateUpgrade (determined by UpgradeStrategy). When InPlaceUpgrade is requested, the operator will perform an in-place upgrade on a best effort basis. InPlaceUpgrade cannot be used if the UpgradeStrategy is set to ImmediateUpgrade.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -5949,8 +5949,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"upgrade_strategy": schema.StringAttribute{
-						Description:         "UpgradeStrategy controls how aggressive the Operator is when performing a clusterupgrade.  When a rolling upgrade is requested, pods are upgraded one at a time.  Thisstrategy is slower, however less disruptive.  When an immediate upgrade strategy isrequested, all pods are upgraded at the same time.  This strategy is faster, but moredisruptive.  This field must be either 'RollingUpgrade' or 'ImmediateUpgrade', defaultingto 'RollingUpgrade'.",
-						MarkdownDescription: "UpgradeStrategy controls how aggressive the Operator is when performing a clusterupgrade.  When a rolling upgrade is requested, pods are upgraded one at a time.  Thisstrategy is slower, however less disruptive.  When an immediate upgrade strategy isrequested, all pods are upgraded at the same time.  This strategy is faster, but moredisruptive.  This field must be either 'RollingUpgrade' or 'ImmediateUpgrade', defaultingto 'RollingUpgrade'.",
+						Description:         "UpgradeStrategy controls how aggressive the Operator is when performing a cluster upgrade. When a rolling upgrade is requested, pods are upgraded one at a time. This strategy is slower, however less disruptive. When an immediate upgrade strategy is requested, all pods are upgraded at the same time. This strategy is faster, but more disruptive. This field must be either 'RollingUpgrade' or 'ImmediateUpgrade', defaulting to 'RollingUpgrade'.",
+						MarkdownDescription: "UpgradeStrategy controls how aggressive the Operator is when performing a cluster upgrade. When a rolling upgrade is requested, pods are upgraded one at a time. This strategy is slower, however less disruptive. When an immediate upgrade strategy is requested, all pods are upgraded at the same time. This strategy is faster, but more disruptive. This field must be either 'RollingUpgrade' or 'ImmediateUpgrade', defaulting to 'RollingUpgrade'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -5960,17 +5960,17 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"volume_claim_templates": schema.ListNestedAttribute{
-						Description:         "VolumeClaimTemplates define the desired characteristics of a volumethat can be requested/claimed by a pod, for example the storage class touse and the volume size.  Volume claim templates are referred to by nameby server class volume mount configuration.",
-						MarkdownDescription: "VolumeClaimTemplates define the desired characteristics of a volumethat can be requested/claimed by a pod, for example the storage class touse and the volume size.  Volume claim templates are referred to by nameby server class volume mount configuration.",
+						Description:         "VolumeClaimTemplates define the desired characteristics of a volume that can be requested/claimed by a pod, for example the storage class to use and the volume size. Volume claim templates are referred to by name by server class volume mount configuration.",
+						MarkdownDescription: "VolumeClaimTemplates define the desired characteristics of a volume that can be requested/claimed by a pod, for example the storage class to use and the volume size. Volume claim templates are referred to by name by server class volume mount configuration.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"metadata": schema.SingleNestedAttribute{
-									Description:         "Standard objects metadata.  This is a curated version for use with Couchbaseresource templates.",
-									MarkdownDescription: "Standard objects metadata.  This is a curated version for use with Couchbaseresource templates.",
+									Description:         "Standard objects metadata. This is a curated version for use with Couchbase resource templates.",
+									MarkdownDescription: "Standard objects metadata. This is a curated version for use with Couchbase resource templates.",
 									Attributes: map[string]schema.Attribute{
 										"annotations": schema.MapAttribute{
-											Description:         "Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations",
-											MarkdownDescription: "Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations",
+											Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+											MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -5978,8 +5978,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels",
-											MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels",
+											Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+											MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -5987,8 +5987,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name must be unique within a namespace. Is required when creatingresources, although some resources may allow a client to request thegeneration of an appropriate name automatically. Name is primarily intendedfor creation idempotence and configuration definition. Cannot be updated.More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-											MarkdownDescription: "Name must be unique within a namespace. Is required when creatingresources, although some resources may allow a client to request thegeneration of an appropriate name automatically. Name is primarily intendedfor creation idempotence and configuration definition. Cannot be updated.More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+											Description:         "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+											MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -6000,12 +6000,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"spec": schema.SingleNestedAttribute{
-									Description:         "PersistentVolumeClaimSpec describes the common attributes of storage devicesand allows a Source for provider-specific attributes",
-									MarkdownDescription: "PersistentVolumeClaimSpec describes the common attributes of storage devicesand allows a Source for provider-specific attributes",
+									Description:         "PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes",
+									MarkdownDescription: "PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes",
 									Attributes: map[string]schema.Attribute{
 										"access_modes": schema.ListAttribute{
-											Description:         "accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-											MarkdownDescription: "accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+											Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+											MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -6013,12 +6013,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"data_source_ref": schema.SingleNestedAttribute{
-											Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-											MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+											Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+											MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 											Attributes: map[string]schema.Attribute{
 												"api_group": schema.StringAttribute{
-													Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
-													MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+													Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+													MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6041,8 +6041,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"namespace": schema.StringAttribute{
-													Description:         "Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-													MarkdownDescription: "Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+													Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+													MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6054,17 +6054,17 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"resources": schema.SingleNestedAttribute{
-											Description:         "resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-											MarkdownDescription: "resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+											Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+											MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 											Attributes: map[string]schema.Attribute{
 												"claims": schema.ListNestedAttribute{
-													Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-													MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+													Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+													MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6077,8 +6077,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"limits": schema.MapAttribute{
-													Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-													MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -6086,8 +6086,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"requests": schema.MapAttribute{
-													Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-													MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -6117,16 +6117,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -6140,8 +6140,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -6154,16 +6154,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"storage_class_name": schema.StringAttribute{
-											Description:         "storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-											MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+											Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+											MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"volume_mode": schema.StringAttribute{
-											Description:         "volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.",
-											MarkdownDescription: "volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.",
+											Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
+											MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -6189,8 +6189,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"xdcr": schema.SingleNestedAttribute{
-						Description:         "XDCR defines whether the Operator should manage XDCR, remote clusters and howto lookup replication resources.",
-						MarkdownDescription: "XDCR defines whether the Operator should manage XDCR, remote clusters and howto lookup replication resources.",
+						Description:         "XDCR defines whether the Operator should manage XDCR, remote clusters and how to lookup replication resources.",
+						MarkdownDescription: "XDCR defines whether the Operator should manage XDCR, remote clusters and how to lookup replication resources.",
 						Attributes: map[string]schema.Attribute{
 							"managed": schema.BoolAttribute{
 								Description:         "Managed defines whether XDCR is managed by the operator or not.",
@@ -6206,16 +6206,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"authentication_secret": schema.StringAttribute{
-											Description:         "AuthenticationSecret is a secret used to authenticate when establishing aremote connection.  It is only required when not using mTLS.  The secretmust contain a username (secret key 'username') and password (secret key'password').",
-											MarkdownDescription: "AuthenticationSecret is a secret used to authenticate when establishing aremote connection.  It is only required when not using mTLS.  The secretmust contain a username (secret key 'username') and password (secret key'password').",
+											Description:         "AuthenticationSecret is a secret used to authenticate when establishing a remote connection. It is only required when not using mTLS. The secret must contain a username (secret key 'username') and password (secret key 'password').",
+											MarkdownDescription: "AuthenticationSecret is a secret used to authenticate when establishing a remote connection. It is only required when not using mTLS. The secret must contain a username (secret key 'username') and password (secret key 'password').",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"hostname": schema.StringAttribute{
-											Description:         "Hostname is the connection string to use to connect the remote cluster.  To use IPv6, place brackets ('[', ']') around the IPv6 value.",
-											MarkdownDescription: "Hostname is the connection string to use to connect the remote cluster.  To use IPv6, place brackets ('[', ']') around the IPv6 value.",
+											Description:         "Hostname is the connection string to use to connect the remote cluster. To use IPv6, place brackets ('[', ']') around the IPv6 value.",
+											MarkdownDescription: "Hostname is the connection string to use to connect the remote cluster. To use IPv6, place brackets ('[', ']') around the IPv6 value.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -6225,20 +6225,20 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the remote cluster.Note that, -operator-managed is added as suffix by operator automaticallyto the name in order to diffrentiate from non operator managed remote clusters.",
-											MarkdownDescription: "Name of the remote cluster.Note that, -operator-managed is added as suffix by operator automaticallyto the name in order to diffrentiate from non operator managed remote clusters.",
+											Description:         "Name of the remote cluster. Note that, -operator-managed is added as suffix by operator automatically to the name in order to diffrentiate from non operator managed remote clusters.",
+											MarkdownDescription: "Name of the remote cluster. Note that, -operator-managed is added as suffix by operator automatically to the name in order to diffrentiate from non operator managed remote clusters.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"replications": schema.SingleNestedAttribute{
-											Description:         "Replications are replication streams from this cluster to the remote one.This field defines how to look up CouchbaseReplication resources.  By defaultany CouchbaseReplication resources in the namespace will be considered.",
-											MarkdownDescription: "Replications are replication streams from this cluster to the remote one.This field defines how to look up CouchbaseReplication resources.  By defaultany CouchbaseReplication resources in the namespace will be considered.",
+											Description:         "Replications are replication streams from this cluster to the remote one. This field defines how to look up CouchbaseReplication resources. By default any CouchbaseReplication resources in the namespace will be considered.",
+											MarkdownDescription: "Replications are replication streams from this cluster to the remote one. This field defines how to look up CouchbaseReplication resources. By default any CouchbaseReplication resources in the namespace will be considered.",
 											Attributes: map[string]schema.Attribute{
 												"selector": schema.SingleNestedAttribute{
-													Description:         "Selector allows CouchbaseReplication resources to be filteredbased on labels.",
-													MarkdownDescription: "Selector allows CouchbaseReplication resources to be filteredbased on labels.",
+													Description:         "Selector allows CouchbaseReplication resources to be filtered based on labels.",
+													MarkdownDescription: "Selector allows CouchbaseReplication resources to be filtered based on labels.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -6254,16 +6254,16 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -6277,8 +6277,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -6296,12 +6296,12 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"tls": schema.SingleNestedAttribute{
-											Description:         "TLS if specified references a resource containing the necessary certificatedata for an encrypted connection.",
-											MarkdownDescription: "TLS if specified references a resource containing the necessary certificatedata for an encrypted connection.",
+											Description:         "TLS if specified references a resource containing the necessary certificate data for an encrypted connection.",
+											MarkdownDescription: "TLS if specified references a resource containing the necessary certificate data for an encrypted connection.",
 											Attributes: map[string]schema.Attribute{
 												"secret": schema.StringAttribute{
-													Description:         "Secret references a secret containing the CA certificate (data key 'ca'),and optionally a client certificate (data key 'certificate') and key(data key 'key').",
-													MarkdownDescription: "Secret references a secret containing the CA certificate (data key 'ca'),and optionally a client certificate (data key 'certificate') and key(data key 'key').",
+													Description:         "Secret references a secret containing the CA certificate (data key 'ca'), and optionally a client certificate (data key 'certificate') and key (data key 'key').",
+													MarkdownDescription: "Secret references a secret containing the CA certificate (data key 'ca'), and optionally a client certificate (data key 'certificate') and key (data key 'key').",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -6313,8 +6313,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"uuid": schema.StringAttribute{
-											Description:         "UUID of the remote cluster.  The UUID of a CouchbaseCluster resourceis advertised in the status.clusterId field of the resource.",
-											MarkdownDescription: "UUID of the remote cluster.  The UUID of a CouchbaseCluster resourceis advertised in the status.clusterId field of the resource.",
+											Description:         "UUID of the remote cluster. The UUID of a CouchbaseCluster resource is advertised in the status.clusterId field of the resource.",
+											MarkdownDescription: "UUID of the remote cluster. The UUID of a CouchbaseCluster resource is advertised in the status.clusterId field of the resource.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,

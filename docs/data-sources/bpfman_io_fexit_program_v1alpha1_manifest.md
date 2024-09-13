@@ -54,7 +54,7 @@ Required:
 - `bpffunctionname` (String) BpfFunctionName is the name of the function that is the entry point for the BPF program
 - `bytecode` (Attributes) Bytecode configures where the bpf program's bytecode should be loaded from. (see [below for nested schema](#nestedatt--spec--bytecode))
 - `func_name` (String) Function to attach the fexit to.
-- `nodeselector` (Attributes) NodeSelector allows the user to specify which nodes to deploy the bpf program to.  This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty. (see [below for nested schema](#nestedatt--spec--nodeselector))
+- `nodeselector` (Attributes) NodeSelector allows the user to specify which nodes to deploy the bpf program to. This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty. (see [below for nested schema](#nestedatt--spec--nodeselector))
 
 Optional:
 

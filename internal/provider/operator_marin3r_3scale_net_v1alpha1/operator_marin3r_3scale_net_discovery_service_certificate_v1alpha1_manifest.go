@@ -220,8 +220,8 @@ func (r *OperatorMarin3R3ScaleNetDiscoveryServiceCertificateV1Alpha1Manifest) Sc
 					},
 
 					"signer": schema.SingleNestedAttribute{
-						Description:         "Signer specifies  the signer to use to create this certificate. Supported signers are CertManager and SelfSigned.",
-						MarkdownDescription: "Signer specifies  the signer to use to create this certificate. Supported signers are CertManager and SelfSigned.",
+						Description:         "Signer specifies the signer to use to create this certificate. Supported signers are CertManager and SelfSigned.",
+						MarkdownDescription: "Signer specifies the signer to use to create this certificate. Supported signers are CertManager and SelfSigned.",
 						Attributes: map[string]schema.Attribute{
 							"ca_signed": schema.SingleNestedAttribute{
 								Description:         "CASigned holds specific configuration for the CASigned signer",

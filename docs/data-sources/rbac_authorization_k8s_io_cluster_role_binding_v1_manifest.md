@@ -3,12 +3,12 @@
 page_title: "k8s_rbac_authorization_k8s_io_cluster_role_binding_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "rbac.authorization.k8s.io"
 description: |-
-  ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a ClusterRole in the global namespace, and adds who information via Subject.
+  ClusterRoleBinding references a ClusterRole, but not contain it. It can reference a ClusterRole in the global namespace, and adds who information via Subject.
 ---
 
 # k8s_rbac_authorization_k8s_io_cluster_role_binding_v1_manifest (Data Source)
 
-ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a ClusterRole in the global namespace, and adds who information via Subject.
+ClusterRoleBinding references a ClusterRole, but not contain it. It can reference a ClusterRole in the global namespace, and adds who information via Subject.
 
 ## Example Usage
 
@@ -75,4 +75,4 @@ Required:
 Optional:
 
 - `api_group` (String) APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
-- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.
+- `namespace` (String) Namespace of the referenced object. If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.

@@ -3,12 +3,12 @@
 page_title: "k8s_cilium_io_cilium_node_config_v2alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "cilium.io"
 description: |-
-  CiliumNodeConfig is a list of configuration key-value pairs. It is applied to nodes indicated by a label selector.  If multiple overrides apply to the same node, they will be ordered by name with later Overrides overwriting any conflicting keys.
+  CiliumNodeConfig is a list of configuration key-value pairs. It is applied to nodes indicated by a label selector. If multiple overrides apply to the same node, they will be ordered by name with later Overrides overwriting any conflicting keys.
 ---
 
 # k8s_cilium_io_cilium_node_config_v2alpha1_manifest (Data Source)
 
-CiliumNodeConfig is a list of configuration key-value pairs. It is applied to nodes indicated by a label selector.  If multiple overrides apply to the same node, they will be ordered by name with later Overrides overwriting any conflicting keys.
+CiliumNodeConfig is a list of configuration key-value pairs. It is applied to nodes indicated by a label selector. If multiple overrides apply to the same node, they will be ordered by name with later Overrides overwriting any conflicting keys.
 
 ## Example Usage
 

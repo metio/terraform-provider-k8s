@@ -3,12 +3,12 @@
 page_title: "k8s_events_k8s_io_event_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "events.k8s.io"
 description: |-
-  Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system. Events have a limited retention time and triggers and messages may evolve with time.  Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason.  Events should be treated as informative, best-effort, supplemental data.
+  Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system. Events have a limited retention time and triggers and messages may evolve with time. Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason. Events should be treated as informative, best-effort, supplemental data.
 ---
 
 # k8s_events_k8s_io_event_v1_manifest (Data Source)
 
-Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system. Events have a limited retention time and triggers and messages may evolve with time.  Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason.  Events should be treated as informative, best-effort, supplemental data.
+Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system. Events have a limited retention time and triggers and messages may evolve with time. Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason. Events should be treated as informative, best-effort, supplemental data.
 
 ## Example Usage
 
@@ -34,8 +34,8 @@ data "k8s_events_k8s_io_event_v1_manifest" "example" {
 
 - `action` (String) action is what action was taken/failed regarding to the regarding object. It is machine-readable. This field cannot be empty for new Events and it can have at most 128 characters.
 - `deprecated_count` (Number) deprecatedCount is the deprecated field assuring backward compatibility with core.v1 Event type.
-- `deprecated_first_timestamp` (String) Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.
-- `deprecated_last_timestamp` (String) Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.
+- `deprecated_first_timestamp` (String) Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON. Wrappers are provided for many of the factory methods that the time package offers.
+- `deprecated_last_timestamp` (String) Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON. Wrappers are provided for many of the factory methods that the time package offers.
 - `deprecated_source` (Attributes) EventSource contains information for an event. (see [below for nested schema](#nestedatt--deprecated_source))
 - `note` (String) note is a human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.
 - `reason` (String) reason is why the action was taken. It is human-readable. This field cannot be empty for new Events and it can have at most 128 characters.

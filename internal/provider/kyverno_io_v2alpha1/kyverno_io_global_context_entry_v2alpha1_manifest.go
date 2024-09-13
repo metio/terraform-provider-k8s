@@ -53,7 +53,11 @@ type KyvernoIoGlobalContextEntryV2Alpha1ManifestData struct {
 			RetryLimit      *int64  `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
 			Service         *struct {
 				CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
-				Url      *string `tfsdk:"url" json:"url,omitempty"`
+				Headers  *[]struct {
+					Key   *string `tfsdk:"key" json:"key,omitempty"`
+					Value *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"headers" json:"headers,omitempty"`
+				Url *string `tfsdk:"url" json:"url,omitempty"`
 			} `tfsdk:"service" json:"service,omitempty"`
 			UrlPath *string `tfsdk:"url_path" json:"urlPath,omitempty"`
 		} `tfsdk:"api_call" json:"apiCall,omitempty"`
@@ -132,12 +136,12 @@ func (r *KyvernoIoGlobalContextEntryV2Alpha1Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "Spec declares policy exception behaviors.",
 				Attributes: map[string]schema.Attribute{
 					"api_call": schema.SingleNestedAttribute{
-						Description:         "Stores results from an API call which will be cached.Mutually exclusive with KubernetesResource.This can be used to make calls to external (non-Kubernetes API server) services.It can also be used to make calls to the Kubernetes API server in such cases:1. A POST is needed to create a resource.2. Finer-grained control is needed. Example: To restrict the number of resources cached.",
-						MarkdownDescription: "Stores results from an API call which will be cached.Mutually exclusive with KubernetesResource.This can be used to make calls to external (non-Kubernetes API server) services.It can also be used to make calls to the Kubernetes API server in such cases:1. A POST is needed to create a resource.2. Finer-grained control is needed. Example: To restrict the number of resources cached.",
+						Description:         "Stores results from an API call which will be cached. Mutually exclusive with KubernetesResource. This can be used to make calls to external (non-Kubernetes API server) services. It can also be used to make calls to the Kubernetes API server in such cases: 1. A POST is needed to create a resource. 2. Finer-grained control is needed. Example: To restrict the number of resources cached.",
+						MarkdownDescription: "Stores results from an API call which will be cached. Mutually exclusive with KubernetesResource. This can be used to make calls to external (non-Kubernetes API server) services. It can also be used to make calls to the Kubernetes API server in such cases: 1. A POST is needed to create a resource. 2. Finer-grained control is needed. Example: To restrict the number of resources cached.",
 						Attributes: map[string]schema.Attribute{
 							"data": schema.ListNestedAttribute{
-								Description:         "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
-								MarkdownDescription: "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
+								Description:         "The data object specifies the POST data sent to the server. Only applicable when the method field is set to POST.",
+								MarkdownDescription: "The data object specifies the POST data sent to the server. Only applicable when the method field is set to POST.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
@@ -175,8 +179,8 @@ func (r *KyvernoIoGlobalContextEntryV2Alpha1Manifest) Schema(_ context.Context, 
 							},
 
 							"refresh_interval": schema.StringAttribute{
-								Description:         "RefreshInterval defines the interval in duration at which to poll the APICall.The duration is a sequence of decimal numbers, each with optional fraction and a unit suffix,such as '300ms', '1.5h' or '2h45m'. Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
-								MarkdownDescription: "RefreshInterval defines the interval in duration at which to poll the APICall.The duration is a sequence of decimal numbers, each with optional fraction and a unit suffix,such as '300ms', '1.5h' or '2h45m'. Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
+								Description:         "RefreshInterval defines the interval in duration at which to poll the APICall. The duration is a sequence of decimal numbers, each with optional fraction and a unit suffix, such as '300ms', '1.5h' or '2h45m'. Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
+								MarkdownDescription: "RefreshInterval defines the interval in duration at which to poll the APICall. The duration is a sequence of decimal numbers, each with optional fraction and a unit suffix, such as '300ms', '1.5h' or '2h45m'. Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -194,20 +198,47 @@ func (r *KyvernoIoGlobalContextEntryV2Alpha1Manifest) Schema(_ context.Context, 
 							},
 
 							"service": schema.SingleNestedAttribute{
-								Description:         "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
-								MarkdownDescription: "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
+								Description:         "Service is an API call to a JSON web service. This is used for non-Kubernetes API server calls. It's mutually exclusive with the URLPath field.",
+								MarkdownDescription: "Service is an API call to a JSON web service. This is used for non-Kubernetes API server calls. It's mutually exclusive with the URLPath field.",
 								Attributes: map[string]schema.Attribute{
 									"ca_bundle": schema.StringAttribute{
-										Description:         "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
-										MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
+										Description:         "CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.",
+										MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
+									"headers": schema.ListNestedAttribute{
+										Description:         "Headers is a list of optional HTTP headers to be included in the request.",
+										MarkdownDescription: "Headers is a list of optional HTTP headers to be included in the request.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "Key is the header key",
+													MarkdownDescription: "Key is the header key",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "Value is the header value",
+													MarkdownDescription: "Value is the header value",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"url": schema.StringAttribute{
-										Description:         "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
-										MarkdownDescription: "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
+										Description:         "URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.",
+										MarkdownDescription: "URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -219,8 +250,8 @@ func (r *KyvernoIoGlobalContextEntryV2Alpha1Manifest) Schema(_ context.Context, 
 							},
 
 							"url_path": schema.StringAttribute{
-								Description:         "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
-								MarkdownDescription: "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
+								Description:         "URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details. It's mutually exclusive with the Service field.",
+								MarkdownDescription: "URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details. It's mutually exclusive with the Service field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -232,8 +263,8 @@ func (r *KyvernoIoGlobalContextEntryV2Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"kubernetes_resource": schema.SingleNestedAttribute{
-						Description:         "Stores a list of Kubernetes resources which will be cached.Mutually exclusive with APICall.",
-						MarkdownDescription: "Stores a list of Kubernetes resources which will be cached.Mutually exclusive with APICall.",
+						Description:         "Stores a list of Kubernetes resources which will be cached. Mutually exclusive with APICall.",
+						MarkdownDescription: "Stores a list of Kubernetes resources which will be cached. Mutually exclusive with APICall.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "Group defines the group of the resource.",
@@ -244,16 +275,16 @@ func (r *KyvernoIoGlobalContextEntryV2Alpha1Manifest) Schema(_ context.Context, 
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace defines the namespace of the resource. Leave empty for cluster scoped resources.If left empty for namespaced resources, all resources from all namespaces will be cached.",
-								MarkdownDescription: "Namespace defines the namespace of the resource. Leave empty for cluster scoped resources.If left empty for namespaced resources, all resources from all namespaces will be cached.",
+								Description:         "Namespace defines the namespace of the resource. Leave empty for cluster scoped resources. If left empty for namespaced resources, all resources from all namespaces will be cached.",
+								MarkdownDescription: "Namespace defines the namespace of the resource. Leave empty for cluster scoped resources. If left empty for namespaced resources, all resources from all namespaces will be cached.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource": schema.StringAttribute{
-								Description:         "Resource defines the type of the resource.Requires the pluralized form of the resource kind in lowercase. (Ex., 'deployments')",
-								MarkdownDescription: "Resource defines the type of the resource.Requires the pluralized form of the resource kind in lowercase. (Ex., 'deployments')",
+								Description:         "Resource defines the type of the resource. Requires the pluralized form of the resource kind in lowercase. (Ex., 'deployments')",
+								MarkdownDescription: "Resource defines the type of the resource. Requires the pluralized form of the resource kind in lowercase. (Ex., 'deployments')",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

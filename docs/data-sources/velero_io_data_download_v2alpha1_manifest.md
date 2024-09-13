@@ -55,17 +55,17 @@ Optional:
 
 Required:
 
-- `backup_storage_location` (String) BackupStorageLocation is the name of the backup storage locationwhere the backup repository is stored.
-- `operation_timeout` (String) OperationTimeout specifies the time used to wait internal operations,before returning error as timeout.
+- `backup_storage_location` (String) BackupStorageLocation is the name of the backup storage location where the backup repository is stored.
+- `operation_timeout` (String) OperationTimeout specifies the time used to wait internal operations, before returning error as timeout.
 - `snapshot_id` (String) SnapshotID is the ID of the Velero backup snapshot to be restored from.
-- `source_namespace` (String) SourceNamespace is the original namespace where the volume is backed up from.It may be different from SourcePVC's namespace if namespace is remapped during restore.
+- `source_namespace` (String) SourceNamespace is the original namespace where the volume is backed up from. It may be different from SourcePVC's namespace if namespace is remapped during restore.
 - `target_volume` (Attributes) TargetVolume is the information of the target PVC and PV. (see [below for nested schema](#nestedatt--spec--target_volume))
 
 Optional:
 
-- `cancel` (Boolean) Cancel indicates request to cancel the ongoing DataDownload. It can be setwhen the DataDownload is in InProgress phase
+- `cancel` (Boolean) Cancel indicates request to cancel the ongoing DataDownload. It can be set when the DataDownload is in InProgress phase
 - `data_mover_config` (Map of String) DataMoverConfig is for data-mover-specific configuration fields.
-- `datamover` (String) DataMover specifies the data mover to be used by the backup.If DataMover is '' or 'velero', the built-in data mover will be used.
+- `datamover` (String) DataMover specifies the data mover to be used by the backup. If DataMover is '' or 'velero', the built-in data mover will be used.
 
 <a id="nestedatt--spec--target_volume"></a>
 ### Nested Schema for `spec.target_volume`

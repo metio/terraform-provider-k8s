@@ -56,4 +56,4 @@ Optional:
 Optional:
 
 - `cluster_queue` (String) clusterQueue is a reference to a clusterQueue that backs this localQueue.
-- `stop_policy` (String) stopPolicy - if set to a value different from None, the LocalQueue is considered Inactive,no new reservation being made.Depending on its value, its associated workloads will:- None - Workloads are admitted- HoldAndDrain - Admitted workloads are evicted and Reserving workloads will cancel the reservation.- Hold - Admitted workloads will run to completion and Reserving workloads will cancel the reservation.
+- `stop_policy` (String) stopPolicy - if set to a value different from None, the LocalQueue is considered Inactive, no new reservation being made. Depending on its value, its associated workloads will: - None - Workloads are admitted - HoldAndDrain - Admitted workloads are evicted and Reserving workloads will cancel the reservation. - Hold - Admitted workloads will run to completion and Reserving workloads will cancel the reservation.

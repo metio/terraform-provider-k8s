@@ -3,12 +3,12 @@
 page_title: "k8s_operator_tigera_io_log_collector_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.tigera.io"
 description: |-
-  LogCollector installs the components required for Tigera flow and DNS log collection. At most one instanceof this resource is supported. It must be named 'tigera-secure'. When created, this installs fluentd on all nodesconfigured to collect Tigera log data and export it to Tigera's Elasticsearch cluster as well as any additionally configured destinations.
+  LogCollector installs the components required for Tigera flow and DNS log collection. At most one instance of this resource is supported. It must be named 'tigera-secure'. When created, this installs fluentd on all nodes configured to collect Tigera log data and export it to Tigera's Elasticsearch cluster as well as any additionally configured destinations.
 ---
 
 # k8s_operator_tigera_io_log_collector_v1_manifest (Data Source)
 
-LogCollector installs the components required for Tigera flow and DNS log collection. At most one instanceof this resource is supported. It must be named 'tigera-secure'. When created, this installs fluentd on all nodesconfigured to collect Tigera log data and export it to Tigera's Elasticsearch cluster as well as any additionally configured destinations.
+LogCollector installs the components required for Tigera flow and DNS log collection. At most one instance of this resource is supported. It must be named 'tigera-secure'. When created, this installs fluentd on all nodes configured to collect Tigera log data and export it to Tigera's Elasticsearch cluster as well as any additionally configured destinations.
 
 ## Example Usage
 
@@ -56,17 +56,17 @@ Optional:
 
 - `additional_sources` (Attributes) Configuration for importing audit logs from managed kubernetes cluster log sources. (see [below for nested schema](#nestedatt--spec--additional_sources))
 - `additional_stores` (Attributes) Configuration for exporting flow, audit, and DNS logs to external storage. (see [below for nested schema](#nestedatt--spec--additional_stores))
-- `collect_process_path` (String) Configuration for enabling/disabling process path collection in flowlogs.If Enabled, this feature sets hostPID to true in order to read process cmdline.Default: Enabled
+- `collect_process_path` (String) Configuration for enabling/disabling process path collection in flowlogs. If Enabled, this feature sets hostPID to true in order to read process cmdline. Default: Enabled
 - `eks_log_forwarder_deployment` (Attributes) EKSLogForwarderDeployment configures the EKSLogForwarderDeployment Deployment. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment))
 - `fluentd_daemon_set` (Attributes) FluentdDaemonSet configures the Fluentd DaemonSet. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set))
-- `multi_tenant_management_cluster_namespace` (String) If running as a multi-tenant management cluster, the namespace in whichthe management cluster's tenant services are running.
+- `multi_tenant_management_cluster_namespace` (String) If running as a multi-tenant management cluster, the namespace in which the management cluster's tenant services are running.
 
 <a id="nestedatt--spec--additional_sources"></a>
 ### Nested Schema for `spec.additional_sources`
 
 Optional:
 
-- `eks_cloudwatch_log` (Attributes) If specified with EKS Provider in Installation, enables fetching EKSaudit logs. (see [below for nested schema](#nestedatt--spec--additional_sources--eks_cloudwatch_log))
+- `eks_cloudwatch_log` (Attributes) If specified with EKS Provider in Installation, enables fetching EKS audit logs. (see [below for nested schema](#nestedatt--spec--additional_sources--eks_cloudwatch_log))
 
 <a id="nestedatt--spec--additional_sources--eks_cloudwatch_log"></a>
 ### Nested Schema for `spec.additional_sources.eks_cloudwatch_log`
@@ -78,8 +78,8 @@ Required:
 
 Optional:
 
-- `fetch_interval` (Number) Cloudwatch audit logs fetching interval in seconds.Default: 60
-- `stream_prefix` (String) Prefix of Cloudwatch log stream containing EKS audit logs in the log-group.Default: kube-apiserver-audit-
+- `fetch_interval` (Number) Cloudwatch audit logs fetching interval in seconds. Default: 60
+- `stream_prefix` (String) Prefix of Cloudwatch log stream containing EKS audit logs in the log-group. Default: kube-apiserver-audit-
 
 
 
@@ -116,12 +116,12 @@ Required:
 Required:
 
 - `endpoint` (String) Location of the syslog server. example: tcp://1.2.3.4:601
-- `log_types` (List of String) If no values are provided, the list will be updated to include log types Audit, DNS and Flows.Default: Audit, DNS, Flows
+- `log_types` (List of String) If no values are provided, the list will be updated to include log types Audit, DNS and Flows. Default: Audit, DNS, Flows
 
 Optional:
 
-- `encryption` (String) Encryption configures traffic encryption to the Syslog server.Default: None
-- `packet_size` (Number) PacketSize defines the maximum size of packets to send to syslog.In general this is only needed if you notice long logs being truncated.Default: 1024
+- `encryption` (String) Encryption configures traffic encryption to the Syslog server. Default: None
+- `packet_size` (Number) PacketSize defines the maximum size of packets to send to syslog. In general this is only needed if you notice long logs being truncated. Default: 1024
 
 
 
@@ -151,35 +151,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of EKSLogForwarder containers.If specified, this overrides the specified EKSLogForwarder Deployment containers.If omitted, the EKSLogForwarder Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of EKSLogForwarder init containers.If specified, this overrides the specified EKSLogForwarder Deployment init containers.If omitted, the EKSLogForwarder Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of EKSLogForwarder containers. If specified, this overrides the specified EKSLogForwarder Deployment containers. If omitted, the EKSLogForwarder Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of EKSLogForwarder init containers. If specified, this overrides the specified EKSLogForwarder Deployment init containers. If omitted, the EKSLogForwarder Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.eks_log_forwarder_deployment.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the EKSLogForwarder Deployment container by name.Supported values are: eks-log-forwarder
+- `name` (String) Name is an enum which identifies the EKSLogForwarder Deployment container by name. Supported values are: eks-log-forwarder
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named EKSLogForwarder Deployment container's resources.If omitted, the EKSLogForwarder Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named EKSLogForwarder Deployment container's resources. If omitted, the EKSLogForwarder Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--containers--resources))
 
 <a id="nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--containers--resources"></a>
 ### Nested Schema for `spec.eks_log_forwarder_deployment.spec.template.spec.containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--containers--resources--claims"></a>
 ### Nested Schema for `spec.eks_log_forwarder_deployment.spec.template.spec.containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -189,27 +189,27 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the EKSLogForwarder Deployment init container by name.Supported values are: eks-log-forwarder-startup
+- `name` (String) Name is an enum which identifies the EKSLogForwarder Deployment init container by name. Supported values are: eks-log-forwarder-startup
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named EKSLogForwarder Deployment init container's resources.If omitted, the EKSLogForwarder Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named EKSLogForwarder Deployment init container's resources. If omitted, the EKSLogForwarder Deployment will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.eks_log_forwarder_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--eks_log_forwarder_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.eks_log_forwarder_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -244,35 +244,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of Fluentd DaemonSet containers.If specified, this overrides the specified Fluentd DaemonSet containers.If omitted, the Fluentd DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of Fluentd DaemonSet init containers.If specified, this overrides the specified Fluentd DaemonSet init containers.If omitted, the Fluentd DaemonSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of Fluentd DaemonSet containers. If specified, this overrides the specified Fluentd DaemonSet containers. If omitted, the Fluentd DaemonSet will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of Fluentd DaemonSet init containers. If specified, this overrides the specified Fluentd DaemonSet init containers. If omitted, the Fluentd DaemonSet will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--fluentd_daemon_set--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.fluentd_daemon_set.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the Fluentd DaemonSet container by name.Supported values are: fluentd
+- `name` (String) Name is an enum which identifies the Fluentd DaemonSet container by name. Supported values are: fluentd
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Fluentd DaemonSet container's resources.If omitted, the Fluentd DaemonSet will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Fluentd DaemonSet container's resources. If omitted, the Fluentd DaemonSet will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--containers--resources))
 
 <a id="nestedatt--spec--fluentd_daemon_set--spec--template--spec--containers--resources"></a>
 ### Nested Schema for `spec.fluentd_daemon_set.spec.template.spec.containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--fluentd_daemon_set--spec--template--spec--containers--resources--claims"></a>
 ### Nested Schema for `spec.fluentd_daemon_set.spec.template.spec.containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -282,24 +282,24 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the Fluentd DaemonSet init container by name.Supported values are: tigera-fluentd-prometheus-tls-key-cert-provisioner
+- `name` (String) Name is an enum which identifies the Fluentd DaemonSet init container by name. Supported values are: tigera-fluentd-prometheus-tls-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Fluentd DaemonSet init container's resources.If omitted, the Fluentd DaemonSet will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Fluentd DaemonSet init container's resources. If omitted, the Fluentd DaemonSet will use its default value for this init container's resources. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--fluentd_daemon_set--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.fluentd_daemon_set.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--fluentd_daemon_set--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--fluentd_daemon_set--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.fluentd_daemon_set.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.

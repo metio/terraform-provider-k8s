@@ -160,8 +160,8 @@ func (r *TinkerbellOrgHardwareV1Alpha2Manifest) Schema(_ context.Context, _ data
 						MarkdownDescription: "BMCRef references a Rufio Machine object.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -198,8 +198,8 @@ func (r *TinkerbellOrgHardwareV1Alpha2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"ipxe": schema.SingleNestedAttribute{
-						Description:         "IPXE provides iPXE script override fields. This is useful for debugging or netbootcustomization.",
-						MarkdownDescription: "IPXE provides iPXE script override fields. This is useful for debugging or netbootcustomization.",
+						Description:         "IPXE provides iPXE script override fields. This is useful for debugging or netboot customization.",
+						MarkdownDescription: "IPXE provides iPXE script override fields. This is useful for debugging or netboot customization.",
 						Attributes: map[string]schema.Attribute{
 							"inline": schema.StringAttribute{
 								Description:         "Content is an inline iPXE script.",
@@ -223,8 +223,8 @@ func (r *TinkerbellOrgHardwareV1Alpha2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"kernel_params": schema.ListAttribute{
-						Description:         "KernelParams passed to the kernel when launching the OSIE. Parameters are joined with aspace.",
-						MarkdownDescription: "KernelParams passed to the kernel when launching the OSIE. Parameters are joined with aspace.",
+						Description:         "KernelParams passed to the kernel when launching the OSIE. Parameters are joined with a space.",
+						MarkdownDescription: "KernelParams passed to the kernel when launching the OSIE. Parameters are joined with a space.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -236,8 +236,8 @@ func (r *TinkerbellOrgHardwareV1Alpha2Manifest) Schema(_ context.Context, _ data
 						MarkdownDescription: "NetworkInterfaces defines the desired DHCP and netboot configuration for a network interface.",
 						Attributes: map[string]schema.Attribute{
 							"dhcp": schema.SingleNestedAttribute{
-								Description:         "DHCP is the basic network information for serving DHCP requests. Required when DisbaleDHCPis false.",
-								MarkdownDescription: "DHCP is the basic network information for serving DHCP requests. Required when DisbaleDHCPis false.",
+								Description:         "DHCP is the basic network information for serving DHCP requests. Required when DisbaleDHCP is false.",
+								MarkdownDescription: "DHCP is the basic network information for serving DHCP requests. Required when DisbaleDHCP is false.",
 								Attributes: map[string]schema.Attribute{
 									"gateway": schema.StringAttribute{
 										Description:         "Gateway is the default gateway address to serve.",
@@ -273,8 +273,8 @@ func (r *TinkerbellOrgHardwareV1Alpha2Manifest) Schema(_ context.Context, _ data
 									},
 
 									"lease_time_seconds": schema.Int64Attribute{
-										Description:         "LeaseTimeSeconds to serve. 24h default. Maximum equates to max uint32 as defined by RFC 2132§ 9.2 (https://www.rfc-editor.org/rfc/rfc2132.html#section-9.2).",
-										MarkdownDescription: "LeaseTimeSeconds to serve. 24h default. Maximum equates to max uint32 as defined by RFC 2132§ 9.2 (https://www.rfc-editor.org/rfc/rfc2132.html#section-9.2).",
+										Description:         "LeaseTimeSeconds to serve. 24h default. Maximum equates to max uint32 as defined by RFC 2132 § 9.2 (https://www.rfc-editor.org/rfc/rfc2132.html#section-9.2).",
+										MarkdownDescription: "LeaseTimeSeconds to serve. 24h default. Maximum equates to max uint32 as defined by RFC 2132 § 9.2 (https://www.rfc-editor.org/rfc/rfc2132.html#section-9.2).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -335,8 +335,8 @@ func (r *TinkerbellOrgHardwareV1Alpha2Manifest) Schema(_ context.Context, _ data
 							},
 
 							"disable_netboot": schema.BoolAttribute{
-								Description:         "DisableNetboot disables netbooting for this interface. The interface will still receivenetwork information specified by DHCP.",
-								MarkdownDescription: "DisableNetboot disables netbooting for this interface. The interface will still receivenetwork information specified by DHCP.",
+								Description:         "DisableNetboot disables netbooting for this interface. The interface will still receive network information specified by DHCP.",
+								MarkdownDescription: "DisableNetboot disables netbooting for this interface. The interface will still receive network information specified by DHCP.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -352,8 +352,8 @@ func (r *TinkerbellOrgHardwareV1Alpha2Manifest) Schema(_ context.Context, _ data
 						MarkdownDescription: "OSIE describes the Operating System Installation Environment to be netbooted.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

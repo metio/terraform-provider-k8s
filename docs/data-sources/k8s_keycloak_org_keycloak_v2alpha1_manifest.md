@@ -55,16 +55,16 @@ Optional:
 
 Required:
 
-- `hostname` (String) Hostname for the Keycloak server.The special value 'INSECURE-DISABLE' disables the hostname strict resolution.
-- `tls_secret` (String) A secret containing the TLS configuration for HTTPS. Reference: https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets.The special value 'INSECURE-DISABLE' disables https.
+- `hostname` (String) Hostname for the Keycloak server. The special value 'INSECURE-DISABLE' disables the hostname strict resolution.
+- `tls_secret` (String) A secret containing the TLS configuration for HTTPS. Reference: https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets. The special value 'INSECURE-DISABLE' disables https.
 
 Optional:
 
 - `disable_default_ingress` (Boolean) Disable the default ingress.
 - `image` (String) Custom Keycloak image to be used.
 - `instances` (Number) Number of Keycloak instances in HA mode. Default is 1.
-- `server_configuration` (Attributes List) Configuration of the Keycloak server.expressed as a keys (reference: https://www.keycloak.org/server/all-config) and values that can be either direct values or references to secrets. (see [below for nested schema](#nestedatt--spec--server_configuration))
-- `unsupported` (Attributes) In this section you can configure podTemplate advanced features, not production-ready, and not supported settings.Use at your own risk and open an issue with your use-case if you don't find an alternative way. (see [below for nested schema](#nestedatt--spec--unsupported))
+- `server_configuration` (Attributes List) Configuration of the Keycloak server. expressed as a keys (reference: https://www.keycloak.org/server/all-config) and values that can be either direct values or references to secrets. (see [below for nested schema](#nestedatt--spec--server_configuration))
+- `unsupported` (Attributes) In this section you can configure podTemplate advanced features, not production-ready, and not supported settings. Use at your own risk and open an issue with your use-case if you don't find an alternative way. (see [below for nested schema](#nestedatt--spec--unsupported))
 
 <a id="nestedatt--spec--server_configuration"></a>
 ### Nested Schema for `spec.server_configuration`
@@ -91,7 +91,7 @@ Optional:
 
 Optional:
 
-- `pod_template` (Attributes) You can configure that will be merged with the one configured by default by the operator.Use at your own risk, we reserve the possibility to remove/change the way any field gets merged in future releases without notice.Reference: https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates (see [below for nested schema](#nestedatt--spec--unsupported--pod_template))
+- `pod_template` (Attributes) You can configure that will be merged with the one configured by default by the operator. Use at your own risk, we reserve the possibility to remove/change the way any field gets merged in future releases without notice. Reference: https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates (see [below for nested schema](#nestedatt--spec--unsupported--pod_template))
 
 <a id="nestedatt--spec--unsupported--pod_template"></a>
 ### Nested Schema for `spec.unsupported.pod_template`

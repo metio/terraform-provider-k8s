@@ -119,16 +119,16 @@ func (r *KueueXK8SIoAdmissionCheckV1Beta1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "AdmissionCheckSpec defines the desired state of AdmissionCheck",
 				Attributes: map[string]schema.Attribute{
 					"controller_name": schema.StringAttribute{
-						Description:         "controllerName identifies the controller that processes the AdmissionCheck,not necessarily a Kubernetes Pod or Deployment name. Cannot be empty.",
-						MarkdownDescription: "controllerName identifies the controller that processes the AdmissionCheck,not necessarily a Kubernetes Pod or Deployment name. Cannot be empty.",
+						Description:         "controllerName identifies the controller that processes the AdmissionCheck, not necessarily a Kubernetes Pod or Deployment name. Cannot be empty.",
+						MarkdownDescription: "controllerName identifies the controller that processes the AdmissionCheck, not necessarily a Kubernetes Pod or Deployment name. Cannot be empty.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"parameters": schema.SingleNestedAttribute{
-						Description:         "Parameters identifies a configuration with additional parameters for thecheck.",
-						MarkdownDescription: "Parameters identifies a configuration with additional parameters for thecheck.",
+						Description:         "Parameters identifies a configuration with additional parameters for the check.",
+						MarkdownDescription: "Parameters identifies a configuration with additional parameters for the check.",
 						Attributes: map[string]schema.Attribute{
 							"api_group": schema.StringAttribute{
 								Description:         "ApiGroup is the group for the resource being referenced.",
@@ -172,8 +172,8 @@ func (r *KueueXK8SIoAdmissionCheckV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"retry_delay_minutes": schema.Int64Attribute{
-						Description:         "RetryDelayMinutes **deprecated** specifies how long to keep the workload suspended aftera failed check (after it transitioned to False). When the delay period has passed, the checkstate goes to 'Unknown'. The default is 15 min.The default is 15 min.",
-						MarkdownDescription: "RetryDelayMinutes **deprecated** specifies how long to keep the workload suspended aftera failed check (after it transitioned to False). When the delay period has passed, the checkstate goes to 'Unknown'. The default is 15 min.The default is 15 min.",
+						Description:         "RetryDelayMinutes **deprecated** specifies how long to keep the workload suspended after a failed check (after it transitioned to False). When the delay period has passed, the check state goes to 'Unknown'. The default is 15 min. The default is 15 min.",
+						MarkdownDescription: "RetryDelayMinutes **deprecated** specifies how long to keep the workload suspended after a failed check (after it transitioned to False). When the delay period has passed, the check state goes to 'Unknown'. The default is 15 min. The default is 15 min.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

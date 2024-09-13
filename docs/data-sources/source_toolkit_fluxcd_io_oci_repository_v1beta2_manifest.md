@@ -55,23 +55,23 @@ Optional:
 
 Required:
 
-- `interval` (String) Interval at which the OCIRepository URL is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.
-- `url` (String) URL is a reference to an OCI artifact repository hostedon a remote container registry.
+- `interval` (String) Interval at which the OCIRepository URL is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.
+- `url` (String) URL is a reference to an OCI artifact repository hosted on a remote container registry.
 
 Optional:
 
-- `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theregistry. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.Note: Support for the 'caFile', 'certFile' and 'keyFile' keys havebeen deprecated. (see [below for nested schema](#nestedatt--spec--cert_secret_ref))
-- `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.
+- `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a Secret containing either or both of - a PEM-encoded client certificate ('tls.crt') and private key ('tls.key'); - a PEM-encoded CA certificate ('ca.crt') and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type 'Opaque' or 'kubernetes.io/tls'. Note: Support for the 'caFile', 'certFile' and 'keyFile' keys have been deprecated. (see [below for nested schema](#nestedatt--spec--cert_secret_ref))
+- `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.
 - `insecure` (Boolean) Insecure allows connecting to a non-TLS HTTP container registry.
-- `layer_selector` (Attributes) LayerSelector specifies which layer should be extracted from the OCI artifact.When not specified, the first layer found in the artifact is selected. (see [below for nested schema](#nestedatt--spec--layer_selector))
-- `provider` (String) The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'.When not specified, defaults to 'generic'.
-- `proxy_secret_ref` (Attributes) ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the container registry. (see [below for nested schema](#nestedatt--spec--proxy_secret_ref))
-- `ref` (Attributes) The OCI reference to pull and monitor for changes,defaults to the latest tag. (see [below for nested schema](#nestedatt--spec--ref))
-- `secret_ref` (Attributes) SecretRef contains the secret name containing the registry logincredentials to resolve image metadata.The secret must be of type kubernetes.io/dockerconfigjson. (see [below for nested schema](#nestedatt--spec--secret_ref))
-- `service_account_name` (String) ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticatethe image pull if the service account has attached pull secrets. For more information:https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account
+- `layer_selector` (Attributes) LayerSelector specifies which layer should be extracted from the OCI artifact. When not specified, the first layer found in the artifact is selected. (see [below for nested schema](#nestedatt--spec--layer_selector))
+- `provider` (String) The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.
+- `proxy_secret_ref` (Attributes) ProxySecretRef specifies the Secret containing the proxy configuration to use while communicating with the container registry. (see [below for nested schema](#nestedatt--spec--proxy_secret_ref))
+- `ref` (Attributes) The OCI reference to pull and monitor for changes, defaults to the latest tag. (see [below for nested schema](#nestedatt--spec--ref))
+- `secret_ref` (Attributes) SecretRef contains the secret name containing the registry login credentials to resolve image metadata. The secret must be of type kubernetes.io/dockerconfigjson. (see [below for nested schema](#nestedatt--spec--secret_ref))
+- `service_account_name` (String) ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. For more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account
 - `suspend` (Boolean) This flag tells the controller to suspend the reconciliation of this source.
 - `timeout` (String) The timeout for remote OCI Repository operations like pulling, defaults to 60s.
-- `verify` (Attributes) Verify contains the secret name containing the trusted public keysused to verify the signature and specifies which provider to use to checkwhether OCI image is authentic. (see [below for nested schema](#nestedatt--spec--verify))
+- `verify` (Attributes) Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. (see [below for nested schema](#nestedatt--spec--verify))
 
 <a id="nestedatt--spec--cert_secret_ref"></a>
 ### Nested Schema for `spec.cert_secret_ref`
@@ -86,8 +86,8 @@ Required:
 
 Optional:
 
-- `media_type` (String) MediaType specifies the OCI media type of the layerwhich should be extracted from the OCI Artifact. Thefirst layer matching this type is selected.
-- `operation` (String) Operation specifies how the selected layer should be processed.By default, the layer compressed content is extracted to storage.When the operation is set to 'copy', the layer compressed contentis persisted to storage as it is.
+- `media_type` (String) MediaType specifies the OCI media type of the layer which should be extracted from the OCI Artifact. The first layer matching this type is selected.
+- `operation` (String) Operation specifies how the selected layer should be processed. By default, the layer compressed content is extracted to storage. When the operation is set to 'copy', the layer compressed content is persisted to storage as it is.
 
 
 <a id="nestedatt--spec--proxy_secret_ref"></a>
@@ -103,8 +103,8 @@ Required:
 
 Optional:
 
-- `digest` (String) Digest is the image digest to pull, takes precedence over SemVer.The value should be in the format 'sha256:<HASH>'.
-- `semver` (String) SemVer is the range of tags to pull selecting the latest withinthe range, takes precedence over Tag.
+- `digest` (String) Digest is the image digest to pull, takes precedence over SemVer. The value should be in the format 'sha256:<HASH>'.
+- `semver` (String) SemVer is the range of tags to pull selecting the latest within the range, takes precedence over Tag.
 - `semver_filter` (String) SemverFilter is a regex pattern to filter the tags within the SemVer range.
 - `tag` (String) Tag is the image tag to pull, defaults to latest.
 
@@ -126,16 +126,16 @@ Required:
 
 Optional:
 
-- `match_oidc_identity` (Attributes List) MatchOIDCIdentity specifies the identity matching criteria to usewhile verifying an OCI artifact which was signed using Cosign keylesssigning. The artifact's identity is deemed to be verified if any of thespecified matchers match against the identity. (see [below for nested schema](#nestedatt--spec--verify--match_oidc_identity))
-- `secret_ref` (Attributes) SecretRef specifies the Kubernetes Secret containing thetrusted public keys. (see [below for nested schema](#nestedatt--spec--verify--secret_ref))
+- `match_oidc_identity` (Attributes List) MatchOIDCIdentity specifies the identity matching criteria to use while verifying an OCI artifact which was signed using Cosign keyless signing. The artifact's identity is deemed to be verified if any of the specified matchers match against the identity. (see [below for nested schema](#nestedatt--spec--verify--match_oidc_identity))
+- `secret_ref` (Attributes) SecretRef specifies the Kubernetes Secret containing the trusted public keys. (see [below for nested schema](#nestedatt--spec--verify--secret_ref))
 
 <a id="nestedatt--spec--verify--match_oidc_identity"></a>
 ### Nested Schema for `spec.verify.match_oidc_identity`
 
 Required:
 
-- `issuer` (String) Issuer specifies the regex pattern to match against to verifythe OIDC issuer in the Fulcio certificate. The pattern must be avalid Go regular expression.
-- `subject` (String) Subject specifies the regex pattern to match against to verifythe identity subject in the Fulcio certificate. The pattern mustbe a valid Go regular expression.
+- `issuer` (String) Issuer specifies the regex pattern to match against to verify the OIDC issuer in the Fulcio certificate. The pattern must be a valid Go regular expression.
+- `subject` (String) Subject specifies the regex pattern to match against to verify the identity subject in the Fulcio certificate. The pattern must be a valid Go regular expression.
 
 
 <a id="nestedatt--spec--verify--secret_ref"></a>

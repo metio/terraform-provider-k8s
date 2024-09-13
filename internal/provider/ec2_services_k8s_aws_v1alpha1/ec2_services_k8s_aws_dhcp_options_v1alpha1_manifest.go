@@ -135,8 +135,8 @@ func (r *Ec2ServicesK8SAwsDhcpoptionsV1Alpha1Manifest) Schema(_ context.Context,
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "DhcpOptionsSpec defines the desired state of DhcpOptions.Describes a set of DHCP options.",
-				MarkdownDescription: "DhcpOptionsSpec defines the desired state of DhcpOptions.Describes a set of DHCP options.",
+				Description:         "DhcpOptionsSpec defines the desired state of DhcpOptions. Describes a set of DHCP options.",
+				MarkdownDescription: "DhcpOptionsSpec defines the desired state of DhcpOptions. Describes a set of DHCP options.",
 				Attributes: map[string]schema.Attribute{
 					"dhcp_configurations": schema.ListNestedAttribute{
 						Description:         "A DHCP configuration option.",
@@ -167,8 +167,8 @@ func (r *Ec2ServicesK8SAwsDhcpoptionsV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
-						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
+						Description:         "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
+						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -208,8 +208,8 @@ func (r *Ec2ServicesK8SAwsDhcpoptionsV1Alpha1Manifest) Schema(_ context.Context,
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",

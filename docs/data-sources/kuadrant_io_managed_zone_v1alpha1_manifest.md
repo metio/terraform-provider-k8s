@@ -61,7 +61,7 @@ Required:
 
 Optional:
 
-- `id` (String) id is the provider assigned id of this  zone (i.e. route53.HostedZone.ID).
+- `id` (String) id is the provider assigned id of this zone (i.e. route53.HostedZone.ID).
 - `parent_managed_zone` (Attributes) parentManagedZone reference to another managed zone that this managed zone belongs to. (see [below for nested schema](#nestedatt--spec--parent_managed_zone))
 
 <a id="nestedatt--spec--dns_provider_secret_ref"></a>
@@ -77,4 +77,4 @@ Required:
 
 Required:
 
-- `name` (String) 'name' is the name of the managed zone.Required
+- `name` (String) 'name' is the name of the managed zone. Required

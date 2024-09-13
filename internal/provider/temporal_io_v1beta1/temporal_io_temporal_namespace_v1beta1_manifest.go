@@ -151,24 +151,24 @@ func (r *TemporalIoTemporalNamespaceV1Beta1Manifest) Schema(_ context.Context, _
 				MarkdownDescription: "TemporalNamespaceSpec defines the desired state of Namespace.",
 				Attributes: map[string]schema.Attribute{
 					"active_cluster_name": schema.StringAttribute{
-						Description:         "The name of active Temporal Cluster.Only applicable if the namespace is a global namespace.",
-						MarkdownDescription: "The name of active Temporal Cluster.Only applicable if the namespace is a global namespace.",
+						Description:         "The name of active Temporal Cluster. Only applicable if the namespace is a global namespace.",
+						MarkdownDescription: "The name of active Temporal Cluster. Only applicable if the namespace is a global namespace.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"allow_deletion": schema.BoolAttribute{
-						Description:         "AllowDeletion makes the controller delete the Temporal namespace if theCRD is deleted.",
-						MarkdownDescription: "AllowDeletion makes the controller delete the Temporal namespace if theCRD is deleted.",
+						Description:         "AllowDeletion makes the controller delete the Temporal namespace if the CRD is deleted.",
+						MarkdownDescription: "AllowDeletion makes the controller delete the Temporal namespace if the CRD is deleted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"archival": schema.SingleNestedAttribute{
-						Description:         "Archival is a per-namespace archival configuration.If not set, the default cluster configuration is used.",
-						MarkdownDescription: "Archival is a per-namespace archival configuration.If not set, the default cluster configuration is used.",
+						Description:         "Archival is a per-namespace archival configuration. If not set, the default cluster configuration is used.",
+						MarkdownDescription: "Archival is a per-namespace archival configuration. If not set, the default cluster configuration is used.",
 						Attributes: map[string]schema.Attribute{
 							"history": schema.SingleNestedAttribute{
 								Description:         "History is the config for this namespace history archival.",
@@ -183,8 +183,8 @@ func (r *TemporalIoTemporalNamespaceV1Beta1Manifest) Schema(_ context.Context, _
 									},
 
 									"enabled": schema.BoolAttribute{
-										Description:         "Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
-										MarkdownDescription: "Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
+										Description:         "Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
+										MarkdownDescription: "Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -224,8 +224,8 @@ func (r *TemporalIoTemporalNamespaceV1Beta1Manifest) Schema(_ context.Context, _
 									},
 
 									"enabled": schema.BoolAttribute{
-										Description:         "Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
-										MarkdownDescription: "Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
+										Description:         "Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
+										MarkdownDescription: "Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -270,8 +270,8 @@ func (r *TemporalIoTemporalNamespaceV1Beta1Manifest) Schema(_ context.Context, _
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "The namespace of the temporal object to reference.Defaults to the namespace of the requested resource if omitted.",
-								MarkdownDescription: "The namespace of the temporal object to reference.Defaults to the namespace of the requested resource if omitted.",
+								Description:         "The namespace of the temporal object to reference. Defaults to the namespace of the requested resource if omitted.",
+								MarkdownDescription: "The namespace of the temporal object to reference. Defaults to the namespace of the requested resource if omitted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -283,8 +283,8 @@ func (r *TemporalIoTemporalNamespaceV1Beta1Manifest) Schema(_ context.Context, _
 					},
 
 					"clusters": schema.ListAttribute{
-						Description:         "List of clusters names to which the namespace can fail over.Only applicable if the namespace is a global namespace.",
-						MarkdownDescription: "List of clusters names to which the namespace can fail over.Only applicable if the namespace is a global namespace.",
+						Description:         "List of clusters names to which the namespace can fail over. Only applicable if the namespace is a global namespace.",
+						MarkdownDescription: "List of clusters names to which the namespace can fail over. Only applicable if the namespace is a global namespace.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

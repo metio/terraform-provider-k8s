@@ -3,12 +3,12 @@
 page_title: "k8s_operator_victoriametrics_com_vm_agent_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.victoriametrics.com"
 description: |-
-  VMAgent - is a tiny but brave agent, which helps you collect metrics from various sources and stores them in VictoriaMetricsor any other Prometheus-compatible storage system that supports the remote_write protocol.
+  VMAgent - is a tiny but brave agent, which helps you collect metrics from various sources and stores them in VictoriaMetrics or any other Prometheus-compatible storage system that supports the remote_write protocol.
 ---
 
 # k8s_operator_victoriametrics_com_vm_agent_v1beta1_manifest (Data Source)
 
-VMAgent - is a tiny but brave agent, which helps you collect metrics from various sources and stores them in VictoriaMetricsor any other Prometheus-compatible storage system that supports the remote_write protocol.
+VMAgent - is a tiny but brave agent, which helps you collect metrics from various sources and stores them in VictoriaMetrics or any other Prometheus-compatible storage system that supports the remote_write protocol.
 
 ## Example Usage
 
@@ -55,102 +55,102 @@ Optional:
 
 Optional:
 
-- `a_pi_server_config` (Attributes) APIServerConfig allows specifying a host and auth methods to access apiserver.If left empty, VMAgent is assumed to run inside of the clusterand will discover API servers automatically and use the pod's CA certificateand bearer token file at /var/run/secrets/kubernetes.io/serviceaccount/. (see [below for nested schema](#nestedatt--spec--a_pi_server_config))
-- `additional_scrape_configs` (Attributes) AdditionalScrapeConfigs As scrape configs are appended, the user is responsible to make sure itis valid. Note that using this feature may expose the possibility tobreak upgrades of VMAgent. It is advised to review VMAgent releasenotes to ensure that no incompatible scrape configs are going to breakVMAgent after the upgrade. (see [below for nested schema](#nestedatt--spec--additional_scrape_configs))
+- `a_pi_server_config` (Attributes) APIServerConfig allows specifying a host and auth methods to access apiserver. If left empty, VMAgent is assumed to run inside of the cluster and will discover API servers automatically and use the pod's CA certificate and bearer token file at /var/run/secrets/kubernetes.io/serviceaccount/. (see [below for nested schema](#nestedatt--spec--a_pi_server_config))
+- `additional_scrape_configs` (Attributes) AdditionalScrapeConfigs As scrape configs are appended, the user is responsible to make sure it is valid. Note that using this feature may expose the possibility to break upgrades of VMAgent. It is advised to review VMAgent release notes to ensure that no incompatible scrape configs are going to break VMAgent after the upgrade. (see [below for nested schema](#nestedatt--spec--additional_scrape_configs))
 - `affinity` (Map of String) Affinity If specified, the pod's scheduling constraints.
-- `arbitrary_fs_access_through_s_ms` (Attributes) ArbitraryFSAccessThroughSMs configures whether configurationbased on a service scrape can access arbitrary files on the file systemof the VMAgent container e.g. bearer token files. (see [below for nested schema](#nestedatt--spec--arbitrary_fs_access_through_s_ms))
+- `arbitrary_fs_access_through_s_ms` (Attributes) ArbitraryFSAccessThroughSMs configures whether configuration based on a service scrape can access arbitrary files on the file system of the VMAgent container e.g. bearer token files. (see [below for nested schema](#nestedatt--spec--arbitrary_fs_access_through_s_ms))
 - `claim_templates` (Attributes List) ClaimTemplates allows adding additional VolumeClaimTemplates for VMAgent in StatefulMode (see [below for nested schema](#nestedatt--spec--claim_templates))
-- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the vmagentobject, which shall be mounted into the vmagent Pods.will be mounted at path  /etc/vm/configs
-- `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'
-- `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers.It can be useful for proxies, backup, etc.
-- `dns_config` (Attributes) Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config))
+- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the vmagent object, which shall be mounted into the vmagent Pods. will be mounted at path /etc/vm/configs
+- `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to VMAuths config-reloader container for example resyncInterval: '30s'
+- `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.
+- `dns_config` (Attributes) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config))
 - `dns_policy` (String) DNSPolicy set DNS policy for the pod
-- `enforced_namespace_label` (String) EnforcedNamespaceLabel enforces adding a namespace label of origin for each alertand metric that is user created. The label value will always be the namespace of the object that isbeing created.
-- `external_labels` (Map of String) ExternalLabels The labels to add to any time series scraped by vmagent.it doesn't affect metrics ingested directly by push API's
-- `extra_args` (Map of String) ExtraArgs that will be passed to  VMAgent podfor example remoteWrite.tmpDataPath: /tmpit would be converted to flag --remoteWrite.tmpDataPath=/tmp
+- `enforced_namespace_label` (String) EnforcedNamespaceLabel enforces adding a namespace label of origin for each alert and metric that is user created. The label value will always be the namespace of the object that is being created.
+- `external_labels` (Map of String) ExternalLabels The labels to add to any time series scraped by vmagent. it doesn't affect metrics ingested directly by push API's
+- `extra_args` (Map of String) ExtraArgs that will be passed to VMAgent pod for example remoteWrite.tmpDataPath: /tmp it would be converted to flag --remoteWrite.tmpDataPath=/tmp
 - `extra_envs` (List of Map of String) ExtraEnvs that will be added to VMAgent pod
-- `host_aliases` (Attributes List) HostAliases provides mapping between ip and hostnames,that would be propagated to pod,cannot be used with HostNetwork. (see [below for nested schema](#nestedatt--spec--host_aliases))
+- `host_aliases` (Attributes List) HostAliases provides mapping between ip and hostnames, that would be propagated to pod, cannot be used with HostNetwork. (see [below for nested schema](#nestedatt--spec--host_aliases))
 - `host_network` (Boolean) HostNetwork controls whether the pod may use the node network namespace
-- `ignore_namespace_selectors` (Boolean) IgnoreNamespaceSelectors if set to true will ignore NamespaceSelector settings fromthe podscrape and vmservicescrape configs, and they will only discover endpointswithin their current namespace.  Defaults to false.
-- `image` (Attributes) Image - docker image settings for VMAgentif no specified operator uses default config version (see [below for nested schema](#nestedatt--spec--image))
-- `image_pull_secrets` (Attributes List) ImagePullSecrets An optional list of references to secrets in the same namespaceto use for pulling images from registriessee https://kubernetes.io/docs/concepts/containers/images/#referring-to-an-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
-- `ingest_only_mode` (Boolean) IngestOnlyMode switches vmagent into unmanaged modeit disables any config generation for scrapingCurrently it prevents vmagent from managing tls and auth options for remote write
-- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the vmagent configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.
+- `ignore_namespace_selectors` (Boolean) IgnoreNamespaceSelectors if set to true will ignore NamespaceSelector settings from the podscrape and vmservicescrape configs, and they will only discover endpoints within their current namespace. Defaults to false.
+- `image` (Attributes) Image - docker image settings for VMAgent if no specified operator uses default config version (see [below for nested schema](#nestedatt--spec--image))
+- `image_pull_secrets` (Attributes List) ImagePullSecrets An optional list of references to secrets in the same namespace to use for pulling images from registries see https://kubernetes.io/docs/concepts/containers/images/#referring-to-an-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
+- `ingest_only_mode` (Boolean) IngestOnlyMode switches vmagent into unmanaged mode it disables any config generation for scraping Currently it prevents vmagent from managing tls and auth options for remote write
+- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the vmagent configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.
 - `inline_relabel_config` (Attributes List) InlineRelabelConfig - defines GlobalRelabelConfig for vmagent, can be defined directly at CRD. (see [below for nested schema](#nestedatt--spec--inline_relabel_config))
-- `inline_scrape_config` (String) InlineScrapeConfig As scrape configs are appended, the user is responsible to make sure itis valid. Note that using this feature may expose the possibility tobreak upgrades of VMAgent. It is advised to review VMAgent releasenotes to ensure that no incompatible scrape configs are going to breakVMAgent after the upgrade.it should be defined as single yaml file.inlineScrapeConfig: |    - job_name: 'prometheus'      static_configs:      - targets: ['localhost:9090']
+- `inline_scrape_config` (String) InlineScrapeConfig As scrape configs are appended, the user is responsible to make sure it is valid. Note that using this feature may expose the possibility to break upgrades of VMAgent. It is advised to review VMAgent release notes to ensure that no incompatible scrape configs are going to break VMAgent after the upgrade. it should be defined as single yaml file. inlineScrapeConfig: | - job_name: 'prometheus' static_configs: - targets: ['localhost:9090']
 - `insert_ports` (Attributes) InsertPorts - additional listen ports for data ingestion. (see [below for nested schema](#nestedatt--spec--insert_ports))
-- `license` (Attributes) License allows to configure license key to be used for enterprise features.Using license key is supported starting from VictoriaMetrics v1.94.0.See: https://docs.victoriametrics.com/enterprise.html (see [below for nested schema](#nestedatt--spec--license))
+- `license` (Attributes) License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See: https://docs.victoriametrics.com/enterprise.html (see [below for nested schema](#nestedatt--spec--license))
 - `liveness_probe` (Map of String) LivenessProbe that will be added CRD pod
 - `log_format` (String) LogFormat for VMAgent to be configured with.
-- `log_level` (String) LogLevel for VMAgent to be configured with.INFO, WARN, ERROR, FATAL, PANIC
-- `max_scrape_interval` (String) MaxScrapeInterval allows limiting maximum scrape interval for VMServiceScrape, VMPodScrape and other scrapesIf interval is higher than defined limit, 'maxScrapeInterval' will be used.
-- `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state
-- `min_scrape_interval` (String) MinScrapeInterval allows limiting minimal scrape interval for VMServiceScrape, VMPodScrape and other scrapesIf interval is lower than defined limit, 'minScrapeInterval' will be used.
-- `node_scrape_namespace_selector` (Attributes) NodeScrapeNamespaceSelector defines Namespaces to be selected for VMNodeScrape discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--node_scrape_namespace_selector))
-- `node_scrape_relabel_template` (Attributes List) NodeScrapeRelabelTemplate defines relabel config, that will be added to each VMNodeScrape.it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--node_scrape_relabel_template))
-- `node_scrape_selector` (Attributes) NodeScrapeSelector defines VMNodeScrape to be selected for scraping.Works in combination with NamespaceSelector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--node_scrape_selector))
+- `log_level` (String) LogLevel for VMAgent to be configured with. INFO, WARN, ERROR, FATAL, PANIC
+- `max_scrape_interval` (String) MaxScrapeInterval allows limiting maximum scrape interval for VMServiceScrape, VMPodScrape and other scrapes If interval is higher than defined limit, 'maxScrapeInterval' will be used.
+- `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state
+- `min_scrape_interval` (String) MinScrapeInterval allows limiting minimal scrape interval for VMServiceScrape, VMPodScrape and other scrapes If interval is lower than defined limit, 'minScrapeInterval' will be used.
+- `node_scrape_namespace_selector` (Attributes) NodeScrapeNamespaceSelector defines Namespaces to be selected for VMNodeScrape discovery. Works in combination with Selector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--node_scrape_namespace_selector))
+- `node_scrape_relabel_template` (Attributes List) NodeScrapeRelabelTemplate defines relabel config, that will be added to each VMNodeScrape. it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--node_scrape_relabel_template))
+- `node_scrape_selector` (Attributes) NodeScrapeSelector defines VMNodeScrape to be selected for scraping. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--node_scrape_selector))
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
-- `override_honor_labels` (Boolean) OverrideHonorLabels if set to true overrides all user configured honor_labels.If HonorLabels is set in ServiceScrape or PodScrape to true, this overrides honor_labels to false.
+- `override_honor_labels` (Boolean) OverrideHonorLabels if set to true overrides all user configured honor_labels. If HonorLabels is set in ServiceScrape or PodScrape to true, this overrides honor_labels to false.
 - `override_honor_timestamps` (Boolean) OverrideHonorTimestamps allows to globally enforce honoring timestamps in all scrape configs.
-- `paused` (Boolean) Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.
+- `paused` (Boolean) Paused If set to true all actions on the underlying managed objects are not going to be performed, except for delete actions.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the vmagent pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
-- `pod_scrape_namespace_selector` (Attributes) PodScrapeNamespaceSelector defines Namespaces to be selected for VMPodScrape discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--pod_scrape_namespace_selector))
-- `pod_scrape_relabel_template` (Attributes List) PodScrapeRelabelTemplate defines relabel config, that will be added to each VMPodScrape.it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--pod_scrape_relabel_template))
-- `pod_scrape_selector` (Attributes) PodScrapeSelector defines PodScrapes to be selected for target discovery.Works in combination with NamespaceSelector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--pod_scrape_selector))
+- `pod_scrape_namespace_selector` (Attributes) PodScrapeNamespaceSelector defines Namespaces to be selected for VMPodScrape discovery. Works in combination with Selector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--pod_scrape_namespace_selector))
+- `pod_scrape_relabel_template` (Attributes List) PodScrapeRelabelTemplate defines relabel config, that will be added to each VMPodScrape. it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--pod_scrape_relabel_template))
+- `pod_scrape_selector` (Attributes) PodScrapeSelector defines PodScrapes to be selected for target discovery. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--pod_scrape_selector))
 - `port` (String) Port listen address
 - `priority_class_name` (String) PriorityClassName assigned to the Pods
-- `probe_namespace_selector` (Attributes) ProbeNamespaceSelector defines Namespaces to be selected for VMProbe discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--probe_namespace_selector))
-- `probe_scrape_relabel_template` (Attributes List) ProbeScrapeRelabelTemplate defines relabel config, that will be added to each VMProbeScrape.it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--probe_scrape_relabel_template))
-- `probe_selector` (Attributes) ProbeSelector defines VMProbe to be selected for target probing.Works in combination with NamespaceSelector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--probe_selector))
+- `probe_namespace_selector` (Attributes) ProbeNamespaceSelector defines Namespaces to be selected for VMProbe discovery. Works in combination with Selector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--probe_namespace_selector))
+- `probe_scrape_relabel_template` (Attributes List) ProbeScrapeRelabelTemplate defines relabel config, that will be added to each VMProbeScrape. it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--probe_scrape_relabel_template))
+- `probe_selector` (Attributes) ProbeSelector defines VMProbe to be selected for target probing. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--probe_selector))
 - `readiness_gates` (Attributes List) ReadinessGates defines pod readiness gates (see [below for nested schema](#nestedatt--spec--readiness_gates))
 - `readiness_probe` (Map of String) ReadinessProbe that will be added CRD pod
-- `relabel_config` (Attributes) RelabelConfig ConfigMap with global relabel config -remoteWrite.relabelConfigThis relabeling is applied to all the collected metrics before sending them to remote storage. (see [below for nested schema](#nestedatt--spec--relabel_config))
-- `remote_write` (Attributes List) RemoteWrite list of victoria metrics /some other remote write systemfor vm it must looks like: http://victoria-metrics-single:8429/api/v1/writeor for cluster different urlhttps://github.com/VictoriaMetrics/VictoriaMetrics/tree/master/app/vmagent#splitting-data-streams-among-multiple-systems (see [below for nested schema](#nestedatt--spec--remote_write))
+- `relabel_config` (Attributes) RelabelConfig ConfigMap with global relabel config -remoteWrite.relabelConfig This relabeling is applied to all the collected metrics before sending them to remote storage. (see [below for nested schema](#nestedatt--spec--relabel_config))
+- `remote_write` (Attributes List) RemoteWrite list of victoria metrics /some other remote write system for vm it must looks like: http://victoria-metrics-single:8429/api/v1/write or for cluster different url https://github.com/VictoriaMetrics/VictoriaMetrics/tree/master/app/vmagent#splitting-data-streams-among-multiple-systems (see [below for nested schema](#nestedatt--spec--remote_write))
 - `remote_write_settings` (Attributes) RemoteWriteSettings defines global settings for all remoteWrite urls. (see [below for nested schema](#nestedatt--spec--remote_write_settings))
-- `replica_count` (Number) ReplicaCount is the expected size of the VMAgent cluster. The controller willeventually make the size of the running cluster equal to the expectedsize.NOTE enable VMSingle deduplication for replica usage
-- `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/if not specified - default setting will be used (see [below for nested schema](#nestedatt--spec--resources))
-- `revision_history_limit_count` (Number) The number of old ReplicaSets to retain to allow rollback in deployment ormaximum number of revisions that will be maintained in the StatefulSet's revision history.Defaults to 10.
+- `replica_count` (Number) ReplicaCount is the expected size of the VMAgent cluster. The controller will eventually make the size of the running cluster equal to the expected size. NOTE enable VMSingle deduplication for replica usage
+- `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not specified - default setting will be used (see [below for nested schema](#nestedatt--spec--resources))
+- `revision_history_limit_count` (Number) The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the StatefulSet's revision history. Defaults to 10.
 - `rolling_update` (Attributes) RollingUpdate - overrides deployment update params. (see [below for nested schema](#nestedatt--spec--rolling_update))
-- `runtime_class_name` (String) RuntimeClassName - defines runtime class for kubernetes pod.https://kubernetes.io/docs/concepts/containers/runtime-class/
+- `runtime_class_name` (String) RuntimeClassName - defines runtime class for kubernetes pod. https://kubernetes.io/docs/concepts/containers/runtime-class/
 - `scheduler_name` (String) SchedulerName - defines kubernetes scheduler name
-- `scrape_config_namespace_selector` (Attributes) ScrapeConfigNamespaceSelector defines Namespaces to be selected for VMScrapeConfig discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--scrape_config_namespace_selector))
-- `scrape_config_relabel_template` (Attributes List) ScrapeConfigRelabelTemplate defines relabel config, that will be added to each VMScrapeConfig.it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--scrape_config_relabel_template))
-- `scrape_config_selector` (Attributes) ScrapeConfigSelector defines VMScrapeConfig to be selected for target discovery.Works in combination with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--scrape_config_selector))
+- `scrape_config_namespace_selector` (Attributes) ScrapeConfigNamespaceSelector defines Namespaces to be selected for VMScrapeConfig discovery. Works in combination with Selector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--scrape_config_namespace_selector))
+- `scrape_config_relabel_template` (Attributes List) ScrapeConfigRelabelTemplate defines relabel config, that will be added to each VMScrapeConfig. it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--scrape_config_relabel_template))
+- `scrape_config_selector` (Attributes) ScrapeConfigSelector defines VMScrapeConfig to be selected for target discovery. Works in combination with NamespaceSelector. (see [below for nested schema](#nestedatt--spec--scrape_config_selector))
 - `scrape_interval` (String) ScrapeInterval defines how often scrape targets by default
 - `scrape_timeout` (String) ScrapeTimeout defines global timeout for targets scrape
-- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the vmagentobject, which shall be mounted into the vmagent Pods.will be mounted at path /etc/vm/secrets
-- `security_context` (Map of String) SecurityContext holds pod-level security attributes and common container settings.This defaults to the default PodSecurityContext.
-- `select_all_by_default` (Boolean) SelectAllByDefault changes default behavior for empty CRD selectors, such ServiceScrapeSelector.with selectAllByDefault: true and empty serviceScrapeSelector and ServiceScrapeNamespaceSelectorOperator selects all exist serviceScrapeswith selectAllByDefault: false - selects nothing
-- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run theVMAgent Pods.
-- `service_scrape_namespace_selector` (Attributes) ServiceScrapeNamespaceSelector Namespaces to be selected for VMServiceScrape discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--service_scrape_namespace_selector))
-- `service_scrape_relabel_template` (Attributes List) ServiceScrapeRelabelTemplate defines relabel config, that will be added to each VMServiceScrape.it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--service_scrape_relabel_template))
-- `service_scrape_selector` (Attributes) ServiceScrapeSelector defines ServiceScrapes to be selected for target discovery.Works in combination with NamespaceSelector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--service_scrape_selector))
+- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the vmagent object, which shall be mounted into the vmagent Pods. will be mounted at path /etc/vm/secrets
+- `security_context` (Map of String) SecurityContext holds pod-level security attributes and common container settings. This defaults to the default PodSecurityContext.
+- `select_all_by_default` (Boolean) SelectAllByDefault changes default behavior for empty CRD selectors, such ServiceScrapeSelector. with selectAllByDefault: true and empty serviceScrapeSelector and ServiceScrapeNamespaceSelector Operator selects all exist serviceScrapes with selectAllByDefault: false - selects nothing
+- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run the VMAgent Pods.
+- `service_scrape_namespace_selector` (Attributes) ServiceScrapeNamespaceSelector Namespaces to be selected for VMServiceScrape discovery. Works in combination with Selector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--service_scrape_namespace_selector))
+- `service_scrape_relabel_template` (Attributes List) ServiceScrapeRelabelTemplate defines relabel config, that will be added to each VMServiceScrape. it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--service_scrape_relabel_template))
+- `service_scrape_selector` (Attributes) ServiceScrapeSelector defines ServiceScrapes to be selected for target discovery. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--service_scrape_selector))
 - `service_scrape_spec` (Map of String) ServiceScrapeSpec that will be added to vmagent VMServiceScrape spec
 - `service_spec` (Attributes) ServiceSpec that will be added to vmagent service spec (see [below for nested schema](#nestedatt--spec--service_spec))
-- `shard_count` (Number) ShardCount - numbers of shards of VMAgentin this case operator will use 1 deployment/sts per shard withreplicas count according to spec.replicas,see https://docs.victoriametrics.com/vmagent.html#scraping-big-number-of-targets
+- `shard_count` (Number) ShardCount - numbers of shards of VMAgent in this case operator will use 1 deployment/sts per shard with replicas count according to spec.replicas, see https://docs.victoriametrics.com/vmagent.html#scraping-big-number-of-targets
 - `startup_probe` (Map of String) StartupProbe that will be added to CRD pod
-- `stateful_mode` (Boolean) StatefulMode enables StatefulSet for 'VMAgent' instead of Deploymentit allows using persistent storage for vmagent's persistentQueue
-- `stateful_rolling_update_strategy` (String) StatefulRollingUpdateStrategy allows configuration for strategyTypeset it to RollingUpdate for disabling operator statefulSet rollingUpdate
+- `stateful_mode` (Boolean) StatefulMode enables StatefulSet for 'VMAgent' instead of Deployment it allows using persistent storage for vmagent's persistentQueue
+- `stateful_rolling_update_strategy` (String) StatefulRollingUpdateStrategy allows configuration for strategyType set it to RollingUpdate for disabling operator statefulSet rollingUpdate
 - `stateful_storage` (Attributes) StatefulStorage configures storage for StatefulSet (see [below for nested schema](#nestedatt--spec--stateful_storage))
-- `static_scrape_namespace_selector` (Attributes) StaticScrapeNamespaceSelector defines Namespaces to be selected for VMStaticScrape discovery.Works in combination with NamespaceSelector.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--static_scrape_namespace_selector))
-- `static_scrape_relabel_template` (Attributes List) StaticScrapeRelabelTemplate defines relabel config, that will be added to each VMStaticScrape.it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--static_scrape_relabel_template))
-- `static_scrape_selector` (Attributes) StaticScrapeSelector defines PodScrapes to be selected for target discovery.Works in combination with NamespaceSelector.If both nil - match everything.NamespaceSelector nil - only objects at VMAgent namespace.Selector nil - only objects at NamespaceSelector namespaces. (see [below for nested schema](#nestedatt--spec--static_scrape_selector))
+- `static_scrape_namespace_selector` (Attributes) StaticScrapeNamespaceSelector defines Namespaces to be selected for VMStaticScrape discovery. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--static_scrape_namespace_selector))
+- `static_scrape_relabel_template` (Attributes List) StaticScrapeRelabelTemplate defines relabel config, that will be added to each VMStaticScrape. it's useful for adding specific labels to all targets (see [below for nested schema](#nestedatt--spec--static_scrape_relabel_template))
+- `static_scrape_selector` (Attributes) StaticScrapeSelector defines PodScrapes to be selected for target discovery. Works in combination with NamespaceSelector. If both nil - match everything. NamespaceSelector nil - only objects at VMAgent namespace. Selector nil - only objects at NamespaceSelector namespaces. (see [below for nested schema](#nestedatt--spec--static_scrape_selector))
 - `termination_grace_period_seconds` (Number) TerminationGracePeriodSeconds period for container graceful termination
 - `tolerations` (Attributes List) Tolerations If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--tolerations))
-- `topology_spread_constraints` (List of Map of String) TopologySpreadConstraints embedded kubernetes pod configuration option,controls how pods are spread across your cluster among failure-domainssuch as regions, zones, nodes, and other user-defined topology domainshttps://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
-- `update_strategy` (String) UpdateStrategy - overrides default update strategy.works only for deployments, statefulset always use OnDelete.
-- `use_strict_security` (Boolean) UseStrictSecurity enables strict security mode for componentit restricts disk writes accessuses non-root user out of the boxdrops not needed security permissions
-- `vm_agent_external_label_name` (String) VMAgentExternalLabelName Name of vmAgent external label used to denote vmAgent instancename. Defaults to the value of 'prometheus'. External label will_not_ be added when value is set to empty string ('''').
-- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output deploy definition.VolumeMounts specified will be appended to other VolumeMounts in the vmagent container,that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--volume_mounts))
-- `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output deploy definition.Volumes specified will be appended to other volumes that are generated as a result ofStorageSpec objects.
+- `topology_spread_constraints` (List of Map of String) TopologySpreadConstraints embedded kubernetes pod configuration option, controls how pods are spread across your cluster among failure-domains such as regions, zones, nodes, and other user-defined topology domains https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+- `update_strategy` (String) UpdateStrategy - overrides default update strategy. works only for deployments, statefulset always use OnDelete.
+- `use_strict_security` (Boolean) UseStrictSecurity enables strict security mode for component it restricts disk writes access uses non-root user out of the box drops not needed security permissions
+- `vm_agent_external_label_name` (String) VMAgentExternalLabelName Name of vmAgent external label used to denote vmAgent instance name. Defaults to the value of 'prometheus'. External label will _not_ be added when value is set to empty string ('''').
+- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output deploy definition. VolumeMounts specified will be appended to other VolumeMounts in the vmagent container, that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--volume_mounts))
+- `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output deploy definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects.
 
 <a id="nestedatt--spec--a_pi_server_config"></a>
 ### Nested Schema for `spec.a_pi_server_config`
 
 Required:
 
-- `host` (String) Host of apiserver.A valid string consisting of a hostname or IP followed by an optional port number
+- `host` (String) Host of apiserver. A valid string consisting of a hostname or IP followed by an optional port number
 
 Optional:
 
@@ -174,11 +174,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -188,20 +188,20 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--a_pi_server_config--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--a_pi_server_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--a_pi_server_config--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--a_pi_server_config--basic_auth--username))
 
 <a id="nestedatt--spec--a_pi_server_config--basic_auth--password"></a>
 ### Nested Schema for `spec.a_pi_server_config.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -210,11 +210,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -250,7 +250,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -259,11 +259,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -285,7 +285,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -294,11 +294,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -308,11 +308,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -323,11 +323,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -344,24 +344,24 @@ Optional:
 
 Optional:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object.Servers should convert recognized schemas to the latest internal value, andmay reject unrecognized values.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `kind` (String) Kind is a string value representing the REST resource this object represents.Servers may infer this from the endpoint the client submits requests to.Cannot be updated.In CamelCase.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `metadata` (Map of String) Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-- `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--claim_templates--spec))
-- `status` (Attributes) status represents the current information/status of a persistent volume claim.Read-only.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--claim_templates--status))
+- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `metadata` (Map of String) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+- `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--claim_templates--spec))
+- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--claim_templates--status))
 
 <a id="nestedatt--spec--claim_templates--spec"></a>
 ### Nested Schema for `spec.claim_templates.spec`
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--claim_templates--spec--resources))
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--claim_templates--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--selector))
-- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--claim_templates--spec--data_source"></a>
@@ -374,7 +374,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--claim_templates--spec--data_source_ref"></a>
@@ -387,8 +387,8 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
-- `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--claim_templates--spec--resources"></a>
@@ -396,16 +396,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--claim_templates--spec--resources--claims"></a>
 ### Nested Schema for `spec.claim_templates.spec.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -415,7 +415,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--claim_templates--spec--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--claim_templates--spec--selector--match_expressions"></a>
 ### Nested Schema for `spec.claim_templates.spec.selector.match_expressions`
@@ -423,11 +423,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -437,12 +437,12 @@ Optional:
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resources` (Map of String) allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It maybe larger than the actual capacity when a volume expansion operation is requested.For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation.If a volume expansion capacity request is lowered, allocatedResources is onlylowered if there are no expansion operations in progress and if the actual volume capacityis equal or lower than the requested capacity.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `allocated_resources` (Map of String) allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 - `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is beingresized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--claim_templates--status--conditions))
+- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--claim_templates--status--conditions))
 - `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-- `resize_status` (String) resizeStatus stores status of resize operation.ResizeStatus is not set by default but when expansion is complete resizeStatus is set to emptystring by resize controller or kubelet.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `resize_status` (String) resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 
 <a id="nestedatt--spec--claim_templates--status--conditions"></a>
 ### Nested Schema for `spec.claim_templates.status.conditions`
@@ -457,7 +457,7 @@ Optional:
 - `last_probe_time` (String) lastProbeTime is the time we probed the condition.
 - `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
 - `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reasonfor condition's last transition. If it reports 'ResizeStarted' that means the underlyingpersistent volume is being resized.
+- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
 
 
 
@@ -467,9 +467,9 @@ Optional:
 
 Optional:
 
-- `nameservers` (List of String) A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.
-- `options` (Attributes List) A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config--options))
-- `searches` (List of String) A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.
+- `nameservers` (List of String) A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.
+- `options` (Attributes List) A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config--options))
+- `searches` (List of String) A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.
 
 <a id="nestedatt--spec--dns_config--options"></a>
 ### Nested Schema for `spec.dns_config.options`
@@ -505,7 +505,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--inline_relabel_config"></a>
@@ -518,11 +518,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--insert_ports"></a>
@@ -541,7 +541,7 @@ Optional:
 
 Optional:
 
-- `key` (String) Enterprise license key. This flag is available only in VictoriaMetrics enterprise.Documentation - https://docs.victoriametrics.com/enterprise.htmlfor more information, visit https://victoriametrics.com/products/enterprise/ .To request a trial license, go to https://victoriametrics.com/products/enterprise/trial/
+- `key` (String) Enterprise license key. This flag is available only in VictoriaMetrics enterprise. Documentation - https://docs.victoriametrics.com/enterprise.html for more information, visit https://victoriametrics.com/products/enterprise/ . To request a trial license, go to https://victoriametrics.com/products/enterprise/trial/
 - `key_ref` (Attributes) KeyRef is reference to secret with license key for enterprise features. (see [below for nested schema](#nestedatt--spec--license--key_ref))
 
 <a id="nestedatt--spec--license--key_ref"></a>
@@ -549,11 +549,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -564,7 +564,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--node_scrape_namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_scrape_namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.node_scrape_namespace_selector.match_expressions`
@@ -572,11 +572,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -590,11 +590,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--node_scrape_selector"></a>
@@ -603,7 +603,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--node_scrape_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_scrape_selector--match_expressions"></a>
 ### Nested Schema for `spec.node_scrape_selector.match_expressions`
@@ -611,11 +611,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -624,9 +624,9 @@ Optional:
 
 Optional:
 
-- `max_unavailable` (String) An eviction is allowed if at most 'maxUnavailable' pods selected by'selector' are unavailable after the eviction, i.e. even in absence ofthe evicted pod. For example, one can prevent all voluntary evictionsby specifying 0. This is a mutually exclusive setting with 'minAvailable'.
-- `min_available` (String) An eviction is allowed if at least 'minAvailable' pods selected by'selector' will still be available after the eviction, i.e. even in theabsence of the evicted pod.  So for example you can prevent all voluntaryevictions by specifying '100%'.
-- `selector_labels` (Map of String) replaces default labels selector generated by operatorit's useful when you need to create custom budget
+- `max_unavailable` (String) An eviction is allowed if at most 'maxUnavailable' pods selected by 'selector' are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with 'minAvailable'.
+- `min_available` (String) An eviction is allowed if at least 'minAvailable' pods selected by 'selector' will still be available after the eviction, i.e. even in the absence of the evicted pod. So for example you can prevent all voluntary evictions by specifying '100%'.
+- `selector_labels` (Map of String) replaces default labels selector generated by operator it's useful when you need to create custom budget
 
 
 <a id="nestedatt--spec--pod_metadata"></a>
@@ -634,9 +634,9 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
-- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
-- `name` (String) Name must be unique within a namespace. Is required when creating resources, althoughsome resources may allow a client to request the generation of an appropriate nameautomatically. Name is primarily intended for creation idempotence and configurationdefinition.Cannot be updated.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
+- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
+- `name` (String) Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
 
 
 <a id="nestedatt--spec--pod_scrape_namespace_selector"></a>
@@ -645,7 +645,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--pod_scrape_namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--pod_scrape_namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.pod_scrape_namespace_selector.match_expressions`
@@ -653,11 +653,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -671,11 +671,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--pod_scrape_selector"></a>
@@ -684,7 +684,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--pod_scrape_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--pod_scrape_selector--match_expressions"></a>
 ### Nested Schema for `spec.pod_scrape_selector.match_expressions`
@@ -692,11 +692,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -706,7 +706,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--probe_namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--probe_namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.probe_namespace_selector.match_expressions`
@@ -714,11 +714,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -732,11 +732,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--probe_selector"></a>
@@ -745,7 +745,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--probe_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--probe_selector--match_expressions"></a>
 ### Nested Schema for `spec.probe_selector.match_expressions`
@@ -753,11 +753,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -778,7 +778,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -793,7 +793,7 @@ Optional:
 
 - `basic_auth` (Attributes) BasicAuth allow an endpoint to authenticate over basic authentication (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth))
 - `bearer_token_secret` (Attributes) Optional bearer auth token to use for -remoteWrite.url (see [below for nested schema](#nestedatt--spec--remote_write--bearer_token_secret))
-- `headers` (List of String) Headers allow configuring custom http headersMust be in form of semicolon separated header with valuee.g.headerName: headerValuevmagent supports since 1.79.0 version
+- `headers` (List of String) Headers allow configuring custom http headers Must be in form of semicolon separated header with value e.g. headerName: headerValue vmagent supports since 1.79.0 version
 - `inline_url_relabel_config` (Attributes List) InlineUrlRelabelConfig defines relabeling config for remoteWriteURL, it can be defined at crd spec. (see [below for nested schema](#nestedatt--spec--remote_write--inline_url_relabel_config))
 - `oauth2` (Attributes) OAuth2 defines auth configuration (see [below for nested schema](#nestedatt--spec--remote_write--oauth2))
 - `send_timeout` (String) Timeout for sending a single block of data to -remoteWrite.url (default 1m0s)
@@ -806,20 +806,20 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--remote_write--basic_auth--username))
 
 <a id="nestedatt--spec--remote_write--basic_auth--password"></a>
 ### Nested Schema for `spec.remote_write.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -828,11 +828,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -842,11 +842,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -860,11 +860,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--remote_write--oauth2"></a>
@@ -899,7 +899,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -908,11 +908,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -922,11 +922,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -950,22 +950,22 @@ Optional:
 Required:
 
 - `interval` (String) Interval is the interval between aggregations.
-- `outputs` (List of String) Outputs is a list of output aggregate functions to produce.The following names are allowed:- total - aggregates input counters- increase - counts the increase over input counters- count_series - counts the input series- count_samples - counts the input samples- sum_samples - sums the input samples- last - the last biggest sample value- min - the minimum sample value- max - the maximum sample value- avg - the average value across all the samples- stddev - standard deviation across all the samples- stdvar - standard variance across all the samples- histogram_bucket - creates VictoriaMetrics histogram for input samples- quantiles(phi1, ..., phiN) - quantiles' estimation for phi in the range [0..1]The output time series will have the following names:  input_name:aggr_<interval>_<output>
+- `outputs` (List of String) Outputs is a list of output aggregate functions to produce. The following names are allowed: - total - aggregates input counters - increase - counts the increase over input counters - count_series - counts the input series - count_samples - counts the input samples - sum_samples - sums the input samples - last - the last biggest sample value - min - the minimum sample value - max - the maximum sample value - avg - the average value across all the samples - stddev - standard deviation across all the samples - stdvar - standard variance across all the samples - histogram_bucket - creates VictoriaMetrics histogram for input samples - quantiles(phi1, ..., phiN) - quantiles' estimation for phi in the range [0..1] The output time series will have the following names: input_name:aggr_<interval>_<output>
 
 Optional:
 
-- `by` (List of String) By is an optional list of labels for grouping input series.See also Without.If neither By nor Without are set, then the Outputs are calculatedindividually per each input time series.
+- `by` (List of String) By is an optional list of labels for grouping input series. See also Without. If neither By nor Without are set, then the Outputs are calculated individually per each input time series.
 - `dedup_interval` (String) DedupInterval is an optional interval for deduplication.
-- `drop_input_labels` (List of String) DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples.Labels are dropped before de-duplication and aggregation.
-- `flush_on_shutdown` (Boolean) FlushOnShutdown defines whether to flush the aggregation state on process terminationor config reload. Is 'false' by default.It is not recommended changing this setting, unless unfinished aggregations statesare preferred to missing data points.
+- `drop_input_labels` (List of String) DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples. Labels are dropped before de-duplication and aggregation.
+- `flush_on_shutdown` (Boolean) FlushOnShutdown defines whether to flush the aggregation state on process termination or config reload. Is 'false' by default. It is not recommended changing this setting, unless unfinished aggregations states are preferred to missing data points.
 - `ignore_old_samples` (Boolean) IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.
-- `input_relabel_configs` (Attributes List) InputRelabelConfigs is an optional relabeling rules, which are applied on the inputbefore aggregation. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--input_relabel_configs))
+- `input_relabel_configs` (Attributes List) InputRelabelConfigs is an optional relabeling rules, which are applied on the input before aggregation. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--input_relabel_configs))
 - `keep_metric_names` (Boolean) KeepMetricNames instructs to leave metric names as is for the output time series without adding any suffix.
-- `match` (Map of String) Match is a label selector (or list of label selectors) for filtering time series for the given selector.If the match isn't set, then all the input time series are processed.
-- `no_align_flush_to_interval` (Boolean) NoAlignFlushToInterval disables aligning of flushes to multiples of Interval.By default flushes are aligned to Interval.
-- `output_relabel_configs` (Attributes List) OutputRelabelConfigs is an optional relabeling rules, which are appliedon the aggregated output before being sent to remote storage. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--output_relabel_configs))
-- `staleness_interval` (String) Staleness interval is interval after which the series state will be reset if no samples have been sent during it.The parameter is only relevant for outputs: total, total_prometheus, increase, increase_prometheus and histogram_bucket.
-- `without` (List of String) Without is an optional list of labels, which must be excluded when grouping input series.See also By.If neither By nor Without are set, then the Outputs are calculatedindividually per each input time series.
+- `match` (Map of String) Match is a label selector (or list of label selectors) for filtering time series for the given selector. If the match isn't set, then all the input time series are processed.
+- `no_align_flush_to_interval` (Boolean) NoAlignFlushToInterval disables aligning of flushes to multiples of Interval. By default flushes are aligned to Interval.
+- `output_relabel_configs` (Attributes List) OutputRelabelConfigs is an optional relabeling rules, which are applied on the aggregated output before being sent to remote storage. (see [below for nested schema](#nestedatt--spec--remote_write--stream_aggr_config--rules--output_relabel_configs))
+- `staleness_interval` (String) Staleness interval is interval after which the series state will be reset if no samples have been sent during it. The parameter is only relevant for outputs: total, total_prometheus, increase, increase_prometheus and histogram_bucket.
+- `without` (List of String) Without is an optional list of labels, which must be excluded when grouping input series. See also By. If neither By nor Without are set, then the Outputs are calculated individually per each input time series.
 
 <a id="nestedatt--spec--remote_write--stream_aggr_config--rules--input_relabel_configs"></a>
 ### Nested Schema for `spec.remote_write.stream_aggr_config.rules.input_relabel_configs`
@@ -977,11 +977,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--remote_write--stream_aggr_config--rules--output_relabel_configs"></a>
@@ -994,11 +994,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 
@@ -1034,7 +1034,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1043,11 +1043,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1069,7 +1069,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1078,11 +1078,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1092,11 +1092,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1110,7 +1110,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1127,7 +1127,7 @@ Optional:
 - `queues` (Number) The number of concurrent queues
 - `show_url` (Boolean) Whether to show -remoteWrite.url in the exported metrics. It is hidden by default, since it can contain sensitive auth info
 - `tmp_data_path` (String) Path to directory where temporary data for remote write component is stored (default vmagent-remotewrite-data)
-- `use_multi_tenant_mode` (Boolean) Configures vmagent in multi-tenant mode with direct cluster supportdocs https://docs.victoriametrics.com/vmagent.html#multitenancyit's global setting and affects all remote storage configurations
+- `use_multi_tenant_mode` (Boolean) Configures vmagent in multi-tenant mode with direct cluster support docs https://docs.victoriametrics.com/vmagent.html#multitenancy it's global setting and affects all remote storage configurations
 
 
 <a id="nestedatt--spec--resources"></a>
@@ -1135,16 +1135,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resources--claims"></a>
 ### Nested Schema for `spec.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -1153,8 +1153,8 @@ Required:
 
 Optional:
 
-- `max_surge` (String) The maximum number of pods that can be scheduled above the desired number ofpods.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up.Defaults to 25%.Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately whenthe rolling update starts, such that the total number of old and new pods do not exceed130% of desired pods. Once old pods have been killed,new ReplicaSet can be scaled up further, ensuring that total number of pods runningat any time during the update is at most 130% of desired pods.
-- `max_unavailable` (String) The maximum number of pods that can be unavailable during the update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).Absolute number is calculated from percentage by rounding down.This can not be 0 if MaxSurge is 0.Defaults to 25%.Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired podsimmediately when the rolling update starts. Once new pods are ready, old ReplicaSetcan be scaled down further, followed by scaling up the new ReplicaSet, ensuringthat the total number of pods available at all times during the update is atleast 70% of desired pods.
+- `max_surge` (String) The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.
+- `max_unavailable` (String) The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%. Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods.
 
 
 <a id="nestedatt--spec--scrape_config_namespace_selector"></a>
@@ -1163,7 +1163,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scrape_config_namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--scrape_config_namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.scrape_config_namespace_selector.match_expressions`
@@ -1171,11 +1171,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1189,11 +1189,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--scrape_config_selector"></a>
@@ -1202,7 +1202,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scrape_config_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--scrape_config_selector--match_expressions"></a>
 ### Nested Schema for `spec.scrape_config_selector.match_expressions`
@@ -1210,11 +1210,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1224,7 +1224,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--service_scrape_namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--service_scrape_namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.service_scrape_namespace_selector.match_expressions`
@@ -1232,11 +1232,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1250,11 +1250,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--service_scrape_selector"></a>
@@ -1263,7 +1263,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--service_scrape_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--service_scrape_selector--match_expressions"></a>
 ### Nested Schema for `spec.service_scrape_selector.match_expressions`
@@ -1271,11 +1271,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1284,21 +1284,21 @@ Optional:
 
 Required:
 
-- `spec` (Map of String) ServiceSpec describes the attributes that a user creates on a service.More info: https://kubernetes.io/docs/concepts/services-networking/service/
+- `spec` (Map of String) ServiceSpec describes the attributes that a user creates on a service. More info: https://kubernetes.io/docs/concepts/services-networking/service/
 
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--service_spec--metadata))
-- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChanging from headless service to clusterIP or loadbalancer may break cross-component communication
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object Service Changing from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--service_spec--metadata"></a>
 ### Nested Schema for `spec.service_spec.metadata`
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
-- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
-- `name` (String) Name must be unique within a namespace. Is required when creating resources, althoughsome resources may allow a client to request the generation of an appropriate nameautomatically. Name is primarily intended for creation idempotence and configurationdefinition.Cannot be updated.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
+- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
+- `name` (String) Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
 
 
 
@@ -1307,8 +1307,8 @@ Optional:
 
 Optional:
 
-- `disable_mount_sub_path` (Boolean) Deprecated: subPath usage will be disabled by default in a future release, this option will become unnecessary.DisableMountSubPath allows to remove any subPath usage in volume mounts.
-- `empty_dir` (Attributes) EmptyDirVolumeSource to be used by the Prometheus StatefulSets. If specified, used in place of any volumeClaimTemplate. Moreinfo: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir (see [below for nested schema](#nestedatt--spec--stateful_storage--empty_dir))
+- `disable_mount_sub_path` (Boolean) Deprecated: subPath usage will be disabled by default in a future release, this option will become unnecessary. DisableMountSubPath allows to remove any subPath usage in volume mounts.
+- `empty_dir` (Attributes) EmptyDirVolumeSource to be used by the Prometheus StatefulSets. If specified, used in place of any volumeClaimTemplate. More info: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir (see [below for nested schema](#nestedatt--spec--stateful_storage--empty_dir))
 - `volume_claim_template` (Attributes) A PVC spec to be used by the VMAlertManager StatefulSets. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template))
 
 <a id="nestedatt--spec--stateful_storage--empty_dir"></a>
@@ -1316,8 +1316,8 @@ Optional:
 
 Optional:
 
-- `medium` (String) medium represents what type of storage medium should back this directory.The default is '' which means to use the node's default medium.Must be an empty string (default) or Memory.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume.The size limit is also applicable for memory medium.The maximum usage on memory medium EmptyDir would be the minimum value betweenthe SizeLimit specified here and the sum of memory limits of all containers in a pod.The default is nil which means that the limit is undefined.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
 
 
 <a id="nestedatt--spec--stateful_storage--volume_claim_template"></a>
@@ -1325,20 +1325,20 @@ Optional:
 
 Optional:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object.Servers should convert recognized schemas to the latest internal value, andmay reject unrecognized values.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `kind` (String) Kind is a string value representing the REST resource this object represents.Servers may infer this from the endpoint the client submits requests to.Cannot be updated.In CamelCase.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `metadata` (Attributes) EmbeddedMetadata contains metadata relevant to an EmbeddedResource. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--metadata))
-- `spec` (Attributes) Spec defines the desired characteristics of a volume requested by a pod author.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec))
-- `status` (Attributes) Status represents the current information/status of a persistent volume claim.Read-only.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status))
+- `spec` (Attributes) Spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec))
+- `status` (Attributes) Status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status))
 
 <a id="nestedatt--spec--stateful_storage--volume_claim_template--metadata"></a>
 ### Nested Schema for `spec.stateful_storage.volume_claim_template.metadata`
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
-- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
-- `name` (String) Name must be unique within a namespace. Is required when creating resources, althoughsome resources may allow a client to request the generation of an appropriate nameautomatically. Name is primarily intended for creation idempotence and configurationdefinition.Cannot be updated.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
+- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
+- `name` (String) Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
 
 
 <a id="nestedatt--spec--stateful_storage--volume_claim_template--spec"></a>
@@ -1346,13 +1346,13 @@ Optional:
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--resources))
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--selector))
-- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--data_source"></a>
@@ -1365,7 +1365,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--data_source_ref"></a>
@@ -1378,8 +1378,8 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
-- `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--resources"></a>
@@ -1387,16 +1387,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--resources--claims"></a>
 ### Nested Schema for `spec.stateful_storage.volume_claim_template.spec.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -1406,7 +1406,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--spec--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--stateful_storage--volume_claim_template--spec--selector--match_expressions"></a>
 ### Nested Schema for `spec.stateful_storage.volume_claim_template.spec.selector.match_expressions`
@@ -1414,11 +1414,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1428,12 +1428,12 @@ Optional:
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resources` (Map of String) allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It maybe larger than the actual capacity when a volume expansion operation is requested.For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation.If a volume expansion capacity request is lowered, allocatedResources is onlylowered if there are no expansion operations in progress and if the actual volume capacityis equal or lower than the requested capacity.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `allocated_resources` (Map of String) allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 - `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is beingresized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status--conditions))
+- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--stateful_storage--volume_claim_template--status--conditions))
 - `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-- `resize_status` (String) resizeStatus stores status of resize operation.ResizeStatus is not set by default but when expansion is complete resizeStatus is set to emptystring by resize controller or kubelet.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `resize_status` (String) resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 
 <a id="nestedatt--spec--stateful_storage--volume_claim_template--status--conditions"></a>
 ### Nested Schema for `spec.stateful_storage.volume_claim_template.status.conditions`
@@ -1448,7 +1448,7 @@ Optional:
 - `last_probe_time` (String) lastProbeTime is the time we probed the condition.
 - `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
 - `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reasonfor condition's last transition. If it reports 'ResizeStarted' that means the underlyingpersistent volume is being resized.
+- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
 
 
 
@@ -1460,7 +1460,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--static_scrape_namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--static_scrape_namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.static_scrape_namespace_selector.match_expressions`
@@ -1468,11 +1468,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1486,11 +1486,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--static_scrape_selector"></a>
@@ -1499,7 +1499,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--static_scrape_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--static_scrape_selector--match_expressions"></a>
 ### Nested Schema for `spec.static_scrape_selector.match_expressions`
@@ -1507,11 +1507,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1520,11 +1520,11 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 <a id="nestedatt--spec--volume_mounts"></a>
@@ -1532,12 +1532,12 @@ Optional:
 
 Required:
 
-- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `mount_path` (String) Path within the container at which the volume should be mounted. Must not contain ':'.
 - `name` (String) This must match the Name of a Volume.
 
 Optional:
 
-- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
-- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
-- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
-- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.

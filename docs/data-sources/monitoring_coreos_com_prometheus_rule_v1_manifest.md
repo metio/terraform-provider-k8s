@@ -3,12 +3,12 @@
 page_title: "k8s_monitoring_coreos_com_prometheus_rule_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "monitoring.coreos.com"
 description: |-
-  The 'PrometheusRule' custom resource definition (CRD) defines alerting https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/ and recording https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/ rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects.'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.
+  The 'PrometheusRule' custom resource definition (CRD) defines alerting https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/ and recording https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/ rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects. 'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.
 ---
 
 # k8s_monitoring_coreos_com_prometheus_rule_v1_manifest (Data Source)
 
-The 'PrometheusRule' custom resource definition (CRD) defines [alerting](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) and [recording](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects.'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.
+The 'PrometheusRule' custom resource definition (CRD) defines [alerting](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) and [recording](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects. 'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.
 
 ## Example Usage
 
@@ -65,8 +65,8 @@ Required:
 Optional:
 
 - `interval` (String) Interval determines how often rules in the group are evaluated.
-- `limit` (Number) Limit the number of alerts an alerting rule and series a recordingrule can produce.Limit is supported starting with Prometheus >= 2.31 and Thanos Ruler >= 0.24.
-- `partial_response_strategy` (String) PartialResponseStrategy is only used by ThanosRuler and willbe ignored by Prometheus instances.More info: https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md#partial-response
+- `limit` (Number) Limit the number of alerts an alerting rule and series a recording rule can produce. Limit is supported starting with Prometheus >= 2.31 and Thanos Ruler >= 0.24.
+- `partial_response_strategy` (String) PartialResponseStrategy is only used by ThanosRuler and will be ignored by Prometheus instances. More info: https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md#partial-response
 - `rules` (Attributes List) List of alerting and recording rules. (see [below for nested schema](#nestedatt--spec--groups--rules))
 
 <a id="nestedatt--spec--groups--rules"></a>
@@ -78,9 +78,9 @@ Required:
 
 Optional:
 
-- `alert` (String) Name of the alert. Must be a valid label value.Only one of 'record' and 'alert' must be set.
-- `annotations` (Map of String) Annotations to add to each alert.Only valid for alerting rules.
+- `alert` (String) Name of the alert. Must be a valid label value. Only one of 'record' and 'alert' must be set.
+- `annotations` (Map of String) Annotations to add to each alert. Only valid for alerting rules.
 - `for` (String) Alerts are considered firing once they have been returned for this long.
 - `keep_firing_for` (String) KeepFiringFor defines how long an alert will continue firing after the condition that triggered it has cleared.
 - `labels` (Map of String) Labels to add or overwrite.
-- `record` (String) Name of the time series to output to. Must be a valid metric name.Only one of 'record' and 'alert' must be set.
+- `record` (String) Name of the time series to output to. Must be a valid metric name. Only one of 'record' and 'alert' must be set.

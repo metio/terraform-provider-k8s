@@ -61,8 +61,8 @@ func (r *CiliumIoCiliumNodeConfigV2Alpha1Manifest) Metadata(_ context.Context, r
 
 func (r *CiliumIoCiliumNodeConfigV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CiliumNodeConfig is a list of configuration key-value pairs. It is applied to nodes indicated by a label selector.  If multiple overrides apply to the same node, they will be ordered by name with later Overrides overwriting any conflicting keys.",
-		MarkdownDescription: "CiliumNodeConfig is a list of configuration key-value pairs. It is applied to nodes indicated by a label selector.  If multiple overrides apply to the same node, they will be ordered by name with later Overrides overwriting any conflicting keys.",
+		Description:         "CiliumNodeConfig is a list of configuration key-value pairs. It is applied to nodes indicated by a label selector. If multiple overrides apply to the same node, they will be ordered by name with later Overrides overwriting any conflicting keys.",
+		MarkdownDescription: "CiliumNodeConfig is a list of configuration key-value pairs. It is applied to nodes indicated by a label selector. If multiple overrides apply to the same node, they will be ordered by name with later Overrides overwriting any conflicting keys.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

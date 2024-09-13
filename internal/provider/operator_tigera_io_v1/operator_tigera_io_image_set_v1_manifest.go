@@ -55,8 +55,8 @@ func (r *OperatorTigeraIoImageSetV1Manifest) Metadata(_ context.Context, request
 
 func (r *OperatorTigeraIoImageSetV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ImageSet is used to specify image digests for the images that the operator deploys.The name of the ImageSet is expected to be in the format '<variant>-<release>'.The 'variant' used is 'enterprise' if the InstallationSpec Variant is'TigeraSecureEnterprise' otherwise it is 'calico'.The 'release' must match the version of the variant that the operator is built to deploy,this version can be obtained by passing the '--version' flag to the operator binary.",
-		MarkdownDescription: "ImageSet is used to specify image digests for the images that the operator deploys.The name of the ImageSet is expected to be in the format '<variant>-<release>'.The 'variant' used is 'enterprise' if the InstallationSpec Variant is'TigeraSecureEnterprise' otherwise it is 'calico'.The 'release' must match the version of the variant that the operator is built to deploy,this version can be obtained by passing the '--version' flag to the operator binary.",
+		Description:         "ImageSet is used to specify image digests for the images that the operator deploys. The name of the ImageSet is expected to be in the format '<variant>-<release>'. The 'variant' used is 'enterprise' if the InstallationSpec Variant is 'TigeraSecureEnterprise' otherwise it is 'calico'. The 'release' must match the version of the variant that the operator is built to deploy, this version can be obtained by passing the '--version' flag to the operator binary.",
+		MarkdownDescription: "ImageSet is used to specify image digests for the images that the operator deploys. The name of the ImageSet is expected to be in the format '<variant>-<release>'. The 'variant' used is 'enterprise' if the InstallationSpec Variant is 'TigeraSecureEnterprise' otherwise it is 'calico'. The 'release' must match the version of the variant that the operator is built to deploy, this version can be obtained by passing the '--version' flag to the operator binary.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -115,21 +115,21 @@ func (r *OperatorTigeraIoImageSetV1Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "ImageSetSpec defines the desired state of ImageSet.",
 				Attributes: map[string]schema.Attribute{
 					"images": schema.ListNestedAttribute{
-						Description:         "Images is the list of images to use digests. All images that the operator will deploymust be specified.",
-						MarkdownDescription: "Images is the list of images to use digests. All images that the operator will deploymust be specified.",
+						Description:         "Images is the list of images to use digests. All images that the operator will deploy must be specified.",
+						MarkdownDescription: "Images is the list of images to use digests. All images that the operator will deploy must be specified.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"digest": schema.StringAttribute{
-									Description:         "Digest is the image identifier that will be used for the Image.The field should not include a leading '@' and must be prefixed with 'sha256:'.",
-									MarkdownDescription: "Digest is the image identifier that will be used for the Image.The field should not include a leading '@' and must be prefixed with 'sha256:'.",
+									Description:         "Digest is the image identifier that will be used for the Image. The field should not include a leading '@' and must be prefixed with 'sha256:'.",
+									MarkdownDescription: "Digest is the image identifier that will be used for the Image. The field should not include a leading '@' and must be prefixed with 'sha256:'.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"image": schema.StringAttribute{
-									Description:         "Image is an image that the operator deploys and instead of using the built in tagthe operator will use the Digest for the image identifier.The value should be the image name without registry or tag or digest.For the image 'docker.io/calico/node:v3.17.1' it should be represented as 'calico/node'",
-									MarkdownDescription: "Image is an image that the operator deploys and instead of using the built in tagthe operator will use the Digest for the image identifier.The value should be the image name without registry or tag or digest.For the image 'docker.io/calico/node:v3.17.1' it should be represented as 'calico/node'",
+									Description:         "Image is an image that the operator deploys and instead of using the built in tag the operator will use the Digest for the image identifier. The value should be the image name without registry or tag or digest. For the image 'docker.io/calico/node:v3.17.1' it should be represented as 'calico/node'",
+									MarkdownDescription: "Image is an image that the operator deploys and instead of using the built in tag the operator will use the Digest for the image identifier. The value should be the image name without registry or tag or digest. For the image 'docker.io/calico/node:v3.17.1' it should be represented as 'calico/node'",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,

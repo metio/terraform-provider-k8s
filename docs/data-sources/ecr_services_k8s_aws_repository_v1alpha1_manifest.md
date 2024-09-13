@@ -30,7 +30,7 @@ data "k8s_ecr_services_k8s_aws_repository_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) RepositorySpec defines the desired state of Repository.An object representing a repository. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) RepositorySpec defines the desired state of Repository. An object representing a repository. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,17 +55,17 @@ Optional:
 
 Required:
 
-- `name` (String) The name to use for the repository. The repository name may be specifiedon its own (such as nginx-web-app) or it can be prepended with a namespaceto group the repository into a category (such as project-a/nginx-web-app).
+- `name` (String) The name to use for the repository. The repository name may be specified on its own (such as nginx-web-app) or it can be prepended with a namespace to group the repository into a category (such as project-a/nginx-web-app).
 
 Optional:
 
-- `encryption_configuration` (Attributes) The encryption configuration for the repository. This determines how thecontents of your repository are encrypted at rest. (see [below for nested schema](#nestedatt--spec--encryption_configuration))
-- `image_scanning_configuration` (Attributes) The image scanning configuration for the repository. This determines whetherimages are scanned for known vulnerabilities after being pushed to the repository. (see [below for nested schema](#nestedatt--spec--image_scanning_configuration))
-- `image_tag_mutability` (String) The tag mutability setting for the repository. If this parameter is omitted,the default setting of MUTABLE will be used which will allow image tags tobe overwritten. If IMMUTABLE is specified, all image tags within the repositorywill be immutable which will prevent them from being overwritten.
+- `encryption_configuration` (Attributes) The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest. (see [below for nested schema](#nestedatt--spec--encryption_configuration))
+- `image_scanning_configuration` (Attributes) The image scanning configuration for the repository. This determines whether images are scanned for known vulnerabilities after being pushed to the repository. (see [below for nested schema](#nestedatt--spec--image_scanning_configuration))
+- `image_tag_mutability` (String) The tag mutability setting for the repository. If this parameter is omitted, the default setting of MUTABLE will be used which will allow image tags to be overwritten. If IMMUTABLE is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.
 - `lifecycle_policy` (String) The JSON repository policy text to apply to the repository.
-- `policy` (String) The JSON repository policy text to apply to the repository. For more information,see Amazon ECR repository policies (https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html)in the Amazon Elastic Container Registry User Guide.
-- `registry_id` (String) The Amazon Web Services account ID associated with the registry to createthe repository. If you do not specify a registry, the default registry isassumed.
-- `tags` (Attributes List) The metadata that you apply to the repository to help you categorize andorganize them. Each tag consists of a key and an optional value, both ofwhich you define. Tag keys can have a maximum character length of 128 characters,and tag values can have a maximum length of 256 characters. (see [below for nested schema](#nestedatt--spec--tags))
+- `policy` (String) The JSON repository policy text to apply to the repository. For more information, see Amazon ECR repository policies (https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html) in the Amazon Elastic Container Registry User Guide.
+- `registry_id` (String) The Amazon Web Services account ID associated with the registry to create the repository. If you do not specify a registry, the default registry is assumed.
+- `tags` (Attributes List) The metadata that you apply to the repository to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--encryption_configuration"></a>
 ### Nested Schema for `spec.encryption_configuration`

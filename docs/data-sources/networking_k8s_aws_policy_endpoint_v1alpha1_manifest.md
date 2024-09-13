@@ -61,9 +61,9 @@ Optional:
 
 - `egress` (Attributes List) Egress is the list of egress rules containing resolved network addresses (see [below for nested schema](#nestedatt--spec--egress))
 - `ingress` (Attributes List) Ingress is the list of ingress rules containing resolved network addresses (see [below for nested schema](#nestedatt--spec--ingress))
-- `pod_isolation` (List of String) PodIsolation specifies whether the pod needs to be isolated for aparticular traffic direction Ingress or Egress, or both. If default isolation is notspecified, and there are no ingress/egress rules, then the pod is not isolatedfrom the point of view of this policy. This follows the NetworkPolicy spec.PolicyTypes.
+- `pod_isolation` (List of String) PodIsolation specifies whether the pod needs to be isolated for a particular traffic direction Ingress or Egress, or both. If default isolation is not specified, and there are no ingress/egress rules, then the pod is not isolated from the point of view of this policy. This follows the NetworkPolicy spec.PolicyTypes.
 - `pod_selector` (Attributes) PodSelector is the podSelector from the policy resource (see [below for nested schema](#nestedatt--spec--pod_selector))
-- `pod_selector_endpoints` (Attributes List) PodSelectorEndpoints contains information about the podsmatching the podSelector (see [below for nested schema](#nestedatt--spec--pod_selector_endpoints))
+- `pod_selector_endpoints` (Attributes List) PodSelectorEndpoints contains information about the pods matching the podSelector (see [below for nested schema](#nestedatt--spec--pod_selector_endpoints))
 
 <a id="nestedatt--spec--policy_ref"></a>
 ### Nested Schema for `spec.policy_ref`
@@ -91,7 +91,7 @@ Optional:
 
 Optional:
 
-- `end_port` (Number) Endport specifies the port range port to endPortport must be defined and an integer, endPort > port
+- `end_port` (Number) Endport specifies the port range port to endPort port must be defined and an integer, endPort > port
 - `port` (Number) Port specifies the numerical port for the protocol. If empty applies to all ports
 - `protocol` (String) Protocol specifies the transport protocol, default TCP
 
@@ -114,7 +114,7 @@ Optional:
 
 Optional:
 
-- `end_port` (Number) Endport specifies the port range port to endPortport must be defined and an integer, endPort > port
+- `end_port` (Number) Endport specifies the port range port to endPort port must be defined and an integer, endPort > port
 - `port` (Number) Port specifies the numerical port for the protocol. If empty applies to all ports
 - `protocol` (String) Protocol specifies the transport protocol, default TCP
 
@@ -126,7 +126,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--pod_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.pod_selector.match_expressions`
@@ -134,11 +134,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 

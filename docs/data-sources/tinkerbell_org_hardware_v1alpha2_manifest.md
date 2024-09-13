@@ -57,8 +57,8 @@ Optional:
 
 - `bmc_ref` (Attributes) BMCRef references a Rufio Machine object. (see [below for nested schema](#nestedatt--spec--bmc_ref))
 - `instance` (Attributes) Instance describes instance specific data that is generally unused by Tinkerbell core. (see [below for nested schema](#nestedatt--spec--instance))
-- `ipxe` (Attributes) IPXE provides iPXE script override fields. This is useful for debugging or netbootcustomization. (see [below for nested schema](#nestedatt--spec--ipxe))
-- `kernel_params` (List of String) KernelParams passed to the kernel when launching the OSIE. Parameters are joined with aspace.
+- `ipxe` (Attributes) IPXE provides iPXE script override fields. This is useful for debugging or netboot customization. (see [below for nested schema](#nestedatt--spec--ipxe))
+- `kernel_params` (List of String) KernelParams passed to the kernel when launching the OSIE. Parameters are joined with a space.
 - `network_interfaces` (Attributes) NetworkInterfaces defines the desired DHCP and netboot configuration for a network interface. (see [below for nested schema](#nestedatt--spec--network_interfaces))
 - `osie` (Attributes) OSIE describes the Operating System Installation Environment to be netbooted. (see [below for nested schema](#nestedatt--spec--osie))
 - `storage_devices` (List of String) StorageDevices is a list of storage devices that will be available in the OSIE.
@@ -68,7 +68,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--instance"></a>
@@ -94,9 +94,9 @@ Optional:
 
 Optional:
 
-- `dhcp` (Attributes) DHCP is the basic network information for serving DHCP requests. Required when DisbaleDHCPis false. (see [below for nested schema](#nestedatt--spec--network_interfaces--dhcp))
+- `dhcp` (Attributes) DHCP is the basic network information for serving DHCP requests. Required when DisbaleDHCP is false. (see [below for nested schema](#nestedatt--spec--network_interfaces--dhcp))
 - `disable_dhcp` (Boolean) DisableDHCP disables DHCP for this interface. Implies DisableNetboot.
-- `disable_netboot` (Boolean) DisableNetboot disables netbooting for this interface. The interface will still receivenetwork information specified by DHCP.
+- `disable_netboot` (Boolean) DisableNetboot disables netbooting for this interface. The interface will still receive network information specified by DHCP.
 
 <a id="nestedatt--spec--network_interfaces--dhcp"></a>
 ### Nested Schema for `spec.network_interfaces.dhcp`
@@ -106,7 +106,7 @@ Optional:
 - `gateway` (String) Gateway is the default gateway address to serve.
 - `hostname` (String)
 - `ip` (String) IP is an IPv4 address to serve.
-- `lease_time_seconds` (Number) LeaseTimeSeconds to serve. 24h default. Maximum equates to max uint32 as defined by RFC 2132§ 9.2 (https://www.rfc-editor.org/rfc/rfc2132.html#section-9.2).
+- `lease_time_seconds` (Number) LeaseTimeSeconds to serve. 24h default. Maximum equates to max uint32 as defined by RFC 2132 § 9.2 (https://www.rfc-editor.org/rfc/rfc2132.html#section-9.2).
 - `nameservers` (List of String) Nameservers to serve.
 - `netmask` (String) Netmask is an IPv4 netmask to serve.
 - `timeservers` (List of String) Timeservers to serve.
@@ -119,4 +119,4 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.

@@ -53,18 +53,18 @@ Optional:
 
 Optional:
 
-- `create_default_user` (Boolean) Create the default 'ditto' user when initially deploying.This has no effect when using OAuth2.
+- `create_default_user` (Boolean) Create the default 'ditto' user when initially deploying. This has no effect when using OAuth2.
 - `devops` (Attributes) Devops endpoint (see [below for nested schema](#nestedatt--spec--devops))
 - `disable_infra_proxy` (Boolean) Don't expose infra endpoints
 - `disable_welcome_page` (Boolean) Allow disabling the welcome page
-- `ingress` (Attributes) Configure ingress optionsIf the field is missing, no ingress resource is being created. (see [below for nested schema](#nestedatt--spec--ingress))
+- `ingress` (Attributes) Configure ingress options If the field is missing, no ingress resource is being created. (see [below for nested schema](#nestedatt--spec--ingress))
 - `kafka` (Attributes) Kafka options (see [below for nested schema](#nestedatt--spec--kafka))
 - `keycloak` (Attributes) Enable and configure keycloak integration. (see [below for nested schema](#nestedatt--spec--keycloak))
 - `metrics` (Attributes) Metrics configuration (see [below for nested schema](#nestedatt--spec--metrics))
 - `mongo_db` (Attributes) (see [below for nested schema](#nestedatt--spec--mongo_db))
 - `oauth` (Attributes) Provide additional OAuth configuration (see [below for nested schema](#nestedatt--spec--oauth))
 - `open_api` (Attributes) Influence some options of the hosted OpenAPI spec. (see [below for nested schema](#nestedatt--spec--open_api))
-- `pull_policy` (String) Override the imagePullPolicyBy default this will use Always if the image version is ':latest' and IfNotPresent otherwise
+- `pull_policy` (String) Override the imagePullPolicy By default this will use Always if the image version is ':latest' and IfNotPresent otherwise
 - `registry` (String) Allow to override the Ditto container registry
 - `services` (Attributes) Services configuration (see [below for nested schema](#nestedatt--spec--services))
 - `swagger_ui` (Attributes) Influence some options of the hosted SwaggerUI. (see [below for nested schema](#nestedatt--spec--swagger_ui))
@@ -107,7 +107,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
@@ -143,7 +143,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
@@ -158,11 +158,11 @@ Optional:
 
 Required:
 
-- `host` (String) The host of the ingress resource.This is required if the ingress resource should be created by the operator
+- `host` (String) The host of the ingress resource. This is required if the ingress resource should be created by the operator
 
 Optional:
 
-- `annotations` (Map of String) Annotations which should be applied to the ingress resources.The annotations will be set to the resource, not merged. All changes done on the ingress resource itself will be overridden.If no annotations are configured, reasonable defaults will be used instead. You can prevent this by setting a single dummy annotation.
+- `annotations` (Map of String) Annotations which should be applied to the ingress resources. The annotations will be set to the resource, not merged. All changes done on the ingress resource itself will be overridden. If no annotations are configured, reasonable defaults will be used instead. You can prevent this by setting a single dummy annotation.
 - `class_name` (String) The optional ingress class name.
 
 
@@ -219,7 +219,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
@@ -255,7 +255,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
@@ -311,7 +311,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
@@ -347,7 +347,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
@@ -383,7 +383,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
@@ -438,7 +438,7 @@ Optional:
 
 Optional:
 
-- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
+- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
 - `app_log_level` (String) Allow configuring the application log level.
 - `log_level` (String) Allow configuring all log levels.
 - `replicas` (Number) Number of replicas. Defaults to one.
@@ -460,7 +460,7 @@ Optional:
 
 Optional:
 
-- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
+- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
 - `app_log_level` (String) Allow configuring the application log level.
 - `log_level` (String) Allow configuring all log levels.
 - `replicas` (Number) Number of replicas. Defaults to one.
@@ -482,7 +482,7 @@ Optional:
 
 Optional:
 
-- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
+- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
 - `app_log_level` (String) Allow configuring the application log level.
 - `log_level` (String) Allow configuring all log levels.
 - `replicas` (Number) Number of replicas. Defaults to one.
@@ -504,7 +504,7 @@ Optional:
 
 Optional:
 
-- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
+- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
 - `app_log_level` (String) Allow configuring the application log level.
 - `log_level` (String) Allow configuring all log levels.
 - `replicas` (Number) Number of replicas. Defaults to one.
@@ -526,7 +526,7 @@ Optional:
 
 Optional:
 
-- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
+- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
 - `app_log_level` (String) Allow configuring the application log level.
 - `log_level` (String) Allow configuring all log levels.
 - `replicas` (Number) Number of replicas. Defaults to one.
@@ -548,7 +548,7 @@ Optional:
 
 Optional:
 
-- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
+- `additional_properties` (Map of String) Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.
 - `app_log_level` (String) Allow configuring the application log level.
 - `log_level` (String) Allow configuring all log levels.
 - `replicas` (Number) Number of replicas. Defaults to one.

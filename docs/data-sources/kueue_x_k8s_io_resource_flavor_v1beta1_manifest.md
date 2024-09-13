@@ -54,21 +54,21 @@ Optional:
 
 Optional:
 
-- `node_labels` (Map of String) nodeLabels are labels that associate the ResourceFlavor with Nodes thathave the same labels.When a Workload is admitted, its podsets can only get assignedResourceFlavors whose nodeLabels match the nodeSelector and nodeAffinityfields.Once a ResourceFlavor is assigned to a podSet, the ResourceFlavor'snodeLabels should be injected into the pods of the Workload by thecontroller that integrates with the Workload object.nodeLabels can be up to 8 elements.
-- `node_taints` (Attributes List) nodeTaints are taints that the nodes associated with this ResourceFlavorhave.Workloads' podsets must have tolerations for these nodeTaints in order toget assigned this ResourceFlavor during admission.An example of a nodeTaint iscloud.provider.com/preemptible='true':NoSchedulenodeTaints can be up to 8 elements. (see [below for nested schema](#nestedatt--spec--node_taints))
-- `tolerations` (Attributes List) tolerations are extra tolerations that will be added to the pods admitted inthe quota associated with this resource flavor.An example of a toleration iscloud.provider.com/preemptible='true':NoScheduletolerations can be up to 8 elements. (see [below for nested schema](#nestedatt--spec--tolerations))
+- `node_labels` (Map of String) nodeLabels are labels that associate the ResourceFlavor with Nodes that have the same labels. When a Workload is admitted, its podsets can only get assigned ResourceFlavors whose nodeLabels match the nodeSelector and nodeAffinity fields. Once a ResourceFlavor is assigned to a podSet, the ResourceFlavor's nodeLabels should be injected into the pods of the Workload by the controller that integrates with the Workload object. nodeLabels can be up to 8 elements.
+- `node_taints` (Attributes List) nodeTaints are taints that the nodes associated with this ResourceFlavor have. Workloads' podsets must have tolerations for these nodeTaints in order to get assigned this ResourceFlavor during admission. An example of a nodeTaint is cloud.provider.com/preemptible='true':NoSchedule nodeTaints can be up to 8 elements. (see [below for nested schema](#nestedatt--spec--node_taints))
+- `tolerations` (Attributes List) tolerations are extra tolerations that will be added to the pods admitted in the quota associated with this resource flavor. An example of a toleration is cloud.provider.com/preemptible='true':NoSchedule tolerations can be up to 8 elements. (see [below for nested schema](#nestedatt--spec--tolerations))
 
 <a id="nestedatt--spec--node_taints"></a>
 ### Nested Schema for `spec.node_taints`
 
 Required:
 
-- `effect` (String) Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
+- `effect` (String) Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
 - `key` (String) Required. The taint key to be applied to a node.
 
 Optional:
 
-- `time_added` (String) TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.
+- `time_added` (String) TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
 - `value` (String) The taint value corresponding to the taint key.
 
 
@@ -77,8 +77,8 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.

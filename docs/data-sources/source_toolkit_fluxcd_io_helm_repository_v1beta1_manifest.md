@@ -61,8 +61,8 @@ Required:
 Optional:
 
 - `access_from` (Attributes) AccessFrom defines an Access Control List for allowing cross-namespace references to this object. (see [below for nested schema](#nestedatt--spec--access_from))
-- `pass_credentials` (Boolean) PassCredentials allows the credentials from the SecretRef to be passed on toa host that does not match the host as defined in URL.This may be required if the host of the advertised chart URLs in the indexdiffer from the defined URL.Enabling this should be done with caution, as it can potentially result incredentials getting stolen in a MITM-attack.
-- `secret_ref` (Attributes) The name of the secret containing authentication credentials for the Helmrepository.For HTTP/S basic auth the secret must contain username andpassword fields.For TLS the secret must contain a certFile and keyFile, and/orcaFile fields. (see [below for nested schema](#nestedatt--spec--secret_ref))
+- `pass_credentials` (Boolean) PassCredentials allows the credentials from the SecretRef to be passed on to a host that does not match the host as defined in URL. This may be required if the host of the advertised chart URLs in the index differ from the defined URL. Enabling this should be done with caution, as it can potentially result in credentials getting stolen in a MITM-attack.
+- `secret_ref` (Attributes) The name of the secret containing authentication credentials for the Helm repository. For HTTP/S basic auth the secret must contain username and password fields. For TLS the secret must contain a certFile and keyFile, and/or caFile fields. (see [below for nested schema](#nestedatt--spec--secret_ref))
 - `suspend` (Boolean) This flag tells the controller to suspend the reconciliation of this source.
 - `timeout` (String) The timeout of index downloading, defaults to 60s.
 
@@ -71,14 +71,14 @@ Optional:
 
 Required:
 
-- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
+- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
 
 <a id="nestedatt--spec--access_from--namespace_selectors"></a>
 ### Nested Schema for `spec.access_from.namespace_selectors`
 
 Optional:
 
-- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 
 

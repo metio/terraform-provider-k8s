@@ -461,8 +461,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 										},
 
 										"unmatched_preflights": schema.StringAttribute{
-											Description:         "Indicates whether preflight requests not matching the configured allowed origin shouldn't be forwarded to the upstream.Valid Options: FORWARD, IGNORE",
-											MarkdownDescription: "Indicates whether preflight requests not matching the configured allowed origin shouldn't be forwarded to the upstream.Valid Options: FORWARD, IGNORE",
+											Description:         "Indicates whether preflight requests not matching the configured allowed origin shouldn't be forwarded to the upstream. Valid Options: FORWARD, IGNORE",
+											MarkdownDescription: "Indicates whether preflight requests not matching the configured allowed origin shouldn't be forwarded to the upstream. Valid Options: FORWARD, IGNORE",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1211,8 +1211,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Conte
 										},
 
 										"derive_port": schema.StringAttribute{
-											Description:         "On a redirect, dynamically set the port: * FROM_PROTOCOL_DEFAULT: automatically set to 80 for HTTP and 443 for HTTPS.Valid Options: FROM_PROTOCOL_DEFAULT, FROM_REQUEST_PORT",
-											MarkdownDescription: "On a redirect, dynamically set the port: * FROM_PROTOCOL_DEFAULT: automatically set to 80 for HTTP and 443 for HTTPS.Valid Options: FROM_PROTOCOL_DEFAULT, FROM_REQUEST_PORT",
+											Description:         "On a redirect, dynamically set the port: * FROM_PROTOCOL_DEFAULT: automatically set to 80 for HTTP and 443 for HTTPS. Valid Options: FROM_PROTOCOL_DEFAULT, FROM_REQUEST_PORT",
+											MarkdownDescription: "On a redirect, dynamically set the port: * FROM_PROTOCOL_DEFAULT: automatically set to 80 for HTTP and 443 for HTTPS. Valid Options: FROM_PROTOCOL_DEFAULT, FROM_REQUEST_PORT",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

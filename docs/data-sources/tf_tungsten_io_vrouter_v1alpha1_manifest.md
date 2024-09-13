@@ -81,7 +81,7 @@ Optional:
 - `data_subnet` (String)
 - `dns_server_port` (String) DNS
 - `dpdk_uio_driver` (String) Host
-- `env_variables_config` (Map of String) What is it doing? VrouterEncryption   bool              'json:'vrouterEncryption,omitempty'' What is it doing? What is it doing?
+- `env_variables_config` (Map of String) What is it doing? VrouterEncryption bool 'json:'vrouterEncryption,omitempty'' What is it doing? What is it doing?
 - `fabric_snt_hash_table_size` (String)
 - `huge_pages1_g` (Number)
 - `huge_pages2_m` (Number) HugePages

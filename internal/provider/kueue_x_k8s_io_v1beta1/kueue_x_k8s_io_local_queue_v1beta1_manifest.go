@@ -139,8 +139,8 @@ func (r *KueueXK8SIoLocalQueueV1Beta1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"stop_policy": schema.StringAttribute{
-						Description:         "stopPolicy - if set to a value different from None, the LocalQueue is considered Inactive,no new reservation being made.Depending on its value, its associated workloads will:- None - Workloads are admitted- HoldAndDrain - Admitted workloads are evicted and Reserving workloads will cancel the reservation.- Hold - Admitted workloads will run to completion and Reserving workloads will cancel the reservation.",
-						MarkdownDescription: "stopPolicy - if set to a value different from None, the LocalQueue is considered Inactive,no new reservation being made.Depending on its value, its associated workloads will:- None - Workloads are admitted- HoldAndDrain - Admitted workloads are evicted and Reserving workloads will cancel the reservation.- Hold - Admitted workloads will run to completion and Reserving workloads will cancel the reservation.",
+						Description:         "stopPolicy - if set to a value different from None, the LocalQueue is considered Inactive, no new reservation being made. Depending on its value, its associated workloads will: - None - Workloads are admitted - HoldAndDrain - Admitted workloads are evicted and Reserving workloads will cancel the reservation. - Hold - Admitted workloads will run to completion and Reserving workloads will cancel the reservation.",
+						MarkdownDescription: "stopPolicy - if set to a value different from None, the LocalQueue is considered Inactive, no new reservation being made. Depending on its value, its associated workloads will: - None - Workloads are admitted - HoldAndDrain - Admitted workloads are evicted and Reserving workloads will cancel the reservation. - Hold - Admitted workloads will run to completion and Reserving workloads will cancel the reservation.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

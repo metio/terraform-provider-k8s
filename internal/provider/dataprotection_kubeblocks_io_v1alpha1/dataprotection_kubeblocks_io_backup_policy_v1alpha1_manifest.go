@@ -381,8 +381,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action_set_name": schema.StringAttribute{
-									Description:         "Refers to the ActionSet object that defines the backup actions.For volume snapshot backup, the actionSet is not required, the controllerwill use the CSI volume snapshotter to create the snapshot.",
-									MarkdownDescription: "Refers to the ActionSet object that defines the backup actions.For volume snapshot backup, the actionSet is not required, the controllerwill use the CSI volume snapshotter to create the snapshot.",
+									Description:         "Refers to the ActionSet object that defines the backup actions. For volume snapshot backup, the actionSet is not required, the controller will use the CSI volume snapshotter to create the snapshot.",
+									MarkdownDescription: "Refers to the ActionSet object that defines the backup actions. For volume snapshot backup, the actionSet is not required, the controller will use the CSI volume snapshotter to create the snapshot.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -402,8 +402,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											},
 
 											"value": schema.StringAttribute{
-												Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
-												MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+												Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+												MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -426,8 +426,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -447,8 +447,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 													},
 
 													"field_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-														MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+														Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+														MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 														Attributes: map[string]schema.Attribute{
 															"api_version": schema.StringAttribute{
 																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -472,8 +472,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 													},
 
 													"resource_field_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-														MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+														Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+														MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 														Attributes: map[string]schema.Attribute{
 															"container_name": schema.StringAttribute{
 																Description:         "Container name: required for volumes, optional for env vars",
@@ -509,16 +509,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 														MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -564,17 +564,17 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									MarkdownDescription: "Specifies runtime settings for the backup workload container.",
 									Attributes: map[string]schema.Attribute{
 										"resources": schema.SingleNestedAttribute{
-											Description:         "Specifies the resource required by container.More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-											MarkdownDescription: "Specifies the resource required by container.More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+											Description:         "Specifies the resource required by container. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+											MarkdownDescription: "Specifies the resource required by container. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
 											Attributes: map[string]schema.Attribute{
 												"claims": schema.ListNestedAttribute{
-													Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-													MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+													Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+													MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -587,8 +587,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"limits": schema.MapAttribute{
-													Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-													MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -596,8 +596,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"requests": schema.MapAttribute{
-													Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-													MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -615,8 +615,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 								},
 
 								"snapshot_volumes": schema.BoolAttribute{
-									Description:         "Specifies whether to take snapshots of persistent volumes. If true,the ActionSetName is not required, the controller will use the CSI volumesnapshotter to create the snapshot.",
-									MarkdownDescription: "Specifies whether to take snapshots of persistent volumes. If true,the ActionSetName is not required, the controller will use the CSI volumesnapshotter to create the snapshot.",
+									Description:         "Specifies whether to take snapshots of persistent volumes. If true, the ActionSetName is not required, the controller will use the CSI volume snapshotter to create the snapshot.",
+									MarkdownDescription: "Specifies whether to take snapshots of persistent volumes. If true, the ActionSetName is not required, the controller will use the CSI volume snapshotter to create the snapshot.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -639,8 +639,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"password_key": schema.StringAttribute{
-													Description:         "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
-													MarkdownDescription: "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+													Description:         "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+													MarkdownDescription: "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -679,8 +679,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 										},
 
 										"container_port": schema.SingleNestedAttribute{
-											Description:         "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
-											MarkdownDescription: "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+											Description:         "Specifies the container port in the target pod. If not specified, the first container and its first port will be used.",
+											MarkdownDescription: "Specifies the container port in the target pod. If not specified, the first container and its first port will be used.",
 											Attributes: map[string]schema.Attribute{
 												"container_name": schema.StringAttribute{
 													Description:         "Specifies the name of container with the port.",
@@ -704,8 +704,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
-											MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
+											Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+											MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -716,8 +716,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
 											Attributes: map[string]schema.Attribute{
 												"fallback_label_selector": schema.SingleNestedAttribute{
-													Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
-													MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+													Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails. This only takes effect when the 'strategy' field below is set to 'Any'.",
+													MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails. This only takes effect when the 'strategy' field below is set to 'Any'.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -733,16 +733,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -756,8 +756,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -783,16 +783,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -806,8 +806,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -815,8 +815,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"strategy": schema.StringAttribute{
-													Description:         "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
-													MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
+													Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+													MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -835,8 +835,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											MarkdownDescription: "Specifies the kubernetes resources to back up.",
 											Attributes: map[string]schema.Attribute{
 												"excluded": schema.ListAttribute{
-													Description:         "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
-													MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
+													Description:         "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
+													MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -844,8 +844,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"included": schema.ListAttribute{
-													Description:         "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
-													MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
+													Description:         "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
+													MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -853,8 +853,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"selector": schema.SingleNestedAttribute{
-													Description:         "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
-													MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
+													Description:         "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
+													MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -870,16 +870,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -893,8 +893,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -934,16 +934,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"mount_path": schema.StringAttribute{
-														Description:         "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
-														MarkdownDescription: "Path within the container at which the volume should be mounted.  Mustnot contain ':'.",
+														Description:         "Path within the container at which the volume should be mounted. Must not contain ':'.",
+														MarkdownDescription: "Path within the container at which the volume should be mounted. Must not contain ':'.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"mount_propagation": schema.StringAttribute{
-														Description:         "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
-														MarkdownDescription: "mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.",
+														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -958,24 +958,24 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 													},
 
 													"read_only": schema.BoolAttribute{
-														Description:         "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
-														MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.",
+														Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+														MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"sub_path": schema.StringAttribute{
-														Description:         "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
-														MarkdownDescription: "Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).",
+														Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+														MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"sub_path_expr": schema.StringAttribute{
-														Description:         "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
-														MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.",
+														Description:         "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
+														MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -988,8 +988,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 										},
 
 										"volumes": schema.ListAttribute{
-											Description:         "Specifies the list of volumes of targeted application that should be mountedon the backup workload.",
-											MarkdownDescription: "Specifies the list of volumes of targeted application that should be mountedon the backup workload.",
+											Description:         "Specifies the list of volumes of targeted application that should be mounted on the backup workload.",
+											MarkdownDescription: "Specifies the list of volumes of targeted application that should be mounted on the backup workload.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1002,8 +1002,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 								},
 
 								"targets": schema.ListNestedAttribute{
-									Description:         "Specifies multiple target information for backup operations. This includes detailssuch as the target pod and cluster connection credentials. All specified targetswill be backed up collectively.",
-									MarkdownDescription: "Specifies multiple target information for backup operations. This includes detailssuch as the target pod and cluster connection credentials. All specified targetswill be backed up collectively.",
+									Description:         "Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively.",
+									MarkdownDescription: "Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"connection_credential": schema.SingleNestedAttribute{
@@ -1019,8 +1019,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 													},
 
 													"password_key": schema.StringAttribute{
-														Description:         "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
-														MarkdownDescription: "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+														Description:         "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+														MarkdownDescription: "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1059,8 +1059,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											},
 
 											"container_port": schema.SingleNestedAttribute{
-												Description:         "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
-												MarkdownDescription: "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+												Description:         "Specifies the container port in the target pod. If not specified, the first container and its first port will be used.",
+												MarkdownDescription: "Specifies the container port in the target pod. If not specified, the first container and its first port will be used.",
 												Attributes: map[string]schema.Attribute{
 													"container_name": schema.StringAttribute{
 														Description:         "Specifies the name of container with the port.",
@@ -1084,8 +1084,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
-												MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
+												Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+												MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1096,8 +1096,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
 												Attributes: map[string]schema.Attribute{
 													"fallback_label_selector": schema.SingleNestedAttribute{
-														Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
-														MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+														Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails. This only takes effect when the 'strategy' field below is set to 'Any'.",
+														MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails. This only takes effect when the 'strategy' field below is set to 'Any'.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1113,16 +1113,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1136,8 +1136,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1163,16 +1163,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 																},
 
 																"operator": schema.StringAttribute{
-																	Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																	MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"values": schema.ListAttribute{
-																	Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1186,8 +1186,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 													},
 
 													"match_labels": schema.MapAttribute{
-														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -1195,8 +1195,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 													},
 
 													"strategy": schema.StringAttribute{
-														Description:         "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
-														MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
+														Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+														MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1215,8 +1215,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												MarkdownDescription: "Specifies the kubernetes resources to back up.",
 												Attributes: map[string]schema.Attribute{
 													"excluded": schema.ListAttribute{
-														Description:         "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
-														MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
+														Description:         "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
+														MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -1224,8 +1224,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 													},
 
 													"included": schema.ListAttribute{
-														Description:         "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
-														MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
+														Description:         "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
+														MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -1233,8 +1233,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 													},
 
 													"selector": schema.SingleNestedAttribute{
-														Description:         "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
-														MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
+														Description:         "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
+														MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1250,16 +1250,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1273,8 +1273,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1312,8 +1312,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"backup_repo_name": schema.StringAttribute{
-						Description:         "Specifies the name of BackupRepo where the backup data will be stored.If not set, data will be stored in the default backup repository.",
-						MarkdownDescription: "Specifies the name of BackupRepo where the backup data will be stored.If not set, data will be stored in the default backup repository.",
+						Description:         "Specifies the name of BackupRepo where the backup data will be stored. If not set, data will be stored in the default backup repository.",
+						MarkdownDescription: "Specifies the name of BackupRepo where the backup data will be stored. If not set, data will be stored in the default backup repository.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1323,12 +1323,12 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"encryption_config": schema.SingleNestedAttribute{
-						Description:         "Specifies the parameters for encrypting backup data.Encryption will be disabled if the field is not set.",
-						MarkdownDescription: "Specifies the parameters for encrypting backup data.Encryption will be disabled if the field is not set.",
+						Description:         "Specifies the parameters for encrypting backup data. Encryption will be disabled if the field is not set.",
+						MarkdownDescription: "Specifies the parameters for encrypting backup data. Encryption will be disabled if the field is not set.",
 						Attributes: map[string]schema.Attribute{
 							"algorithm": schema.StringAttribute{
-								Description:         "Specifies the encryption algorithm. Currently supported algorithms are:- AES-128-CFB- AES-192-CFB- AES-256-CFB",
-								MarkdownDescription: "Specifies the encryption algorithm. Currently supported algorithms are:- AES-128-CFB- AES-192-CFB- AES-256-CFB",
+								Description:         "Specifies the encryption algorithm. Currently supported algorithms are: - AES-128-CFB - AES-192-CFB - AES-256-CFB",
+								MarkdownDescription: "Specifies the encryption algorithm. Currently supported algorithms are: - AES-128-CFB - AES-192-CFB - AES-256-CFB",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -1338,20 +1338,20 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"pass_phrase_secret_key_ref": schema.SingleNestedAttribute{
-								Description:         "Selects the key of a secret in the current namespace, the value of the secretis used as the encryption key.",
-								MarkdownDescription: "Selects the key of a secret in the current namespace, the value of the secretis used as the encryption key.",
+								Description:         "Selects the key of a secret in the current namespace, the value of the secret is used as the encryption key.",
+								MarkdownDescription: "Selects the key of a secret in the current namespace, the value of the secret is used as the encryption key.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Description:         "The key of the secret to select from. Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1376,16 +1376,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"path_prefix": schema.StringAttribute{
-						Description:         "Specifies the directory inside the backup repository to store the backup.This path is relative to the path of the backup repository.",
-						MarkdownDescription: "Specifies the directory inside the backup repository to store the backup.This path is relative to the path of the backup repository.",
+						Description:         "Specifies the directory inside the backup repository to store the backup. This path is relative to the path of the backup repository.",
+						MarkdownDescription: "Specifies the directory inside the backup repository to store the backup. This path is relative to the path of the backup repository.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"target": schema.SingleNestedAttribute{
-						Description:         "Specifies the target information to back up, such as the target pod, thecluster connection credential.",
-						MarkdownDescription: "Specifies the target information to back up, such as the target pod, thecluster connection credential.",
+						Description:         "Specifies the target information to back up, such as the target pod, the cluster connection credential.",
+						MarkdownDescription: "Specifies the target information to back up, such as the target pod, the cluster connection credential.",
 						Attributes: map[string]schema.Attribute{
 							"connection_credential": schema.SingleNestedAttribute{
 								Description:         "Specifies the connection credential to connect to the target database cluster.",
@@ -1400,8 +1400,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									},
 
 									"password_key": schema.StringAttribute{
-										Description:         "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
-										MarkdownDescription: "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+										Description:         "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+										MarkdownDescription: "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1440,8 +1440,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"container_port": schema.SingleNestedAttribute{
-								Description:         "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
-								MarkdownDescription: "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+								Description:         "Specifies the container port in the target pod. If not specified, the first container and its first port will be used.",
+								MarkdownDescription: "Specifies the container port in the target pod. If not specified, the first container and its first port will be used.",
 								Attributes: map[string]schema.Attribute{
 									"container_name": schema.StringAttribute{
 										Description:         "Specifies the name of container with the port.",
@@ -1465,8 +1465,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
-								MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
+								Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+								MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1477,8 +1477,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 								MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
 								Attributes: map[string]schema.Attribute{
 									"fallback_label_selector": schema.SingleNestedAttribute{
-										Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
-										MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+										Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails. This only takes effect when the 'strategy' field below is set to 'Any'.",
+										MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails. This only takes effect when the 'strategy' field below is set to 'Any'.",
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
 												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1494,16 +1494,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1517,8 +1517,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1544,16 +1544,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1567,8 +1567,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1576,8 +1576,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									},
 
 									"strategy": schema.StringAttribute{
-										Description:         "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
-										MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
+										Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+										MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1596,8 +1596,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 								MarkdownDescription: "Specifies the kubernetes resources to back up.",
 								Attributes: map[string]schema.Attribute{
 									"excluded": schema.ListAttribute{
-										Description:         "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
-										MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
+										Description:         "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
+										MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1605,8 +1605,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									},
 
 									"included": schema.ListAttribute{
-										Description:         "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
-										MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
+										Description:         "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
+										MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1614,8 +1614,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									},
 
 									"selector": schema.SingleNestedAttribute{
-										Description:         "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
-										MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
+										Description:         "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
+										MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
 												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1631,16 +1631,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1654,8 +1654,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1686,8 +1686,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"targets": schema.ListNestedAttribute{
-						Description:         "Specifies multiple target information for backup operations. This includes detailssuch as the target pod and cluster connection credentials. All specified targetswill be backed up collectively.optional",
-						MarkdownDescription: "Specifies multiple target information for backup operations. This includes detailssuch as the target pod and cluster connection credentials. All specified targetswill be backed up collectively.optional",
+						Description:         "Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively. optional",
+						MarkdownDescription: "Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively. optional",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"connection_credential": schema.SingleNestedAttribute{
@@ -1703,8 +1703,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 										},
 
 										"password_key": schema.StringAttribute{
-											Description:         "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
-											MarkdownDescription: "Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+											Description:         "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
+											MarkdownDescription: "Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1743,8 +1743,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 								},
 
 								"container_port": schema.SingleNestedAttribute{
-									Description:         "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
-									MarkdownDescription: "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+									Description:         "Specifies the container port in the target pod. If not specified, the first container and its first port will be used.",
+									MarkdownDescription: "Specifies the container port in the target pod. If not specified, the first container and its first port will be used.",
 									Attributes: map[string]schema.Attribute{
 										"container_name": schema.StringAttribute{
 											Description:         "Specifies the name of container with the port.",
@@ -1768,8 +1768,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
-									MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
+									Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
+									MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1780,8 +1780,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
 									Attributes: map[string]schema.Attribute{
 										"fallback_label_selector": schema.SingleNestedAttribute{
-											Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
-											MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+											Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails. This only takes effect when the 'strategy' field below is set to 'Any'.",
+											MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails. This only takes effect when the 'strategy' field below is set to 'Any'.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1797,16 +1797,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1820,8 +1820,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1847,16 +1847,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"values": schema.ListAttribute{
-														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -1870,8 +1870,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 										},
 
 										"match_labels": schema.MapAttribute{
-											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1879,8 +1879,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 										},
 
 										"strategy": schema.StringAttribute{
-											Description:         "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
-											MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.",
+											Description:         "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
+											MarkdownDescription: "Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1899,8 +1899,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									MarkdownDescription: "Specifies the kubernetes resources to back up.",
 									Attributes: map[string]schema.Attribute{
 										"excluded": schema.ListAttribute{
-											Description:         "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
-											MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.",
+											Description:         "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
+											MarkdownDescription: "excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1908,8 +1908,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 										},
 
 										"included": schema.ListAttribute{
-											Description:         "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
-											MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.",
+											Description:         "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
+											MarkdownDescription: "included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1917,8 +1917,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 										},
 
 										"selector": schema.SingleNestedAttribute{
-											Description:         "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
-											MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources.",
+											Description:         "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
+											MarkdownDescription: "A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1934,16 +1934,16 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1957,8 +1957,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1990,8 +1990,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"use_kopia": schema.BoolAttribute{
-						Description:         "Specifies whether backup data should be stored in a Kopia repository.Data within the Kopia repository is both compressed and encrypted. Furthermore,data deduplication is implemented across various backups of the same cluster.This approach significantly reduces the actual storage usage, particularlyfor clusters with a low update frequency.NOTE: This feature should NOT be enabled when using KubeBlocks Community Edition, otherwise the backup will not be processed.",
-						MarkdownDescription: "Specifies whether backup data should be stored in a Kopia repository.Data within the Kopia repository is both compressed and encrypted. Furthermore,data deduplication is implemented across various backups of the same cluster.This approach significantly reduces the actual storage usage, particularlyfor clusters with a low update frequency.NOTE: This feature should NOT be enabled when using KubeBlocks Community Edition, otherwise the backup will not be processed.",
+						Description:         "Specifies whether backup data should be stored in a Kopia repository. Data within the Kopia repository is both compressed and encrypted. Furthermore, data deduplication is implemented across various backups of the same cluster. This approach significantly reduces the actual storage usage, particularly for clusters with a low update frequency. NOTE: This feature should NOT be enabled when using KubeBlocks Community Edition, otherwise the backup will not be processed.",
+						MarkdownDescription: "Specifies whether backup data should be stored in a Kopia repository. Data within the Kopia repository is both compressed and encrypted. Furthermore, data deduplication is implemented across various backups of the same cluster. This approach significantly reduces the actual storage usage, particularly for clusters with a low update frequency. NOTE: This feature should NOT be enabled when using KubeBlocks Community Edition, otherwise the backup will not be processed.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

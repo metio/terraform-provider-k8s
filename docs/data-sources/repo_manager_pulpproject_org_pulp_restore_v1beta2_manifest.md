@@ -63,4 +63,4 @@ Optional:
 - `backup_pvc` (String) Name of the PVC to be restored from, set as a status found on the backup object (backupClaim)
 - `deployment_name` (String) Name of the deployment to be restored to
 - `deployment_type` (String) Name of the deployment type. Can be one of {galaxy,pulp}.
-- `keep_replicas` (Boolean) KeepBackupReplicasCount allows to define if the restore controller should restore the components with thesame number of replicas from backup or restore only a single replica each.
+- `keep_replicas` (Boolean) KeepBackupReplicasCount allows to define if the restore controller should restore the components with the same number of replicas from backup or restore only a single replica each.

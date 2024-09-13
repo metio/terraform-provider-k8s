@@ -56,15 +56,15 @@ Optional:
 Required:
 
 - `destination` (String) Destination is the destination URL where matching traffic is routed to.
-- `path_match` (Attributes) PathMatch is used to match requests based on what's in the path. Matching requests will be proxied to the Destinationdefined in this structure. (see [below for nested schema](#nestedatt--spec--path_match))
+- `path_match` (Attributes) PathMatch is used to match requests based on what's in the path. Matching requests will be proxied to the Destination defined in this structure. (see [below for nested schema](#nestedatt--spec--path_match))
 - `target` (String)
 
 Optional:
 
-- `ca_bundle` (Attributes) CABundle is where we read the CA bundle from to authenticate thedestination (if non-empty) (see [below for nested schema](#nestedatt--spec--ca_bundle))
-- `mtls_cert` (Attributes) ForwardingMTLSCert is the certificate used for mTLS between voltron and the destination. Either both ForwardingMTLSCertand ForwardingMTLSKey must be specified, or neither can be specified. (see [below for nested schema](#nestedatt--spec--mtls_cert))
-- `mtls_key` (Attributes) ForwardingMTLSKey is the key used for mTLS between voltron and the destination. Either both ForwardingMTLSCertand ForwardingMTLSKey must be specified, or neither can be specified. (see [below for nested schema](#nestedatt--spec--mtls_key))
-- `unauthenticated` (Boolean) Unauthenticated says whether the request should go through authentication. This is only applicable if the Targetis UI.
+- `ca_bundle` (Attributes) CABundle is where we read the CA bundle from to authenticate the destination (if non-empty) (see [below for nested schema](#nestedatt--spec--ca_bundle))
+- `mtls_cert` (Attributes) ForwardingMTLSCert is the certificate used for mTLS between voltron and the destination. Either both ForwardingMTLSCert and ForwardingMTLSKey must be specified, or neither can be specified. (see [below for nested schema](#nestedatt--spec--mtls_cert))
+- `mtls_key` (Attributes) ForwardingMTLSKey is the key used for mTLS between voltron and the destination. Either both ForwardingMTLSCert and ForwardingMTLSKey must be specified, or neither can be specified. (see [below for nested schema](#nestedatt--spec--mtls_key))
+- `unauthenticated` (Boolean) Unauthenticated says whether the request should go through authentication. This is only applicable if the Target is UI.
 
 <a id="nestedatt--spec--path_match"></a>
 ### Nested Schema for `spec.path_match`
@@ -88,7 +88,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -97,11 +97,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -110,9 +110,9 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined

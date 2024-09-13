@@ -153,33 +153,33 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "GitRepositorySpec specifies the required configuration to produce anArtifact for a Git repository.",
-				MarkdownDescription: "GitRepositorySpec specifies the required configuration to produce anArtifact for a Git repository.",
+				Description:         "GitRepositorySpec specifies the required configuration to produce an Artifact for a Git repository.",
+				MarkdownDescription: "GitRepositorySpec specifies the required configuration to produce an Artifact for a Git repository.",
 				Attributes: map[string]schema.Attribute{
 					"ignore": schema.StringAttribute{
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"include": schema.ListNestedAttribute{
-						Description:         "Include specifies a list of GitRepository resources which Artifactsshould be included in the Artifact produced for this GitRepository.",
-						MarkdownDescription: "Include specifies a list of GitRepository resources which Artifactsshould be included in the Artifact produced for this GitRepository.",
+						Description:         "Include specifies a list of GitRepository resources which Artifacts should be included in the Artifact produced for this GitRepository.",
+						MarkdownDescription: "Include specifies a list of GitRepository resources which Artifacts should be included in the Artifact produced for this GitRepository.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from_path": schema.StringAttribute{
-									Description:         "FromPath specifies the path to copy contents from, defaults to the rootof the Artifact.",
-									MarkdownDescription: "FromPath specifies the path to copy contents from, defaults to the rootof the Artifact.",
+									Description:         "FromPath specifies the path to copy contents from, defaults to the root of the Artifact.",
+									MarkdownDescription: "FromPath specifies the path to copy contents from, defaults to the root of the Artifact.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"repository": schema.SingleNestedAttribute{
-									Description:         "GitRepositoryRef specifies the GitRepository which Artifact contentsmust be included.",
-									MarkdownDescription: "GitRepositoryRef specifies the GitRepository which Artifact contentsmust be included.",
+									Description:         "GitRepositoryRef specifies the GitRepository which Artifact contents must be included.",
+									MarkdownDescription: "GitRepositoryRef specifies the GitRepository which Artifact contents must be included.",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "Name of the referent.",
@@ -195,8 +195,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 								},
 
 								"to_path": schema.StringAttribute{
-									Description:         "ToPath specifies the path to copy contents to, defaults to the name ofthe GitRepositoryRef.",
-									MarkdownDescription: "ToPath specifies the path to copy contents to, defaults to the name ofthe GitRepositoryRef.",
+									Description:         "ToPath specifies the path to copy contents to, defaults to the name of the GitRepositoryRef.",
+									MarkdownDescription: "ToPath specifies the path to copy contents to, defaults to the name of the GitRepositoryRef.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -209,8 +209,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 					},
 
 					"interval": schema.StringAttribute{
-						Description:         "Interval at which the GitRepository URL is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.",
-						MarkdownDescription: "Interval at which the GitRepository URL is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.",
+						Description:         "Interval at which the GitRepository URL is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
+						MarkdownDescription: "Interval at which the GitRepository URL is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -220,8 +220,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 					},
 
 					"proxy_secret_ref": schema.SingleNestedAttribute{
-						Description:         "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Git server.",
-						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Git server.",
+						Description:         "ProxySecretRef specifies the Secret containing the proxy configuration to use while communicating with the Git server.",
+						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configuration to use while communicating with the Git server.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -237,16 +237,16 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 					},
 
 					"recurse_submodules": schema.BoolAttribute{
-						Description:         "RecurseSubmodules enables the initialization of all submodules withinthe GitRepository as cloned from the URL, using their default settings.",
-						MarkdownDescription: "RecurseSubmodules enables the initialization of all submodules withinthe GitRepository as cloned from the URL, using their default settings.",
+						Description:         "RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings.",
+						MarkdownDescription: "RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ref": schema.SingleNestedAttribute{
-						Description:         "Reference specifies the Git reference to resolve and monitor forchanges, defaults to the 'master' branch.",
-						MarkdownDescription: "Reference specifies the Git reference to resolve and monitor forchanges, defaults to the 'master' branch.",
+						Description:         "Reference specifies the Git reference to resolve and monitor for changes, defaults to the 'master' branch.",
+						MarkdownDescription: "Reference specifies the Git reference to resolve and monitor for changes, defaults to the 'master' branch.",
 						Attributes: map[string]schema.Attribute{
 							"branch": schema.StringAttribute{
 								Description:         "Branch to check out, defaults to 'master' if no other field is defined.",
@@ -257,16 +257,16 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 							},
 
 							"commit": schema.StringAttribute{
-								Description:         "Commit SHA to check out, takes precedence over all reference fields.This can be combined with Branch to shallow clone the branch, in whichthe commit is expected to exist.",
-								MarkdownDescription: "Commit SHA to check out, takes precedence over all reference fields.This can be combined with Branch to shallow clone the branch, in whichthe commit is expected to exist.",
+								Description:         "Commit SHA to check out, takes precedence over all reference fields. This can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.",
+								MarkdownDescription: "Commit SHA to check out, takes precedence over all reference fields. This can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the reference to check out; takes precedence over Branch, Tag and SemVer.It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_descriptionExamples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
-								MarkdownDescription: "Name of the reference to check out; takes precedence over Branch, Tag and SemVer.It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_descriptionExamples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
+								Description:         "Name of the reference to check out; takes precedence over Branch, Tag and SemVer. It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description Examples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
+								MarkdownDescription: "Name of the reference to check out; takes precedence over Branch, Tag and SemVer. It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description Examples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -294,8 +294,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "SecretRef specifies the Secret containing authentication credentials forthe GitRepository.For HTTPS repositories the Secret must contain 'username' and 'password'fields for basic auth or 'bearerToken' field for token auth.For SSH repositories the Secret must contain 'identity'and 'known_hosts' fields.",
-						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials forthe GitRepository.For HTTPS repositories the Secret must contain 'username' and 'password'fields for basic auth or 'bearerToken' field for token auth.For SSH repositories the Secret must contain 'identity'and 'known_hosts' fields.",
+						Description:         "SecretRef specifies the Secret containing authentication credentials for the GitRepository. For HTTPS repositories the Secret must contain 'username' and 'password' fields for basic auth or 'bearerToken' field for token auth. For SSH repositories the Secret must contain 'identity' and 'known_hosts' fields.",
+						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the GitRepository. For HTTPS repositories the Secret must contain 'username' and 'password' fields for basic auth or 'bearerToken' field for token auth. For SSH repositories the Secret must contain 'identity' and 'known_hosts' fields.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -311,8 +311,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "Suspend tells the controller to suspend the reconciliation of thisGitRepository.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of thisGitRepository.",
+						Description:         "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -341,12 +341,12 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 					},
 
 					"verify": schema.SingleNestedAttribute{
-						Description:         "Verification specifies the configuration to verify the Git commitsignature(s).",
-						MarkdownDescription: "Verification specifies the configuration to verify the Git commitsignature(s).",
+						Description:         "Verification specifies the configuration to verify the Git commit signature(s).",
+						MarkdownDescription: "Verification specifies the configuration to verify the Git commit signature(s).",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
-								Description:         "Mode specifies which Git object(s) should be verified.The variants 'head' and 'HEAD' both imply the same thing, i.e. verifythe commit that the HEAD of the Git repository points to. The variant'head' solely exists to ensure backwards compatibility.",
-								MarkdownDescription: "Mode specifies which Git object(s) should be verified.The variants 'head' and 'HEAD' both imply the same thing, i.e. verifythe commit that the HEAD of the Git repository points to. The variant'head' solely exists to ensure backwards compatibility.",
+								Description:         "Mode specifies which Git object(s) should be verified. The variants 'head' and 'HEAD' both imply the same thing, i.e. verify the commit that the HEAD of the Git repository points to. The variant 'head' solely exists to ensure backwards compatibility.",
+								MarkdownDescription: "Mode specifies which Git object(s) should be verified. The variants 'head' and 'HEAD' both imply the same thing, i.e. verify the commit that the HEAD of the Git repository points to. The variant 'head' solely exists to ensure backwards compatibility.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -356,8 +356,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 							},
 
 							"secret_ref": schema.SingleNestedAttribute{
-								Description:         "SecretRef specifies the Secret containing the public keys of trusted Gitauthors.",
-								MarkdownDescription: "SecretRef specifies the Secret containing the public keys of trusted Gitauthors.",
+								Description:         "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
+								MarkdownDescription: "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name of the referent.",

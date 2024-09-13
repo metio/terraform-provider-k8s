@@ -65,15 +65,15 @@ Required:
 Optional:
 
 - `concurrency` (Number) Concurrency defines how many rules execute at once.
-- `extra_filter_labels` (Map of String) ExtraFilterLabels optional list of label filters applied to every rule'srequest withing a group. Is compatible only with VM datasource.See more details at https://docs.victoriametrics.com#prometheus-querying-api-enhancementsDeprecated, use params instead
-- `headers` (List of String) Headers contains optional HTTP headers added to each rule requestMust be in form 'header-name: value'For example: headers:   - 'CustomHeader: foo'   - 'CustomHeader2: bar'
+- `extra_filter_labels` (Map of String) ExtraFilterLabels optional list of label filters applied to every rule's request withing a group. Is compatible only with VM datasource. See more details at https://docs.victoriametrics.com#prometheus-querying-api-enhancements Deprecated, use params instead
+- `headers` (List of String) Headers contains optional HTTP headers added to each rule request Must be in form 'header-name: value' For example: headers: - 'CustomHeader: foo' - 'CustomHeader2: bar'
 - `interval` (String) evaluation interval for group
-- `labels` (Map of String) Labels optional list of labels added to every rule within a group.It has priority over the external labels.Labels are commonly used for adding environmentor tenant-specific tag.
-- `limit` (Number) Limit the number of alerts an alerting rule and series a recordingrule can produce
-- `notifier_headers` (List of String) NotifierHeaders contains optional HTTP headers added to each alert request which will send to notifierMust be in form 'header-name: value'For example: headers:   - 'CustomHeader: foo'   - 'CustomHeader2: bar'
+- `labels` (Map of String) Labels optional list of labels added to every rule within a group. It has priority over the external labels. Labels are commonly used for adding environment or tenant-specific tag.
+- `limit` (Number) Limit the number of alerts an alerting rule and series a recording rule can produce
+- `notifier_headers` (List of String) NotifierHeaders contains optional HTTP headers added to each alert request which will send to notifier Must be in form 'header-name: value' For example: headers: - 'CustomHeader: foo' - 'CustomHeader2: bar'
 - `params` (Map of List of String) Params optional HTTP URL parameters added to each rule request
-- `tenant` (String) Tenant id for group, can be used only with enterprise version of vmalertSee more details at https://docs.victoriametrics.com/vmalert.html#multitenancy
-- `type` (String) Type defines datasource type for enterprise version of vmalertpossible values - prometheus,graphite
+- `tenant` (String) Tenant id for group, can be used only with enterprise version of vmalert See more details at https://docs.victoriametrics.com/vmalert.html#multitenancy
+- `type` (String) Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite
 
 <a id="nestedatt--spec--groups--rules"></a>
 ### Nested Schema for `spec.groups.rules`
@@ -82,10 +82,10 @@ Optional:
 
 - `alert` (String) Alert is a name for alert
 - `annotations` (Map of String) Annotations will be added to rule configuration
-- `debug` (Boolean) Debug enables logging for ruleit useful for tracking
+- `debug` (Boolean) Debug enables logging for rule it useful for tracking
 - `expr` (String) Expr is query, that will be evaluated at dataSource
-- `for` (String) For evaluation interval in time.Duration format30s, 1m, 1h  or nanoseconds
-- `keep_firing_for` (String) KeepFiringFor will make alert continue firing for this longeven when the alerting expression no longer has results.Use time.Duration format, 30s, 1m, 1h  or nanoseconds
+- `for` (String) For evaluation interval in time.Duration format 30s, 1m, 1h or nanoseconds
+- `keep_firing_for` (String) KeepFiringFor will make alert continue firing for this long even when the alerting expression no longer has results. Use time.Duration format, 30s, 1m, 1h or nanoseconds
 - `labels` (Map of String) Labels will be added to rule configuration
 - `record` (String) Record represents a query, that will be recorded to dataSource
-- `update_entries_limit` (Number) UpdateEntriesLimit defines max number of rule's state updates stored in memory.Overrides '-rule.updateEntriesLimit' in vmalert.
+- `update_entries_limit` (Number) UpdateEntriesLimit defines max number of rule's state updates stored in memory. Overrides '-rule.updateEntriesLimit' in vmalert.

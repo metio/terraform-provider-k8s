@@ -61,8 +61,8 @@ func (r *PkgCrossplaneIoConfigurationV1Manifest) Metadata(_ context.Context, req
 
 func (r *PkgCrossplaneIoConfigurationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A Configuration installs an OCI compatible Crossplane package, extendingCrossplane with support for new kinds of CompositeResourceDefinitions andCompositions.Read the Crossplane documentation for[more information about Configuration packages](https://docs.crossplane.io/latest/concepts/packages).",
-		MarkdownDescription: "A Configuration installs an OCI compatible Crossplane package, extendingCrossplane with support for new kinds of CompositeResourceDefinitions andCompositions.Read the Crossplane documentation for[more information about Configuration packages](https://docs.crossplane.io/latest/concepts/packages).",
+		Description:         "A Configuration installs an OCI compatible Crossplane package, extending Crossplane with support for new kinds of CompositeResourceDefinitions and Compositions. Read the Crossplane documentation for [more information about Configuration packages](https://docs.crossplane.io/latest/concepts/packages).",
+		MarkdownDescription: "A Configuration installs an OCI compatible Crossplane package, extending Crossplane with support for new kinds of CompositeResourceDefinitions and Compositions. Read the Crossplane documentation for [more information about Configuration packages](https://docs.crossplane.io/latest/concepts/packages).",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -117,12 +117,12 @@ func (r *PkgCrossplaneIoConfigurationV1Manifest) Schema(_ context.Context, _ dat
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ConfigurationSpec specifies details about a request to install aconfiguration to Crossplane.",
-				MarkdownDescription: "ConfigurationSpec specifies details about a request to install aconfiguration to Crossplane.",
+				Description:         "ConfigurationSpec specifies details about a request to install a configuration to Crossplane.",
+				MarkdownDescription: "ConfigurationSpec specifies details about a request to install a configuration to Crossplane.",
 				Attributes: map[string]schema.Attribute{
 					"common_labels": schema.MapAttribute{
-						Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
-						MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+						Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+						MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -130,8 +130,8 @@ func (r *PkgCrossplaneIoConfigurationV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"ignore_crossplane_constraints": schema.BoolAttribute{
-						Description:         "IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.",
-						MarkdownDescription: "IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.",
+						Description:         "IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.",
+						MarkdownDescription: "IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -146,21 +146,21 @@ func (r *PkgCrossplaneIoConfigurationV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"package_pull_policy": schema.StringAttribute{
-						Description:         "PackagePullPolicy defines the pull policy for the package.Default is IfNotPresent.",
-						MarkdownDescription: "PackagePullPolicy defines the pull policy for the package.Default is IfNotPresent.",
+						Description:         "PackagePullPolicy defines the pull policy for the package. Default is IfNotPresent.",
+						MarkdownDescription: "PackagePullPolicy defines the pull policy for the package. Default is IfNotPresent.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"package_pull_secrets": schema.ListNestedAttribute{
-						Description:         "PackagePullSecrets are named secrets in the same namespace that can be usedto fetch packages from private registries.",
-						MarkdownDescription: "PackagePullSecrets are named secrets in the same namespace that can be usedto fetch packages from private registries.",
+						Description:         "PackagePullSecrets are named secrets in the same namespace that can be used to fetch packages from private registries.",
+						MarkdownDescription: "PackagePullSecrets are named secrets in the same namespace that can be used to fetch packages from private registries.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -173,24 +173,24 @@ func (r *PkgCrossplaneIoConfigurationV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"revision_activation_policy": schema.StringAttribute{
-						Description:         "RevisionActivationPolicy specifies how the package controller shouldupdate from one revision to the next. Options are Automatic or Manual.Default is Automatic.",
-						MarkdownDescription: "RevisionActivationPolicy specifies how the package controller shouldupdate from one revision to the next. Options are Automatic or Manual.Default is Automatic.",
+						Description:         "RevisionActivationPolicy specifies how the package controller should update from one revision to the next. Options are Automatic or Manual. Default is Automatic.",
+						MarkdownDescription: "RevisionActivationPolicy specifies how the package controller should update from one revision to the next. Options are Automatic or Manual. Default is Automatic.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"revision_history_limit": schema.Int64Attribute{
-						Description:         "RevisionHistoryLimit dictates how the package controller cleans up oldinactive package revisions.Defaults to 1. Can be disabled by explicitly setting to 0.",
-						MarkdownDescription: "RevisionHistoryLimit dictates how the package controller cleans up oldinactive package revisions.Defaults to 1. Can be disabled by explicitly setting to 0.",
+						Description:         "RevisionHistoryLimit dictates how the package controller cleans up old inactive package revisions. Defaults to 1. Can be disabled by explicitly setting to 0.",
+						MarkdownDescription: "RevisionHistoryLimit dictates how the package controller cleans up old inactive package revisions. Defaults to 1. Can be disabled by explicitly setting to 0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"skip_dependency_resolution": schema.BoolAttribute{
-						Description:         "SkipDependencyResolution indicates to the package manager whether to skipresolving dependencies for a package. Setting this value to true may haveunintended consequences.Default is false.",
-						MarkdownDescription: "SkipDependencyResolution indicates to the package manager whether to skipresolving dependencies for a package. Setting this value to true may haveunintended consequences.Default is false.",
+						Description:         "SkipDependencyResolution indicates to the package manager whether to skip resolving dependencies for a package. Setting this value to true may have unintended consequences. Default is false.",
+						MarkdownDescription: "SkipDependencyResolution indicates to the package manager whether to skip resolving dependencies for a package. Setting this value to true may have unintended consequences. Default is false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

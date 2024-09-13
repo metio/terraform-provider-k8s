@@ -124,8 +124,8 @@ func (r *DynamodbServicesK8SAwsGlobalTableV1Alpha1Manifest) Schema(_ context.Con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "GlobalTableSpec defines the desired state of GlobalTable.Represents the properties of a global table.",
-				MarkdownDescription: "GlobalTableSpec defines the desired state of GlobalTable.Represents the properties of a global table.",
+				Description:         "GlobalTableSpec defines the desired state of GlobalTable. Represents the properties of a global table.",
+				MarkdownDescription: "GlobalTableSpec defines the desired state of GlobalTable. Represents the properties of a global table.",
 				Attributes: map[string]schema.Attribute{
 					"global_table_name": schema.StringAttribute{
 						Description:         "The global table name.",

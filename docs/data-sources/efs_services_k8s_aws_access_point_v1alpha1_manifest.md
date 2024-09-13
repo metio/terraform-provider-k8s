@@ -56,17 +56,17 @@ Optional:
 Optional:
 
 - `file_system_id` (String) The ID of the EFS file system that the access point provides access to.
-- `file_system_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--file_system_ref))
-- `posix_user` (Attributes) The operating system user and group applied to all file system requests madeusing the access point. (see [below for nested schema](#nestedatt--spec--posix_user))
-- `root_directory` (Attributes) Specifies the directory on the EFS file system that the access point exposesas the root directory of your file system to NFS clients using the accesspoint. The clients using the access point can only access the root directoryand below. If the RootDirectory > Path specified does not exist, Amazon EFScreates it and applies the CreationInfo settings when a client connects toan access point. When specifying a RootDirectory, you must provide the Path,and the CreationInfo.Amazon EFS creates a root directory only if you have provided the CreationInfo:OwnUid, OwnGID, and permissions for the directory. If you do not providethis information, Amazon EFS does not create the root directory. If the rootdirectory does not exist, attempts to mount using the access point will fail. (see [below for nested schema](#nestedatt--spec--root_directory))
-- `tags` (Attributes List) Creates tags associated with the access point. Each tag is a key-value pair,each key must be unique. For more information, see Tagging Amazon Web Servicesresources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)in the Amazon Web Services General Reference Guide. (see [below for nested schema](#nestedatt--spec--tags))
+- `file_system_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--file_system_ref))
+- `posix_user` (Attributes) The operating system user and group applied to all file system requests made using the access point. (see [below for nested schema](#nestedatt--spec--posix_user))
+- `root_directory` (Attributes) Specifies the directory on the EFS file system that the access point exposes as the root directory of your file system to NFS clients using the access point. The clients using the access point can only access the root directory and below. If the RootDirectory > Path specified does not exist, Amazon EFS creates it and applies the CreationInfo settings when a client connects to an access point. When specifying a RootDirectory, you must provide the Path, and the CreationInfo. Amazon EFS creates a root directory only if you have provided the CreationInfo: OwnUid, OwnGID, and permissions for the directory. If you do not provide this information, Amazon EFS does not create the root directory. If the root directory does not exist, attempts to mount using the access point will fail. (see [below for nested schema](#nestedatt--spec--root_directory))
+- `tags` (Attributes List) Creates tags associated with the access point. Each tag is a key-value pair, each key must be unique. For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the Amazon Web Services General Reference Guide. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--file_system_ref"></a>
 ### Nested Schema for `spec.file_system_ref`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--file_system_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--file_system_ref--from))
 
 <a id="nestedatt--spec--file_system_ref--from"></a>
 ### Nested Schema for `spec.file_system_ref.from`
@@ -93,7 +93,7 @@ Optional:
 
 Optional:
 
-- `creation_info` (Attributes) Required if the RootDirectory > Path specified does not exist. Specifiesthe POSIX IDs and permissions to apply to the access point's RootDirectory> Path. If the access point root directory does not exist, EFS creates itwith these settings when a client connects to the access point. When specifyingCreationInfo, you must include values for all properties.Amazon EFS creates a root directory only if you have provided the CreationInfo:OwnUid, OwnGID, and permissions for the directory. If you do not providethis information, Amazon EFS does not create the root directory. If the rootdirectory does not exist, attempts to mount using the access point will fail.If you do not provide CreationInfo and the specified RootDirectory does notexist, attempts to mount the file system using the access point will fail. (see [below for nested schema](#nestedatt--spec--root_directory--creation_info))
+- `creation_info` (Attributes) Required if the RootDirectory > Path specified does not exist. Specifies the POSIX IDs and permissions to apply to the access point's RootDirectory > Path. If the access point root directory does not exist, EFS creates it with these settings when a client connects to the access point. When specifying CreationInfo, you must include values for all properties. Amazon EFS creates a root directory only if you have provided the CreationInfo: OwnUid, OwnGID, and permissions for the directory. If you do not provide this information, Amazon EFS does not create the root directory. If the root directory does not exist, attempts to mount using the access point will fail. If you do not provide CreationInfo and the specified RootDirectory does not exist, attempts to mount the file system using the access point will fail. (see [below for nested schema](#nestedatt--spec--root_directory--creation_info))
 - `path` (String)
 
 <a id="nestedatt--spec--root_directory--creation_info"></a>

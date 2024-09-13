@@ -30,7 +30,7 @@ data "k8s_flux_framework_org_mini_cluster_v1alpha2_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) MiniCluster is an HPC cluster in Kubernetes you can controlEither to submit a single job (and go away) or for a persistent single- or multi- user cluster (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) MiniCluster is an HPC cluster in Kubernetes you can control Either to submit a single job (and go away) or for a persistent single- or multi- user cluster (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,24 +55,24 @@ Optional:
 
 Required:
 
-- `containers` (Attributes List) Containers is one or more containers to be created in a pod.There should only be one container to run flux with runFlux (see [below for nested schema](#nestedatt--spec--containers))
+- `containers` (Attributes List) Containers is one or more containers to be created in a pod. There should only be one container to run flux with runFlux (see [below for nested schema](#nestedatt--spec--containers))
 
 Optional:
 
 - `archive` (Attributes) Archive to load or save (see [below for nested schema](#nestedatt--spec--archive))
 - `cleanup` (Boolean) Cleanup the pods and storage when the index broker pod is complete
-- `deadline_seconds` (Number) Should the job be limited to a particular number of seconds?Approximately one year. This cannot be zero or job won't start
+- `deadline_seconds` (Number) Should the job be limited to a particular number of seconds? Approximately one year. This cannot be zero or job won't start
 - `flux` (Attributes) Flux options for the broker, shared across cluster (see [below for nested schema](#nestedatt--spec--flux))
 - `interactive` (Boolean) Run a single-user, interactive minicluster
 - `job_labels` (Map of String) Labels for the job
 - `logging` (Attributes) Logging modes determine the output you see in the job log (see [below for nested schema](#nestedatt--spec--logging))
 - `max_size` (Number) MaxSize (maximum number of pods to allow scaling to)
-- `min_size` (Number) MinSize (minimum number of pods that must be up for Flux)Note that this option does not edit the number of tasks,so a job could run with fewer (and then not start)
+- `min_size` (Number) MinSize (minimum number of pods that must be up for Flux) Note that this option does not edit the number of tasks, so a job could run with fewer (and then not start)
 - `network` (Attributes) A spec for exposing or defining the cluster headless service (see [below for nested schema](#nestedatt--spec--network))
 - `pod` (Attributes) Pod spec details (see [below for nested schema](#nestedatt--spec--pod))
-- `services` (Attributes List) Services are one or more service containers to bring upalongside the MiniCluster. (see [below for nested schema](#nestedatt--spec--services))
+- `services` (Attributes List) Services are one or more service containers to bring up alongside the MiniCluster. (see [below for nested schema](#nestedatt--spec--services))
 - `share_process_namespace` (Boolean) Share process namespace?
-- `size` (Number) Size (number of job pods to run, size of minicluster in pods)This is also the minimum number required to start Flux
+- `size` (Number) Size (number of job pods to run, size of minicluster in pods) This is also the minimum number required to start Flux
 - `tasks` (Number) Total number of CPUs being run across entire cluster
 
 <a id="nestedatt--spec--containers"></a>
@@ -86,18 +86,18 @@ Optional:
 - `commands` (Attributes) More specific or detailed commands for just workers/broker (see [below for nested schema](#nestedatt--spec--containers--commands))
 - `environment` (Map of String) Key/value pairs for the environment
 - `image` (String) Container image must contain flux and flux-sched install
-- `image_pull_secret` (String) Allow the user to pull authenticated imagesBy default no secret is selected. Settingthis with the name of an already existingimagePullSecret will specify that secretin the pod spec.
-- `launcher` (Boolean) Indicate that the command is a launcher that willask for its own jobs (and provided directly to flux start)
+- `image_pull_secret` (String) Allow the user to pull authenticated images By default no secret is selected. Setting this with the name of an already existing imagePullSecret will specify that secret in the pod spec.
+- `launcher` (Boolean) Indicate that the command is a launcher that will ask for its own jobs (and provided directly to flux start)
 - `life_cycle` (Attributes) Lifecycle can handle post start commands, etc. (see [below for nested schema](#nestedatt--spec--containers--life_cycle))
 - `logs` (String) Log output directory
 - `name` (String) Container name is only required for non flux runners
 - `no_wrap_entrypoint` (Boolean) Do not wrap the entrypoint to wait for flux, add to path, etc?
-- `ports` (List of String) Ports to be exposed to other containers in the clusterWe take a single list of integers and map to the same
-- `pull_always` (Boolean) Allow the user to dictate pullingBy default we pull if not present. Settingthis to true will indicate to pull always
+- `ports` (List of String) Ports to be exposed to other containers in the cluster We take a single list of integers and map to the same
+- `pull_always` (Boolean) Allow the user to dictate pulling By default we pull if not present. Setting this to true will indicate to pull always
 - `resources` (Attributes) Resources include limits and requests (see [below for nested schema](#nestedatt--spec--containers--resources))
 - `run_flux` (Boolean) Application container intended to run flux (broker)
-- `secrets` (Attributes) Secrets that will be added to the environmentThe user is expected to create their own secrets for the operator to find (see [below for nested schema](#nestedatt--spec--containers--secrets))
-- `security_context` (Attributes) Security Contexthttps://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--containers--security_context))
+- `secrets` (Attributes) Secrets that will be added to the environment The user is expected to create their own secrets for the operator to find (see [below for nested schema](#nestedatt--spec--containers--secrets))
+- `security_context` (Attributes) Security Context https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--containers--security_context))
 - `volumes` (Attributes) Existing volumes that can be mounted (see [below for nested schema](#nestedatt--spec--containers--volumes))
 - `working_dir` (String) Working directory to run command from
 
@@ -110,7 +110,7 @@ Optional:
 - `init` (String) init command is run before anything
 - `post` (String) post command is run in the entrypoint when the broker exits / finishes
 - `pre` (String) pre command is run after global PreCommand, after asFlux is set (can override)
-- `prefix` (String) Prefix to flux start / submit / brokerTypically used for a wrapper command to mount, etc.
+- `prefix` (String) Prefix to flux start / submit / broker Typically used for a wrapper command to mount, etc.
 - `script` (String) Custom script for submit (e.g., multiple lines)
 - `service_pre` (String) A command only for service start.sh tor run
 - `worker_pre` (String) A command only for workers to run
@@ -158,7 +158,7 @@ Optional:
 Optional:
 
 - `claim_name` (String) Claim name if the existing volume is a PVC
-- `config_map_name` (String) Config map name if the existing volume is a config mapYou should also define items if you are using this
+- `config_map_name` (String) Config map name if the existing volume is a config map You should also define items if you are using this
 - `empty_dir` (Boolean)
 - `empty_dir_medium` (String) Add an empty directory custom type
 - `empty_dir_size_limit` (String) Add an empty directory sizeLimit
@@ -183,18 +183,18 @@ Optional:
 
 Optional:
 
-- `arch` (String) Change the arch string - determines the binariesthat are downloaded to run the entrypoint
-- `broker_config` (String) Optionally provide a manually created broker configthis is intended for bursting to remote clusters
-- `bursting` (Attributes) Bursting - one or more external clusters to burst toWe assume a single, central MiniCluster with an ipaddressthat all connect to. (see [below for nested schema](#nestedatt--spec--flux--bursting))
-- `complete_workers` (Boolean) Complete workers when they failThis is ideal if you don't want them to restart
+- `arch` (String) Change the arch string - determines the binaries that are downloaded to run the entrypoint
+- `broker_config` (String) Optionally provide a manually created broker config this is intended for bursting to remote clusters
+- `bursting` (Attributes) Bursting - one or more external clusters to burst to We assume a single, central MiniCluster with an ipaddress that all connect to. (see [below for nested schema](#nestedatt--spec--flux--bursting))
+- `complete_workers` (Boolean) Complete workers when they fail This is ideal if you don't want them to restart
 - `connect_timeout` (String) Single user executable to provide to flux start
 - `container` (Attributes) Container base for flux (see [below for nested schema](#nestedatt--spec--flux--container))
-- `curve_cert` (String) Optionally provide an already existing curve certificateThis is not recommended in favor of providing the secretname as curveCertSecret, below
+- `curve_cert` (String) Optionally provide an already existing curve certificate This is not recommended in favor of providing the secret name as curveCertSecret, below
 - `log_level` (Number) Log level to use for flux logging (only in non TestMode)
 - `minimal_service` (Boolean) Only expose the broker service (to reduce load on DNS)
-- `munge_secret` (String) Expect a secret (named according to this string)for a munge key. This is intended for bursting.Assumed to be at /etc/munge/munge.keyThis is binary data.
+- `munge_secret` (String) Expect a secret (named according to this string) for a munge key. This is intended for bursting. Assumed to be at /etc/munge/munge.key This is binary data.
 - `no_wait_socket` (Boolean) Do not wait for the socket
-- `option_flags` (String) Flux option flags, usually provided with -ooptional - if needed, default option flags for the serverThese can also be set in the user interface to override here.This is only valid for a FluxRunner 'runFlux' true
+- `option_flags` (String) Flux option flags, usually provided with -o optional - if needed, default option flags for the server These can also be set in the user interface to override here. This is only valid for a FluxRunner 'runFlux' true
 - `scheduler` (Attributes) Custom attributes for the fluxion scheduler (see [below for nested schema](#nestedatt--spec--flux--scheduler))
 - `submit_command` (String) Modify flux submit to be something else
 - `wrap` (String) Commands for flux start --wrap
@@ -204,17 +204,17 @@ Optional:
 
 Optional:
 
-- `clusters` (Attributes List) External clusters to burst to. Each externalcluster must share the same listing to align ranks (see [below for nested schema](#nestedatt--spec--flux--bursting--clusters))
-- `hostlist` (String) Hostlist is a custom hostlist for the broker.tomlthat includes the local plus bursted cluster. Thisis typically used for bursting to another resourcetype, where we can predict the hostnames but theydon't follow the same convention as the Flux Operator
-- `lead_broker` (Attributes) The lead broker ip address to join to. E.g., if we burstto cluster 2, this is the address to connect to cluster 1For the first cluster, this should not be defined (see [below for nested schema](#nestedatt--spec--flux--bursting--lead_broker))
+- `clusters` (Attributes List) External clusters to burst to. Each external cluster must share the same listing to align ranks (see [below for nested schema](#nestedatt--spec--flux--bursting--clusters))
+- `hostlist` (String) Hostlist is a custom hostlist for the broker.toml that includes the local plus bursted cluster. This is typically used for bursting to another resource type, where we can predict the hostnames but they don't follow the same convention as the Flux Operator
+- `lead_broker` (Attributes) The lead broker ip address to join to. E.g., if we burst to cluster 2, this is the address to connect to cluster 1 For the first cluster, this should not be defined (see [below for nested schema](#nestedatt--spec--flux--bursting--lead_broker))
 
 <a id="nestedatt--spec--flux--bursting--clusters"></a>
 ### Nested Schema for `spec.flux.bursting.clusters`
 
 Optional:
 
-- `name` (String) The hostnames for the bursted clustersIf set, the user is responsible for ensuringuniqueness. The operator will set to burst-N
-- `size` (Number) Size of bursted cluster.Defaults to same size as local minicluster if not set
+- `name` (String) The hostnames for the bursted clusters If set, the user is responsible for ensuring uniqueness. The operator will set to burst-N
+- `size` (Number) Size of bursted cluster. Defaults to same size as local minicluster if not set
 
 
 <a id="nestedatt--spec--flux--bursting--lead_broker"></a>
@@ -239,12 +239,12 @@ Optional:
 
 - `disable` (Boolean) Disable the sidecar container, assuming that the main application container has flux
 - `image` (String)
-- `image_pull_secret` (String) Allow the user to pull authenticated imagesBy default no secret is selected. Settingthis with the name of an already existingimagePullSecret will specify that secretin the pod spec.
+- `image_pull_secret` (String) Allow the user to pull authenticated images By default no secret is selected. Setting this with the name of an already existing imagePullSecret will specify that secret in the pod spec.
 - `mount_path` (String) Mount path for flux to be at (will be added to path)
 - `name` (String) Container name is only required for non flux runners
-- `pull_always` (Boolean) Allow the user to dictate pullingBy default we pull if not present. Settingthis to true will indicate to pull always
+- `pull_always` (Boolean) Allow the user to dictate pulling By default we pull if not present. Setting this to true will indicate to pull always
 - `python_path` (String) Customize python path for flux
-- `resources` (Attributes) Resources include limits and requestsThese must be defined for cpu and memoryfor the QoS to be Guaranteed (see [below for nested schema](#nestedatt--spec--flux--container--resources))
+- `resources` (Attributes) Resources include limits and requests These must be defined for cpu and memory for the QoS to be Guaranteed (see [below for nested schema](#nestedatt--spec--flux--container--resources))
 - `working_dir` (String) Working directory to run command from
 
 <a id="nestedatt--spec--flux--container--resources"></a>
@@ -314,18 +314,18 @@ Optional:
 - `commands` (Attributes) More specific or detailed commands for just workers/broker (see [below for nested schema](#nestedatt--spec--services--commands))
 - `environment` (Map of String) Key/value pairs for the environment
 - `image` (String) Container image must contain flux and flux-sched install
-- `image_pull_secret` (String) Allow the user to pull authenticated imagesBy default no secret is selected. Settingthis with the name of an already existingimagePullSecret will specify that secretin the pod spec.
-- `launcher` (Boolean) Indicate that the command is a launcher that willask for its own jobs (and provided directly to flux start)
+- `image_pull_secret` (String) Allow the user to pull authenticated images By default no secret is selected. Setting this with the name of an already existing imagePullSecret will specify that secret in the pod spec.
+- `launcher` (Boolean) Indicate that the command is a launcher that will ask for its own jobs (and provided directly to flux start)
 - `life_cycle` (Attributes) Lifecycle can handle post start commands, etc. (see [below for nested schema](#nestedatt--spec--services--life_cycle))
 - `logs` (String) Log output directory
 - `name` (String) Container name is only required for non flux runners
 - `no_wrap_entrypoint` (Boolean) Do not wrap the entrypoint to wait for flux, add to path, etc?
-- `ports` (List of String) Ports to be exposed to other containers in the clusterWe take a single list of integers and map to the same
-- `pull_always` (Boolean) Allow the user to dictate pullingBy default we pull if not present. Settingthis to true will indicate to pull always
+- `ports` (List of String) Ports to be exposed to other containers in the cluster We take a single list of integers and map to the same
+- `pull_always` (Boolean) Allow the user to dictate pulling By default we pull if not present. Setting this to true will indicate to pull always
 - `resources` (Attributes) Resources include limits and requests (see [below for nested schema](#nestedatt--spec--services--resources))
 - `run_flux` (Boolean) Application container intended to run flux (broker)
-- `secrets` (Attributes) Secrets that will be added to the environmentThe user is expected to create their own secrets for the operator to find (see [below for nested schema](#nestedatt--spec--services--secrets))
-- `security_context` (Attributes) Security Contexthttps://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--services--security_context))
+- `secrets` (Attributes) Secrets that will be added to the environment The user is expected to create their own secrets for the operator to find (see [below for nested schema](#nestedatt--spec--services--secrets))
+- `security_context` (Attributes) Security Context https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--services--security_context))
 - `volumes` (Attributes) Existing volumes that can be mounted (see [below for nested schema](#nestedatt--spec--services--volumes))
 - `working_dir` (String) Working directory to run command from
 
@@ -338,7 +338,7 @@ Optional:
 - `init` (String) init command is run before anything
 - `post` (String) post command is run in the entrypoint when the broker exits / finishes
 - `pre` (String) pre command is run after global PreCommand, after asFlux is set (can override)
-- `prefix` (String) Prefix to flux start / submit / brokerTypically used for a wrapper command to mount, etc.
+- `prefix` (String) Prefix to flux start / submit / broker Typically used for a wrapper command to mount, etc.
 - `script` (String) Custom script for submit (e.g., multiple lines)
 - `service_pre` (String) A command only for service start.sh tor run
 - `worker_pre` (String) A command only for workers to run
@@ -386,7 +386,7 @@ Optional:
 Optional:
 
 - `claim_name` (String) Claim name if the existing volume is a PVC
-- `config_map_name` (String) Config map name if the existing volume is a config mapYou should also define items if you are using this
+- `config_map_name` (String) Config map name if the existing volume is a config map You should also define items if you are using this
 - `empty_dir` (Boolean)
 - `empty_dir_medium` (String) Add an empty directory custom type
 - `empty_dir_size_limit` (String) Add an empty directory sizeLimit

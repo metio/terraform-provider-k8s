@@ -118,8 +118,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Metadata(_ context
 
 func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Klusterlet represents controllers to install the resources for a managed cluster.When configured, the Klusterlet requires a secret named bootstrap-hub-kubeconfig in theagent namespace to allow API requests to the hub for the registration protocol.In Hosted mode, the Klusterlet requires an additional secret named external-managed-kubeconfigin the agent namespace to allow API requests to the managed cluster for resources installation.",
-		MarkdownDescription: "Klusterlet represents controllers to install the resources for a managed cluster.When configured, the Klusterlet requires a secret named bootstrap-hub-kubeconfig in theagent namespace to allow API requests to the hub for the registration protocol.In Hosted mode, the Klusterlet requires an additional secret named external-managed-kubeconfigin the agent namespace to allow API requests to the managed cluster for resources installation.",
+		Description:         "Klusterlet represents controllers to install the resources for a managed cluster. When configured, the Klusterlet requires a secret named bootstrap-hub-kubeconfig in the agent namespace to allow API requests to the hub for the registration protocol. In Hosted mode, the Klusterlet requires an additional secret named external-managed-kubeconfig in the agent namespace to allow API requests to the managed cluster for resources installation.",
+		MarkdownDescription: "Klusterlet represents controllers to install the resources for a managed cluster. When configured, the Klusterlet requires a secret named bootstrap-hub-kubeconfig in the agent namespace to allow API requests to the hub for the registration protocol. In Hosted mode, the Klusterlet requires an additional secret named external-managed-kubeconfig in the agent namespace to allow API requests to the managed cluster for resources installation.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -178,8 +178,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 				MarkdownDescription: "Spec represents the desired deployment configuration of Klusterlet agent.",
 				Attributes: map[string]schema.Attribute{
 					"cluster_name": schema.StringAttribute{
-						Description:         "ClusterName is the name of the managed cluster to be created on hub.The Klusterlet agent generates a random name if it is not set, or discovers the appropriate cluster name on OpenShift.",
-						MarkdownDescription: "ClusterName is the name of the managed cluster to be created on hub.The Klusterlet agent generates a random name if it is not set, or discovers the appropriate cluster name on OpenShift.",
+						Description:         "ClusterName is the name of the managed cluster to be created on hub. The Klusterlet agent generates a random name if it is not set, or discovers the appropriate cluster name on OpenShift.",
+						MarkdownDescription: "ClusterName is the name of the managed cluster to be created on hub. The Klusterlet agent generates a random name if it is not set, or discovers the appropriate cluster name on OpenShift.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -194,8 +194,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 						MarkdownDescription: "DeployOption contains the options of deploying a klusterlet",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
-								Description:         "Mode can be Default, Hosted, Singleton or SingletonHosted. It is Default mode if not specifiedIn Default mode, all klusterlet related resources are deployed on the managed cluster.In Hosted mode, only crd and configurations are installed on the spoke/managed cluster. Controllers run in anothercluster (defined as management-cluster) and connect to the mangaged cluster with the kubeconfig in secret of'external-managed-kubeconfig'(a kubeconfig of managed-cluster with cluster-admin permission).In Singleton mode, registration/work agent is started as a single deployment.In SingletonHosted mode, agent is started as a single deployment in hosted mode.Note: Do not modify the Mode field once it's applied.",
-								MarkdownDescription: "Mode can be Default, Hosted, Singleton or SingletonHosted. It is Default mode if not specifiedIn Default mode, all klusterlet related resources are deployed on the managed cluster.In Hosted mode, only crd and configurations are installed on the spoke/managed cluster. Controllers run in anothercluster (defined as management-cluster) and connect to the mangaged cluster with the kubeconfig in secret of'external-managed-kubeconfig'(a kubeconfig of managed-cluster with cluster-admin permission).In Singleton mode, registration/work agent is started as a single deployment.In SingletonHosted mode, agent is started as a single deployment in hosted mode.Note: Do not modify the Mode field once it's applied.",
+								Description:         "Mode can be Default, Hosted, Singleton or SingletonHosted. It is Default mode if not specified In Default mode, all klusterlet related resources are deployed on the managed cluster. In Hosted mode, only crd and configurations are installed on the spoke/managed cluster. Controllers run in another cluster (defined as management-cluster) and connect to the mangaged cluster with the kubeconfig in secret of 'external-managed-kubeconfig'(a kubeconfig of managed-cluster with cluster-admin permission). In Singleton mode, registration/work agent is started as a single deployment. In SingletonHosted mode, agent is started as a single deployment in hosted mode. Note: Do not modify the Mode field once it's applied.",
+								MarkdownDescription: "Mode can be Default, Hosted, Singleton or SingletonHosted. It is Default mode if not specified In Default mode, all klusterlet related resources are deployed on the managed cluster. In Hosted mode, only crd and configurations are installed on the spoke/managed cluster. Controllers run in another cluster (defined as management-cluster) and connect to the mangaged cluster with the kubeconfig in secret of 'external-managed-kubeconfig'(a kubeconfig of managed-cluster with cluster-admin permission). In Singleton mode, registration/work agent is started as a single deployment. In SingletonHosted mode, agent is started as a single deployment in hosted mode. Note: Do not modify the Mode field once it's applied.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -207,13 +207,13 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 					},
 
 					"external_server_urls": schema.ListNestedAttribute{
-						Description:         "ExternalServerURLs represents a list of apiserver urls and ca bundles that is accessible externallyIf it is set empty, managed cluster has no externally accessible url that hub cluster can visit.",
-						MarkdownDescription: "ExternalServerURLs represents a list of apiserver urls and ca bundles that is accessible externallyIf it is set empty, managed cluster has no externally accessible url that hub cluster can visit.",
+						Description:         "ExternalServerURLs represents a list of apiserver urls and ca bundles that is accessible externally If it is set empty, managed cluster has no externally accessible url that hub cluster can visit.",
+						MarkdownDescription: "ExternalServerURLs represents a list of apiserver urls and ca bundles that is accessible externally If it is set empty, managed cluster has no externally accessible url that hub cluster can visit.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"ca_bundle": schema.StringAttribute{
-									Description:         "CABundle is the ca bundle to connect to apiserver of the managed cluster.System certs are used if it is not set.",
-									MarkdownDescription: "CABundle is the ca bundle to connect to apiserver of the managed cluster.System certs are used if it is not set.",
+									Description:         "CABundle is the ca bundle to connect to apiserver of the managed cluster. System certs are used if it is not set.",
+									MarkdownDescription: "CABundle is the ca bundle to connect to apiserver of the managed cluster. System certs are used if it is not set.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -237,8 +237,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 					},
 
 					"hub_api_server_host_alias": schema.SingleNestedAttribute{
-						Description:         "HubApiServerHostAlias contains the host alias for hub api server.registration-agent and work-agent will use it to communicate with hub api server.",
-						MarkdownDescription: "HubApiServerHostAlias contains the host alias for hub api server.registration-agent and work-agent will use it to communicate with hub api server.",
+						Description:         "HubApiServerHostAlias contains the host alias for hub api server. registration-agent and work-agent will use it to communicate with hub api server.",
+						MarkdownDescription: "HubApiServerHostAlias contains the host alias for hub api server. registration-agent and work-agent will use it to communicate with hub api server.",
 						Attributes: map[string]schema.Attribute{
 							"hostname": schema.StringAttribute{
 								Description:         "Hostname for the above IP address.",
@@ -268,16 +268,16 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 					},
 
 					"image_pull_spec": schema.StringAttribute{
-						Description:         "ImagePullSpec represents the desired image configuration of agent, it takes effect only whensingleton mode is set. quay.io/open-cluster-management.io/registration-operator:latest willbe used if unspecified",
-						MarkdownDescription: "ImagePullSpec represents the desired image configuration of agent, it takes effect only whensingleton mode is set. quay.io/open-cluster-management.io/registration-operator:latest willbe used if unspecified",
+						Description:         "ImagePullSpec represents the desired image configuration of agent, it takes effect only when singleton mode is set. quay.io/open-cluster-management.io/registration-operator:latest will be used if unspecified",
+						MarkdownDescription: "ImagePullSpec represents the desired image configuration of agent, it takes effect only when singleton mode is set. quay.io/open-cluster-management.io/registration-operator:latest will be used if unspecified",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"namespace": schema.StringAttribute{
-						Description:         "Namespace is the namespace to deploy the agent on the managed cluster.The namespace must have a prefix of 'open-cluster-management-', and if it is not set,the namespace of 'open-cluster-management-agent' is used to deploy agent.In addition, the add-ons are deployed to the namespace of '{Namespace}-addon'.In the Hosted mode, this namespace still exists on the managed cluster to containnecessary resources, like service accounts, roles and rolebindings, while the agentis deployed to the namespace with the same name as klusterlet on the management cluster.",
-						MarkdownDescription: "Namespace is the namespace to deploy the agent on the managed cluster.The namespace must have a prefix of 'open-cluster-management-', and if it is not set,the namespace of 'open-cluster-management-agent' is used to deploy agent.In addition, the add-ons are deployed to the namespace of '{Namespace}-addon'.In the Hosted mode, this namespace still exists on the managed cluster to containnecessary resources, like service accounts, roles and rolebindings, while the agentis deployed to the namespace with the same name as klusterlet on the management cluster.",
+						Description:         "Namespace is the namespace to deploy the agent on the managed cluster. The namespace must have a prefix of 'open-cluster-management-', and if it is not set, the namespace of 'open-cluster-management-agent' is used to deploy agent. In addition, the add-ons are deployed to the namespace of '{Namespace}-addon'. In the Hosted mode, this namespace still exists on the managed cluster to contain necessary resources, like service accounts, roles and rolebindings, while the agent is deployed to the namespace with the same name as klusterlet on the management cluster.",
+						MarkdownDescription: "Namespace is the namespace to deploy the agent on the managed cluster. The namespace must have a prefix of 'open-cluster-management-', and if it is not set, the namespace of 'open-cluster-management-agent' is used to deploy agent. In addition, the add-ons are deployed to the namespace of '{Namespace}-addon'. In the Hosted mode, this namespace still exists on the managed cluster to contain necessary resources, like service accounts, roles and rolebindings, while the agent is deployed to the namespace with the same name as klusterlet on the management cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -301,45 +301,45 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 							},
 
 							"tolerations": schema.ListNestedAttribute{
-								Description:         "Tolerations are attached by pods to tolerate any taint that matchesthe triple <key,value,effect> using the matching operator <operator>.The default is an empty list.",
-								MarkdownDescription: "Tolerations are attached by pods to tolerate any taint that matchesthe triple <key,value,effect> using the matching operator <operator>.The default is an empty list.",
+								Description:         "Tolerations are attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
+								MarkdownDescription: "Tolerations are attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"effect": schema.StringAttribute{
-											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"key": schema.StringAttribute{
-											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
-											MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+											Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+											MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"toleration_seconds": schema.Int64Attribute{
-											Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
-											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+											Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
-											MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -357,8 +357,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 					},
 
 					"priority_class_name": schema.StringAttribute{
-						Description:         "PriorityClassName is the name of the PriorityClass that will be used by thedeployed klusterlet agent. It will be ignored when the PriorityClass/v1 APIis not available on the managed cluster.",
-						MarkdownDescription: "PriorityClassName is the name of the PriorityClass that will be used by thedeployed klusterlet agent. It will be ignored when the PriorityClass/v1 APIis not available on the managed cluster.",
+						Description:         "PriorityClassName is the name of the PriorityClass that will be used by the deployed klusterlet agent. It will be ignored when the PriorityClass/v1 API is not available on the managed cluster.",
+						MarkdownDescription: "PriorityClassName is the name of the PriorityClass that will be used by the deployed klusterlet agent. It will be ignored when the PriorityClass/v1 API is not available on the managed cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -369,16 +369,16 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 						MarkdownDescription: "RegistrationConfiguration contains the configuration of registration",
 						Attributes: map[string]schema.Attribute{
 							"bootstrap_kube_configs": schema.SingleNestedAttribute{
-								Description:         "BootstrapKubeConfigs defines the ordered list of bootstrap kubeconfigs. The order decides which bootstrap kubeconfig to use first when rebootstrap.When the agent loses the connection to the current hub over HubConnectionTimeoutSeconds, or the managedcluster CRis set 'hubAcceptsClient=false' on the hub, the controller marks the related bootstrap kubeconfig as 'failed'.A failed bootstrapkubeconfig won't be used for the duration specified by SkipFailedBootstrapKubeConfigSeconds.But if the user updates the content of a failed bootstrapkubeconfig, the 'failed' mark will be cleared.",
-								MarkdownDescription: "BootstrapKubeConfigs defines the ordered list of bootstrap kubeconfigs. The order decides which bootstrap kubeconfig to use first when rebootstrap.When the agent loses the connection to the current hub over HubConnectionTimeoutSeconds, or the managedcluster CRis set 'hubAcceptsClient=false' on the hub, the controller marks the related bootstrap kubeconfig as 'failed'.A failed bootstrapkubeconfig won't be used for the duration specified by SkipFailedBootstrapKubeConfigSeconds.But if the user updates the content of a failed bootstrapkubeconfig, the 'failed' mark will be cleared.",
+								Description:         "BootstrapKubeConfigs defines the ordered list of bootstrap kubeconfigs. The order decides which bootstrap kubeconfig to use first when rebootstrap. When the agent loses the connection to the current hub over HubConnectionTimeoutSeconds, or the managedcluster CR is set 'hubAcceptsClient=false' on the hub, the controller marks the related bootstrap kubeconfig as 'failed'. A failed bootstrapkubeconfig won't be used for the duration specified by SkipFailedBootstrapKubeConfigSeconds. But if the user updates the content of a failed bootstrapkubeconfig, the 'failed' mark will be cleared.",
+								MarkdownDescription: "BootstrapKubeConfigs defines the ordered list of bootstrap kubeconfigs. The order decides which bootstrap kubeconfig to use first when rebootstrap. When the agent loses the connection to the current hub over HubConnectionTimeoutSeconds, or the managedcluster CR is set 'hubAcceptsClient=false' on the hub, the controller marks the related bootstrap kubeconfig as 'failed'. A failed bootstrapkubeconfig won't be used for the duration specified by SkipFailedBootstrapKubeConfigSeconds. But if the user updates the content of a failed bootstrapkubeconfig, the 'failed' mark will be cleared.",
 								Attributes: map[string]schema.Attribute{
 									"local_secrets_config": schema.SingleNestedAttribute{
-										Description:         "LocalSecretsConfig include a list of secrets that contains the kubeconfigs for ordered bootstrap kubeconifigs.The secrets must be in the same namespace where the agent controller runs.",
-										MarkdownDescription: "LocalSecretsConfig include a list of secrets that contains the kubeconfigs for ordered bootstrap kubeconifigs.The secrets must be in the same namespace where the agent controller runs.",
+										Description:         "LocalSecretsConfig include a list of secrets that contains the kubeconfigs for ordered bootstrap kubeconifigs. The secrets must be in the same namespace where the agent controller runs.",
+										MarkdownDescription: "LocalSecretsConfig include a list of secrets that contains the kubeconfigs for ordered bootstrap kubeconifigs. The secrets must be in the same namespace where the agent controller runs.",
 										Attributes: map[string]schema.Attribute{
 											"hub_connection_timeout_seconds": schema.Int64Attribute{
-												Description:         "HubConnectionTimeoutSeconds is used to set the timeout of connecting to the hub cluster.When agent loses the connection to the hub over the timeout seconds, the agent do a rebootstrap.By default is 10 mins.",
-												MarkdownDescription: "HubConnectionTimeoutSeconds is used to set the timeout of connecting to the hub cluster.When agent loses the connection to the hub over the timeout seconds, the agent do a rebootstrap.By default is 10 mins.",
+												Description:         "HubConnectionTimeoutSeconds is used to set the timeout of connecting to the hub cluster. When agent loses the connection to the hub over the timeout seconds, the agent do a rebootstrap. By default is 10 mins.",
+												MarkdownDescription: "HubConnectionTimeoutSeconds is used to set the timeout of connecting to the hub cluster. When agent loses the connection to the hub over the timeout seconds, the agent do a rebootstrap. By default is 10 mins.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -412,8 +412,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 									},
 
 									"type": schema.StringAttribute{
-										Description:         "Type specifies the type of priority bootstrap kubeconfigs.By default, it is set to None, representing no priority bootstrap kubeconfigs are set.",
-										MarkdownDescription: "Type specifies the type of priority bootstrap kubeconfigs.By default, it is set to None, representing no priority bootstrap kubeconfigs are set.",
+										Description:         "Type specifies the type of priority bootstrap kubeconfigs. By default, it is set to None, representing no priority bootstrap kubeconfigs are set.",
+										MarkdownDescription: "Type specifies the type of priority bootstrap kubeconfigs. By default, it is set to None, representing no priority bootstrap kubeconfigs are set.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -428,16 +428,16 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 							},
 
 							"client_cert_expiration_seconds": schema.Int64Attribute{
-								Description:         "clientCertExpirationSeconds represents the seconds of a client certificate to expire. If it is not set or 0, the defaultduration seconds will be set by the hub cluster. If the value is larger than the max signing duration seconds set onthe hub cluster, the max signing duration seconds will be set.",
-								MarkdownDescription: "clientCertExpirationSeconds represents the seconds of a client certificate to expire. If it is not set or 0, the defaultduration seconds will be set by the hub cluster. If the value is larger than the max signing duration seconds set onthe hub cluster, the max signing duration seconds will be set.",
+								Description:         "clientCertExpirationSeconds represents the seconds of a client certificate to expire. If it is not set or 0, the default duration seconds will be set by the hub cluster. If the value is larger than the max signing duration seconds set on the hub cluster, the max signing duration seconds will be set.",
+								MarkdownDescription: "clientCertExpirationSeconds represents the seconds of a client certificate to expire. If it is not set or 0, the default duration seconds will be set by the hub cluster. If the value is larger than the max signing duration seconds set on the hub cluster, the max signing duration seconds will be set.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"cluster_annotations": schema.MapAttribute{
-								Description:         "ClusterAnnotations is annotations with the reserve prefix 'agent.open-cluster-management.io' set onManagedCluster when creating only, other actors can update it afterwards.",
-								MarkdownDescription: "ClusterAnnotations is annotations with the reserve prefix 'agent.open-cluster-management.io' set onManagedCluster when creating only, other actors can update it afterwards.",
+								Description:         "ClusterAnnotations is annotations with the reserve prefix 'agent.open-cluster-management.io' set on ManagedCluster when creating only, other actors can update it afterwards.",
+								MarkdownDescription: "ClusterAnnotations is annotations with the reserve prefix 'agent.open-cluster-management.io' set on ManagedCluster when creating only, other actors can update it afterwards.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -445,8 +445,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 							},
 
 							"feature_gates": schema.ListNestedAttribute{
-								Description:         "FeatureGates represents the list of feature gates for registrationIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
-								MarkdownDescription: "FeatureGates represents the list of feature gates for registrationIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
+								Description:         "FeatureGates represents the list of feature gates for registration If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
+								MarkdownDescription: "FeatureGates represents the list of feature gates for registration If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"feature": schema.StringAttribute{
@@ -458,8 +458,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 										},
 
 										"mode": schema.StringAttribute{
-											Description:         "Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
-											MarkdownDescription: "Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
+											Description:         "Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
+											MarkdownDescription: "Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -475,16 +475,16 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 							},
 
 							"kube_api_burst": schema.Int64Attribute{
-								Description:         "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 100",
-								MarkdownDescription: "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 100",
+								Description:         "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100",
+								MarkdownDescription: "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kube_apiqps": schema.Int64Attribute{
-								Description:         "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 50",
-								MarkdownDescription: "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 50",
+								Description:         "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50",
+								MarkdownDescription: "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -496,29 +496,29 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 					},
 
 					"registration_image_pull_spec": schema.StringAttribute{
-						Description:         "RegistrationImagePullSpec represents the desired image configuration of registration agent.quay.io/open-cluster-management.io/registration:latest will be used if unspecified.",
-						MarkdownDescription: "RegistrationImagePullSpec represents the desired image configuration of registration agent.quay.io/open-cluster-management.io/registration:latest will be used if unspecified.",
+						Description:         "RegistrationImagePullSpec represents the desired image configuration of registration agent. quay.io/open-cluster-management.io/registration:latest will be used if unspecified.",
+						MarkdownDescription: "RegistrationImagePullSpec represents the desired image configuration of registration agent. quay.io/open-cluster-management.io/registration:latest will be used if unspecified.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"resource_requirement": schema.SingleNestedAttribute{
-						Description:         "ResourceRequirement specify QoS classes of deployments managed by klusterlet.It applies to all the containers in the deployments.",
-						MarkdownDescription: "ResourceRequirement specify QoS classes of deployments managed by klusterlet.It applies to all the containers in the deployments.",
+						Description:         "ResourceRequirement specify QoS classes of deployments managed by klusterlet. It applies to all the containers in the deployments.",
+						MarkdownDescription: "ResourceRequirement specify QoS classes of deployments managed by klusterlet. It applies to all the containers in the deployments.",
 						Attributes: map[string]schema.Attribute{
 							"resource_requirements": schema.SingleNestedAttribute{
 								Description:         "ResourceRequirements defines resource requests and limits when Type is ResourceQosClassResourceRequirement",
 								MarkdownDescription: "ResourceRequirements defines resource requests and limits when Type is ResourceQosClassResourceRequirement",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -531,8 +531,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -540,8 +540,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -574,8 +574,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 						MarkdownDescription: "WorkConfiguration contains the configuration of work",
 						Attributes: map[string]schema.Attribute{
 							"applied_manifest_work_eviction_grace_period": schema.StringAttribute{
-								Description:         "AppliedManifestWorkEvictionGracePeriod is the eviction grace period the work agent will wait beforeevicting the AppliedManifestWorks, whose corresponding ManifestWorks are missing on the hub cluster, fromthe managed cluster. If not present, the default value of the work agent will be used.",
-								MarkdownDescription: "AppliedManifestWorkEvictionGracePeriod is the eviction grace period the work agent will wait beforeevicting the AppliedManifestWorks, whose corresponding ManifestWorks are missing on the hub cluster, fromthe managed cluster. If not present, the default value of the work agent will be used.",
+								Description:         "AppliedManifestWorkEvictionGracePeriod is the eviction grace period the work agent will wait before evicting the AppliedManifestWorks, whose corresponding ManifestWorks are missing on the hub cluster, from the managed cluster. If not present, the default value of the work agent will be used.",
+								MarkdownDescription: "AppliedManifestWorkEvictionGracePeriod is the eviction grace period the work agent will wait before evicting the AppliedManifestWorks, whose corresponding ManifestWorks are missing on the hub cluster, from the managed cluster. If not present, the default value of the work agent will be used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -585,8 +585,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 							},
 
 							"feature_gates": schema.ListNestedAttribute{
-								Description:         "FeatureGates represents the list of feature gates for workIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
-								MarkdownDescription: "FeatureGates represents the list of feature gates for workIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
+								Description:         "FeatureGates represents the list of feature gates for work If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
+								MarkdownDescription: "FeatureGates represents the list of feature gates for work If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"feature": schema.StringAttribute{
@@ -598,8 +598,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 										},
 
 										"mode": schema.StringAttribute{
-											Description:         "Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
-											MarkdownDescription: "Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
+											Description:         "Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
+											MarkdownDescription: "Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -615,16 +615,16 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 							},
 
 							"kube_api_burst": schema.Int64Attribute{
-								Description:         "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 100",
-								MarkdownDescription: "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 100",
+								Description:         "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100",
+								MarkdownDescription: "KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kube_apiqps": schema.Int64Attribute{
-								Description:         "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 50",
-								MarkdownDescription: "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 50",
+								Description:         "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50",
+								MarkdownDescription: "KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -636,8 +636,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.C
 					},
 
 					"work_image_pull_spec": schema.StringAttribute{
-						Description:         "WorkImagePullSpec represents the desired image configuration of work agent.quay.io/open-cluster-management.io/work:latest will be used if unspecified.",
-						MarkdownDescription: "WorkImagePullSpec represents the desired image configuration of work agent.quay.io/open-cluster-management.io/work:latest will be used if unspecified.",
+						Description:         "WorkImagePullSpec represents the desired image configuration of work agent. quay.io/open-cluster-management.io/work:latest will be used if unspecified.",
+						MarkdownDescription: "WorkImagePullSpec represents the desired image configuration of work agent. quay.io/open-cluster-management.io/work:latest will be used if unspecified.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

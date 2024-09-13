@@ -64,7 +64,7 @@ Optional:
 
 Optional:
 
-- `mode` (String) Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT
+- `mode` (String) Defines the mTLS mode used for peer authentication. Valid Options: DISABLE, PERMISSIVE, STRICT
 
 
 <a id="nestedatt--spec--port_level_mtls"></a>
@@ -72,7 +72,7 @@ Optional:
 
 Optional:
 
-- `mode` (String) Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT
+- `mode` (String) Defines the mTLS mode used for peer authentication. Valid Options: DISABLE, PERMISSIVE, STRICT
 
 
 <a id="nestedatt--spec--selector"></a>

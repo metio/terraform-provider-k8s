@@ -27,9 +27,6 @@ data "k8s_cilium_io_cilium_load_balancer_ip_pool_v2alpha1_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-
-### Optional
-
 - `spec` (Attributes) Spec is a human readable description for a BGP load balancer ip pool. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only

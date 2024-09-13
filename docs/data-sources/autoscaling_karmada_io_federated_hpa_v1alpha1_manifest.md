@@ -3,12 +3,12 @@
 page_title: "k8s_autoscaling_karmada_io_federated_hpa_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "autoscaling.karmada.io"
 description: |-
-  FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters.When the system load increases, it will query the metrics from multiple clusters and scales up the replicas.When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas.After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.
+  FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters. When the system load increases, it will query the metrics from multiple clusters and scales up the replicas. When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas. After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.
 ---
 
 # k8s_autoscaling_karmada_io_federated_hpa_v1alpha1_manifest (Data Source)
 
-FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters.When the system load increases, it will query the metrics from multiple clusters and scales up the replicas.When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas.After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.
+FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters. When the system load increases, it will query the metrics from multiple clusters and scales up the replicas. When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas. After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.
 
 ## Example Usage
 
@@ -60,14 +60,14 @@ Optional:
 
 Required:
 
-- `max_replicas` (Number) MaxReplicas is the upper limit for the number of replicas to which theautoscaler can scale up.It cannot be less that minReplicas.
-- `scale_target_ref` (Attributes) ScaleTargetRef points to the target resource to scale, and is used tothe pods for which metrics should be collected, as well as to actuallychange the replica count. (see [below for nested schema](#nestedatt--spec--scale_target_ref))
+- `max_replicas` (Number) MaxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas.
+- `scale_target_ref` (Attributes) ScaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count. (see [below for nested schema](#nestedatt--spec--scale_target_ref))
 
 Optional:
 
-- `behavior` (Attributes) Behavior configures the scaling behavior of the targetin both Up and Down directions (scaleUp and scaleDown fields respectively).If not set, the default HPAScalingRules for scale up and scale down are used. (see [below for nested schema](#nestedatt--spec--behavior))
-- `metrics` (Attributes List) Metrics contains the specifications for which to use to calculate thedesired replica count (the maximum replica count across all metrics willbe used). The desired replica count is calculated multiplying theratio between the target value and the current value by the currentnumber of pods. Ergo, metrics used must decrease as the pod count isincreased, and vice-versa. See the individual metric source types formore information about how each type of metric must respond.If not set, the default metric will be set to 80% average CPU utilization. (see [below for nested schema](#nestedatt--spec--metrics))
-- `min_replicas` (Number) MinReplicas is the lower limit for the number of replicas to which theautoscaler can scale down.It defaults to 1 pod.
+- `behavior` (Attributes) Behavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively). If not set, the default HPAScalingRules for scale up and scale down are used. (see [below for nested schema](#nestedatt--spec--behavior))
+- `metrics` (Attributes List) Metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used). The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods. Ergo, metrics used must decrease as the pod count is increased, and vice-versa. See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization. (see [below for nested schema](#nestedatt--spec--metrics))
+- `min_replicas` (Number) MinReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod.
 
 <a id="nestedatt--spec--scale_target_ref"></a>
 ### Nested Schema for `spec.scale_target_ref`
@@ -87,26 +87,26 @@ Optional:
 
 Optional:
 
-- `scale_down` (Attributes) scaleDown is scaling policy for scaling Down.If not set, the default value is to allow to scale down to minReplicas pods, with a300 second stabilization window (i.e., the highest recommendation forthe last 300sec is used). (see [below for nested schema](#nestedatt--spec--behavior--scale_down))
-- `scale_up` (Attributes) scaleUp is scaling policy for scaling Up.If not set, the default value is the higher of:  * increase no more than 4 pods per 60 seconds  * double the number of pods per 60 secondsNo stabilization is used. (see [below for nested schema](#nestedatt--spec--behavior--scale_up))
+- `scale_down` (Attributes) scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used). (see [below for nested schema](#nestedatt--spec--behavior--scale_down))
+- `scale_up` (Attributes) scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of: * increase no more than 4 pods per 60 seconds * double the number of pods per 60 seconds No stabilization is used. (see [below for nested schema](#nestedatt--spec--behavior--scale_up))
 
 <a id="nestedatt--spec--behavior--scale_down"></a>
 ### Nested Schema for `spec.behavior.scale_down`
 
 Optional:
 
-- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--behavior--scale_down--policies))
-- `select_policy` (String) selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.
-- `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).
+- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--behavior--scale_down--policies))
+- `select_policy` (String) selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.
+- `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
 <a id="nestedatt--spec--behavior--scale_down--policies"></a>
 ### Nested Schema for `spec.behavior.scale_down.policies`
 
 Required:
 
-- `period_seconds` (Number) periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
+- `period_seconds` (Number) periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
 - `type` (String) type is used to specify the scaling policy.
-- `value` (Number) value contains the amount of change which is permitted by the policy.It must be greater than zero
+- `value` (Number) value contains the amount of change which is permitted by the policy. It must be greater than zero
 
 
 
@@ -115,18 +115,18 @@ Required:
 
 Optional:
 
-- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--behavior--scale_up--policies))
-- `select_policy` (String) selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.
-- `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).
+- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--behavior--scale_up--policies))
+- `select_policy` (String) selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.
+- `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
 <a id="nestedatt--spec--behavior--scale_up--policies"></a>
 ### Nested Schema for `spec.behavior.scale_up.policies`
 
 Required:
 
-- `period_seconds` (Number) periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
+- `period_seconds` (Number) periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
 - `type` (String) type is used to specify the scaling policy.
-- `value` (Number) value contains the amount of change which is permitted by the policy.It must be greater than zero
+- `value` (Number) value contains the amount of change which is permitted by the policy. It must be greater than zero
 
 
 
@@ -136,15 +136,15 @@ Required:
 
 Required:
 
-- `type` (String) type is the type of metric source.  It should be one of 'ContainerResource', 'External','Object', 'Pods' or 'Resource', each mapping to a matching field in the object.Note: 'ContainerResource' type is available on when the feature-gateHPAContainerMetrics is enabled
+- `type` (String) type is the type of metric source. It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled
 
 Optional:
 
-- `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified inrequests and limits) known to Kubernetes describing a single container ineach pod of the current scale target (e.g. CPU or memory). Such metrics arebuilt in to Kubernetes, and have special scaling options on top of thoseavailable to normal per-pod metrics using the 'pods' source.This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--metrics--container_resource))
-- `external` (Attributes) external refers to a global metric that is not associatedwith any Kubernetes object. It allows autoscaling based on informationcoming from components running outside of cluster(for example length of queue in cloud messaging service, orQPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--metrics--external))
-- `object` (Attributes) object refers to a metric describing a single kubernetes object(for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--metrics--object))
-- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target(for example, transactions-processed-per-second).  The values will beaveraged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--metrics--pods))
-- `resource` (Attributes) resource refers to a resource metric (such as those specified inrequests and limits) known to Kubernetes describing each pod in thecurrent scale target (e.g. CPU or memory). Such metrics are built in toKubernetes, and have special scaling options on top of those availableto normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--metrics--resource))
+- `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--metrics--container_resource))
+- `external` (Attributes) external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--metrics--external))
+- `object` (Attributes) object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--metrics--object))
+- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--metrics--pods))
+- `resource` (Attributes) resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--metrics--resource))
 
 <a id="nestedatt--spec--metrics--container_resource"></a>
 ### Nested Schema for `spec.metrics.container_resource`
@@ -164,8 +164,8 @@ Required:
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of themetric across all relevant pods (as a quantity)
+- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
+- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
 - `value` (String) value is the target value of the metric (as a quantity).
 
 
@@ -187,7 +187,7 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metricWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--metrics--external--metric--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--metrics--external--metric--selector))
 
 <a id="nestedatt--spec--metrics--external--metric--selector"></a>
 ### Nested Schema for `spec.metrics.external.metric.selector`
@@ -195,7 +195,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--external--metric--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--metrics--external--metric--selector--match_expressions"></a>
 ### Nested Schema for `spec.metrics.external.metric.selector.match_expressions`
@@ -203,11 +203,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -221,8 +221,8 @@ Required:
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of themetric across all relevant pods (as a quantity)
+- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
+- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
 - `value` (String) value is the target value of the metric (as a quantity).
 
 
@@ -258,7 +258,7 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metricWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--metrics--object--metric--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--metrics--object--metric--selector))
 
 <a id="nestedatt--spec--metrics--object--metric--selector"></a>
 ### Nested Schema for `spec.metrics.object.metric.selector`
@@ -266,7 +266,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--object--metric--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--metrics--object--metric--selector--match_expressions"></a>
 ### Nested Schema for `spec.metrics.object.metric.selector.match_expressions`
@@ -274,11 +274,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -292,8 +292,8 @@ Required:
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of themetric across all relevant pods (as a quantity)
+- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
+- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
 - `value` (String) value is the target value of the metric (as a quantity).
 
 
@@ -315,7 +315,7 @@ Required:
 
 Optional:
 
-- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metricWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--metrics--pods--metric--selector))
+- `selector` (Attributes) selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. (see [below for nested schema](#nestedatt--spec--metrics--pods--metric--selector))
 
 <a id="nestedatt--spec--metrics--pods--metric--selector"></a>
 ### Nested Schema for `spec.metrics.pods.metric.selector`
@@ -323,7 +323,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--metrics--pods--metric--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--metrics--pods--metric--selector--match_expressions"></a>
 ### Nested Schema for `spec.metrics.pods.metric.selector.match_expressions`
@@ -331,11 +331,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -349,8 +349,8 @@ Required:
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of themetric across all relevant pods (as a quantity)
+- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
+- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
 - `value` (String) value is the target value of the metric (as a quantity).
 
 
@@ -372,6 +372,6 @@ Required:
 
 Optional:
 
-- `average_utilization` (Number) averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type
-- `average_value` (String) averageValue is the target value of the average of themetric across all relevant pods (as a quantity)
+- `average_utilization` (Number) averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
+- `average_value` (String) averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
 - `value` (String) value is the target value of the metric (as a quantity).

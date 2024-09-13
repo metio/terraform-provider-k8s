@@ -126,8 +126,8 @@ func (r *CephRookIoCephBlockPoolRadosNamespaceV1Manifest) Schema(_ context.Conte
 				MarkdownDescription: "Spec represents the specification of a Ceph BlockPool Rados Namespace",
 				Attributes: map[string]schema.Attribute{
 					"block_pool_name": schema.StringAttribute{
-						Description:         "BlockPoolName is the name of Ceph BlockPool. Typically it's the name ofthe CephBlockPool CR.",
-						MarkdownDescription: "BlockPoolName is the name of Ceph BlockPool. Typically it's the name ofthe CephBlockPool CR.",
+						Description:         "BlockPoolName is the name of Ceph BlockPool. Typically it's the name of the CephBlockPool CR.",
+						MarkdownDescription: "BlockPoolName is the name of Ceph BlockPool. Typically it's the name of the CephBlockPool CR.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

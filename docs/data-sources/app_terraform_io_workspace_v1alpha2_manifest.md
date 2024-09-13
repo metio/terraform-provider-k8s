@@ -62,29 +62,29 @@ Optional:
 Required:
 
 - `name` (String) Workspace name.
-- `organization` (String) Organization name where the Workspace will be created.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations
+- `organization` (String) Organization name where the Workspace will be created. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations
 - `token` (Attributes) API Token to be used for API calls. (see [below for nested schema](#nestedatt--spec--token))
 
 Optional:
 
-- `agent_pool` (Attributes) HCP Terraform Agents allow HCP Terraform to communicate with isolated, private, or on-premises infrastructure.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/agents (see [below for nested schema](#nestedatt--spec--agent_pool))
-- `allow_destroy_plan` (Boolean) Allows a destroy plan to be created and applied.Default: 'true'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#destruction-and-deletion
-- `apply_method` (String) Define either change will be applied automatically(auto) or require an operator to confirm(manual).Must be one of the following values: 'auto', 'manual'.Default: 'manual'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#auto-apply-and-manual-apply
+- `agent_pool` (Attributes) HCP Terraform Agents allow HCP Terraform to communicate with isolated, private, or on-premises infrastructure. More information: - https://developer.hashicorp.com/terraform/cloud-docs/agents (see [below for nested schema](#nestedatt--spec--agent_pool))
+- `allow_destroy_plan` (Boolean) Allows a destroy plan to be created and applied. Default: 'true'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#destruction-and-deletion
+- `apply_method` (String) Define either change will be applied automatically(auto) or require an operator to confirm(manual). Must be one of the following values: 'auto', 'manual'. Default: 'manual'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#auto-apply-and-manual-apply
 - `description` (String) Workspace description.
-- `environment_variables` (Attributes List) Terraform Environment variables for all plans and applies in this workspace.Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#environment-variables (see [below for nested schema](#nestedatt--spec--environment_variables))
-- `execution_mode` (String) Define where the Terraform code will be executed.Must be one of the following values: 'agent', 'local', 'remote'.Default: 'remote'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#execution-mode
-- `notifications` (Attributes List) Notifications allow you to send messages to other applications based on run and workspace events.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/notifications (see [below for nested schema](#nestedatt--spec--notifications))
-- `project` (Attributes) Projects let you organize your workspaces into groups.Default: default organization project.More information:  - https://developer.hashicorp.com/terraform/tutorials/cloud/projects (see [below for nested schema](#nestedatt--spec--project))
-- `remote_state_sharing` (Attributes) Remote state access between workspaces.By default, new workspaces in HCP Terraform do not allow other workspaces to access their state.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/state#accessing-state-from-other-workspaces (see [below for nested schema](#nestedatt--spec--remote_state_sharing))
-- `run_tasks` (Attributes List) Run tasks allow HCP Terraform to interact with external systems at specific points in the HCP Terraform run lifecycle.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks (see [below for nested schema](#nestedatt--spec--run_tasks))
-- `run_triggers` (Attributes List) Run triggers allow you to connect this workspace to one or more source workspaces.These connections allow runs to queue automatically in this workspace on successful apply of runs in any of the source workspaces.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-triggers (see [below for nested schema](#nestedatt--spec--run_triggers))
-- `ssh_key` (Attributes) SSH key used to clone Terraform modules.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/ssh-keys (see [below for nested schema](#nestedatt--spec--ssh_key))
-- `tags` (List of String) Workspace tags are used to help identify and group together workspaces.Tags must be one or more characters; can include letters, numbers, colons, hyphens, and underscores; and must begin and end with a letter or number.
-- `team_access` (Attributes List) HCP Terraform workspaces can only be accessed by users with the correct permissions.You can manage permissions for a workspace on a per-team basis.When a workspace is created, only the owners team and teams with the 'manage workspaces' permission can access it,with full admin permissions. These teams' access can't be removed from a workspace.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/access (see [below for nested schema](#nestedatt--spec--team_access))
-- `terraform_variables` (Attributes List) Terraform variables for all plans and applies in this workspace.Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#terraform-variables (see [below for nested schema](#nestedatt--spec--terraform_variables))
-- `terraform_version` (String) The version of Terraform to use for this workspace.If not specified, the latest available version will be used.Must match pattern: '^d{1}.d{1,2}.d{1,2}$'More information:  - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-version
-- `version_control` (Attributes) Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow.Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider.More information:  - https://www.terraform.io/cloud-docs/run/ui  - https://www.terraform.io/cloud-docs/vcs (see [below for nested schema](#nestedatt--spec--version_control))
-- `working_directory` (String) The directory where Terraform will execute, specified as a relative path from the root of the configuration directory.More information:  - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-working-directory
+- `environment_variables` (Attributes List) Terraform Environment variables for all plans and applies in this workspace. Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#environment-variables (see [below for nested schema](#nestedatt--spec--environment_variables))
+- `execution_mode` (String) Define where the Terraform code will be executed. Must be one of the following values: 'agent', 'local', 'remote'. Default: 'remote'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#execution-mode
+- `notifications` (Attributes List) Notifications allow you to send messages to other applications based on run and workspace events. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/notifications (see [below for nested schema](#nestedatt--spec--notifications))
+- `project` (Attributes) Projects let you organize your workspaces into groups. Default: default organization project. More information: - https://developer.hashicorp.com/terraform/tutorials/cloud/projects (see [below for nested schema](#nestedatt--spec--project))
+- `remote_state_sharing` (Attributes) Remote state access between workspaces. By default, new workspaces in HCP Terraform do not allow other workspaces to access their state. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/state#accessing-state-from-other-workspaces (see [below for nested schema](#nestedatt--spec--remote_state_sharing))
+- `run_tasks` (Attributes List) Run tasks allow HCP Terraform to interact with external systems at specific points in the HCP Terraform run lifecycle. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks (see [below for nested schema](#nestedatt--spec--run_tasks))
+- `run_triggers` (Attributes List) Run triggers allow you to connect this workspace to one or more source workspaces. These connections allow runs to queue automatically in this workspace on successful apply of runs in any of the source workspaces. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-triggers (see [below for nested schema](#nestedatt--spec--run_triggers))
+- `ssh_key` (Attributes) SSH key used to clone Terraform modules. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/ssh-keys (see [below for nested schema](#nestedatt--spec--ssh_key))
+- `tags` (List of String) Workspace tags are used to help identify and group together workspaces. Tags must be one or more characters; can include letters, numbers, colons, hyphens, and underscores; and must begin and end with a letter or number.
+- `team_access` (Attributes List) HCP Terraform workspaces can only be accessed by users with the correct permissions. You can manage permissions for a workspace on a per-team basis. When a workspace is created, only the owners team and teams with the 'manage workspaces' permission can access it, with full admin permissions. These teams' access can't be removed from a workspace. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/access (see [below for nested schema](#nestedatt--spec--team_access))
+- `terraform_variables` (Attributes List) Terraform variables for all plans and applies in this workspace. Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#terraform-variables (see [below for nested schema](#nestedatt--spec--terraform_variables))
+- `terraform_version` (String) The version of Terraform to use for this workspace. If not specified, the latest available version will be used. Must match pattern: '^d{1}.d{1,2}.d{1,2}$' More information: - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-version
+- `version_control` (Attributes) Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider. More information: - https://www.terraform.io/cloud-docs/run/ui - https://www.terraform.io/cloud-docs/vcs (see [below for nested schema](#nestedatt--spec--version_control))
+- `working_directory` (String) The directory where Terraform will execute, specified as a relative path from the root of the configuration directory. More information: - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-working-directory
 
 <a id="nestedatt--spec--token"></a>
 ### Nested Schema for `spec.token`
@@ -98,11 +98,11 @@ Required:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -112,7 +112,7 @@ Optional:
 
 Optional:
 
-- `id` (String) Agent Pool ID.Must match pattern: '^apool-[a-zA-Z0-9]+$'
+- `id` (String) Agent Pool ID. Must match pattern: '^apool-[a-zA-Z0-9]+$'
 - `name` (String) Agent Pool name.
 
 
@@ -126,8 +126,8 @@ Required:
 Optional:
 
 - `description` (String) Description of the variable.
-- `hcl` (Boolean) Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime.Default: 'false'.
-- `sensitive` (Boolean) Sensitive variables are never shown in the UI or API.They may appear in Terraform logs if your configuration is designed to output them.Default: 'false'.
+- `hcl` (Boolean) Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime. Default: 'false'.
+- `sensitive` (Boolean) Sensitive variables are never shown in the UI or API. They may appear in Terraform logs if your configuration is designed to output them. Default: 'false'.
 - `value` (String) Value of the variable.
 - `value_from` (Attributes) Source for the variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--environment_variables--value_from))
 
@@ -148,7 +148,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -157,11 +157,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -173,16 +173,16 @@ Optional:
 Required:
 
 - `name` (String) Notification name.
-- `type` (String) The type of the notification.Must be one of the following values: 'email', 'generic', 'microsoft-teams', 'slack'.
+- `type` (String) The type of the notification. Must be one of the following values: 'email', 'generic', 'microsoft-teams', 'slack'.
 
 Optional:
 
-- `email_addresses` (List of String) The list of email addresses that will receive notification emails.It is only available for Terraform Enterprise users. It is not available in HCP Terraform.
+- `email_addresses` (List of String) The list of email addresses that will receive notification emails. It is only available for Terraform Enterprise users. It is not available in HCP Terraform.
 - `email_users` (List of String) The list of users belonging to the organization that will receive notification emails.
-- `enabled` (Boolean) Whether the notification configuration should be enabled or not.Default: 'true'.
+- `enabled` (Boolean) Whether the notification configuration should be enabled or not. Default: 'true'.
 - `token` (String) The token of the notification.
-- `triggers` (List of String) The list of run events that will trigger notifications.Trigger represents the different TFC notifications that can be sent as a run's progress transitions between different states.There are two categories of triggers:  - Health Events: 'assessment:check_failure', 'assessment:drifted', 'assessment:failed'.  - Run Events: 'run:applying', 'run:completed', 'run:created', 'run:errored', 'run:needs_attention', 'run:planning'.
-- `url` (String) The URL of the notification.Must match pattern: '^https?://.*'
+- `triggers` (List of String) The list of run events that will trigger notifications. Trigger represents the different TFC notifications that can be sent as a run's progress transitions between different states. There are two categories of triggers: - Health Events: 'assessment:check_failure', 'assessment:drifted', 'assessment:failed'. - Run Events: 'run:applying', 'run:completed', 'run:created', 'run:errored', 'run:needs_attention', 'run:planning'.
+- `url` (String) The URL of the notification. Must match pattern: '^https?://.*'
 
 
 <a id="nestedatt--spec--project"></a>
@@ -190,7 +190,7 @@ Optional:
 
 Optional:
 
-- `id` (String) Project ID.Must match pattern: '^prj-[a-zA-Z0-9]+$'
+- `id` (String) Project ID. Must match pattern: '^prj-[a-zA-Z0-9]+$'
 - `name` (String) Project name.
 
 
@@ -199,7 +199,7 @@ Optional:
 
 Optional:
 
-- `all_workspaces` (Boolean) Allow access to the state for all workspaces within the same organization.Default: 'false'.
+- `all_workspaces` (Boolean) Allow access to the state for all workspaces within the same organization. Default: 'false'.
 - `workspaces` (Attributes List) Allow access to the state for specific workspaces within the same organization. (see [below for nested schema](#nestedatt--spec--remote_state_sharing--workspaces))
 
 <a id="nestedatt--spec--remote_state_sharing--workspaces"></a>
@@ -207,7 +207,7 @@ Optional:
 
 Optional:
 
-- `id` (String) Consumer Workspace ID.Must match pattern: '^ws-[a-zA-Z0-9]+$'
+- `id` (String) Consumer Workspace ID. Must match pattern: '^ws-[a-zA-Z0-9]+$'
 - `name` (String) Consumer Workspace name.
 
 
@@ -217,10 +217,10 @@ Optional:
 
 Optional:
 
-- `enforcement_level` (String) Run Task Enforcement Level. Can be one of 'advisory' or 'mandatory'. Default: 'advisory'.Must be one of the following values: 'advisory', 'mandatory'Default: 'advisory'.
-- `id` (String) Run Task ID.Must match pattern: '^task-[a-zA-Z0-9]+$'
+- `enforcement_level` (String) Run Task Enforcement Level. Can be one of 'advisory' or 'mandatory'. Default: 'advisory'. Must be one of the following values: 'advisory', 'mandatory' Default: 'advisory'.
+- `id` (String) Run Task ID. Must match pattern: '^task-[a-zA-Z0-9]+$'
 - `name` (String) Run Task Name.
-- `stage` (String) Run Task Stage.Must be one of the following values: 'pre_apply', 'pre_plan', 'post_plan'.Default: 'post_plan'.
+- `stage` (String) Run Task Stage. Must be one of the following values: 'pre_apply', 'pre_plan', 'post_plan'. Default: 'post_plan'.
 
 
 <a id="nestedatt--spec--run_triggers"></a>
@@ -228,7 +228,7 @@ Optional:
 
 Optional:
 
-- `id` (String) Source Workspace ID.Must match pattern: '^ws-[a-zA-Z0-9]+$'
+- `id` (String) Source Workspace ID. Must match pattern: '^ws-[a-zA-Z0-9]+$'
 - `name` (String) Source Workspace Name.
 
 
@@ -237,7 +237,7 @@ Optional:
 
 Optional:
 
-- `id` (String) SSH key ID.Must match pattern: '^sshkey-[a-zA-Z0-9]+$'
+- `id` (String) SSH key ID. Must match pattern: '^sshkey-[a-zA-Z0-9]+$'
 - `name` (String) SSH key name.
 
 
@@ -246,19 +246,19 @@ Optional:
 
 Required:
 
-- `access` (String) There are two ways to choose which permissions a given team has on a workspace: fixed permission sets, and custom permissions.Must be one of the following values: 'admin', 'custom', 'plan', 'read', 'write'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#workspace-permissions
-- `team` (Attributes) Team to grant access.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/teams (see [below for nested schema](#nestedatt--spec--team_access--team))
+- `access` (String) There are two ways to choose which permissions a given team has on a workspace: fixed permission sets, and custom permissions. Must be one of the following values: 'admin', 'custom', 'plan', 'read', 'write'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#workspace-permissions
+- `team` (Attributes) Team to grant access. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/teams (see [below for nested schema](#nestedatt--spec--team_access--team))
 
 Optional:
 
-- `custom` (Attributes) Custom permissions let you assign specific, finer-grained permissions to a team than the broader fixed permission sets provide.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#custom-workspace-permissions (see [below for nested schema](#nestedatt--spec--team_access--custom))
+- `custom` (Attributes) Custom permissions let you assign specific, finer-grained permissions to a team than the broader fixed permission sets provide. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#custom-workspace-permissions (see [below for nested schema](#nestedatt--spec--team_access--custom))
 
 <a id="nestedatt--spec--team_access--team"></a>
 ### Nested Schema for `spec.team_access.team`
 
 Optional:
 
-- `id` (String) Team ID.Must match pattern: '^team-[a-zA-Z0-9]+$'
+- `id` (String) Team ID. Must match pattern: '^team-[a-zA-Z0-9]+$'
 - `name` (String) Team name.
 
 
@@ -267,12 +267,12 @@ Optional:
 
 Optional:
 
-- `run_tasks` (Boolean) Manage Workspace Run Tasks.Default: 'false'.
-- `runs` (String) Run access.Must be one of the following values: 'apply', 'plan', 'read'.Default: 'read'.
-- `sentinel` (String) Download Sentinel mocks.Must be one of the following values: 'none', 'read'.Default: 'none'.
-- `state_versions` (String) State access.Must be one of the following values: 'none', 'read', 'read-outputs', 'write'.Default: 'none'.
-- `variables` (String) Variable access.Must be one of the following values: 'none', 'read', 'write'.Default: 'none'.
-- `workspace_locking` (Boolean) Lock/unlock workspace.Default: 'false'.
+- `run_tasks` (Boolean) Manage Workspace Run Tasks. Default: 'false'.
+- `runs` (String) Run access. Must be one of the following values: 'apply', 'plan', 'read'. Default: 'read'.
+- `sentinel` (String) Download Sentinel mocks. Must be one of the following values: 'none', 'read'. Default: 'none'.
+- `state_versions` (String) State access. Must be one of the following values: 'none', 'read', 'read-outputs', 'write'. Default: 'none'.
+- `variables` (String) Variable access. Must be one of the following values: 'none', 'read', 'write'. Default: 'none'.
+- `workspace_locking` (Boolean) Lock/unlock workspace. Default: 'false'.
 
 
 
@@ -286,8 +286,8 @@ Required:
 Optional:
 
 - `description` (String) Description of the variable.
-- `hcl` (Boolean) Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime.Default: 'false'.
-- `sensitive` (Boolean) Sensitive variables are never shown in the UI or API.They may appear in Terraform logs if your configuration is designed to output them.Default: 'false'.
+- `hcl` (Boolean) Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime. Default: 'false'.
+- `sensitive` (Boolean) Sensitive variables are never shown in the UI or API. They may appear in Terraform logs if your configuration is designed to output them. Default: 'false'.
 - `value` (String) Value of the variable.
 - `value_from` (Attributes) Source for the variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--terraform_variables--value_from))
 
@@ -308,7 +308,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -317,11 +317,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -333,6 +333,6 @@ Optional:
 Optional:
 
 - `branch` (String) The repository branch that Run will execute from. This defaults to the repository's default branch (e.g. main).
-- `o_auth_token_id` (String) The VCS Connection (OAuth Connection + Token) to use.Must match pattern: '^ot-[a-zA-Z0-9]+$'
+- `o_auth_token_id` (String) The VCS Connection (OAuth Connection + Token) to use. Must match pattern: '^ot-[a-zA-Z0-9]+$'
 - `repository` (String) A reference to your VCS repository in the format '<organization>/<repository>' where '<organization>' and '<repository>' refer to the organization and repository in your VCS provider.
-- `speculative_plans` (Boolean) Whether this workspace allows automatic speculative plans on PR.Default: 'true'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/run/ui#speculative-plans-on-pull-requests  - https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations#speculative-plans
+- `speculative_plans` (Boolean) Whether this workspace allows automatic speculative plans on PR. Default: 'true'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/ui#speculative-plans-on-pull-requests - https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations#speculative-plans

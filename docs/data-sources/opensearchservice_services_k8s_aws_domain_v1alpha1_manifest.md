@@ -55,28 +55,28 @@ Optional:
 
 Required:
 
-- `name` (String) Name of the OpenSearch Service domain to create. Domain names are uniqueacross the domains owned by an account within an Amazon Web Services Region.
+- `name` (String) Name of the OpenSearch Service domain to create. Domain names are unique across the domains owned by an account within an Amazon Web Services Region.
 
 Optional:
 
-- `access_policies` (String) Identity and Access Management (IAM) policy document specifying the accesspolicies for the new domain.
-- `advanced_options` (Map of String) Key-value pairs to specify advanced configuration options. The followingkey-value pairs are supported:   * 'rest.action.multi.allow_explicit_index': 'true' | 'false' - Note the   use of a string rather than a boolean. Specifies whether explicit references   to indexes are allowed inside the body of HTTP requests. If you want to   configure access policies for domain sub-resources, such as specific indexes   and domain APIs, you must disable this property. Default is true.   * 'indices.fielddata.cache.size': '80' - Note the use of a string rather   than a boolean. Specifies the percentage of heap space allocated to field   data. Default is unbounded.   * 'indices.query.bool.max_clause_count': '1024' - Note the use of a string   rather than a boolean. Specifies the maximum number of clauses allowed   in a Lucene boolean query. Default is 1,024. Queries with more than the   permitted number of clauses result in a TooManyClauses error.   * 'override_main_response_version': 'true' | 'false' - Note the use of   a string rather than a boolean. Specifies whether the domain reports its   version as 7.10 to allow Elasticsearch OSS clients and plugins to continue   working with it. Default is false when creating a domain and true when   upgrading a domain.For more information, see Advanced cluster parameters (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options).
+- `access_policies` (String) Identity and Access Management (IAM) policy document specifying the access policies for the new domain.
+- `advanced_options` (Map of String) Key-value pairs to specify advanced configuration options. The following key-value pairs are supported: * 'rest.action.multi.allow_explicit_index': 'true' | 'false' - Note the use of a string rather than a boolean. Specifies whether explicit references to indexes are allowed inside the body of HTTP requests. If you want to configure access policies for domain sub-resources, such as specific indexes and domain APIs, you must disable this property. Default is true. * 'indices.fielddata.cache.size': '80' - Note the use of a string rather than a boolean. Specifies the percentage of heap space allocated to field data. Default is unbounded. * 'indices.query.bool.max_clause_count': '1024' - Note the use of a string rather than a boolean. Specifies the maximum number of clauses allowed in a Lucene boolean query. Default is 1,024. Queries with more than the permitted number of clauses result in a TooManyClauses error. * 'override_main_response_version': 'true' | 'false' - Note the use of a string rather than a boolean. Specifies whether the domain reports its version as 7.10 to allow Elasticsearch OSS clients and plugins to continue working with it. Default is false when creating a domain and true when upgrading a domain. For more information, see Advanced cluster parameters (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options).
 - `advanced_security_options` (Attributes) Options for fine-grained access control. (see [below for nested schema](#nestedatt--spec--advanced_security_options))
 - `aiml_options` (Attributes) Options for all machine learning features for the specified domain. (see [below for nested schema](#nestedatt--spec--aiml_options))
 - `auto_tune_options` (Attributes) Options for Auto-Tune. (see [below for nested schema](#nestedatt--spec--auto_tune_options))
 - `cluster_config` (Attributes) Container for the cluster configuration of a domain. (see [below for nested schema](#nestedatt--spec--cluster_config))
-- `cognito_options` (Attributes) Key-value pairs to configure Amazon Cognito authentication. For more information,see Configuring Amazon Cognito authentication for OpenSearch Dashboards (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html). (see [below for nested schema](#nestedatt--spec--cognito_options))
-- `domain_endpoint_options` (Attributes) Additional options for the domain endpoint, such as whether to require HTTPSfor all traffic. (see [below for nested schema](#nestedatt--spec--domain_endpoint_options))
-- `ebs_options` (Attributes) Container for the parameters required to enable EBS-based storage for anOpenSearch Service domain. (see [below for nested schema](#nestedatt--spec--ebs_options))
+- `cognito_options` (Attributes) Key-value pairs to configure Amazon Cognito authentication. For more information, see Configuring Amazon Cognito authentication for OpenSearch Dashboards (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html). (see [below for nested schema](#nestedatt--spec--cognito_options))
+- `domain_endpoint_options` (Attributes) Additional options for the domain endpoint, such as whether to require HTTPS for all traffic. (see [below for nested schema](#nestedatt--spec--domain_endpoint_options))
+- `ebs_options` (Attributes) Container for the parameters required to enable EBS-based storage for an OpenSearch Service domain. (see [below for nested schema](#nestedatt--spec--ebs_options))
 - `encryption_at_rest_options` (Attributes) Key-value pairs to enable encryption at rest. (see [below for nested schema](#nestedatt--spec--encryption_at_rest_options))
-- `engine_version` (String) String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engineversion for the OpenSearch Service domain. For example, OpenSearch_1.0 orElasticsearch_7.9. For more information, see Creating and managing AmazonOpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).
-- `ip_address_type` (String) Specify either dual stack or IPv4 as your IP address type. Dual stack allowsyou to share domain resources across IPv4 and IPv6 address types, and isthe recommended option. If you set your IP address type to dual stack, youcan't change your address type later.
+- `engine_version` (String) String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the OpenSearch Service domain. For example, OpenSearch_1.0 or Elasticsearch_7.9. For more information, see Creating and managing Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).
+- `ip_address_type` (String) Specify either dual stack or IPv4 as your IP address type. Dual stack allows you to share domain resources across IPv4 and IPv6 address types, and is the recommended option. If you set your IP address type to dual stack, you can't change your address type later.
 - `log_publishing_options` (Attributes) Key-value pairs to configure log publishing. (see [below for nested schema](#nestedatt--spec--log_publishing_options))
 - `node_to_node_encryption_options` (Attributes) Enables node-to-node encryption. (see [below for nested schema](#nestedatt--spec--node_to_node_encryption_options))
-- `off_peak_window_options` (Attributes) Specifies a daily 10-hour time block during which OpenSearch Service canperform configuration changes on the domain, including service software updatesand Auto-Tune enhancements that require a blue/green deployment. If no optionsare specified, the default start time of 10:00 P.M. local time (for the Regionthat the domain is created in) is used. (see [below for nested schema](#nestedatt--spec--off_peak_window_options))
+- `off_peak_window_options` (Attributes) Specifies a daily 10-hour time block during which OpenSearch Service can perform configuration changes on the domain, including service software updates and Auto-Tune enhancements that require a blue/green deployment. If no options are specified, the default start time of 10:00 P.M. local time (for the Region that the domain is created in) is used. (see [below for nested schema](#nestedatt--spec--off_peak_window_options))
 - `software_update_options` (Attributes) Software update options for the domain. (see [below for nested schema](#nestedatt--spec--software_update_options))
 - `tags` (Attributes List) List of tags to add to the domain upon creation. (see [below for nested schema](#nestedatt--spec--tags))
-- `vpc_options` (Attributes) Container for the values required to configure VPC access domains. If youdon't specify these values, OpenSearch Service creates the domain with apublic endpoint. For more information, see Launching your Amazon OpenSearchService domains using a VPC (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html). (see [below for nested schema](#nestedatt--spec--vpc_options))
+- `vpc_options` (Attributes) Container for the values required to configure VPC access domains. If you don't specify these values, OpenSearch Service creates the domain with a public endpoint. For more information, see Launching your Amazon OpenSearch Service domains using a VPC (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html). (see [below for nested schema](#nestedatt--spec--vpc_options))
 
 <a id="nestedatt--spec--advanced_security_options"></a>
 ### Nested Schema for `spec.advanced_security_options`
@@ -86,7 +86,7 @@ Optional:
 - `anonymous_auth_enabled` (Boolean)
 - `enabled` (Boolean)
 - `internal_user_database_enabled` (Boolean)
-- `jwt_options` (Attributes) The JWT authentication and authorization configuration for an Amazon OpenSearchService domain. (see [below for nested schema](#nestedatt--spec--advanced_security_options--jwt_options))
+- `jwt_options` (Attributes) The JWT authentication and authorization configuration for an Amazon OpenSearch Service domain. (see [below for nested schema](#nestedatt--spec--advanced_security_options--jwt_options))
 - `master_user_options` (Attributes) Credentials for the master user for a domain. (see [below for nested schema](#nestedatt--spec--advanced_security_options--master_user_options))
 - `s_aml_options` (Attributes) The SAML authentication configuration for an Amazon OpenSearch Service domain. (see [below for nested schema](#nestedatt--spec--advanced_security_options--s_aml_options))
 
@@ -106,9 +106,9 @@ Optional:
 
 Optional:
 
-- `master_user_arn` (String) The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities(https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using AmazonWeb Services Identity and Access Management for more information.
+- `master_user_arn` (String) The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities (https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using Amazon Web Services Identity and Access Management for more information.
 - `master_user_name` (String)
-- `master_user_password` (Attributes) SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret (see [below for nested schema](#nestedatt--spec--advanced_security_options--master_user_options--master_user_password))
+- `master_user_password` (Attributes) SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret (see [below for nested schema](#nestedatt--spec--advanced_security_options--master_user_options--master_user_password))
 
 <a id="nestedatt--spec--advanced_security_options--master_user_options--master_user_password"></a>
 ### Nested Schema for `spec.advanced_security_options.master_user_options.master_user_password`
@@ -153,7 +153,7 @@ Optional:
 
 Optional:
 
-- `natural_language_query_generation_options` (Attributes) Container for parameters required to enable the natural language query generationfeature. (see [below for nested schema](#nestedatt--spec--aiml_options--natural_language_query_generation_options))
+- `natural_language_query_generation_options` (Attributes) Container for parameters required to enable the natural language query generation feature. (see [below for nested schema](#nestedatt--spec--aiml_options--natural_language_query_generation_options))
 
 <a id="nestedatt--spec--aiml_options--natural_language_query_generation_options"></a>
 ### Nested Schema for `spec.aiml_options.natural_language_query_generation_options`
@@ -179,7 +179,7 @@ Optional:
 Optional:
 
 - `cron_expression_for_recurrence` (String)
-- `duration` (Attributes) The duration of a maintenance schedule. For more information, see Auto-Tunefor Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html). (see [below for nested schema](#nestedatt--spec--auto_tune_options--maintenance_schedules--duration))
+- `duration` (Attributes) The duration of a maintenance schedule. For more information, see Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html). (see [below for nested schema](#nestedatt--spec--auto_tune_options--maintenance_schedules--duration))
 - `start_at` (String)
 
 <a id="nestedatt--spec--auto_tune_options--maintenance_schedules--duration"></a>
@@ -198,7 +198,7 @@ Optional:
 
 Optional:
 
-- `cold_storage_options` (Attributes) Container for the parameters required to enable cold storage for an OpenSearchService domain. For more information, see Cold storage for Amazon OpenSearchService (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cold-storage.html). (see [below for nested schema](#nestedatt--spec--cluster_config--cold_storage_options))
+- `cold_storage_options` (Attributes) Container for the parameters required to enable cold storage for an OpenSearch Service domain. For more information, see Cold storage for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cold-storage.html). (see [below for nested schema](#nestedatt--spec--cluster_config--cold_storage_options))
 - `dedicated_master_count` (Number)
 - `dedicated_master_enabled` (Boolean)
 - `dedicated_master_type` (String)
@@ -245,7 +245,7 @@ Optional:
 Optional:
 
 - `custom_endpoint` (String)
-- `custom_endpoint_certificate_arn` (String) The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities(https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using AmazonWeb Services Identity and Access Management for more information.
+- `custom_endpoint_certificate_arn` (String) The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities (https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using Amazon Web Services Identity and Access Management for more information.
 - `custom_endpoint_enabled` (Boolean)
 - `enforce_https` (Boolean)
 - `tls_security_policy` (String)
@@ -260,7 +260,7 @@ Optional:
 - `iops` (Number)
 - `throughput` (Number)
 - `volume_size` (Number)
-- `volume_type` (String) The type of EBS volume that a domain uses. For more information, see ConfiguringEBS-based storage (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-createupdatedomains.html#opensearch-createdomain-configure-ebs).
+- `volume_type` (String) The type of EBS volume that a domain uses. For more information, see Configuring EBS-based storage (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-createupdatedomains.html#opensearch-createdomain-configure-ebs).
 
 
 <a id="nestedatt--spec--encryption_at_rest_options"></a>
@@ -295,7 +295,7 @@ Optional:
 Optional:
 
 - `enabled` (Boolean)
-- `off_peak_window` (Attributes) A custom 10-hour, low-traffic window during which OpenSearch Service canperform mandatory configuration changes on the domain. These actions caninclude scheduled service software updates and blue/green Auto-Tune enhancements.OpenSearch Service will schedule these actions during the window that youspecify.If you don't specify a window start time, it defaults to 10:00 P.M. localtime.For more information, see Defining off-peak maintenance windows for AmazonOpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html). (see [below for nested schema](#nestedatt--spec--off_peak_window_options--off_peak_window))
+- `off_peak_window` (Attributes) A custom 10-hour, low-traffic window during which OpenSearch Service can perform mandatory configuration changes on the domain. These actions can include scheduled service software updates and blue/green Auto-Tune enhancements. OpenSearch Service will schedule these actions during the window that you specify. If you don't specify a window start time, it defaults to 10:00 P.M. local time. For more information, see Defining off-peak maintenance windows for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/off-peak.html). (see [below for nested schema](#nestedatt--spec--off_peak_window_options--off_peak_window))
 
 <a id="nestedatt--spec--off_peak_window_options--off_peak_window"></a>
 ### Nested Schema for `spec.off_peak_window_options.off_peak_window`
@@ -328,8 +328,8 @@ Optional:
 
 Optional:
 
-- `key` (String) A string between 1 to 128 characters that specifies the key for a tag. Tagkeys must be unique for the domain to which they're attached.
-- `value` (String) A string between 0 to 256 characters that specifies the value for a tag.Tag values can be null and don't have to be unique in a tag set.
+- `key` (String) A string between 1 to 128 characters that specifies the key for a tag. Tag keys must be unique for the domain to which they're attached.
+- `value` (String) A string between 0 to 256 characters that specifies the value for a tag. Tag values can be null and don't have to be unique in a tag set.
 
 
 <a id="nestedatt--spec--vpc_options"></a>

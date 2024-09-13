@@ -56,34 +56,34 @@ Optional:
 Optional:
 
 - `affinity` (Map of String) Affinity If specified, the pod's scheduling constraints.
-- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the VMAuthobject, which shall be mounted into the VMAuth Pods.
-- `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to  VMAuths config-reloader containerfor example resyncInterval: '30s'
-- `config_secret` (String) ConfigSecret is the name of a Kubernetes Secret in the same namespace as theVMAuth object, which contains auth configuration for vmauth,configuration must be inside secret key: config.yaml.It must be created and managed manually.If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders
-- `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers.It can be useful for proxies, backup, etc.
-- `default_url` (List of String) DefaultURLs backend url for non-matching paths filterusually used for default backend with error message
+- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the VMAuth object, which shall be mounted into the VMAuth Pods.
+- `config_reloader_extra_args` (Map of String) ConfigReloaderExtraArgs that will be passed to VMAuths config-reloader container for example resyncInterval: '30s'
+- `config_secret` (String) ConfigSecret is the name of a Kubernetes Secret in the same namespace as the VMAuth object, which contains auth configuration for vmauth, configuration must be inside secret key: config.yaml. It must be created and managed manually. If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders
+- `containers` (List of Map of String) Containers property allows to inject additions sidecars or to patch existing containers. It can be useful for proxies, backup, etc.
+- `default_url` (List of String) DefaultURLs backend url for non-matching paths filter usually used for default backend with error message
 - `discover_backend_ips` (Boolean) DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.
-- `dns_config` (Attributes) Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config))
+- `dns_config` (Attributes) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config))
 - `dns_policy` (String) DNSPolicy sets DNS policy for the pod
-- `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
-- `extra_args` (Map of String) ExtraArgs that will be passed to  VMAuth podfor example remoteWrite.tmpDataPath: /tmp
+- `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
+- `extra_args` (Map of String) ExtraArgs that will be passed to VMAuth pod for example remoteWrite.tmpDataPath: /tmp
 - `extra_envs` (List of Map of String) ExtraEnvs that will be added to VMAuth pod
-- `headers` (List of String) Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth
-- `host_aliases` (Attributes List) HostAliases provides mapping for ip and hostname,that would be propagated to pod,cannot be used with HostNetwork. (see [below for nested schema](#nestedatt--spec--host_aliases))
+- `headers` (List of String) Headers represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth
+- `host_aliases` (Attributes List) HostAliases provides mapping for ip and hostname, that would be propagated to pod, cannot be used with HostNetwork. (see [below for nested schema](#nestedatt--spec--host_aliases))
 - `host_network` (Boolean) HostNetwork controls whether the pod may use the node network namespace
-- `image` (Attributes) Image - docker image settings for VMAuthif no specified operator uses default config version (see [below for nested schema](#nestedatt--spec--image))
-- `image_pull_secrets` (Attributes List) ImagePullSecrets An optional list of references to secrets in the same namespaceto use for pulling images from registriessee https://kubernetes.io/docs/concepts/containers/images/#referring-to-an-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
+- `image` (Attributes) Image - docker image settings for VMAuth if no specified operator uses default config version (see [below for nested schema](#nestedatt--spec--image))
+- `image_pull_secrets` (Attributes List) ImagePullSecrets An optional list of references to secrets in the same namespace to use for pulling images from registries see https://kubernetes.io/docs/concepts/containers/images/#referring-to-an-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `ingress` (Attributes) Ingress enables ingress configuration for VMAuth. (see [below for nested schema](#nestedatt--spec--ingress))
-- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g.fetch secrets for injection into the vmSingle configuration from external sources. Anyerrors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/Using initContainers for any use case other then secret fetching is entirely outside the scopeof what the maintainers will support and by doing so, you accept that this behaviour may breakat any time without notice.
-- `ip_filters` (Attributes) IPFilters defines per target src ip filterssupported only with enterprise version of vmauthhttps://docs.victoriametrics.com/vmauth.html#ip-filters (see [below for nested schema](#nestedatt--spec--ip_filters))
-- `license` (Attributes) License allows to configure license key to be used for enterprise features.Using license key is supported starting from VictoriaMetrics v1.94.0.See: https://docs.victoriametrics.com/enterprise.html (see [below for nested schema](#nestedatt--spec--license))
+- `init_containers` (List of Map of String) InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the vmSingle configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.
+- `ip_filters` (Attributes) IPFilters defines per target src ip filters supported only with enterprise version of vmauth https://docs.victoriametrics.com/vmauth.html#ip-filters (see [below for nested schema](#nestedatt--spec--ip_filters))
+- `license` (Attributes) License allows to configure license key to be used for enterprise features. Using license key is supported starting from VictoriaMetrics v1.94.0. See: https://docs.victoriametrics.com/enterprise.html (see [below for nested schema](#nestedatt--spec--license))
 - `liveness_probe` (Map of String) LivenessProbe that will be added CRD pod
-- `load_balancing_policy` (String) LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')
+- `load_balancing_policy` (String) LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')
 - `log_format` (String) LogFormat for VMAuth to be configured with.
 - `log_level` (String) LogLevel for victoria metrics single to be configured with.
-- `max_concurrent_requests` (Number) MaxConcurrentRequests defines max concurrent requests per user300 is default value for vmauth
-- `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next podif previous in healthy state
+- `max_concurrent_requests` (Number) MaxConcurrentRequests defines max concurrent requests per user 300 is default value for vmauth
+- `min_ready_seconds` (Number) MinReadySeconds defines a minim number os seconds to wait before starting update next pod if previous in healthy state
 - `node_selector` (Map of String) NodeSelector Define which Nodes the Pods are scheduled on.
-- `paused` (Boolean) Paused If set to true all actions on the underlying managed objects are notgoing to be performed, except for delete actions.
+- `paused` (Boolean) Paused If set to true all actions on the underlying managed objects are not going to be performed, except for delete actions.
 - `pod_disruption_budget` (Attributes) PodDisruptionBudget created by operator (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the VMAuth pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
 - `port` (String) Port listen port
@@ -91,38 +91,38 @@ Optional:
 - `readiness_gates` (Attributes List) ReadinessGates defines pod readiness gates (see [below for nested schema](#nestedatt--spec--readiness_gates))
 - `readiness_probe` (Map of String) ReadinessProbe that will be added CRD pod
 - `replica_count` (Number) ReplicaCount is the expected size of the VMAuth
-- `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/if not defined default resources from operator config will be used (see [below for nested schema](#nestedatt--spec--resources))
-- `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth
-- `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retriese.g. [429,503]
-- `revision_history_limit_count` (Number) The number of old ReplicaSets to retain to allow rollback in deployment ormaximum number of revisions that will be maintained in the StatefulSet's revision history.Defaults to 10.
-- `runtime_class_name` (String) RuntimeClassName - defines runtime class for kubernetes pod.https://kubernetes.io/docs/concepts/containers/runtime-class/
+- `resources` (Attributes) Resources container resource request and limits, https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ if not defined default resources from operator config will be used (see [below for nested schema](#nestedatt--spec--resources))
+- `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth
+- `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retries e.g. [429,503]
+- `revision_history_limit_count` (Number) The number of old ReplicaSets to retain to allow rollback in deployment or maximum number of revisions that will be maintained in the StatefulSet's revision history. Defaults to 10.
+- `runtime_class_name` (String) RuntimeClassName - defines runtime class for kubernetes pod. https://kubernetes.io/docs/concepts/containers/runtime-class/
 - `scheduler_name` (String) SchedulerName - defines kubernetes scheduler name
-- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the VMAuthobject, which shall be mounted into the VMAuth Pods.
-- `security_context` (Map of String) SecurityContext holds pod-level security attributes and common container settings.This defaults to the default PodSecurityContext.
-- `select_all_by_default` (Boolean) SelectAllByDefault changes default behavior for empty CRD selectors, such userSelector.with selectAllByDefault: true and empty userSelector and userNamespaceSelectorOperator selects all exist userswith selectAllByDefault: false - selects nothing
-- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run theVMAuth Pods.
+- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the VMAuth object, which shall be mounted into the VMAuth Pods.
+- `security_context` (Map of String) SecurityContext holds pod-level security attributes and common container settings. This defaults to the default PodSecurityContext.
+- `select_all_by_default` (Boolean) SelectAllByDefault changes default behavior for empty CRD selectors, such userSelector. with selectAllByDefault: true and empty userSelector and userNamespaceSelector Operator selects all exist users with selectAllByDefault: false - selects nothing
+- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run the VMAuth Pods.
 - `service_scrape_spec` (Map of String) ServiceScrapeSpec that will be added to vmauth VMServiceScrape spec
 - `service_spec` (Attributes) ServiceSpec that will be added to vmsingle service spec (see [below for nested schema](#nestedatt--spec--service_spec))
 - `startup_probe` (Map of String) StartupProbe that will be added to CRD pod
 - `termination_grace_period_seconds` (Number) TerminationGracePeriodSeconds period for container graceful termination
 - `tls_config` (Attributes) TLSConfig specifies TLSConfig configuration parameters. (see [below for nested schema](#nestedatt--spec--tls_config))
 - `tolerations` (Attributes List) Tolerations If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--tolerations))
-- `topology_spread_constraints` (List of Map of String) TopologySpreadConstraints embedded kubernetes pod configuration option,controls how pods are spread across your cluster among failure-domainssuch as regions, zones, nodes, and other user-defined topology domainshttps://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+- `topology_spread_constraints` (List of Map of String) TopologySpreadConstraints embedded kubernetes pod configuration option, controls how pods are spread across your cluster among failure-domains such as regions, zones, nodes, and other user-defined topology domains https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
 - `unauthorized_access_config` (Attributes List) UnauthorizedAccessConfig configures access for un authorized users (see [below for nested schema](#nestedatt--spec--unauthorized_access_config))
-- `use_strict_security` (Boolean) UseStrictSecurity enables strict security mode for componentit restricts disk writes accessuses non-root user out of the boxdrops not needed security permissions
-- `user_namespace_selector` (Attributes) UserNamespaceSelector Namespaces to be selected for  VMAuth discovery.Works in combination with Selector.NamespaceSelector nil - only objects at VMAuth namespace.Selector nil - only objects at NamespaceSelector namespaces.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--user_namespace_selector))
-- `user_selector` (Attributes) UserSelector defines VMUser to be selected for config file generation.Works in combination with NamespaceSelector.NamespaceSelector nil - only objects at VMAuth namespace.If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--user_selector))
-- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition.VolumeMounts specified will be appended to other VolumeMounts in the VMAuth container,that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--volume_mounts))
-- `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output deploy definition.Volumes specified will be appended to other volumes that are generated as a result ofStorageSpec objects.
+- `use_strict_security` (Boolean) UseStrictSecurity enables strict security mode for component it restricts disk writes access uses non-root user out of the box drops not needed security permissions
+- `user_namespace_selector` (Attributes) UserNamespaceSelector Namespaces to be selected for VMAuth discovery. Works in combination with Selector. NamespaceSelector nil - only objects at VMAuth namespace. Selector nil - only objects at NamespaceSelector namespaces. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--user_namespace_selector))
+- `user_selector` (Attributes) UserSelector defines VMUser to be selected for config file generation. Works in combination with NamespaceSelector. NamespaceSelector nil - only objects at VMAuth namespace. If both nil - behaviour controlled by selectAllByDefault (see [below for nested schema](#nestedatt--spec--user_selector))
+- `volume_mounts` (Attributes List) VolumeMounts allows configuration of additional VolumeMounts on the output Deployment definition. VolumeMounts specified will be appended to other VolumeMounts in the VMAuth container, that are generated as a result of StorageSpec objects. (see [below for nested schema](#nestedatt--spec--volume_mounts))
+- `volumes` (List of Map of String) Volumes allows configuration of additional volumes on the output deploy definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects.
 
 <a id="nestedatt--spec--dns_config"></a>
 ### Nested Schema for `spec.dns_config`
 
 Optional:
 
-- `nameservers` (List of String) A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.
-- `options` (Attributes List) A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config--options))
-- `searches` (List of String) A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.
+- `nameservers` (List of String) A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.
+- `options` (Attributes List) A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--dns_config--options))
+- `searches` (List of String) A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.
 
 <a id="nestedatt--spec--dns_config--options"></a>
 ### Nested Schema for `spec.dns_config.options`
@@ -158,7 +158,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--ingress"></a>
@@ -166,23 +166,23 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
 - `class_name` (String) ClassName defines ingress class name for VMAuth
-- `extra_rules` (Attributes List) ExtraRules - additional rules for ingress,must be checked for correctness by user. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules))
-- `extra_tls` (Attributes List) ExtraTLS - additional TLS configuration for ingressmust be checked for correctness by user. (see [below for nested schema](#nestedatt--spec--ingress--extra_tls))
-- `host` (String) Host defines ingress host parameter for default ruleIt will be used, only if TlsHosts is empty
-- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
-- `name` (String) Name must be unique within a namespace. Is required when creating resources, althoughsome resources may allow a client to request the generation of an appropriate nameautomatically. Name is primarily intended for creation idempotence and configurationdefinition.Cannot be updated.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+- `extra_rules` (Attributes List) ExtraRules - additional rules for ingress, must be checked for correctness by user. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules))
+- `extra_tls` (Attributes List) ExtraTLS - additional TLS configuration for ingress must be checked for correctness by user. (see [below for nested schema](#nestedatt--spec--ingress--extra_tls))
+- `host` (String) Host defines ingress host parameter for default rule It will be used, only if TlsHosts is empty
+- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
+- `name` (String) Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
 - `tls_hosts` (List of String) TlsHosts configures TLS access for ingress, tlsSecretName must be defined for it.
-- `tls_secret_name` (String) TlsSecretName defines secretname at the VMAuth namespace with cert and keyhttps://kubernetes.io/docs/concepts/services-networking/ingress/#tls
+- `tls_secret_name` (String) TlsSecretName defines secretname at the VMAuth namespace with cert and key https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
 
 <a id="nestedatt--spec--ingress--extra_rules"></a>
 ### Nested Schema for `spec.ingress.extra_rules`
 
 Optional:
 
-- `host` (String) host is the fully qualified domain name of a network host, as defined by RFC 3986.Note the following deviations from the 'host' part of theURI as defined in RFC 3986:1. IPs are not allowed. Currently an IngressRuleValue can only apply to   the IP in the Spec of the parent Ingress.2. The ':' delimiter is not respected because ports are not allowed.	  Currently the port of an Ingress is implicitly :80 for http and	  :443 for https.Both these may change in the future.Incoming requests are matched against the host before theIngressRuleValue. If the host is unspecified, the Ingress routes alltraffic based on the specified IngressRuleValue.host can be 'precise' which is a domain name without the terminating dot ofa network host (e.g. 'foo.bar.com') or 'wildcard', which is a domain nameprefixed with a single wildcard label (e.g. '*.foo.com').The wildcard character '*' must appear by itself as the first DNS label andmatches only a single label. You cannot have a wildcard label by itself (e.g. Host == '*').Requests will be matched against the Host field in the following way:1. If host is precise, the request matches this rule if the http host header is equal to Host.2. If host is a wildcard, then the request matches this rule if the http host headeris to equal to the suffix (removing the first label) of the wildcard rule.
-- `http` (Attributes) HTTPIngressRuleValue is a list of http selectors pointing to backends.In the example: http://<host>/<path>?<searchpart> -> backend wherewhere parts of the url correspond to RFC 3986, this resource will be usedto match against everything after the last '/' and before the first '?'or '#'. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http))
+- `host` (String) host is the fully qualified domain name of a network host, as defined by RFC 3986. Note the following deviations from the 'host' part of the URI as defined in RFC 3986: 1. IPs are not allowed. Currently an IngressRuleValue can only apply to the IP in the Spec of the parent Ingress. 2. The ':' delimiter is not respected because ports are not allowed. Currently the port of an Ingress is implicitly :80 for http and :443 for https. Both these may change in the future. Incoming requests are matched against the host before the IngressRuleValue. If the host is unspecified, the Ingress routes all traffic based on the specified IngressRuleValue. host can be 'precise' which is a domain name without the terminating dot of a network host (e.g. 'foo.bar.com') or 'wildcard', which is a domain name prefixed with a single wildcard label (e.g. '*.foo.com'). The wildcard character '*' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == '*'). Requests will be matched against the Host field in the following way: 1. If host is precise, the request matches this rule if the http host header is equal to Host. 2. If host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule.
+- `http` (Attributes) HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http://<host>/<path>?<searchpart> -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http))
 
 <a id="nestedatt--spec--ingress--extra_rules--http"></a>
 ### Nested Schema for `spec.ingress.extra_rules.http`
@@ -196,20 +196,20 @@ Required:
 
 Required:
 
-- `backend` (Attributes) backend defines the referenced service endpoint to which the trafficwill be forwarded to. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--backend))
-- `path_type` (String) pathType determines the interpretation of the path matching. PathType canbe one of the following values:* Exact: Matches the URL path exactly.* Prefix: Matches based on a URL path prefix split by '/'. Matching is  done on a path element by element basis. A path element refers is the  list of labels in the path split by the '/' separator. A request is a  match for path p if every p is an element-wise prefix of p of the  request path. Note that if the last element of the path is a substring  of the last element in request path, it is not a match (e.g. /foo/bar  matches /foo/bar/baz, but does not match /foo/barbaz).* ImplementationSpecific: Interpretation of the Path matching is up to  the IngressClass. Implementations can treat this as a separate PathType  or treat it identically to Prefix or Exact path types.Implementations are required to support all path types.
+- `backend` (Attributes) backend defines the referenced service endpoint to which the traffic will be forwarded to. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--backend))
+- `path_type` (String) pathType determines the interpretation of the path matching. PathType can be one of the following values: * Exact: Matches the URL path exactly. * Prefix: Matches based on a URL path prefix split by '/'. Matching is done on a path element by element basis. A path element refers is the list of labels in the path split by the '/' separator. A request is a match for path p if every p is an element-wise prefix of p of the request path. Note that if the last element of the path is a substring of the last element in request path, it is not a match (e.g. /foo/bar matches /foo/bar/baz, but does not match /foo/barbaz). * ImplementationSpecific: Interpretation of the Path matching is up to the IngressClass. Implementations can treat this as a separate PathType or treat it identically to Prefix or Exact path types. Implementations are required to support all path types.
 
 Optional:
 
-- `path` (String) path is matched against the path of an incoming request. Currently it cancontain characters disallowed from the conventional 'path' part of a URLas defined by RFC 3986. Paths must begin with a '/' and must be presentwhen using PathType with value 'Exact' or 'Prefix'.
+- `path` (String) path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value 'Exact' or 'Prefix'.
 
 <a id="nestedatt--spec--ingress--extra_rules--http--paths--backend"></a>
 ### Nested Schema for `spec.ingress.extra_rules.http.paths.backend`
 
 Optional:
 
-- `resource` (Attributes) resource is an ObjectRef to another Kubernetes resource in the namespaceof the Ingress object. If resource is specified, a service.Name andservice.Port must not be specified.This is a mutually exclusive setting with 'Service'. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--backend--resource))
-- `service` (Attributes) service references a service as a backend.This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--backend--service))
+- `resource` (Attributes) resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, a service.Name and service.Port must not be specified. This is a mutually exclusive setting with 'Service'. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--backend--resource))
+- `service` (Attributes) service references a service as a backend. This is a mutually exclusive setting with 'Resource'. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--backend--service))
 
 <a id="nestedatt--spec--ingress--extra_rules--http--paths--backend--resource"></a>
 ### Nested Schema for `spec.ingress.extra_rules.http.paths.backend.resource`
@@ -221,7 +221,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--ingress--extra_rules--http--paths--backend--service"></a>
@@ -229,19 +229,19 @@ Optional:
 
 Required:
 
-- `name` (String) name is the referenced service. The service must exist inthe same namespace as the Ingress object.
+- `name` (String) name is the referenced service. The service must exist in the same namespace as the Ingress object.
 
 Optional:
 
-- `port` (Attributes) port of the referenced service. A port name or port numberis required for a IngressServiceBackend. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--backend--service--port))
+- `port` (Attributes) port of the referenced service. A port name or port number is required for a IngressServiceBackend. (see [below for nested schema](#nestedatt--spec--ingress--extra_rules--http--paths--backend--service--port))
 
 <a id="nestedatt--spec--ingress--extra_rules--http--paths--backend--service--port"></a>
 ### Nested Schema for `spec.ingress.extra_rules.http.paths.backend.service.port`
 
 Optional:
 
-- `name` (String) name is the name of the port on the Service.This is a mutually exclusive setting with 'Number'.
-- `number` (Number) number is the numerical port number (e.g. 80) on the Service.This is a mutually exclusive setting with 'Name'.
+- `name` (String) name is the name of the port on the Service. This is a mutually exclusive setting with 'Number'.
+- `number` (Number) number is the numerical port number (e.g. 80) on the Service. This is a mutually exclusive setting with 'Name'.
 
 
 
@@ -254,8 +254,8 @@ Optional:
 
 Optional:
 
-- `hosts` (List of String) hosts is a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.
-- `secret_name` (String) secretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the 'Host' header is used for routing.
+- `hosts` (List of String) hosts is a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
+- `secret_name` (String) secretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the 'Host' header field used by an IngressRule, the SNI host is used for termination and value of the 'Host' header is used for routing.
 
 
 
@@ -273,7 +273,7 @@ Optional:
 
 Optional:
 
-- `key` (String) Enterprise license key. This flag is available only in VictoriaMetrics enterprise.Documentation - https://docs.victoriametrics.com/enterprise.htmlfor more information, visit https://victoriametrics.com/products/enterprise/ .To request a trial license, go to https://victoriametrics.com/products/enterprise/trial/
+- `key` (String) Enterprise license key. This flag is available only in VictoriaMetrics enterprise. Documentation - https://docs.victoriametrics.com/enterprise.html for more information, visit https://victoriametrics.com/products/enterprise/ . To request a trial license, go to https://victoriametrics.com/products/enterprise/trial/
 - `key_ref` (Attributes) KeyRef is reference to secret with license key for enterprise features. (see [below for nested schema](#nestedatt--spec--license--key_ref))
 
 <a id="nestedatt--spec--license--key_ref"></a>
@@ -281,11 +281,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -295,9 +295,9 @@ Optional:
 
 Optional:
 
-- `max_unavailable` (String) An eviction is allowed if at most 'maxUnavailable' pods selected by'selector' are unavailable after the eviction, i.e. even in absence ofthe evicted pod. For example, one can prevent all voluntary evictionsby specifying 0. This is a mutually exclusive setting with 'minAvailable'.
-- `min_available` (String) An eviction is allowed if at least 'minAvailable' pods selected by'selector' will still be available after the eviction, i.e. even in theabsence of the evicted pod.  So for example you can prevent all voluntaryevictions by specifying '100%'.
-- `selector_labels` (Map of String) replaces default labels selector generated by operatorit's useful when you need to create custom budget
+- `max_unavailable` (String) An eviction is allowed if at most 'maxUnavailable' pods selected by 'selector' are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with 'minAvailable'.
+- `min_available` (String) An eviction is allowed if at least 'minAvailable' pods selected by 'selector' will still be available after the eviction, i.e. even in the absence of the evicted pod. So for example you can prevent all voluntary evictions by specifying '100%'.
+- `selector_labels` (Map of String) replaces default labels selector generated by operator it's useful when you need to create custom budget
 
 
 <a id="nestedatt--spec--pod_metadata"></a>
@@ -305,9 +305,9 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
-- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
-- `name` (String) Name must be unique within a namespace. Is required when creating resources, althoughsome resources may allow a client to request the generation of an appropriate nameautomatically. Name is primarily intended for creation idempotence and configurationdefinition.Cannot be updated.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
+- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
+- `name` (String) Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
 
 
 <a id="nestedatt--spec--readiness_gates"></a>
@@ -323,16 +323,16 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resources--claims"></a>
 ### Nested Schema for `spec.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -341,21 +341,21 @@ Required:
 
 Required:
 
-- `spec` (Map of String) ServiceSpec describes the attributes that a user creates on a service.More info: https://kubernetes.io/docs/concepts/services-networking/service/
+- `spec` (Map of String) ServiceSpec describes the attributes that a user creates on a service. More info: https://kubernetes.io/docs/concepts/services-networking/service/
 
 Optional:
 
 - `metadata` (Attributes) EmbeddedObjectMetadata defines objectMeta for additional service. (see [below for nested schema](#nestedatt--spec--service_spec--metadata))
-- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object ServiceChanging from headless service to clusterIP or loadbalancer may break cross-component communication
+- `use_as_default` (Boolean) UseAsDefault applies changes from given service definition to the main object Service Changing from headless service to clusterIP or loadbalancer may break cross-component communication
 
 <a id="nestedatt--spec--service_spec--metadata"></a>
 ### Nested Schema for `spec.service_spec.metadata`
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
-- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
-- `name` (String) Name must be unique within a namespace. Is required when creating resources, althoughsome resources may allow a client to request the generation of an appropriate nameautomatically. Name is primarily intended for creation idempotence and configurationdefinition.Cannot be updated.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
+- `labels` (Map of String) Labels Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
+- `name` (String) Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
 
 
 
@@ -390,7 +390,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -399,11 +399,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -425,7 +425,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -434,11 +434,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -448,11 +448,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -462,11 +462,11 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 <a id="nestedatt--spec--unauthorized_access_config"></a>
@@ -475,11 +475,11 @@ Optional:
 Optional:
 
 - `discover_backend_ips` (Boolean) DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.
-- `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
-- `headers` (List of String) RequestHeaders represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth
-- `load_balancing_policy` (String) LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')
-- `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth
-- `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retriesCan be defined per target or at VMUser.spec levele.g. [429,503]
+- `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
+- `headers` (List of String) RequestHeaders represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth
+- `load_balancing_policy` (String) LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')
+- `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth
+- `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retries Can be defined per target or at VMUser.spec level e.g. [429,503]
 - `src_headers` (List of String) SrcHeaders is an optional list of headers, which must match request headers.
 - `src_hosts` (List of String) SrcHosts is an optional list of regular expressions, which must match the request hostname.
 - `src_paths` (List of String) SrcPaths is an optional list of regular expressions, which must match the request path.
@@ -493,7 +493,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--user_namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--user_namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.user_namespace_selector.match_expressions`
@@ -501,11 +501,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -515,7 +515,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--user_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--user_selector--match_expressions"></a>
 ### Nested Schema for `spec.user_selector.match_expressions`
@@ -523,11 +523,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -536,12 +536,12 @@ Optional:
 
 Required:
 
-- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `mount_path` (String) Path within the container at which the volume should be mounted. Must not contain ':'.
 - `name` (String) This must match the Name of a Volume.
 
 Optional:
 
-- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
-- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
-- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
-- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.

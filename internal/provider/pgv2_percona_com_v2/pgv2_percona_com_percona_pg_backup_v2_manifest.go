@@ -128,8 +128,8 @@ func (r *Pgv2PerconaComPerconaPgbackupV2Manifest) Schema(_ context.Context, _ da
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"options": schema.ListAttribute{
-						Description:         "Command line options to include when running the pgBackRest backup command.https://pgbackrest.org/command.html#command-backup",
-						MarkdownDescription: "Command line options to include when running the pgBackRest backup command.https://pgbackrest.org/command.html#command-backup",
+						Description:         "Command line options to include when running the pgBackRest backup command. https://pgbackrest.org/command.html#command-backup",
+						MarkdownDescription: "Command line options to include when running the pgBackRest backup command. https://pgbackrest.org/command.html#command-backup",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

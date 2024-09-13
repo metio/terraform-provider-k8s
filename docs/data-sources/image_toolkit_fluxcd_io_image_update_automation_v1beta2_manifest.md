@@ -55,15 +55,15 @@ Optional:
 
 Required:
 
-- `interval` (String) Interval gives an lower bound for how often the automationrun should be attempted.
-- `source_ref` (Attributes) SourceRef refers to the resource giving access detailsto a git repository. (see [below for nested schema](#nestedatt--spec--source_ref))
+- `interval` (String) Interval gives an lower bound for how often the automation run should be attempted.
+- `source_ref` (Attributes) SourceRef refers to the resource giving access details to a git repository. (see [below for nested schema](#nestedatt--spec--source_ref))
 
 Optional:
 
-- `git` (Attributes) GitSpec contains all the git-specific definitions. This istechnically optional, but in practice mandatory until there areother kinds of source allowed. (see [below for nested schema](#nestedatt--spec--git))
-- `policy_selector` (Attributes) PolicySelector allows to filter applied policies based on labels.By default includes all policies in namespace. (see [below for nested schema](#nestedatt--spec--policy_selector))
-- `suspend` (Boolean) Suspend tells the controller to not run this automation, untilit is unset (or set to false). Defaults to false.
-- `update` (Attributes) Update gives the specification for how to update the files inthe repository. This can be left empty, to use the defaultvalue. (see [below for nested schema](#nestedatt--spec--update))
+- `git` (Attributes) GitSpec contains all the git-specific definitions. This is technically optional, but in practice mandatory until there are other kinds of source allowed. (see [below for nested schema](#nestedatt--spec--git))
+- `policy_selector` (Attributes) PolicySelector allows to filter applied policies based on labels. By default includes all policies in namespace. (see [below for nested schema](#nestedatt--spec--policy_selector))
+- `suspend` (Boolean) Suspend tells the controller to not run this automation, until it is unset (or set to false). Defaults to false.
+- `update` (Attributes) Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value. (see [below for nested schema](#nestedatt--spec--update))
 
 <a id="nestedatt--spec--source_ref"></a>
 ### Nested Schema for `spec.source_ref`
@@ -88,19 +88,19 @@ Required:
 
 Optional:
 
-- `checkout` (Attributes) Checkout gives the parameters for cloning the git repository,ready to make changes. If not present, the 'spec.ref' field from thereferenced 'GitRepository' or its default will be used. (see [below for nested schema](#nestedatt--spec--git--checkout))
-- `push` (Attributes) Push specifies how and where to push commits made by theautomation. If missing, commits are pushed (back) to'.spec.checkout.branch' or its default. (see [below for nested schema](#nestedatt--spec--git--push))
+- `checkout` (Attributes) Checkout gives the parameters for cloning the git repository, ready to make changes. If not present, the 'spec.ref' field from the referenced 'GitRepository' or its default will be used. (see [below for nested schema](#nestedatt--spec--git--checkout))
+- `push` (Attributes) Push specifies how and where to push commits made by the automation. If missing, commits are pushed (back) to '.spec.checkout.branch' or its default. (see [below for nested schema](#nestedatt--spec--git--push))
 
 <a id="nestedatt--spec--git--commit"></a>
 ### Nested Schema for `spec.git.commit`
 
 Required:
 
-- `author` (Attributes) Author gives the email and optionally the name to use as theauthor of commits. (see [below for nested schema](#nestedatt--spec--git--commit--author))
+- `author` (Attributes) Author gives the email and optionally the name to use as the author of commits. (see [below for nested schema](#nestedatt--spec--git--commit--author))
 
 Optional:
 
-- `message_template` (String) MessageTemplate provides a template for the commit message,into which will be interpolated the details of the change made.
+- `message_template` (String) MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made.
 - `signing_key` (Attributes) SigningKey provides the option to sign commits with a GPG key (see [below for nested schema](#nestedatt--spec--git--commit--signing_key))
 
 <a id="nestedatt--spec--git--commit--author"></a>
@@ -118,9 +118,9 @@ Optional:
 <a id="nestedatt--spec--git--commit--signing_key"></a>
 ### Nested Schema for `spec.git.commit.signing_key`
 
-Optional:
+Required:
 
-- `secret_ref` (Attributes) SecretRef holds the name to a secret that contains a 'git.asc' keycorresponding to the ASCII Armored file containing the GPG signingkeypair as the value. It must be in the same namespace as theImageUpdateAutomation. (see [below for nested schema](#nestedatt--spec--git--commit--signing_key--secret_ref))
+- `secret_ref` (Attributes) SecretRef holds the name to a secret that contains a 'git.asc' key corresponding to the ASCII Armored file containing the GPG signing keypair as the value. It must be in the same namespace as the ImageUpdateAutomation. (see [below for nested schema](#nestedatt--spec--git--commit--signing_key--secret_ref))
 
 <a id="nestedatt--spec--git--commit--signing_key--secret_ref"></a>
 ### Nested Schema for `spec.git.commit.signing_key.secret_ref`
@@ -137,7 +137,7 @@ Required:
 
 Required:
 
-- `ref` (Attributes) Reference gives a branch, tag or commit to clone from the Gitrepository. (see [below for nested schema](#nestedatt--spec--git--checkout--ref))
+- `ref` (Attributes) Reference gives a branch, tag or commit to clone from the Git repository. (see [below for nested schema](#nestedatt--spec--git--checkout--ref))
 
 <a id="nestedatt--spec--git--checkout--ref"></a>
 ### Nested Schema for `spec.git.checkout.ref`
@@ -145,8 +145,8 @@ Required:
 Optional:
 
 - `branch` (String) Branch to check out, defaults to 'master' if no other field is defined.
-- `commit` (String) Commit SHA to check out, takes precedence over all reference fields.This can be combined with Branch to shallow clone the branch, in whichthe commit is expected to exist.
-- `name` (String) Name of the reference to check out; takes precedence over Branch, Tag and SemVer.It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_descriptionExamples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'
+- `commit` (String) Commit SHA to check out, takes precedence over all reference fields. This can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.
+- `name` (String) Name of the reference to check out; takes precedence over Branch, Tag and SemVer. It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description Examples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'
 - `semver` (String) SemVer tag expression to check out, takes precedence over Tag.
 - `tag` (String) Tag to check out, takes precedence over Branch.
 
@@ -157,9 +157,9 @@ Optional:
 
 Optional:
 
-- `branch` (String) Branch specifies that commits should be pushed to the branchnamed. The branch is created using '.spec.checkout.branch' as thestarting point, if it doesn't already exist.
-- `options` (Map of String) Options specifies the push options that are sent to the Gitserver when performing a push operation. For details, see:https://git-scm.com/docs/git-push#Documentation/git-push.txt---push-optionltoptiongt
-- `refspec` (String) Refspec specifies the Git Refspec to use for a push operation.If both Branch and Refspec are provided, then the commit is pushedto the branch and also using the specified refspec.For more details about Git Refspecs, see:https://git-scm.com/book/en/v2/Git-Internals-The-Refspec
+- `branch` (String) Branch specifies that commits should be pushed to the branch named. The branch is created using '.spec.checkout.branch' as the starting point, if it doesn't already exist.
+- `options` (Map of String) Options specifies the push options that are sent to the Git server when performing a push operation. For details, see: https://git-scm.com/docs/git-push#Documentation/git-push.txt---push-optionltoptiongt
+- `refspec` (String) Refspec specifies the Git Refspec to use for a push operation. If both Branch and Refspec are provided, then the commit is pushed to the branch and also using the specified refspec. For more details about Git Refspecs, see: https://git-scm.com/book/en/v2/Git-Internals-The-Refspec
 
 
 
@@ -169,7 +169,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--policy_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--policy_selector--match_expressions"></a>
 ### Nested Schema for `spec.policy_selector.match_expressions`
@@ -177,11 +177,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -194,4 +194,4 @@ Required:
 
 Optional:
 
-- `path` (String) Path to the directory containing the manifests to be updated.Defaults to 'None', which translates to the root pathof the GitRepositoryRef.
+- `path` (String) Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.

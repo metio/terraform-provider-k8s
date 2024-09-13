@@ -55,7 +55,7 @@ Optional:
 
 Required:
 
-- `type` (String) EngineType stands for the supported database engines. Right now it's only pxcand psmdb. However, it can be ps, pg and any other source.
+- `type` (String) EngineType stands for the supported database engines. Right now it's only pxc and psmdb. However, it can be ps, pg and any other source.
 
 Optional:
 

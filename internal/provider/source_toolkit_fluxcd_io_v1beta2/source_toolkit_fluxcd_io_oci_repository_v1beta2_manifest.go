@@ -162,8 +162,8 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 				MarkdownDescription: "OCIRepositorySpec defines the desired state of OCIRepository",
 				Attributes: map[string]schema.Attribute{
 					"cert_secret_ref": schema.SingleNestedAttribute{
-						Description:         "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theregistry. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.Note: Support for the 'caFile', 'certFile' and 'keyFile' keys havebeen deprecated.",
-						MarkdownDescription: "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theregistry. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.Note: Support for the 'caFile', 'certFile' and 'keyFile' keys havebeen deprecated.",
+						Description:         "CertSecretRef can be given the name of a Secret containing either or both of - a PEM-encoded client certificate ('tls.crt') and private key ('tls.key'); - a PEM-encoded CA certificate ('ca.crt') and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type 'Opaque' or 'kubernetes.io/tls'. Note: Support for the 'caFile', 'certFile' and 'keyFile' keys have been deprecated.",
+						MarkdownDescription: "CertSecretRef can be given the name of a Secret containing either or both of - a PEM-encoded client certificate ('tls.crt') and private key ('tls.key'); - a PEM-encoded CA certificate ('ca.crt') and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type 'Opaque' or 'kubernetes.io/tls'. Note: Support for the 'caFile', 'certFile' and 'keyFile' keys have been deprecated.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -179,8 +179,8 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"ignore": schema.StringAttribute{
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -195,8 +195,8 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"interval": schema.StringAttribute{
-						Description:         "Interval at which the OCIRepository URL is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.",
-						MarkdownDescription: "Interval at which the OCIRepository URL is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.",
+						Description:         "Interval at which the OCIRepository URL is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
+						MarkdownDescription: "Interval at which the OCIRepository URL is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -206,20 +206,20 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"layer_selector": schema.SingleNestedAttribute{
-						Description:         "LayerSelector specifies which layer should be extracted from the OCI artifact.When not specified, the first layer found in the artifact is selected.",
-						MarkdownDescription: "LayerSelector specifies which layer should be extracted from the OCI artifact.When not specified, the first layer found in the artifact is selected.",
+						Description:         "LayerSelector specifies which layer should be extracted from the OCI artifact. When not specified, the first layer found in the artifact is selected.",
+						MarkdownDescription: "LayerSelector specifies which layer should be extracted from the OCI artifact. When not specified, the first layer found in the artifact is selected.",
 						Attributes: map[string]schema.Attribute{
 							"media_type": schema.StringAttribute{
-								Description:         "MediaType specifies the OCI media type of the layerwhich should be extracted from the OCI Artifact. Thefirst layer matching this type is selected.",
-								MarkdownDescription: "MediaType specifies the OCI media type of the layerwhich should be extracted from the OCI Artifact. Thefirst layer matching this type is selected.",
+								Description:         "MediaType specifies the OCI media type of the layer which should be extracted from the OCI Artifact. The first layer matching this type is selected.",
+								MarkdownDescription: "MediaType specifies the OCI media type of the layer which should be extracted from the OCI Artifact. The first layer matching this type is selected.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"operation": schema.StringAttribute{
-								Description:         "Operation specifies how the selected layer should be processed.By default, the layer compressed content is extracted to storage.When the operation is set to 'copy', the layer compressed contentis persisted to storage as it is.",
-								MarkdownDescription: "Operation specifies how the selected layer should be processed.By default, the layer compressed content is extracted to storage.When the operation is set to 'copy', the layer compressed contentis persisted to storage as it is.",
+								Description:         "Operation specifies how the selected layer should be processed. By default, the layer compressed content is extracted to storage. When the operation is set to 'copy', the layer compressed content is persisted to storage as it is.",
+								MarkdownDescription: "Operation specifies how the selected layer should be processed. By default, the layer compressed content is extracted to storage. When the operation is set to 'copy', the layer compressed content is persisted to storage as it is.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -234,8 +234,8 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"provider": schema.StringAttribute{
-						Description:         "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'.When not specified, defaults to 'generic'.",
-						MarkdownDescription: "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'.When not specified, defaults to 'generic'.",
+						Description:         "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.",
+						MarkdownDescription: "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -245,8 +245,8 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"proxy_secret_ref": schema.SingleNestedAttribute{
-						Description:         "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the container registry.",
-						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the container registry.",
+						Description:         "ProxySecretRef specifies the Secret containing the proxy configuration to use while communicating with the container registry.",
+						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configuration to use while communicating with the container registry.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -262,20 +262,20 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"ref": schema.SingleNestedAttribute{
-						Description:         "The OCI reference to pull and monitor for changes,defaults to the latest tag.",
-						MarkdownDescription: "The OCI reference to pull and monitor for changes,defaults to the latest tag.",
+						Description:         "The OCI reference to pull and monitor for changes, defaults to the latest tag.",
+						MarkdownDescription: "The OCI reference to pull and monitor for changes, defaults to the latest tag.",
 						Attributes: map[string]schema.Attribute{
 							"digest": schema.StringAttribute{
-								Description:         "Digest is the image digest to pull, takes precedence over SemVer.The value should be in the format 'sha256:<HASH>'.",
-								MarkdownDescription: "Digest is the image digest to pull, takes precedence over SemVer.The value should be in the format 'sha256:<HASH>'.",
+								Description:         "Digest is the image digest to pull, takes precedence over SemVer. The value should be in the format 'sha256:<HASH>'.",
+								MarkdownDescription: "Digest is the image digest to pull, takes precedence over SemVer. The value should be in the format 'sha256:<HASH>'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"semver": schema.StringAttribute{
-								Description:         "SemVer is the range of tags to pull selecting the latest withinthe range, takes precedence over Tag.",
-								MarkdownDescription: "SemVer is the range of tags to pull selecting the latest withinthe range, takes precedence over Tag.",
+								Description:         "SemVer is the range of tags to pull selecting the latest within the range, takes precedence over Tag.",
+								MarkdownDescription: "SemVer is the range of tags to pull selecting the latest within the range, takes precedence over Tag.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -303,8 +303,8 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "SecretRef contains the secret name containing the registry logincredentials to resolve image metadata.The secret must be of type kubernetes.io/dockerconfigjson.",
-						MarkdownDescription: "SecretRef contains the secret name containing the registry logincredentials to resolve image metadata.The secret must be of type kubernetes.io/dockerconfigjson.",
+						Description:         "SecretRef contains the secret name containing the registry login credentials to resolve image metadata. The secret must be of type kubernetes.io/dockerconfigjson.",
+						MarkdownDescription: "SecretRef contains the secret name containing the registry login credentials to resolve image metadata. The secret must be of type kubernetes.io/dockerconfigjson.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -320,8 +320,8 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"service_account_name": schema.StringAttribute{
-						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticatethe image pull if the service account has attached pull secrets. For more information:https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
-						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticatethe image pull if the service account has attached pull secrets. For more information:https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
+						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. For more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
+						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. For more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -347,8 +347,8 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"url": schema.StringAttribute{
-						Description:         "URL is a reference to an OCI artifact repository hostedon a remote container registry.",
-						MarkdownDescription: "URL is a reference to an OCI artifact repository hostedon a remote container registry.",
+						Description:         "URL is a reference to an OCI artifact repository hosted on a remote container registry.",
+						MarkdownDescription: "URL is a reference to an OCI artifact repository hosted on a remote container registry.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -358,25 +358,25 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"verify": schema.SingleNestedAttribute{
-						Description:         "Verify contains the secret name containing the trusted public keysused to verify the signature and specifies which provider to use to checkwhether OCI image is authentic.",
-						MarkdownDescription: "Verify contains the secret name containing the trusted public keysused to verify the signature and specifies which provider to use to checkwhether OCI image is authentic.",
+						Description:         "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic.",
+						MarkdownDescription: "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic.",
 						Attributes: map[string]schema.Attribute{
 							"match_oidc_identity": schema.ListNestedAttribute{
-								Description:         "MatchOIDCIdentity specifies the identity matching criteria to usewhile verifying an OCI artifact which was signed using Cosign keylesssigning. The artifact's identity is deemed to be verified if any of thespecified matchers match against the identity.",
-								MarkdownDescription: "MatchOIDCIdentity specifies the identity matching criteria to usewhile verifying an OCI artifact which was signed using Cosign keylesssigning. The artifact's identity is deemed to be verified if any of thespecified matchers match against the identity.",
+								Description:         "MatchOIDCIdentity specifies the identity matching criteria to use while verifying an OCI artifact which was signed using Cosign keyless signing. The artifact's identity is deemed to be verified if any of the specified matchers match against the identity.",
+								MarkdownDescription: "MatchOIDCIdentity specifies the identity matching criteria to use while verifying an OCI artifact which was signed using Cosign keyless signing. The artifact's identity is deemed to be verified if any of the specified matchers match against the identity.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"issuer": schema.StringAttribute{
-											Description:         "Issuer specifies the regex pattern to match against to verifythe OIDC issuer in the Fulcio certificate. The pattern must be avalid Go regular expression.",
-											MarkdownDescription: "Issuer specifies the regex pattern to match against to verifythe OIDC issuer in the Fulcio certificate. The pattern must be avalid Go regular expression.",
+											Description:         "Issuer specifies the regex pattern to match against to verify the OIDC issuer in the Fulcio certificate. The pattern must be a valid Go regular expression.",
+											MarkdownDescription: "Issuer specifies the regex pattern to match against to verify the OIDC issuer in the Fulcio certificate. The pattern must be a valid Go regular expression.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"subject": schema.StringAttribute{
-											Description:         "Subject specifies the regex pattern to match against to verifythe identity subject in the Fulcio certificate. The pattern mustbe a valid Go regular expression.",
-											MarkdownDescription: "Subject specifies the regex pattern to match against to verifythe identity subject in the Fulcio certificate. The pattern mustbe a valid Go regular expression.",
+											Description:         "Subject specifies the regex pattern to match against to verify the identity subject in the Fulcio certificate. The pattern must be a valid Go regular expression.",
+											MarkdownDescription: "Subject specifies the regex pattern to match against to verify the identity subject in the Fulcio certificate. The pattern must be a valid Go regular expression.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -400,8 +400,8 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 							},
 
 							"secret_ref": schema.SingleNestedAttribute{
-								Description:         "SecretRef specifies the Kubernetes Secret containing thetrusted public keys.",
-								MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing thetrusted public keys.",
+								Description:         "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
+								MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name of the referent.",

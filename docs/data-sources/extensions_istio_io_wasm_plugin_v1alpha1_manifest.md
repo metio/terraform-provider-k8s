@@ -59,11 +59,11 @@ Required:
 
 Optional:
 
-- `fail_strategy` (String) Specifies the failure behavior for the plugin due to fatal errors.Valid Options: FAIL_CLOSE, FAIL_OPEN
-- `image_pull_policy` (String) The pull behaviour to be applied when fetching Wasm module by either OCI image or 'http/https'.Valid Options: IfNotPresent, Always
+- `fail_strategy` (String) Specifies the failure behavior for the plugin due to fatal errors. Valid Options: FAIL_CLOSE, FAIL_OPEN
+- `image_pull_policy` (String) The pull behaviour to be applied when fetching Wasm module by either OCI image or 'http/https'. Valid Options: IfNotPresent, Always
 - `image_pull_secret` (String) Credentials to use for OCI image pulling.
 - `match` (Attributes List) Specifies the criteria to determine which traffic is passed to WasmPlugin. (see [below for nested schema](#nestedatt--spec--match))
-- `phase` (String) Determines where in the filter chain this 'WasmPlugin' is to be injected.Valid Options: AUTHN, AUTHZ, STATS
+- `phase` (String) Determines where in the filter chain this 'WasmPlugin' is to be injected. Valid Options: AUTHN, AUTHZ, STATS
 - `plugin_config` (Map of String) The configuration that will be passed on to the plugin.
 - `plugin_name` (String) The plugin name to be used in the Envoy configuration (used to be called 'rootID').
 - `priority` (Number) Determines ordering of 'WasmPlugins' in the same 'phase'.
@@ -71,7 +71,7 @@ Optional:
 - `sha256` (String) SHA256 checksum that will be used to verify Wasm module or OCI container.
 - `target_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--target_ref))
 - `target_refs` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--target_refs))
-- `type` (String) Specifies the type of Wasm Extension to be used.Valid Options: HTTP, NETWORK
+- `type` (String) Specifies the type of Wasm Extension to be used. Valid Options: HTTP, NETWORK
 - `verification_key` (String)
 - `vm_config` (Attributes) Configuration for a Wasm VM. (see [below for nested schema](#nestedatt--spec--vm_config))
 
@@ -80,7 +80,7 @@ Optional:
 
 Optional:
 
-- `mode` (String) Criteria for selecting traffic by their direction.Valid Options: CLIENT, SERVER, CLIENT_AND_SERVER
+- `mode` (String) Criteria for selecting traffic by their direction. Valid Options: CLIENT, SERVER, CLIENT_AND_SERVER
 - `ports` (Attributes List) Criteria for selecting traffic by their destination port. (see [below for nested schema](#nestedatt--spec--match--ports))
 
 <a id="nestedatt--spec--match--ports"></a>
@@ -145,4 +145,4 @@ Required:
 Optional:
 
 - `value` (String) Value for the environment variable.
-- `value_from` (String) Source for the environment variable's value.Valid Options: INLINE, HOST
+- `value_from` (String) Source for the environment variable's value. Valid Options: INLINE, HOST

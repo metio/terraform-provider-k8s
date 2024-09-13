@@ -130,8 +130,8 @@ func (r *IamServicesK8SAwsGroupV1Alpha1Manifest) Schema(_ context.Context, _ dat
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "GroupSpec defines the desired state of Group.Contains information about an IAM group entity.This data type is used as a response element in the following operations:   * CreateGroup   * GetGroup   * ListGroups",
-				MarkdownDescription: "GroupSpec defines the desired state of Group.Contains information about an IAM group entity.This data type is used as a response element in the following operations:   * CreateGroup   * GetGroup   * ListGroups",
+				Description:         "GroupSpec defines the desired state of Group. Contains information about an IAM group entity. This data type is used as a response element in the following operations: * CreateGroup * GetGroup * ListGroups",
+				MarkdownDescription: "GroupSpec defines the desired state of Group. Contains information about an IAM group entity. This data type is used as a response element in the following operations: * CreateGroup * GetGroup * ListGroups",
 				Attributes: map[string]schema.Attribute{
 					"inline_policies": schema.MapAttribute{
 						Description:         "",
@@ -143,16 +143,16 @@ func (r *IamServicesK8SAwsGroupV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the group to create. Do not include the path in this value.IAM user, group, role, and policy names must be unique within the account.Names are not distinguished by case. For example, you cannot create resourcesnamed both 'MyResource' and 'myresource'.",
-						MarkdownDescription: "The name of the group to create. Do not include the path in this value.IAM user, group, role, and policy names must be unique within the account.Names are not distinguished by case. For example, you cannot create resourcesnamed both 'MyResource' and 'myresource'.",
+						Description:         "The name of the group to create. Do not include the path in this value. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both 'MyResource' and 'myresource'.",
+						MarkdownDescription: "The name of the group to create. Do not include the path in this value. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both 'MyResource' and 'myresource'.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"path": schema.StringAttribute{
-						Description:         "The path to the group. For more information about paths, see IAM identifiers(https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)in the IAM User Guide.This parameter is optional. If it is not included, it defaults to a slash(/).This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))a string of characters consisting of either a forward slash (/) by itselfor a string that must begin and end with forward slashes. In addition, itcan contain any ASCII character from the ! (u0021) through the DEL character(u007F), including most punctuation characters, digits, and upper and lowercasedletters.",
-						MarkdownDescription: "The path to the group. For more information about paths, see IAM identifiers(https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)in the IAM User Guide.This parameter is optional. If it is not included, it defaults to a slash(/).This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))a string of characters consisting of either a forward slash (/) by itselfor a string that must begin and end with forward slashes. In addition, itcan contain any ASCII character from the ! (u0021) through the DEL character(u007F), including most punctuation characters, digits, and upper and lowercasedletters.",
+						Description:         "The path to the group. For more information about paths, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex)) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (u0021) through the DEL character (u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+						MarkdownDescription: "The path to the group. For more information about paths, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex)) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (u0021) through the DEL character (u007F), including most punctuation characters, digits, and upper and lowercased letters.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -173,8 +173,8 @@ func (r *IamServicesK8SAwsGroupV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",

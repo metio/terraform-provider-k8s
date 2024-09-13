@@ -139,24 +139,24 @@ func (r *Ec2ServicesK8SAwsNatgatewayV1Alpha1Manifest) Schema(_ context.Context, 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "NatGatewaySpec defines the desired state of NatGateway.Describes a NAT gateway.",
-				MarkdownDescription: "NatGatewaySpec defines the desired state of NatGateway.Describes a NAT gateway.",
+				Description:         "NatGatewaySpec defines the desired state of NatGateway. Describes a NAT gateway.",
+				MarkdownDescription: "NatGatewaySpec defines the desired state of NatGateway. Describes a NAT gateway.",
 				Attributes: map[string]schema.Attribute{
 					"allocation_id": schema.StringAttribute{
-						Description:         "[Public NAT gateways only] The allocation ID of an Elastic IP address toassociate with the NAT gateway. You cannot specify an Elastic IP addresswith a private NAT gateway. If the Elastic IP address is associated withanother resource, you must first disassociate it.",
-						MarkdownDescription: "[Public NAT gateways only] The allocation ID of an Elastic IP address toassociate with the NAT gateway. You cannot specify an Elastic IP addresswith a private NAT gateway. If the Elastic IP address is associated withanother resource, you must first disassociate it.",
+						Description:         "[Public NAT gateways only] The allocation ID of an Elastic IP address to associate with the NAT gateway. You cannot specify an Elastic IP address with a private NAT gateway. If the Elastic IP address is associated with another resource, you must first disassociate it.",
+						MarkdownDescription: "[Public NAT gateways only] The allocation ID of an Elastic IP address to associate with the NAT gateway. You cannot specify an Elastic IP address with a private NAT gateway. If the Elastic IP address is associated with another resource, you must first disassociate it.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"allocation_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -185,8 +185,8 @@ func (r *Ec2ServicesK8SAwsNatgatewayV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"connectivity_type": schema.StringAttribute{
-						Description:         "Indicates whether the NAT gateway supports public or private connectivity.The default is public connectivity.",
-						MarkdownDescription: "Indicates whether the NAT gateway supports public or private connectivity.The default is public connectivity.",
+						Description:         "Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.",
+						MarkdownDescription: "Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -201,12 +201,12 @@ func (r *Ec2ServicesK8SAwsNatgatewayV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"subnet_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -235,8 +235,8 @@ func (r *Ec2ServicesK8SAwsNatgatewayV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
-						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
+						Description:         "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
+						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

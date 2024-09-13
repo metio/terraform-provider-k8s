@@ -219,20 +219,20 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "Spec declares policy exception behaviors.",
 				Attributes: map[string]schema.Attribute{
 					"background": schema.BoolAttribute{
-						Description:         "Background controls if exceptions are applied to existing policies during a background scan.Optional. Default value is 'true'. The value must be set to 'false' if the policy ruleuses variables that are only available in the admission review request (e.g. user name).",
-						MarkdownDescription: "Background controls if exceptions are applied to existing policies during a background scan.Optional. Default value is 'true'. The value must be set to 'false' if the policy ruleuses variables that are only available in the admission review request (e.g. user name).",
+						Description:         "Background controls if exceptions are applied to existing policies during a background scan. Optional. Default value is 'true'. The value must be set to 'false' if the policy rule uses variables that are only available in the admission review request (e.g. user name).",
+						MarkdownDescription: "Background controls if exceptions are applied to existing policies during a background scan. Optional. Default value is 'true'. The value must be set to 'false' if the policy rule uses variables that are only available in the admission review request (e.g. user name).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"conditions": schema.SingleNestedAttribute{
-						Description:         "Conditions are used to determine if a resource applies to the exception by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.",
-						MarkdownDescription: "Conditions are used to determine if a resource applies to the exception by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.",
+						Description:         "Conditions are used to determine if a resource applies to the exception by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements.",
+						MarkdownDescription: "Conditions are used to determine if a resource applies to the exception by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements.",
 						Attributes: map[string]schema.Attribute{
 							"all": schema.ListNestedAttribute{
-								Description:         "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass.",
-								MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass.",
+								Description:         "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass.",
+								MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"key": schema.MapAttribute{
@@ -253,8 +253,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
-											MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+											Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+											MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -264,8 +264,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"value": schema.MapAttribute{
-											Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
-											MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+											Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+											MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -279,8 +279,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"any": schema.ListNestedAttribute{
-								Description:         "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass.",
-								MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass.",
+								Description:         "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass.",
+								MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"key": schema.MapAttribute{
@@ -301,8 +301,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
-											MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+											Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+											MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -312,8 +312,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"value": schema.MapAttribute{
-											Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
-											MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+											Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+											MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -337,8 +337,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"policy_name": schema.StringAttribute{
-									Description:         "PolicyName identifies the policy to which the exception is applied.The policy name uses the format <namespace>/<name> unless itreferences a ClusterPolicy.",
-									MarkdownDescription: "PolicyName identifies the policy to which the exception is applied.The policy name uses the format <namespace>/<name> unless itreferences a ClusterPolicy.",
+									Description:         "PolicyName identifies the policy to which the exception is applied. The policy name uses the format <namespace>/<name> unless it references a ClusterPolicy.",
+									MarkdownDescription: "PolicyName identifies the policy to which the exception is applied. The policy name uses the format <namespace>/<name> unless it references a ClusterPolicy.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -382,8 +382,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 											MarkdownDescription: "ResourceDescription contains information about the resource being created or modified.",
 											Attributes: map[string]schema.Attribute{
 												"annotations": schema.MapAttribute{
-													Description:         "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
-													MarkdownDescription: "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
+													Description:         "Annotations is a map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
+													MarkdownDescription: "Annotations is a map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -400,16 +400,16 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
-													MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
+													Description:         "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
+													MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"names": schema.ListAttribute{
-													Description:         "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
-													MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+													Description:         "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+													MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -417,8 +417,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"namespace_selector": schema.SingleNestedAttribute{
-													Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
-													MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
+													Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+													MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -434,16 +434,16 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -457,8 +457,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -471,8 +471,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"namespaces": schema.ListAttribute{
-													Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
-													MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+													Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+													MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -489,8 +489,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"selector": schema.SingleNestedAttribute{
-													Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
-													MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
+													Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+													MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -506,16 +506,16 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -529,8 +529,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -562,16 +562,16 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"api_group": schema.StringAttribute{
-														Description:         "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
-														MarkdownDescription: "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+														Description:         "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+														MarkdownDescription: "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"kind": schema.StringAttribute{
-														Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
-														MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+														Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+														MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -586,8 +586,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
-														MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
+														Description:         "Namespace of the referenced object. If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
+														MarkdownDescription: "Namespace of the referenced object. If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -624,8 +624,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 											MarkdownDescription: "ResourceDescription contains information about the resource being created or modified.",
 											Attributes: map[string]schema.Attribute{
 												"annotations": schema.MapAttribute{
-													Description:         "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
-													MarkdownDescription: "Annotations is a  map of annotations (key-value pairs of type string). Annotation keysand values support the wildcard characters '*' (matches zero or many characters) and'?' (matches at least one character).",
+													Description:         "Annotations is a map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
+													MarkdownDescription: "Annotations is a map of annotations (key-value pairs of type string). Annotation keys and values support the wildcard characters '*' (matches zero or many characters) and '?' (matches at least one character).",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -642,16 +642,16 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
-													MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).NOTE: 'Name' is being deprecated in favor of 'Names'.",
+													Description:         "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
+													MarkdownDescription: "Name is the name of the resource. The name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character). NOTE: 'Name' is being deprecated in favor of 'Names'.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"names": schema.ListAttribute{
-													Description:         "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
-													MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+													Description:         "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+													MarkdownDescription: "Names are the names of the resources. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -659,8 +659,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"namespace_selector": schema.SingleNestedAttribute{
-													Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
-													MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and valuesin 'matchLabels' support the wildcard characters '*' (matches zero or many characters)and '?' (matches one character).Wildcards allows writing label selectors like['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value butdoes not match an empty label set.",
+													Description:         "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+													MarkdownDescription: "NamespaceSelector is a label selector for the resource namespace. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -676,16 +676,16 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -699,8 +699,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -713,8 +713,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"namespaces": schema.ListAttribute{
-													Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
-													MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters'*' (matches zero or many characters) and '?' (at least one character).",
+													Description:         "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
+													MarkdownDescription: "Namespaces is a list of namespaces names. Each name supports wildcard characters '*' (matches zero or many characters) and '?' (at least one character).",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -731,8 +731,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"selector": schema.SingleNestedAttribute{
-													Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
-													MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcardcharacters '*' (matches zero or many characters) and '?' (matches one character).Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note thatusing ['*' : '*'] matches any key and value but does not match an empty label set.",
+													Description:         "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
+													MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels' support the wildcard characters '*' (matches zero or many characters) and '?' (matches one character). Wildcards allows writing label selectors like ['storage.k8s.io/*': '*']. Note that using ['*' : '*'] matches any key and value but does not match an empty label set.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -748,16 +748,16 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -771,8 +771,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -804,16 +804,16 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"api_group": schema.StringAttribute{
-														Description:         "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
-														MarkdownDescription: "APIGroup holds the API group of the referenced subject.Defaults to '' for ServiceAccount subjects.Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+														Description:         "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
+														MarkdownDescription: "APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"kind": schema.StringAttribute{
-														Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
-														MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'.If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+														Description:         "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
+														MarkdownDescription: "Kind of object being referenced. Values defined by this API group are 'User', 'Group', and 'ServiceAccount'. If the Authorizer does not recognized the kind value, the Authorizer should report an error.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -828,8 +828,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
-														MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not emptythe Authorizer should report an error.",
+														Description:         "Namespace of the referenced object. If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
+														MarkdownDescription: "Namespace of the referenced object. If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -853,13 +853,13 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"pod_security": schema.ListNestedAttribute{
-						Description:         "PodSecurity specifies the Pod Security Standard controls to be excluded.Applicable only to policies that have validate.podSecurity subrule.",
-						MarkdownDescription: "PodSecurity specifies the Pod Security Standard controls to be excluded.Applicable only to policies that have validate.podSecurity subrule.",
+						Description:         "PodSecurity specifies the Pod Security Standard controls to be excluded. Applicable only to policies that have validate.podSecurity subrule.",
+						MarkdownDescription: "PodSecurity specifies the Pod Security Standard controls to be excluded. Applicable only to policies that have validate.podSecurity subrule.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"control_name": schema.StringAttribute{
-									Description:         "ControlName specifies the name of the Pod Security Standard control.See: https://kubernetes.io/docs/concepts/security/pod-security-standards/",
-									MarkdownDescription: "ControlName specifies the name of the Pod Security Standard control.See: https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+									Description:         "ControlName specifies the name of the Pod Security Standard control. See: https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+									MarkdownDescription: "ControlName specifies the name of the Pod Security Standard control. See: https://kubernetes.io/docs/concepts/security/pod-security-standards/",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -869,8 +869,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 								},
 
 								"images": schema.ListAttribute{
-									Description:         "Images selects matching containers and applies the container level PSS.Each image is the image name consisting of the registry address, repository, image, and tag.Empty list matches no containers, PSS checks are applied at the pod level only.Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
-									MarkdownDescription: "Images selects matching containers and applies the container level PSS.Each image is the image name consisting of the registry address, repository, image, and tag.Empty list matches no containers, PSS checks are applied at the pod level only.Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
+									Description:         "Images selects matching containers and applies the container level PSS. Each image is the image name consisting of the registry address, repository, image, and tag. Empty list matches no containers, PSS checks are applied at the pod level only. Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
+									MarkdownDescription: "Images selects matching containers and applies the container level PSS. Each image is the image name consisting of the registry address, repository, image, and tag. Empty list matches no containers, PSS checks are applied at the pod level only. Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -878,8 +878,8 @@ func (r *KyvernoIoPolicyExceptionV2Manifest) Schema(_ context.Context, _ datasou
 								},
 
 								"restricted_field": schema.StringAttribute{
-									Description:         "RestrictedField selects the field for the given Pod Security Standard control.When not set, all restricted fields for the control are selected.",
-									MarkdownDescription: "RestrictedField selects the field for the given Pod Security Standard control.When not set, all restricted fields for the control are selected.",
+									Description:         "RestrictedField selects the field for the given Pod Security Standard control. When not set, all restricted fields for the control are selected.",
+									MarkdownDescription: "RestrictedField selects the field for the given Pod Security Standard control. When not set, all restricted fields for the control are selected.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

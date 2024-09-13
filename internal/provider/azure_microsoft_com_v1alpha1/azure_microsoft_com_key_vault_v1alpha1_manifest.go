@@ -154,8 +154,8 @@ func (r *AzureMicrosoftComKeyVaultV1Alpha1Manifest) Schema(_ context.Context, _ 
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"application_id": schema.StringAttribute{
-									Description:         "ApplicationID -  Application ID of the client making request on behalf of a principal",
-									MarkdownDescription: "ApplicationID -  Application ID of the client making request on behalf of a principal",
+									Description:         "ApplicationID - Application ID of the client making request on behalf of a principal",
+									MarkdownDescription: "ApplicationID - Application ID of the client making request on behalf of a principal",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -257,8 +257,8 @@ func (r *AzureMicrosoftComKeyVaultV1Alpha1Manifest) Schema(_ context.Context, _ 
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"bypass": schema.StringAttribute{
-								Description:         "Bypass - Tells what traffic can bypass network rules. This can be 'AzureServices' or 'None'.  If not specified the default is 'AzureServices'. Possible values include: 'AzureServices', 'None'",
-								MarkdownDescription: "Bypass - Tells what traffic can bypass network rules. This can be 'AzureServices' or 'None'.  If not specified the default is 'AzureServices'. Possible values include: 'AzureServices', 'None'",
+								Description:         "Bypass - Tells what traffic can bypass network rules. This can be 'AzureServices' or 'None'. If not specified the default is 'AzureServices'. Possible values include: 'AzureServices', 'None'",
+								MarkdownDescription: "Bypass - Tells what traffic can bypass network rules. This can be 'AzureServices' or 'None'. If not specified the default is 'AzureServices'. Possible values include: 'AzureServices', 'None'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

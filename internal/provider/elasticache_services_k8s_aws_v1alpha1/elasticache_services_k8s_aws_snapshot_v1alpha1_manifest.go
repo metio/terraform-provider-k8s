@@ -129,12 +129,12 @@ func (r *ElasticacheServicesK8SAwsSnapshotV1Alpha1Manifest) Schema(_ context.Con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "SnapshotSpec defines the desired state of Snapshot.Represents a copy of an entire Redis cluster as of the time when the snapshotwas taken.",
-				MarkdownDescription: "SnapshotSpec defines the desired state of Snapshot.Represents a copy of an entire Redis cluster as of the time when the snapshotwas taken.",
+				Description:         "SnapshotSpec defines the desired state of Snapshot. Represents a copy of an entire Redis cluster as of the time when the snapshot was taken.",
+				MarkdownDescription: "SnapshotSpec defines the desired state of Snapshot. Represents a copy of an entire Redis cluster as of the time when the snapshot was taken.",
 				Attributes: map[string]schema.Attribute{
 					"cache_cluster_id": schema.StringAttribute{
-						Description:         "The identifier of an existing cluster. The snapshot is created from thiscluster.",
-						MarkdownDescription: "The identifier of an existing cluster. The snapshot is created from thiscluster.",
+						Description:         "The identifier of an existing cluster. The snapshot is created from this cluster.",
+						MarkdownDescription: "The identifier of an existing cluster. The snapshot is created from this cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -149,8 +149,8 @@ func (r *ElasticacheServicesK8SAwsSnapshotV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"replication_group_id": schema.StringAttribute{
-						Description:         "The identifier of an existing replication group. The snapshot is createdfrom this replication group.",
-						MarkdownDescription: "The identifier of an existing replication group. The snapshot is createdfrom this replication group.",
+						Description:         "The identifier of an existing replication group. The snapshot is created from this replication group.",
+						MarkdownDescription: "The identifier of an existing replication group. The snapshot is created from this replication group.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -173,8 +173,8 @@ func (r *ElasticacheServicesK8SAwsSnapshotV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
-						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
+						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

@@ -161,16 +161,16 @@ func (r *SnapschedulerBackubeSnapshotScheduleV1Manifest) Schema(_ context.Contex
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -184,8 +184,8 @@ func (r *SnapschedulerBackubeSnapshotScheduleV1Manifest) Schema(_ context.Contex
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -210,8 +210,8 @@ func (r *SnapschedulerBackubeSnapshotScheduleV1Manifest) Schema(_ context.Contex
 						MarkdownDescription: "Retention determines how long this schedule's snapshots will be kept.",
 						Attributes: map[string]schema.Attribute{
 							"expires": schema.StringAttribute{
-								Description:         "The length of time (time.Duration) after which a given Snapshot will bedeleted.",
-								MarkdownDescription: "The length of time (time.Duration) after which a given Snapshot will bedeleted.",
+								Description:         "The length of time (time.Duration) after which a given Snapshot will be deleted.",
+								MarkdownDescription: "The length of time (time.Duration) after which a given Snapshot will be deleted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -237,8 +237,8 @@ func (r *SnapschedulerBackubeSnapshotScheduleV1Manifest) Schema(_ context.Contex
 					},
 
 					"schedule": schema.StringAttribute{
-						Description:         "Schedule is a Cronspec specifying when snapshots should be taken. Seehttps://en.wikipedia.org/wiki/Cron for a description of the format.",
-						MarkdownDescription: "Schedule is a Cronspec specifying when snapshots should be taken. Seehttps://en.wikipedia.org/wiki/Cron for a description of the format.",
+						Description:         "Schedule is a Cronspec specifying when snapshots should be taken. See https://en.wikipedia.org/wiki/Cron for a description of the format.",
+						MarkdownDescription: "Schedule is a Cronspec specifying when snapshots should be taken. See https://en.wikipedia.org/wiki/Cron for a description of the format.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -252,8 +252,8 @@ func (r *SnapschedulerBackubeSnapshotScheduleV1Manifest) Schema(_ context.Contex
 						MarkdownDescription: "A template to customize the Snapshots.",
 						Attributes: map[string]schema.Attribute{
 							"labels": schema.MapAttribute{
-								Description:         "A list of labels that should be added to each Snapshot created by thisschedule.",
-								MarkdownDescription: "A list of labels that should be added to each Snapshot created by thisschedule.",
+								Description:         "A list of labels that should be added to each Snapshot created by this schedule.",
+								MarkdownDescription: "A list of labels that should be added to each Snapshot created by this schedule.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

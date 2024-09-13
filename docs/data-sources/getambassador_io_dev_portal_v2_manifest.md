@@ -3,12 +3,12 @@
 page_title: "k8s_getambassador_io_dev_portal_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "getambassador.io"
 description: |-
-  DevPortal is the Schema for the DevPortals API  DevPortal resources specify the 'what' and 'how' is shown in a DevPortal:  1. 'what' is in a DevPortal can be controlled with  - a 'selector', that can be used for filtering 'Mappings'.  - a 'docs' listing of (services, url)  2. 'how' is a pointer to some 'contents' (a checkout of a Git repository with go-templates/markdown/css).  Multiple 'DevPortal's can exist in the cluster, and the Dev Portal server will show them at different endpoints. A 'DevPortal' resource with a special name, 'ambassador', will be used for configuring the default Dev Portal (served at '/docs/' by default).
+  DevPortal is the Schema for the DevPortals API DevPortal resources specify the 'what' and 'how' is shown in a DevPortal: 1. 'what' is in a DevPortal can be controlled with - a 'selector', that can be used for filtering 'Mappings'. - a 'docs' listing of (services, url) 2. 'how' is a pointer to some 'contents' (a checkout of a Git repository with go-templates/markdown/css). Multiple 'DevPortal's can exist in the cluster, and the Dev Portal server will show them at different endpoints. A 'DevPortal' resource with a special name, 'ambassador', will be used for configuring the default Dev Portal (served at '/docs/' by default).
 ---
 
 # k8s_getambassador_io_dev_portal_v2_manifest (Data Source)
 
-DevPortal is the Schema for the DevPortals API  DevPortal resources specify the 'what' and 'how' is shown in a DevPortal:  1. 'what' is in a DevPortal can be controlled with  - a 'selector', that can be used for filtering 'Mappings'.  - a 'docs' listing of (services, url)  2. 'how' is a pointer to some 'contents' (a checkout of a Git repository with go-templates/markdown/css).  Multiple 'DevPortal's can exist in the cluster, and the Dev Portal server will show them at different endpoints. A 'DevPortal' resource with a special name, 'ambassador', will be used for configuring the default Dev Portal (served at '/docs/' by default).
+DevPortal is the Schema for the DevPortals API DevPortal resources specify the 'what' and 'how' is shown in a DevPortal: 1. 'what' is in a DevPortal can be controlled with - a 'selector', that can be used for filtering 'Mappings'. - a 'docs' listing of (services, url) 2. 'how' is a pointer to some 'contents' (a checkout of a Git repository with go-templates/markdown/css). Multiple 'DevPortal's can exist in the cluster, and the Dev Portal server will show them at different endpoints. A 'DevPortal' resource with a special name, 'ambassador', will be used for configuring the default Dev Portal (served at '/docs/' by default).
 
 ## Example Usage
 
@@ -55,7 +55,7 @@ Optional:
 
 Optional:
 
-- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource.  May either be a string or a list of strings.  If no value is provided, the default is:  ambassador_id: - 'default'
+- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource. May either be a string or a list of strings. If no value is provided, the default is: ambassador_id: - 'default'
 - `content` (Attributes) Content specifies where the content shown in the DevPortal come from (see [below for nested schema](#nestedatt--spec--content))
 - `default` (Boolean) Default must be true when this is the default DevPortal
 - `docs` (Attributes List) Docs is a static docs definition (see [below for nested schema](#nestedatt--spec--docs))
@@ -90,7 +90,7 @@ Optional:
 Optional:
 
 - `enabled` (Boolean)
-- `type` (String) Type of search. 'title-only' does a fuzzy search over openapi and page titles 'all-content' will fuzzy search over all openapi and page content. 'title-only' is the default. warning:  using all-content may incur a larger memory footprint
+- `type` (String) Type of search. 'title-only' does a fuzzy search over openapi and page titles 'all-content' will fuzzy search over all openapi and page content. 'title-only' is the default. warning: using all-content may incur a larger memory footprint
 
 
 <a id="nestedatt--spec--selector"></a>

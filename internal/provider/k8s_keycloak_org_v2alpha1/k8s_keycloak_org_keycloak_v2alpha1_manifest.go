@@ -1404,8 +1404,8 @@ func (r *K8SKeycloakOrgKeycloakV2Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"hostname": schema.StringAttribute{
-						Description:         "Hostname for the Keycloak server.The special value 'INSECURE-DISABLE' disables the hostname strict resolution.",
-						MarkdownDescription: "Hostname for the Keycloak server.The special value 'INSECURE-DISABLE' disables the hostname strict resolution.",
+						Description:         "Hostname for the Keycloak server. The special value 'INSECURE-DISABLE' disables the hostname strict resolution.",
+						MarkdownDescription: "Hostname for the Keycloak server. The special value 'INSECURE-DISABLE' disables the hostname strict resolution.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -1428,8 +1428,8 @@ func (r *K8SKeycloakOrgKeycloakV2Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"server_configuration": schema.ListNestedAttribute{
-						Description:         "Configuration of the Keycloak server.expressed as a keys (reference: https://www.keycloak.org/server/all-config) and values that can be either direct values or references to secrets.",
-						MarkdownDescription: "Configuration of the Keycloak server.expressed as a keys (reference: https://www.keycloak.org/server/all-config) and values that can be either direct values or references to secrets.",
+						Description:         "Configuration of the Keycloak server. expressed as a keys (reference: https://www.keycloak.org/server/all-config) and values that can be either direct values or references to secrets.",
+						MarkdownDescription: "Configuration of the Keycloak server. expressed as a keys (reference: https://www.keycloak.org/server/all-config) and values that can be either direct values or references to secrets.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -1488,20 +1488,20 @@ func (r *K8SKeycloakOrgKeycloakV2Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"tls_secret": schema.StringAttribute{
-						Description:         "A secret containing the TLS configuration for HTTPS. Reference: https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets.The special value 'INSECURE-DISABLE' disables https.",
-						MarkdownDescription: "A secret containing the TLS configuration for HTTPS. Reference: https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets.The special value 'INSECURE-DISABLE' disables https.",
+						Description:         "A secret containing the TLS configuration for HTTPS. Reference: https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets. The special value 'INSECURE-DISABLE' disables https.",
+						MarkdownDescription: "A secret containing the TLS configuration for HTTPS. Reference: https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets. The special value 'INSECURE-DISABLE' disables https.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"unsupported": schema.SingleNestedAttribute{
-						Description:         "In this section you can configure podTemplate advanced features, not production-ready, and not supported settings.Use at your own risk and open an issue with your use-case if you don't find an alternative way.",
-						MarkdownDescription: "In this section you can configure podTemplate advanced features, not production-ready, and not supported settings.Use at your own risk and open an issue with your use-case if you don't find an alternative way.",
+						Description:         "In this section you can configure podTemplate advanced features, not production-ready, and not supported settings. Use at your own risk and open an issue with your use-case if you don't find an alternative way.",
+						MarkdownDescription: "In this section you can configure podTemplate advanced features, not production-ready, and not supported settings. Use at your own risk and open an issue with your use-case if you don't find an alternative way.",
 						Attributes: map[string]schema.Attribute{
 							"pod_template": schema.SingleNestedAttribute{
-								Description:         "You can configure that will be merged with the one configured by default by the operator.Use at your own risk, we reserve the possibility to remove/change the way any field gets merged in future releases without notice.Reference: https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates",
-								MarkdownDescription: "You can configure that will be merged with the one configured by default by the operator.Use at your own risk, we reserve the possibility to remove/change the way any field gets merged in future releases without notice.Reference: https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates",
+								Description:         "You can configure that will be merged with the one configured by default by the operator. Use at your own risk, we reserve the possibility to remove/change the way any field gets merged in future releases without notice. Reference: https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates",
+								MarkdownDescription: "You can configure that will be merged with the one configured by default by the operator. Use at your own risk, we reserve the possibility to remove/change the way any field gets merged in future releases without notice. Reference: https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates",
 								Attributes: map[string]schema.Attribute{
 									"metadata": schema.SingleNestedAttribute{
 										Description:         "",

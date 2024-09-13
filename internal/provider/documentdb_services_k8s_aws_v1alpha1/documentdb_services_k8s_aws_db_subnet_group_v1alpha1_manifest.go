@@ -133,8 +133,8 @@ func (r *DocumentdbServicesK8SAwsDbsubnetGroupV1Alpha1Manifest) Schema(_ context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "DBSubnetGroupSpec defines the desired state of DBSubnetGroup.Detailed information about a subnet group.",
-				MarkdownDescription: "DBSubnetGroupSpec defines the desired state of DBSubnetGroup.Detailed information about a subnet group.",
+				Description:         "DBSubnetGroupSpec defines the desired state of DBSubnetGroup. Detailed information about a subnet group.",
+				MarkdownDescription: "DBSubnetGroupSpec defines the desired state of DBSubnetGroup. Detailed information about a subnet group.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
 						Description:         "The description for the subnet group.",
@@ -145,8 +145,8 @@ func (r *DocumentdbServicesK8SAwsDbsubnetGroupV1Alpha1Manifest) Schema(_ context
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name for the subnet group. This value is stored as a lowercase string.Constraints: Must contain no more than 255 letters, numbers, periods, underscores,spaces, or hyphens. Must not be default.Example: mySubnetgroup",
-						MarkdownDescription: "The name for the subnet group. This value is stored as a lowercase string.Constraints: Must contain no more than 255 letters, numbers, periods, underscores,spaces, or hyphens. Must not be default.Example: mySubnetgroup",
+						Description:         "The name for the subnet group. This value is stored as a lowercase string. Constraints: Must contain no more than 255 letters, numbers, periods, underscores, spaces, or hyphens. Must not be default. Example: mySubnetgroup",
+						MarkdownDescription: "The name for the subnet group. This value is stored as a lowercase string. Constraints: Must contain no more than 255 letters, numbers, periods, underscores, spaces, or hyphens. Must not be default. Example: mySubnetgroup",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -167,8 +167,8 @@ func (r *DocumentdbServicesK8SAwsDbsubnetGroupV1Alpha1Manifest) Schema(_ context
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",

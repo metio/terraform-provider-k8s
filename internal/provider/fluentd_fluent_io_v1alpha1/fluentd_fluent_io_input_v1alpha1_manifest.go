@@ -536,16 +536,16 @@ func (r *FluentdFluentIoInputV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.StringAttribute{
-																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Description:         "The key of the secret to select from. Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -587,16 +587,16 @@ func (r *FluentdFluentIoInputV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.StringAttribute{
-																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Description:         "The key of the secret to select from. Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -676,8 +676,8 @@ func (r *FluentdFluentIoInputV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"tag": schema.StringAttribute{
-											Description:         "in_forward uses incoming event's tag by default (See Protocol Section).If the tag parameter is set, its value is used instead.",
-											MarkdownDescription: "in_forward uses incoming event's tag by default (See Protocol Section).If the tag parameter is set, its value is used instead.",
+											Description:         "in_forward uses incoming event's tag by default (See Protocol Section). If the tag parameter is set, its value is used instead.",
+											MarkdownDescription: "in_forward uses incoming event's tag by default (See Protocol Section). If the tag parameter is set, its value is used instead.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -813,16 +813,16 @@ func (r *FluentdFluentIoInputV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																			Description:         "The key of the secret to select from. Must be a valid secret key.",
+																			MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																			MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -864,16 +864,16 @@ func (r *FluentdFluentIoInputV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																			Description:         "The key of the secret to select from. Must be a valid secret key.",
+																			MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																			MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -925,8 +925,8 @@ func (r *FluentdFluentIoInputV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"add_remote_addr": schema.StringAttribute{
-											Description:         "Adds REMOTE_ADDR field to the record. The value of REMOTE_ADDR is the client's address.i.e: X-Forwarded-For: host1, host2",
-											MarkdownDescription: "Adds REMOTE_ADDR field to the record. The value of REMOTE_ADDR is the client's address.i.e: X-Forwarded-For: host1, host2",
+											Description:         "Adds REMOTE_ADDR field to the record. The value of REMOTE_ADDR is the client's address. i.e: X-Forwarded-For: host1, host2",
+											MarkdownDescription: "Adds REMOTE_ADDR field to the record. The value of REMOTE_ADDR is the client's address. i.e: X-Forwarded-For: host1, host2",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1496,24 +1496,24 @@ func (r *FluentdFluentIoInputV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"enable_stat_watcher": schema.BoolAttribute{
-											Description:         "Enables the additional inotify-based watcher. Setting this parameter to false will disable the inotify events and use only timer watcher for file tailing.This option is mainly for avoiding the stuck issue with inotify.",
-											MarkdownDescription: "Enables the additional inotify-based watcher. Setting this parameter to false will disable the inotify events and use only timer watcher for file tailing.This option is mainly for avoiding the stuck issue with inotify.",
+											Description:         "Enables the additional inotify-based watcher. Setting this parameter to false will disable the inotify events and use only timer watcher for file tailing. This option is mainly for avoiding the stuck issue with inotify.",
+											MarkdownDescription: "Enables the additional inotify-based watcher. Setting this parameter to false will disable the inotify events and use only timer watcher for file tailing. This option is mainly for avoiding the stuck issue with inotify.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"enable_watch_timer": schema.BoolAttribute{
-											Description:         "Enables the additional watch timer. Setting this parameter to false will significantly reduce CPU and I/O consumption when tailing a large number of files on systems with inotify support.The default is true which results in an additional 1 second timer being used.",
-											MarkdownDescription: "Enables the additional watch timer. Setting this parameter to false will significantly reduce CPU and I/O consumption when tailing a large number of files on systems with inotify support.The default is true which results in an additional 1 second timer being used.",
+											Description:         "Enables the additional watch timer. Setting this parameter to false will significantly reduce CPU and I/O consumption when tailing a large number of files on systems with inotify support. The default is true which results in an additional 1 second timer being used.",
+											MarkdownDescription: "Enables the additional watch timer. Setting this parameter to false will significantly reduce CPU and I/O consumption when tailing a large number of files on systems with inotify support. The default is true which results in an additional 1 second timer being used.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"encoding": schema.StringAttribute{
-											Description:         "Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding.If encoding is specified, in_tail changes string to encoding.If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.",
-											MarkdownDescription: "Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding.If encoding is specified, in_tail changes string to encoding.If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.",
+											Description:         "Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding. If encoding is specified, in_tail changes string to encoding. If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.",
+											MarkdownDescription: "Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding. If encoding is specified, in_tail changes string to encoding. If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1537,20 +1537,20 @@ func (r *FluentdFluentIoInputV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"from_encoding": schema.StringAttribute{
-											Description:         "Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding.If encoding is specified, in_tail changes string to encoding.If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.",
-											MarkdownDescription: "Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding.If encoding is specified, in_tail changes string to encoding.If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.",
+											Description:         "Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding. If encoding is specified, in_tail changes string to encoding. If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.",
+											MarkdownDescription: "Specifies the encoding of reading lines. By default, in_tail emits string value as ASCII-8BIT encoding. If encoding is specified, in_tail changes string to encoding. If encoding and fromEncoding both are specified, in_tail tries to encode string from fromEncoding to encoding.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"group": schema.SingleNestedAttribute{
-											Description:         "The in_tail plugin can assign each log file to a group, based on user defined rules.The limit parameter controls the total number of lines collected for a group within a rate_period time interval.",
-											MarkdownDescription: "The in_tail plugin can assign each log file to a group, based on user defined rules.The limit parameter controls the total number of lines collected for a group within a rate_period time interval.",
+											Description:         "The in_tail plugin can assign each log file to a group, based on user defined rules. The limit parameter controls the total number of lines collected for a group within a rate_period time interval.",
+											MarkdownDescription: "The in_tail plugin can assign each log file to a group, based on user defined rules. The limit parameter controls the total number of lines collected for a group within a rate_period time interval.",
 											Attributes: map[string]schema.Attribute{
 												"pattern": schema.StringAttribute{
-													Description:         "Specifies the regular expression for extracting metadata (namespace, podname) from log file path.Default value of the pattern regexp extracts information about namespace, podname, docker_id, container of the log (K8s specific).",
-													MarkdownDescription: "Specifies the regular expression for extracting metadata (namespace, podname) from log file path.Default value of the pattern regexp extracts information about namespace, podname, docker_id, container of the log (K8s specific).",
+													Description:         "Specifies the regular expression for extracting metadata (namespace, podname) from log file path. Default value of the pattern regexp extracts information about namespace, podname, docker_id, container of the log (K8s specific).",
+													MarkdownDescription: "Specifies the regular expression for extracting metadata (namespace, podname) from log file path. Default value of the pattern regexp extracts information about namespace, podname, docker_id, container of the log (K8s specific).",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1897,8 +1897,8 @@ func (r *FluentdFluentIoInputV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"pos_file": schema.StringAttribute{
-											Description:         "(recommended) Fluentd will record the position it last read from this file.pos_file handles multiple positions in one file so no need to have multiple pos_file parameters per source.Don't share pos_file between in_tail configurations. It causes unexpected behavior e.g. corrupt pos_file content.",
-											MarkdownDescription: "(recommended) Fluentd will record the position it last read from this file.pos_file handles multiple positions in one file so no need to have multiple pos_file parameters per source.Don't share pos_file between in_tail configurations. It causes unexpected behavior e.g. corrupt pos_file content.",
+											Description:         "(recommended) Fluentd will record the position it last read from this file. pos_file handles multiple positions in one file so no need to have multiple pos_file parameters per source. Don't share pos_file between in_tail configurations. It causes unexpected behavior e.g. corrupt pos_file content.",
+											MarkdownDescription: "(recommended) Fluentd will record the position it last read from this file. pos_file handles multiple positions in one file so no need to have multiple pos_file parameters per source. Don't share pos_file between in_tail configurations. It causes unexpected behavior e.g. corrupt pos_file content.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1945,8 +1945,8 @@ func (r *FluentdFluentIoInputV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"rotate_wait": schema.Int64Attribute{
-											Description:         "in_tail actually does a bit more than tail -F itself. When rotating a file, some data may still need to be written to the old file as opposed to the new one.in_tail takes care of this by keeping a reference to the old file (even after it has been rotated) for some time before transitioning completely to the new file.This helps prevent data designated for the old file from getting lost. By default, this time interval is 5 seconds.The rotate_wait parameter accepts a single integer representing the number of seconds you want this time interval to be.",
-											MarkdownDescription: "in_tail actually does a bit more than tail -F itself. When rotating a file, some data may still need to be written to the old file as opposed to the new one.in_tail takes care of this by keeping a reference to the old file (even after it has been rotated) for some time before transitioning completely to the new file.This helps prevent data designated for the old file from getting lost. By default, this time interval is 5 seconds.The rotate_wait parameter accepts a single integer representing the number of seconds you want this time interval to be.",
+											Description:         "in_tail actually does a bit more than tail -F itself. When rotating a file, some data may still need to be written to the old file as opposed to the new one. in_tail takes care of this by keeping a reference to the old file (even after it has been rotated) for some time before transitioning completely to the new file. This helps prevent data designated for the old file from getting lost. By default, this time interval is 5 seconds. The rotate_wait parameter accepts a single integer representing the number of seconds you want this time interval to be.",
+											MarkdownDescription: "in_tail actually does a bit more than tail -F itself. When rotating a file, some data may still need to be written to the old file as opposed to the new one. in_tail takes care of this by keeping a reference to the old file (even after it has been rotated) for some time before transitioning completely to the new file. This helps prevent data designated for the old file from getting lost. By default, this time interval is 5 seconds. The rotate_wait parameter accepts a single integer representing the number of seconds you want this time interval to be.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

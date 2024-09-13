@@ -37,7 +37,7 @@ data "k8s_karpenter_sh_node_pool_v1beta1_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) NodePoolSpec is the top level nodepool specification. Nodepoolslaunch nodes in response to pods that are unschedulable. A single nodepoolis capable of managing a diverse set of nodes. Node properties are determinedfrom a combination of nodepool and pod scheduling constraints. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) NodePoolSpec is the top level nodepool specification. Nodepools launch nodes in response to pods that are unschedulable. A single nodepool is capable of managing a diverse set of nodes. Node properties are determined from a combination of nodepool and pod scheduling constraints. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -61,13 +61,13 @@ Optional:
 
 Required:
 
-- `template` (Attributes) Template contains the template of possibilities for the provisioning logic to launch a NodeClaim with.NodeClaims launched from this NodePool will often be further constrained than the template specifies. (see [below for nested schema](#nestedatt--spec--template))
+- `template` (Attributes) Template contains the template of possibilities for the provisioning logic to launch a NodeClaim with. NodeClaims launched from this NodePool will often be further constrained than the template specifies. (see [below for nested schema](#nestedatt--spec--template))
 
 Optional:
 
 - `disruption` (Attributes) Disruption contains the parameters that relate to Karpenter's disruption logic (see [below for nested schema](#nestedatt--spec--disruption))
 - `limits` (Map of String) Limits define a set of bounds for provisioning capacity.
-- `weight` (Number) Weight is the priority given to the nodepool during scheduling. A highernumerical weight indicates that this nodepool will be orderedahead of other nodepools with lower weights. A nodepool with no weightwill be treated as if it is a nodepool with a weight of 0.
+- `weight` (Number) Weight is the priority given to the nodepool during scheduling. A higher numerical weight indicates that this nodepool will be ordered ahead of other nodepools with lower weights. A nodepool with no weight will be treated as if it is a nodepool with a weight of 0.
 
 <a id="nestedatt--spec--template"></a>
 ### Nested Schema for `spec.template`
@@ -90,9 +90,9 @@ Required:
 
 Optional:
 
-- `kubelet` (Attributes) Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types. (see [below for nested schema](#nestedatt--spec--template--spec--kubelet))
+- `kubelet` (Attributes) Kubelet defines args to be used when configuring kubelet on provisioned nodes. They are a subset of the upstream types, recognizing not all options may be supported. Wherever possible, the types and names should reflect the upstream kubelet types. (see [below for nested schema](#nestedatt--spec--template--spec--kubelet))
 - `resources` (Attributes) Resources models the resource requirements for the NodeClaim to launch (see [below for nested schema](#nestedatt--spec--template--spec--resources))
-- `startup_taints` (Attributes List) StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automaticallywithin a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used bydaemonsets to allow initialization and enforce startup ordering.  StartupTaints are ignored for provisioningpurposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them. (see [below for nested schema](#nestedatt--spec--template--spec--startup_taints))
+- `startup_taints` (Attributes List) StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automatically within a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used by daemonsets to allow initialization and enforce startup ordering. StartupTaints are ignored for provisioning purposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them. (see [below for nested schema](#nestedatt--spec--template--spec--startup_taints))
 - `taints` (Attributes List) Taints will be applied to the NodeClaim's node. (see [below for nested schema](#nestedatt--spec--template--spec--taints))
 
 <a id="nestedatt--spec--template--spec--node_class_ref"></a>
@@ -114,12 +114,12 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `min_values` (Number) This field is ALPHA and can be dropped or replaced at any timeMinValues is the minimum number of unique values required to define the flexibility of the specific requirement.
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `min_values` (Number) This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--template--spec--kubelet"></a>
@@ -127,17 +127,17 @@ Optional:
 
 Optional:
 
-- `cluster_dns` (List of String) clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.
+- `cluster_dns` (List of String) clusterDNS is a list of IP addresses for the cluster DNS server. Note that not all providers may use all addresses.
 - `cpu_cfs_quota` (Boolean) CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits.
 - `eviction_hard` (Map of String) EvictionHard is the map of signal names to quantities that define hard eviction thresholds
-- `eviction_max_pod_grace_period` (Number) EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.
+- `eviction_max_pod_grace_period` (Number) EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods in response to soft eviction thresholds being met.
 - `eviction_soft` (Map of String) EvictionSoft is the map of signal names to quantities that define soft eviction thresholds
 - `eviction_soft_grace_period` (Map of String) EvictionSoftGracePeriod is the map of signal names to quantities that define grace periods for each eviction signal
-- `image_gc_high_threshold_percent` (Number) ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.
-- `image_gc_low_threshold_percent` (Number) ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent
+- `image_gc_high_threshold_percent` (Number) ImageGCHighThresholdPercent is the percent of disk usage after which image garbage collection is always run. The percent is calculated by dividing this field value by 100, so this field must be between 0 and 100, inclusive. When specified, the value must be greater than ImageGCLowThresholdPercent.
+- `image_gc_low_threshold_percent` (Number) ImageGCLowThresholdPercent is the percent of disk usage before which image garbage collection is never run. Lowest disk usage to garbage collect to. The percent is calculated by dividing this field value by 100, so the field value must be between 0 and 100, inclusive. When specified, the value must be less than imageGCHighThresholdPercent
 - `kube_reserved` (Map of String) KubeReserved contains resources reserved for Kubernetes system components.
-- `max_pods` (Number) MaxPods is an override for the maximum number of pods that can run ona worker node instance.
-- `pods_per_core` (Number) PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.
+- `max_pods` (Number) MaxPods is an override for the maximum number of pods that can run on a worker node instance.
+- `pods_per_core` (Number) PodsPerCore is an override for the number of pods that can run on a worker node instance based on the number of cpu cores. This value cannot exceed MaxPods, so, if MaxPods is a lower value, that value will be used.
 - `system_reserved` (Map of String) SystemReserved contains resources reserved for OS system daemons and kernel memory.
 
 
@@ -154,12 +154,12 @@ Optional:
 
 Required:
 
-- `effect` (String) Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
+- `effect` (String) Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
 - `key` (String) Required. The taint key to be applied to a node.
 
 Optional:
 
-- `time_added` (String) TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.
+- `time_added` (String) TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
 - `value` (String) The taint value corresponding to the taint key.
 
 
@@ -168,12 +168,12 @@ Optional:
 
 Required:
 
-- `effect` (String) Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
+- `effect` (String) Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
 - `key` (String) Required. The taint key to be applied to a node.
 
 Optional:
 
-- `time_added` (String) TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.
+- `time_added` (String) TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
 - `value` (String) The taint value corresponding to the taint key.
 
 
@@ -183,8 +183,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
 
 
 
@@ -193,19 +193,19 @@ Optional:
 
 Optional:
 
-- `budgets` (Attributes List) Budgets is a list of Budgets.If there are multiple active budgets, Karpenter usesthe most restrictive value. If left undefined,this will default to one budget with a value to 10%. (see [below for nested schema](#nestedatt--spec--disruption--budgets))
-- `consolidate_after` (String) ConsolidateAfter is the duration the controller will waitbefore attempting to terminate nodes that are underutilized.Refer to ConsolidationPolicy for how underutilization is considered.
-- `consolidation_policy` (String) ConsolidationPolicy describes which nodes Karpenter can disrupt through its consolidationalgorithm. This policy defaults to 'WhenUnderutilized' if not specified
-- `expire_after` (String) ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.
+- `budgets` (Attributes List) Budgets is a list of Budgets. If there are multiple active budgets, Karpenter uses the most restrictive value. If left undefined, this will default to one budget with a value to 10%. (see [below for nested schema](#nestedatt--spec--disruption--budgets))
+- `consolidate_after` (String) ConsolidateAfter is the duration the controller will wait before attempting to terminate nodes that are underutilized. Refer to ConsolidationPolicy for how underutilization is considered.
+- `consolidation_policy` (String) ConsolidationPolicy describes which nodes Karpenter can disrupt through its consolidation algorithm. This policy defaults to 'WhenUnderutilized' if not specified
+- `expire_after` (String) ExpireAfter is the duration the controller will wait before terminating a node, measured from when the node is created. This is useful to implement features like eventually consistent node upgrade, memory leak protection, and disruption testing.
 
 <a id="nestedatt--spec--disruption--budgets"></a>
 ### Nested Schema for `spec.disruption.budgets`
 
 Required:
 
-- `nodes` (String) Nodes dictates the maximum number of NodeClaims owned by this NodePoolthat can be terminating at once. This is calculated by counting nodes thathave a deletion timestamp set, or are actively being deleted by Karpenter.This field is required when specifying a budget.This cannot be of type intstr.IntOrString since kubebuilder doesn't support patternchecking for int nodes for IntOrString nodes.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/55efe4be40394a288216dab63156b0a64fb82929/pkg/crd/markers/validation.go#L379-L388
+- `nodes` (String) Nodes dictates the maximum number of NodeClaims owned by this NodePool that can be terminating at once. This is calculated by counting nodes that have a deletion timestamp set, or are actively being deleted by Karpenter. This field is required when specifying a budget. This cannot be of type intstr.IntOrString since kubebuilder doesn't support pattern checking for int nodes for IntOrString nodes. Ref: https://github.com/kubernetes-sigs/controller-tools/blob/55efe4be40394a288216dab63156b0a64fb82929/pkg/crd/markers/validation.go#L379-L388
 
 Optional:
 
-- `duration` (String) Duration determines how long a Budget is active since each Schedule hit.Only minutes and hours are accepted, as cron does not work in seconds.If omitted, the budget is always active.This is required if Schedule is set.This regex has an optional 0s at the end since the duration.String() always addsa 0s at the end.
-- `schedule` (String) Schedule specifies when a budget begins being active, followingthe upstream cronjob syntax. If omitted, the budget is always active.Timezones are not supported.This field is required if Duration is set.
+- `duration` (String) Duration determines how long a Budget is active since each Schedule hit. Only minutes and hours are accepted, as cron does not work in seconds. If omitted, the budget is always active. This is required if Schedule is set. This regex has an optional 0s at the end since the duration.String() always adds a 0s at the end.
+- `schedule` (String) Schedule specifies when a budget begins being active, following the upstream cronjob syntax. If omitted, the budget is always active. Timezones are not supported. This field is required if Duration is set.

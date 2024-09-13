@@ -133,8 +133,8 @@ func (r *IpamClusterXK8SIoIpaddressClaimV1Alpha1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "PoolRef is a reference to the pool from which an IP address should be created.",
 						Attributes: map[string]schema.Attribute{
 							"api_group": schema.StringAttribute{
-								Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
-								MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+								MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

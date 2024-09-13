@@ -60,15 +60,15 @@ Optional:
 Required:
 
 - `application` (Attributes) Application identifies the application connecting to the backing service. (see [below for nested schema](#nestedatt--spec--application))
-- `services` (Attributes List) Services indicates the backing services to be connected to by an application.  At least one service must be specified. (see [below for nested schema](#nestedatt--spec--services))
+- `services` (Attributes List) Services indicates the backing services to be connected to by an application. At least one service must be specified. (see [below for nested schema](#nestedatt--spec--services))
 
 Optional:
 
-- `bind_as_files` (Boolean) BindAsFiles makes the binding values available as files in the application's container.  By default, values are mounted under the path '/bindings'; this can be changed by setting the SERVICE_BINDING_ROOT environment variable.
-- `detect_binding_resources` (Boolean) DetectBindingResources is a flag that, when set to true, will cause SBO to search for binding information in the owned resources of the specified services.  If this binding information exists, then the application is bound to these subresources.
+- `bind_as_files` (Boolean) BindAsFiles makes the binding values available as files in the application's container. By default, values are mounted under the path '/bindings'; this can be changed by setting the SERVICE_BINDING_ROOT environment variable.
+- `detect_binding_resources` (Boolean) DetectBindingResources is a flag that, when set to true, will cause SBO to search for binding information in the owned resources of the specified services. If this binding information exists, then the application is bound to these subresources.
 - `mappings` (Attributes List) Mappings specifies custom mappings. (see [below for nested schema](#nestedatt--spec--mappings))
-- `name` (String) Name is the name of the service as projected into the workload container.  Defaults to .metadata.name.
-- `naming_strategy` (String) NamingStrategy defines custom string template for preparing binding names.  It can be set to pre-defined strategies: 'none', 'lowercase', or 'uppercase'.  Otherwise, it is treated as a custom go template, and it is handled accordingly.
+- `name` (String) Name is the name of the service as projected into the workload container. Defaults to .metadata.name.
+- `naming_strategy` (String) NamingStrategy defines custom string template for preparing binding names. It can be set to pre-defined strategies: 'none', 'lowercase', or 'uppercase'. Otherwise, it is treated as a custom go template, and it is handled accordingly.
 
 <a id="nestedatt--spec--application"></a>
 ### Nested Schema for `spec.application`
@@ -80,7 +80,7 @@ Required:
 
 Optional:
 
-- `binding_path` (Attributes) BindingPath refers to the paths in the application workload's schema where the binding workload would be referenced.  If BindingPath is not specified, then the default path locations are used.  The default location for ContainersPath is 'spec.template.spec.containers'.  If SecretPath is not specified, then the name of the secret object does not need to be specified. (see [below for nested schema](#nestedatt--spec--application--binding_path))
+- `binding_path` (Attributes) BindingPath refers to the paths in the application workload's schema where the binding workload would be referenced. If BindingPath is not specified, then the default path locations are used. The default location for ContainersPath is 'spec.template.spec.containers'. If SecretPath is not specified, then the name of the secret object does not need to be specified. (see [below for nested schema](#nestedatt--spec--application--binding_path))
 - `kind` (String) Kind of the referent.
 - `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--application--label_selector))
 - `name` (String) Name of the referent.
@@ -92,7 +92,7 @@ Optional:
 Optional:
 
 - `containers_path` (String) ContainersPath defines the path to the corev1.Containers reference. If BindingPath is not specified, the default location is 'spec.template.spec.containers'.
-- `secret_path` (String) SecretPath defines the path to a string field where the name of the secret object is going to be assigned.  Note: The name of the secret object is same as that of the name of service binding custom resource (metadata.name).
+- `secret_path` (String) SecretPath defines the path to a string field where the name of the secret object is going to be assigned. Note: The name of the secret object is same as that of the name of service binding custom resource (metadata.name).
 
 
 <a id="nestedatt--spec--application--label_selector"></a>
@@ -131,7 +131,7 @@ Optional:
 - `id` (String)
 - `kind` (String) Kind of the referent.
 - `name` (String) Name of the referent.
-- `namespace` (String) Namespace of the referent.  If unspecified, assumes the same namespace as ServiceBinding.
+- `namespace` (String) Namespace of the referent. If unspecified, assumes the same namespace as ServiceBinding.
 - `resource` (String) Resource of the referent.
 
 

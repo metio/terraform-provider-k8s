@@ -1699,8 +1699,8 @@ func (r *AppmeshK8SAwsVirtualNodeV1Beta2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"mesh_ref": schema.SingleNestedAttribute{
-						Description:         "A reference to k8s Mesh CR that this VirtualNode belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only.",
-						MarkdownDescription: "A reference to k8s Mesh CR that this VirtualNode belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only.",
+						Description:         "A reference to k8s Mesh CR that this VirtualNode belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only.",
+						MarkdownDescription: "A reference to k8s Mesh CR that this VirtualNode belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name is the name of Mesh CR",
@@ -1724,8 +1724,8 @@ func (r *AppmeshK8SAwsVirtualNodeV1Beta2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"pod_selector": schema.SingleNestedAttribute{
-						Description:         "PodSelector selects Pods using labels to designate VirtualNode membership. This field follows standard label selector semantics: 	if present but empty, it selects all pods within namespace. 	if absent, it selects no pod.",
-						MarkdownDescription: "PodSelector selects Pods using labels to designate VirtualNode membership. This field follows standard label selector semantics: 	if present but empty, it selects all pods within namespace. 	if absent, it selects no pod.",
+						Description:         "PodSelector selects Pods using labels to designate VirtualNode membership. This field follows standard label selector semantics: if present but empty, it selects all pods within namespace. if absent, it selects no pod.",
+						MarkdownDescription: "PodSelector selects Pods using labels to designate VirtualNode membership. This field follows standard label selector semantics: if present but empty, it selects all pods within namespace. if absent, it selects no pod.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",

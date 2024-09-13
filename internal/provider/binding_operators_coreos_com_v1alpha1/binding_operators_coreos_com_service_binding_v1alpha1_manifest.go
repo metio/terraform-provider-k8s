@@ -165,8 +165,8 @@ func (r *BindingOperatorsCoreosComServiceBindingV1Alpha1Manifest) Schema(_ conte
 						MarkdownDescription: "Application identifies the application connecting to the backing service.",
 						Attributes: map[string]schema.Attribute{
 							"binding_path": schema.SingleNestedAttribute{
-								Description:         "BindingPath refers to the paths in the application workload's schema where the binding workload would be referenced.  If BindingPath is not specified, then the default path locations are used.  The default location for ContainersPath is 'spec.template.spec.containers'.  If SecretPath is not specified, then the name of the secret object does not need to be specified.",
-								MarkdownDescription: "BindingPath refers to the paths in the application workload's schema where the binding workload would be referenced.  If BindingPath is not specified, then the default path locations are used.  The default location for ContainersPath is 'spec.template.spec.containers'.  If SecretPath is not specified, then the name of the secret object does not need to be specified.",
+								Description:         "BindingPath refers to the paths in the application workload's schema where the binding workload would be referenced. If BindingPath is not specified, then the default path locations are used. The default location for ContainersPath is 'spec.template.spec.containers'. If SecretPath is not specified, then the name of the secret object does not need to be specified.",
+								MarkdownDescription: "BindingPath refers to the paths in the application workload's schema where the binding workload would be referenced. If BindingPath is not specified, then the default path locations are used. The default location for ContainersPath is 'spec.template.spec.containers'. If SecretPath is not specified, then the name of the secret object does not need to be specified.",
 								Attributes: map[string]schema.Attribute{
 									"containers_path": schema.StringAttribute{
 										Description:         "ContainersPath defines the path to the corev1.Containers reference. If BindingPath is not specified, the default location is 'spec.template.spec.containers'.",
@@ -177,8 +177,8 @@ func (r *BindingOperatorsCoreosComServiceBindingV1Alpha1Manifest) Schema(_ conte
 									},
 
 									"secret_path": schema.StringAttribute{
-										Description:         "SecretPath defines the path to a string field where the name of the secret object is going to be assigned.  Note: The name of the secret object is same as that of the name of service binding custom resource (metadata.name).",
-										MarkdownDescription: "SecretPath defines the path to a string field where the name of the secret object is going to be assigned.  Note: The name of the secret object is same as that of the name of service binding custom resource (metadata.name).",
+										Description:         "SecretPath defines the path to a string field where the name of the secret object is going to be assigned. Note: The name of the secret object is same as that of the name of service binding custom resource (metadata.name).",
+										MarkdownDescription: "SecretPath defines the path to a string field where the name of the secret object is going to be assigned. Note: The name of the secret object is same as that of the name of service binding custom resource (metadata.name).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -289,16 +289,16 @@ func (r *BindingOperatorsCoreosComServiceBindingV1Alpha1Manifest) Schema(_ conte
 					},
 
 					"bind_as_files": schema.BoolAttribute{
-						Description:         "BindAsFiles makes the binding values available as files in the application's container.  By default, values are mounted under the path '/bindings'; this can be changed by setting the SERVICE_BINDING_ROOT environment variable.",
-						MarkdownDescription: "BindAsFiles makes the binding values available as files in the application's container.  By default, values are mounted under the path '/bindings'; this can be changed by setting the SERVICE_BINDING_ROOT environment variable.",
+						Description:         "BindAsFiles makes the binding values available as files in the application's container. By default, values are mounted under the path '/bindings'; this can be changed by setting the SERVICE_BINDING_ROOT environment variable.",
+						MarkdownDescription: "BindAsFiles makes the binding values available as files in the application's container. By default, values are mounted under the path '/bindings'; this can be changed by setting the SERVICE_BINDING_ROOT environment variable.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"detect_binding_resources": schema.BoolAttribute{
-						Description:         "DetectBindingResources is a flag that, when set to true, will cause SBO to search for binding information in the owned resources of the specified services.  If this binding information exists, then the application is bound to these subresources.",
-						MarkdownDescription: "DetectBindingResources is a flag that, when set to true, will cause SBO to search for binding information in the owned resources of the specified services.  If this binding information exists, then the application is bound to these subresources.",
+						Description:         "DetectBindingResources is a flag that, when set to true, will cause SBO to search for binding information in the owned resources of the specified services. If this binding information exists, then the application is bound to these subresources.",
+						MarkdownDescription: "DetectBindingResources is a flag that, when set to true, will cause SBO to search for binding information in the owned resources of the specified services. If this binding information exists, then the application is bound to these subresources.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -332,8 +332,8 @@ func (r *BindingOperatorsCoreosComServiceBindingV1Alpha1Manifest) Schema(_ conte
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "Name is the name of the service as projected into the workload container.  Defaults to .metadata.name.",
-						MarkdownDescription: "Name is the name of the service as projected into the workload container.  Defaults to .metadata.name.",
+						Description:         "Name is the name of the service as projected into the workload container. Defaults to .metadata.name.",
+						MarkdownDescription: "Name is the name of the service as projected into the workload container. Defaults to .metadata.name.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -344,16 +344,16 @@ func (r *BindingOperatorsCoreosComServiceBindingV1Alpha1Manifest) Schema(_ conte
 					},
 
 					"naming_strategy": schema.StringAttribute{
-						Description:         "NamingStrategy defines custom string template for preparing binding names.  It can be set to pre-defined strategies: 'none', 'lowercase', or 'uppercase'.  Otherwise, it is treated as a custom go template, and it is handled accordingly.",
-						MarkdownDescription: "NamingStrategy defines custom string template for preparing binding names.  It can be set to pre-defined strategies: 'none', 'lowercase', or 'uppercase'.  Otherwise, it is treated as a custom go template, and it is handled accordingly.",
+						Description:         "NamingStrategy defines custom string template for preparing binding names. It can be set to pre-defined strategies: 'none', 'lowercase', or 'uppercase'. Otherwise, it is treated as a custom go template, and it is handled accordingly.",
+						MarkdownDescription: "NamingStrategy defines custom string template for preparing binding names. It can be set to pre-defined strategies: 'none', 'lowercase', or 'uppercase'. Otherwise, it is treated as a custom go template, and it is handled accordingly.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"services": schema.ListNestedAttribute{
-						Description:         "Services indicates the backing services to be connected to by an application.  At least one service must be specified.",
-						MarkdownDescription: "Services indicates the backing services to be connected to by an application.  At least one service must be specified.",
+						Description:         "Services indicates the backing services to be connected to by an application. At least one service must be specified.",
+						MarkdownDescription: "Services indicates the backing services to be connected to by an application. At least one service must be specified.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"group": schema.StringAttribute{
@@ -389,8 +389,8 @@ func (r *BindingOperatorsCoreosComServiceBindingV1Alpha1Manifest) Schema(_ conte
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Namespace of the referent.  If unspecified, assumes the same namespace as ServiceBinding.",
-									MarkdownDescription: "Namespace of the referent.  If unspecified, assumes the same namespace as ServiceBinding.",
+									Description:         "Namespace of the referent. If unspecified, assumes the same namespace as ServiceBinding.",
+									MarkdownDescription: "Namespace of the referent. If unspecified, assumes the same namespace as ServiceBinding.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

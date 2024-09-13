@@ -287,8 +287,8 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "AddressMatcher is a tuple {IP, port, protocol} that matches traffic to be redirected.",
 								Attributes: map[string]schema.Attribute{
 									"ip": schema.StringAttribute{
-										Description:         "IP is a destination ip address for traffic to be redirected.  Example: When it is set to '169.254.169.254', traffic destined to '169.254.169.254' is redirected.",
-										MarkdownDescription: "IP is a destination ip address for traffic to be redirected.  Example: When it is set to '169.254.169.254', traffic destined to '169.254.169.254' is redirected.",
+										Description:         "IP is a destination ip address for traffic to be redirected. Example: When it is set to '169.254.169.254', traffic destined to '169.254.169.254' is redirected.",
+										MarkdownDescription: "IP is a destination ip address for traffic to be redirected. Example: When it is set to '169.254.169.254', traffic destined to '169.254.169.254' is redirected.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -298,8 +298,8 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 									},
 
 									"to_ports": schema.ListNestedAttribute{
-										Description:         "ToPorts is a list of destination L4 ports with protocol for traffic to be redirected. When multiple ports are specified, the ports must be named.  Example: When set to Port: '53' and Protocol: UDP, traffic destined to port '53' with UDP protocol is redirected.",
-										MarkdownDescription: "ToPorts is a list of destination L4 ports with protocol for traffic to be redirected. When multiple ports are specified, the ports must be named.  Example: When set to Port: '53' and Protocol: UDP, traffic destined to port '53' with UDP protocol is redirected.",
+										Description:         "ToPorts is a list of destination L4 ports with protocol for traffic to be redirected. When multiple ports are specified, the ports must be named. Example: When set to Port: '53' and Protocol: UDP, traffic destined to port '53' with UDP protocol is redirected.",
+										MarkdownDescription: "ToPorts is a list of destination L4 ports with protocol for traffic to be redirected. When multiple ports are specified, the ports must be named. Example: When set to Port: '53' and Protocol: UDP, traffic destined to port '53' with UDP protocol is redirected.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -351,16 +351,16 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "ServiceMatcher specifies Kubernetes service and port that matches traffic to be redirected.",
 								Attributes: map[string]schema.Attribute{
 									"namespace": schema.StringAttribute{
-										Description:         "Namespace is the Kubernetes service namespace. The service namespace must match the namespace of the parent Local Redirect Policy.  For Cluster-wide Local Redirect Policy, this can be any namespace.",
-										MarkdownDescription: "Namespace is the Kubernetes service namespace. The service namespace must match the namespace of the parent Local Redirect Policy.  For Cluster-wide Local Redirect Policy, this can be any namespace.",
+										Description:         "Namespace is the Kubernetes service namespace. The service namespace must match the namespace of the parent Local Redirect Policy. For Cluster-wide Local Redirect Policy, this can be any namespace.",
+										MarkdownDescription: "Namespace is the Kubernetes service namespace. The service namespace must match the namespace of the parent Local Redirect Policy. For Cluster-wide Local Redirect Policy, this can be any namespace.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"service_name": schema.StringAttribute{
-										Description:         "Name is the name of a destination Kubernetes service that identifies traffic to be redirected. The service type needs to be ClusterIP.  Example: When this field is populated with 'serviceName:myService', all the traffic destined to the cluster IP of this service at the (specified) service port(s) will be redirected.",
-										MarkdownDescription: "Name is the name of a destination Kubernetes service that identifies traffic to be redirected. The service type needs to be ClusterIP.  Example: When this field is populated with 'serviceName:myService', all the traffic destined to the cluster IP of this service at the (specified) service port(s) will be redirected.",
+										Description:         "Name is the name of a destination Kubernetes service that identifies traffic to be redirected. The service type needs to be ClusterIP. Example: When this field is populated with 'serviceName:myService', all the traffic destined to the cluster IP of this service at the (specified) service port(s) will be redirected.",
+										MarkdownDescription: "Name is the name of a destination Kubernetes service that identifies traffic to be redirected. The service type needs to be ClusterIP. Example: When this field is populated with 'serviceName:myService', all the traffic destined to the cluster IP of this service at the (specified) service port(s) will be redirected.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -421,8 +421,8 @@ func (r *CiliumIoCiliumLocalRedirectPolicyV2Manifest) Schema(_ context.Context, 
 					},
 
 					"skip_redirect_from_backend": schema.BoolAttribute{
-						Description:         "SkipRedirectFromBackend indicates whether traffic matching RedirectFrontend from RedirectBackend should skip redirection, and hence the traffic will be forwarded as-is.  The default is false which means traffic matching RedirectFrontend will get redirected from all pods, including the RedirectBackend(s).  Example: If RedirectFrontend is configured to '169.254.169.254:80' as the traffic that needs to be redirected to backends selected by RedirectBackend, if SkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80' from such backends will not be redirected back to the backends. Instead, the matched traffic from the backends will be forwarded to the original destination '169.254.169.254:80'.",
-						MarkdownDescription: "SkipRedirectFromBackend indicates whether traffic matching RedirectFrontend from RedirectBackend should skip redirection, and hence the traffic will be forwarded as-is.  The default is false which means traffic matching RedirectFrontend will get redirected from all pods, including the RedirectBackend(s).  Example: If RedirectFrontend is configured to '169.254.169.254:80' as the traffic that needs to be redirected to backends selected by RedirectBackend, if SkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80' from such backends will not be redirected back to the backends. Instead, the matched traffic from the backends will be forwarded to the original destination '169.254.169.254:80'.",
+						Description:         "SkipRedirectFromBackend indicates whether traffic matching RedirectFrontend from RedirectBackend should skip redirection, and hence the traffic will be forwarded as-is. The default is false which means traffic matching RedirectFrontend will get redirected from all pods, including the RedirectBackend(s). Example: If RedirectFrontend is configured to '169.254.169.254:80' as the traffic that needs to be redirected to backends selected by RedirectBackend, if SkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80' from such backends will not be redirected back to the backends. Instead, the matched traffic from the backends will be forwarded to the original destination '169.254.169.254:80'.",
+						MarkdownDescription: "SkipRedirectFromBackend indicates whether traffic matching RedirectFrontend from RedirectBackend should skip redirection, and hence the traffic will be forwarded as-is. The default is false which means traffic matching RedirectFrontend will get redirected from all pods, including the RedirectBackend(s). Example: If RedirectFrontend is configured to '169.254.169.254:80' as the traffic that needs to be redirected to backends selected by RedirectBackend, if SkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80' from such backends will not be redirected back to the backends. Instead, the matched traffic from the backends will be forwarded to the original destination '169.254.169.254:80'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

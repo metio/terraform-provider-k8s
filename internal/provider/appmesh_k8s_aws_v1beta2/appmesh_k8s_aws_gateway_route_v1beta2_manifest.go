@@ -1418,8 +1418,8 @@ func (r *AppmeshK8SAwsGatewayRouteV1Beta2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"mesh_ref": schema.SingleNestedAttribute{
-						Description:         "A reference to k8s Mesh CR that this GatewayRoute belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only.",
-						MarkdownDescription: "A reference to k8s Mesh CR that this GatewayRoute belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only.",
+						Description:         "A reference to k8s Mesh CR that this GatewayRoute belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only.",
+						MarkdownDescription: "A reference to k8s Mesh CR that this GatewayRoute belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name is the name of Mesh CR",
@@ -1455,8 +1455,8 @@ func (r *AppmeshK8SAwsGatewayRouteV1Beta2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"virtual_gateway_ref": schema.SingleNestedAttribute{
-						Description:         "A reference to k8s VirtualGateway CR that this GatewayRoute belongs to. The admission controller populates it using VirtualGateway's selector, and prevents users from setting this field.  Populated by the system. Read-only.",
-						MarkdownDescription: "A reference to k8s VirtualGateway CR that this GatewayRoute belongs to. The admission controller populates it using VirtualGateway's selector, and prevents users from setting this field.  Populated by the system. Read-only.",
+						Description:         "A reference to k8s VirtualGateway CR that this GatewayRoute belongs to. The admission controller populates it using VirtualGateway's selector, and prevents users from setting this field. Populated by the system. Read-only.",
+						MarkdownDescription: "A reference to k8s VirtualGateway CR that this GatewayRoute belongs to. The admission controller populates it using VirtualGateway's selector, and prevents users from setting this field. Populated by the system. Read-only.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name is the name of VirtualGateway CR",

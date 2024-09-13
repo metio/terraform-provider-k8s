@@ -53,8 +53,8 @@ func (r *MulticlusterCrdAntreaIoLabelIdentityV1Alpha1Manifest) Metadata(_ contex
 
 func (r *MulticlusterCrdAntreaIoLabelIdentityV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "LabelIdentity is an imported label identity from the ClusterSet.For each unique label identity, a LabelIdentity will be created in the member cluster.",
-		MarkdownDescription: "LabelIdentity is an imported label identity from the ClusterSet.For each unique label identity, a LabelIdentity will be created in the member cluster.",
+		Description:         "LabelIdentity is an imported label identity from the ClusterSet. For each unique label identity, a LabelIdentity will be created in the member cluster.",
+		MarkdownDescription: "LabelIdentity is an imported label identity from the ClusterSet. For each unique label identity, a LabelIdentity will be created in the member cluster.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -121,8 +121,8 @@ func (r *MulticlusterCrdAntreaIoLabelIdentityV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"label": schema.StringAttribute{
-						Description:         "Label is the normalized string of a label identity.The format of normalized label identity is 'ns:(?P<nslabels>(.)*)&pod:(?P<podlabels>(.)*)'E.g., 'ns:kubernetes.io/metadata.name=kube-system&pod:app=db'",
-						MarkdownDescription: "Label is the normalized string of a label identity.The format of normalized label identity is 'ns:(?P<nslabels>(.)*)&pod:(?P<podlabels>(.)*)'E.g., 'ns:kubernetes.io/metadata.name=kube-system&pod:app=db'",
+						Description:         "Label is the normalized string of a label identity. The format of normalized label identity is 'ns:(?P<nslabels>(.)*)&pod:(?P<podlabels>(.)*)' E.g., 'ns:kubernetes.io/metadata.name=kube-system&pod:app=db'",
+						MarkdownDescription: "Label is the normalized string of a label identity. The format of normalized label identity is 'ns:(?P<nslabels>(.)*)&pod:(?P<podlabels>(.)*)' E.g., 'ns:kubernetes.io/metadata.name=kube-system&pod:app=db'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

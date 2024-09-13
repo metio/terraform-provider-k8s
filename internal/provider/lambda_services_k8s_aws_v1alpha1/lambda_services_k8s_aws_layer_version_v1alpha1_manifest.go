@@ -144,8 +144,8 @@ func (r *LambdaServicesK8SAwsLayerVersionV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"compatible_runtimes": schema.ListAttribute{
-						Description:         "A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).Used for filtering with ListLayers and ListLayerVersions.",
-						MarkdownDescription: "A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).Used for filtering with ListLayers and ListLayerVersions.",
+						Description:         "A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Used for filtering with ListLayers and ListLayerVersions.",
+						MarkdownDescription: "A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Used for filtering with ListLayers and ListLayerVersions.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -213,8 +213,8 @@ func (r *LambdaServicesK8SAwsLayerVersionV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"license_info": schema.StringAttribute{
-						Description:         "The layer's software license. It can be any of the following:   * An SPDX license identifier (https://spdx.org/licenses/). For example,   MIT.   * The URL of a license hosted on the internet. For example, https://opensource.org/licenses/MIT.   * The full text of the license.",
-						MarkdownDescription: "The layer's software license. It can be any of the following:   * An SPDX license identifier (https://spdx.org/licenses/). For example,   MIT.   * The URL of a license hosted on the internet. For example, https://opensource.org/licenses/MIT.   * The full text of the license.",
+						Description:         "The layer's software license. It can be any of the following: * An SPDX license identifier (https://spdx.org/licenses/). For example, MIT. * The URL of a license hosted on the internet. For example, https://opensource.org/licenses/MIT. * The full text of the license.",
+						MarkdownDescription: "The layer's software license. It can be any of the following: * An SPDX license identifier (https://spdx.org/licenses/). For example, MIT. * The URL of a license hosted on the internet. For example, https://opensource.org/licenses/MIT. * The full text of the license.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

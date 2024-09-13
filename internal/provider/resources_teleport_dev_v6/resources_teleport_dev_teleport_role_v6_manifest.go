@@ -755,8 +755,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins.  Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.",
-										MarkdownDescription: "Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins.  Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.",
+										Description:         "Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins. Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.",
+										MarkdownDescription: "Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins. Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.",
 										ElementType:         types.ListType{ElemType: types.StringType},
 										Required:            false,
 										Optional:            true,
@@ -826,8 +826,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 									},
 
 									"suggested_reviewers": schema.ListAttribute{
-										Description:         "SuggestedReviewers is a list of reviewer suggestions.  These can be teleport usernames, but that is not a requirement.",
-										MarkdownDescription: "SuggestedReviewers is a list of reviewer suggestions.  These can be teleport usernames, but that is not a requirement.",
+										Description:         "SuggestedReviewers is a list of reviewer suggestions. These can be teleport usernames, but that is not a requirement.",
+										MarkdownDescription: "SuggestedReviewers is a list of reviewer suggestions. These can be teleport usernames, but that is not a requirement.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -835,8 +835,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 									},
 
 									"thresholds": schema.ListNestedAttribute{
-										Description:         "Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition.  If no thresholds are provided, a default threshold of 1 for approval and denial is used.",
-										MarkdownDescription: "Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition.  If no thresholds are provided, a default threshold of 1 for approval and denial is used.",
+										Description:         "Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition. If no thresholds are provided, a default threshold of 1 for approval and denial is used.",
+										MarkdownDescription: "Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition. If no thresholds are provided, a default threshold of 1 for approval and denial is used.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"approve": schema.Int64Attribute{
@@ -1066,8 +1066,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"dns_sans": schema.ListAttribute{
-											Description:         "DNSSANs specifies matchers for the SPIFFE ID DNS SANs.  Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: *.example.com would match foo.example.com",
-											MarkdownDescription: "DNSSANs specifies matchers for the SPIFFE ID DNS SANs.  Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: *.example.com would match foo.example.com",
+											Description:         "DNSSANs specifies matchers for the SPIFFE ID DNS SANs. Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: *.example.com would match foo.example.com",
+											MarkdownDescription: "DNSSANs specifies matchers for the SPIFFE ID DNS SANs. Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: *.example.com would match foo.example.com",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1075,8 +1075,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 										},
 
 										"ip_sans": schema.ListAttribute{
-											Description:         "IPSANs specifies matchers for the SPIFFE ID IP SANs.  Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matchers should be specified using CIDR notation, it supports IPv4 and IPv6.  Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
-											MarkdownDescription: "IPSANs specifies matchers for the SPIFFE ID IP SANs.  Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matchers should be specified using CIDR notation, it supports IPv4 and IPv6.  Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
+											Description:         "IPSANs specifies matchers for the SPIFFE ID IP SANs. Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matchers should be specified using CIDR notation, it supports IPv4 and IPv6. Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
+											MarkdownDescription: "IPSANs specifies matchers for the SPIFFE ID IP SANs. Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matchers should be specified using CIDR notation, it supports IPv4 and IPv6. Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1084,8 +1084,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 										},
 
 										"path": schema.StringAttribute{
-											Description:         "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
-											MarkdownDescription: "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
+											Description:         "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
+											MarkdownDescription: "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1518,8 +1518,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins.  Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.",
-										MarkdownDescription: "Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins.  Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.",
+										Description:         "Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins. Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.",
+										MarkdownDescription: "Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins. Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.",
 										ElementType:         types.ListType{ElemType: types.StringType},
 										Required:            false,
 										Optional:            true,
@@ -1589,8 +1589,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 									},
 
 									"suggested_reviewers": schema.ListAttribute{
-										Description:         "SuggestedReviewers is a list of reviewer suggestions.  These can be teleport usernames, but that is not a requirement.",
-										MarkdownDescription: "SuggestedReviewers is a list of reviewer suggestions.  These can be teleport usernames, but that is not a requirement.",
+										Description:         "SuggestedReviewers is a list of reviewer suggestions. These can be teleport usernames, but that is not a requirement.",
+										MarkdownDescription: "SuggestedReviewers is a list of reviewer suggestions. These can be teleport usernames, but that is not a requirement.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1598,8 +1598,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 									},
 
 									"thresholds": schema.ListNestedAttribute{
-										Description:         "Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition.  If no thresholds are provided, a default threshold of 1 for approval and denial is used.",
-										MarkdownDescription: "Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition.  If no thresholds are provided, a default threshold of 1 for approval and denial is used.",
+										Description:         "Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition. If no thresholds are provided, a default threshold of 1 for approval and denial is used.",
+										MarkdownDescription: "Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition. If no thresholds are provided, a default threshold of 1 for approval and denial is used.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"approve": schema.Int64Attribute{
@@ -1829,8 +1829,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"dns_sans": schema.ListAttribute{
-											Description:         "DNSSANs specifies matchers for the SPIFFE ID DNS SANs.  Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: *.example.com would match foo.example.com",
-											MarkdownDescription: "DNSSANs specifies matchers for the SPIFFE ID DNS SANs.  Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: *.example.com would match foo.example.com",
+											Description:         "DNSSANs specifies matchers for the SPIFFE ID DNS SANs. Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: *.example.com would match foo.example.com",
+											MarkdownDescription: "DNSSANs specifies matchers for the SPIFFE ID DNS SANs. Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: *.example.com would match foo.example.com",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1838,8 +1838,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 										},
 
 										"ip_sans": schema.ListAttribute{
-											Description:         "IPSANs specifies matchers for the SPIFFE ID IP SANs.  Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matchers should be specified using CIDR notation, it supports IPv4 and IPv6.  Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
-											MarkdownDescription: "IPSANs specifies matchers for the SPIFFE ID IP SANs.  Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matchers should be specified using CIDR notation, it supports IPv4 and IPv6.  Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
+											Description:         "IPSANs specifies matchers for the SPIFFE ID IP SANs. Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matchers should be specified using CIDR notation, it supports IPv4 and IPv6. Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
+											MarkdownDescription: "IPSANs specifies matchers for the SPIFFE ID IP SANs. Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matchers should be specified using CIDR notation, it supports IPv4 and IPv6. Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1847,8 +1847,8 @@ func (r *ResourcesTeleportDevTeleportRoleV6Manifest) Schema(_ context.Context, _
 										},
 
 										"path": schema.StringAttribute{
-											Description:         "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
-											MarkdownDescription: "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
+											Description:         "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
+											MarkdownDescription: "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

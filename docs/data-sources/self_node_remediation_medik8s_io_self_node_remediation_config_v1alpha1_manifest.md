@@ -55,18 +55,18 @@ Optional:
 
 Optional:
 
-- `api_check_interval` (String) The frequency for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.the frequency for api-server connectivity check
-- `api_server_timeout` (String) Timeout for each api-connectivity check.Valid time units are 'ms', 's', 'm', 'h'.
+- `api_check_interval` (String) The frequency for api-server connectivity check. Valid time units are 'ms', 's', 'm', 'h'. the frequency for api-server connectivity check
+- `api_server_timeout` (String) Timeout for each api-connectivity check. Valid time units are 'ms', 's', 'm', 'h'.
 - `custom_ds_tolerations` (Attributes List) CustomDsTolerations allows to add custom tolerations snr agents that are running on the ds in order to support remediation for different types of nodes. (see [below for nested schema](#nestedatt--spec--custom_ds_tolerations))
-- `endpoint_health_check_url` (String) EndpointHealthCheckUrl is an url that self node remediation agents which run on control-plane node will try to access when they can't contact their peers.This is a part of self diagnostics which will decide whether the node should be remediated or not.It will be ignored when empty (which is the default).
+- `endpoint_health_check_url` (String) EndpointHealthCheckUrl is an url that self node remediation agents which run on control-plane node will try to access when they can't contact their peers. This is a part of self diagnostics which will decide whether the node should be remediated or not. It will be ignored when empty (which is the default).
 - `host_port` (Number) HostPort is used for internal communication between SNR agents.
-- `is_software_reboot_enabled` (Boolean) IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot,if the watchdog device can not be used or will use watchdog only,without a fallback to software reboot.
+- `is_software_reboot_enabled` (Boolean) IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot, if the watchdog device can not be used or will use watchdog only, without a fallback to software reboot.
 - `max_api_error_threshold` (Number) After this threshold, the node will start contacting its peers.
-- `peer_api_server_timeout` (String) The timeout for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.
-- `peer_dial_timeout` (String) Timeout for establishing connection to peer.Valid time units are 'ms', 's', 'm', 'h'.
-- `peer_request_timeout` (String) Timeout for each peer request.Valid time units are 'ms', 's', 'm', 'h'.
-- `peer_update_interval` (String) The frequency for updating peers.Valid time units are 'ms', 's', 'm', 'h'.
-- `safe_time_to_assume_node_rebooted_seconds` (Number) SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediationagents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads.This is extremely important as starting replacement Pods while they are still running on the failednode will likely lead to data corruption and violation of run-once semantics.In an effort to prevent this, the operator ignores values lower than a minimum calculated from theApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields,and the unhealthy node's individual watchdog timeout.
+- `peer_api_server_timeout` (String) The timeout for api-server connectivity check. Valid time units are 'ms', 's', 'm', 'h'.
+- `peer_dial_timeout` (String) Timeout for establishing connection to peer. Valid time units are 'ms', 's', 'm', 'h'.
+- `peer_request_timeout` (String) Timeout for each peer request. Valid time units are 'ms', 's', 'm', 'h'.
+- `peer_update_interval` (String) The frequency for updating peers. Valid time units are 'ms', 's', 'm', 'h'.
+- `safe_time_to_assume_node_rebooted_seconds` (Number) SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediation agents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads. This is extremely important as starting replacement Pods while they are still running on the failed node will likely lead to data corruption and violation of run-once semantics. In an effort to prevent this, the operator ignores values lower than a minimum calculated from the ApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields, and the unhealthy node's individual watchdog timeout.
 - `watchdog_file_path` (String) WatchdogFilePath is the watchdog file path that should be available on each node, e.g. /dev/watchdog.
 
 <a id="nestedatt--spec--custom_ds_tolerations"></a>
@@ -74,8 +74,8 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.

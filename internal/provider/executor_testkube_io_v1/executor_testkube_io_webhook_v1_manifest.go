@@ -159,8 +159,8 @@ func (r *ExecutorTestkubeIoWebhookV1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"on_state_change": schema.BoolAttribute{
-						Description:         "OnStateChange will trigger the webhook only when the result of the current execution differs from the previous result of the same test/test suite/workflowDeprecated: field is not used",
-						MarkdownDescription: "OnStateChange will trigger the webhook only when the result of the current execution differs from the previous result of the same test/test suite/workflowDeprecated: field is not used",
+						Description:         "OnStateChange will trigger the webhook only when the result of the current execution differs from the previous result of the same test/test suite/workflow Deprecated: field is not used",
+						MarkdownDescription: "OnStateChange will trigger the webhook only when the result of the current execution differs from the previous result of the same test/test suite/workflow Deprecated: field is not used",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

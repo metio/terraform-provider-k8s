@@ -463,8 +463,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "BucketSpec defines the desired state of Bucket.In terms of implementation, a Bucket is a resource. An Amazon S3 bucket nameis globally unique, and the namespace is shared by all Amazon Web Servicesaccounts.",
-				MarkdownDescription: "BucketSpec defines the desired state of Bucket.In terms of implementation, a Bucket is a resource. An Amazon S3 bucket nameis globally unique, and the namespace is shared by all Amazon Web Servicesaccounts.",
+				Description:         "BucketSpec defines the desired state of Bucket. In terms of implementation, a Bucket is a resource. An Amazon S3 bucket name is globally unique, and the namespace is shared by all Amazon Web Services accounts.",
+				MarkdownDescription: "BucketSpec defines the desired state of Bucket. In terms of implementation, a Bucket is a resource. An Amazon S3 bucket name is globally unique, and the namespace is shared by all Amazon Web Services accounts.",
 				Attributes: map[string]schema.Attribute{
 					"accelerate": schema.SingleNestedAttribute{
 						Description:         "Container for setting the transfer acceleration state.",
@@ -497,12 +497,12 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"filter": schema.SingleNestedAttribute{
-									Description:         "The filter used to describe a set of objects for analyses. A filter musthave exactly one prefix, one tag, or one conjunction (AnalyticsAndOperator).If no filter is provided, all objects will be considered in any analysis.",
-									MarkdownDescription: "The filter used to describe a set of objects for analyses. A filter musthave exactly one prefix, one tag, or one conjunction (AnalyticsAndOperator).If no filter is provided, all objects will be considered in any analysis.",
+									Description:         "The filter used to describe a set of objects for analyses. A filter must have exactly one prefix, one tag, or one conjunction (AnalyticsAndOperator). If no filter is provided, all objects will be considered in any analysis.",
+									MarkdownDescription: "The filter used to describe a set of objects for analyses. A filter must have exactly one prefix, one tag, or one conjunction (AnalyticsAndOperator). If no filter is provided, all objects will be considered in any analysis.",
 									Attributes: map[string]schema.Attribute{
 										"and": schema.SingleNestedAttribute{
-											Description:         "A conjunction (logical AND) of predicates, which is used in evaluating ametrics filter. The operator must have at least two predicates in any combination,and an object must match all of the predicates for the filter to apply.",
-											MarkdownDescription: "A conjunction (logical AND) of predicates, which is used in evaluating ametrics filter. The operator must have at least two predicates in any combination,and an object must match all of the predicates for the filter to apply.",
+											Description:         "A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The operator must have at least two predicates in any combination, and an object must match all of the predicates for the filter to apply.",
+											MarkdownDescription: "A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The operator must have at least two predicates in any combination, and an object must match all of the predicates for the filter to apply.",
 											Attributes: map[string]schema.Attribute{
 												"prefix": schema.StringAttribute{
 													Description:         "",
@@ -591,12 +591,12 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"storage_class_analysis": schema.SingleNestedAttribute{
-									Description:         "Specifies data related to access patterns to be collected and made availableto analyze the tradeoffs between different storage classes for an AmazonS3 bucket.",
-									MarkdownDescription: "Specifies data related to access patterns to be collected and made availableto analyze the tradeoffs between different storage classes for an AmazonS3 bucket.",
+									Description:         "Specifies data related to access patterns to be collected and made available to analyze the tradeoffs between different storage classes for an Amazon S3 bucket.",
+									MarkdownDescription: "Specifies data related to access patterns to be collected and made available to analyze the tradeoffs between different storage classes for an Amazon S3 bucket.",
 									Attributes: map[string]schema.Attribute{
 										"data_export": schema.SingleNestedAttribute{
-											Description:         "Container for data related to the storage class analysis for an Amazon S3bucket for export.",
-											MarkdownDescription: "Container for data related to the storage class analysis for an Amazon S3bucket for export.",
+											Description:         "Container for data related to the storage class analysis for an Amazon S3 bucket for export.",
+											MarkdownDescription: "Container for data related to the storage class analysis for an Amazon S3 bucket for export.",
 											Attributes: map[string]schema.Attribute{
 												"destination": schema.SingleNestedAttribute{
 													Description:         "Where to publish the analytics results.",
@@ -673,8 +673,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"cors": schema.SingleNestedAttribute{
-						Description:         "Describes the cross-origin access configuration for objects in an AmazonS3 bucket. For more information, see Enabling Cross-Origin Resource Sharing(https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) in the AmazonS3 User Guide.",
-						MarkdownDescription: "Describes the cross-origin access configuration for objects in an AmazonS3 bucket. For more information, see Enabling Cross-Origin Resource Sharing(https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) in the AmazonS3 User Guide.",
+						Description:         "Describes the cross-origin access configuration for objects in an Amazon S3 bucket. For more information, see Enabling Cross-Origin Resource Sharing (https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) in the Amazon S3 User Guide.",
+						MarkdownDescription: "Describes the cross-origin access configuration for objects in an Amazon S3 bucket. For more information, see Enabling Cross-Origin Resource Sharing (https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) in the Amazon S3 User Guide.",
 						Attributes: map[string]schema.Attribute{
 							"cors_rules": schema.ListNestedAttribute{
 								Description:         "",
@@ -771,8 +771,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"apply_server_side_encryption_by_default": schema.SingleNestedAttribute{
-											Description:         "Describes the default server-side encryption to apply to new objects in thebucket. If a PUT Object request doesn't specify any server-side encryption,this default encryption will be applied. If you don't specify a customermanaged key at configuration, Amazon S3 automatically creates an Amazon WebServices KMS key in your Amazon Web Services account the first time thatyou add an object encrypted with SSE-KMS to a bucket. By default, AmazonS3 uses this KMS key for SSE-KMS. For more information, see PUT Bucket encryption(https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTencryption.html)in the Amazon S3 API Reference.",
-											MarkdownDescription: "Describes the default server-side encryption to apply to new objects in thebucket. If a PUT Object request doesn't specify any server-side encryption,this default encryption will be applied. If you don't specify a customermanaged key at configuration, Amazon S3 automatically creates an Amazon WebServices KMS key in your Amazon Web Services account the first time thatyou add an object encrypted with SSE-KMS to a bucket. By default, AmazonS3 uses this KMS key for SSE-KMS. For more information, see PUT Bucket encryption(https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTencryption.html)in the Amazon S3 API Reference.",
+											Description:         "Describes the default server-side encryption to apply to new objects in the bucket. If a PUT Object request doesn't specify any server-side encryption, this default encryption will be applied. If you don't specify a customer managed key at configuration, Amazon S3 automatically creates an Amazon Web Services KMS key in your Amazon Web Services account the first time that you add an object encrypted with SSE-KMS to a bucket. By default, Amazon S3 uses this KMS key for SSE-KMS. For more information, see PUT Bucket encryption (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTencryption.html) in the Amazon S3 API Reference.",
+											MarkdownDescription: "Describes the default server-side encryption to apply to new objects in the bucket. If a PUT Object request doesn't specify any server-side encryption, this default encryption will be applied. If you don't specify a customer managed key at configuration, Amazon S3 automatically creates an Amazon Web Services KMS key in your Amazon Web Services account the first time that you add an object encrypted with SSE-KMS to a bucket. By default, Amazon S3 uses this KMS key for SSE-KMS. For more information, see PUT Bucket encryption (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTencryption.html) in the Amazon S3 API Reference.",
 											Attributes: map[string]schema.Attribute{
 												"kms_master_key_id": schema.StringAttribute{
 													Description:         "",
@@ -815,8 +815,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"grant_full_control": schema.StringAttribute{
-						Description:         "Allows grantee the read, write, read ACP, and write ACP permissions on thebucket.",
-						MarkdownDescription: "Allows grantee the read, write, read ACP, and write ACP permissions on thebucket.",
+						Description:         "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.",
+						MarkdownDescription: "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -839,8 +839,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"grant_write": schema.StringAttribute{
-						Description:         "Allows grantee to create new objects in the bucket.For the bucket and object owners of existing objects, also allows deletionsand overwrites of those objects.",
-						MarkdownDescription: "Allows grantee to create new objects in the bucket.For the bucket and object owners of existing objects, also allows deletionsand overwrites of those objects.",
+						Description:         "Allows grantee to create new objects in the bucket. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects.",
+						MarkdownDescription: "Allows grantee to create new objects in the bucket. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -860,12 +860,12 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"filter": schema.SingleNestedAttribute{
-									Description:         "The Filter is used to identify objects that the S3 Intelligent-Tiering configurationapplies to.",
-									MarkdownDescription: "The Filter is used to identify objects that the S3 Intelligent-Tiering configurationapplies to.",
+									Description:         "The Filter is used to identify objects that the S3 Intelligent-Tiering configuration applies to.",
+									MarkdownDescription: "The Filter is used to identify objects that the S3 Intelligent-Tiering configuration applies to.",
 									Attributes: map[string]schema.Attribute{
 										"and": schema.SingleNestedAttribute{
-											Description:         "A container for specifying S3 Intelligent-Tiering filters. The filters determinethe subset of objects to which the rule applies.",
-											MarkdownDescription: "A container for specifying S3 Intelligent-Tiering filters. The filters determinethe subset of objects to which the rule applies.",
+											Description:         "A container for specifying S3 Intelligent-Tiering filters. The filters determine the subset of objects to which the rule applies.",
+											MarkdownDescription: "A container for specifying S3 Intelligent-Tiering filters. The filters determine the subset of objects to which the rule applies.",
 											Attributes: map[string]schema.Attribute{
 												"prefix": schema.StringAttribute{
 													Description:         "",
@@ -1004,8 +1004,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 									MarkdownDescription: "Specifies the inventory configuration for an Amazon S3 bucket.",
 									Attributes: map[string]schema.Attribute{
 										"s3_bucket_destination": schema.SingleNestedAttribute{
-											Description:         "Contains the bucket name, file format, bucket owner (optional), and prefix(optional) where inventory results are published.",
-											MarkdownDescription: "Contains the bucket name, file format, bucket owner (optional), and prefix(optional) where inventory results are published.",
+											Description:         "Contains the bucket name, file format, bucket owner (optional), and prefix (optional) where inventory results are published.",
+											MarkdownDescription: "Contains the bucket name, file format, bucket owner (optional), and prefix (optional) where inventory results are published.",
 											Attributes: map[string]schema.Attribute{
 												"account_id": schema.StringAttribute{
 													Description:         "",
@@ -1024,8 +1024,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"encryption": schema.SingleNestedAttribute{
-													Description:         "Contains the type of server-side encryption used to encrypt the inventoryresults.",
-													MarkdownDescription: "Contains the type of server-side encryption used to encrypt the inventoryresults.",
+													Description:         "Contains the type of server-side encryption used to encrypt the inventory results.",
+													MarkdownDescription: "Contains the type of server-side encryption used to encrypt the inventory results.",
 													Attributes: map[string]schema.Attribute{
 														"sse_kms": schema.SingleNestedAttribute{
 															Description:         "Specifies the use of SSE-KMS to encrypt delivered inventory reports.",
@@ -1076,8 +1076,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"filter": schema.SingleNestedAttribute{
-									Description:         "Specifies an inventory filter. The inventory only includes objects that meetthe filter's criteria.",
-									MarkdownDescription: "Specifies an inventory filter. The inventory only includes objects that meetthe filter's criteria.",
+									Description:         "Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria.",
+									MarkdownDescription: "Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria.",
 									Attributes: map[string]schema.Attribute{
 										"prefix": schema.StringAttribute{
 											Description:         "",
@@ -1158,8 +1158,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"abort_incomplete_multipart_upload": schema.SingleNestedAttribute{
-											Description:         "Specifies the days since the initiation of an incomplete multipart uploadthat Amazon S3 will wait before permanently removing all parts of the upload.For more information, see Aborting Incomplete Multipart Uploads Using a BucketLifecycle Policy (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config)in the Amazon S3 User Guide.",
-											MarkdownDescription: "Specifies the days since the initiation of an incomplete multipart uploadthat Amazon S3 will wait before permanently removing all parts of the upload.For more information, see Aborting Incomplete Multipart Uploads Using a BucketLifecycle Policy (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config)in the Amazon S3 User Guide.",
+											Description:         "Specifies the days since the initiation of an incomplete multipart upload that Amazon S3 will wait before permanently removing all parts of the upload. For more information, see Aborting Incomplete Multipart Uploads Using a Bucket Lifecycle Policy (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config) in the Amazon S3 User Guide.",
+											MarkdownDescription: "Specifies the days since the initiation of an incomplete multipart upload that Amazon S3 will wait before permanently removing all parts of the upload. For more information, see Aborting Incomplete Multipart Uploads Using a Bucket Lifecycle Policy (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config) in the Amazon S3 User Guide.",
 											Attributes: map[string]schema.Attribute{
 												"days_after_initiation": schema.Int64Attribute{
 													Description:         "",
@@ -1211,12 +1211,12 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"filter": schema.SingleNestedAttribute{
-											Description:         "The Filter is used to identify objects that a Lifecycle Rule applies to.A Filter must have exactly one of Prefix, Tag, or And specified.",
-											MarkdownDescription: "The Filter is used to identify objects that a Lifecycle Rule applies to.A Filter must have exactly one of Prefix, Tag, or And specified.",
+											Description:         "The Filter is used to identify objects that a Lifecycle Rule applies to. A Filter must have exactly one of Prefix, Tag, or And specified.",
+											MarkdownDescription: "The Filter is used to identify objects that a Lifecycle Rule applies to. A Filter must have exactly one of Prefix, Tag, or And specified.",
 											Attributes: map[string]schema.Attribute{
 												"and": schema.SingleNestedAttribute{
-													Description:         "This is used in a Lifecycle Rule Filter to apply a logical AND to two ormore predicates. The Lifecycle Rule will apply to any object matching allof the predicates configured inside the And operator.",
-													MarkdownDescription: "This is used in a Lifecycle Rule Filter to apply a logical AND to two ormore predicates. The Lifecycle Rule will apply to any object matching allof the predicates configured inside the And operator.",
+													Description:         "This is used in a Lifecycle Rule Filter to apply a logical AND to two or more predicates. The Lifecycle Rule will apply to any object matching all of the predicates configured inside the And operator.",
+													MarkdownDescription: "This is used in a Lifecycle Rule Filter to apply a logical AND to two or more predicates. The Lifecycle Rule will apply to any object matching all of the predicates configured inside the And operator.",
 													Attributes: map[string]schema.Attribute{
 														"object_size_greater_than": schema.Int64Attribute{
 															Description:         "",
@@ -1337,8 +1337,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"noncurrent_version_expiration": schema.SingleNestedAttribute{
-											Description:         "Specifies when noncurrent object versions expire. Upon expiration, AmazonS3 permanently deletes the noncurrent object versions. You set this lifecycleconfiguration action on a bucket that has versioning enabled (or suspended)to request that Amazon S3 delete noncurrent object versions at a specificperiod in the object's lifetime.",
-											MarkdownDescription: "Specifies when noncurrent object versions expire. Upon expiration, AmazonS3 permanently deletes the noncurrent object versions. You set this lifecycleconfiguration action on a bucket that has versioning enabled (or suspended)to request that Amazon S3 delete noncurrent object versions at a specificperiod in the object's lifetime.",
+											Description:         "Specifies when noncurrent object versions expire. Upon expiration, Amazon S3 permanently deletes the noncurrent object versions. You set this lifecycle configuration action on a bucket that has versioning enabled (or suspended) to request that Amazon S3 delete noncurrent object versions at a specific period in the object's lifetime.",
+											MarkdownDescription: "Specifies when noncurrent object versions expire. Upon expiration, Amazon S3 permanently deletes the noncurrent object versions. You set this lifecycle configuration action on a bucket that has versioning enabled (or suspended) to request that Amazon S3 delete noncurrent object versions at a specific period in the object's lifetime.",
 											Attributes: map[string]schema.Attribute{
 												"newer_noncurrent_versions": schema.Int64Attribute{
 													Description:         "",
@@ -1466,8 +1466,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "Container for logging status information.",
 						Attributes: map[string]schema.Attribute{
 							"logging_enabled": schema.SingleNestedAttribute{
-								Description:         "Describes where logs are stored and the prefix that Amazon S3 assigns toall log object keys for a bucket. For more information, see PUT Bucket logging(https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlogging.html)in the Amazon S3 API Reference.",
-								MarkdownDescription: "Describes where logs are stored and the prefix that Amazon S3 assigns toall log object keys for a bucket. For more information, see PUT Bucket logging(https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlogging.html)in the Amazon S3 API Reference.",
+								Description:         "Describes where logs are stored and the prefix that Amazon S3 assigns to all log object keys for a bucket. For more information, see PUT Bucket logging (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlogging.html) in the Amazon S3 API Reference.",
+								MarkdownDescription: "Describes where logs are stored and the prefix that Amazon S3 assigns to all log object keys for a bucket. For more information, see PUT Bucket logging (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlogging.html) in the Amazon S3 API Reference.",
 								Attributes: map[string]schema.Attribute{
 									"target_bucket": schema.StringAttribute{
 										Description:         "",
@@ -1569,8 +1569,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"filter": schema.SingleNestedAttribute{
-									Description:         "Specifies a metrics configuration filter. The metrics configuration onlyincludes objects that meet the filter's criteria. A filter must be a prefix,an object tag, an access point ARN, or a conjunction (MetricsAndOperator).For more information, see PutBucketMetricsConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html).",
-									MarkdownDescription: "Specifies a metrics configuration filter. The metrics configuration onlyincludes objects that meet the filter's criteria. A filter must be a prefix,an object tag, an access point ARN, or a conjunction (MetricsAndOperator).For more information, see PutBucketMetricsConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html).",
+									Description:         "Specifies a metrics configuration filter. The metrics configuration only includes objects that meet the filter's criteria. A filter must be a prefix, an object tag, an access point ARN, or a conjunction (MetricsAndOperator). For more information, see PutBucketMetricsConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html).",
+									MarkdownDescription: "Specifies a metrics configuration filter. The metrics configuration only includes objects that meet the filter's criteria. A filter must be a prefix, an object tag, an access point ARN, or a conjunction (MetricsAndOperator). For more information, see PutBucketMetricsConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html).",
 									Attributes: map[string]schema.Attribute{
 										"access_point_arn": schema.StringAttribute{
 											Description:         "",
@@ -1581,8 +1581,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"and": schema.SingleNestedAttribute{
-											Description:         "A conjunction (logical AND) of predicates, which is used in evaluating ametrics filter. The operator must have at least two predicates, and an objectmust match all of the predicates in order for the filter to apply.",
-											MarkdownDescription: "A conjunction (logical AND) of predicates, which is used in evaluating ametrics filter. The operator must have at least two predicates, and an objectmust match all of the predicates in order for the filter to apply.",
+											Description:         "A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The operator must have at least two predicates, and an object must match all of the predicates in order for the filter to apply.",
+											MarkdownDescription: "A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The operator must have at least two predicates, and an object must match all of the predicates in order for the filter to apply.",
 											Attributes: map[string]schema.Attribute{
 												"access_point_arn": schema.StringAttribute{
 													Description:         "",
@@ -1693,8 +1693,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"notification": schema.SingleNestedAttribute{
-						Description:         "A container for specifying the notification configuration of the bucket.If this element is empty, notifications are turned off for the bucket.",
-						MarkdownDescription: "A container for specifying the notification configuration of the bucket.If this element is empty, notifications are turned off for the bucket.",
+						Description:         "A container for specifying the notification configuration of the bucket. If this element is empty, notifications are turned off for the bucket.",
+						MarkdownDescription: "A container for specifying the notification configuration of the bucket. If this element is empty, notifications are turned off for the bucket.",
 						Attributes: map[string]schema.Attribute{
 							"lambda_function_configurations": schema.ListNestedAttribute{
 								Description:         "",
@@ -1711,16 +1711,16 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"filter": schema.SingleNestedAttribute{
-											Description:         "Specifies object key name filtering rules. For information about key namefiltering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)in the Amazon S3 User Guide.",
-											MarkdownDescription: "Specifies object key name filtering rules. For information about key namefiltering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)in the Amazon S3 User Guide.",
+											Description:         "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
+											MarkdownDescription: "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.SingleNestedAttribute{
 													Description:         "A container for object key name prefix and suffix filtering rules.",
 													MarkdownDescription: "A container for object key name prefix and suffix filtering rules.",
 													Attributes: map[string]schema.Attribute{
 														"filter_rules": schema.ListNestedAttribute{
-															Description:         "A list of containers for the key-value pair that defines the criteria forthe filter rule.",
-															MarkdownDescription: "A list of containers for the key-value pair that defines the criteria forthe filter rule.",
+															Description:         "A list of containers for the key-value pair that defines the criteria for the filter rule.",
+															MarkdownDescription: "A list of containers for the key-value pair that defines the criteria for the filter rule.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
@@ -1756,8 +1756,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"id": schema.StringAttribute{
-											Description:         "An optional unique identifier for configurations in a notification configuration.If you don't provide one, Amazon S3 will assign an ID.",
-											MarkdownDescription: "An optional unique identifier for configurations in a notification configuration.If you don't provide one, Amazon S3 will assign an ID.",
+											Description:         "An optional unique identifier for configurations in a notification configuration. If you don't provide one, Amazon S3 will assign an ID.",
+											MarkdownDescription: "An optional unique identifier for configurations in a notification configuration. If you don't provide one, Amazon S3 will assign an ID.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1792,16 +1792,16 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"filter": schema.SingleNestedAttribute{
-											Description:         "Specifies object key name filtering rules. For information about key namefiltering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)in the Amazon S3 User Guide.",
-											MarkdownDescription: "Specifies object key name filtering rules. For information about key namefiltering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)in the Amazon S3 User Guide.",
+											Description:         "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
+											MarkdownDescription: "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.SingleNestedAttribute{
 													Description:         "A container for object key name prefix and suffix filtering rules.",
 													MarkdownDescription: "A container for object key name prefix and suffix filtering rules.",
 													Attributes: map[string]schema.Attribute{
 														"filter_rules": schema.ListNestedAttribute{
-															Description:         "A list of containers for the key-value pair that defines the criteria forthe filter rule.",
-															MarkdownDescription: "A list of containers for the key-value pair that defines the criteria forthe filter rule.",
+															Description:         "A list of containers for the key-value pair that defines the criteria for the filter rule.",
+															MarkdownDescription: "A list of containers for the key-value pair that defines the criteria for the filter rule.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
@@ -1837,8 +1837,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"id": schema.StringAttribute{
-											Description:         "An optional unique identifier for configurations in a notification configuration.If you don't provide one, Amazon S3 will assign an ID.",
-											MarkdownDescription: "An optional unique identifier for configurations in a notification configuration.If you don't provide one, Amazon S3 will assign an ID.",
+											Description:         "An optional unique identifier for configurations in a notification configuration. If you don't provide one, Amazon S3 will assign an ID.",
+											MarkdownDescription: "An optional unique identifier for configurations in a notification configuration. If you don't provide one, Amazon S3 will assign an ID.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1873,16 +1873,16 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"filter": schema.SingleNestedAttribute{
-											Description:         "Specifies object key name filtering rules. For information about key namefiltering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)in the Amazon S3 User Guide.",
-											MarkdownDescription: "Specifies object key name filtering rules. For information about key namefiltering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)in the Amazon S3 User Guide.",
+											Description:         "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
+											MarkdownDescription: "Specifies object key name filtering rules. For information about key name filtering, see Configuring Event Notifications (https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the Amazon S3 User Guide.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.SingleNestedAttribute{
 													Description:         "A container for object key name prefix and suffix filtering rules.",
 													MarkdownDescription: "A container for object key name prefix and suffix filtering rules.",
 													Attributes: map[string]schema.Attribute{
 														"filter_rules": schema.ListNestedAttribute{
-															Description:         "A list of containers for the key-value pair that defines the criteria forthe filter rule.",
-															MarkdownDescription: "A list of containers for the key-value pair that defines the criteria forthe filter rule.",
+															Description:         "A list of containers for the key-value pair that defines the criteria for the filter rule.",
+															MarkdownDescription: "A list of containers for the key-value pair that defines the criteria for the filter rule.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
@@ -1918,8 +1918,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"id": schema.StringAttribute{
-											Description:         "An optional unique identifier for configurations in a notification configuration.If you don't provide one, Amazon S3 will assign an ID.",
-											MarkdownDescription: "An optional unique identifier for configurations in a notification configuration.If you don't provide one, Amazon S3 will assign an ID.",
+											Description:         "An optional unique identifier for configurations in a notification configuration. If you don't provide one, Amazon S3 will assign an ID.",
+											MarkdownDescription: "An optional unique identifier for configurations in a notification configuration. If you don't provide one, Amazon S3 will assign an ID.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1961,8 +1961,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"ownership_controls": schema.SingleNestedAttribute{
-						Description:         "The OwnershipControls (BucketOwnerEnforced, BucketOwnerPreferred, or ObjectWriter)that you want to apply to this Amazon S3 bucket.",
-						MarkdownDescription: "The OwnershipControls (BucketOwnerEnforced, BucketOwnerPreferred, or ObjectWriter)that you want to apply to this Amazon S3 bucket.",
+						Description:         "The OwnershipControls (BucketOwnerEnforced, BucketOwnerPreferred, or ObjectWriter) that you want to apply to this Amazon S3 bucket.",
+						MarkdownDescription: "The OwnershipControls (BucketOwnerEnforced, BucketOwnerPreferred, or ObjectWriter) that you want to apply to this Amazon S3 bucket.",
 						Attributes: map[string]schema.Attribute{
 							"rules": schema.ListNestedAttribute{
 								Description:         "",
@@ -1970,8 +1970,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"object_ownership": schema.StringAttribute{
-											Description:         "The container element for object ownership for a bucket's ownership controls.BucketOwnerPreferred - Objects uploaded to the bucket change ownership tothe bucket owner if the objects are uploaded with the bucket-owner-full-controlcanned ACL.ObjectWriter - The uploading account will own the object if the object isuploaded with the bucket-owner-full-control canned ACL.BucketOwnerEnforced - Access control lists (ACLs) are disabled and no longeraffect permissions. The bucket owner automatically owns and has full controlover every object in the bucket. The bucket only accepts PUT requests thatdon't specify an ACL or bucket owner full control ACLs, such as the bucket-owner-full-controlcanned ACL or an equivalent form of this ACL expressed in the XML format.",
-											MarkdownDescription: "The container element for object ownership for a bucket's ownership controls.BucketOwnerPreferred - Objects uploaded to the bucket change ownership tothe bucket owner if the objects are uploaded with the bucket-owner-full-controlcanned ACL.ObjectWriter - The uploading account will own the object if the object isuploaded with the bucket-owner-full-control canned ACL.BucketOwnerEnforced - Access control lists (ACLs) are disabled and no longeraffect permissions. The bucket owner automatically owns and has full controlover every object in the bucket. The bucket only accepts PUT requests thatdon't specify an ACL or bucket owner full control ACLs, such as the bucket-owner-full-controlcanned ACL or an equivalent form of this ACL expressed in the XML format.",
+											Description:         "The container element for object ownership for a bucket's ownership controls. BucketOwnerPreferred - Objects uploaded to the bucket change ownership to the bucket owner if the objects are uploaded with the bucket-owner-full-control canned ACL. ObjectWriter - The uploading account will own the object if the object is uploaded with the bucket-owner-full-control canned ACL. BucketOwnerEnforced - Access control lists (ACLs) are disabled and no longer affect permissions. The bucket owner automatically owns and has full control over every object in the bucket. The bucket only accepts PUT requests that don't specify an ACL or bucket owner full control ACLs, such as the bucket-owner-full-control canned ACL or an equivalent form of this ACL expressed in the XML format.",
+											MarkdownDescription: "The container element for object ownership for a bucket's ownership controls. BucketOwnerPreferred - Objects uploaded to the bucket change ownership to the bucket owner if the objects are uploaded with the bucket-owner-full-control canned ACL. ObjectWriter - The uploading account will own the object if the object is uploaded with the bucket-owner-full-control canned ACL. BucketOwnerEnforced - Access control lists (ACLs) are disabled and no longer affect permissions. The bucket owner automatically owns and has full control over every object in the bucket. The bucket only accepts PUT requests that don't specify an ACL or bucket owner full control ACLs, such as the bucket-owner-full-control canned ACL or an equivalent form of this ACL expressed in the XML format.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1997,8 +1997,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"public_access_block": schema.SingleNestedAttribute{
-						Description:         "The PublicAccessBlock configuration that you want to apply to this AmazonS3 bucket. You can enable the configuration options in any combination. Formore information about when Amazon S3 considers a bucket or object public,see The Meaning of 'Public' (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)in the Amazon S3 User Guide.",
-						MarkdownDescription: "The PublicAccessBlock configuration that you want to apply to this AmazonS3 bucket. You can enable the configuration options in any combination. Formore information about when Amazon S3 considers a bucket or object public,see The Meaning of 'Public' (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)in the Amazon S3 User Guide.",
+						Description:         "The PublicAccessBlock configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see The Meaning of 'Public' (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status) in the Amazon S3 User Guide.",
+						MarkdownDescription: "The PublicAccessBlock configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see The Meaning of 'Public' (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status) in the Amazon S3 User Guide.",
 						Attributes: map[string]schema.Attribute{
 							"block_public_ac_ls": schema.BoolAttribute{
 								Description:         "",
@@ -2038,8 +2038,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"replication": schema.SingleNestedAttribute{
-						Description:         "A container for replication rules. You can add up to 1,000 rules. The maximumsize of a replication configuration is 2 MB.",
-						MarkdownDescription: "A container for replication rules. You can add up to 1,000 rules. The maximumsize of a replication configuration is 2 MB.",
+						Description:         "A container for replication rules. You can add up to 1,000 rules. The maximum size of a replication configuration is 2 MB.",
+						MarkdownDescription: "A container for replication rules. You can add up to 1,000 rules. The maximum size of a replication configuration is 2 MB.",
 						Attributes: map[string]schema.Attribute{
 							"role": schema.StringAttribute{
 								Description:         "",
@@ -2055,8 +2055,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"delete_marker_replication": schema.SingleNestedAttribute{
-											Description:         "Specifies whether Amazon S3 replicates delete markers. If you specify a Filterin your replication configuration, you must also include a DeleteMarkerReplicationelement. If your Filter includes a Tag element, the DeleteMarkerReplicationStatus must be set to Disabled, because Amazon S3 does not support replicatingdelete markers for tag-based rules. For an example configuration, see BasicRule Configuration (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-config-min-rule-config).For more information about delete marker replication, see Basic Rule Configuration(https://docs.aws.amazon.com/AmazonS3/latest/dev/delete-marker-replication.html).If you are using an earlier version of the replication configuration, AmazonS3 handles replication of delete markers differently. For more information,see Backward Compatibility (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-backward-compat-considerations).",
-											MarkdownDescription: "Specifies whether Amazon S3 replicates delete markers. If you specify a Filterin your replication configuration, you must also include a DeleteMarkerReplicationelement. If your Filter includes a Tag element, the DeleteMarkerReplicationStatus must be set to Disabled, because Amazon S3 does not support replicatingdelete markers for tag-based rules. For an example configuration, see BasicRule Configuration (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-config-min-rule-config).For more information about delete marker replication, see Basic Rule Configuration(https://docs.aws.amazon.com/AmazonS3/latest/dev/delete-marker-replication.html).If you are using an earlier version of the replication configuration, AmazonS3 handles replication of delete markers differently. For more information,see Backward Compatibility (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-backward-compat-considerations).",
+											Description:         "Specifies whether Amazon S3 replicates delete markers. If you specify a Filter in your replication configuration, you must also include a DeleteMarkerReplication element. If your Filter includes a Tag element, the DeleteMarkerReplication Status must be set to Disabled, because Amazon S3 does not support replicating delete markers for tag-based rules. For an example configuration, see Basic Rule Configuration (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-config-min-rule-config). For more information about delete marker replication, see Basic Rule Configuration (https://docs.aws.amazon.com/AmazonS3/latest/dev/delete-marker-replication.html). If you are using an earlier version of the replication configuration, Amazon S3 handles replication of delete markers differently. For more information, see Backward Compatibility (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-backward-compat-considerations).",
+											MarkdownDescription: "Specifies whether Amazon S3 replicates delete markers. If you specify a Filter in your replication configuration, you must also include a DeleteMarkerReplication element. If your Filter includes a Tag element, the DeleteMarkerReplication Status must be set to Disabled, because Amazon S3 does not support replicating delete markers for tag-based rules. For an example configuration, see Basic Rule Configuration (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-config-min-rule-config). For more information about delete marker replication, see Basic Rule Configuration (https://docs.aws.amazon.com/AmazonS3/latest/dev/delete-marker-replication.html). If you are using an earlier version of the replication configuration, Amazon S3 handles replication of delete markers differently. For more information, see Backward Compatibility (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-backward-compat-considerations).",
 											Attributes: map[string]schema.Attribute{
 												"status": schema.StringAttribute{
 													Description:         "",
@@ -2072,8 +2072,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"destination": schema.SingleNestedAttribute{
-											Description:         "Specifies information about where to publish analysis or configuration resultsfor an Amazon S3 bucket and S3 Replication Time Control (S3 RTC).",
-											MarkdownDescription: "Specifies information about where to publish analysis or configuration resultsfor an Amazon S3 bucket and S3 Replication Time Control (S3 RTC).",
+											Description:         "Specifies information about where to publish analysis or configuration results for an Amazon S3 bucket and S3 Replication Time Control (S3 RTC).",
+											MarkdownDescription: "Specifies information about where to publish analysis or configuration results for an Amazon S3 bucket and S3 Replication Time Control (S3 RTC).",
 											Attributes: map[string]schema.Attribute{
 												"access_control_translation": schema.SingleNestedAttribute{
 													Description:         "A container for information about access control for replicas.",
@@ -2109,8 +2109,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"encryption_configuration": schema.SingleNestedAttribute{
-													Description:         "Specifies encryption-related information for an Amazon S3 bucket that isa destination for replicated objects.",
-													MarkdownDescription: "Specifies encryption-related information for an Amazon S3 bucket that isa destination for replicated objects.",
+													Description:         "Specifies encryption-related information for an Amazon S3 bucket that is a destination for replicated objects.",
+													MarkdownDescription: "Specifies encryption-related information for an Amazon S3 bucket that is a destination for replicated objects.",
 													Attributes: map[string]schema.Attribute{
 														"replica_kms_key_id": schema.StringAttribute{
 															Description:         "",
@@ -2126,12 +2126,12 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"metrics": schema.SingleNestedAttribute{
-													Description:         "A container specifying replication metrics-related settings enabling replicationmetrics and events.",
-													MarkdownDescription: "A container specifying replication metrics-related settings enabling replicationmetrics and events.",
+													Description:         "A container specifying replication metrics-related settings enabling replication metrics and events.",
+													MarkdownDescription: "A container specifying replication metrics-related settings enabling replication metrics and events.",
 													Attributes: map[string]schema.Attribute{
 														"event_threshold": schema.SingleNestedAttribute{
-															Description:         "A container specifying the time value for S3 Replication Time Control (S3RTC) and replication metrics EventThreshold.",
-															MarkdownDescription: "A container specifying the time value for S3 Replication Time Control (S3RTC) and replication metrics EventThreshold.",
+															Description:         "A container specifying the time value for S3 Replication Time Control (S3 RTC) and replication metrics EventThreshold.",
+															MarkdownDescription: "A container specifying the time value for S3 Replication Time Control (S3 RTC) and replication metrics EventThreshold.",
 															Attributes: map[string]schema.Attribute{
 																"minutes": schema.Int64Attribute{
 																	Description:         "",
@@ -2160,8 +2160,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"replication_time": schema.SingleNestedAttribute{
-													Description:         "A container specifying S3 Replication Time Control (S3 RTC) related information,including whether S3 RTC is enabled and the time when all objects and operationson objects must be replicated. Must be specified together with a Metricsblock.",
-													MarkdownDescription: "A container specifying S3 Replication Time Control (S3 RTC) related information,including whether S3 RTC is enabled and the time when all objects and operationson objects must be replicated. Must be specified together with a Metricsblock.",
+													Description:         "A container specifying S3 Replication Time Control (S3 RTC) related information, including whether S3 RTC is enabled and the time when all objects and operations on objects must be replicated. Must be specified together with a Metrics block.",
+													MarkdownDescription: "A container specifying S3 Replication Time Control (S3 RTC) related information, including whether S3 RTC is enabled and the time when all objects and operations on objects must be replicated. Must be specified together with a Metrics block.",
 													Attributes: map[string]schema.Attribute{
 														"status": schema.StringAttribute{
 															Description:         "",
@@ -2172,8 +2172,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 														},
 
 														"time": schema.SingleNestedAttribute{
-															Description:         "A container specifying the time value for S3 Replication Time Control (S3RTC) and replication metrics EventThreshold.",
-															MarkdownDescription: "A container specifying the time value for S3 Replication Time Control (S3RTC) and replication metrics EventThreshold.",
+															Description:         "A container specifying the time value for S3 Replication Time Control (S3 RTC) and replication metrics EventThreshold.",
+															MarkdownDescription: "A container specifying the time value for S3 Replication Time Control (S3 RTC) and replication metrics EventThreshold.",
 															Attributes: map[string]schema.Attribute{
 																"minutes": schema.Int64Attribute{
 																	Description:         "",
@@ -2207,8 +2207,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"existing_object_replication": schema.SingleNestedAttribute{
-											Description:         "Optional configuration to replicate existing source bucket objects. For moreinformation, see Replicating Existing Objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#existing-object-replication)in the Amazon S3 User Guide.",
-											MarkdownDescription: "Optional configuration to replicate existing source bucket objects. For moreinformation, see Replicating Existing Objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#existing-object-replication)in the Amazon S3 User Guide.",
+											Description:         "Optional configuration to replicate existing source bucket objects. For more information, see Replicating Existing Objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#existing-object-replication) in the Amazon S3 User Guide.",
+											MarkdownDescription: "Optional configuration to replicate existing source bucket objects. For more information, see Replicating Existing Objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#existing-object-replication) in the Amazon S3 User Guide.",
 											Attributes: map[string]schema.Attribute{
 												"status": schema.StringAttribute{
 													Description:         "",
@@ -2224,12 +2224,12 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"filter": schema.SingleNestedAttribute{
-											Description:         "A filter that identifies the subset of objects to which the replication ruleapplies. A Filter must specify exactly one Prefix, Tag, or an And child element.",
-											MarkdownDescription: "A filter that identifies the subset of objects to which the replication ruleapplies. A Filter must specify exactly one Prefix, Tag, or an And child element.",
+											Description:         "A filter that identifies the subset of objects to which the replication rule applies. A Filter must specify exactly one Prefix, Tag, or an And child element.",
+											MarkdownDescription: "A filter that identifies the subset of objects to which the replication rule applies. A Filter must specify exactly one Prefix, Tag, or an And child element.",
 											Attributes: map[string]schema.Attribute{
 												"and": schema.SingleNestedAttribute{
-													Description:         "A container for specifying rule filters. The filters determine the subsetof objects to which the rule applies. This element is required only if youspecify more than one filter.For example:   * If you specify both a Prefix and a Tag filter, wrap these filters in   an And tag.   * If you specify a filter based on multiple tags, wrap the Tag elements   in an And tag.",
-													MarkdownDescription: "A container for specifying rule filters. The filters determine the subsetof objects to which the rule applies. This element is required only if youspecify more than one filter.For example:   * If you specify both a Prefix and a Tag filter, wrap these filters in   an And tag.   * If you specify a filter based on multiple tags, wrap the Tag elements   in an And tag.",
+													Description:         "A container for specifying rule filters. The filters determine the subset of objects to which the rule applies. This element is required only if you specify more than one filter. For example: * If you specify both a Prefix and a Tag filter, wrap these filters in an And tag. * If you specify a filter based on multiple tags, wrap the Tag elements in an And tag.",
+													MarkdownDescription: "A container for specifying rule filters. The filters determine the subset of objects to which the rule applies. This element is required only if you specify more than one filter. For example: * If you specify both a Prefix and a Tag filter, wrap these filters in an And tag. * If you specify a filter based on multiple tags, wrap the Tag elements in an And tag.",
 													Attributes: map[string]schema.Attribute{
 														"prefix": schema.StringAttribute{
 															Description:         "",
@@ -2334,12 +2334,12 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"source_selection_criteria": schema.SingleNestedAttribute{
-											Description:         "A container that describes additional filters for identifying the sourceobjects that you want to replicate. You can choose to enable or disable thereplication of these objects. Currently, Amazon S3 supports only the filterthat you can specify for objects created with server-side encryption usinga customer managed key stored in Amazon Web Services Key Management Service(SSE-KMS).",
-											MarkdownDescription: "A container that describes additional filters for identifying the sourceobjects that you want to replicate. You can choose to enable or disable thereplication of these objects. Currently, Amazon S3 supports only the filterthat you can specify for objects created with server-side encryption usinga customer managed key stored in Amazon Web Services Key Management Service(SSE-KMS).",
+											Description:         "A container that describes additional filters for identifying the source objects that you want to replicate. You can choose to enable or disable the replication of these objects. Currently, Amazon S3 supports only the filter that you can specify for objects created with server-side encryption using a customer managed key stored in Amazon Web Services Key Management Service (SSE-KMS).",
+											MarkdownDescription: "A container that describes additional filters for identifying the source objects that you want to replicate. You can choose to enable or disable the replication of these objects. Currently, Amazon S3 supports only the filter that you can specify for objects created with server-side encryption using a customer managed key stored in Amazon Web Services Key Management Service (SSE-KMS).",
 											Attributes: map[string]schema.Attribute{
 												"replica_modifications": schema.SingleNestedAttribute{
-													Description:         "A filter that you can specify for selection for modifications on replicas.Amazon S3 doesn't replicate replica modifications by default. In the latestversion of replication configuration (when Filter is specified), you canspecify this element and set the status to Enabled to replicate modificationson replicas.If you don't specify the Filter element, Amazon S3 assumes that the replicationconfiguration is the earlier version, V1. In the earlier version, this elementis not allowed.",
-													MarkdownDescription: "A filter that you can specify for selection for modifications on replicas.Amazon S3 doesn't replicate replica modifications by default. In the latestversion of replication configuration (when Filter is specified), you canspecify this element and set the status to Enabled to replicate modificationson replicas.If you don't specify the Filter element, Amazon S3 assumes that the replicationconfiguration is the earlier version, V1. In the earlier version, this elementis not allowed.",
+													Description:         "A filter that you can specify for selection for modifications on replicas. Amazon S3 doesn't replicate replica modifications by default. In the latest version of replication configuration (when Filter is specified), you can specify this element and set the status to Enabled to replicate modifications on replicas. If you don't specify the Filter element, Amazon S3 assumes that the replication configuration is the earlier version, V1. In the earlier version, this element is not allowed.",
+													MarkdownDescription: "A filter that you can specify for selection for modifications on replicas. Amazon S3 doesn't replicate replica modifications by default. In the latest version of replication configuration (when Filter is specified), you can specify this element and set the status to Enabled to replicate modifications on replicas. If you don't specify the Filter element, Amazon S3 assumes that the replication configuration is the earlier version, V1. In the earlier version, this element is not allowed.",
 													Attributes: map[string]schema.Attribute{
 														"status": schema.StringAttribute{
 															Description:         "",
@@ -2355,8 +2355,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"sse_kms_encrypted_objects": schema.SingleNestedAttribute{
-													Description:         "A container for filter information for the selection of S3 objects encryptedwith Amazon Web Services KMS.",
-													MarkdownDescription: "A container for filter information for the selection of S3 objects encryptedwith Amazon Web Services KMS.",
+													Description:         "A container for filter information for the selection of S3 objects encrypted with Amazon Web Services KMS.",
+													MarkdownDescription: "A container for filter information for the selection of S3 objects encrypted with Amazon Web Services KMS.",
 													Attributes: map[string]schema.Attribute{
 														"status": schema.StringAttribute{
 															Description:         "",
@@ -2504,8 +2504,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"redirect_all_requests_to": schema.SingleNestedAttribute{
-								Description:         "Specifies the redirect behavior of all requests to a website endpoint ofan Amazon S3 bucket.",
-								MarkdownDescription: "Specifies the redirect behavior of all requests to a website endpoint ofan Amazon S3 bucket.",
+								Description:         "Specifies the redirect behavior of all requests to a website endpoint of an Amazon S3 bucket.",
+								MarkdownDescription: "Specifies the redirect behavior of all requests to a website endpoint of an Amazon S3 bucket.",
 								Attributes: map[string]schema.Attribute{
 									"host_name": schema.StringAttribute{
 										Description:         "",
@@ -2534,8 +2534,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"condition": schema.SingleNestedAttribute{
-											Description:         "A container for describing a condition that must be met for the specifiedredirect to apply. For example, 1. If request is for pages in the /docs folder,redirect to the /documents folder. 2. If request results in HTTP error 4xx,redirect request to another host where you might process the error.",
-											MarkdownDescription: "A container for describing a condition that must be met for the specifiedredirect to apply. For example, 1. If request is for pages in the /docs folder,redirect to the /documents folder. 2. If request results in HTTP error 4xx,redirect request to another host where you might process the error.",
+											Description:         "A container for describing a condition that must be met for the specified redirect to apply. For example, 1. If request is for pages in the /docs folder, redirect to the /documents folder. 2. If request results in HTTP error 4xx, redirect request to another host where you might process the error.",
+											MarkdownDescription: "A container for describing a condition that must be met for the specified redirect to apply. For example, 1. If request is for pages in the /docs folder, redirect to the /documents folder. 2. If request results in HTTP error 4xx, redirect request to another host where you might process the error.",
 											Attributes: map[string]schema.Attribute{
 												"http_error_code_returned_equals": schema.StringAttribute{
 													Description:         "",
@@ -2559,8 +2559,8 @@ func (r *S3ServicesK8SAwsBucketV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"redirect": schema.SingleNestedAttribute{
-											Description:         "Specifies how requests are redirected. In the event of an error, you canspecify a different error code to return.",
-											MarkdownDescription: "Specifies how requests are redirected. In the event of an error, you canspecify a different error code to return.",
+											Description:         "Specifies how requests are redirected. In the event of an error, you can specify a different error code to return.",
+											MarkdownDescription: "Specifies how requests are redirected. In the event of an error, you can specify a different error code to return.",
 											Attributes: map[string]schema.Attribute{
 												"host_name": schema.StringAttribute{
 													Description:         "",

@@ -331,8 +331,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"create_default_user": schema.BoolAttribute{
-						Description:         "Create the default 'ditto' user when initially deploying.This has no effect when using OAuth2.",
-						MarkdownDescription: "Create the default 'ditto' user when initially deploying.This has no effect when using OAuth2.",
+						Description:         "Create the default 'ditto' user when initially deploying. This has no effect when using OAuth2.",
+						MarkdownDescription: "Create the default 'ditto' user when initially deploying. This has no effect when using OAuth2.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -400,8 +400,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 										MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -483,8 +483,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 										MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -546,12 +546,12 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"ingress": schema.SingleNestedAttribute{
-						Description:         "Configure ingress optionsIf the field is missing, no ingress resource is being created.",
-						MarkdownDescription: "Configure ingress optionsIf the field is missing, no ingress resource is being created.",
+						Description:         "Configure ingress options If the field is missing, no ingress resource is being created.",
+						MarkdownDescription: "Configure ingress options If the field is missing, no ingress resource is being created.",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
-								Description:         "Annotations which should be applied to the ingress resources.The annotations will be set to the resource, not merged. All changes done on the ingress resource itself will be overridden.If no annotations are configured, reasonable defaults will be used instead. You can prevent this by setting a single dummy annotation.",
-								MarkdownDescription: "Annotations which should be applied to the ingress resources.The annotations will be set to the resource, not merged. All changes done on the ingress resource itself will be overridden.If no annotations are configured, reasonable defaults will be used instead. You can prevent this by setting a single dummy annotation.",
+								Description:         "Annotations which should be applied to the ingress resources. The annotations will be set to the resource, not merged. All changes done on the ingress resource itself will be overridden. If no annotations are configured, reasonable defaults will be used instead. You can prevent this by setting a single dummy annotation.",
+								MarkdownDescription: "Annotations which should be applied to the ingress resources. The annotations will be set to the resource, not merged. All changes done on the ingress resource itself will be overridden. If no annotations are configured, reasonable defaults will be used instead. You can prevent this by setting a single dummy annotation.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -567,8 +567,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"host": schema.StringAttribute{
-								Description:         "The host of the ingress resource.This is required if the ingress resource should be created by the operator",
-								MarkdownDescription: "The host of the ingress resource.This is required if the ingress resource should be created by the operator",
+								Description:         "The host of the ingress resource. This is required if the ingress resource should be created by the operator",
+								MarkdownDescription: "The host of the ingress resource. This is required if the ingress resource should be created by the operator",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -645,8 +645,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 										MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -728,8 +728,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 										MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -894,8 +894,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 										MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -985,8 +985,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 										MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -1079,8 +1079,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 										MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -1178,8 +1178,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"pull_policy": schema.StringAttribute{
-						Description:         "Override the imagePullPolicyBy default this will use Always if the image version is ':latest' and IfNotPresent otherwise",
-						MarkdownDescription: "Override the imagePullPolicyBy default this will use Always if the image version is ':latest' and IfNotPresent otherwise",
+						Description:         "Override the imagePullPolicy By default this will use Always if the image version is ':latest' and IfNotPresent otherwise",
+						MarkdownDescription: "Override the imagePullPolicy By default this will use Always if the image version is ':latest' and IfNotPresent otherwise",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1202,8 +1202,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								MarkdownDescription: "The concierge service",
 								Attributes: map[string]schema.Attribute{
 									"additional_properties": schema.MapAttribute{
-										Description:         "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
-										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										Description:         "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1291,8 +1291,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								MarkdownDescription: "The connectivity service",
 								Attributes: map[string]schema.Attribute{
 									"additional_properties": schema.MapAttribute{
-										Description:         "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
-										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										Description:         "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1380,8 +1380,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								MarkdownDescription: "The gateway service",
 								Attributes: map[string]schema.Attribute{
 									"additional_properties": schema.MapAttribute{
-										Description:         "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
-										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										Description:         "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1469,8 +1469,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								MarkdownDescription: "The policies service",
 								Attributes: map[string]schema.Attribute{
 									"additional_properties": schema.MapAttribute{
-										Description:         "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
-										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										Description:         "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1558,8 +1558,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								MarkdownDescription: "The things service",
 								Attributes: map[string]schema.Attribute{
 									"additional_properties": schema.MapAttribute{
-										Description:         "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
-										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										Description:         "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1647,8 +1647,8 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								MarkdownDescription: "The things search service",
 								Attributes: map[string]schema.Attribute{
 									"additional_properties": schema.MapAttribute{
-										Description:         "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
-										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties.Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										Description:         "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
+										MarkdownDescription: "Additional system properties, which will be appended to the list of system properties. Note: Setting arbitrary system properties may break the deployment and may also not be compatible with future versions.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,

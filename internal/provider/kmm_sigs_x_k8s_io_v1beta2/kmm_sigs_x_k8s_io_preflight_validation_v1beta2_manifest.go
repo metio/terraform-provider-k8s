@@ -109,8 +109,8 @@ func (r *KmmSigsXK8SIoPreflightValidationV1Beta2Manifest) Schema(_ context.Conte
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "PreflightValidationSpec describes the desired state of the resource, such as the kernel versionthat Module CRs need to be verified against as well as the debug configuration of the logsMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
-				MarkdownDescription: "PreflightValidationSpec describes the desired state of the resource, such as the kernel versionthat Module CRs need to be verified against as well as the debug configuration of the logsMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+				Description:         "PreflightValidationSpec describes the desired state of the resource, such as the kernel version that Module CRs need to be verified against as well as the debug configuration of the logs More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+				MarkdownDescription: "PreflightValidationSpec describes the desired state of the resource, such as the kernel version that Module CRs need to be verified against as well as the debug configuration of the logs More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
 				Attributes: map[string]schema.Attribute{
 					"kernel_version": schema.StringAttribute{
 						Description:         "KernelVersion describes the kernel image that all Modules need to be checked against.",
@@ -121,8 +121,8 @@ func (r *KmmSigsXK8SIoPreflightValidationV1Beta2Manifest) Schema(_ context.Conte
 					},
 
 					"push_built_image": schema.BoolAttribute{
-						Description:         "Boolean flag that determines whether images build during preflight must alsobe pushed to a defined repository",
-						MarkdownDescription: "Boolean flag that determines whether images build during preflight must alsobe pushed to a defined repository",
+						Description:         "Boolean flag that determines whether images build during preflight must also be pushed to a defined repository",
+						MarkdownDescription: "Boolean flag that determines whether images build during preflight must also be pushed to a defined repository",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -147,16 +147,16 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"load_balancer_i_ps": schema.BoolAttribute{
-						Description:         "If true, the loadbalancer IPs of the services are announced  If nil this policy applies to all services.",
-						MarkdownDescription: "If true, the loadbalancer IPs of the services are announced  If nil this policy applies to all services.",
+						Description:         "If true, the loadbalancer IPs of the services are announced If nil this policy applies to all services.",
+						MarkdownDescription: "If true, the loadbalancer IPs of the services are announced If nil this policy applies to all services.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"node_selector": schema.SingleNestedAttribute{
-						Description:         "NodeSelector selects a group of nodes which will announce the IPs for the services selected by the service selector.  If nil this policy applies to all nodes.",
-						MarkdownDescription: "NodeSelector selects a group of nodes which will announce the IPs for the services selected by the service selector.  If nil this policy applies to all nodes.",
+						Description:         "NodeSelector selects a group of nodes which will announce the IPs for the services selected by the service selector. If nil this policy applies to all nodes.",
+						MarkdownDescription: "NodeSelector selects a group of nodes which will announce the IPs for the services selected by the service selector. If nil this policy applies to all nodes.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -212,8 +212,8 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"service_selector": schema.SingleNestedAttribute{
-						Description:         "ServiceSelector selects a set of services which will be announced over L2 networks. The loadBalancerClass for a service must be nil or specify a supported class, e.g. 'io.cilium/l2-announcer'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If nil this policy applies to all services.",
-						MarkdownDescription: "ServiceSelector selects a set of services which will be announced over L2 networks. The loadBalancerClass for a service must be nil or specify a supported class, e.g. 'io.cilium/l2-announcer'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If nil this policy applies to all services.",
+						Description:         "ServiceSelector selects a set of services which will be announced over L2 networks. The loadBalancerClass for a service must be nil or specify a supported class, e.g. 'io.cilium/l2-announcer'. Refer to the following document for additional details regarding load balancer classes: https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class If nil this policy applies to all services.",
+						MarkdownDescription: "ServiceSelector selects a set of services which will be announced over L2 networks. The loadBalancerClass for a service must be nil or specify a supported class, e.g. 'io.cilium/l2-announcer'. Refer to the following document for additional details regarding load balancer classes: https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class If nil this policy applies to all services.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",

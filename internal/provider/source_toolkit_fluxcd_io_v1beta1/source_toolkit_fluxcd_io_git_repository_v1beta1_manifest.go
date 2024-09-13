@@ -163,13 +163,13 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Manifest) Schema(_ context.Con
 						MarkdownDescription: "AccessFrom defines an Access Control List for allowing cross-namespace references to this object.",
 						Attributes: map[string]schema.Attribute{
 							"namespace_selectors": schema.ListNestedAttribute{
-								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
-								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
+								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
+								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"match_labels": schema.MapAttribute{
-											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -188,8 +188,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"git_implementation": schema.StringAttribute{
-						Description:         "Determines which git client library to use.Defaults to go-git, valid values are ('go-git', 'libgit2').",
-						MarkdownDescription: "Determines which git client library to use.Defaults to go-git, valid values are ('go-git', 'libgit2').",
+						Description:         "Determines which git client library to use. Defaults to go-git, valid values are ('go-git', 'libgit2').",
+						MarkdownDescription: "Determines which git client library to use. Defaults to go-git, valid values are ('go-git', 'libgit2').",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -199,8 +199,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"ignore": schema.StringAttribute{
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -259,16 +259,16 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"recurse_submodules": schema.BoolAttribute{
-						Description:         "When enabled, after the clone is created, initializes all submodules within,using their default settings.This option is available only when using the 'go-git' GitImplementation.",
-						MarkdownDescription: "When enabled, after the clone is created, initializes all submodules within,using their default settings.This option is available only when using the 'go-git' GitImplementation.",
+						Description:         "When enabled, after the clone is created, initializes all submodules within, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
+						MarkdownDescription: "When enabled, after the clone is created, initializes all submodules within, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ref": schema.SingleNestedAttribute{
-						Description:         "The Git reference to checkout and monitor for changes, defaults tomaster branch.",
-						MarkdownDescription: "The Git reference to checkout and monitor for changes, defaults tomaster branch.",
+						Description:         "The Git reference to checkout and monitor for changes, defaults to master branch.",
+						MarkdownDescription: "The Git reference to checkout and monitor for changes, defaults to master branch.",
 						Attributes: map[string]schema.Attribute{
 							"branch": schema.StringAttribute{
 								Description:         "The Git branch to checkout, defaults to master.",
@@ -308,8 +308,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "The secret name containing the Git credentials.For HTTPS repositories the secret must contain username and passwordfields.For SSH repositories the secret must contain identity and known_hostsfields.",
-						MarkdownDescription: "The secret name containing the Git credentials.For HTTPS repositories the secret must contain username and passwordfields.For SSH repositories the secret must contain identity and known_hostsfields.",
+						Description:         "The secret name containing the Git credentials. For HTTPS repositories the secret must contain username and password fields. For SSH repositories the secret must contain identity and known_hosts fields.",
+						MarkdownDescription: "The secret name containing the Git credentials. For HTTPS repositories the secret must contain username and password fields. For SSH repositories the secret must contain identity and known_hosts fields.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",

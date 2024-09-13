@@ -61,8 +61,8 @@ func (r *PkgCrossplaneIoConfigurationRevisionV1Manifest) Metadata(_ context.Cont
 
 func (r *PkgCrossplaneIoConfigurationRevisionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A ConfigurationRevision represents a revision of a Configuration. Crossplanecreates new revisions when there are changes to a Configuration.Crossplane creates and manages ConfigurationRevision. Don't directly editConfigurationRevisions.",
-		MarkdownDescription: "A ConfigurationRevision represents a revision of a Configuration. Crossplanecreates new revisions when there are changes to a Configuration.Crossplane creates and manages ConfigurationRevision. Don't directly editConfigurationRevisions.",
+		Description:         "A ConfigurationRevision represents a revision of a Configuration. Crossplane creates new revisions when there are changes to a Configuration. Crossplane creates and manages ConfigurationRevision. Don't directly edit ConfigurationRevisions.",
+		MarkdownDescription: "A ConfigurationRevision represents a revision of a Configuration. Crossplane creates new revisions when there are changes to a Configuration. Crossplane creates and manages ConfigurationRevision. Don't directly edit ConfigurationRevisions.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -121,8 +121,8 @@ func (r *PkgCrossplaneIoConfigurationRevisionV1Manifest) Schema(_ context.Contex
 				MarkdownDescription: "PackageRevisionSpec specifies the desired state of a PackageRevision.",
 				Attributes: map[string]schema.Attribute{
 					"common_labels": schema.MapAttribute{
-						Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
-						MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+						Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+						MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -138,8 +138,8 @@ func (r *PkgCrossplaneIoConfigurationRevisionV1Manifest) Schema(_ context.Contex
 					},
 
 					"ignore_crossplane_constraints": schema.BoolAttribute{
-						Description:         "IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.",
-						MarkdownDescription: "IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.",
+						Description:         "IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.",
+						MarkdownDescription: "IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -154,21 +154,21 @@ func (r *PkgCrossplaneIoConfigurationRevisionV1Manifest) Schema(_ context.Contex
 					},
 
 					"package_pull_policy": schema.StringAttribute{
-						Description:         "PackagePullPolicy defines the pull policy for the package. It is alsoapplied to any images pulled for the package, such as a provider'scontroller image.Default is IfNotPresent.",
-						MarkdownDescription: "PackagePullPolicy defines the pull policy for the package. It is alsoapplied to any images pulled for the package, such as a provider'scontroller image.Default is IfNotPresent.",
+						Description:         "PackagePullPolicy defines the pull policy for the package. It is also applied to any images pulled for the package, such as a provider's controller image. Default is IfNotPresent.",
+						MarkdownDescription: "PackagePullPolicy defines the pull policy for the package. It is also applied to any images pulled for the package, such as a provider's controller image. Default is IfNotPresent.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"package_pull_secrets": schema.ListNestedAttribute{
-						Description:         "PackagePullSecrets are named secrets in the same namespace that can beused to fetch packages from private registries. They are also applied toany images pulled for the package, such as a provider's controller image.",
-						MarkdownDescription: "PackagePullSecrets are named secrets in the same namespace that can beused to fetch packages from private registries. They are also applied toany images pulled for the package, such as a provider's controller image.",
+						Description:         "PackagePullSecrets are named secrets in the same namespace that can be used to fetch packages from private registries. They are also applied to any images pulled for the package, such as a provider's controller image.",
+						MarkdownDescription: "PackagePullSecrets are named secrets in the same namespace that can be used to fetch packages from private registries. They are also applied to any images pulled for the package, such as a provider's controller image.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -181,16 +181,16 @@ func (r *PkgCrossplaneIoConfigurationRevisionV1Manifest) Schema(_ context.Contex
 					},
 
 					"revision": schema.Int64Attribute{
-						Description:         "Revision number. Indicates when the revision will be garbage collectedbased on the parent's RevisionHistoryLimit.",
-						MarkdownDescription: "Revision number. Indicates when the revision will be garbage collectedbased on the parent's RevisionHistoryLimit.",
+						Description:         "Revision number. Indicates when the revision will be garbage collected based on the parent's RevisionHistoryLimit.",
+						MarkdownDescription: "Revision number. Indicates when the revision will be garbage collected based on the parent's RevisionHistoryLimit.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"skip_dependency_resolution": schema.BoolAttribute{
-						Description:         "SkipDependencyResolution indicates to the package manager whether to skipresolving dependencies for a package. Setting this value to true may haveunintended consequences.Default is false.",
-						MarkdownDescription: "SkipDependencyResolution indicates to the package manager whether to skipresolving dependencies for a package. Setting this value to true may haveunintended consequences.Default is false.",
+						Description:         "SkipDependencyResolution indicates to the package manager whether to skip resolving dependencies for a package. Setting this value to true may have unintended consequences. Default is false.",
+						MarkdownDescription: "SkipDependencyResolution indicates to the package manager whether to skip resolving dependencies for a package. Setting this value to true may have unintended consequences. Default is false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

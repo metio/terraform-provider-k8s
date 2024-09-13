@@ -87,23 +87,23 @@ Optional:
 
 Required:
 
-- `from` (Attributes List) List of peers which should be able to access the targets in TargetGroup.At least one NetworkingPeer should be specified. (see [below for nested schema](#nestedatt--spec--networking--ingress--from))
-- `ports` (Attributes List) List of ports which should be made accessible on the targets in TargetGroup.If ports is empty or unspecified, it defaults to all ports with TCP. (see [below for nested schema](#nestedatt--spec--networking--ingress--ports))
+- `from` (Attributes List) List of peers which should be able to access the targets in TargetGroup. At least one NetworkingPeer should be specified. (see [below for nested schema](#nestedatt--spec--networking--ingress--from))
+- `ports` (Attributes List) List of ports which should be made accessible on the targets in TargetGroup. If ports is empty or unspecified, it defaults to all ports with TCP. (see [below for nested schema](#nestedatt--spec--networking--ingress--ports))
 
 <a id="nestedatt--spec--networking--ingress--from"></a>
 ### Nested Schema for `spec.networking.ingress.from`
 
 Optional:
 
-- `ip_block` (Attributes) IPBlock defines an IPBlock peer.If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--from--ip_block))
-- `security_group` (Attributes) SecurityGroup defines a SecurityGroup peer.If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--from--security_group))
+- `ip_block` (Attributes) IPBlock defines an IPBlock peer. If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--from--ip_block))
+- `security_group` (Attributes) SecurityGroup defines a SecurityGroup peer. If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--from--security_group))
 
 <a id="nestedatt--spec--networking--ingress--from--ip_block"></a>
 ### Nested Schema for `spec.networking.ingress.from.ip_block`
 
 Required:
 
-- `cidr` (String) CIDR is the network CIDR.Both IPV4 or IPV6 CIDR are accepted.
+- `cidr` (String) CIDR is the network CIDR. Both IPV4 or IPV6 CIDR are accepted.
 
 
 <a id="nestedatt--spec--networking--ingress--from--security_group"></a>
@@ -120,8 +120,8 @@ Required:
 
 Optional:
 
-- `port` (String) The port which traffic must match.When NodePort endpoints(instance TargetType) is used, this must be a numerical port.When Port endpoints(ip TargetType) is used, this can be either numerical or named port on pods.if port is unspecified, it defaults to all ports.
-- `protocol` (String) The protocol which traffic must match.If protocol is unspecified, it defaults to TCP.
+- `port` (String) The port which traffic must match. When NodePort endpoints(instance TargetType) is used, this must be a numerical port. When Port endpoints(ip TargetType) is used, this can be either numerical or named port on pods. if port is unspecified, it defaults to all ports.
+- `protocol` (String) The protocol which traffic must match. If protocol is unspecified, it defaults to TCP.
 
 
 
@@ -132,7 +132,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--node_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--node_selector--match_expressions"></a>
 ### Nested Schema for `spec.node_selector.match_expressions`
@@ -140,8 +140,8 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.

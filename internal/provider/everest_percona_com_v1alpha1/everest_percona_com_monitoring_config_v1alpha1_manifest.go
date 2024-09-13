@@ -185,8 +185,8 @@ func (r *EverestPerconaComMonitoringConfigV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"verify_tls": schema.BoolAttribute{
-						Description:         "VerifyTLS is set to ensure TLS/SSL verification.If unspecified, the default value is true.",
-						MarkdownDescription: "VerifyTLS is set to ensure TLS/SSL verification.If unspecified, the default value is true.",
+						Description:         "VerifyTLS is set to ensure TLS/SSL verification. If unspecified, the default value is true.",
+						MarkdownDescription: "VerifyTLS is set to ensure TLS/SSL verification. If unspecified, the default value is true.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

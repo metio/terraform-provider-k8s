@@ -174,8 +174,8 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "Connection contains connection data for a Baseboard Management Controller.",
 						Attributes: map[string]schema.Attribute{
 							"auth_secret_ref": schema.SingleNestedAttribute{
-								Description:         "AuthSecretRef is the SecretReference that contains authentication information of the Machine.The Secret must contain username and password keys. This is optional as it is not required when usingthe RPC provider.",
-								MarkdownDescription: "AuthSecretRef is the SecretReference that contains authentication information of the Machine.The Secret must contain username and password keys. This is optional as it is not required when usingthe RPC provider.",
+								Description:         "AuthSecretRef is the SecretReference that contains authentication information of the Machine. The Secret must contain username and password keys. This is optional as it is not required when using the RPC provider.",
+								MarkdownDescription: "AuthSecretRef is the SecretReference that contains authentication information of the Machine. The Secret must contain username and password keys. This is optional as it is not required when using the RPC provider.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "name is unique within a namespace to reference a secret resource.",
@@ -304,8 +304,8 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "RPC contains the options to customize the RPC provider.",
 										Attributes: map[string]schema.Attribute{
 											"consumer_url": schema.StringAttribute{
-												Description:         "ConsumerURL is the URL where an rpc consumer/listener is runningand to which we will send and receive all notifications.",
-												MarkdownDescription: "ConsumerURL is the URL where an rpc consumer/listener is runningand to which we will send and receive all notifications.",
+												Description:         "ConsumerURL is the URL where an rpc consumer/listener is running and to which we will send and receive all notifications.",
+												MarkdownDescription: "ConsumerURL is the URL where an rpc consumer/listener is running and to which we will send and receive all notifications.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -425,8 +425,8 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 												MarkdownDescription: "Signature is the options used for adding an HMAC signature to an HTTP request.",
 												Attributes: map[string]schema.Attribute{
 													"append_algo_to_header_disabled": schema.BoolAttribute{
-														Description:         "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not.Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
-														MarkdownDescription: "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not.Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
+														Description:         "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not. Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256 When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
+														MarkdownDescription: "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not. Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256 When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -441,8 +441,8 @@ func (r *BmcTinkerbellOrgMachineV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"included_payload_headers": schema.ListAttribute{
-														Description:         "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-HeaderAll headers will be deduplicated.",
-														MarkdownDescription: "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-HeaderAll headers will be deduplicated.",
+														Description:         "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-Header All headers will be deduplicated.",
+														MarkdownDescription: "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-Header All headers will be deduplicated.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,

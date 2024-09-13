@@ -233,16 +233,16 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "RateLimitPolicySpec defines the desired state of RateLimitPolicy",
 				Attributes: map[string]schema.Attribute{
 					"defaults": schema.SingleNestedAttribute{
-						Description:         "Defaults define explicit default values for this policy and for policies inheriting this policy.Defaults are mutually exclusive with implicit defaults defined by RateLimitPolicyCommonSpec.",
-						MarkdownDescription: "Defaults define explicit default values for this policy and for policies inheriting this policy.Defaults are mutually exclusive with implicit defaults defined by RateLimitPolicyCommonSpec.",
+						Description:         "Defaults define explicit default values for this policy and for policies inheriting this policy. Defaults are mutually exclusive with implicit defaults defined by RateLimitPolicyCommonSpec.",
+						MarkdownDescription: "Defaults define explicit default values for this policy and for policies inheriting this policy. Defaults are mutually exclusive with implicit defaults defined by RateLimitPolicyCommonSpec.",
 						Attributes: map[string]schema.Attribute{
 							"limits": schema.SingleNestedAttribute{
 								Description:         "Limits holds the struct of limits indexed by a unique name",
 								MarkdownDescription: "Limits holds the struct of limits indexed by a unique name",
 								Attributes: map[string]schema.Attribute{
 									"counters": schema.ListAttribute{
-										Description:         "Counters defines additional rate limit counters based on context qualifiers and well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-										MarkdownDescription: "Counters defines additional rate limit counters based on context qualifiers and well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+										Description:         "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+										MarkdownDescription: "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -271,8 +271,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"unit": schema.StringAttribute{
-													Description:         "Duration defines the time uniPossible values are: 'second', 'minute', 'hour', 'day'",
-													MarkdownDescription: "Duration defines the time uniPossible values are: 'second', 'minute', 'hour', 'day'",
+													Description:         "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
+													MarkdownDescription: "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -293,8 +293,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"hostnames": schema.ListAttribute{
-													Description:         "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
-													MarkdownDescription: "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+													Description:         "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the request https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+													MarkdownDescription: "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the request https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -302,18 +302,18 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"matches": schema.ListNestedAttribute{
-													Description:         "Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
-													MarkdownDescription: "Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+													Description:         "Matches define conditions used for matching the rule against incoming HTTP requests. https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+													MarkdownDescription: "Matches define conditions used for matching the rule against incoming HTTP requests. https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"headers": schema.ListNestedAttribute{
-																Description:         "Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route.",
-																MarkdownDescription: "Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route.",
+																Description:         "Headers specifies HTTP request header matchers. Multiple match values are ANDed together, meaning, a request must match all the specified headers to select the route.",
+																MarkdownDescription: "Headers specifies HTTP request header matchers. Multiple match values are ANDed together, meaning, a request must match all the specified headers to select the route.",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.",
-																			MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.",
+																			Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2). If multiple entries specify equivalent header names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent. When a header is repeated in an HTTP request, it is implementation-specific behavior as to how this is represented. Generally, proxies should follow the guidance from the RFC: https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regarding processing a repeated header, with special handling for 'Set-Cookie'.",
+																			MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2). If multiple entries specify equivalent header names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent. When a header is repeated in an HTTP request, it is implementation-specific behavior as to how this is represented. Generally, proxies should follow the guidance from the RFC: https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regarding processing a repeated header, with special handling for 'Set-Cookie'.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -325,8 +325,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"type": schema.StringAttribute{
-																			Description:         "Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.",
-																			MarkdownDescription: "Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.",
+																			Description:         "Type specifies how to match against the value of the header. Support: Core (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression HeaderMatchType has implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+																			MarkdownDescription: "Type specifies how to match against the value of the header. Support: Core (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression HeaderMatchType has implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -354,8 +354,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"method": schema.StringAttribute{
-																Description:         "Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended",
-																MarkdownDescription: "Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended",
+																Description:         "Method specifies HTTP method matcher. When specified, this route will be matched only if the request has the specified method. Support: Extended",
+																MarkdownDescription: "Method specifies HTTP method matcher. When specified, this route will be matched only if the request has the specified method. Support: Extended",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -365,12 +365,12 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"path": schema.SingleNestedAttribute{
-																Description:         "Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided.",
-																MarkdownDescription: "Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided.",
+																Description:         "Path specifies a HTTP request path matcher. If this field is not specified, a default prefix match on the '/' path is provided.",
+																MarkdownDescription: "Path specifies a HTTP request path matcher. If this field is not specified, a default prefix match on the '/' path is provided.",
 																Attributes: map[string]schema.Attribute{
 																	"type": schema.StringAttribute{
-																		Description:         "Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)",
-																		MarkdownDescription: "Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)",
+																		Description:         "Type specifies how to match against the path Value. Support: Core (Exact, PathPrefix) Support: Implementation-specific (RegularExpression)",
+																		MarkdownDescription: "Type specifies how to match against the path Value. Support: Core (Exact, PathPrefix) Support: Implementation-specific (RegularExpression)",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -396,13 +396,13 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"query_params": schema.ListNestedAttribute{
-																Description:         "QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended",
-																MarkdownDescription: "QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended",
+																Description:         "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route. Support: Extended",
+																MarkdownDescription: "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route. Support: Extended",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.",
-																			MarkdownDescription: "Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.",
+																			Description:         "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3). If multiple entries specify equivalent query param names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent query param name MUST be ignored. If a query param is repeated in an HTTP request, the behavior is purposely left undefined, since different data planes have different capabilities. However, it is *recommended* that implementations should match against the first value of the param if the data plane supports it, as this behavior is expected in other load balancing contexts outside of the Gateway API. Users SHOULD NOT route traffic based on repeated query params to guard themselves against potential differences in the implementations.",
+																			MarkdownDescription: "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3). If multiple entries specify equivalent query param names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent query param name MUST be ignored. If a query param is repeated in an HTTP request, the behavior is purposely left undefined, since different data planes have different capabilities. However, it is *recommended* that implementations should match against the first value of the param if the data plane supports it, as this behavior is expected in other load balancing contexts outside of the Gateway API. Users SHOULD NOT route traffic based on repeated query params to guard themselves against potential differences in the implementations.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -414,8 +414,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"type": schema.StringAttribute{
-																			Description:         "Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.",
-																			MarkdownDescription: "Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.",
+																			Description:         "Type specifies how to match against the value of the query parameter. Support: Extended (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression QueryParamMatchType has Implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+																			MarkdownDescription: "Type specifies how to match against the value of the query parameter. Support: Extended (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression QueryParamMatchType has Implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -455,13 +455,13 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 									},
 
 									"when": schema.ListNestedAttribute{
-										Description:         "When holds the list of conditions for the policy to be enforced.Called also 'soft' conditions as route selectors must also match",
-										MarkdownDescription: "When holds the list of conditions for the policy to be enforced.Called also 'soft' conditions as route selectors must also match",
+										Description:         "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
+										MarkdownDescription: "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"operator": schema.StringAttribute{
-													Description:         "The binary operator to be applied to the content fetched from the selectorPossible values are: 'eq' (equal to), 'neq' (not equal to)",
-													MarkdownDescription: "The binary operator to be applied to the content fetched from the selectorPossible values are: 'eq' (equal to), 'neq' (not equal to)",
+													Description:         "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
+													MarkdownDescription: "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -471,8 +471,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"selector": schema.StringAttribute{
-													Description:         "Selector defines one item from the well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-													MarkdownDescription: "Selector defines one item from the well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+													Description:         "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+													MarkdownDescription: "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -511,8 +511,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "Limits holds the struct of limits indexed by a unique name",
 						Attributes: map[string]schema.Attribute{
 							"counters": schema.ListAttribute{
-								Description:         "Counters defines additional rate limit counters based on context qualifiers and well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-								MarkdownDescription: "Counters defines additional rate limit counters based on context qualifiers and well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+								Description:         "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+								MarkdownDescription: "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -541,8 +541,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"unit": schema.StringAttribute{
-											Description:         "Duration defines the time uniPossible values are: 'second', 'minute', 'hour', 'day'",
-											MarkdownDescription: "Duration defines the time uniPossible values are: 'second', 'minute', 'hour', 'day'",
+											Description:         "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
+											MarkdownDescription: "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -563,8 +563,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"hostnames": schema.ListAttribute{
-											Description:         "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
-											MarkdownDescription: "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+											Description:         "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the request https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+											MarkdownDescription: "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the request https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -572,18 +572,18 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"matches": schema.ListNestedAttribute{
-											Description:         "Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
-											MarkdownDescription: "Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+											Description:         "Matches define conditions used for matching the rule against incoming HTTP requests. https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+											MarkdownDescription: "Matches define conditions used for matching the rule against incoming HTTP requests. https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"headers": schema.ListNestedAttribute{
-														Description:         "Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route.",
-														MarkdownDescription: "Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route.",
+														Description:         "Headers specifies HTTP request header matchers. Multiple match values are ANDed together, meaning, a request must match all the specified headers to select the route.",
+														MarkdownDescription: "Headers specifies HTTP request header matchers. Multiple match values are ANDed together, meaning, a request must match all the specified headers to select the route.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.",
-																	MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.",
+																	Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2). If multiple entries specify equivalent header names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent. When a header is repeated in an HTTP request, it is implementation-specific behavior as to how this is represented. Generally, proxies should follow the guidance from the RFC: https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regarding processing a repeated header, with special handling for 'Set-Cookie'.",
+																	MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2). If multiple entries specify equivalent header names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent. When a header is repeated in an HTTP request, it is implementation-specific behavior as to how this is represented. Generally, proxies should follow the guidance from the RFC: https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regarding processing a repeated header, with special handling for 'Set-Cookie'.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -595,8 +595,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.",
-																	MarkdownDescription: "Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.",
+																	Description:         "Type specifies how to match against the value of the header. Support: Core (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression HeaderMatchType has implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+																	MarkdownDescription: "Type specifies how to match against the value of the header. Support: Core (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression HeaderMatchType has implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -624,8 +624,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"method": schema.StringAttribute{
-														Description:         "Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended",
-														MarkdownDescription: "Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended",
+														Description:         "Method specifies HTTP method matcher. When specified, this route will be matched only if the request has the specified method. Support: Extended",
+														MarkdownDescription: "Method specifies HTTP method matcher. When specified, this route will be matched only if the request has the specified method. Support: Extended",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -635,12 +635,12 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"path": schema.SingleNestedAttribute{
-														Description:         "Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided.",
-														MarkdownDescription: "Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided.",
+														Description:         "Path specifies a HTTP request path matcher. If this field is not specified, a default prefix match on the '/' path is provided.",
+														MarkdownDescription: "Path specifies a HTTP request path matcher. If this field is not specified, a default prefix match on the '/' path is provided.",
 														Attributes: map[string]schema.Attribute{
 															"type": schema.StringAttribute{
-																Description:         "Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)",
-																MarkdownDescription: "Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)",
+																Description:         "Type specifies how to match against the path Value. Support: Core (Exact, PathPrefix) Support: Implementation-specific (RegularExpression)",
+																MarkdownDescription: "Type specifies how to match against the path Value. Support: Core (Exact, PathPrefix) Support: Implementation-specific (RegularExpression)",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -666,13 +666,13 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 													},
 
 													"query_params": schema.ListNestedAttribute{
-														Description:         "QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended",
-														MarkdownDescription: "QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended",
+														Description:         "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route. Support: Extended",
+														MarkdownDescription: "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route. Support: Extended",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.",
-																	MarkdownDescription: "Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.",
+																	Description:         "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3). If multiple entries specify equivalent query param names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent query param name MUST be ignored. If a query param is repeated in an HTTP request, the behavior is purposely left undefined, since different data planes have different capabilities. However, it is *recommended* that implementations should match against the first value of the param if the data plane supports it, as this behavior is expected in other load balancing contexts outside of the Gateway API. Users SHOULD NOT route traffic based on repeated query params to guard themselves against potential differences in the implementations.",
+																	MarkdownDescription: "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3). If multiple entries specify equivalent query param names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent query param name MUST be ignored. If a query param is repeated in an HTTP request, the behavior is purposely left undefined, since different data planes have different capabilities. However, it is *recommended* that implementations should match against the first value of the param if the data plane supports it, as this behavior is expected in other load balancing contexts outside of the Gateway API. Users SHOULD NOT route traffic based on repeated query params to guard themselves against potential differences in the implementations.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -684,8 +684,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.",
-																	MarkdownDescription: "Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.",
+																	Description:         "Type specifies how to match against the value of the query parameter. Support: Extended (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression QueryParamMatchType has Implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+																	MarkdownDescription: "Type specifies how to match against the value of the query parameter. Support: Extended (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression QueryParamMatchType has Implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -725,13 +725,13 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"when": schema.ListNestedAttribute{
-								Description:         "When holds the list of conditions for the policy to be enforced.Called also 'soft' conditions as route selectors must also match",
-								MarkdownDescription: "When holds the list of conditions for the policy to be enforced.Called also 'soft' conditions as route selectors must also match",
+								Description:         "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
+								MarkdownDescription: "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"operator": schema.StringAttribute{
-											Description:         "The binary operator to be applied to the content fetched from the selectorPossible values are: 'eq' (equal to), 'neq' (not equal to)",
-											MarkdownDescription: "The binary operator to be applied to the content fetched from the selectorPossible values are: 'eq' (equal to), 'neq' (not equal to)",
+											Description:         "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
+											MarkdownDescription: "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -741,8 +741,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"selector": schema.StringAttribute{
-											Description:         "Selector defines one item from the well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-											MarkdownDescription: "Selector defines one item from the well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+											Description:         "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+											MarkdownDescription: "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -772,16 +772,16 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"overrides": schema.SingleNestedAttribute{
-						Description:         "Overrides define override values for this policy and for policies inheriting this policy.Overrides are mutually exclusive with implicit defaults and explicit Defaults defined by RateLimitPolicyCommonSpec.",
-						MarkdownDescription: "Overrides define override values for this policy and for policies inheriting this policy.Overrides are mutually exclusive with implicit defaults and explicit Defaults defined by RateLimitPolicyCommonSpec.",
+						Description:         "Overrides define override values for this policy and for policies inheriting this policy. Overrides are mutually exclusive with implicit defaults and explicit Defaults defined by RateLimitPolicyCommonSpec.",
+						MarkdownDescription: "Overrides define override values for this policy and for policies inheriting this policy. Overrides are mutually exclusive with implicit defaults and explicit Defaults defined by RateLimitPolicyCommonSpec.",
 						Attributes: map[string]schema.Attribute{
 							"limits": schema.SingleNestedAttribute{
 								Description:         "Limits holds the struct of limits indexed by a unique name",
 								MarkdownDescription: "Limits holds the struct of limits indexed by a unique name",
 								Attributes: map[string]schema.Attribute{
 									"counters": schema.ListAttribute{
-										Description:         "Counters defines additional rate limit counters based on context qualifiers and well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-										MarkdownDescription: "Counters defines additional rate limit counters based on context qualifiers and well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+										Description:         "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+										MarkdownDescription: "Counters defines additional rate limit counters based on context qualifiers and well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -810,8 +810,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"unit": schema.StringAttribute{
-													Description:         "Duration defines the time uniPossible values are: 'second', 'minute', 'hour', 'day'",
-													MarkdownDescription: "Duration defines the time uniPossible values are: 'second', 'minute', 'hour', 'day'",
+													Description:         "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
+													MarkdownDescription: "Duration defines the time uni Possible values are: 'second', 'minute', 'hour', 'day'",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -832,8 +832,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"hostnames": schema.ListAttribute{
-													Description:         "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
-													MarkdownDescription: "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the requesthttps://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+													Description:         "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the request https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+													MarkdownDescription: "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the request https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -841,18 +841,18 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"matches": schema.ListNestedAttribute{
-													Description:         "Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
-													MarkdownDescription: "Matches define conditions used for matching the rule against incoming HTTP requests.https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+													Description:         "Matches define conditions used for matching the rule against incoming HTTP requests. https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
+													MarkdownDescription: "Matches define conditions used for matching the rule against incoming HTTP requests. https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"headers": schema.ListNestedAttribute{
-																Description:         "Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route.",
-																MarkdownDescription: "Headers specifies HTTP request header matchers. Multiple match values areANDed together, meaning, a request must match all the specified headersto select the route.",
+																Description:         "Headers specifies HTTP request header matchers. Multiple match values are ANDed together, meaning, a request must match all the specified headers to select the route.",
+																MarkdownDescription: "Headers specifies HTTP request header matchers. Multiple match values are ANDed together, meaning, a request must match all the specified headers to select the route.",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.",
-																			MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST becase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).If multiple entries specify equivalent header names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent header name MUST be ignored. Due to thecase-insensitivity of header names, 'foo' and 'Foo' are consideredequivalent.When a header is repeated in an HTTP request, it isimplementation-specific behavior as to how this is represented.Generally, proxies should follow the guidance from the RFC:https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regardingprocessing a repeated header, with special handling for 'Set-Cookie'.",
+																			Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2). If multiple entries specify equivalent header names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent. When a header is repeated in an HTTP request, it is implementation-specific behavior as to how this is represented. Generally, proxies should follow the guidance from the RFC: https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regarding processing a repeated header, with special handling for 'Set-Cookie'.",
+																			MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2). If multiple entries specify equivalent header names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent. When a header is repeated in an HTTP request, it is implementation-specific behavior as to how this is represented. Generally, proxies should follow the guidance from the RFC: https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regarding processing a repeated header, with special handling for 'Set-Cookie'.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -864,8 +864,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"type": schema.StringAttribute{
-																			Description:         "Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.",
-																			MarkdownDescription: "Type specifies how to match against the value of the header.Support: Core (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression HeaderMatchType has implementation-specificconformance, implementations can support POSIX, PCRE or any other dialectsof regular expressions. Please read the implementation's documentation todetermine the supported dialect.",
+																			Description:         "Type specifies how to match against the value of the header. Support: Core (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression HeaderMatchType has implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+																			MarkdownDescription: "Type specifies how to match against the value of the header. Support: Core (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression HeaderMatchType has implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -893,8 +893,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"method": schema.StringAttribute{
-																Description:         "Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended",
-																MarkdownDescription: "Method specifies HTTP method matcher.When specified, this route will be matched only if the request has thespecified method.Support: Extended",
+																Description:         "Method specifies HTTP method matcher. When specified, this route will be matched only if the request has the specified method. Support: Extended",
+																MarkdownDescription: "Method specifies HTTP method matcher. When specified, this route will be matched only if the request has the specified method. Support: Extended",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -904,12 +904,12 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"path": schema.SingleNestedAttribute{
-																Description:         "Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided.",
-																MarkdownDescription: "Path specifies a HTTP request path matcher. If this field is notspecified, a default prefix match on the '/' path is provided.",
+																Description:         "Path specifies a HTTP request path matcher. If this field is not specified, a default prefix match on the '/' path is provided.",
+																MarkdownDescription: "Path specifies a HTTP request path matcher. If this field is not specified, a default prefix match on the '/' path is provided.",
 																Attributes: map[string]schema.Attribute{
 																	"type": schema.StringAttribute{
-																		Description:         "Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)",
-																		MarkdownDescription: "Type specifies how to match against the path Value.Support: Core (Exact, PathPrefix)Support: Implementation-specific (RegularExpression)",
+																		Description:         "Type specifies how to match against the path Value. Support: Core (Exact, PathPrefix) Support: Implementation-specific (RegularExpression)",
+																		MarkdownDescription: "Type specifies how to match against the path Value. Support: Core (Exact, PathPrefix) Support: Implementation-specific (RegularExpression)",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -935,13 +935,13 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"query_params": schema.ListNestedAttribute{
-																Description:         "QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended",
-																MarkdownDescription: "QueryParams specifies HTTP query parameter matchers. Multiple matchvalues are ANDed together, meaning, a request must match all thespecified query parameters to select the route.Support: Extended",
+																Description:         "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route. Support: Extended",
+																MarkdownDescription: "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route. Support: Extended",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
-																			Description:         "Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.",
-																			MarkdownDescription: "Name is the name of the HTTP query param to be matched. This must be anexact string match. (Seehttps://tools.ietf.org/html/rfc7230#section-2.7.3).If multiple entries specify equivalent query param names, only the firstentry with an equivalent name MUST be considered for a match. Subsequententries with an equivalent query param name MUST be ignored.If a query param is repeated in an HTTP request, the behavior ispurposely left undefined, since different data planes have differentcapabilities. However, it is *recommended* that implementations shouldmatch against the first value of the param if the data plane supports it,as this behavior is expected in other load balancing contexts outside ofthe Gateway API.Users SHOULD NOT route traffic based on repeated query params to guardthemselves against potential differences in the implementations.",
+																			Description:         "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3). If multiple entries specify equivalent query param names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent query param name MUST be ignored. If a query param is repeated in an HTTP request, the behavior is purposely left undefined, since different data planes have different capabilities. However, it is *recommended* that implementations should match against the first value of the param if the data plane supports it, as this behavior is expected in other load balancing contexts outside of the Gateway API. Users SHOULD NOT route traffic based on repeated query params to guard themselves against potential differences in the implementations.",
+																			MarkdownDescription: "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3). If multiple entries specify equivalent query param names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent query param name MUST be ignored. If a query param is repeated in an HTTP request, the behavior is purposely left undefined, since different data planes have different capabilities. However, it is *recommended* that implementations should match against the first value of the param if the data plane supports it, as this behavior is expected in other load balancing contexts outside of the Gateway API. Users SHOULD NOT route traffic based on repeated query params to guard themselves against potential differences in the implementations.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -953,8 +953,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"type": schema.StringAttribute{
-																			Description:         "Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.",
-																			MarkdownDescription: "Type specifies how to match against the value of the query parameter.Support: Extended (Exact)Support: Implementation-specific (RegularExpression)Since RegularExpression QueryParamMatchType has Implementation-specificconformance, implementations can support POSIX, PCRE or any otherdialects of regular expressions. Please read the implementation'sdocumentation to determine the supported dialect.",
+																			Description:         "Type specifies how to match against the value of the query parameter. Support: Extended (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression QueryParamMatchType has Implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+																			MarkdownDescription: "Type specifies how to match against the value of the query parameter. Support: Extended (Exact) Support: Implementation-specific (RegularExpression) Since RegularExpression QueryParamMatchType has Implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -994,13 +994,13 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 									},
 
 									"when": schema.ListNestedAttribute{
-										Description:         "When holds the list of conditions for the policy to be enforced.Called also 'soft' conditions as route selectors must also match",
-										MarkdownDescription: "When holds the list of conditions for the policy to be enforced.Called also 'soft' conditions as route selectors must also match",
+										Description:         "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
+										MarkdownDescription: "When holds the list of conditions for the policy to be enforced. Called also 'soft' conditions as route selectors must also match",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"operator": schema.StringAttribute{
-													Description:         "The binary operator to be applied to the content fetched from the selectorPossible values are: 'eq' (equal to), 'neq' (not equal to)",
-													MarkdownDescription: "The binary operator to be applied to the content fetched from the selectorPossible values are: 'eq' (equal to), 'neq' (not equal to)",
+													Description:         "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
+													MarkdownDescription: "The binary operator to be applied to the content fetched from the selector Possible values are: 'eq' (equal to), 'neq' (not equal to)",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1010,8 +1010,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"selector": schema.StringAttribute{
-													Description:         "Selector defines one item from the well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
-													MarkdownDescription: "Selector defines one item from the well known selectorsTODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+													Description:         "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
+													MarkdownDescription: "Selector defines one item from the well known selectors TODO Document properly 'Well-known selector' https://github.com/Kuadrant/architecture/blob/main/rfcs/0001-rlp-v2.md#well-known-selectors",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,

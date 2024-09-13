@@ -312,8 +312,8 @@ func (r *SonataflowOrgSonataFlowBuildV1Alpha08Manifest) Schema(_ context.Context
 											MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -472,8 +472,8 @@ func (r *SonataflowOrgSonataFlowBuildV1Alpha08Manifest) Schema(_ context.Context
 											MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -516,8 +516,8 @@ func (r *SonataflowOrgSonataFlowBuildV1Alpha08Manifest) Schema(_ context.Context
 						MarkdownDescription: "Resources optional compute resource requirements for the builder",
 						Attributes: map[string]schema.Attribute{
 							"claims": schema.ListNestedAttribute{
-								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{

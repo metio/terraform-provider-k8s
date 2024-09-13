@@ -605,8 +605,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"enable_user_model": schema.BoolAttribute{
-																	Description:         "configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false",
-																	MarkdownDescription: "configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false",
+																	Description:         "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	MarkdownDescription: "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -691,8 +691,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_bps": schema.Int64Attribute{
-																	Description:         "Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.",
-																	MarkdownDescription: "Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.",
+																	Description:         "Throttling of throughput The value is set to 0, which indicates that the feature is disabled.",
+																	MarkdownDescription: "Throttling of throughput The value is set to 0, which indicates that the feature is disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -702,8 +702,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_iops": schema.Int64Attribute{
-																	Description:         "Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.",
-																	MarkdownDescription: "Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.",
+																	Description:         "Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.",
+																	MarkdownDescription: "Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -713,8 +713,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_latency": schema.Int64Attribute{
-																	Description:         "Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.",
-																	MarkdownDescription: "Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.",
+																	Description:         "Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.",
+																	MarkdownDescription: "Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -819,8 +819,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "CPUQOSCfg stores node-level config of cpu qos",
 										Attributes: map[string]schema.Attribute{
 											"core_expeller": schema.BoolAttribute{
-												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.",
-												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -835,16 +835,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"group_identity": schema.Int64Attribute{
-												Description:         "group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
-												MarkdownDescription: "group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												Description:         "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												MarkdownDescription: "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"sched_idle": schema.Int64Attribute{
-												Description:         "cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.",
-												MarkdownDescription: "cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Description:         "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -860,16 +860,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "MemoryQOSCfg stores node-level config of memory qos",
 										Attributes: map[string]schema.Attribute{
 											"enable": schema.BoolAttribute{
-												Description:         "Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
-												MarkdownDescription: "Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
+												Description:         "Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
+												MarkdownDescription: "Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"low_limit_percent": schema.Int64Attribute{
-												Description:         "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.",
-												MarkdownDescription: "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.",
+												Description:         "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.",
+												MarkdownDescription: "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -879,8 +879,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"min_limit_percent": schema.Int64Attribute{
-												Description:         "memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.",
-												MarkdownDescription: "memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.",
+												Description:         "memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.",
+												MarkdownDescription: "memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -914,8 +914,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"throttling_percent": schema.Int64Attribute{
-												Description:         "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.",
-												MarkdownDescription: "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.",
+												Description:         "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.",
+												MarkdownDescription: "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -925,8 +925,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_min_adj": schema.Int64Attribute{
-												Description:         "wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
-												MarkdownDescription: "wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
+												Description:         "wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
+												MarkdownDescription: "wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -937,8 +937,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_ratio": schema.Int64Attribute{
-												Description:         "wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.",
-												MarkdownDescription: "wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.",
+												Description:         "wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.",
+												MarkdownDescription: "wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -949,8 +949,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_scale_permill": schema.Int64Attribute{
-												Description:         "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.",
-												MarkdownDescription: "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.",
+												Description:         "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.",
+												MarkdownDescription: "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -970,16 +970,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"egress_limit": schema.StringAttribute{
-												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"egress_request": schema.StringAttribute{
-												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -994,16 +994,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"ingress_limit": schema.StringAttribute{
-												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"ingress_request": schema.StringAttribute{
-												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1090,8 +1090,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"enable_user_model": schema.BoolAttribute{
-																	Description:         "configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false",
-																	MarkdownDescription: "configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false",
+																	Description:         "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	MarkdownDescription: "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1176,8 +1176,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_bps": schema.Int64Attribute{
-																	Description:         "Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.",
-																	MarkdownDescription: "Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.",
+																	Description:         "Throttling of throughput The value is set to 0, which indicates that the feature is disabled.",
+																	MarkdownDescription: "Throttling of throughput The value is set to 0, which indicates that the feature is disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1187,8 +1187,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_iops": schema.Int64Attribute{
-																	Description:         "Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.",
-																	MarkdownDescription: "Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.",
+																	Description:         "Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.",
+																	MarkdownDescription: "Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1198,8 +1198,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_latency": schema.Int64Attribute{
-																	Description:         "Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.",
-																	MarkdownDescription: "Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.",
+																	Description:         "Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.",
+																	MarkdownDescription: "Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1304,8 +1304,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "CPUQOSCfg stores node-level config of cpu qos",
 										Attributes: map[string]schema.Attribute{
 											"core_expeller": schema.BoolAttribute{
-												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.",
-												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1320,16 +1320,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"group_identity": schema.Int64Attribute{
-												Description:         "group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
-												MarkdownDescription: "group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												Description:         "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												MarkdownDescription: "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"sched_idle": schema.Int64Attribute{
-												Description:         "cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.",
-												MarkdownDescription: "cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Description:         "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1345,16 +1345,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "MemoryQOSCfg stores node-level config of memory qos",
 										Attributes: map[string]schema.Attribute{
 											"enable": schema.BoolAttribute{
-												Description:         "Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
-												MarkdownDescription: "Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
+												Description:         "Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
+												MarkdownDescription: "Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"low_limit_percent": schema.Int64Attribute{
-												Description:         "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.",
-												MarkdownDescription: "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.",
+												Description:         "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.",
+												MarkdownDescription: "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1364,8 +1364,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"min_limit_percent": schema.Int64Attribute{
-												Description:         "memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.",
-												MarkdownDescription: "memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.",
+												Description:         "memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.",
+												MarkdownDescription: "memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1399,8 +1399,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"throttling_percent": schema.Int64Attribute{
-												Description:         "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.",
-												MarkdownDescription: "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.",
+												Description:         "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.",
+												MarkdownDescription: "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1410,8 +1410,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_min_adj": schema.Int64Attribute{
-												Description:         "wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
-												MarkdownDescription: "wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
+												Description:         "wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
+												MarkdownDescription: "wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1422,8 +1422,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_ratio": schema.Int64Attribute{
-												Description:         "wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.",
-												MarkdownDescription: "wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.",
+												Description:         "wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.",
+												MarkdownDescription: "wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1434,8 +1434,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_scale_permill": schema.Int64Attribute{
-												Description:         "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.",
-												MarkdownDescription: "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.",
+												Description:         "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.",
+												MarkdownDescription: "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1455,16 +1455,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"egress_limit": schema.StringAttribute{
-												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"egress_request": schema.StringAttribute{
-												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1479,16 +1479,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"ingress_limit": schema.StringAttribute{
-												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"ingress_request": schema.StringAttribute{
-												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1575,8 +1575,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"enable_user_model": schema.BoolAttribute{
-																	Description:         "configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false",
-																	MarkdownDescription: "configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false",
+																	Description:         "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	MarkdownDescription: "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1661,8 +1661,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_bps": schema.Int64Attribute{
-																	Description:         "Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.",
-																	MarkdownDescription: "Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.",
+																	Description:         "Throttling of throughput The value is set to 0, which indicates that the feature is disabled.",
+																	MarkdownDescription: "Throttling of throughput The value is set to 0, which indicates that the feature is disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1672,8 +1672,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_iops": schema.Int64Attribute{
-																	Description:         "Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.",
-																	MarkdownDescription: "Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.",
+																	Description:         "Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.",
+																	MarkdownDescription: "Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1683,8 +1683,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_latency": schema.Int64Attribute{
-																	Description:         "Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.",
-																	MarkdownDescription: "Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.",
+																	Description:         "Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.",
+																	MarkdownDescription: "Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1789,8 +1789,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "CPUQOSCfg stores node-level config of cpu qos",
 										Attributes: map[string]schema.Attribute{
 											"core_expeller": schema.BoolAttribute{
-												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.",
-												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1805,16 +1805,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"group_identity": schema.Int64Attribute{
-												Description:         "group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
-												MarkdownDescription: "group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												Description:         "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												MarkdownDescription: "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"sched_idle": schema.Int64Attribute{
-												Description:         "cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.",
-												MarkdownDescription: "cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Description:         "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1830,16 +1830,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "MemoryQOSCfg stores node-level config of memory qos",
 										Attributes: map[string]schema.Attribute{
 											"enable": schema.BoolAttribute{
-												Description:         "Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
-												MarkdownDescription: "Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
+												Description:         "Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
+												MarkdownDescription: "Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"low_limit_percent": schema.Int64Attribute{
-												Description:         "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.",
-												MarkdownDescription: "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.",
+												Description:         "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.",
+												MarkdownDescription: "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1849,8 +1849,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"min_limit_percent": schema.Int64Attribute{
-												Description:         "memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.",
-												MarkdownDescription: "memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.",
+												Description:         "memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.",
+												MarkdownDescription: "memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1884,8 +1884,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"throttling_percent": schema.Int64Attribute{
-												Description:         "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.",
-												MarkdownDescription: "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.",
+												Description:         "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.",
+												MarkdownDescription: "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1895,8 +1895,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_min_adj": schema.Int64Attribute{
-												Description:         "wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
-												MarkdownDescription: "wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
+												Description:         "wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
+												MarkdownDescription: "wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1907,8 +1907,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_ratio": schema.Int64Attribute{
-												Description:         "wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.",
-												MarkdownDescription: "wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.",
+												Description:         "wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.",
+												MarkdownDescription: "wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1919,8 +1919,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_scale_permill": schema.Int64Attribute{
-												Description:         "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.",
-												MarkdownDescription: "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.",
+												Description:         "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.",
+												MarkdownDescription: "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1940,16 +1940,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"egress_limit": schema.StringAttribute{
-												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"egress_request": schema.StringAttribute{
-												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1964,16 +1964,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"ingress_limit": schema.StringAttribute{
-												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"ingress_request": schema.StringAttribute{
-												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2060,8 +2060,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"enable_user_model": schema.BoolAttribute{
-																	Description:         "configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false",
-																	MarkdownDescription: "configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false",
+																	Description:         "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	MarkdownDescription: "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2146,8 +2146,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_bps": schema.Int64Attribute{
-																	Description:         "Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.",
-																	MarkdownDescription: "Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.",
+																	Description:         "Throttling of throughput The value is set to 0, which indicates that the feature is disabled.",
+																	MarkdownDescription: "Throttling of throughput The value is set to 0, which indicates that the feature is disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2157,8 +2157,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_iops": schema.Int64Attribute{
-																	Description:         "Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.",
-																	MarkdownDescription: "Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.",
+																	Description:         "Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.",
+																	MarkdownDescription: "Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2168,8 +2168,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_latency": schema.Int64Attribute{
-																	Description:         "Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.",
-																	MarkdownDescription: "Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.",
+																	Description:         "Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.",
+																	MarkdownDescription: "Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2274,8 +2274,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "CPUQOSCfg stores node-level config of cpu qos",
 										Attributes: map[string]schema.Attribute{
 											"core_expeller": schema.BoolAttribute{
-												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.",
-												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2290,16 +2290,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"group_identity": schema.Int64Attribute{
-												Description:         "group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
-												MarkdownDescription: "group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												Description:         "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												MarkdownDescription: "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"sched_idle": schema.Int64Attribute{
-												Description:         "cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.",
-												MarkdownDescription: "cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Description:         "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2315,16 +2315,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "MemoryQOSCfg stores node-level config of memory qos",
 										Attributes: map[string]schema.Attribute{
 											"enable": schema.BoolAttribute{
-												Description:         "Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
-												MarkdownDescription: "Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
+												Description:         "Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
+												MarkdownDescription: "Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"low_limit_percent": schema.Int64Attribute{
-												Description:         "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.",
-												MarkdownDescription: "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.",
+												Description:         "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.",
+												MarkdownDescription: "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2334,8 +2334,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"min_limit_percent": schema.Int64Attribute{
-												Description:         "memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.",
-												MarkdownDescription: "memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.",
+												Description:         "memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.",
+												MarkdownDescription: "memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2369,8 +2369,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"throttling_percent": schema.Int64Attribute{
-												Description:         "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.",
-												MarkdownDescription: "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.",
+												Description:         "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.",
+												MarkdownDescription: "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2380,8 +2380,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_min_adj": schema.Int64Attribute{
-												Description:         "wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
-												MarkdownDescription: "wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
+												Description:         "wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
+												MarkdownDescription: "wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2392,8 +2392,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_ratio": schema.Int64Attribute{
-												Description:         "wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.",
-												MarkdownDescription: "wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.",
+												Description:         "wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.",
+												MarkdownDescription: "wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2404,8 +2404,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_scale_permill": schema.Int64Attribute{
-												Description:         "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.",
-												MarkdownDescription: "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.",
+												Description:         "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.",
+												MarkdownDescription: "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2425,16 +2425,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"egress_limit": schema.StringAttribute{
-												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"egress_request": schema.StringAttribute{
-												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2449,16 +2449,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"ingress_limit": schema.StringAttribute{
-												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"ingress_request": schema.StringAttribute{
-												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2570,8 +2570,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"enable_user_model": schema.BoolAttribute{
-																	Description:         "configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false",
-																	MarkdownDescription: "configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false",
+																	Description:         "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	MarkdownDescription: "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2656,8 +2656,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_bps": schema.Int64Attribute{
-																	Description:         "Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.",
-																	MarkdownDescription: "Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.",
+																	Description:         "Throttling of throughput The value is set to 0, which indicates that the feature is disabled.",
+																	MarkdownDescription: "Throttling of throughput The value is set to 0, which indicates that the feature is disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2667,8 +2667,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_iops": schema.Int64Attribute{
-																	Description:         "Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.",
-																	MarkdownDescription: "Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.",
+																	Description:         "Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.",
+																	MarkdownDescription: "Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2678,8 +2678,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"read_latency": schema.Int64Attribute{
-																	Description:         "Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.",
-																	MarkdownDescription: "Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.",
+																	Description:         "Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.",
+																	MarkdownDescription: "Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2784,8 +2784,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "CPUQOSCfg stores node-level config of cpu qos",
 										Attributes: map[string]schema.Attribute{
 											"core_expeller": schema.BoolAttribute{
-												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.",
-												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2800,16 +2800,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"group_identity": schema.Int64Attribute{
-												Description:         "group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
-												MarkdownDescription: "group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												Description:         "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												MarkdownDescription: "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"sched_idle": schema.Int64Attribute{
-												Description:         "cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.",
-												MarkdownDescription: "cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Description:         "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2825,16 +2825,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "MemoryQOSCfg stores node-level config of memory qos",
 										Attributes: map[string]schema.Attribute{
 											"enable": schema.BoolAttribute{
-												Description:         "Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
-												MarkdownDescription: "Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
+												Description:         "Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
+												MarkdownDescription: "Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"low_limit_percent": schema.Int64Attribute{
-												Description:         "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.",
-												MarkdownDescription: "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.",
+												Description:         "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.",
+												MarkdownDescription: "LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2844,8 +2844,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"min_limit_percent": schema.Int64Attribute{
-												Description:         "memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.",
-												MarkdownDescription: "memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.",
+												Description:         "memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.",
+												MarkdownDescription: "memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2879,8 +2879,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"throttling_percent": schema.Int64Attribute{
-												Description:         "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.",
-												MarkdownDescription: "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.",
+												Description:         "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.",
+												MarkdownDescription: "ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2890,8 +2890,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_min_adj": schema.Int64Attribute{
-												Description:         "wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
-												MarkdownDescription: "wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
+												Description:         "wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
+												MarkdownDescription: "wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2902,8 +2902,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_ratio": schema.Int64Attribute{
-												Description:         "wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.",
-												MarkdownDescription: "wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.",
+												Description:         "wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.",
+												MarkdownDescription: "wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2914,8 +2914,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"wmark_scale_permill": schema.Int64Attribute{
-												Description:         "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.",
-												MarkdownDescription: "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.",
+												Description:         "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.",
+												MarkdownDescription: "WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2935,16 +2935,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"egress_limit": schema.StringAttribute{
-												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"egress_request": schema.StringAttribute{
-												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2959,16 +2959,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"ingress_limit": schema.StringAttribute{
-												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"ingress_request": schema.StringAttribute{
-												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
-												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.",
+												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3047,16 +3047,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "BE pods will be limited if node resource usage overload",
 						Attributes: map[string]schema.Attribute{
 							"cpu_evict_be_satisfaction_lower_percent": schema.Int64Attribute{
-								Description:         "be.satisfactionRate = be.CPURealLimit/be.CPURequest; be.cpuUsage = be.CPUUsed/be.CPURealLimitif be.satisfactionRate < CPUEvictBESatisfactionLowerPercent/100 && be.usage >= CPUEvictBEUsageThresholdPercent/100,then start to evict pod, and will evict to ${CPUEvictBESatisfactionUpperPercent}",
-								MarkdownDescription: "be.satisfactionRate = be.CPURealLimit/be.CPURequest; be.cpuUsage = be.CPUUsed/be.CPURealLimitif be.satisfactionRate < CPUEvictBESatisfactionLowerPercent/100 && be.usage >= CPUEvictBEUsageThresholdPercent/100,then start to evict pod, and will evict to ${CPUEvictBESatisfactionUpperPercent}",
+								Description:         "be.satisfactionRate = be.CPURealLimit/be.CPURequest; be.cpuUsage = be.CPUUsed/be.CPURealLimit if be.satisfactionRate < CPUEvictBESatisfactionLowerPercent/100 && be.usage >= CPUEvictBEUsageThresholdPercent/100, then start to evict pod, and will evict to ${CPUEvictBESatisfactionUpperPercent}",
+								MarkdownDescription: "be.satisfactionRate = be.CPURealLimit/be.CPURequest; be.cpuUsage = be.CPUUsed/be.CPURealLimit if be.satisfactionRate < CPUEvictBESatisfactionLowerPercent/100 && be.usage >= CPUEvictBEUsageThresholdPercent/100, then start to evict pod, and will evict to ${CPUEvictBESatisfactionUpperPercent}",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"cpu_evict_be_satisfaction_upper_percent": schema.Int64Attribute{
-								Description:         "be.satisfactionRate = be.CPURealLimit/be.CPURequestif be.satisfactionRate > CPUEvictBESatisfactionUpperPercent/100, then stop to evict.",
-								MarkdownDescription: "be.satisfactionRate = be.CPURealLimit/be.CPURequestif be.satisfactionRate > CPUEvictBESatisfactionUpperPercent/100, then stop to evict.",
+								Description:         "be.satisfactionRate = be.CPURealLimit/be.CPURequest if be.satisfactionRate > CPUEvictBESatisfactionUpperPercent/100, then stop to evict.",
+								MarkdownDescription: "be.satisfactionRate = be.CPURealLimit/be.CPURequest if be.satisfactionRate > CPUEvictBESatisfactionUpperPercent/100, then stop to evict.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3071,16 +3071,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"cpu_evict_policy": schema.StringAttribute{
-								Description:         "CPUEvictPolicy defines the policy for the BECPUEvict feature.Default: 'evictByRealLimit'.",
-								MarkdownDescription: "CPUEvictPolicy defines the policy for the BECPUEvict feature.Default: 'evictByRealLimit'.",
+								Description:         "CPUEvictPolicy defines the policy for the BECPUEvict feature. Default: 'evictByRealLimit'.",
+								MarkdownDescription: "CPUEvictPolicy defines the policy for the BECPUEvict feature. Default: 'evictByRealLimit'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"cpu_evict_time_window_seconds": schema.Int64Attribute{
-								Description:         "when avg(cpuusage) > CPUEvictThresholdPercent, will start to evict pod by cpu,and avg(cpuusage) is calculated based on the most recent CPUEvictTimeWindowSeconds data",
-								MarkdownDescription: "when avg(cpuusage) > CPUEvictThresholdPercent, will start to evict pod by cpu,and avg(cpuusage) is calculated based on the most recent CPUEvictTimeWindowSeconds data",
+								Description:         "when avg(cpuusage) > CPUEvictThresholdPercent, will start to evict pod by cpu, and avg(cpuusage) is calculated based on the most recent CPUEvictTimeWindowSeconds data",
+								MarkdownDescription: "when avg(cpuusage) > CPUEvictThresholdPercent, will start to evict pod by cpu, and avg(cpuusage) is calculated based on the most recent CPUEvictTimeWindowSeconds data",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

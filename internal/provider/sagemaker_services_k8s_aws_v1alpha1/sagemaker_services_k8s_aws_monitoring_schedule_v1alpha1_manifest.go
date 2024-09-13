@@ -198,20 +198,20 @@ func (r *SagemakerServicesK8SAwsMonitoringScheduleV1Alpha1Manifest) Schema(_ con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "MonitoringScheduleSpec defines the desired state of MonitoringSchedule.A schedule for a model monitoring job. For information about model monitor,see Amazon SageMaker Model Monitor (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html).",
-				MarkdownDescription: "MonitoringScheduleSpec defines the desired state of MonitoringSchedule.A schedule for a model monitoring job. For information about model monitor,see Amazon SageMaker Model Monitor (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html).",
+				Description:         "MonitoringScheduleSpec defines the desired state of MonitoringSchedule. A schedule for a model monitoring job. For information about model monitor, see Amazon SageMaker Model Monitor (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html).",
+				MarkdownDescription: "MonitoringScheduleSpec defines the desired state of MonitoringSchedule. A schedule for a model monitoring job. For information about model monitor, see Amazon SageMaker Model Monitor (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html).",
 				Attributes: map[string]schema.Attribute{
 					"monitoring_schedule_config": schema.SingleNestedAttribute{
-						Description:         "The configuration object that specifies the monitoring schedule and definesthe monitoring job.",
-						MarkdownDescription: "The configuration object that specifies the monitoring schedule and definesthe monitoring job.",
+						Description:         "The configuration object that specifies the monitoring schedule and defines the monitoring job.",
+						MarkdownDescription: "The configuration object that specifies the monitoring schedule and defines the monitoring job.",
 						Attributes: map[string]schema.Attribute{
 							"monitoring_job_definition": schema.SingleNestedAttribute{
 								Description:         "Defines the monitoring job.",
 								MarkdownDescription: "Defines the monitoring job.",
 								Attributes: map[string]schema.Attribute{
 									"baseline_config": schema.SingleNestedAttribute{
-										Description:         "Configuration for monitoring constraints and monitoring statistics. Thesebaseline resources are compared against the results of the current job fromthe series of jobs scheduled to collect data periodically.",
-										MarkdownDescription: "Configuration for monitoring constraints and monitoring statistics. Thesebaseline resources are compared against the results of the current job fromthe series of jobs scheduled to collect data periodically.",
+										Description:         "Configuration for monitoring constraints and monitoring statistics. These baseline resources are compared against the results of the current job from the series of jobs scheduled to collect data periodically.",
+										MarkdownDescription: "Configuration for monitoring constraints and monitoring statistics. These baseline resources are compared against the results of the current job from the series of jobs scheduled to collect data periodically.",
 										Attributes: map[string]schema.Attribute{
 											"baselining_job_name": schema.StringAttribute{
 												Description:         "",
@@ -446,8 +446,8 @@ func (r *SagemakerServicesK8SAwsMonitoringScheduleV1Alpha1Manifest) Schema(_ con
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"s3_output": schema.SingleNestedAttribute{
-															Description:         "Information about where and how you want to store the results of a monitoringjob.",
-															MarkdownDescription: "Information about where and how you want to store the results of a monitoringjob.",
+															Description:         "Information about where and how you want to store the results of a monitoring job.",
+															MarkdownDescription: "Information about where and how you want to store the results of a monitoring job.",
 															Attributes: map[string]schema.Attribute{
 																"local_path": schema.StringAttribute{
 																	Description:         "",
@@ -540,8 +540,8 @@ func (r *SagemakerServicesK8SAwsMonitoringScheduleV1Alpha1Manifest) Schema(_ con
 									},
 
 									"network_config": schema.SingleNestedAttribute{
-										Description:         "Networking options for a job, such as network traffic encryption betweencontainers, whether to allow inbound and outbound network calls to and fromcontainers, and the VPC subnets and security groups to use for VPC-enabledjobs.",
-										MarkdownDescription: "Networking options for a job, such as network traffic encryption betweencontainers, whether to allow inbound and outbound network calls to and fromcontainers, and the VPC subnets and security groups to use for VPC-enabledjobs.",
+										Description:         "Networking options for a job, such as network traffic encryption between containers, whether to allow inbound and outbound network calls to and from containers, and the VPC subnets and security groups to use for VPC-enabled jobs.",
+										MarkdownDescription: "Networking options for a job, such as network traffic encryption between containers, whether to allow inbound and outbound network calls to and from containers, and the VPC subnets and security groups to use for VPC-enabled jobs.",
 										Attributes: map[string]schema.Attribute{
 											"enable_inter_container_traffic_encryption": schema.BoolAttribute{
 												Description:         "",
@@ -560,8 +560,8 @@ func (r *SagemakerServicesK8SAwsMonitoringScheduleV1Alpha1Manifest) Schema(_ con
 											},
 
 											"vpc_config": schema.SingleNestedAttribute{
-												Description:         "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
-												MarkdownDescription: "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
+												Description:         "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models, and compute resources have access to. You can control access to and from your resources by configuring a VPC. For more information, see Give SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
+												MarkdownDescription: "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models, and compute resources have access to. You can control access to and from your resources by configuring a VPC. For more information, see Give SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
 												Attributes: map[string]schema.Attribute{
 													"security_group_i_ds": schema.ListAttribute{
 														Description:         "",
@@ -676,16 +676,16 @@ func (r *SagemakerServicesK8SAwsMonitoringScheduleV1Alpha1Manifest) Schema(_ con
 					},
 
 					"monitoring_schedule_name": schema.StringAttribute{
-						Description:         "The name of the monitoring schedule. The name must be unique within an AmazonWeb Services Region within an Amazon Web Services account.",
-						MarkdownDescription: "The name of the monitoring schedule. The name must be unique within an AmazonWeb Services Region within an Amazon Web Services account.",
+						Description:         "The name of the monitoring schedule. The name must be unique within an Amazon Web Services Region within an Amazon Web Services account.",
+						MarkdownDescription: "The name of the monitoring schedule. The name must be unique within an Amazon Web Services Region within an Amazon Web Services account.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "(Optional) An array of key-value pairs. For more information, see Using CostAllocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)in the Amazon Web Services Billing and Cost Management User Guide.",
-						MarkdownDescription: "(Optional) An array of key-value pairs. For more information, see Using CostAllocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)in the Amazon Web Services Billing and Cost Management User Guide.",
+						Description:         "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL) in the Amazon Web Services Billing and Cost Management User Guide.",
+						MarkdownDescription: "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL) in the Amazon Web Services Billing and Cost Management User Guide.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

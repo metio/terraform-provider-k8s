@@ -132,8 +132,8 @@ func (r *ElasticacheServicesK8SAwsCacheSubnetGroupV1Alpha1Manifest) Schema(_ con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup.Represents the output of one of the following operations:   * CreateCacheSubnetGroup   * ModifyCacheSubnetGroup",
-				MarkdownDescription: "CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup.Represents the output of one of the following operations:   * CreateCacheSubnetGroup   * ModifyCacheSubnetGroup",
+				Description:         "CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup. Represents the output of one of the following operations: * CreateCacheSubnetGroup * ModifyCacheSubnetGroup",
+				MarkdownDescription: "CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup. Represents the output of one of the following operations: * CreateCacheSubnetGroup * ModifyCacheSubnetGroup",
 				Attributes: map[string]schema.Attribute{
 					"cache_subnet_group_description": schema.StringAttribute{
 						Description:         "A description for the cache subnet group.",
@@ -144,8 +144,8 @@ func (r *ElasticacheServicesK8SAwsCacheSubnetGroupV1Alpha1Manifest) Schema(_ con
 					},
 
 					"cache_subnet_group_name": schema.StringAttribute{
-						Description:         "A name for the cache subnet group. This value is stored as a lowercase string.Constraints: Must contain no more than 255 alphanumeric characters or hyphens.Example: mysubnetgroup",
-						MarkdownDescription: "A name for the cache subnet group. This value is stored as a lowercase string.Constraints: Must contain no more than 255 alphanumeric characters or hyphens.Example: mysubnetgroup",
+						Description:         "A name for the cache subnet group. This value is stored as a lowercase string. Constraints: Must contain no more than 255 alphanumeric characters or hyphens. Example: mysubnetgroup",
+						MarkdownDescription: "A name for the cache subnet group. This value is stored as a lowercase string. Constraints: Must contain no more than 255 alphanumeric characters or hyphens. Example: mysubnetgroup",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -166,8 +166,8 @@ func (r *ElasticacheServicesK8SAwsCacheSubnetGroupV1Alpha1Manifest) Schema(_ con
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -189,8 +189,8 @@ func (r *ElasticacheServicesK8SAwsCacheSubnetGroupV1Alpha1Manifest) Schema(_ con
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
-						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
+						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

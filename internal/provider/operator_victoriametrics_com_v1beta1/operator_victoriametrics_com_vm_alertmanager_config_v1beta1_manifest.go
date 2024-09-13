@@ -817,13 +817,13 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 				MarkdownDescription: "VMAlertmanagerConfigSpec defines configuration for VMAlertmanagerConfig",
 				Attributes: map[string]schema.Attribute{
 					"inhibit_rules": schema.ListNestedAttribute{
-						Description:         "InhibitRules will only apply for alerts matchingthe resource's namespace.",
-						MarkdownDescription: "InhibitRules will only apply for alerts matchingthe resource's namespace.",
+						Description:         "InhibitRules will only apply for alerts matching the resource's namespace.",
+						MarkdownDescription: "InhibitRules will only apply for alerts matching the resource's namespace.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"equal": schema.ListAttribute{
-									Description:         "Labels that must have an equal value in the source and target alert forthe inhibition to take effect.",
-									MarkdownDescription: "Labels that must have an equal value in the source and target alert forthe inhibition to take effect.",
+									Description:         "Labels that must have an equal value in the source and target alert for the inhibition to take effect.",
+									MarkdownDescription: "Labels that must have an equal value in the source and target alert for the inhibition to take effect.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -831,8 +831,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 								},
 
 								"source_matchers": schema.ListAttribute{
-									Description:         "SourceMatchers defines a list of matchers for which one or more alerts haveto exist for the inhibition to take effect.",
-									MarkdownDescription: "SourceMatchers defines a list of matchers for which one or more alerts haveto exist for the inhibition to take effect.",
+									Description:         "SourceMatchers defines a list of matchers for which one or more alerts have to exist for the inhibition to take effect.",
+									MarkdownDescription: "SourceMatchers defines a list of matchers for which one or more alerts have to exist for the inhibition to take effect.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -840,8 +840,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 								},
 
 								"target_matchers": schema.ListAttribute{
-									Description:         "TargetMatchers defines a list of matchers that have to be fulfilled by the targetalerts to be muted.",
-									MarkdownDescription: "TargetMatchers defines a list of matchers that have to be fulfilled by the targetalerts to be muted.",
+									Description:         "TargetMatchers defines a list of matchers that have to be fulfilled by the target alerts to be muted.",
+									MarkdownDescription: "TargetMatchers defines a list of matchers that have to be fulfilled by the target alerts to be muted.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -855,8 +855,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 					},
 
 					"mute_time_intervals": schema.ListNestedAttribute{
-						Description:         "MuteTimeInterval - global mute timeSee https://prometheus.io/docs/alerting/latest/configuration/#mute_time_interval",
-						MarkdownDescription: "MuteTimeInterval - global mute timeSee https://prometheus.io/docs/alerting/latest/configuration/#mute_time_interval",
+						Description:         "MuteTimeInterval - global mute time See https://prometheus.io/docs/alerting/latest/configuration/#mute_time_interval",
+						MarkdownDescription: "MuteTimeInterval - global mute time See https://prometheus.io/docs/alerting/latest/configuration/#mute_time_interval",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -873,8 +873,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"days_of_month": schema.ListAttribute{
-												Description:         "DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted.for example, ['1:5', '-3:-1']",
-												MarkdownDescription: "DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted.for example, ['1:5', '-3:-1']",
+												Description:         "DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted. for example, ['1:5', '-3:-1']",
+												MarkdownDescription: "DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted. for example, ['1:5', '-3:-1']",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -890,8 +890,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"months": schema.ListAttribute{
-												Description:         "Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
-												MarkdownDescription: "Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
+												Description:         "Months defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1. For example, ['1:3', 'may:august', 'december']",
+												MarkdownDescription: "Months defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1. For example, ['1:3', 'may:august', 'december']",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -912,8 +912,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 														},
 
 														"start_time": schema.StringAttribute{
-															Description:         "StartTime for example  HH:MM",
-															MarkdownDescription: "StartTime for example  HH:MM",
+															Description:         "StartTime for example HH:MM",
+															MarkdownDescription: "StartTime for example HH:MM",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -935,8 +935,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"years": schema.ListAttribute{
-												Description:         "Years defines numerical list of years, ranges are accepted.For example, ['2020:2022', '2030']",
-												MarkdownDescription: "Years defines numerical list of years, ranges are accepted.For example, ['2020:2022', '2030']",
+												Description:         "Years defines numerical list of years, ranges are accepted. For example, ['2020:2022', '2030']",
+												MarkdownDescription: "Years defines numerical list of years, ranges are accepted. For example, ['2020:2022', '2030']",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -956,8 +956,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 					},
 
 					"receivers": schema.ListNestedAttribute{
-						Description:         "Receivers defines alert receivers.without defined Route, receivers will be skipped.",
-						MarkdownDescription: "Receivers defines alert receivers.without defined Route, receivers will be skipped.",
+						Description:         "Receivers defines alert receivers. without defined Route, receivers will be skipped.",
+						MarkdownDescription: "Receivers defines alert receivers. without defined Route, receivers will be skipped.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"discord_configs": schema.ListNestedAttribute{
@@ -970,24 +970,24 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 supportBasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 supportBasicAuth for the client.",
+														Description:         "TODO oAuth2 support BasicAuth for the client.",
+														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1015,20 +1015,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1061,20 +1061,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
-														MarkdownDescription: "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
+														Description:         "The secret's key that contains the bearer token It must be at them same namespace as CRD",
+														MarkdownDescription: "The secret's key that contains the bearer token It must be at them same namespace as CRD",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1122,8 +1122,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1147,16 +1147,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1205,8 +1205,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1230,16 +1230,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1292,16 +1292,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																MarkdownDescription: "Secret containing the client key file for the targets.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1363,28 +1363,28 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"webhook_url": schema.StringAttribute{
-												Description:         "The discord webhook URLone of 'urlSecret' and 'url' must be defined.",
-												MarkdownDescription: "The discord webhook URLone of 'urlSecret' and 'url' must be defined.",
+												Description:         "The discord webhook URL one of 'urlSecret' and 'url' must be defined.",
+												MarkdownDescription: "The discord webhook URL one of 'urlSecret' and 'url' must be defined.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"webhook_url_secret": schema.SingleNestedAttribute{
-												Description:         "URLSecret defines secret name and key at the CRD namespace.It must contain the webhook URL.one of 'urlSecret' and 'url' must be defined.",
-												MarkdownDescription: "URLSecret defines secret name and key at the CRD namespace.It must contain the webhook URL.one of 'urlSecret' and 'url' must be defined.",
+												Description:         "URLSecret defines secret name and key at the CRD namespace. It must contain the webhook URL. one of 'urlSecret' and 'url' must be defined.",
+												MarkdownDescription: "URLSecret defines secret name and key at the CRD namespace. It must contain the webhook URL. one of 'urlSecret' and 'url' must be defined.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1427,16 +1427,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												MarkdownDescription: "AuthPassword defines secret name and key at CRD namespace.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1456,20 +1456,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"auth_secret": schema.SingleNestedAttribute{
-												Description:         "AuthSecret defines secrent name and key at CRD namespace.It must contain the CRAM-MD5 secret.",
-												MarkdownDescription: "AuthSecret defines secrent name and key at CRD namespace.It must contain the CRAM-MD5 secret.",
+												Description:         "AuthSecret defines secrent name and key at CRD namespace. It must contain the CRAM-MD5 secret.",
+												MarkdownDescription: "AuthSecret defines secrent name and key at CRD namespace. It must contain the CRAM-MD5 secret.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1505,8 +1505,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"headers": schema.MapAttribute{
-												Description:         "Further headers email header key/value pairs. Overrides any headerspreviously set by the notification implementation.",
-												MarkdownDescription: "Further headers email header key/value pairs. Overrides any headerspreviously set by the notification implementation.",
+												Description:         "Further headers email header key/value pairs. Overrides any headers previously set by the notification implementation.",
+												MarkdownDescription: "Further headers email header key/value pairs. Overrides any headers previously set by the notification implementation.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1530,8 +1530,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"require_tls": schema.BoolAttribute{
-												Description:         "The SMTP TLS requirement.Note that Go does not support unencrypted connections to remote SMTP endpoints.",
-												MarkdownDescription: "The SMTP TLS requirement.Note that Go does not support unencrypted connections to remote SMTP endpoints.",
+												Description:         "The SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints.",
+												MarkdownDescription: "The SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1582,8 +1582,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1607,16 +1607,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																MarkdownDescription: "Secret containing data to use for the targets.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1665,8 +1665,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1690,16 +1690,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																MarkdownDescription: "Secret containing data to use for the targets.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1752,16 +1752,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 														MarkdownDescription: "Secret containing the client key file for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1817,24 +1817,24 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 supportBasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 supportBasicAuth for the client.",
+														Description:         "TODO oAuth2 support BasicAuth for the client.",
+														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1862,20 +1862,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1908,20 +1908,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
-														MarkdownDescription: "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
+														Description:         "The secret's key that contains the bearer token It must be at them same namespace as CRD",
+														MarkdownDescription: "The secret's key that contains the bearer token It must be at them same namespace as CRD",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1969,8 +1969,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1994,16 +1994,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2052,8 +2052,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2077,16 +2077,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -2139,16 +2139,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																MarkdownDescription: "Secret containing the client key file for the targets.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2210,28 +2210,28 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"webhook_url": schema.StringAttribute{
-												Description:         "The incoming webhook URLone of 'urlSecret' and 'url' must be defined.",
-												MarkdownDescription: "The incoming webhook URLone of 'urlSecret' and 'url' must be defined.",
+												Description:         "The incoming webhook URL one of 'urlSecret' and 'url' must be defined.",
+												MarkdownDescription: "The incoming webhook URL one of 'urlSecret' and 'url' must be defined.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"webhook_url_secret": schema.SingleNestedAttribute{
-												Description:         "URLSecret defines secret name and key at the CRD namespace.It must contain the webhook URL.one of 'urlSecret' and 'url' must be defined.",
-												MarkdownDescription: "URLSecret defines secret name and key at the CRD namespace.It must contain the webhook URL.one of 'urlSecret' and 'url' must be defined.",
+												Description:         "URLSecret defines secret name and key at the CRD namespace. It must contain the webhook URL. one of 'urlSecret' and 'url' must be defined.",
+												MarkdownDescription: "URLSecret defines secret name and key at the CRD namespace. It must contain the webhook URL. one of 'urlSecret' and 'url' must be defined.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2289,20 +2289,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"api_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the OpsGenie API key.It must be at them same namespace as CRD",
-												MarkdownDescription: "The secret's key that contains the OpsGenie API key.It must be at them same namespace as CRD",
+												Description:         "The secret's key that contains the OpsGenie API key. It must be at them same namespace as CRD",
+												MarkdownDescription: "The secret's key that contains the OpsGenie API key. It must be at them same namespace as CRD",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2450,8 +2450,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"update_alerts": schema.BoolAttribute{
-												Description:         "Whether to update message and description of the alert in OpsGenie if it already existsBy default, the alert is never updated in OpsGenie, the new message only appears in activity log.",
-												MarkdownDescription: "Whether to update message and description of the alert in OpsGenie if it already existsBy default, the alert is never updated in OpsGenie, the new message only appears in activity log.",
+												Description:         "Whether to update message and description of the alert in OpsGenie if it already exists By default, the alert is never updated in OpsGenie, the new message only appears in activity log.",
+												MarkdownDescription: "Whether to update message and description of the alert in OpsGenie if it already exists By default, the alert is never updated in OpsGenie, the new message only appears in activity log.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2597,20 +2597,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"routing_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the PagerDuty integration key (when usingEvents API v2). Either this field or 'serviceKey' needs to be defined.It must be at them same namespace as CRD",
-												MarkdownDescription: "The secret's key that contains the PagerDuty integration key (when usingEvents API v2). Either this field or 'serviceKey' needs to be defined.It must be at them same namespace as CRD",
+												Description:         "The secret's key that contains the PagerDuty integration key (when using Events API v2). Either this field or 'serviceKey' needs to be defined. It must be at them same namespace as CRD",
+												MarkdownDescription: "The secret's key that contains the PagerDuty integration key (when using Events API v2). Either this field or 'serviceKey' needs to be defined. It must be at them same namespace as CRD",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2638,20 +2638,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"service_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the PagerDuty service key (when usingintegration type 'Prometheus'). Either this field or 'routingKey' needs tobe defined.It must be at them same namespace as CRD",
-												MarkdownDescription: "The secret's key that contains the PagerDuty service key (when usingintegration type 'Prometheus'). Either this field or 'routingKey' needs tobe defined.It must be at them same namespace as CRD",
+												Description:         "The secret's key that contains the PagerDuty service key (when using integration type 'Prometheus'). Either this field or 'routingKey' needs to be defined. It must be at them same namespace as CRD",
+												MarkdownDescription: "The secret's key that contains the PagerDuty service key (when using integration type 'Prometheus'). Either this field or 'routingKey' needs to be defined. It must be at them same namespace as CRD",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2698,8 +2698,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"expire": schema.StringAttribute{
-												Description:         "How long your notification will continue to be retried for, unless the useracknowledges the notification.",
-												MarkdownDescription: "How long your notification will continue to be retried for, unless the useracknowledges the notification.",
+												Description:         "How long your notification will continue to be retried for, unless the user acknowledges the notification.",
+												MarkdownDescription: "How long your notification will continue to be retried for, unless the user acknowledges the notification.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2739,8 +2739,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"retry": schema.StringAttribute{
-												Description:         "How often the Pushover servers will send the same notification to the user.Must be at least 30 seconds.",
-												MarkdownDescription: "How often the Pushover servers will send the same notification to the user.Must be at least 30 seconds.",
+												Description:         "How often the Pushover servers will send the same notification to the user. Must be at least 30 seconds.",
+												MarkdownDescription: "How often the Pushover servers will send the same notification to the user. Must be at least 30 seconds.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2771,20 +2771,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"token": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the registered application’s API token, see https://pushover.net/apps.It must be at them same namespace as CRD",
-												MarkdownDescription: "The secret's key that contains the registered application’s API token, see https://pushover.net/apps.It must be at them same namespace as CRD",
+												Description:         "The secret's key that contains the registered application’s API token, see https://pushover.net/apps. It must be at them same namespace as CRD",
+												MarkdownDescription: "The secret's key that contains the registered application’s API token, see https://pushover.net/apps. It must be at them same namespace as CRD",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2820,20 +2820,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"user_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the recipient user’s user key.It must be at them same namespace as CRD",
-												MarkdownDescription: "The secret's key that contains the recipient user’s user key.It must be at them same namespace as CRD",
+												Description:         "The secret's key that contains the recipient user’s user key. It must be at them same namespace as CRD",
+												MarkdownDescription: "The secret's key that contains the recipient user’s user key. It must be at them same namespace as CRD",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2869,8 +2869,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"confirm": schema.SingleNestedAttribute{
-															Description:         "SlackConfirmationField protect users from destructive actions orparticularly distinguished decisions by asking them to confirm their buttonclick one more time.See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fieldsfor more information.",
-															MarkdownDescription: "SlackConfirmationField protect users from destructive actions orparticularly distinguished decisions by asking them to confirm their buttonclick one more time.See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fieldsfor more information.",
+															Description:         "SlackConfirmationField protect users from destructive actions or particularly distinguished decisions by asking them to confirm their button click one more time. See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fields for more information.",
+															MarkdownDescription: "SlackConfirmationField protect users from destructive actions or particularly distinguished decisions by asking them to confirm their button click one more time. See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fields for more information.",
 															Attributes: map[string]schema.Attribute{
 																"dismiss_text": schema.StringAttribute{
 																	Description:         "",
@@ -2973,20 +2973,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"api_url": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the Slack webhook URL.It must be at them same namespace as CRD",
-												MarkdownDescription: "The secret's key that contains the Slack webhook URL.It must be at them same namespace as CRD",
+												Description:         "The secret's key that contains the Slack webhook URL. It must be at them same namespace as CRD",
+												MarkdownDescription: "The secret's key that contains the Slack webhook URL. It must be at them same namespace as CRD",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3233,24 +3233,24 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 supportBasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 supportBasicAuth for the client.",
+														Description:         "TODO oAuth2 support BasicAuth for the client.",
+														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3278,20 +3278,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3324,20 +3324,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
-														MarkdownDescription: "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
+														Description:         "The secret's key that contains the bearer token It must be at them same namespace as CRD",
+														MarkdownDescription: "The secret's key that contains the bearer token It must be at them same namespace as CRD",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3385,8 +3385,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3410,16 +3410,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3468,8 +3468,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3493,16 +3493,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3555,16 +3555,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																MarkdownDescription: "Secret containing the client key file for the targets.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3610,8 +3610,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"phone_number": schema.StringAttribute{
-												Description:         "Phone number if message is delivered via SMSSpecify this, topic_arn or target_arn",
-												MarkdownDescription: "Phone number if message is delivered via SMSSpecify this, topic_arn or target_arn",
+												Description:         "Phone number if message is delivered via SMS Specify this, topic_arn or target_arn",
+												MarkdownDescription: "Phone number if message is delivered via SMS Specify this, topic_arn or target_arn",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3630,8 +3630,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												MarkdownDescription: "Configure the AWS Signature Verification 4 signing process",
 												Attributes: map[string]schema.Attribute{
 													"access_key": schema.StringAttribute{
-														Description:         "The AWS API keys. Both access_key and secret_key must be supplied or both must be blank.If blank the environment variables 'AWS_ACCESS_KEY_ID' and 'AWS_SECRET_ACCESS_KEY' are used.",
-														MarkdownDescription: "The AWS API keys. Both access_key and secret_key must be supplied or both must be blank.If blank the environment variables 'AWS_ACCESS_KEY_ID' and 'AWS_SECRET_ACCESS_KEY' are used.",
+														Description:         "The AWS API keys. Both access_key and secret_key must be supplied or both must be blank. If blank the environment variables 'AWS_ACCESS_KEY_ID' and 'AWS_SECRET_ACCESS_KEY' are used.",
+														MarkdownDescription: "The AWS API keys. Both access_key and secret_key must be supplied or both must be blank. If blank the environment variables 'AWS_ACCESS_KEY_ID' and 'AWS_SECRET_ACCESS_KEY' are used.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3642,16 +3642,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 														MarkdownDescription: "secret key selector to get the keys from a Kubernetes Secret",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3699,16 +3699,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 														MarkdownDescription: "secret key selector to get the keys from a Kubernetes Secret",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3741,8 +3741,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"target_arn": schema.StringAttribute{
-												Description:         "Mobile platform endpoint ARN if message is delivered via mobile notificationsSpecify this, topic_arn or phone_number",
-												MarkdownDescription: "Mobile platform endpoint ARN if message is delivered via mobile notificationsSpecify this, topic_arn or phone_number",
+												Description:         "Mobile platform endpoint ARN if message is delivered via mobile notifications Specify this, topic_arn or phone_number",
+												MarkdownDescription: "Mobile platform endpoint ARN if message is delivered via mobile notifications Specify this, topic_arn or phone_number",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3776,20 +3776,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"bot_token": schema.SingleNestedAttribute{
-												Description:         "BotToken token for the bothttps://core.telegram.org/bots/api",
-												MarkdownDescription: "BotToken token for the bothttps://core.telegram.org/bots/api",
+												Description:         "BotToken token for the bot https://core.telegram.org/bots/api",
+												MarkdownDescription: "BotToken token for the bot https://core.telegram.org/bots/api",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3842,8 +3842,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"parse_mode": schema.StringAttribute{
-												Description:         "ParseMode for telegram message,supported values are MarkdownV2, Markdown, Markdown and empty string for plain text.",
-												MarkdownDescription: "ParseMode for telegram message,supported values are MarkdownV2, Markdown, Markdown and empty string for plain text.",
+												Description:         "ParseMode for telegram message, supported values are MarkdownV2, Markdown, Markdown and empty string for plain text.",
+												MarkdownDescription: "ParseMode for telegram message, supported values are MarkdownV2, Markdown, Markdown and empty string for plain text.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3869,20 +3869,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"api_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the API key to use when talking to the VictorOps API.It must be at them same namespace as CRD",
-												MarkdownDescription: "The secret's key that contains the API key to use when talking to the VictorOps API.It must be at them same namespace as CRD",
+												Description:         "The secret's key that contains the API key to use when talking to the VictorOps API. It must be at them same namespace as CRD",
+												MarkdownDescription: "The secret's key that contains the API key to use when talking to the VictorOps API. It must be at them same namespace as CRD",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3910,8 +3910,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"custom_fields": schema.MapAttribute{
-												Description:         "Adds optional custom fieldshttps://github.com/prometheus/alertmanager/blob/v0.24.0/config/notifiers.go#L537",
-												MarkdownDescription: "Adds optional custom fieldshttps://github.com/prometheus/alertmanager/blob/v0.24.0/config/notifiers.go#L537",
+												Description:         "Adds optional custom fields https://github.com/prometheus/alertmanager/blob/v0.24.0/config/notifiers.go#L537",
+												MarkdownDescription: "Adds optional custom fields https://github.com/prometheus/alertmanager/blob/v0.24.0/config/notifiers.go#L537",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -3931,24 +3931,24 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												MarkdownDescription: "The HTTP client's configuration.",
 												Attributes: map[string]schema.Attribute{
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 supportBasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 supportBasicAuth for the client.",
+														Description:         "TODO oAuth2 support BasicAuth for the client.",
+														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3976,20 +3976,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4022,20 +4022,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
-														MarkdownDescription: "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
+														Description:         "The secret's key that contains the bearer token It must be at them same namespace as CRD",
+														MarkdownDescription: "The secret's key that contains the bearer token It must be at them same namespace as CRD",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4083,8 +4083,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4108,16 +4108,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4166,8 +4166,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4191,16 +4191,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4253,16 +4253,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																MarkdownDescription: "Secret containing the client key file for the targets.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4363,24 +4363,24 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												MarkdownDescription: "HTTP client configuration. You must use this configuration to supply the bot token as part of the HTTP 'Authorization' header.",
 												Attributes: map[string]schema.Attribute{
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 supportBasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 supportBasicAuth for the client.",
+														Description:         "TODO oAuth2 support BasicAuth for the client.",
+														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4408,20 +4408,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4454,20 +4454,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
-														MarkdownDescription: "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
+														Description:         "The secret's key that contains the bearer token It must be at them same namespace as CRD",
+														MarkdownDescription: "The secret's key that contains the bearer token It must be at them same namespace as CRD",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4515,8 +4515,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4540,16 +4540,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4598,8 +4598,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4623,16 +4623,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4685,16 +4685,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																MarkdownDescription: "Secret containing the client key file for the targets.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4795,28 +4795,28 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"url": schema.StringAttribute{
-												Description:         "URL to send requests to,one of 'urlSecret' and 'url' must be defined.",
-												MarkdownDescription: "URL to send requests to,one of 'urlSecret' and 'url' must be defined.",
+												Description:         "URL to send requests to, one of 'urlSecret' and 'url' must be defined.",
+												MarkdownDescription: "URL to send requests to, one of 'urlSecret' and 'url' must be defined.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"url_secret": schema.SingleNestedAttribute{
-												Description:         "URLSecret defines secret name and key at the CRD namespace.It must contain the webhook URL.one of 'urlSecret' and 'url' must be defined.",
-												MarkdownDescription: "URLSecret defines secret name and key at the CRD namespace.It must contain the webhook URL.one of 'urlSecret' and 'url' must be defined.",
+												Description:         "URLSecret defines secret name and key at the CRD namespace. It must contain the webhook URL. one of 'urlSecret' and 'url' must be defined.",
+												MarkdownDescription: "URLSecret defines secret name and key at the CRD namespace. It must contain the webhook URL. one of 'urlSecret' and 'url' must be defined.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4855,20 +4855,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"api_secret": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the WeChat API key.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the WeChat API key.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4908,24 +4908,24 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 												MarkdownDescription: "HTTP client configuration.",
 												Attributes: map[string]schema.Attribute{
 													"basic_auth": schema.SingleNestedAttribute{
-														Description:         "TODO oAuth2 supportBasicAuth for the client.",
-														MarkdownDescription: "TODO oAuth2 supportBasicAuth for the client.",
+														Description:         "TODO oAuth2 support BasicAuth for the client.",
+														MarkdownDescription: "TODO oAuth2 support BasicAuth for the client.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4953,20 +4953,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
-																MarkdownDescription: "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
+																Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+																MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4999,20 +4999,20 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 													},
 
 													"bearer_token_secret": schema.SingleNestedAttribute{
-														Description:         "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
-														MarkdownDescription: "The secret's key that contains the bearer tokenIt must be at them same namespace as CRD",
+														Description:         "The secret's key that contains the bearer token It must be at them same namespace as CRD",
+														MarkdownDescription: "The secret's key that contains the bearer token It must be at them same namespace as CRD",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5060,8 +5060,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5085,16 +5085,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5143,8 +5143,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5168,16 +5168,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																		MarkdownDescription: "Secret containing data to use for the targets.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5230,16 +5230,16 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 																MarkdownDescription: "Secret containing the client key file for the targets.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5341,8 +5341,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 						MarkdownDescription: "Route definition for alertmanager, may include nested routes.",
 						Attributes: map[string]schema.Attribute{
 							"active_time_intervals": schema.ListAttribute{
-								Description:         "ActiveTimeIntervals Times when the route should be activeThese must match the name at time_intervals",
-								MarkdownDescription: "ActiveTimeIntervals Times when the route should be activeThese must match the name at time_intervals",
+								Description:         "ActiveTimeIntervals Times when the route should be active These must match the name at time_intervals",
+								MarkdownDescription: "ActiveTimeIntervals Times when the route should be active These must match the name at time_intervals",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -5350,8 +5350,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 							},
 
 							"continue": schema.BoolAttribute{
-								Description:         "Continue indicating whether an alert should continue matching subsequentsibling nodes. It will always be true for the first-level route if disableRouteContinueEnforce for vmalertmanager not set.",
-								MarkdownDescription: "Continue indicating whether an alert should continue matching subsequentsibling nodes. It will always be true for the first-level route if disableRouteContinueEnforce for vmalertmanager not set.",
+								Description:         "Continue indicating whether an alert should continue matching subsequent sibling nodes. It will always be true for the first-level route if disableRouteContinueEnforce for vmalertmanager not set.",
+								MarkdownDescription: "Continue indicating whether an alert should continue matching subsequent sibling nodes. It will always be true for the first-level route if disableRouteContinueEnforce for vmalertmanager not set.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5389,8 +5389,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 							},
 
 							"matchers": schema.ListAttribute{
-								Description:         "List of matchers that the alert’s labels should match. For the firstlevel route, the operator adds a namespace: 'CRD_NS' matcher.https://prometheus.io/docs/alerting/latest/configuration/#matcher",
-								MarkdownDescription: "List of matchers that the alert’s labels should match. For the firstlevel route, the operator adds a namespace: 'CRD_NS' matcher.https://prometheus.io/docs/alerting/latest/configuration/#matcher",
+								Description:         "List of matchers that the alert’s labels should match. For the first level route, the operator adds a namespace: 'CRD_NS' matcher. https://prometheus.io/docs/alerting/latest/configuration/#matcher",
+								MarkdownDescription: "List of matchers that the alert’s labels should match. For the first level route, the operator adds a namespace: 'CRD_NS' matcher. https://prometheus.io/docs/alerting/latest/configuration/#matcher",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -5426,8 +5426,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 							},
 
 							"routes": schema.ListAttribute{
-								Description:         "Child routes.https://prometheus.io/docs/alerting/latest/configuration/#route",
-								MarkdownDescription: "Child routes.https://prometheus.io/docs/alerting/latest/configuration/#route",
+								Description:         "Child routes. https://prometheus.io/docs/alerting/latest/configuration/#route",
+								MarkdownDescription: "Child routes. https://prometheus.io/docs/alerting/latest/configuration/#route",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -5440,8 +5440,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 					},
 
 					"time_intervals": schema.ListNestedAttribute{
-						Description:         "ParsingError contents error with context if operator was failed to parse json object from kubernetes api serverTimeIntervals modern config option, use it instead of  mute_time_intervals",
-						MarkdownDescription: "ParsingError contents error with context if operator was failed to parse json object from kubernetes api serverTimeIntervals modern config option, use it instead of  mute_time_intervals",
+						Description:         "ParsingError contents error with context if operator was failed to parse json object from kubernetes api server TimeIntervals modern config option, use it instead of mute_time_intervals",
+						MarkdownDescription: "ParsingError contents error with context if operator was failed to parse json object from kubernetes api server TimeIntervals modern config option, use it instead of mute_time_intervals",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -5458,8 +5458,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"days_of_month": schema.ListAttribute{
-												Description:         "DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted.for example, ['1:5', '-3:-1']",
-												MarkdownDescription: "DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted.for example, ['1:5', '-3:-1']",
+												Description:         "DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted. for example, ['1:5', '-3:-1']",
+												MarkdownDescription: "DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted. for example, ['1:5', '-3:-1']",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5475,8 +5475,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"months": schema.ListAttribute{
-												Description:         "Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
-												MarkdownDescription: "Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']",
+												Description:         "Months defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1. For example, ['1:3', 'may:august', 'december']",
+												MarkdownDescription: "Months defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1. For example, ['1:3', 'may:august', 'december']",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5497,8 +5497,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 														},
 
 														"start_time": schema.StringAttribute{
-															Description:         "StartTime for example  HH:MM",
-															MarkdownDescription: "StartTime for example  HH:MM",
+															Description:         "StartTime for example HH:MM",
+															MarkdownDescription: "StartTime for example HH:MM",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -5520,8 +5520,8 @@ func (r *OperatorVictoriametricsComVmalertmanagerConfigV1Beta1Manifest) Schema(_
 											},
 
 											"years": schema.ListAttribute{
-												Description:         "Years defines numerical list of years, ranges are accepted.For example, ['2020:2022', '2030']",
-												MarkdownDescription: "Years defines numerical list of years, ranges are accepted.For example, ['2020:2022', '2030']",
+												Description:         "Years defines numerical list of years, ranges are accepted. For example, ['2020:2022', '2030']",
+												MarkdownDescription: "Years defines numerical list of years, ranges are accepted. For example, ['2020:2022', '2030']",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,

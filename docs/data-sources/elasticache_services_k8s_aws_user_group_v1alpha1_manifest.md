@@ -60,7 +60,7 @@ Required:
 
 Optional:
 
-- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
 - `user_i_ds` (List of String) The list of user IDs that belong to the user group.
 
 <a id="nestedatt--spec--tags"></a>

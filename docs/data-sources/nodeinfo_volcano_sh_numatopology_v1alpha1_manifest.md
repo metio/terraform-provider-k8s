@@ -54,10 +54,10 @@ Optional:
 
 Optional:
 
-- `cpu_detail` (Attributes) Specifies the cpu topology infoKey is cpu id (see [below for nested schema](#nestedatt--spec--cpu_detail))
-- `numares` (Attributes) Specifies the numa info for the resourceKey is resource name (see [below for nested schema](#nestedatt--spec--numares))
+- `cpu_detail` (Attributes) Specifies the cpu topology info Key is cpu id (see [below for nested schema](#nestedatt--spec--cpu_detail))
+- `numares` (Attributes) Specifies the numa info for the resource Key is resource name (see [below for nested schema](#nestedatt--spec--numares))
 - `policies` (Map of String) Specifies the policy of the manager
-- `res_reserved` (Map of String) Specifies the reserved resource of the nodeKey is resource name
+- `res_reserved` (Map of String) Specifies the reserved resource of the node Key is resource name
 
 <a id="nestedatt--spec--cpu_detail"></a>
 ### Nested Schema for `spec.cpu_detail`

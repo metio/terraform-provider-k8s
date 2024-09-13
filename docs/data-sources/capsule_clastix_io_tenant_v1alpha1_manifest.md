@@ -100,7 +100,7 @@ Required:
 Optional:
 
 - `api_group` (String) APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
-- `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.
+- `namespace` (String) Namespace of the referenced object. If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.
 
 
 
@@ -231,8 +231,8 @@ Optional:
 Optional:
 
 - `ip_block` (Attributes) ipBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be. (see [below for nested schema](#nestedatt--spec--network_policies--egress--to--ip_block))
-- `namespace_selector` (Attributes) namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. (see [below for nested schema](#nestedatt--spec--network_policies--egress--to--namespace_selector))
-- `pod_selector` (Attributes) podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace. (see [below for nested schema](#nestedatt--spec--network_policies--egress--to--pod_selector))
+- `namespace_selector` (Attributes) namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces. If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. (see [below for nested schema](#nestedatt--spec--network_policies--egress--to--namespace_selector))
+- `pod_selector` (Attributes) podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods. If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace. (see [below for nested schema](#nestedatt--spec--network_policies--egress--to--pod_selector))
 
 <a id="nestedatt--spec--network_policies--egress--to--ip_block"></a>
 ### Nested Schema for `spec.network_policies.egress.to.ip_block`
@@ -306,8 +306,8 @@ Optional:
 Optional:
 
 - `ip_block` (Attributes) ipBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--from--ip_block))
-- `namespace_selector` (Attributes) namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--from--namespace_selector))
-- `pod_selector` (Attributes) podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--from--pod_selector))
+- `namespace_selector` (Attributes) namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces. If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--from--namespace_selector))
+- `pod_selector` (Attributes) podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods. If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace. (see [below for nested schema](#nestedatt--spec--network_policies--ingress--from--pod_selector))
 
 <a id="nestedatt--spec--network_policies--ingress--from--ip_block"></a>
 ### Nested Schema for `spec.network_policies.ingress.from.ip_block`

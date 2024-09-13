@@ -207,8 +207,8 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Manifest) Schema(_ context.Con
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"code": schema.ListNestedAttribute{
-									Description:         "The source code options for the constraint template. 'Rego' can onlybe specified in one place (either here or in the 'rego' field)",
-									MarkdownDescription: "The source code options for the constraint template. 'Rego' can onlybe specified in one place (either here or in the 'rego' field)",
+									Description:         "The source code options for the constraint template. 'Rego' can only be specified in one place (either here or in the 'rego' field)",
+									MarkdownDescription: "The source code options for the constraint template. 'Rego' can only be specified in one place (either here or in the 'rego' field)",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"engine": schema.StringAttribute{

@@ -97,7 +97,7 @@ Optional:
 
 Optional:
 
-- `code` (Attributes List) The source code options for the constraint template. 'Rego' can onlybe specified in one place (either here or in the 'rego' field) (see [below for nested schema](#nestedatt--spec--targets--code))
+- `code` (Attributes List) The source code options for the constraint template. 'Rego' can only be specified in one place (either here or in the 'rego' field) (see [below for nested schema](#nestedatt--spec--targets--code))
 - `libs` (List of String)
 - `rego` (String)
 - `target` (String)

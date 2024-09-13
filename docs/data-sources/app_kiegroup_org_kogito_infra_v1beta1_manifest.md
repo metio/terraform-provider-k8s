@@ -3,12 +3,12 @@
 page_title: "k8s_app_kiegroup_org_kogito_infra_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "app.kiegroup.org"
 description: |-
-  KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service.  It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index).  Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.
+  KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service. It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index). Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.
 ---
 
 # k8s_app_kiegroup_org_kogito_infra_v1beta1_manifest (Data Source)
 
-KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service.  It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index).  Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.
+KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service. It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index). Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.
 
 ## Example Usage
 
@@ -58,7 +58,7 @@ Optional:
 - `config_map_env_from_references` (List of String) List of secret that should be mounted to the services as envs
 - `config_map_volume_references` (Attributes List) List of configmap that should be added to the services bound to this infra instance (see [below for nested schema](#nestedatt--spec--config_map_volume_references))
 - `envs` (Attributes List) Environment variables to be added to the runtime container. Keys must be a C_IDENTIFIER. (see [below for nested schema](#nestedatt--spec--envs))
-- `infra_properties` (Map of String) Optional properties which would be needed to setup correct runtime/service configuration, based on the resource type.  For example, MongoDB will require 'username' and 'database' as properties for a correct setup, else it will fail
+- `infra_properties` (Map of String) Optional properties which would be needed to setup correct runtime/service configuration, based on the resource type. For example, MongoDB will require 'username' and 'database' as properties for a correct setup, else it will fail
 - `resource` (Attributes) Resource for the service. Example: Infinispan/Kafka/Keycloak. (see [below for nested schema](#nestedatt--spec--resource))
 - `secret_env_from_references` (List of String) List of secret that should be mounted to the services as envs
 - `secret_volume_references` (Attributes List) List of secret that should be munted to the services bound to this infra instance (see [below for nested schema](#nestedatt--spec--secret_volume_references))
@@ -73,7 +73,7 @@ Required:
 Optional:
 
 - `file_mode` (Number) Permission on the file mounted as volume on deployment. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.
-- `mount_path` (String) Path within the container at which the volume should be mounted.  Must not contain ':'. Default mount path is /home/kogito/config
+- `mount_path` (String) Path within the container at which the volume should be mounted. Must not contain ':'. Default mount path is /home/kogito/config
 - `optional` (Boolean) Specify whether the Secret or its keys must be defined
 
 
@@ -142,7 +142,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
@@ -176,5 +176,5 @@ Required:
 Optional:
 
 - `file_mode` (Number) Permission on the file mounted as volume on deployment. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.
-- `mount_path` (String) Path within the container at which the volume should be mounted.  Must not contain ':'. Default mount path is /home/kogito/config
+- `mount_path` (String) Path within the container at which the volume should be mounted. Must not contain ':'. Default mount path is /home/kogito/config
 - `optional` (Boolean) Specify whether the Secret or its keys must be defined

@@ -71,8 +71,8 @@ func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Metadata(_ context.Context, 
 
 func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A ProviderRevision represents a revision of a Provider. Crossplanecreates new revisions when there are changes to a Provider.Crossplane creates and manages ProviderRevisions. Don't directly editProviderRevisions.",
-		MarkdownDescription: "A ProviderRevision represents a revision of a Provider. Crossplanecreates new revisions when there are changes to a Provider.Crossplane creates and manages ProviderRevisions. Don't directly editProviderRevisions.",
+		Description:         "A ProviderRevision represents a revision of a Provider. Crossplane creates new revisions when there are changes to a Provider. Crossplane creates and manages ProviderRevisions. Don't directly edit ProviderRevisions.",
+		MarkdownDescription: "A ProviderRevision represents a revision of a Provider. Crossplane creates new revisions when there are changes to a Provider. Crossplane creates and manages ProviderRevisions. Don't directly edit ProviderRevisions.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -131,8 +131,8 @@ func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Schema(_ context.Context, _ 
 				MarkdownDescription: "ProviderRevisionSpec specifies configuration for a ProviderRevision.",
 				Attributes: map[string]schema.Attribute{
 					"common_labels": schema.MapAttribute{
-						Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
-						MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+						Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+						MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -140,8 +140,8 @@ func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"controller_config_ref": schema.SingleNestedAttribute{
-						Description:         "ControllerConfigRef references a ControllerConfig resource that will beused to configure the packaged controller Deployment.Deprecated: Use RuntimeConfigReference instead.",
-						MarkdownDescription: "ControllerConfigRef references a ControllerConfig resource that will beused to configure the packaged controller Deployment.Deprecated: Use RuntimeConfigReference instead.",
+						Description:         "ControllerConfigRef references a ControllerConfig resource that will be used to configure the packaged controller Deployment. Deprecated: Use RuntimeConfigReference instead.",
+						MarkdownDescription: "ControllerConfigRef references a ControllerConfig resource that will be used to configure the packaged controller Deployment. Deprecated: Use RuntimeConfigReference instead.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the ControllerConfig.",
@@ -165,8 +165,8 @@ func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"ignore_crossplane_constraints": schema.BoolAttribute{
-						Description:         "IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.",
-						MarkdownDescription: "IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.",
+						Description:         "IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.",
+						MarkdownDescription: "IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -181,21 +181,21 @@ func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"package_pull_policy": schema.StringAttribute{
-						Description:         "PackagePullPolicy defines the pull policy for the package. It is alsoapplied to any images pulled for the package, such as a provider'scontroller image.Default is IfNotPresent.",
-						MarkdownDescription: "PackagePullPolicy defines the pull policy for the package. It is alsoapplied to any images pulled for the package, such as a provider'scontroller image.Default is IfNotPresent.",
+						Description:         "PackagePullPolicy defines the pull policy for the package. It is also applied to any images pulled for the package, such as a provider's controller image. Default is IfNotPresent.",
+						MarkdownDescription: "PackagePullPolicy defines the pull policy for the package. It is also applied to any images pulled for the package, such as a provider's controller image. Default is IfNotPresent.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"package_pull_secrets": schema.ListNestedAttribute{
-						Description:         "PackagePullSecrets are named secrets in the same namespace that can beused to fetch packages from private registries. They are also applied toany images pulled for the package, such as a provider's controller image.",
-						MarkdownDescription: "PackagePullSecrets are named secrets in the same namespace that can beused to fetch packages from private registries. They are also applied toany images pulled for the package, such as a provider's controller image.",
+						Description:         "PackagePullSecrets are named secrets in the same namespace that can be used to fetch packages from private registries. They are also applied to any images pulled for the package, such as a provider's controller image.",
+						MarkdownDescription: "PackagePullSecrets are named secrets in the same namespace that can be used to fetch packages from private registries. They are also applied to any images pulled for the package, such as a provider's controller image.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -208,16 +208,16 @@ func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"revision": schema.Int64Attribute{
-						Description:         "Revision number. Indicates when the revision will be garbage collectedbased on the parent's RevisionHistoryLimit.",
-						MarkdownDescription: "Revision number. Indicates when the revision will be garbage collectedbased on the parent's RevisionHistoryLimit.",
+						Description:         "Revision number. Indicates when the revision will be garbage collected based on the parent's RevisionHistoryLimit.",
+						MarkdownDescription: "Revision number. Indicates when the revision will be garbage collected based on the parent's RevisionHistoryLimit.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"runtime_config_ref": schema.SingleNestedAttribute{
-						Description:         "RuntimeConfigRef references a RuntimeConfig resource that will be usedto configure the package runtime.",
-						MarkdownDescription: "RuntimeConfigRef references a RuntimeConfig resource that will be usedto configure the package runtime.",
+						Description:         "RuntimeConfigRef references a RuntimeConfig resource that will be used to configure the package runtime.",
+						MarkdownDescription: "RuntimeConfigRef references a RuntimeConfig resource that will be used to configure the package runtime.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -249,24 +249,24 @@ func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"skip_dependency_resolution": schema.BoolAttribute{
-						Description:         "SkipDependencyResolution indicates to the package manager whether to skipresolving dependencies for a package. Setting this value to true may haveunintended consequences.Default is false.",
-						MarkdownDescription: "SkipDependencyResolution indicates to the package manager whether to skipresolving dependencies for a package. Setting this value to true may haveunintended consequences.Default is false.",
+						Description:         "SkipDependencyResolution indicates to the package manager whether to skip resolving dependencies for a package. Setting this value to true may have unintended consequences. Default is false.",
+						MarkdownDescription: "SkipDependencyResolution indicates to the package manager whether to skip resolving dependencies for a package. Setting this value to true may have unintended consequences. Default is false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tls_client_secret_name": schema.StringAttribute{
-						Description:         "TLSClientSecretName is the name of the TLS Secret that stores clientcertificates of the Provider.",
-						MarkdownDescription: "TLSClientSecretName is the name of the TLS Secret that stores clientcertificates of the Provider.",
+						Description:         "TLSClientSecretName is the name of the TLS Secret that stores client certificates of the Provider.",
+						MarkdownDescription: "TLSClientSecretName is the name of the TLS Secret that stores client certificates of the Provider.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tls_server_secret_name": schema.StringAttribute{
-						Description:         "TLSServerSecretName is the name of the TLS Secret that stores servercertificates of the Provider.",
-						MarkdownDescription: "TLSServerSecretName is the name of the TLS Secret that stores servercertificates of the Provider.",
+						Description:         "TLSServerSecretName is the name of the TLS Secret that stores server certificates of the Provider.",
+						MarkdownDescription: "TLSServerSecretName is the name of the TLS Secret that stores server certificates of the Provider.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

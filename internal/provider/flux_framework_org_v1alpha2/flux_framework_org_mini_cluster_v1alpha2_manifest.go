@@ -306,8 +306,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "MiniCluster is an HPC cluster in Kubernetes you can controlEither to submit a single job (and go away) or for a persistent single- or multi- user cluster",
-				MarkdownDescription: "MiniCluster is an HPC cluster in Kubernetes you can controlEither to submit a single job (and go away) or for a persistent single- or multi- user cluster",
+				Description:         "MiniCluster is an HPC cluster in Kubernetes you can control Either to submit a single job (and go away) or for a persistent single- or multi- user cluster",
+				MarkdownDescription: "MiniCluster is an HPC cluster in Kubernetes you can control Either to submit a single job (and go away) or for a persistent single- or multi- user cluster",
 				Attributes: map[string]schema.Attribute{
 					"archive": schema.SingleNestedAttribute{
 						Description:         "Archive to load or save",
@@ -335,8 +335,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 					},
 
 					"containers": schema.ListNestedAttribute{
-						Description:         "Containers is one or more containers to be created in a pod.There should only be one container to run flux with runFlux",
-						MarkdownDescription: "Containers is one or more containers to be created in a pod.There should only be one container to run flux with runFlux",
+						Description:         "Containers is one or more containers to be created in a pod. There should only be one container to run flux with runFlux",
+						MarkdownDescription: "Containers is one or more containers to be created in a pod. There should only be one container to run flux with runFlux",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"batch": schema.BoolAttribute{
@@ -400,8 +400,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 										},
 
 										"prefix": schema.StringAttribute{
-											Description:         "Prefix to flux start / submit / brokerTypically used for a wrapper command to mount, etc.",
-											MarkdownDescription: "Prefix to flux start / submit / brokerTypically used for a wrapper command to mount, etc.",
+											Description:         "Prefix to flux start / submit / broker Typically used for a wrapper command to mount, etc.",
+											MarkdownDescription: "Prefix to flux start / submit / broker Typically used for a wrapper command to mount, etc.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -454,16 +454,16 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								},
 
 								"image_pull_secret": schema.StringAttribute{
-									Description:         "Allow the user to pull authenticated imagesBy default no secret is selected. Settingthis with the name of an already existingimagePullSecret will specify that secretin the pod spec.",
-									MarkdownDescription: "Allow the user to pull authenticated imagesBy default no secret is selected. Settingthis with the name of an already existingimagePullSecret will specify that secretin the pod spec.",
+									Description:         "Allow the user to pull authenticated images By default no secret is selected. Setting this with the name of an already existing imagePullSecret will specify that secret in the pod spec.",
+									MarkdownDescription: "Allow the user to pull authenticated images By default no secret is selected. Setting this with the name of an already existing imagePullSecret will specify that secret in the pod spec.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"launcher": schema.BoolAttribute{
-									Description:         "Indicate that the command is a launcher that willask for its own jobs (and provided directly to flux start)",
-									MarkdownDescription: "Indicate that the command is a launcher that willask for its own jobs (and provided directly to flux start)",
+									Description:         "Indicate that the command is a launcher that will ask for its own jobs (and provided directly to flux start)",
+									MarkdownDescription: "Indicate that the command is a launcher that will ask for its own jobs (and provided directly to flux start)",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -519,8 +519,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								},
 
 								"ports": schema.ListAttribute{
-									Description:         "Ports to be exposed to other containers in the clusterWe take a single list of integers and map to the same",
-									MarkdownDescription: "Ports to be exposed to other containers in the clusterWe take a single list of integers and map to the same",
+									Description:         "Ports to be exposed to other containers in the cluster We take a single list of integers and map to the same",
+									MarkdownDescription: "Ports to be exposed to other containers in the cluster We take a single list of integers and map to the same",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -528,8 +528,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								},
 
 								"pull_always": schema.BoolAttribute{
-									Description:         "Allow the user to dictate pullingBy default we pull if not present. Settingthis to true will indicate to pull always",
-									MarkdownDescription: "Allow the user to dictate pullingBy default we pull if not present. Settingthis to true will indicate to pull always",
+									Description:         "Allow the user to dictate pulling By default we pull if not present. Setting this to true will indicate to pull always",
+									MarkdownDescription: "Allow the user to dictate pulling By default we pull if not present. Setting this to true will indicate to pull always",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -571,8 +571,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								},
 
 								"secrets": schema.SingleNestedAttribute{
-									Description:         "Secrets that will be added to the environmentThe user is expected to create their own secrets for the operator to find",
-									MarkdownDescription: "Secrets that will be added to the environmentThe user is expected to create their own secrets for the operator to find",
+									Description:         "Secrets that will be added to the environment The user is expected to create their own secrets for the operator to find",
+									MarkdownDescription: "Secrets that will be added to the environment The user is expected to create their own secrets for the operator to find",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
 											Description:         "Key under secretKeyRef->Key",
@@ -596,8 +596,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								},
 
 								"security_context": schema.SingleNestedAttribute{
-									Description:         "Security Contexthttps://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
-									MarkdownDescription: "Security Contexthttps://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+									Description:         "Security Context https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+									MarkdownDescription: "Security Context https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 									Attributes: map[string]schema.Attribute{
 										"add_capabilities": schema.ListAttribute{
 											Description:         "Capabilities to add",
@@ -634,8 +634,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 										},
 
 										"config_map_name": schema.StringAttribute{
-											Description:         "Config map name if the existing volume is a config mapYou should also define items if you are using this",
-											MarkdownDescription: "Config map name if the existing volume is a config mapYou should also define items if you are using this",
+											Description:         "Config map name if the existing volume is a config map You should also define items if you are using this",
+											MarkdownDescription: "Config map name if the existing volume is a config map You should also define items if you are using this",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -726,8 +726,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 					},
 
 					"deadline_seconds": schema.Int64Attribute{
-						Description:         "Should the job be limited to a particular number of seconds?Approximately one year. This cannot be zero or job won't start",
-						MarkdownDescription: "Should the job be limited to a particular number of seconds?Approximately one year. This cannot be zero or job won't start",
+						Description:         "Should the job be limited to a particular number of seconds? Approximately one year. This cannot be zero or job won't start",
+						MarkdownDescription: "Should the job be limited to a particular number of seconds? Approximately one year. This cannot be zero or job won't start",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -738,41 +738,41 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 						MarkdownDescription: "Flux options for the broker, shared across cluster",
 						Attributes: map[string]schema.Attribute{
 							"arch": schema.StringAttribute{
-								Description:         "Change the arch string - determines the binariesthat are downloaded to run the entrypoint",
-								MarkdownDescription: "Change the arch string - determines the binariesthat are downloaded to run the entrypoint",
+								Description:         "Change the arch string - determines the binaries that are downloaded to run the entrypoint",
+								MarkdownDescription: "Change the arch string - determines the binaries that are downloaded to run the entrypoint",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"broker_config": schema.StringAttribute{
-								Description:         "Optionally provide a manually created broker configthis is intended for bursting to remote clusters",
-								MarkdownDescription: "Optionally provide a manually created broker configthis is intended for bursting to remote clusters",
+								Description:         "Optionally provide a manually created broker config this is intended for bursting to remote clusters",
+								MarkdownDescription: "Optionally provide a manually created broker config this is intended for bursting to remote clusters",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"bursting": schema.SingleNestedAttribute{
-								Description:         "Bursting - one or more external clusters to burst toWe assume a single, central MiniCluster with an ipaddressthat all connect to.",
-								MarkdownDescription: "Bursting - one or more external clusters to burst toWe assume a single, central MiniCluster with an ipaddressthat all connect to.",
+								Description:         "Bursting - one or more external clusters to burst to We assume a single, central MiniCluster with an ipaddress that all connect to.",
+								MarkdownDescription: "Bursting - one or more external clusters to burst to We assume a single, central MiniCluster with an ipaddress that all connect to.",
 								Attributes: map[string]schema.Attribute{
 									"clusters": schema.ListNestedAttribute{
-										Description:         "External clusters to burst to. Each externalcluster must share the same listing to align ranks",
-										MarkdownDescription: "External clusters to burst to. Each externalcluster must share the same listing to align ranks",
+										Description:         "External clusters to burst to. Each external cluster must share the same listing to align ranks",
+										MarkdownDescription: "External clusters to burst to. Each external cluster must share the same listing to align ranks",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "The hostnames for the bursted clustersIf set, the user is responsible for ensuringuniqueness. The operator will set to burst-N",
-													MarkdownDescription: "The hostnames for the bursted clustersIf set, the user is responsible for ensuringuniqueness. The operator will set to burst-N",
+													Description:         "The hostnames for the bursted clusters If set, the user is responsible for ensuring uniqueness. The operator will set to burst-N",
+													MarkdownDescription: "The hostnames for the bursted clusters If set, the user is responsible for ensuring uniqueness. The operator will set to burst-N",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"size": schema.Int64Attribute{
-													Description:         "Size of bursted cluster.Defaults to same size as local minicluster if not set",
-													MarkdownDescription: "Size of bursted cluster.Defaults to same size as local minicluster if not set",
+													Description:         "Size of bursted cluster. Defaults to same size as local minicluster if not set",
+													MarkdownDescription: "Size of bursted cluster. Defaults to same size as local minicluster if not set",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -785,16 +785,16 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 									},
 
 									"hostlist": schema.StringAttribute{
-										Description:         "Hostlist is a custom hostlist for the broker.tomlthat includes the local plus bursted cluster. Thisis typically used for bursting to another resourcetype, where we can predict the hostnames but theydon't follow the same convention as the Flux Operator",
-										MarkdownDescription: "Hostlist is a custom hostlist for the broker.tomlthat includes the local plus bursted cluster. Thisis typically used for bursting to another resourcetype, where we can predict the hostnames but theydon't follow the same convention as the Flux Operator",
+										Description:         "Hostlist is a custom hostlist for the broker.toml that includes the local plus bursted cluster. This is typically used for bursting to another resource type, where we can predict the hostnames but they don't follow the same convention as the Flux Operator",
+										MarkdownDescription: "Hostlist is a custom hostlist for the broker.toml that includes the local plus bursted cluster. This is typically used for bursting to another resource type, where we can predict the hostnames but they don't follow the same convention as the Flux Operator",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"lead_broker": schema.SingleNestedAttribute{
-										Description:         "The lead broker ip address to join to. E.g., if we burstto cluster 2, this is the address to connect to cluster 1For the first cluster, this should not be defined",
-										MarkdownDescription: "The lead broker ip address to join to. E.g., if we burstto cluster 2, this is the address to connect to cluster 1For the first cluster, this should not be defined",
+										Description:         "The lead broker ip address to join to. E.g., if we burst to cluster 2, this is the address to connect to cluster 1 For the first cluster, this should not be defined",
+										MarkdownDescription: "The lead broker ip address to join to. E.g., if we burst to cluster 2, this is the address to connect to cluster 1 For the first cluster, this should not be defined",
 										Attributes: map[string]schema.Attribute{
 											"address": schema.StringAttribute{
 												Description:         "Lead broker address (ip or hostname)",
@@ -839,8 +839,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 							},
 
 							"complete_workers": schema.BoolAttribute{
-								Description:         "Complete workers when they failThis is ideal if you don't want them to restart",
-								MarkdownDescription: "Complete workers when they failThis is ideal if you don't want them to restart",
+								Description:         "Complete workers when they fail This is ideal if you don't want them to restart",
+								MarkdownDescription: "Complete workers when they fail This is ideal if you don't want them to restart",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -875,8 +875,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 									},
 
 									"image_pull_secret": schema.StringAttribute{
-										Description:         "Allow the user to pull authenticated imagesBy default no secret is selected. Settingthis with the name of an already existingimagePullSecret will specify that secretin the pod spec.",
-										MarkdownDescription: "Allow the user to pull authenticated imagesBy default no secret is selected. Settingthis with the name of an already existingimagePullSecret will specify that secretin the pod spec.",
+										Description:         "Allow the user to pull authenticated images By default no secret is selected. Setting this with the name of an already existing imagePullSecret will specify that secret in the pod spec.",
+										MarkdownDescription: "Allow the user to pull authenticated images By default no secret is selected. Setting this with the name of an already existing imagePullSecret will specify that secret in the pod spec.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -899,8 +899,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 									},
 
 									"pull_always": schema.BoolAttribute{
-										Description:         "Allow the user to dictate pullingBy default we pull if not present. Settingthis to true will indicate to pull always",
-										MarkdownDescription: "Allow the user to dictate pullingBy default we pull if not present. Settingthis to true will indicate to pull always",
+										Description:         "Allow the user to dictate pulling By default we pull if not present. Setting this to true will indicate to pull always",
+										MarkdownDescription: "Allow the user to dictate pulling By default we pull if not present. Setting this to true will indicate to pull always",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -915,8 +915,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Resources include limits and requestsThese must be defined for cpu and memoryfor the QoS to be Guaranteed",
-										MarkdownDescription: "Resources include limits and requestsThese must be defined for cpu and memoryfor the QoS to be Guaranteed",
+										Description:         "Resources include limits and requests These must be defined for cpu and memory for the QoS to be Guaranteed",
+										MarkdownDescription: "Resources include limits and requests These must be defined for cpu and memory for the QoS to be Guaranteed",
 										Attributes: map[string]schema.Attribute{
 											"limits": schema.MapAttribute{
 												Description:         "",
@@ -955,8 +955,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 							},
 
 							"curve_cert": schema.StringAttribute{
-								Description:         "Optionally provide an already existing curve certificateThis is not recommended in favor of providing the secretname as curveCertSecret, below",
-								MarkdownDescription: "Optionally provide an already existing curve certificateThis is not recommended in favor of providing the secretname as curveCertSecret, below",
+								Description:         "Optionally provide an already existing curve certificate This is not recommended in favor of providing the secret name as curveCertSecret, below",
+								MarkdownDescription: "Optionally provide an already existing curve certificate This is not recommended in favor of providing the secret name as curveCertSecret, below",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -979,8 +979,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 							},
 
 							"munge_secret": schema.StringAttribute{
-								Description:         "Expect a secret (named according to this string)for a munge key. This is intended for bursting.Assumed to be at /etc/munge/munge.keyThis is binary data.",
-								MarkdownDescription: "Expect a secret (named according to this string)for a munge key. This is intended for bursting.Assumed to be at /etc/munge/munge.keyThis is binary data.",
+								Description:         "Expect a secret (named according to this string) for a munge key. This is intended for bursting. Assumed to be at /etc/munge/munge.key This is binary data.",
+								MarkdownDescription: "Expect a secret (named according to this string) for a munge key. This is intended for bursting. Assumed to be at /etc/munge/munge.key This is binary data.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -995,8 +995,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 							},
 
 							"option_flags": schema.StringAttribute{
-								Description:         "Flux option flags, usually provided with -ooptional - if needed, default option flags for the serverThese can also be set in the user interface to override here.This is only valid for a FluxRunner 'runFlux' true",
-								MarkdownDescription: "Flux option flags, usually provided with -ooptional - if needed, default option flags for the serverThese can also be set in the user interface to override here.This is only valid for a FluxRunner 'runFlux' true",
+								Description:         "Flux option flags, usually provided with -o optional - if needed, default option flags for the server These can also be set in the user interface to override here. This is only valid for a FluxRunner 'runFlux' true",
+								MarkdownDescription: "Flux option flags, usually provided with -o optional - if needed, default option flags for the server These can also be set in the user interface to override here. This is only valid for a FluxRunner 'runFlux' true",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1115,8 +1115,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 					},
 
 					"min_size": schema.Int64Attribute{
-						Description:         "MinSize (minimum number of pods that must be up for Flux)Note that this option does not edit the number of tasks,so a job could run with fewer (and then not start)",
-						MarkdownDescription: "MinSize (minimum number of pods that must be up for Flux)Note that this option does not edit the number of tasks,so a job could run with fewer (and then not start)",
+						Description:         "MinSize (minimum number of pods that must be up for Flux) Note that this option does not edit the number of tasks, so a job could run with fewer (and then not start)",
+						MarkdownDescription: "MinSize (minimum number of pods that must be up for Flux) Note that this option does not edit the number of tasks, so a job could run with fewer (and then not start)",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1233,8 +1233,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 					},
 
 					"services": schema.ListNestedAttribute{
-						Description:         "Services are one or more service containers to bring upalongside the MiniCluster.",
-						MarkdownDescription: "Services are one or more service containers to bring upalongside the MiniCluster.",
+						Description:         "Services are one or more service containers to bring up alongside the MiniCluster.",
+						MarkdownDescription: "Services are one or more service containers to bring up alongside the MiniCluster.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"batch": schema.BoolAttribute{
@@ -1298,8 +1298,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 										},
 
 										"prefix": schema.StringAttribute{
-											Description:         "Prefix to flux start / submit / brokerTypically used for a wrapper command to mount, etc.",
-											MarkdownDescription: "Prefix to flux start / submit / brokerTypically used for a wrapper command to mount, etc.",
+											Description:         "Prefix to flux start / submit / broker Typically used for a wrapper command to mount, etc.",
+											MarkdownDescription: "Prefix to flux start / submit / broker Typically used for a wrapper command to mount, etc.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1352,16 +1352,16 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								},
 
 								"image_pull_secret": schema.StringAttribute{
-									Description:         "Allow the user to pull authenticated imagesBy default no secret is selected. Settingthis with the name of an already existingimagePullSecret will specify that secretin the pod spec.",
-									MarkdownDescription: "Allow the user to pull authenticated imagesBy default no secret is selected. Settingthis with the name of an already existingimagePullSecret will specify that secretin the pod spec.",
+									Description:         "Allow the user to pull authenticated images By default no secret is selected. Setting this with the name of an already existing imagePullSecret will specify that secret in the pod spec.",
+									MarkdownDescription: "Allow the user to pull authenticated images By default no secret is selected. Setting this with the name of an already existing imagePullSecret will specify that secret in the pod spec.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"launcher": schema.BoolAttribute{
-									Description:         "Indicate that the command is a launcher that willask for its own jobs (and provided directly to flux start)",
-									MarkdownDescription: "Indicate that the command is a launcher that willask for its own jobs (and provided directly to flux start)",
+									Description:         "Indicate that the command is a launcher that will ask for its own jobs (and provided directly to flux start)",
+									MarkdownDescription: "Indicate that the command is a launcher that will ask for its own jobs (and provided directly to flux start)",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1417,8 +1417,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								},
 
 								"ports": schema.ListAttribute{
-									Description:         "Ports to be exposed to other containers in the clusterWe take a single list of integers and map to the same",
-									MarkdownDescription: "Ports to be exposed to other containers in the clusterWe take a single list of integers and map to the same",
+									Description:         "Ports to be exposed to other containers in the cluster We take a single list of integers and map to the same",
+									MarkdownDescription: "Ports to be exposed to other containers in the cluster We take a single list of integers and map to the same",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1426,8 +1426,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								},
 
 								"pull_always": schema.BoolAttribute{
-									Description:         "Allow the user to dictate pullingBy default we pull if not present. Settingthis to true will indicate to pull always",
-									MarkdownDescription: "Allow the user to dictate pullingBy default we pull if not present. Settingthis to true will indicate to pull always",
+									Description:         "Allow the user to dictate pulling By default we pull if not present. Setting this to true will indicate to pull always",
+									MarkdownDescription: "Allow the user to dictate pulling By default we pull if not present. Setting this to true will indicate to pull always",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1469,8 +1469,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								},
 
 								"secrets": schema.SingleNestedAttribute{
-									Description:         "Secrets that will be added to the environmentThe user is expected to create their own secrets for the operator to find",
-									MarkdownDescription: "Secrets that will be added to the environmentThe user is expected to create their own secrets for the operator to find",
+									Description:         "Secrets that will be added to the environment The user is expected to create their own secrets for the operator to find",
+									MarkdownDescription: "Secrets that will be added to the environment The user is expected to create their own secrets for the operator to find",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
 											Description:         "Key under secretKeyRef->Key",
@@ -1494,8 +1494,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								},
 
 								"security_context": schema.SingleNestedAttribute{
-									Description:         "Security Contexthttps://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
-									MarkdownDescription: "Security Contexthttps://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+									Description:         "Security Context https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+									MarkdownDescription: "Security Context https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 									Attributes: map[string]schema.Attribute{
 										"add_capabilities": schema.ListAttribute{
 											Description:         "Capabilities to add",
@@ -1532,8 +1532,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 										},
 
 										"config_map_name": schema.StringAttribute{
-											Description:         "Config map name if the existing volume is a config mapYou should also define items if you are using this",
-											MarkdownDescription: "Config map name if the existing volume is a config mapYou should also define items if you are using this",
+											Description:         "Config map name if the existing volume is a config map You should also define items if you are using this",
+											MarkdownDescription: "Config map name if the existing volume is a config map You should also define items if you are using this",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1632,8 +1632,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 					},
 
 					"size": schema.Int64Attribute{
-						Description:         "Size (number of job pods to run, size of minicluster in pods)This is also the minimum number required to start Flux",
-						MarkdownDescription: "Size (number of job pods to run, size of minicluster in pods)This is also the minimum number required to start Flux",
+						Description:         "Size (number of job pods to run, size of minicluster in pods) This is also the minimum number required to start Flux",
+						MarkdownDescription: "Size (number of job pods to run, size of minicluster in pods) This is also the minimum number required to start Flux",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

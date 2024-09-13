@@ -3,12 +3,12 @@
 page_title: "k8s_couchbase_com_couchbase_autoscaler_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "couchbase.com"
 description: |-
-  CouchbaseAutoscaler provides an interface for the Kubernetes Horizontal Pod Autoscalerto interact with the Couchbase cluster and provide autoscaling.  This resource isnot defined by the end user, and is managed by the Operator.
+  CouchbaseAutoscaler provides an interface for the Kubernetes Horizontal Pod Autoscaler to interact with the Couchbase cluster and provide autoscaling. This resource is not defined by the end user, and is managed by the Operator.
 ---
 
 # k8s_couchbase_com_couchbase_autoscaler_v2_manifest (Data Source)
 
-CouchbaseAutoscaler provides an interface for the Kubernetes Horizontal Pod Autoscalerto interact with the Couchbase cluster and provide autoscaling.  This resource isnot defined by the end user, and is managed by the Operator.
+CouchbaseAutoscaler provides an interface for the Kubernetes Horizontal Pod Autoscaler to interact with the Couchbase cluster and provide autoscaling. This resource is not defined by the end user, and is managed by the Operator.
 
 ## Example Usage
 

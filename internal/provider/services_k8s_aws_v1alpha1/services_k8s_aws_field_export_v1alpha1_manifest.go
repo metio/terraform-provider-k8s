@@ -138,8 +138,8 @@ func (r *ServicesK8SAwsFieldExportV1Alpha1Manifest) Schema(_ context.Context, _ 
 				MarkdownDescription: "FieldExportSpec defines the desired state of the FieldExport.",
 				Attributes: map[string]schema.Attribute{
 					"from": schema.SingleNestedAttribute{
-						Description:         "ResourceFieldSelector provides the values necessary to identify an individualfield on an individual K8s resource.",
-						MarkdownDescription: "ResourceFieldSelector provides the values necessary to identify an individualfield on an individual K8s resource.",
+						Description:         "ResourceFieldSelector provides the values necessary to identify an individual field on an individual K8s resource.",
+						MarkdownDescription: "ResourceFieldSelector provides the values necessary to identify an individual field on an individual K8s resource.",
 						Attributes: map[string]schema.Attribute{
 							"path": schema.StringAttribute{
 								Description:         "",
@@ -150,8 +150,8 @@ func (r *ServicesK8SAwsFieldExportV1Alpha1Manifest) Schema(_ context.Context, _ 
 							},
 
 							"resource": schema.SingleNestedAttribute{
-								Description:         "NamespacedResource provides all the values necessary to identify an ACKresource of a given type (within the same namespace as the custom resourcecontaining this type).",
-								MarkdownDescription: "NamespacedResource provides all the values necessary to identify an ACKresource of a given type (within the same namespace as the custom resourcecontaining this type).",
+								Description:         "NamespacedResource provides all the values necessary to identify an ACK resource of a given type (within the same namespace as the custom resource containing this type).",
+								MarkdownDescription: "NamespacedResource provides all the values necessary to identify an ACK resource of a given type (within the same namespace as the custom resource containing this type).",
 								Attributes: map[string]schema.Attribute{
 									"group": schema.StringAttribute{
 										Description:         "",
@@ -188,8 +188,8 @@ func (r *ServicesK8SAwsFieldExportV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"to": schema.SingleNestedAttribute{
-						Description:         "FieldExportTarget provides the values necessary to identify theoutput path for a field export.",
-						MarkdownDescription: "FieldExportTarget provides the values necessary to identify theoutput path for a field export.",
+						Description:         "FieldExportTarget provides the values necessary to identify the output path for a field export.",
+						MarkdownDescription: "FieldExportTarget provides the values necessary to identify the output path for a field export.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "Key overrides the default value ('<namespace>.<FieldExport-resource-name>') for the FieldExport target",
@@ -200,8 +200,8 @@ func (r *ServicesK8SAwsFieldExportV1Alpha1Manifest) Schema(_ context.Context, _ 
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "FieldExportOutputType represents all types that can be produced by a fieldexport operation",
-								MarkdownDescription: "FieldExportOutputType represents all types that can be produced by a fieldexport operation",
+								Description:         "FieldExportOutputType represents all types that can be produced by a field export operation",
+								MarkdownDescription: "FieldExportOutputType represents all types that can be produced by a field export operation",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

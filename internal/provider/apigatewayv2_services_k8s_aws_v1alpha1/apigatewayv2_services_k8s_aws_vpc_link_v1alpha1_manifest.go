@@ -124,8 +124,8 @@ func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Manifest) Schema(_ context.Con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "VpcLinkSpec defines the desired state of VpcLink.Represents a VPC link.",
-				MarkdownDescription: "VpcLinkSpec defines the desired state of VpcLink.Represents a VPC link.",
+				Description:         "VpcLinkSpec defines the desired state of VpcLink. Represents a VPC link.",
+				MarkdownDescription: "VpcLinkSpec defines the desired state of VpcLink. Represents a VPC link.",
 				Attributes: map[string]schema.Attribute{
 					"name": schema.StringAttribute{
 						Description:         "",

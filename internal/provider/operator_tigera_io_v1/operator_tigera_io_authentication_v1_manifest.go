@@ -190,13 +190,13 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "Spec is the Dex Deployment's PodSpec.",
 												Attributes: map[string]schema.Attribute{
 													"containers": schema.ListNestedAttribute{
-														Description:         "Containers is a list of Dex containers.If specified, this overrides the specified Dex Deployment containers.If omitted, the Dex Deployment will use its default values for its containers.",
-														MarkdownDescription: "Containers is a list of Dex containers.If specified, this overrides the specified Dex Deployment containers.If omitted, the Dex Deployment will use its default values for its containers.",
+														Description:         "Containers is a list of Dex containers. If specified, this overrides the specified Dex Deployment containers. If omitted, the Dex Deployment will use its default values for its containers.",
+														MarkdownDescription: "Containers is a list of Dex containers. If specified, this overrides the specified Dex Deployment containers. If omitted, the Dex Deployment will use its default values for its containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the Dex Deployment container by name.Supported values are: tigera-dex",
-																	MarkdownDescription: "Name is an enum which identifies the Dex Deployment container by name.Supported values are: tigera-dex",
+																	Description:         "Name is an enum which identifies the Dex Deployment container by name. Supported values are: tigera-dex",
+																	MarkdownDescription: "Name is an enum which identifies the Dex Deployment container by name. Supported values are: tigera-dex",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -206,17 +206,17 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Dex Deployment container's resources.If omitted, the Dex Deployment will use its default value for this container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Dex Deployment container's resources.If omitted, the Dex Deployment will use its default value for this container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Dex Deployment container's resources. If omitted, the Dex Deployment will use its default value for this container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Dex Deployment container's resources. If omitted, the Dex Deployment will use its default value for this container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -229,8 +229,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -238,8 +238,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -258,13 +258,13 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"init_containers": schema.ListNestedAttribute{
-														Description:         "InitContainers is a list of Dex init containers.If specified, this overrides the specified Dex Deployment init containers.If omitted, the Dex Deployment will use its default values for its init containers.",
-														MarkdownDescription: "InitContainers is a list of Dex init containers.If specified, this overrides the specified Dex Deployment init containers.If omitted, the Dex Deployment will use its default values for its init containers.",
+														Description:         "InitContainers is a list of Dex init containers. If specified, this overrides the specified Dex Deployment init containers. If omitted, the Dex Deployment will use its default values for its init containers.",
+														MarkdownDescription: "InitContainers is a list of Dex init containers. If specified, this overrides the specified Dex Deployment init containers. If omitted, the Dex Deployment will use its default values for its init containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the Dex Deployment init container by name.Supported values are: tigera-dex-tls-key-cert-provisioner",
-																	MarkdownDescription: "Name is an enum which identifies the Dex Deployment init container by name.Supported values are: tigera-dex-tls-key-cert-provisioner",
+																	Description:         "Name is an enum which identifies the Dex Deployment init container by name. Supported values are: tigera-dex-tls-key-cert-provisioner",
+																	MarkdownDescription: "Name is an enum which identifies the Dex Deployment init container by name. Supported values are: tigera-dex-tls-key-cert-provisioner",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -274,17 +274,17 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Dex Deployment init container's resources.If omitted, the Dex Deployment will use its default value for this init container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Dex Deployment init container's resources.If omitted, the Dex Deployment will use its default value for this init container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Dex Deployment init container's resources. If omitted, the Dex Deployment will use its default value for this init container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Dex Deployment init container's resources. If omitted, the Dex Deployment will use its default value for this init container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -297,8 +297,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -306,8 +306,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -346,8 +346,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"groups_prefix": schema.StringAttribute{
-						Description:         "If specified, GroupsPrefix is prepended to each group obtained from the identity provider. Note thatKibana does not support a groups prefix, so this prefix is removed from Kubernetes Groups when translating log accessClusterRoleBindings into Elastic.",
-						MarkdownDescription: "If specified, GroupsPrefix is prepended to each group obtained from the identity provider. Note thatKibana does not support a groups prefix, so this prefix is removed from Kubernetes Groups when translating log accessClusterRoleBindings into Elastic.",
+						Description:         "If specified, GroupsPrefix is prepended to each group obtained from the identity provider. Note that Kibana does not support a groups prefix, so this prefix is removed from Kubernetes Groups when translating log access ClusterRoleBindings into Elastic.",
+						MarkdownDescription: "If specified, GroupsPrefix is prepended to each group obtained from the identity provider. Note that Kibana does not support a groups prefix, so this prefix is removed from Kubernetes Groups when translating log access ClusterRoleBindings into Elastic.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -370,8 +370,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"filter": schema.StringAttribute{
-										Description:         "Optional filter to apply when searching the directory.For example '(objectClass=posixGroup)'",
-										MarkdownDescription: "Optional filter to apply when searching the directory.For example '(objectClass=posixGroup)'",
+										Description:         "Optional filter to apply when searching the directory. For example '(objectClass=posixGroup)'",
+										MarkdownDescription: "Optional filter to apply when searching the directory. For example '(objectClass=posixGroup)'",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -386,8 +386,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"user_matchers": schema.ListNestedAttribute{
-										Description:         "Following list contains field pairs that are used to match a user to a group. It adds an additionalrequirement to the filter that an attribute in the group must match the user'sattribute value.",
-										MarkdownDescription: "Following list contains field pairs that are used to match a user to a group. It adds an additionalrequirement to the filter that an attribute in the group must match the user'sattribute value.",
+										Description:         "Following list contains field pairs that are used to match a user to a group. It adds an additional requirement to the filter that an attribute in the group must match the user's attribute value.",
+										MarkdownDescription: "Following list contains field pairs that are used to match a user to a group. It adds an additional requirement to the filter that an attribute in the group must match the user's attribute value.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"group_attribute": schema.StringAttribute{
@@ -426,8 +426,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"start_tls": schema.BoolAttribute{
-								Description:         "StartTLS whether to enable the startTLS feature for establishing TLS on an existing LDAP session.If true, the ldap:// protocol is used and then issues a StartTLS command, otherwise, connections will usethe ldaps:// protocol.",
-								MarkdownDescription: "StartTLS whether to enable the startTLS feature for establishing TLS on an existing LDAP session.If true, the ldap:// protocol is used and then issues a StartTLS command, otherwise, connections will usethe ldaps:// protocol.",
+								Description:         "StartTLS whether to enable the startTLS feature for establishing TLS on an existing LDAP session. If true, the ldap:// protocol is used and then issues a StartTLS command, otherwise, connections will use the ldaps:// protocol.",
+								MarkdownDescription: "StartTLS whether to enable the startTLS feature for establishing TLS on an existing LDAP session. If true, the ldap:// protocol is used and then issues a StartTLS command, otherwise, connections will use the ldaps:// protocol.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -454,8 +454,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"name_attribute": schema.StringAttribute{
-										Description:         "A mapping of the attribute that is used as the username. This attribute can be used to apply RBAC to a user.Default: uid",
-										MarkdownDescription: "A mapping of the attribute that is used as the username. This attribute can be used to apply RBAC to a user.Default: uid",
+										Description:         "A mapping of the attribute that is used as the username. This attribute can be used to apply RBAC to a user. Default: uid",
+										MarkdownDescription: "A mapping of the attribute that is used as the username. This attribute can be used to apply RBAC to a user. Default: uid",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -484,8 +484,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "OIDC contains the configuration needed to setup OIDC authentication.",
 						Attributes: map[string]schema.Attribute{
 							"email_verification": schema.StringAttribute{
-								Description:         "Some providers do not include the claim 'email_verified' when there is no verification in the user enrollmentprocess or if they are acting as a proxy for another identity provider. By default those tokens are deemed invalid.To skip this check, set the value to 'InsecureSkip'.Default: Verify",
-								MarkdownDescription: "Some providers do not include the claim 'email_verified' when there is no verification in the user enrollmentprocess or if they are acting as a proxy for another identity provider. By default those tokens are deemed invalid.To skip this check, set the value to 'InsecureSkip'.Default: Verify",
+								Description:         "Some providers do not include the claim 'email_verified' when there is no verification in the user enrollment process or if they are acting as a proxy for another identity provider. By default those tokens are deemed invalid. To skip this check, set the value to 'InsecureSkip'. Default: Verify",
+								MarkdownDescription: "Some providers do not include the claim 'email_verified' when there is no verification in the user enrollment process or if they are acting as a proxy for another identity provider. By default those tokens are deemed invalid. To skip this check, set the value to 'InsecureSkip'. Default: Verify",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -519,8 +519,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"prompt_types": schema.ListAttribute{
-								Description:         "PromptTypes is an optional list of string values that specifies whether the identity provider prompts the end userfor re-authentication and consent. See the RFC for more information on prompt types:https://openid.net/specs/openid-connect-core-1_0.html.Default: 'Consent'",
-								MarkdownDescription: "PromptTypes is an optional list of string values that specifies whether the identity provider prompts the end userfor re-authentication and consent. See the RFC for more information on prompt types:https://openid.net/specs/openid-connect-core-1_0.html.Default: 'Consent'",
+								Description:         "PromptTypes is an optional list of string values that specifies whether the identity provider prompts the end user for re-authentication and consent. See the RFC for more information on prompt types: https://openid.net/specs/openid-connect-core-1_0.html. Default: 'Consent'",
+								MarkdownDescription: "PromptTypes is an optional list of string values that specifies whether the identity provider prompts the end user for re-authentication and consent. See the RFC for more information on prompt types: https://openid.net/specs/openid-connect-core-1_0.html. Default: 'Consent'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -528,8 +528,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"requested_scopes": schema.ListAttribute{
-								Description:         "RequestedScopes is a list of scopes to request from the OIDC provider. If not provided, the following scopes arerequested: ['openid', 'email', 'profile', 'groups', 'offline_access'].",
-								MarkdownDescription: "RequestedScopes is a list of scopes to request from the OIDC provider. If not provided, the following scopes arerequested: ['openid', 'email', 'profile', 'groups', 'offline_access'].",
+								Description:         "RequestedScopes is a list of scopes to request from the OIDC provider. If not provided, the following scopes are requested: ['openid', 'email', 'profile', 'groups', 'offline_access'].",
+								MarkdownDescription: "RequestedScopes is a list of scopes to request from the OIDC provider. If not provided, the following scopes are requested: ['openid', 'email', 'profile', 'groups', 'offline_access'].",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -586,8 +586,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"username_prefix": schema.StringAttribute{
-						Description:         "If specified, UsernamePrefix is prepended to each user obtained from the identity provider. Note thatKibana does not support a user prefix, so this prefix is removed from Kubernetes User when translating log accessClusterRoleBindings into Elastic.",
-						MarkdownDescription: "If specified, UsernamePrefix is prepended to each user obtained from the identity provider. Note thatKibana does not support a user prefix, so this prefix is removed from Kubernetes User when translating log accessClusterRoleBindings into Elastic.",
+						Description:         "If specified, UsernamePrefix is prepended to each user obtained from the identity provider. Note that Kibana does not support a user prefix, so this prefix is removed from Kubernetes User when translating log access ClusterRoleBindings into Elastic.",
+						MarkdownDescription: "If specified, UsernamePrefix is prepended to each user obtained from the identity provider. Note that Kibana does not support a user prefix, so this prefix is removed from Kubernetes User when translating log access ClusterRoleBindings into Elastic.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

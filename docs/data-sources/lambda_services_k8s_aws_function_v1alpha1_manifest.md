@@ -56,35 +56,35 @@ Optional:
 Required:
 
 - `code` (Attributes) The code for the function. (see [below for nested schema](#nestedatt--spec--code))
-- `name` (String) The name of the Lambda function.Name formats   * Function name – my-function.   * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function.   * Partial ARN – 123456789012:function:my-function.The length constraint applies only to the full ARN. If you specify only thefunction name, it is limited to 64 characters in length.
+- `name` (String) The name of the Lambda function. Name formats * Function name – my-function. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function. * Partial ARN – 123456789012:function:my-function. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
 
 Optional:
 
-- `architectures` (List of String) The instruction set architecture that the function supports. Enter a stringarray with one of the valid values (arm64 or x86_64). The default value isx86_64.
-- `code_signing_config_arn` (String) To enable code signing for this function, specify the ARN of a code-signingconfiguration. A code-signing configuration includes a set of signing profiles,which define the trusted publishers for this function.
-- `dead_letter_config` (Attributes) A dead-letter queue configuration that specifies the queue or topic whereLambda sends asynchronous events when they fail processing. For more information,see Dead-letter queues (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq). (see [below for nested schema](#nestedatt--spec--dead_letter_config))
+- `architectures` (List of String) The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64.
+- `code_signing_config_arn` (String) To enable code signing for this function, specify the ARN of a code-signing configuration. A code-signing configuration includes a set of signing profiles, which define the trusted publishers for this function.
+- `dead_letter_config` (Attributes) A dead-letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see Dead-letter queues (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq). (see [below for nested schema](#nestedatt--spec--dead_letter_config))
 - `description` (String) A description of the function.
 - `environment` (Attributes) Environment variables that are accessible from function code during execution. (see [below for nested schema](#nestedatt--spec--environment))
-- `ephemeral_storage` (Attributes) The size of the function's /tmp directory in MB. The default value is 512,but can be any whole number between 512 and 10,240 MB. (see [below for nested schema](#nestedatt--spec--ephemeral_storage))
+- `ephemeral_storage` (Attributes) The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. (see [below for nested schema](#nestedatt--spec--ephemeral_storage))
 - `file_system_configs` (Attributes List) Connection settings for an Amazon EFS file system. (see [below for nested schema](#nestedatt--spec--file_system_configs))
-- `function_event_invoke_config` (Attributes) Configures options for asynchronous invocation on a function.- DestinationConfigA destination for events after they have been sent to a function for processing.Types of Destinations:Function - The Amazon Resource Name (ARN) of a Lambda function.Queue - The ARN of a standard SQS queue.Topic - The ARN of a standard SNS topic.Event Bus - The ARN of an Amazon EventBridge event bus.- MaximumEventAgeInSecondsThe maximum age of a request that Lambda sends to a function for processing.- MaximumRetryAttemptsThe maximum number of times to retry when the function returns an error. (see [below for nested schema](#nestedatt--spec--function_event_invoke_config))
-- `handler` (String) The name of the method within your code that Lambda calls to run your function.Handler is required if the deployment package is a .zip file archive. Theformat includes the file name. It can also include namespaces and other qualifiers,depending on the runtime. For more information, see Lambda programming model(https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html).
-- `image_config` (Attributes) Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings)that override the values in the container image Dockerfile. (see [below for nested schema](#nestedatt--spec--image_config))
-- `kms_key_arn` (String) The ARN of the Key Management Service (KMS) key that's used to encrypt yourfunction's environment variables. If it's not provided, Lambda uses a defaultservice key.
-- `kms_key_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--kms_key_ref))
-- `layers` (List of String) A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)to add to the function's execution environment. Specify each layer by itsARN, including the version.
-- `memory_size` (Number) The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console)at runtime. Increasing the function memory also increases its CPU allocation.The default value is 128 MB. The value can be any multiple of 1 MB.
-- `package_type` (String) The type of deployment package. Set to Image for container image and setto Zip for .zip file archive.
+- `function_event_invoke_config` (Attributes) Configures options for asynchronous invocation on a function. - DestinationConfig A destination for events after they have been sent to a function for processing. Types of Destinations: Function - The Amazon Resource Name (ARN) of a Lambda function. Queue - The ARN of a standard SQS queue. Topic - The ARN of a standard SNS topic. Event Bus - The ARN of an Amazon EventBridge event bus. - MaximumEventAgeInSeconds The maximum age of a request that Lambda sends to a function for processing. - MaximumRetryAttempts The maximum number of times to retry when the function returns an error. (see [below for nested schema](#nestedatt--spec--function_event_invoke_config))
+- `handler` (String) The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see Lambda programming model (https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html).
+- `image_config` (Attributes) Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings) that override the values in the container image Dockerfile. (see [below for nested schema](#nestedatt--spec--image_config))
+- `kms_key_arn` (String) The ARN of the Key Management Service (KMS) key that's used to encrypt your function's environment variables. If it's not provided, Lambda uses a default service key.
+- `kms_key_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--kms_key_ref))
+- `layers` (List of String) A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) to add to the function's execution environment. Specify each layer by its ARN, including the version.
+- `memory_size` (Number) The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console) at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.
+- `package_type` (String) The type of deployment package. Set to Image for container image and set to Zip for .zip file archive.
 - `publish` (Boolean) Set to true to publish the first version of the function during creation.
 - `reserved_concurrent_executions` (Number) The number of simultaneous executions to reserve for the function.
 - `role` (String) The Amazon Resource Name (ARN) of the function's execution role.
-- `role_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--role_ref))
-- `runtime` (String) The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).Runtime is required if the deployment package is a .zip file archive.
-- `snap_start` (Attributes) The function's SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html)setting. (see [below for nested schema](#nestedatt--spec--snap_start))
-- `tags` (Map of String) A list of tags (https://docs.aws.amazon.com/lambda/latest/dg/tagging.html)to apply to the function.
-- `timeout` (Number) The amount of time (in seconds) that Lambda allows a function to run beforestopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.For more information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).
-- `tracing_config` (Attributes) Set Mode to Active to sample and trace a subset of incoming requests withX-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html). (see [below for nested schema](#nestedatt--spec--tracing_config))
-- `vpc_config` (Attributes) For network connectivity to Amazon Web Services resources in a VPC, specifya list of security groups and subnets in the VPC. When you connect a functionto a VPC, it can access resources and the internet only through that VPC.For more information, see Configuring a Lambda function to access resourcesin a VPC (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html). (see [below for nested schema](#nestedatt--spec--vpc_config))
+- `role_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--role_ref))
+- `runtime` (String) The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive.
+- `snap_start` (Attributes) The function's SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html) setting. (see [below for nested schema](#nestedatt--spec--snap_start))
+- `tags` (Map of String) A list of tags (https://docs.aws.amazon.com/lambda/latest/dg/tagging.html) to apply to the function.
+- `timeout` (Number) The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).
+- `tracing_config` (Attributes) Set Mode to Active to sample and trace a subset of incoming requests with X-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html). (see [below for nested schema](#nestedatt--spec--tracing_config))
+- `vpc_config` (Attributes) For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see Configuring a Lambda function to access resources in a VPC (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html). (see [below for nested schema](#nestedatt--spec--vpc_config))
 
 <a id="nestedatt--spec--code"></a>
 ### Nested Schema for `spec.code`
@@ -104,7 +104,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--code--s3_bucket_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--code--s3_bucket_ref--from))
 
 <a id="nestedatt--spec--code--s3_bucket_ref--from"></a>
 ### Nested Schema for `spec.code.s3_bucket_ref.from`
@@ -112,6 +112,7 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)
 
 
 
@@ -154,7 +155,7 @@ Optional:
 
 Optional:
 
-- `destination_config` (Attributes) A configuration object that specifies the destination of an event after Lambdaprocesses it. (see [below for nested schema](#nestedatt--spec--function_event_invoke_config--destination_config))
+- `destination_config` (Attributes) A configuration object that specifies the destination of an event after Lambda processes it. (see [below for nested schema](#nestedatt--spec--function_event_invoke_config--destination_config))
 - `function_name` (String)
 - `maximum_event_age_in_seconds` (Number)
 - `maximum_retry_attempts` (Number)
@@ -201,7 +202,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--kms_key_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--kms_key_ref--from))
 
 <a id="nestedatt--spec--kms_key_ref--from"></a>
 ### Nested Schema for `spec.kms_key_ref.from`
@@ -209,6 +210,7 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)
 
 
 
@@ -217,7 +219,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--role_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--role_ref--from))
 
 <a id="nestedatt--spec--role_ref--from"></a>
 ### Nested Schema for `spec.role_ref.from`
@@ -225,6 +227,7 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)
 
 
 
@@ -259,7 +262,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_config--security_group_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_config--security_group_refs--from))
 
 <a id="nestedatt--spec--vpc_config--security_group_refs--from"></a>
 ### Nested Schema for `spec.vpc_config.security_group_refs.from`
@@ -267,6 +270,7 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)
 
 
 
@@ -275,7 +279,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_config--subnet_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_config--subnet_refs--from))
 
 <a id="nestedatt--spec--vpc_config--subnet_refs--from"></a>
 ### Nested Schema for `spec.vpc_config.subnet_refs.from`
@@ -283,3 +287,4 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)

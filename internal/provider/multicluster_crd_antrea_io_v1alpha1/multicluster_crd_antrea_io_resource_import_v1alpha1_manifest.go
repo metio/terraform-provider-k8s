@@ -625,8 +625,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 				MarkdownDescription: "ResourceImportSpec defines the desired state of ResourceImport.",
 				Attributes: map[string]schema.Attribute{
 					"cluster_id": schema.ListAttribute{
-						Description:         "ClusterIDs specifies the member clusters this resource to import to.When not specified, import to all member clusters.",
-						MarkdownDescription: "ClusterIDs specifies the member clusters this resource to import to.When not specified, import to all member clusters.",
+						Description:         "ClusterIDs specifies the member clusters this resource to import to. When not specified, import to all member clusters.",
+						MarkdownDescription: "ClusterIDs specifies the member clusters this resource to import to. When not specified, import to all member clusters.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -708,13 +708,13 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 						MarkdownDescription: "If imported resource is AntreaClusterNetworkPolicy.",
 						Attributes: map[string]schema.Attribute{
 							"applied_to": schema.ListNestedAttribute{
-								Description:         "Select workloads on which the rules will be applied to. Cannot be set inconjunction with AppliedTo in each rule.",
-								MarkdownDescription: "Select workloads on which the rules will be applied to. Cannot be set inconjunction with AppliedTo in each rule.",
+								Description:         "Select workloads on which the rules will be applied to. Cannot be set in conjunction with AppliedTo in each rule.",
+								MarkdownDescription: "Select workloads on which the rules will be applied to. Cannot be set in conjunction with AppliedTo in each rule.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"external_entity_selector": schema.SingleNestedAttribute{
-											Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-											MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+											Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+											MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -730,16 +730,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -753,8 +753,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -767,16 +767,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"group": schema.StringAttribute{
-											Description:         "Group is the name of the ClusterGroup which can be set as anAppliedTo in place of a stand-alone selector. A Group cannotbe set with any other selector.",
-											MarkdownDescription: "Group is the name of the ClusterGroup which can be set as anAppliedTo in place of a stand-alone selector. A Group cannotbe set with any other selector.",
+											Description:         "Group is the name of the ClusterGroup which can be set as an AppliedTo in place of a stand-alone selector. A Group cannot be set with any other selector.",
+											MarkdownDescription: "Group is the name of the ClusterGroup which can be set as an AppliedTo in place of a stand-alone selector. A Group cannot be set with any other selector.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"namespace_selector": schema.SingleNestedAttribute{
-											Description:         "Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
-											MarkdownDescription: "Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
+											Description:         "Select all Pods from Namespaces matched by this selector, as workloads in AppliedTo fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
+											MarkdownDescription: "Select all Pods from Namespaces matched by this selector, as workloads in AppliedTo fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -792,16 +792,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -815,8 +815,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -829,8 +829,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"node_selector": schema.SingleNestedAttribute{
-											Description:         "Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector.",
-											MarkdownDescription: "Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector.",
+											Description:         "Select Nodes in cluster as workloads in AppliedTo fields. Cannot be set with any other selector.",
+											MarkdownDescription: "Select Nodes in cluster as workloads in AppliedTo fields. Cannot be set with any other selector.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -846,16 +846,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -869,8 +869,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -883,8 +883,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"pod_selector": schema.SingleNestedAttribute{
-											Description:         "Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-											MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+											Description:         "Select Pods from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+											MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -900,16 +900,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -923,8 +923,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -937,8 +937,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"service": schema.SingleNestedAttribute{
-											Description:         "Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector.",
-											MarkdownDescription: "Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector.",
+											Description:         "Select a certain Service which matches the NamespacedName. A Service can only be set in either policy level AppliedTo field in a policy that only has ingress rules or rule level AppliedTo field in an ingress rule. Only a NodePort Service can be referred by this field. Cannot be set with any other selector.",
+											MarkdownDescription: "Select a certain Service which matches the NamespacedName. A Service can only be set in either policy level AppliedTo field in a policy that only has ingress rules or rule level AppliedTo field in an ingress rule. Only a NodePort Service can be referred by this field. Cannot be set with any other selector.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "",
@@ -962,8 +962,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"service_account": schema.SingleNestedAttribute{
-											Description:         "Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector.",
-											MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector.",
+											Description:         "Select all Pods with the ServiceAccount matched by this field, as workloads in AppliedTo fields. Cannot be set with any other selector.",
+											MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, as workloads in AppliedTo fields. Cannot be set with any other selector.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "",
@@ -993,8 +993,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 							},
 
 							"egress": schema.ListNestedAttribute{
-								Description:         "Set of egress rules evaluated based on the order in which they are set.Currently Egress rule supports setting the 'To' field but not the 'From'field within a Rule.",
-								MarkdownDescription: "Set of egress rules evaluated based on the order in which they are set.Currently Egress rule supports setting the 'To' field but not the 'From'field within a Rule.",
+								Description:         "Set of egress rules evaluated based on the order in which they are set. Currently Egress rule supports setting the 'To' field but not the 'From' field within a Rule.",
+								MarkdownDescription: "Set of egress rules evaluated based on the order in which they are set. Currently Egress rule supports setting the 'To' field but not the 'From' field within a Rule.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"action": schema.StringAttribute{
@@ -1006,13 +1006,13 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"applied_to": schema.ListNestedAttribute{
-											Description:         "Select workloads on which this rule will be applied to. Cannot be set inconjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.",
-											MarkdownDescription: "Select workloads on which this rule will be applied to. Cannot be set inconjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.",
+											Description:         "Select workloads on which this rule will be applied to. Cannot be set in conjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.",
+											MarkdownDescription: "Select workloads on which this rule will be applied to. Cannot be set in conjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"external_entity_selector": schema.SingleNestedAttribute{
-														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1028,16 +1028,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1051,8 +1051,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1065,16 +1065,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"group": schema.StringAttribute{
-														Description:         "Group is the name of the ClusterGroup which can be set as anAppliedTo in place of a stand-alone selector. A Group cannotbe set with any other selector.",
-														MarkdownDescription: "Group is the name of the ClusterGroup which can be set as anAppliedTo in place of a stand-alone selector. A Group cannotbe set with any other selector.",
+														Description:         "Group is the name of the ClusterGroup which can be set as an AppliedTo in place of a stand-alone selector. A Group cannot be set with any other selector.",
+														MarkdownDescription: "Group is the name of the ClusterGroup which can be set as an AppliedTo in place of a stand-alone selector. A Group cannot be set with any other selector.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"namespace_selector": schema.SingleNestedAttribute{
-														Description:         "Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
-														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
+														Description:         "Select all Pods from Namespaces matched by this selector, as workloads in AppliedTo fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
+														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, as workloads in AppliedTo fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1090,16 +1090,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1113,8 +1113,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1127,8 +1127,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"node_selector": schema.SingleNestedAttribute{
-														Description:         "Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector.",
-														MarkdownDescription: "Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector.",
+														Description:         "Select Nodes in cluster as workloads in AppliedTo fields. Cannot be set with any other selector.",
+														MarkdownDescription: "Select Nodes in cluster as workloads in AppliedTo fields. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1144,16 +1144,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1167,8 +1167,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1181,8 +1181,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"pod_selector": schema.SingleNestedAttribute{
-														Description:         "Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select Pods from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1198,16 +1198,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1221,8 +1221,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1235,8 +1235,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"service": schema.SingleNestedAttribute{
-														Description:         "Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector.",
-														MarkdownDescription: "Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector.",
+														Description:         "Select a certain Service which matches the NamespacedName. A Service can only be set in either policy level AppliedTo field in a policy that only has ingress rules or rule level AppliedTo field in an ingress rule. Only a NodePort Service can be referred by this field. Cannot be set with any other selector.",
+														MarkdownDescription: "Select a certain Service which matches the NamespacedName. A Service can only be set in either policy level AppliedTo field in a policy that only has ingress rules or rule level AppliedTo field in an ingress rule. Only a NodePort Service can be referred by this field. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "",
@@ -1260,8 +1260,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"service_account": schema.SingleNestedAttribute{
-														Description:         "Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector.",
-														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector.",
+														Description:         "Select all Pods with the ServiceAccount matched by this field, as workloads in AppliedTo fields. Cannot be set with any other selector.",
+														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, as workloads in AppliedTo fields. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "",
@@ -1291,21 +1291,21 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"enable_logging": schema.BoolAttribute{
-											Description:         "EnableLogging is used to indicate if agent should generate logswhen rules are matched. Should be default to false.",
-											MarkdownDescription: "EnableLogging is used to indicate if agent should generate logswhen rules are matched. Should be default to false.",
+											Description:         "EnableLogging is used to indicate if agent should generate logs when rules are matched. Should be default to false.",
+											MarkdownDescription: "EnableLogging is used to indicate if agent should generate logs when rules are matched. Should be default to false.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"from": schema.ListNestedAttribute{
-											Description:         "Rule is matched if traffic originates from workloads selected bythis field. If this field is empty, this rule matches all sources.",
-											MarkdownDescription: "Rule is matched if traffic originates from workloads selected bythis field. If this field is empty, this rule matches all sources.",
+											Description:         "Rule is matched if traffic originates from workloads selected by this field. If this field is empty, this rule matches all sources.",
+											MarkdownDescription: "Rule is matched if traffic originates from workloads selected by this field. If this field is empty, this rule matches all sources.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"external_entity_selector": schema.SingleNestedAttribute{
-														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1321,16 +1321,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1344,8 +1344,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1358,28 +1358,28 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"fqdn": schema.StringAttribute{
-														Description:         "Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
-														MarkdownDescription: "Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
+														Description:         "Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
+														MarkdownDescription: "Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"group": schema.StringAttribute{
-														Description:         "Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.",
-														MarkdownDescription: "Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.",
+														Description:         "Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.",
+														MarkdownDescription: "Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"ip_block": schema.SingleNestedAttribute{
-														Description:         "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector.",
-														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector.",
+														Description:         "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
+														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"cidr": schema.StringAttribute{
-																Description:         "CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.",
-																MarkdownDescription: "CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.",
+																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
+																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -1391,8 +1391,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"namespace_selector": schema.SingleNestedAttribute{
-														Description:         "Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
-														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
+														Description:         "Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
+														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1408,16 +1408,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1431,8 +1431,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1445,8 +1445,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"namespaces": schema.SingleNestedAttribute{
-														Description:         "Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector.",
-														MarkdownDescription: "Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector.",
+														Description:         "Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector.",
+														MarkdownDescription: "Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match": schema.StringAttribute{
 																Description:         "Selects from the same Namespace of the appliedTo workloads.",
@@ -1457,8 +1457,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"same_labels": schema.ListAttribute{
-																Description:         "Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.",
-																MarkdownDescription: "Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.",
+																Description:         "Selects Namespaces that share the same values for the given set of label keys with the appliedTo Namespace. Namespaces must have all the label keys.",
+																MarkdownDescription: "Selects Namespaces that share the same values for the given set of label keys with the appliedTo Namespace. Namespaces must have all the label keys.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1471,8 +1471,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"node_selector": schema.SingleNestedAttribute{
-														Description:         "Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector.",
-														MarkdownDescription: "Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector.",
+														Description:         "Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector.",
+														MarkdownDescription: "Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1488,16 +1488,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1511,8 +1511,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1525,8 +1525,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"pod_selector": schema.SingleNestedAttribute{
-														Description:         "Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1542,16 +1542,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1565,8 +1565,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1579,16 +1579,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"scope": schema.StringAttribute{
-														Description:         "Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.",
-														MarkdownDescription: "Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.",
+														Description:         "Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.",
+														MarkdownDescription: "Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"service_account": schema.SingleNestedAttribute{
-														Description:         "Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector.",
-														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector.",
+														Description:         "Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector.",
+														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "",
@@ -1618,25 +1618,25 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"l7_protocols": schema.ListNestedAttribute{
-											Description:         "Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow.When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and thetraffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, anyrules after a layer 7 rule will not be enforced for the traffic.",
-											MarkdownDescription: "Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow.When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and thetraffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, anyrules after a layer 7 rule will not be enforced for the traffic.",
+											Description:         "Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow. When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the 5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and the traffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, any rules after a layer 7 rule will not be enforced for the traffic.",
+											MarkdownDescription: "Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow. When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the 5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and the traffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, any rules after a layer 7 rule will not be enforced for the traffic.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"http": schema.SingleNestedAttribute{
-														Description:         "HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.If all fields are not provided, it matches all HTTP requests.",
-														MarkdownDescription: "HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.If all fields are not provided, it matches all HTTP requests.",
+														Description:         "HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together. If all fields are not provided, it matches all HTTP requests.",
+														MarkdownDescription: "HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together. If all fields are not provided, it matches all HTTP requests.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
-																Description:         "Host represents the hostname present in the URI or the HTTP Host header to match.It does not contain the port associated with the host.",
-																MarkdownDescription: "Host represents the hostname present in the URI or the HTTP Host header to match.It does not contain the port associated with the host.",
+																Description:         "Host represents the hostname present in the URI or the HTTP Host header to match. It does not contain the port associated with the host.",
+																MarkdownDescription: "Host represents the hostname present in the URI or the HTTP Host header to match. It does not contain the port associated with the host.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"method": schema.StringAttribute{
-																Description:         "Method represents the HTTP method to match.It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.",
-																MarkdownDescription: "Method represents the HTTP method to match.It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.",
+																Description:         "Method represents the HTTP method to match. It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.",
+																MarkdownDescription: "Method represents the HTTP method to match. It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1656,8 +1656,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"tls": schema.SingleNestedAttribute{
-														Description:         "TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, thismatches all TLS handshake packets.",
-														MarkdownDescription: "TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, thismatches all TLS handshake packets.",
+														Description:         "TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, this matches all TLS handshake packets.",
+														MarkdownDescription: "TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, this matches all TLS handshake packets.",
 														Attributes: map[string]schema.Attribute{
 															"sni": schema.StringAttribute{
 																Description:         "SNI (Server Name Indication) indicates the server domain name in the TLS/SSL hello message.",
@@ -1687,53 +1687,53 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name describes the intention of this rule.Name should be unique within the policy.",
-											MarkdownDescription: "Name describes the intention of this rule.Name should be unique within the policy.",
+											Description:         "Name describes the intention of this rule. Name should be unique within the policy.",
+											MarkdownDescription: "Name describes the intention of this rule. Name should be unique within the policy.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"ports": schema.ListNestedAttribute{
-											Description:         "Set of ports and protocols matched by the rule. If this field and Protocolsare unset or empty, this rule matches all ports.",
-											MarkdownDescription: "Set of ports and protocols matched by the rule. If this field and Protocolsare unset or empty, this rule matches all ports.",
+											Description:         "Set of ports and protocols matched by the rule. If this field and Protocols are unset or empty, this rule matches all ports.",
+											MarkdownDescription: "Set of ports and protocols matched by the rule. If this field and Protocols are unset or empty, this rule matches all ports.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"end_port": schema.Int64Attribute{
-														Description:         "EndPort defines the end of the port range, inclusive.It can only be specified when a numerical 'port' is specified.",
-														MarkdownDescription: "EndPort defines the end of the port range, inclusive.It can only be specified when a numerical 'port' is specified.",
+														Description:         "EndPort defines the end of the port range, inclusive. It can only be specified when a numerical 'port' is specified.",
+														MarkdownDescription: "EndPort defines the end of the port range, inclusive. It can only be specified when a numerical 'port' is specified.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"port": schema.StringAttribute{
-														Description:         "The port on the given protocol. This can be either a numericalor named port on a Pod. If this field is not provided, thismatches all port names and numbers.",
-														MarkdownDescription: "The port on the given protocol. This can be either a numericalor named port on a Pod. If this field is not provided, thismatches all port names and numbers.",
+														Description:         "The port on the given protocol. This can be either a numerical or named port on a Pod. If this field is not provided, this matches all port names and numbers.",
+														MarkdownDescription: "The port on the given protocol. This can be either a numerical or named port on a Pod. If this field is not provided, this matches all port names and numbers.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "The protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.",
-														MarkdownDescription: "The protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.",
+														Description:         "The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
+														MarkdownDescription: "The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"source_end_port": schema.Int64Attribute{
-														Description:         "SourceEndPort defines the end of the source port range, inclusive.It can only be specified when 'sourcePort' is specified.",
-														MarkdownDescription: "SourceEndPort defines the end of the source port range, inclusive.It can only be specified when 'sourcePort' is specified.",
+														Description:         "SourceEndPort defines the end of the source port range, inclusive. It can only be specified when 'sourcePort' is specified.",
+														MarkdownDescription: "SourceEndPort defines the end of the source port range, inclusive. It can only be specified when 'sourcePort' is specified.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"source_port": schema.Int64Attribute{
-														Description:         "The source port on the given protocol. This can only be a numerical port.If this field is not provided, rule matches all source ports.",
-														MarkdownDescription: "The source port on the given protocol. This can only be a numerical port.If this field is not provided, rule matches all source ports.",
+														Description:         "The source port on the given protocol. This can only be a numerical port. If this field is not provided, rule matches all source ports.",
+														MarkdownDescription: "The source port on the given protocol. This can only be a numerical port. If this field is not provided, rule matches all source ports.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1746,13 +1746,13 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"protocols": schema.ListNestedAttribute{
-											Description:         "Set of protocols matched by the rule. If this field and Ports are unset orempty, this rule matches all protocols supported.",
-											MarkdownDescription: "Set of protocols matched by the rule. If this field and Ports are unset orempty, this rule matches all protocols supported.",
+											Description:         "Set of protocols matched by the rule. If this field and Ports are unset or empty, this rule matches all protocols supported.",
+											MarkdownDescription: "Set of protocols matched by the rule. If this field and Ports are unset or empty, this rule matches all protocols supported.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"icmp": schema.SingleNestedAttribute{
-														Description:         "ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. Allfields could be used alone or together. If all fields are not provided, thismatches all ICMP traffic.",
-														MarkdownDescription: "ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. Allfields could be used alone or together. If all fields are not provided, thismatches all ICMP traffic.",
+														Description:         "ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. All fields could be used alone or together. If all fields are not provided, this matches all ICMP traffic.",
+														MarkdownDescription: "ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. All fields could be used alone or together. If all fields are not provided, this matches all ICMP traffic.",
 														Attributes: map[string]schema.Attribute{
 															"icmp_code": schema.Int64Attribute{
 																Description:         "",
@@ -1776,8 +1776,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"igmp": schema.SingleNestedAttribute{
-														Description:         "IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType mustbe filled with:IGMPQuery    int32 = 0x11IGMPReportV1 int32 = 0x12IGMPReportV2 int32 = 0x16IGMPReportV3 int32 = 0x22If groupAddress is empty, all groupAddresses will be matched.",
-														MarkdownDescription: "IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType mustbe filled with:IGMPQuery    int32 = 0x11IGMPReportV1 int32 = 0x12IGMPReportV2 int32 = 0x16IGMPReportV3 int32 = 0x22If groupAddress is empty, all groupAddresses will be matched.",
+														Description:         "IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType must be filled with: IGMPQuery int32 = 0x11 IGMPReportV1 int32 = 0x12 IGMPReportV2 int32 = 0x16 IGMPReportV3 int32 = 0x22 If groupAddress is empty, all groupAddresses will be matched.",
+														MarkdownDescription: "IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType must be filled with: IGMPQuery int32 = 0x11 IGMPReportV1 int32 = 0x12 IGMPReportV2 int32 = 0x16 IGMPReportV3 int32 = 0x22 If groupAddress is empty, all groupAddresses will be matched.",
 														Attributes: map[string]schema.Attribute{
 															"group_address": schema.StringAttribute{
 																Description:         "",
@@ -1807,13 +1807,13 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"to": schema.ListNestedAttribute{
-											Description:         "Rule is matched if traffic is intended for workloads selected bythis field. This field can't be used with ToServices. If this fieldand ToServices are both empty or missing this rule matches all destinations.",
-											MarkdownDescription: "Rule is matched if traffic is intended for workloads selected bythis field. This field can't be used with ToServices. If this fieldand ToServices are both empty or missing this rule matches all destinations.",
+											Description:         "Rule is matched if traffic is intended for workloads selected by this field. This field can't be used with ToServices. If this field and ToServices are both empty or missing this rule matches all destinations.",
+											MarkdownDescription: "Rule is matched if traffic is intended for workloads selected by this field. This field can't be used with ToServices. If this field and ToServices are both empty or missing this rule matches all destinations.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"external_entity_selector": schema.SingleNestedAttribute{
-														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1829,16 +1829,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1852,8 +1852,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1866,28 +1866,28 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"fqdn": schema.StringAttribute{
-														Description:         "Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
-														MarkdownDescription: "Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
+														Description:         "Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
+														MarkdownDescription: "Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"group": schema.StringAttribute{
-														Description:         "Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.",
-														MarkdownDescription: "Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.",
+														Description:         "Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.",
+														MarkdownDescription: "Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"ip_block": schema.SingleNestedAttribute{
-														Description:         "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector.",
-														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector.",
+														Description:         "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
+														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"cidr": schema.StringAttribute{
-																Description:         "CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.",
-																MarkdownDescription: "CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.",
+																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
+																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -1899,8 +1899,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"namespace_selector": schema.SingleNestedAttribute{
-														Description:         "Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
-														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
+														Description:         "Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
+														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1916,16 +1916,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1939,8 +1939,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1953,8 +1953,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"namespaces": schema.SingleNestedAttribute{
-														Description:         "Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector.",
-														MarkdownDescription: "Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector.",
+														Description:         "Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector.",
+														MarkdownDescription: "Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match": schema.StringAttribute{
 																Description:         "Selects from the same Namespace of the appliedTo workloads.",
@@ -1965,8 +1965,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"same_labels": schema.ListAttribute{
-																Description:         "Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.",
-																MarkdownDescription: "Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.",
+																Description:         "Selects Namespaces that share the same values for the given set of label keys with the appliedTo Namespace. Namespaces must have all the label keys.",
+																MarkdownDescription: "Selects Namespaces that share the same values for the given set of label keys with the appliedTo Namespace. Namespaces must have all the label keys.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1979,8 +1979,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"node_selector": schema.SingleNestedAttribute{
-														Description:         "Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector.",
-														MarkdownDescription: "Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector.",
+														Description:         "Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector.",
+														MarkdownDescription: "Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1996,16 +1996,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2019,8 +2019,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2033,8 +2033,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"pod_selector": schema.SingleNestedAttribute{
-														Description:         "Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2050,16 +2050,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2073,8 +2073,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2087,16 +2087,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"scope": schema.StringAttribute{
-														Description:         "Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.",
-														MarkdownDescription: "Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.",
+														Description:         "Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.",
+														MarkdownDescription: "Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"service_account": schema.SingleNestedAttribute{
-														Description:         "Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector.",
-														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector.",
+														Description:         "Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector.",
+														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "",
@@ -2126,8 +2126,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"to_services": schema.ListNestedAttribute{
-											Description:         "Rule is matched if traffic is intended for a Service listed in this field.Currently, only ClusterIP types Services are supported in this field.When scope is set to ClusterSet, it matches traffic intended for a multi-clusterService listed in this field. Service name and Namespace provided should matchthe original exported Service.This field can only be used when AntreaProxy is enabled. This field can't be usedwith To or Ports. If this field and To are both empty or missing, this rule matchesall destinations.",
-											MarkdownDescription: "Rule is matched if traffic is intended for a Service listed in this field.Currently, only ClusterIP types Services are supported in this field.When scope is set to ClusterSet, it matches traffic intended for a multi-clusterService listed in this field. Service name and Namespace provided should matchthe original exported Service.This field can only be used when AntreaProxy is enabled. This field can't be usedwith To or Ports. If this field and To are both empty or missing, this rule matchesall destinations.",
+											Description:         "Rule is matched if traffic is intended for a Service listed in this field. Currently, only ClusterIP types Services are supported in this field. When scope is set to ClusterSet, it matches traffic intended for a multi-cluster Service listed in this field. Service name and Namespace provided should match the original exported Service. This field can only be used when AntreaProxy is enabled. This field can't be used with To or Ports. If this field and To are both empty or missing, this rule matches all destinations.",
+											MarkdownDescription: "Rule is matched if traffic is intended for a Service listed in this field. Currently, only ClusterIP types Services are supported in this field. When scope is set to ClusterSet, it matches traffic intended for a multi-cluster Service listed in this field. Service name and Namespace provided should match the original exported Service. This field can only be used when AntreaProxy is enabled. This field can't be used with To or Ports. If this field and To are both empty or missing, this rule matches all destinations.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
@@ -2167,8 +2167,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 							},
 
 							"ingress": schema.ListNestedAttribute{
-								Description:         "Set of ingress rules evaluated based on the order in which they are set.Currently Ingress rule supports setting the 'From' field but not the 'To'field within a Rule.",
-								MarkdownDescription: "Set of ingress rules evaluated based on the order in which they are set.Currently Ingress rule supports setting the 'From' field but not the 'To'field within a Rule.",
+								Description:         "Set of ingress rules evaluated based on the order in which they are set. Currently Ingress rule supports setting the 'From' field but not the 'To' field within a Rule.",
+								MarkdownDescription: "Set of ingress rules evaluated based on the order in which they are set. Currently Ingress rule supports setting the 'From' field but not the 'To' field within a Rule.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"action": schema.StringAttribute{
@@ -2180,13 +2180,13 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"applied_to": schema.ListNestedAttribute{
-											Description:         "Select workloads on which this rule will be applied to. Cannot be set inconjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.",
-											MarkdownDescription: "Select workloads on which this rule will be applied to. Cannot be set inconjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.",
+											Description:         "Select workloads on which this rule will be applied to. Cannot be set in conjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.",
+											MarkdownDescription: "Select workloads on which this rule will be applied to. Cannot be set in conjunction with NetworkPolicySpec/ClusterNetworkPolicySpec.AppliedTo.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"external_entity_selector": schema.SingleNestedAttribute{
-														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin AppliedTo fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2202,16 +2202,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2225,8 +2225,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2239,16 +2239,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"group": schema.StringAttribute{
-														Description:         "Group is the name of the ClusterGroup which can be set as anAppliedTo in place of a stand-alone selector. A Group cannotbe set with any other selector.",
-														MarkdownDescription: "Group is the name of the ClusterGroup which can be set as anAppliedTo in place of a stand-alone selector. A Group cannotbe set with any other selector.",
+														Description:         "Group is the name of the ClusterGroup which can be set as an AppliedTo in place of a stand-alone selector. A Group cannot be set with any other selector.",
+														MarkdownDescription: "Group is the name of the ClusterGroup which can be set as an AppliedTo in place of a stand-alone selector. A Group cannot be set with any other selector.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"namespace_selector": schema.SingleNestedAttribute{
-														Description:         "Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
-														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, asworkloads in AppliedTo fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
+														Description:         "Select all Pods from Namespaces matched by this selector, as workloads in AppliedTo fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
+														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, as workloads in AppliedTo fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2264,16 +2264,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2287,8 +2287,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2301,8 +2301,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"node_selector": schema.SingleNestedAttribute{
-														Description:         "Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector.",
-														MarkdownDescription: "Select Nodes in cluster as workloads in AppliedTo fields.Cannot be set with any other selector.",
+														Description:         "Select Nodes in cluster as workloads in AppliedTo fields. Cannot be set with any other selector.",
+														MarkdownDescription: "Select Nodes in cluster as workloads in AppliedTo fields. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2318,16 +2318,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2341,8 +2341,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2355,8 +2355,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"pod_selector": schema.SingleNestedAttribute{
-														Description:         "Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads inAppliedTo fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select Pods from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads in AppliedTo fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2372,16 +2372,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2395,8 +2395,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2409,8 +2409,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"service": schema.SingleNestedAttribute{
-														Description:         "Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector.",
-														MarkdownDescription: "Select a certain Service which matches the NamespacedName.A Service can only be set in either policy level AppliedTo field in a policythat only has ingress rules or rule level AppliedTo field in an ingress rule.Only a NodePort Service can be referred by this field.Cannot be set with any other selector.",
+														Description:         "Select a certain Service which matches the NamespacedName. A Service can only be set in either policy level AppliedTo field in a policy that only has ingress rules or rule level AppliedTo field in an ingress rule. Only a NodePort Service can be referred by this field. Cannot be set with any other selector.",
+														MarkdownDescription: "Select a certain Service which matches the NamespacedName. A Service can only be set in either policy level AppliedTo field in a policy that only has ingress rules or rule level AppliedTo field in an ingress rule. Only a NodePort Service can be referred by this field. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "",
@@ -2434,8 +2434,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"service_account": schema.SingleNestedAttribute{
-														Description:         "Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector.",
-														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, asworkloads in AppliedTo fields.Cannot be set with any other selector.",
+														Description:         "Select all Pods with the ServiceAccount matched by this field, as workloads in AppliedTo fields. Cannot be set with any other selector.",
+														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, as workloads in AppliedTo fields. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "",
@@ -2465,21 +2465,21 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"enable_logging": schema.BoolAttribute{
-											Description:         "EnableLogging is used to indicate if agent should generate logswhen rules are matched. Should be default to false.",
-											MarkdownDescription: "EnableLogging is used to indicate if agent should generate logswhen rules are matched. Should be default to false.",
+											Description:         "EnableLogging is used to indicate if agent should generate logs when rules are matched. Should be default to false.",
+											MarkdownDescription: "EnableLogging is used to indicate if agent should generate logs when rules are matched. Should be default to false.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"from": schema.ListNestedAttribute{
-											Description:         "Rule is matched if traffic originates from workloads selected bythis field. If this field is empty, this rule matches all sources.",
-											MarkdownDescription: "Rule is matched if traffic originates from workloads selected bythis field. If this field is empty, this rule matches all sources.",
+											Description:         "Rule is matched if traffic originates from workloads selected by this field. If this field is empty, this rule matches all sources.",
+											MarkdownDescription: "Rule is matched if traffic originates from workloads selected by this field. If this field is empty, this rule matches all sources.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"external_entity_selector": schema.SingleNestedAttribute{
-														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2495,16 +2495,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2518,8 +2518,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2532,28 +2532,28 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"fqdn": schema.StringAttribute{
-														Description:         "Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
-														MarkdownDescription: "Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
+														Description:         "Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
+														MarkdownDescription: "Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"group": schema.StringAttribute{
-														Description:         "Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.",
-														MarkdownDescription: "Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.",
+														Description:         "Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.",
+														MarkdownDescription: "Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"ip_block": schema.SingleNestedAttribute{
-														Description:         "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector.",
-														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector.",
+														Description:         "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
+														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"cidr": schema.StringAttribute{
-																Description:         "CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.",
-																MarkdownDescription: "CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.",
+																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
+																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -2565,8 +2565,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"namespace_selector": schema.SingleNestedAttribute{
-														Description:         "Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
-														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
+														Description:         "Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
+														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2582,16 +2582,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2605,8 +2605,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2619,8 +2619,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"namespaces": schema.SingleNestedAttribute{
-														Description:         "Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector.",
-														MarkdownDescription: "Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector.",
+														Description:         "Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector.",
+														MarkdownDescription: "Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match": schema.StringAttribute{
 																Description:         "Selects from the same Namespace of the appliedTo workloads.",
@@ -2631,8 +2631,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"same_labels": schema.ListAttribute{
-																Description:         "Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.",
-																MarkdownDescription: "Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.",
+																Description:         "Selects Namespaces that share the same values for the given set of label keys with the appliedTo Namespace. Namespaces must have all the label keys.",
+																MarkdownDescription: "Selects Namespaces that share the same values for the given set of label keys with the appliedTo Namespace. Namespaces must have all the label keys.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2645,8 +2645,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"node_selector": schema.SingleNestedAttribute{
-														Description:         "Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector.",
-														MarkdownDescription: "Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector.",
+														Description:         "Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector.",
+														MarkdownDescription: "Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2662,16 +2662,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2685,8 +2685,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2699,8 +2699,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"pod_selector": schema.SingleNestedAttribute{
-														Description:         "Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2716,16 +2716,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2739,8 +2739,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2753,16 +2753,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"scope": schema.StringAttribute{
-														Description:         "Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.",
-														MarkdownDescription: "Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.",
+														Description:         "Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.",
+														MarkdownDescription: "Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"service_account": schema.SingleNestedAttribute{
-														Description:         "Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector.",
-														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector.",
+														Description:         "Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector.",
+														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "",
@@ -2792,25 +2792,25 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"l7_protocols": schema.ListNestedAttribute{
-											Description:         "Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow.When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and thetraffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, anyrules after a layer 7 rule will not be enforced for the traffic.",
-											MarkdownDescription: "Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow.When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and thetraffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, anyrules after a layer 7 rule will not be enforced for the traffic.",
+											Description:         "Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow. When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the 5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and the traffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, any rules after a layer 7 rule will not be enforced for the traffic.",
+											MarkdownDescription: "Set of layer 7 protocols matched by the rule. If this field is set, action can only be Allow. When this field is used in a rule, any traffic matching the other layer 3/4 criteria of the rule (typically the 5-tuple) will be forwarded to an application-aware engine for protocol detection and rule enforcement, and the traffic will be allowed if the layer 7 criteria is also matched, otherwise it will be dropped. Therefore, any rules after a layer 7 rule will not be enforced for the traffic.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"http": schema.SingleNestedAttribute{
-														Description:         "HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.If all fields are not provided, it matches all HTTP requests.",
-														MarkdownDescription: "HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together.If all fields are not provided, it matches all HTTP requests.",
+														Description:         "HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together. If all fields are not provided, it matches all HTTP requests.",
+														MarkdownDescription: "HTTPProtocol matches HTTP requests with specific host, method, and path. All fields could be used alone or together. If all fields are not provided, it matches all HTTP requests.",
 														Attributes: map[string]schema.Attribute{
 															"host": schema.StringAttribute{
-																Description:         "Host represents the hostname present in the URI or the HTTP Host header to match.It does not contain the port associated with the host.",
-																MarkdownDescription: "Host represents the hostname present in the URI or the HTTP Host header to match.It does not contain the port associated with the host.",
+																Description:         "Host represents the hostname present in the URI or the HTTP Host header to match. It does not contain the port associated with the host.",
+																MarkdownDescription: "Host represents the hostname present in the URI or the HTTP Host header to match. It does not contain the port associated with the host.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"method": schema.StringAttribute{
-																Description:         "Method represents the HTTP method to match.It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.",
-																MarkdownDescription: "Method represents the HTTP method to match.It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.",
+																Description:         "Method represents the HTTP method to match. It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.",
+																MarkdownDescription: "Method represents the HTTP method to match. It could be GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS, CONNECT and PATCH.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2830,8 +2830,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"tls": schema.SingleNestedAttribute{
-														Description:         "TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, thismatches all TLS handshake packets.",
-														MarkdownDescription: "TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, thismatches all TLS handshake packets.",
+														Description:         "TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, this matches all TLS handshake packets.",
+														MarkdownDescription: "TLSProtocol matches TLS handshake packets with specific SNI. If the field is not provided, this matches all TLS handshake packets.",
 														Attributes: map[string]schema.Attribute{
 															"sni": schema.StringAttribute{
 																Description:         "SNI (Server Name Indication) indicates the server domain name in the TLS/SSL hello message.",
@@ -2861,53 +2861,53 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name describes the intention of this rule.Name should be unique within the policy.",
-											MarkdownDescription: "Name describes the intention of this rule.Name should be unique within the policy.",
+											Description:         "Name describes the intention of this rule. Name should be unique within the policy.",
+											MarkdownDescription: "Name describes the intention of this rule. Name should be unique within the policy.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"ports": schema.ListNestedAttribute{
-											Description:         "Set of ports and protocols matched by the rule. If this field and Protocolsare unset or empty, this rule matches all ports.",
-											MarkdownDescription: "Set of ports and protocols matched by the rule. If this field and Protocolsare unset or empty, this rule matches all ports.",
+											Description:         "Set of ports and protocols matched by the rule. If this field and Protocols are unset or empty, this rule matches all ports.",
+											MarkdownDescription: "Set of ports and protocols matched by the rule. If this field and Protocols are unset or empty, this rule matches all ports.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"end_port": schema.Int64Attribute{
-														Description:         "EndPort defines the end of the port range, inclusive.It can only be specified when a numerical 'port' is specified.",
-														MarkdownDescription: "EndPort defines the end of the port range, inclusive.It can only be specified when a numerical 'port' is specified.",
+														Description:         "EndPort defines the end of the port range, inclusive. It can only be specified when a numerical 'port' is specified.",
+														MarkdownDescription: "EndPort defines the end of the port range, inclusive. It can only be specified when a numerical 'port' is specified.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"port": schema.StringAttribute{
-														Description:         "The port on the given protocol. This can be either a numericalor named port on a Pod. If this field is not provided, thismatches all port names and numbers.",
-														MarkdownDescription: "The port on the given protocol. This can be either a numericalor named port on a Pod. If this field is not provided, thismatches all port names and numbers.",
+														Description:         "The port on the given protocol. This can be either a numerical or named port on a Pod. If this field is not provided, this matches all port names and numbers.",
+														MarkdownDescription: "The port on the given protocol. This can be either a numerical or named port on a Pod. If this field is not provided, this matches all port names and numbers.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "The protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.",
-														MarkdownDescription: "The protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.",
+														Description:         "The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
+														MarkdownDescription: "The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"source_end_port": schema.Int64Attribute{
-														Description:         "SourceEndPort defines the end of the source port range, inclusive.It can only be specified when 'sourcePort' is specified.",
-														MarkdownDescription: "SourceEndPort defines the end of the source port range, inclusive.It can only be specified when 'sourcePort' is specified.",
+														Description:         "SourceEndPort defines the end of the source port range, inclusive. It can only be specified when 'sourcePort' is specified.",
+														MarkdownDescription: "SourceEndPort defines the end of the source port range, inclusive. It can only be specified when 'sourcePort' is specified.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"source_port": schema.Int64Attribute{
-														Description:         "The source port on the given protocol. This can only be a numerical port.If this field is not provided, rule matches all source ports.",
-														MarkdownDescription: "The source port on the given protocol. This can only be a numerical port.If this field is not provided, rule matches all source ports.",
+														Description:         "The source port on the given protocol. This can only be a numerical port. If this field is not provided, rule matches all source ports.",
+														MarkdownDescription: "The source port on the given protocol. This can only be a numerical port. If this field is not provided, rule matches all source ports.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2920,13 +2920,13 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"protocols": schema.ListNestedAttribute{
-											Description:         "Set of protocols matched by the rule. If this field and Ports are unset orempty, this rule matches all protocols supported.",
-											MarkdownDescription: "Set of protocols matched by the rule. If this field and Ports are unset orempty, this rule matches all protocols supported.",
+											Description:         "Set of protocols matched by the rule. If this field and Ports are unset or empty, this rule matches all protocols supported.",
+											MarkdownDescription: "Set of protocols matched by the rule. If this field and Ports are unset or empty, this rule matches all protocols supported.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"icmp": schema.SingleNestedAttribute{
-														Description:         "ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. Allfields could be used alone or together. If all fields are not provided, thismatches all ICMP traffic.",
-														MarkdownDescription: "ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. Allfields could be used alone or together. If all fields are not provided, thismatches all ICMP traffic.",
+														Description:         "ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. All fields could be used alone or together. If all fields are not provided, this matches all ICMP traffic.",
+														MarkdownDescription: "ICMPProtocol matches ICMP traffic with specific ICMPType and/or ICMPCode. All fields could be used alone or together. If all fields are not provided, this matches all ICMP traffic.",
 														Attributes: map[string]schema.Attribute{
 															"icmp_code": schema.Int64Attribute{
 																Description:         "",
@@ -2950,8 +2950,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"igmp": schema.SingleNestedAttribute{
-														Description:         "IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType mustbe filled with:IGMPQuery    int32 = 0x11IGMPReportV1 int32 = 0x12IGMPReportV2 int32 = 0x16IGMPReportV3 int32 = 0x22If groupAddress is empty, all groupAddresses will be matched.",
-														MarkdownDescription: "IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType mustbe filled with:IGMPQuery    int32 = 0x11IGMPReportV1 int32 = 0x12IGMPReportV2 int32 = 0x16IGMPReportV3 int32 = 0x22If groupAddress is empty, all groupAddresses will be matched.",
+														Description:         "IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType must be filled with: IGMPQuery int32 = 0x11 IGMPReportV1 int32 = 0x12 IGMPReportV2 int32 = 0x16 IGMPReportV3 int32 = 0x22 If groupAddress is empty, all groupAddresses will be matched.",
+														MarkdownDescription: "IGMPProtocol matches IGMP traffic with IGMPType and GroupAddress. IGMPType must be filled with: IGMPQuery int32 = 0x11 IGMPReportV1 int32 = 0x12 IGMPReportV2 int32 = 0x16 IGMPReportV3 int32 = 0x22 If groupAddress is empty, all groupAddresses will be matched.",
 														Attributes: map[string]schema.Attribute{
 															"group_address": schema.StringAttribute{
 																Description:         "",
@@ -2981,13 +2981,13 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"to": schema.ListNestedAttribute{
-											Description:         "Rule is matched if traffic is intended for workloads selected bythis field. This field can't be used with ToServices. If this fieldand ToServices are both empty or missing this rule matches all destinations.",
-											MarkdownDescription: "Rule is matched if traffic is intended for workloads selected bythis field. This field can't be used with ToServices. If this fieldand ToServices are both empty or missing this rule matches all destinations.",
+											Description:         "Rule is matched if traffic is intended for workloads selected by this field. This field can't be used with ToServices. If this field and ToServices are both empty or missing this rule matches all destinations.",
+											MarkdownDescription: "Rule is matched if traffic is intended for workloads selected by this field. This field can't be used with ToServices. If this field and ToServices are both empty or missing this rule matches all destinations.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"external_entity_selector": schema.SingleNestedAttribute{
-														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloadsin To/From fields. If set with NamespaceSelector,ExternalEntities are matched from Namespaces matched by theNamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select ExternalEntities from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, ExternalEntities are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3003,16 +3003,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3026,8 +3026,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3040,28 +3040,28 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"fqdn": schema.StringAttribute{
-														Description:         "Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
-														MarkdownDescription: "Restrict egress access to the Fully Qualified Domain Names prescribedby name or by wildcard match patterns. This field can only be set forNetworkPolicyPeer of egress rules.Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
+														Description:         "Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
+														MarkdownDescription: "Restrict egress access to the Fully Qualified Domain Names prescribed by name or by wildcard match patterns. This field can only be set for NetworkPolicyPeer of egress rules. Supported formats are: Exact FQDNs such as 'google.com'. Wildcard expressions such as '*wayfair.com'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"group": schema.StringAttribute{
-														Description:         "Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.",
-														MarkdownDescription: "Group is the name of the ClusterGroup which can be set withinan Ingress or Egress rule in place of a stand-alone selector.A Group cannot be set with any other selector.",
+														Description:         "Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.",
+														MarkdownDescription: "Group is the name of the ClusterGroup which can be set within an Ingress or Egress rule in place of a stand-alone selector. A Group cannot be set with any other selector.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"ip_block": schema.SingleNestedAttribute{
-														Description:         "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector.",
-														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from.IPBlock cannot be set as part of the AppliedTo field.Cannot be set with any other selector.",
+														Description:         "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
+														MarkdownDescription: "IPBlock describes the IPAddresses/IPBlocks that is matched in to/from. IPBlock cannot be set as part of the AppliedTo field. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"cidr": schema.StringAttribute{
-																Description:         "CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.",
-																MarkdownDescription: "CIDR is a string representing the IP BlockValid examples are '192.168.1.1/24'.",
+																Description:         "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
+																MarkdownDescription: "CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24'.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -3073,8 +3073,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"namespace_selector": schema.SingleNestedAttribute{
-														Description:         "Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
-														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, asworkloads in To/From fields. If set with PodSelector,Pods are matched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except PodSelector orExternalEntitySelector. Cannot be set with Namespaces.",
+														Description:         "Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
+														MarkdownDescription: "Select all Pods from Namespaces matched by this selector, as workloads in To/From fields. If set with PodSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. Cannot be set with Namespaces.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3090,16 +3090,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3113,8 +3113,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3127,8 +3127,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"namespaces": schema.SingleNestedAttribute{
-														Description:         "Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector.",
-														MarkdownDescription: "Select Pod/ExternalEntity from Namespaces matched by specific criteria.Current supported criteria is match: Self, which selects from the sameNamespace of the appliedTo workloads.Cannot be set with any other selector except PodSelector orExternalEntitySelector. This field can only be set when NetworkPolicyPeeris created for ClusterNetworkPolicy ingress/egress rules.Cannot be set with NamespaceSelector.",
+														Description:         "Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector.",
+														MarkdownDescription: "Select Pod/ExternalEntity from Namespaces matched by specific criteria. Current supported criteria is match: Self, which selects from the same Namespace of the appliedTo workloads. Cannot be set with any other selector except PodSelector or ExternalEntitySelector. This field can only be set when NetworkPolicyPeer is created for ClusterNetworkPolicy ingress/egress rules. Cannot be set with NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match": schema.StringAttribute{
 																Description:         "Selects from the same Namespace of the appliedTo workloads.",
@@ -3139,8 +3139,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"same_labels": schema.ListAttribute{
-																Description:         "Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.",
-																MarkdownDescription: "Selects Namespaces that share the same values for the given set of label keyswith the appliedTo Namespace. Namespaces must have all the label keys.",
+																Description:         "Selects Namespaces that share the same values for the given set of label keys with the appliedTo Namespace. Namespaces must have all the label keys.",
+																MarkdownDescription: "Selects Namespaces that share the same values for the given set of label keys with the appliedTo Namespace. Namespaces must have all the label keys.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3153,8 +3153,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"node_selector": schema.SingleNestedAttribute{
-														Description:         "Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector.",
-														MarkdownDescription: "Select certain Nodes which match the label selector.A NodeSelector cannot be set with any other selector.",
+														Description:         "Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector.",
+														MarkdownDescription: "Select certain Nodes which match the label selector. A NodeSelector cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3170,16 +3170,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3193,8 +3193,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3207,8 +3207,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"pod_selector": schema.SingleNestedAttribute{
-														Description:         "Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
-														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads inTo/From fields. If set with NamespaceSelector, Pods arematched from Namespaces matched by the NamespaceSelector.Cannot be set with any other selector except NamespaceSelector.",
+														Description:         "Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
+														MarkdownDescription: "Select Pods from NetworkPolicy's Namespace as workloads in To/From fields. If set with NamespaceSelector, Pods are matched from Namespaces matched by the NamespaceSelector. Cannot be set with any other selector except NamespaceSelector.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3224,16 +3224,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3247,8 +3247,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3261,16 +3261,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"scope": schema.StringAttribute{
-														Description:         "Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.",
-														MarkdownDescription: "Define scope of the Pod/NamespaceSelector(s) of this peer.Can only be used in ingress NetworkPolicyPeers.Defaults to 'Cluster'.",
+														Description:         "Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.",
+														MarkdownDescription: "Define scope of the Pod/NamespaceSelector(s) of this peer. Can only be used in ingress NetworkPolicyPeers. Defaults to 'Cluster'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"service_account": schema.SingleNestedAttribute{
-														Description:         "Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector.",
-														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, asworkloads in To/From fields.Cannot be set with any other selector.",
+														Description:         "Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector.",
+														MarkdownDescription: "Select all Pods with the ServiceAccount matched by this field, as workloads in To/From fields. Cannot be set with any other selector.",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
 																Description:         "",
@@ -3300,8 +3300,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"to_services": schema.ListNestedAttribute{
-											Description:         "Rule is matched if traffic is intended for a Service listed in this field.Currently, only ClusterIP types Services are supported in this field.When scope is set to ClusterSet, it matches traffic intended for a multi-clusterService listed in this field. Service name and Namespace provided should matchthe original exported Service.This field can only be used when AntreaProxy is enabled. This field can't be usedwith To or Ports. If this field and To are both empty or missing, this rule matchesall destinations.",
-											MarkdownDescription: "Rule is matched if traffic is intended for a Service listed in this field.Currently, only ClusterIP types Services are supported in this field.When scope is set to ClusterSet, it matches traffic intended for a multi-clusterService listed in this field. Service name and Namespace provided should matchthe original exported Service.This field can only be used when AntreaProxy is enabled. This field can't be usedwith To or Ports. If this field and To are both empty or missing, this rule matchesall destinations.",
+											Description:         "Rule is matched if traffic is intended for a Service listed in this field. Currently, only ClusterIP types Services are supported in this field. When scope is set to ClusterSet, it matches traffic intended for a multi-cluster Service listed in this field. Service name and Namespace provided should match the original exported Service. This field can only be used when AntreaProxy is enabled. This field can't be used with To or Ports. If this field and To are both empty or missing, this rule matches all destinations.",
+											MarkdownDescription: "Rule is matched if traffic is intended for a Service listed in this field. Currently, only ClusterIP types Services are supported in this field. When scope is set to ClusterSet, it matches traffic intended for a multi-cluster Service listed in this field. Service name and Namespace provided should match the original exported Service. This field can only be used when AntreaProxy is enabled. This field can't be used with To or Ports. If this field and To are both empty or missing, this rule matches all destinations.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
@@ -3341,16 +3341,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 							},
 
 							"priority": schema.Float64Attribute{
-								Description:         "Priority specfies the order of the ClusterNetworkPolicy relative toother AntreaClusterNetworkPolicies.",
-								MarkdownDescription: "Priority specfies the order of the ClusterNetworkPolicy relative toother AntreaClusterNetworkPolicies.",
+								Description:         "Priority specfies the order of the ClusterNetworkPolicy relative to other AntreaClusterNetworkPolicies.",
+								MarkdownDescription: "Priority specfies the order of the ClusterNetworkPolicy relative to other AntreaClusterNetworkPolicies.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"tier": schema.StringAttribute{
-								Description:         "Tier specifies the tier to which this ClusterNetworkPolicy belongs to.The ClusterNetworkPolicy order will be determined based on thecombination of the Tier's Priority and the ClusterNetworkPolicy's ownPriority. If not specified, this policy will be created in the ApplicationTier right above the K8s NetworkPolicy which resides at the bottom.",
-								MarkdownDescription: "Tier specifies the tier to which this ClusterNetworkPolicy belongs to.The ClusterNetworkPolicy order will be determined based on thecombination of the Tier's Priority and the ClusterNetworkPolicy's ownPriority. If not specified, this policy will be created in the ApplicationTier right above the K8s NetworkPolicy which resides at the bottom.",
+								Description:         "Tier specifies the tier to which this ClusterNetworkPolicy belongs to. The ClusterNetworkPolicy order will be determined based on the combination of the Tier's Priority and the ClusterNetworkPolicy's own Priority. If not specified, this policy will be created in the Application Tier right above the K8s NetworkPolicy which resides at the bottom.",
+								MarkdownDescription: "Tier specifies the tier to which this ClusterNetworkPolicy belongs to. The ClusterNetworkPolicy order will be determined based on the combination of the Tier's Priority and the ClusterNetworkPolicy's own Priority. If not specified, this policy will be created in the Application Tier right above the K8s NetworkPolicy which resides at the bottom.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3371,8 +3371,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"addresses": schema.ListNestedAttribute{
-											Description:         "IP addresses which offer the related ports that are marked as ready. These endpointsshould be considered safe for load balancers and clients to utilize.",
-											MarkdownDescription: "IP addresses which offer the related ports that are marked as ready. These endpointsshould be considered safe for load balancers and clients to utilize.",
+											Description:         "IP addresses which offer the related ports that are marked as ready. These endpoints should be considered safe for load balancers and clients to utilize.",
+											MarkdownDescription: "IP addresses which offer the related ports that are marked as ready. These endpoints should be considered safe for load balancers and clients to utilize.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"hostname": schema.StringAttribute{
@@ -3384,8 +3384,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"ip": schema.StringAttribute{
-														Description:         "The IP of this endpoint.May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10),or link-local multicast (224.0.0.0/24 or ff02::/16).",
-														MarkdownDescription: "The IP of this endpoint.May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10),or link-local multicast (224.0.0.0/24 or ff02::/16).",
+														Description:         "The IP of this endpoint. May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16).",
+														MarkdownDescription: "The IP of this endpoint. May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16).",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -3412,48 +3412,48 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"field_path": schema.StringAttribute{
-																Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
-																MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+																Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+																MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"kind": schema.StringAttribute{
-																Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-																MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-																MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+																Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+																MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"resource_version": schema.StringAttribute{
-																Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-																MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+																Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+																MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"uid": schema.StringAttribute{
-																Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-																MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+																Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+																MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3471,8 +3471,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										},
 
 										"not_ready_addresses": schema.ListNestedAttribute{
-											Description:         "IP addresses which offer the related ports but are not currently marked as readybecause they have not yet finished starting, have recently failed a readiness check,or have recently failed a liveness check.",
-											MarkdownDescription: "IP addresses which offer the related ports but are not currently marked as readybecause they have not yet finished starting, have recently failed a readiness check,or have recently failed a liveness check.",
+											Description:         "IP addresses which offer the related ports but are not currently marked as ready because they have not yet finished starting, have recently failed a readiness check, or have recently failed a liveness check.",
+											MarkdownDescription: "IP addresses which offer the related ports but are not currently marked as ready because they have not yet finished starting, have recently failed a readiness check, or have recently failed a liveness check.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"hostname": schema.StringAttribute{
@@ -3484,8 +3484,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"ip": schema.StringAttribute{
-														Description:         "The IP of this endpoint.May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10),or link-local multicast (224.0.0.0/24 or ff02::/16).",
-														MarkdownDescription: "The IP of this endpoint.May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10),or link-local multicast (224.0.0.0/24 or ff02::/16).",
+														Description:         "The IP of this endpoint. May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16).",
+														MarkdownDescription: "The IP of this endpoint. May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16).",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -3512,48 +3512,48 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 															},
 
 															"field_path": schema.StringAttribute{
-																Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
-																MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+																Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+																MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"kind": schema.StringAttribute{
-																Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-																MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-																MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+																Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+																MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"resource_version": schema.StringAttribute{
-																Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-																MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+																Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+																MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"uid": schema.StringAttribute{
-																Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-																MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+																Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+																MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3576,16 +3576,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"app_protocol": schema.StringAttribute{
-														Description:         "The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-  * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455  * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.",
-														MarkdownDescription: "The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-  * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455  * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.",
+														Description:         "The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: * Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). * Kubernetes-defined prefixed names: * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior- * 'kubernetes.io/ws' - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 * Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.",
+														MarkdownDescription: "The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: * Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). * Kubernetes-defined prefixed names: * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior- * 'kubernetes.io/ws' - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 * Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "The name of this port.  This must match the 'name' field in thecorresponding ServicePort.Must be a DNS_LABEL.Optional only if one port is defined.",
-														MarkdownDescription: "The name of this port.  This must match the 'name' field in thecorresponding ServicePort.Must be a DNS_LABEL.Optional only if one port is defined.",
+														Description:         "The name of this port. This must match the 'name' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined.",
+														MarkdownDescription: "The name of this port. This must match the 'name' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3600,8 +3600,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "The IP protocol for this port.Must be UDP, TCP, or SCTP.Default is TCP.",
-														MarkdownDescription: "The IP protocol for this port.Must be UDP, TCP, or SCTP.Default is TCP.",
+														Description:         "The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.",
+														MarkdownDescription: "The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3660,8 +3660,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 									},
 
 									"external_node": schema.StringAttribute{
-										Description:         "ExternalNode is the opaque identifier of the agent/controller responsiblefor additional processing or handling of this external entity.",
-										MarkdownDescription: "ExternalNode is the opaque identifier of the agent/controller responsiblefor additional processing or handling of this external entity.",
+										Description:         "ExternalNode is the opaque identifier of the agent/controller responsible for additional processing or handling of this external entity.",
+										MarkdownDescription: "ExternalNode is the opaque identifier of the agent/controller responsible for additional processing or handling of this external entity.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3689,8 +3689,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 												},
 
 												"protocol": schema.StringAttribute{
-													Description:         "The protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.",
-													MarkdownDescription: "The protocol (TCP, UDP, or SCTP) which traffic must match.If not specified, this field defaults to TCP.",
+													Description:         "The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
+													MarkdownDescription: "The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3733,8 +3733,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 							},
 
 							"label": schema.StringAttribute{
-								Description:         "Label is the normalized string of a label identity.The format of normalized label identity is 'ns:(?P<nslabels>(.)*)&pod:(?P<podlabels>(.)*)'E.g., 'ns:kubernetes.io/metadata.name=kube-system&pod:app=db'",
-								MarkdownDescription: "Label is the normalized string of a label identity.The format of normalized label identity is 'ns:(?P<nslabels>(.)*)&pod:(?P<podlabels>(.)*)'E.g., 'ns:kubernetes.io/metadata.name=kube-system&pod:app=db'",
+								Description:         "Label is the normalized string of a label identity. The format of normalized label identity is 'ns:(?P<nslabels>(.)*)&pod:(?P<podlabels>(.)*)' E.g., 'ns:kubernetes.io/metadata.name=kube-system&pod:app=db'",
+								MarkdownDescription: "Label is the normalized string of a label identity. The format of normalized label identity is 'ns:(?P<nslabels>(.)*)&pod:(?P<podlabels>(.)*)' E.g., 'ns:kubernetes.io/metadata.name=kube-system&pod:app=db'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3786,16 +3786,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 						MarkdownDescription: "If imported resource is ServiceImport.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
-								Description:         "APIVersion defines the versioned schema of this representation of an object.Servers should convert recognized schemas to the latest internal value, andmay reject unrecognized values.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-								MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object.Servers should convert recognized schemas to the latest internal value, andmay reject unrecognized values.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+								Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+								MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind is a string value representing the REST resource this object represents.Servers may infer this from the endpoint the client submits requests to.Cannot be updated.In CamelCase.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind is a string value representing the REST resource this object represents.Servers may infer this from the endpoint the client submits requests to.Cannot be updated.In CamelCase.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3829,16 +3829,16 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"app_protocol": schema.StringAttribute{
-													Description:         "The application protocol for this port.This field follows standard Kubernetes label syntax.Un-prefixed names are reserved for IANA standard service names (as perRFC-6335 and http://www.iana.org/assignments/service-names).Non-standard protocols should use prefixed names such asmycompany.com/my-custom-protocol.Field can be enabled with ServiceAppProtocol feature gate.",
-													MarkdownDescription: "The application protocol for this port.This field follows standard Kubernetes label syntax.Un-prefixed names are reserved for IANA standard service names (as perRFC-6335 and http://www.iana.org/assignments/service-names).Non-standard protocols should use prefixed names such asmycompany.com/my-custom-protocol.Field can be enabled with ServiceAppProtocol feature gate.",
+													Description:         "The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol. Field can be enabled with ServiceAppProtocol feature gate.",
+													MarkdownDescription: "The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol. Field can be enabled with ServiceAppProtocol feature gate.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "The name of this port within the service. This must be a DNS_LABEL.All ports within a ServiceSpec must have unique names. When consideringthe endpoints for a Service, this must match the 'name' field in theEndpointPort.Optional if only one ServicePort is defined on this service.",
-													MarkdownDescription: "The name of this port within the service. This must be a DNS_LABEL.All ports within a ServiceSpec must have unique names. When consideringthe endpoints for a Service, this must match the 'name' field in theEndpointPort.Optional if only one ServicePort is defined on this service.",
+													Description:         "The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the 'name' field in the EndpointPort. Optional if only one ServicePort is defined on this service.",
+													MarkdownDescription: "The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the 'name' field in the EndpointPort. Optional if only one ServicePort is defined on this service.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3853,8 +3853,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 												},
 
 												"protocol": schema.StringAttribute{
-													Description:         "The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'.Default is TCP.",
-													MarkdownDescription: "The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'.Default is TCP.",
+													Description:         "The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'. Default is TCP.",
+													MarkdownDescription: "The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'. Default is TCP.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3867,8 +3867,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 									},
 
 									"session_affinity": schema.StringAttribute{
-										Description:         "Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.Ignored when type is HeadlessMore info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
-										MarkdownDescription: "Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.Ignored when type is HeadlessMore info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+										Description:         "Supports 'ClientIP' and 'None'. Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. Ignored when type is Headless More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
+										MarkdownDescription: "Supports 'ClientIP' and 'None'. Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. Ignored when type is Headless More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3883,8 +3883,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 												MarkdownDescription: "clientIP contains the configurations of Client IP based session affinity.",
 												Attributes: map[string]schema.Attribute{
 													"timeout_seconds": schema.Int64Attribute{
-														Description:         "timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).",
-														MarkdownDescription: "timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).",
+														Description:         "timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).",
+														MarkdownDescription: "timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3901,8 +3901,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 									},
 
 									"type": schema.StringAttribute{
-										Description:         "type defines the type of this service.Must be ClusterSetIP or Headless.",
-										MarkdownDescription: "type defines the type of this service.Must be ClusterSetIP or Headless.",
+										Description:         "type defines the type of this service. Must be ClusterSetIP or Headless.",
+										MarkdownDescription: "type defines the type of this service. Must be ClusterSetIP or Headless.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -3917,17 +3917,17 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 							},
 
 							"status": schema.SingleNestedAttribute{
-								Description:         "status contains information about the exported services that formthe multi-cluster service referenced by this ServiceImport.",
-								MarkdownDescription: "status contains information about the exported services that formthe multi-cluster service referenced by this ServiceImport.",
+								Description:         "status contains information about the exported services that form the multi-cluster service referenced by this ServiceImport.",
+								MarkdownDescription: "status contains information about the exported services that form the multi-cluster service referenced by this ServiceImport.",
 								Attributes: map[string]schema.Attribute{
 									"clusters": schema.ListNestedAttribute{
-										Description:         "clusters is the list of exporting clusters from which this servicewas derived.",
-										MarkdownDescription: "clusters is the list of exporting clusters from which this servicewas derived.",
+										Description:         "clusters is the list of exporting clusters from which this service was derived.",
+										MarkdownDescription: "clusters is the list of exporting clusters from which this service was derived.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"cluster": schema.StringAttribute{
-													Description:         "cluster is the name of the exporting cluster. Must be a valid RFC-1123 DNSlabel.",
-													MarkdownDescription: "cluster is the name of the exporting cluster. Must be a valid RFC-1123 DNSlabel.",
+													Description:         "cluster is the name of the exporting cluster. Must be a valid RFC-1123 DNS label.",
+													MarkdownDescription: "cluster is the name of the exporting cluster. Must be a valid RFC-1123 DNS label.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,

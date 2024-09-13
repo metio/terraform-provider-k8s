@@ -3,12 +3,12 @@
 page_title: "k8s_operator_tigera_io_image_set_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.tigera.io"
 description: |-
-  ImageSet is used to specify image digests for the images that the operator deploys.The name of the ImageSet is expected to be in the format '-'.The 'variant' used is 'enterprise' if the InstallationSpec Variant is'TigeraSecureEnterprise' otherwise it is 'calico'.The 'release' must match the version of the variant that the operator is built to deploy,this version can be obtained by passing the '--version' flag to the operator binary.
+  ImageSet is used to specify image digests for the images that the operator deploys. The name of the ImageSet is expected to be in the format '-'. The 'variant' used is 'enterprise' if the InstallationSpec Variant is 'TigeraSecureEnterprise' otherwise it is 'calico'. The 'release' must match the version of the variant that the operator is built to deploy, this version can be obtained by passing the '--version' flag to the operator binary.
 ---
 
 # k8s_operator_tigera_io_image_set_v1_manifest (Data Source)
 
-ImageSet is used to specify image digests for the images that the operator deploys.The name of the ImageSet is expected to be in the format '<variant>-<release>'.The 'variant' used is 'enterprise' if the InstallationSpec Variant is'TigeraSecureEnterprise' otherwise it is 'calico'.The 'release' must match the version of the variant that the operator is built to deploy,this version can be obtained by passing the '--version' flag to the operator binary.
+ImageSet is used to specify image digests for the images that the operator deploys. The name of the ImageSet is expected to be in the format '<variant>-<release>'. The 'variant' used is 'enterprise' if the InstallationSpec Variant is 'TigeraSecureEnterprise' otherwise it is 'calico'. The 'release' must match the version of the variant that the operator is built to deploy, this version can be obtained by passing the '--version' flag to the operator binary.
 
 ## Example Usage
 
@@ -54,12 +54,12 @@ Optional:
 
 Optional:
 
-- `images` (Attributes List) Images is the list of images to use digests. All images that the operator will deploymust be specified. (see [below for nested schema](#nestedatt--spec--images))
+- `images` (Attributes List) Images is the list of images to use digests. All images that the operator will deploy must be specified. (see [below for nested schema](#nestedatt--spec--images))
 
 <a id="nestedatt--spec--images"></a>
 ### Nested Schema for `spec.images`
 
 Required:
 
-- `digest` (String) Digest is the image identifier that will be used for the Image.The field should not include a leading '@' and must be prefixed with 'sha256:'.
-- `image` (String) Image is an image that the operator deploys and instead of using the built in tagthe operator will use the Digest for the image identifier.The value should be the image name without registry or tag or digest.For the image 'docker.io/calico/node:v3.17.1' it should be represented as 'calico/node'
+- `digest` (String) Digest is the image identifier that will be used for the Image. The field should not include a leading '@' and must be prefixed with 'sha256:'.
+- `image` (String) Image is an image that the operator deploys and instead of using the built in tag the operator will use the Digest for the image identifier. The value should be the image name without registry or tag or digest. For the image 'docker.io/calico/node:v3.17.1' it should be represented as 'calico/node'

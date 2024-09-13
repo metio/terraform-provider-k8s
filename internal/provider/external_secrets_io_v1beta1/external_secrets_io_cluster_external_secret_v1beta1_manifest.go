@@ -280,8 +280,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"remote_ref": schema.SingleNestedAttribute{
-											Description:         "RemoteRef points to the remote secret and defineswhich secret (version/property/..) to fetch.",
-											MarkdownDescription: "RemoteRef points to the remote secret and defineswhich secret (version/property/..) to fetch.",
+											Description:         "RemoteRef points to the remote secret and defines which secret (version/property/..) to fetch.",
+											MarkdownDescription: "RemoteRef points to the remote secret and defines which secret (version/property/..) to fetch.",
 											Attributes: map[string]schema.Attribute{
 												"conversion_strategy": schema.StringAttribute{
 													Description:         "Used to define a conversion Strategy",
@@ -346,20 +346,20 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 										},
 
 										"secret_key": schema.StringAttribute{
-											Description:         "SecretKey defines the key in which the controller storesthe value. This is the key in the Kind=Secret",
-											MarkdownDescription: "SecretKey defines the key in which the controller storesthe value. This is the key in the Kind=Secret",
+											Description:         "SecretKey defines the key in which the controller stores the value. This is the key in the Kind=Secret",
+											MarkdownDescription: "SecretKey defines the key in which the controller stores the value. This is the key in the Kind=Secret",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"source_ref": schema.SingleNestedAttribute{
-											Description:         "SourceRef allows you to override the sourcefrom which the value will pulled from.",
-											MarkdownDescription: "SourceRef allows you to override the sourcefrom which the value will pulled from.",
+											Description:         "SourceRef allows you to override the source from which the value will pulled from.",
+											MarkdownDescription: "SourceRef allows you to override the source from which the value will pulled from.",
 											Attributes: map[string]schema.Attribute{
 												"generator_ref": schema.SingleNestedAttribute{
-													Description:         "GeneratorRef points to a generator custom resource.Deprecated: The generatorRef is not implemented in .data[].this will be removed with v1.",
-													MarkdownDescription: "GeneratorRef points to a generator custom resource.Deprecated: The generatorRef is not implemented in .data[].this will be removed with v1.",
+													Description:         "GeneratorRef points to a generator custom resource. Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.",
+													MarkdownDescription: "GeneratorRef points to a generator custom resource. Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
 															Description:         "Specify the apiVersion of the generator resource",
@@ -395,8 +395,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 													MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
 													Attributes: map[string]schema.Attribute{
 														"kind": schema.StringAttribute{
-															Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
-															MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
+															Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+															MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -427,13 +427,13 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 							},
 
 							"data_from": schema.ListNestedAttribute{
-								Description:         "DataFrom is used to fetch all properties from a specific Provider dataIf multiple entries are specified, the Secret keys are merged in the specified order",
-								MarkdownDescription: "DataFrom is used to fetch all properties from a specific Provider dataIf multiple entries are specified, the Secret keys are merged in the specified order",
+								Description:         "DataFrom is used to fetch all properties from a specific Provider data If multiple entries are specified, the Secret keys are merged in the specified order",
+								MarkdownDescription: "DataFrom is used to fetch all properties from a specific Provider data If multiple entries are specified, the Secret keys are merged in the specified order",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"extract": schema.SingleNestedAttribute{
-											Description:         "Used to extract multiple key/value pairs from one secretNote: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.",
-											MarkdownDescription: "Used to extract multiple key/value pairs from one secretNote: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.",
+											Description:         "Used to extract multiple key/value pairs from one secret Note: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.",
+											MarkdownDescription: "Used to extract multiple key/value pairs from one secret Note: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.",
 											Attributes: map[string]schema.Attribute{
 												"conversion_strategy": schema.StringAttribute{
 													Description:         "Used to define a conversion Strategy",
@@ -498,8 +498,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 										},
 
 										"find": schema.SingleNestedAttribute{
-											Description:         "Used to find secrets based on tags or regular expressionsNote: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.",
-											MarkdownDescription: "Used to find secrets based on tags or regular expressionsNote: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.",
+											Description:         "Used to find secrets based on tags or regular expressions Note: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.",
+											MarkdownDescription: "Used to find secrets based on tags or regular expressions Note: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.",
 											Attributes: map[string]schema.Attribute{
 												"conversion_strategy": schema.StringAttribute{
 													Description:         "Used to define a conversion Strategy",
@@ -563,13 +563,13 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 										},
 
 										"rewrite": schema.ListNestedAttribute{
-											Description:         "Used to rewrite secret Keys after getting them from the secret ProviderMultiple Rewrite operations can be provided. They are applied in a layered order (first to last)",
-											MarkdownDescription: "Used to rewrite secret Keys after getting them from the secret ProviderMultiple Rewrite operations can be provided. They are applied in a layered order (first to last)",
+											Description:         "Used to rewrite secret Keys after getting them from the secret Provider Multiple Rewrite operations can be provided. They are applied in a layered order (first to last)",
+											MarkdownDescription: "Used to rewrite secret Keys after getting them from the secret Provider Multiple Rewrite operations can be provided. They are applied in a layered order (first to last)",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"regexp": schema.SingleNestedAttribute{
-														Description:         "Used to rewrite with regular expressions.The resulting key will be the output of a regexp.ReplaceAll operation.",
-														MarkdownDescription: "Used to rewrite with regular expressions.The resulting key will be the output of a regexp.ReplaceAll operation.",
+														Description:         "Used to rewrite with regular expressions. The resulting key will be the output of a regexp.ReplaceAll operation.",
+														MarkdownDescription: "Used to rewrite with regular expressions. The resulting key will be the output of a regexp.ReplaceAll operation.",
 														Attributes: map[string]schema.Attribute{
 															"source": schema.StringAttribute{
 																Description:         "Used to define the regular expression of a re.Compiler.",
@@ -593,12 +593,12 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 													},
 
 													"transform": schema.SingleNestedAttribute{
-														Description:         "Used to apply string transformation on the secrets.The resulting key will be the output of the template applied by the operation.",
-														MarkdownDescription: "Used to apply string transformation on the secrets.The resulting key will be the output of the template applied by the operation.",
+														Description:         "Used to apply string transformation on the secrets. The resulting key will be the output of the template applied by the operation.",
+														MarkdownDescription: "Used to apply string transformation on the secrets. The resulting key will be the output of the template applied by the operation.",
 														Attributes: map[string]schema.Attribute{
 															"template": schema.StringAttribute{
-																Description:         "Used to define the template to apply on the secret name.'.value ' will specify the secret name in the template.",
-																MarkdownDescription: "Used to define the template to apply on the secret name.'.value ' will specify the secret name in the template.",
+																Description:         "Used to define the template to apply on the secret name. '.value ' will specify the secret name in the template.",
+																MarkdownDescription: "Used to define the template to apply on the secret name. '.value ' will specify the secret name in the template.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -616,8 +616,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 										},
 
 										"source_ref": schema.SingleNestedAttribute{
-											Description:         "SourceRef points to a store or generatorwhich contains secret values ready to use.Use this in combination with Extract or Find pull values out ofa specific SecretStore.When sourceRef points to a generator Extract or Find is not supported.The generator returns a static map of values",
-											MarkdownDescription: "SourceRef points to a store or generatorwhich contains secret values ready to use.Use this in combination with Extract or Find pull values out ofa specific SecretStore.When sourceRef points to a generator Extract or Find is not supported.The generator returns a static map of values",
+											Description:         "SourceRef points to a store or generator which contains secret values ready to use. Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values",
+											MarkdownDescription: "SourceRef points to a store or generator which contains secret values ready to use. Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values",
 											Attributes: map[string]schema.Attribute{
 												"generator_ref": schema.SingleNestedAttribute{
 													Description:         "GeneratorRef points to a generator custom resource.",
@@ -657,8 +657,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 													MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
 													Attributes: map[string]schema.Attribute{
 														"kind": schema.StringAttribute{
-															Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
-															MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
+															Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+															MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -689,8 +689,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 							},
 
 							"refresh_interval": schema.StringAttribute{
-								Description:         "RefreshInterval is the amount of time before the values are read again from the SecretStore providerValid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'May be set to zero to fetch and create it once. Defaults to 1h.",
-								MarkdownDescription: "RefreshInterval is the amount of time before the values are read again from the SecretStore providerValid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'May be set to zero to fetch and create it once. Defaults to 1h.",
+								Description:         "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
+								MarkdownDescription: "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -701,8 +701,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 								MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
 								Attributes: map[string]schema.Attribute{
 									"kind": schema.StringAttribute{
-										Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
-										MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
+										Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+										MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -722,12 +722,12 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 							},
 
 							"target": schema.SingleNestedAttribute{
-								Description:         "ExternalSecretTarget defines the Kubernetes Secret to be createdThere can be only one target per ExternalSecret.",
-								MarkdownDescription: "ExternalSecretTarget defines the Kubernetes Secret to be createdThere can be only one target per ExternalSecret.",
+								Description:         "ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.",
+								MarkdownDescription: "ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.",
 								Attributes: map[string]schema.Attribute{
 									"creation_policy": schema.StringAttribute{
-										Description:         "CreationPolicy defines rules on how to create the resulting SecretDefaults to 'Owner'",
-										MarkdownDescription: "CreationPolicy defines rules on how to create the resulting SecretDefaults to 'Owner'",
+										Description:         "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
+										MarkdownDescription: "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -737,8 +737,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 									},
 
 									"deletion_policy": schema.StringAttribute{
-										Description:         "DeletionPolicy defines rules on how to delete the resulting SecretDefaults to 'Retain'",
-										MarkdownDescription: "DeletionPolicy defines rules on how to delete the resulting SecretDefaults to 'Retain'",
+										Description:         "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
+										MarkdownDescription: "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -756,8 +756,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name defines the name of the Secret resource to be managedThis field is immutableDefaults to the .metadata.name of the ExternalSecret resource",
-										MarkdownDescription: "Name defines the name of the Secret resource to be managedThis field is immutableDefaults to the .metadata.name of the ExternalSecret resource",
+										Description:         "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
+										MarkdownDescription: "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -777,8 +777,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 											},
 
 											"engine_version": schema.StringAttribute{
-												Description:         "EngineVersion specifies the template engine versionthat should be used to compile/execute thetemplate specified in .data and .templateFrom[].",
-												MarkdownDescription: "EngineVersion specifies the template engine versionthat should be used to compile/execute thetemplate specified in .data and .templateFrom[].",
+												Description:         "EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].",
+												MarkdownDescription: "EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -973,8 +973,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 					},
 
 					"namespace_selector": schema.SingleNestedAttribute{
-						Description:         "The labels to select by to find the Namespaces to create the ExternalSecrets in.Deprecated: Use NamespaceSelectors instead.",
-						MarkdownDescription: "The labels to select by to find the Namespaces to create the ExternalSecrets in.Deprecated: Use NamespaceSelectors instead.",
+						Description:         "The labels to select by to find the Namespaces to create the ExternalSecrets in. Deprecated: Use NamespaceSelectors instead.",
+						MarkdownDescription: "The labels to select by to find the Namespaces to create the ExternalSecrets in. Deprecated: Use NamespaceSelectors instead.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -990,16 +990,16 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1013,8 +1013,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1045,16 +1045,16 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 											},
 
 											"operator": schema.StringAttribute{
-												Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-												MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"values": schema.ListAttribute{
-												Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1068,8 +1068,8 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Manifest) Schema(_ context
 								},
 
 								"match_labels": schema.MapAttribute{
-									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,

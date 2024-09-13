@@ -177,8 +177,8 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Manifest) Schema(_ context.Con
 				MarkdownDescription: "Configuration for access control on workloads. See more details at: https://istio.io/docs/reference/config/security/authorization-policy.html",
 				Attributes: map[string]schema.Attribute{
 					"action": schema.StringAttribute{
-						Description:         "Optional.Valid Options: ALLOW, DENY, AUDIT, CUSTOM",
-						MarkdownDescription: "Optional.Valid Options: ALLOW, DENY, AUDIT, CUSTOM",
+						Description:         "Optional. Valid Options: ALLOW, DENY, AUDIT, CUSTOM",
+						MarkdownDescription: "Optional. Valid Options: ALLOW, DENY, AUDIT, CUSTOM",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

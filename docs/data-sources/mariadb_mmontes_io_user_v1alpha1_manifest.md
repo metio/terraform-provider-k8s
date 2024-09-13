@@ -3,12 +3,12 @@
 page_title: "k8s_mariadb_mmontes_io_user_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "mariadb.mmontes.io"
 description: |-
-  User is the Schema for the users API.  It is used to define grants as if you were running a 'CREATE USER' statement.
+  User is the Schema for the users API. It is used to define grants as if you were running a 'CREATE USER' statement.
 ---
 
 # k8s_mariadb_mmontes_io_user_v1alpha1_manifest (Data Source)
 
-User is the Schema for the users API.  It is used to define grants as if you were running a 'CREATE USER' statement.
+User is the Schema for the users API. It is used to define grants as if you were running a 'CREATE USER' statement.
 
 ## Example Usage
 
@@ -86,7 +86,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 

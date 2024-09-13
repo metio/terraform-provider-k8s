@@ -129,8 +129,8 @@ func (r *AzureMicrosoftComAzureSqlvnetRuleV1Alpha1Manifest) Schema(_ context.Con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized. AzureSQLVNetRuleSpec defines the desired state of AzureSQLVNetRule",
-				MarkdownDescription: "NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized. AzureSQLVNetRuleSpec defines the desired state of AzureSQLVNetRule",
+				Description:         "NOTE: json tags are required. Any new fields you add must have json tags for the fields to be serialized. AzureSQLVNetRuleSpec defines the desired state of AzureSQLVNetRule",
+				MarkdownDescription: "NOTE: json tags are required. Any new fields you add must have json tags for the fields to be serialized. AzureSQLVNetRuleSpec defines the desired state of AzureSQLVNetRule",
 				Attributes: map[string]schema.Attribute{
 					"ignore_missing_service_endpoint": schema.BoolAttribute{
 						Description:         "",

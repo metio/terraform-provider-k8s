@@ -58,7 +58,7 @@ Optional:
 
 - `age` (Attributes List) Age configuration (see [below for nested schema](#nestedatt--sops--age))
 - `azure_kv` (Attributes List) Azure KMS configuration (see [below for nested schema](#nestedatt--sops--azure_kv))
-- `encrypted_regex` (String) Regex used to encrypt SopsSecret resourceThis opstion should be used with more care, as it can make resource unapplicable to the cluster.
+- `encrypted_regex` (String) Regex used to encrypt SopsSecret resource This opstion should be used with more care, as it can make resource unapplicable to the cluster.
 - `encrypted_suffix` (String) Suffix used to encrypt SopsSecret resource
 - `gcp_kms` (Attributes List) Gcp KMS configuration (see [below for nested schema](#nestedatt--sops--gcp_kms))
 - `hc_vault` (Attributes List) Hashicorp Vault KMS configurarion (see [below for nested schema](#nestedatt--sops--hc_vault))
@@ -155,7 +155,7 @@ Required:
 Optional:
 
 - `annotations` (Map of String) Annotations to apply to Kubernetes secret
-- `data` (Map of String) Data map to use in Kubernetes secret (equivalent to Kubernetes Secret object data, please see for moreinformation: https://kubernetes.io/docs/concepts/configuration/secret/#overview-of-secrets)
+- `data` (Map of String) Data map to use in Kubernetes secret (equivalent to Kubernetes Secret object data, please see for more information: https://kubernetes.io/docs/concepts/configuration/secret/#overview-of-secrets)
 - `labels` (Map of String) Labels to apply to Kubernetes secret
-- `string_data` (Map of String) stringData map to use in Kubernetes secret (equivalent to Kubernetes Secret object stringData, please see for moreinformation: https://kubernetes.io/docs/concepts/configuration/secret/#overview-of-secrets)
-- `type` (String) Kubernetes secret type. Default: Opauqe. Possible values: Opauqe,kubernetes.io/service-account-token, kubernetes.io/dockercfg,kubernetes.io/dockerconfigjson, kubernetes.io/basic-auth,kubernetes.io/ssh-auth, kubernetes.io/tls, bootstrap.kubernetes.io/token
+- `string_data` (Map of String) stringData map to use in Kubernetes secret (equivalent to Kubernetes Secret object stringData, please see for more information: https://kubernetes.io/docs/concepts/configuration/secret/#overview-of-secrets)
+- `type` (String) Kubernetes secret type. Default: Opauqe. Possible values: Opauqe, kubernetes.io/service-account-token, kubernetes.io/dockercfg, kubernetes.io/dockerconfigjson, kubernetes.io/basic-auth, kubernetes.io/ssh-auth, kubernetes.io/tls, bootstrap.kubernetes.io/token

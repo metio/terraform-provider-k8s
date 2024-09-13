@@ -188,8 +188,8 @@ func (r *NetworkingK8SAwsPolicyEndpointV1Alpha1Manifest) Schema(_ context.Contex
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"end_port": schema.Int64Attribute{
-												Description:         "Endport specifies the port range port to endPortport must be defined and an integer, endPort > port",
-												MarkdownDescription: "Endport specifies the port range port to endPortport must be defined and an integer, endPort > port",
+												Description:         "Endport specifies the port range port to endPort port must be defined and an integer, endPort > port",
+												MarkdownDescription: "Endport specifies the port range port to endPort port must be defined and an integer, endPort > port",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -251,8 +251,8 @@ func (r *NetworkingK8SAwsPolicyEndpointV1Alpha1Manifest) Schema(_ context.Contex
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"end_port": schema.Int64Attribute{
-												Description:         "Endport specifies the port range port to endPortport must be defined and an integer, endPort > port",
-												MarkdownDescription: "Endport specifies the port range port to endPortport must be defined and an integer, endPort > port",
+												Description:         "Endport specifies the port range port to endPort port must be defined and an integer, endPort > port",
+												MarkdownDescription: "Endport specifies the port range port to endPort port must be defined and an integer, endPort > port",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -287,8 +287,8 @@ func (r *NetworkingK8SAwsPolicyEndpointV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"pod_isolation": schema.ListAttribute{
-						Description:         "PodIsolation specifies whether the pod needs to be isolated for aparticular traffic direction Ingress or Egress, or both. If default isolation is notspecified, and there are no ingress/egress rules, then the pod is not isolatedfrom the point of view of this policy. This follows the NetworkPolicy spec.PolicyTypes.",
-						MarkdownDescription: "PodIsolation specifies whether the pod needs to be isolated for aparticular traffic direction Ingress or Egress, or both. If default isolation is notspecified, and there are no ingress/egress rules, then the pod is not isolatedfrom the point of view of this policy. This follows the NetworkPolicy spec.PolicyTypes.",
+						Description:         "PodIsolation specifies whether the pod needs to be isolated for a particular traffic direction Ingress or Egress, or both. If default isolation is not specified, and there are no ingress/egress rules, then the pod is not isolated from the point of view of this policy. This follows the NetworkPolicy spec.PolicyTypes.",
+						MarkdownDescription: "PodIsolation specifies whether the pod needs to be isolated for a particular traffic direction Ingress or Egress, or both. If default isolation is not specified, and there are no ingress/egress rules, then the pod is not isolated from the point of view of this policy. This follows the NetworkPolicy spec.PolicyTypes.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -313,16 +313,16 @@ func (r *NetworkingK8SAwsPolicyEndpointV1Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -336,8 +336,8 @@ func (r *NetworkingK8SAwsPolicyEndpointV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -350,8 +350,8 @@ func (r *NetworkingK8SAwsPolicyEndpointV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"pod_selector_endpoints": schema.ListNestedAttribute{
-						Description:         "PodSelectorEndpoints contains information about the podsmatching the podSelector",
-						MarkdownDescription: "PodSelectorEndpoints contains information about the podsmatching the podSelector",
+						Description:         "PodSelectorEndpoints contains information about the pods matching the podSelector",
+						MarkdownDescription: "PodSelectorEndpoints contains information about the pods matching the podSelector",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"host_ip": schema.StringAttribute{

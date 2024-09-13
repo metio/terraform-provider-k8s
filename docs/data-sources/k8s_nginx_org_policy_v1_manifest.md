@@ -30,7 +30,7 @@ data "k8s_k8s_nginx_org_policy_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) PolicySpec is the spec of the Policy resource.The spec includes multiple fields, where each field represents a different policy.Only one policy (field) is allowed. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) PolicySpec is the spec of the Policy resource. The spec includes multiple fields, where each field represents a different policy. Only one policy (field) is allowed. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

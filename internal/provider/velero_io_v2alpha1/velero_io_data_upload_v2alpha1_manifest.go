@@ -137,16 +137,16 @@ func (r *VeleroIoDataUploadV2Alpha1Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "DataUploadSpec is the specification for a DataUpload.",
 				Attributes: map[string]schema.Attribute{
 					"backup_storage_location": schema.StringAttribute{
-						Description:         "BackupStorageLocation is the name of the backup storage locationwhere the backup repository is stored.",
-						MarkdownDescription: "BackupStorageLocation is the name of the backup storage locationwhere the backup repository is stored.",
+						Description:         "BackupStorageLocation is the name of the backup storage location where the backup repository is stored.",
+						MarkdownDescription: "BackupStorageLocation is the name of the backup storage location where the backup repository is stored.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"cancel": schema.BoolAttribute{
-						Description:         "Cancel indicates request to cancel the ongoing DataUpload. It can be setwhen the DataUpload is in InProgress phase",
-						MarkdownDescription: "Cancel indicates request to cancel the ongoing DataUpload. It can be setwhen the DataUpload is in InProgress phase",
+						Description:         "Cancel indicates request to cancel the ongoing DataUpload. It can be set when the DataUpload is in InProgress phase",
+						MarkdownDescription: "Cancel indicates request to cancel the ongoing DataUpload. It can be set when the DataUpload is in InProgress phase",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -195,16 +195,16 @@ func (r *VeleroIoDataUploadV2Alpha1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"datamover": schema.StringAttribute{
-						Description:         "DataMover specifies the data mover to be used by the backup.If DataMover is '' or 'velero', the built-in data mover will be used.",
-						MarkdownDescription: "DataMover specifies the data mover to be used by the backup.If DataMover is '' or 'velero', the built-in data mover will be used.",
+						Description:         "DataMover specifies the data mover to be used by the backup. If DataMover is '' or 'velero', the built-in data mover will be used.",
+						MarkdownDescription: "DataMover specifies the data mover to be used by the backup. If DataMover is '' or 'velero', the built-in data mover will be used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"operation_timeout": schema.StringAttribute{
-						Description:         "OperationTimeout specifies the time used to wait internal operations,before returning error as timeout.",
-						MarkdownDescription: "OperationTimeout specifies the time used to wait internal operations,before returning error as timeout.",
+						Description:         "OperationTimeout specifies the time used to wait internal operations, before returning error as timeout.",
+						MarkdownDescription: "OperationTimeout specifies the time used to wait internal operations, before returning error as timeout.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -219,8 +219,8 @@ func (r *VeleroIoDataUploadV2Alpha1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"source_namespace": schema.StringAttribute{
-						Description:         "SourceNamespace is the original namespace where the volume is backed up from.It is the same namespace for SourcePVC and CSI namespaced objects.",
-						MarkdownDescription: "SourceNamespace is the original namespace where the volume is backed up from.It is the same namespace for SourcePVC and CSI namespaced objects.",
+						Description:         "SourceNamespace is the original namespace where the volume is backed up from. It is the same namespace for SourcePVC and CSI namespaced objects.",
+						MarkdownDescription: "SourceNamespace is the original namespace where the volume is backed up from. It is the same namespace for SourcePVC and CSI namespaced objects.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

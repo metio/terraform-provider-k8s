@@ -203,8 +203,8 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "PolicySpec is the spec of the Policy resource.The spec includes multiple fields, where each field represents a different policy.Only one policy (field) is allowed.",
-				MarkdownDescription: "PolicySpec is the spec of the Policy resource.The spec includes multiple fields, where each field represents a different policy.Only one policy (field) is allowed.",
+				Description:         "PolicySpec is the spec of the Policy resource. The spec includes multiple fields, where each field represents a different policy. Only one policy (field) is allowed.",
+				MarkdownDescription: "PolicySpec is the spec of the Policy resource. The spec includes multiple fields, where each field represents a different policy. Only one policy (field) is allowed.",
 				Attributes: map[string]schema.Attribute{
 					"access_control": schema.SingleNestedAttribute{
 						Description:         "AccessControl defines an access policy based on the source IP of a request.",

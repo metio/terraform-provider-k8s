@@ -55,12 +55,12 @@ Optional:
 
 Optional:
 
-- `container_image_overrides` (Attributes) A structure that allows for default container images and tags to be overridden. Use it in air-gapped networks,networks with private registry mirrors, or to pin a particular container version. Unless otherwise noted, versionsother than the default are not supported. (see [below for nested schema](#nestedatt--spec--container_image_overrides))
-- `container_resource_overrides` (Attributes) The ContainerResourceOverrides allow for customization of the container resource limits and requests.Each container has default requests and limits for both cpu and memory resources. Only explicitly definedoverrides will be applied, otherwise the default values will be used. For example, if the cpu limit for thecontroller's beegfs container is the only resource with an override set, only the controller's beegfs containercpu limit setting will be overridden. Every other value will use the default setting. Storage resources are notused by the BeeGFS CSI driver. Any storage resource values configured will be ignored. (see [below for nested schema](#nestedatt--spec--container_resource_overrides))
-- `log_level` (Number) The logging level of deployed containers expressed as an integer from 0 (low detail) to 5 (high detail). 0only logs errors. 3 logs most RPC requests/responses and some detail about driver actions. 5 logs all RPCrequests/responses, including redundant/frequently occurring ones. Empty defaults to level 3.
-- `node_affinity_controller_service` (Attributes) The controller service consists of a single Pod. It preferably runs on an infrastructure/master node, but therunning node must have the beegfs-utils and beegfs-client packages installed. E.g.'preferred: node-role.kubernetes.io/master Exists' and/or 'required: node.openshift.io/os_id NotIn rhcos'. (see [below for nested schema](#nestedatt--spec--node_affinity_controller_service))
-- `node_affinity_node_service` (Attributes) The node service consists of one Pod running on each eligible node. It runs on every node expected to host aworkload that requires BeeGFS. Running nodes must have the beegfs-utils and beegfs-client packages installed.E.g. 'required: node.openshift.io/os_id NotIn rhcos'. (see [below for nested schema](#nestedatt--spec--node_affinity_node_service))
-- `plugin_config` (Attributes) The top level configuration structure containing default configuration (applied to all file systems on all nodes),file system specific configuration, and node specific configuration. Fields from node and file system specificconfigurations override fields from the default configuration. Often not required. (see [below for nested schema](#nestedatt--spec--plugin_config))
+- `container_image_overrides` (Attributes) A structure that allows for default container images and tags to be overridden. Use it in air-gapped networks, networks with private registry mirrors, or to pin a particular container version. Unless otherwise noted, versions other than the default are not supported. (see [below for nested schema](#nestedatt--spec--container_image_overrides))
+- `container_resource_overrides` (Attributes) The ContainerResourceOverrides allow for customization of the container resource limits and requests. Each container has default requests and limits for both cpu and memory resources. Only explicitly defined overrides will be applied, otherwise the default values will be used. For example, if the cpu limit for the controller's beegfs container is the only resource with an override set, only the controller's beegfs container cpu limit setting will be overridden. Every other value will use the default setting. Storage resources are not used by the BeeGFS CSI driver. Any storage resource values configured will be ignored. (see [below for nested schema](#nestedatt--spec--container_resource_overrides))
+- `log_level` (Number) The logging level of deployed containers expressed as an integer from 0 (low detail) to 5 (high detail). 0 only logs errors. 3 logs most RPC requests/responses and some detail about driver actions. 5 logs all RPC requests/responses, including redundant/frequently occurring ones. Empty defaults to level 3.
+- `node_affinity_controller_service` (Attributes) The controller service consists of a single Pod. It preferably runs on an infrastructure/master node, but the running node must have the beegfs-utils and beegfs-client packages installed. E.g. 'preferred: node-role.kubernetes.io/master Exists' and/or 'required: node.openshift.io/os_id NotIn rhcos'. (see [below for nested schema](#nestedatt--spec--node_affinity_controller_service))
+- `node_affinity_node_service` (Attributes) The node service consists of one Pod running on each eligible node. It runs on every node expected to host a workload that requires BeeGFS. Running nodes must have the beegfs-utils and beegfs-client packages installed. E.g. 'required: node.openshift.io/os_id NotIn rhcos'. (see [below for nested schema](#nestedatt--spec--node_affinity_node_service))
+- `plugin_config` (Attributes) The top level configuration structure containing default configuration (applied to all file systems on all nodes), file system specific configuration, and node specific configuration. Fields from node and file system specific configurations override fields from the default configuration. Often not required. (see [below for nested schema](#nestedatt--spec--plugin_config))
 
 <a id="nestedatt--spec--container_image_overrides"></a>
 ### Nested Schema for `spec.container_image_overrides`
@@ -124,27 +124,27 @@ Optional:
 
 Optional:
 
-- `controller_beegfs` (Attributes) The resource specifications for the beegfs container of the BeeGFS driver controller pod.The default values for requests are (cpu: 100m, memory: 16Mi).The default values for limits are (cpu: None, memory: 256Mi). (see [below for nested schema](#nestedatt--spec--container_resource_overrides--controller_beegfs))
-- `controller_csi_provisioner` (Attributes) The resource specifications for the csi-provisioner container of the BeeGFS driver controller pod.The default values for requests are (cpu: 80m, memory: 24Mi)The default values for limits are (cpu: None, memory 256Mi) (see [below for nested schema](#nestedatt--spec--container_resource_overrides--controller_csi_provisioner))
-- `node_beegfs` (Attributes) The resource specifications for the beegfs container of the BeeGFS driver node pod.The default values for requests are (cpu: 100m, memory: 20Mi)The default values for limits are (cpu: None, memory: 128Mi) (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_beegfs))
-- `node_driver_registrar` (Attributes) The resource specifications for the node-driver-registrar container of the BeeGFS driver node pod.The default values for requests are (cpu: 80m, memory: 10Mi)The default values for limits are (cpu: None, memory 128Mi) (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_driver_registrar))
-- `node_liveness_probe` (Attributes) The resource specifications for the liveness-probe container of the BeeGFS driver node pod.The default values for requests are (cpu: 60m, memory: 20Mi)The default values for limits are (cpu: None, memory: 128Mi) (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_liveness_probe))
+- `controller_beegfs` (Attributes) The resource specifications for the beegfs container of the BeeGFS driver controller pod. The default values for requests are (cpu: 100m, memory: 16Mi). The default values for limits are (cpu: None, memory: 256Mi). (see [below for nested schema](#nestedatt--spec--container_resource_overrides--controller_beegfs))
+- `controller_csi_provisioner` (Attributes) The resource specifications for the csi-provisioner container of the BeeGFS driver controller pod. The default values for requests are (cpu: 80m, memory: 24Mi) The default values for limits are (cpu: None, memory 256Mi) (see [below for nested schema](#nestedatt--spec--container_resource_overrides--controller_csi_provisioner))
+- `node_beegfs` (Attributes) The resource specifications for the beegfs container of the BeeGFS driver node pod. The default values for requests are (cpu: 100m, memory: 20Mi) The default values for limits are (cpu: None, memory: 128Mi) (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_beegfs))
+- `node_driver_registrar` (Attributes) The resource specifications for the node-driver-registrar container of the BeeGFS driver node pod. The default values for requests are (cpu: 80m, memory: 10Mi) The default values for limits are (cpu: None, memory 128Mi) (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_driver_registrar))
+- `node_liveness_probe` (Attributes) The resource specifications for the liveness-probe container of the BeeGFS driver node pod. The default values for requests are (cpu: 60m, memory: 20Mi) The default values for limits are (cpu: None, memory: 128Mi) (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_liveness_probe))
 
 <a id="nestedatt--spec--container_resource_overrides--controller_beegfs"></a>
 ### Nested Schema for `spec.container_resource_overrides.controller_beegfs`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--container_resource_overrides--controller_beegfs--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--container_resource_overrides--controller_beegfs--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--container_resource_overrides--controller_beegfs--claims"></a>
 ### Nested Schema for `spec.container_resource_overrides.controller_beegfs.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -153,16 +153,16 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--container_resource_overrides--controller_csi_provisioner--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--container_resource_overrides--controller_csi_provisioner--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--container_resource_overrides--controller_csi_provisioner--claims"></a>
 ### Nested Schema for `spec.container_resource_overrides.controller_csi_provisioner.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -171,16 +171,16 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_beegfs--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_beegfs--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--container_resource_overrides--node_beegfs--claims"></a>
 ### Nested Schema for `spec.container_resource_overrides.node_beegfs.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -189,16 +189,16 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_driver_registrar--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_driver_registrar--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--container_resource_overrides--node_driver_registrar--claims"></a>
 ### Nested Schema for `spec.container_resource_overrides.node_driver_registrar.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -207,16 +207,16 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_liveness_probe--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--container_resource_overrides--node_liveness_probe--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--container_resource_overrides--node_liveness_probe--claims"></a>
 ### Nested Schema for `spec.container_resource_overrides.node_liveness_probe.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -226,8 +226,8 @@ Required:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--node_affinity_controller_service--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--node_affinity_controller_service--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--node_affinity_controller_service--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--node_affinity_controller_service--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--node_affinity_controller_service--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.node_affinity_controller_service.preferred_during_scheduling_ignored_during_execution`
@@ -251,11 +251,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--node_affinity_controller_service--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -264,11 +264,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 
@@ -294,11 +294,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--node_affinity_controller_service--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -307,11 +307,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 
@@ -322,8 +322,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--node_affinity_node_service--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--node_affinity_node_service--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--node_affinity_node_service--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--node_affinity_node_service--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--node_affinity_node_service--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.node_affinity_node_service.preferred_during_scheduling_ignored_during_execution`
@@ -347,11 +347,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--node_affinity_node_service--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -360,11 +360,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 
@@ -390,11 +390,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--node_affinity_node_service--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -403,11 +403,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 
@@ -418,20 +418,20 @@ Optional:
 
 Optional:
 
-- `config` (Attributes) The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view. (see [below for nested schema](#nestedatt--spec--plugin_config--config))
+- `config` (Attributes) The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view. (see [below for nested schema](#nestedatt--spec--plugin_config--config))
 - `file_system_specific_configs` (Attributes List) A list of file system specific configurations that override the default configuration for specific file systems. (see [below for nested schema](#nestedatt--spec--plugin_config--file_system_specific_configs))
-- `node_specific_configs` (Attributes List) A list of node specific configurations that override file system specific configurations and the defaultconfiguration on specific nodes. (see [below for nested schema](#nestedatt--spec--plugin_config--node_specific_configs))
+- `node_specific_configs` (Attributes List) A list of node specific configurations that override file system specific configurations and the default configuration on specific nodes. (see [below for nested schema](#nestedatt--spec--plugin_config--node_specific_configs))
 
 <a id="nestedatt--spec--plugin_config--config"></a>
 ### Nested Schema for `spec.plugin_config.config`
 
 Optional:
 
-- `beegfs_client_conf` (Map of String) A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).
-- `conn_interfaces` (List of String) A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.
-- `conn_net_filter` (List of String) A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.
-- `conn_rdma_interfaces` (List of String) A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.
-- `conn_tcp_only_filter` (List of String) A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.
+- `beegfs_client_conf` (Map of String) A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).
+- `conn_interfaces` (List of String) A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.
+- `conn_net_filter` (List of String) A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.
+- `conn_rdma_interfaces` (List of String) A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.
+- `conn_tcp_only_filter` (List of String) A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.
 
 
 <a id="nestedatt--spec--plugin_config--file_system_specific_configs"></a>
@@ -443,18 +443,18 @@ Required:
 
 Optional:
 
-- `config` (Attributes) The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view. (see [below for nested schema](#nestedatt--spec--plugin_config--file_system_specific_configs--config))
+- `config` (Attributes) The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view. (see [below for nested schema](#nestedatt--spec--plugin_config--file_system_specific_configs--config))
 
 <a id="nestedatt--spec--plugin_config--file_system_specific_configs--config"></a>
 ### Nested Schema for `spec.plugin_config.file_system_specific_configs.config`
 
 Optional:
 
-- `beegfs_client_conf` (Map of String) A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).
-- `conn_interfaces` (List of String) A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.
-- `conn_net_filter` (List of String) A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.
-- `conn_rdma_interfaces` (List of String) A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.
-- `conn_tcp_only_filter` (List of String) A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.
+- `beegfs_client_conf` (Map of String) A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).
+- `conn_interfaces` (List of String) A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.
+- `conn_net_filter` (List of String) A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.
+- `conn_rdma_interfaces` (List of String) A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.
+- `conn_tcp_only_filter` (List of String) A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.
 
 
 
@@ -463,23 +463,23 @@ Optional:
 
 Required:
 
-- `node_list` (List of String) The list of nodes this configuration should be applied on. Each entry is the hostname of the node or the nameassigned to the node by the container orchestrator (e.g. 'node1' or 'cluster05-node03').
+- `node_list` (List of String) The list of nodes this configuration should be applied on. Each entry is the hostname of the node or the name assigned to the node by the container orchestrator (e.g. 'node1' or 'cluster05-node03').
 
 Optional:
 
-- `config` (Attributes) The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view. (see [below for nested schema](#nestedatt--spec--plugin_config--node_specific_configs--config))
-- `file_system_specific_configs` (Attributes List) A list of file system specific configurations that override the default configuration for specific file systemson these nodes. (see [below for nested schema](#nestedatt--spec--plugin_config--node_specific_configs--file_system_specific_configs))
+- `config` (Attributes) The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view. (see [below for nested schema](#nestedatt--spec--plugin_config--node_specific_configs--config))
+- `file_system_specific_configs` (Attributes List) A list of file system specific configurations that override the default configuration for specific file systems on these nodes. (see [below for nested schema](#nestedatt--spec--plugin_config--node_specific_configs--file_system_specific_configs))
 
 <a id="nestedatt--spec--plugin_config--node_specific_configs--config"></a>
 ### Nested Schema for `spec.plugin_config.node_specific_configs.config`
 
 Optional:
 
-- `beegfs_client_conf` (Map of String) A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).
-- `conn_interfaces` (List of String) A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.
-- `conn_net_filter` (List of String) A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.
-- `conn_rdma_interfaces` (List of String) A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.
-- `conn_tcp_only_filter` (List of String) A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.
+- `beegfs_client_conf` (Map of String) A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).
+- `conn_interfaces` (List of String) A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.
+- `conn_net_filter` (List of String) A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.
+- `conn_rdma_interfaces` (List of String) A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.
+- `conn_tcp_only_filter` (List of String) A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.
 
 
 <a id="nestedatt--spec--plugin_config--node_specific_configs--file_system_specific_configs"></a>
@@ -491,15 +491,15 @@ Required:
 
 Optional:
 
-- `config` (Attributes) The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view. (see [below for nested schema](#nestedatt--spec--plugin_config--node_specific_configs--file_system_specific_configs--config))
+- `config` (Attributes) The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view. (see [below for nested schema](#nestedatt--spec--plugin_config--node_specific_configs--file_system_specific_configs--config))
 
 <a id="nestedatt--spec--plugin_config--node_specific_configs--file_system_specific_configs--config"></a>
 ### Nested Schema for `spec.plugin_config.node_specific_configs.file_system_specific_configs.config`
 
 Optional:
 
-- `beegfs_client_conf` (Map of String) A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).
-- `conn_interfaces` (List of String) A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.
-- `conn_net_filter` (List of String) A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.
-- `conn_rdma_interfaces` (List of String) A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.
-- `conn_tcp_only_filter` (List of String) A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.
+- `beegfs_client_conf` (Map of String) A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).
+- `conn_interfaces` (List of String) A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.
+- `conn_net_filter` (List of String) A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.
+- `conn_rdma_interfaces` (List of String) A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.
+- `conn_tcp_only_filter` (List of String) A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.

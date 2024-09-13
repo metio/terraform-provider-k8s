@@ -61,7 +61,7 @@ Optional:
 Required:
 
 - `hot_backup_template` (Attributes) Specifies the hot backup that will be created when executing a CronHotBackup. (see [below for nested schema](#nestedatt--spec--hot_backup_template))
-- `schedule` (String) Schedule contains a crontab-like expression that defines the schedule in which HotBackup will be started. If the Schedule is empty the HotBackup will start only once when applied. --- Several pre-defined schedules in place of a cron expression can be used. Entry                  | Description                                | Equivalent To -----                  | -----------                                | ------------- @yearly (or @annually) | Run once a year, midnight, Jan. 1st        | 0 0 1 1 * @monthly               | Run once a month, midnight, first of month | 0 0 1 * * @weekly                | Run once a week, midnight between Sat/Sun  | 0 0 * * 0 @daily (or @midnight)  | Run once a day, midnight                   | 0 0 * * * @hourly                | Run once an hour, beginning of hour        | 0 * * * *
+- `schedule` (String) Schedule contains a crontab-like expression that defines the schedule in which HotBackup will be started. If the Schedule is empty the HotBackup will start only once when applied. --- Several pre-defined schedules in place of a cron expression can be used. Entry | Description | Equivalent To ----- | ----------- | ------------- @yearly (or @annually) | Run once a year, midnight, Jan. 1st | 0 0 1 1 * @monthly | Run once a month, midnight, first of month | 0 0 1 * * @weekly | Run once a week, midnight between Sat/Sun | 0 0 * * 0 @daily (or @midnight) | Run once a day, midnight | 0 0 * * * @hourly | Run once an hour, beginning of hour | 0 * * * *
 
 Optional:
 
@@ -89,6 +89,6 @@ Required:
 
 Optional:
 
-- `bucket_uri` (String) URL of the bucket to download HotBackup folders. AWS S3, GCP Bucket and Azure Blob storage buckets are supported. Example bucket URIs: - AWS S3     -> s3://bucket-name/path/to/folder - GCP Bucket -> gs://bucket-name/path/to/folder - Azure Blob -> azblob://bucket-name/path/to/folder
+- `bucket_uri` (String) URL of the bucket to download HotBackup folders. AWS S3, GCP Bucket and Azure Blob storage buckets are supported. Example bucket URIs: - AWS S3 -> s3://bucket-name/path/to/folder - GCP Bucket -> gs://bucket-name/path/to/folder - Azure Blob -> azblob://bucket-name/path/to/folder
 - `secret` (String) secret is a deprecated alias for secretName.
 - `secret_name` (String) Name of the secret with credentials for cloud providers.

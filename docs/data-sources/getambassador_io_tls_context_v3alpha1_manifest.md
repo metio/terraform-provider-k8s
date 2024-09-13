@@ -56,7 +56,7 @@ Optional:
 Optional:
 
 - `alpn_protocols` (String)
-- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is:  ambassador_id: - 'default'
+- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is: ambassador_id: - 'default'
 - `ca_secret` (String)
 - `cacert_chain_file` (String)
 - `cert_chain_file` (String)

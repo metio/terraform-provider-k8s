@@ -52,8 +52,8 @@ Optional:
 
 Required:
 
-- `destination_arn` (String) The Amazon Resource Name (ARN) of the destination that will store access logs. Supported values are S3 Bucket, CloudWatch Log Group, and Firehose Delivery Stream ARNs.  Changes to this value results in replacement of the VPC Lattice Access Log Subscription.
-- `target_ref` (Attributes) TargetRef points to the Kubernetes Gateway, HTTPRoute, or GRPCRoute resource that will have this policy attached.  This field is following the guidelines of Kubernetes Gateway API policy attachment. (see [below for nested schema](#nestedatt--spec--target_ref))
+- `destination_arn` (String) The Amazon Resource Name (ARN) of the destination that will store access logs. Supported values are S3 Bucket, CloudWatch Log Group, and Firehose Delivery Stream ARNs. Changes to this value results in replacement of the VPC Lattice Access Log Subscription.
+- `target_ref` (Attributes) TargetRef points to the Kubernetes Gateway, HTTPRoute, or GRPCRoute resource that will have this policy attached. This field is following the guidelines of Kubernetes Gateway API policy attachment. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 <a id="nestedatt--spec--target_ref"></a>
 ### Nested Schema for `spec.target_ref`

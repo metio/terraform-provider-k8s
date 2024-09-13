@@ -130,8 +130,8 @@ func (r *VeleroIoBackupRepositoryV1Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "BackupRepositorySpec is the specification for a BackupRepository.",
 				Attributes: map[string]schema.Attribute{
 					"backup_storage_location": schema.StringAttribute{
-						Description:         "BackupStorageLocation is the name of the BackupStorageLocationthat should contain this repository.",
-						MarkdownDescription: "BackupStorageLocation is the name of the BackupStorageLocationthat should contain this repository.",
+						Description:         "BackupStorageLocation is the name of the BackupStorageLocation that should contain this repository.",
+						MarkdownDescription: "BackupStorageLocation is the name of the BackupStorageLocation that should contain this repository.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -166,16 +166,16 @@ func (r *VeleroIoBackupRepositoryV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"restic_identifier": schema.StringAttribute{
-						Description:         "ResticIdentifier is the full restic-compatible string for identifyingthis repository.",
-						MarkdownDescription: "ResticIdentifier is the full restic-compatible string for identifyingthis repository.",
+						Description:         "ResticIdentifier is the full restic-compatible string for identifying this repository.",
+						MarkdownDescription: "ResticIdentifier is the full restic-compatible string for identifying this repository.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"volume_namespace": schema.StringAttribute{
-						Description:         "VolumeNamespace is the namespace this backup repository containspod volume backups for.",
-						MarkdownDescription: "VolumeNamespace is the namespace this backup repository containspod volume backups for.",
+						Description:         "VolumeNamespace is the namespace this backup repository contains pod volume backups for.",
+						MarkdownDescription: "VolumeNamespace is the namespace this backup repository contains pod volume backups for.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

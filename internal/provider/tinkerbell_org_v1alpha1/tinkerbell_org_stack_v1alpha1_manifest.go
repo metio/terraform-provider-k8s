@@ -407,8 +407,8 @@ func (r *TinkerbellOrgStackV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"port": schema.Int64Attribute{
-												Description:         "Port is the  local port to listen on to serve TFTP binaries.",
-												MarkdownDescription: "Port is the  local port to listen on to serve TFTP binaries.",
+												Description:         "Port is the local port to listen on to serve TFTP binaries.",
+												MarkdownDescription: "Port is the local port to listen on to serve TFTP binaries.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -505,8 +505,8 @@ func (r *TinkerbellOrgStackV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"port": schema.Int64Attribute{
-												Description:         "Port is the  local port to listen on to serve TFTP binaries.",
-												MarkdownDescription: "Port is the  local port to listen on to serve TFTP binaries.",
+												Description:         "Port is the local port to listen on to serve TFTP binaries.",
+												MarkdownDescription: "Port is the local port to listen on to serve TFTP binaries.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -555,8 +555,8 @@ func (r *TinkerbellOrgStackV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"port": schema.Int64Attribute{
-												Description:         "Port is the  local port to listen on for syslog messages.",
-												MarkdownDescription: "Port is the  local port to listen on for syslog messages.",
+												Description:         "Port is the local port to listen on for syslog messages.",
+												MarkdownDescription: "Port is the local port to listen on for syslog messages.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -588,8 +588,8 @@ func (r *TinkerbellOrgStackV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"port": schema.Int64Attribute{
-												Description:         "Port is the  local port to listen on to serve TFTP binaries.",
-												MarkdownDescription: "Port is the  local port to listen on to serve TFTP binaries.",
+												Description:         "Port is the local port to listen on to serve TFTP binaries.",
+												MarkdownDescription: "Port is the local port to listen on to serve TFTP binaries.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,

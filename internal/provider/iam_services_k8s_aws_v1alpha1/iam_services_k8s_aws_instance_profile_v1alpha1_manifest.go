@@ -133,20 +133,20 @@ func (r *IamServicesK8SAwsInstanceProfileV1Alpha1Manifest) Schema(_ context.Cont
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "InstanceProfileSpec defines the desired state of InstanceProfile.Contains information about an instance profile.This data type is used as a response element in the following operations:   * CreateInstanceProfile   * GetInstanceProfile   * ListInstanceProfiles   * ListInstanceProfilesForRole",
-				MarkdownDescription: "InstanceProfileSpec defines the desired state of InstanceProfile.Contains information about an instance profile.This data type is used as a response element in the following operations:   * CreateInstanceProfile   * GetInstanceProfile   * ListInstanceProfiles   * ListInstanceProfilesForRole",
+				Description:         "InstanceProfileSpec defines the desired state of InstanceProfile. Contains information about an instance profile. This data type is used as a response element in the following operations: * CreateInstanceProfile * GetInstanceProfile * ListInstanceProfiles * ListInstanceProfilesForRole",
+				MarkdownDescription: "InstanceProfileSpec defines the desired state of InstanceProfile. Contains information about an instance profile. This data type is used as a response element in the following operations: * CreateInstanceProfile * GetInstanceProfile * ListInstanceProfiles * ListInstanceProfilesForRole",
 				Attributes: map[string]schema.Attribute{
 					"name": schema.StringAttribute{
-						Description:         "The name of the instance profile to create.This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))a string of characters consisting of upper and lowercase alphanumeric characterswith no spaces. You can also include any of the following characters: _+=,.@-",
-						MarkdownDescription: "The name of the instance profile to create.This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))a string of characters consisting of upper and lowercase alphanumeric characterswith no spaces. You can also include any of the following characters: _+=,.@-",
+						Description:         "The name of the instance profile to create. This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex)) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
+						MarkdownDescription: "The name of the instance profile to create. This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex)) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"path": schema.StringAttribute{
-						Description:         "The path to the instance profile. For more information about paths, see IAMIdentifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)in the IAM User Guide.This parameter is optional. If it is not included, it defaults to a slash(/).This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))a string of characters consisting of either a forward slash (/) by itselfor a string that must begin and end with forward slashes. In addition, itcan contain any ASCII character from the ! (u0021) through the DEL character(u007F), including most punctuation characters, digits, and upper and lowercasedletters.",
-						MarkdownDescription: "The path to the instance profile. For more information about paths, see IAMIdentifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)in the IAM User Guide.This parameter is optional. If it is not included, it defaults to a slash(/).This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))a string of characters consisting of either a forward slash (/) by itselfor a string that must begin and end with forward slashes. In addition, itcan contain any ASCII character from the ! (u0021) through the DEL character(u007F), including most punctuation characters, digits, and upper and lowercasedletters.",
+						Description:         "The path to the instance profile. For more information about paths, see IAM Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex)) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (u0021) through the DEL character (u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+						MarkdownDescription: "The path to the instance profile. For more information about paths, see IAM Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex)) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (u0021) through the DEL character (u007F), including most punctuation characters, digits, and upper and lowercased letters.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -161,12 +161,12 @@ func (r *IamServicesK8SAwsInstanceProfileV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"role_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -195,8 +195,8 @@ func (r *IamServicesK8SAwsInstanceProfileV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of tags that you want to attach to the newly created IAM instanceprofile. Each tag consists of a key name and an associated value. For moreinformation about tagging, see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html)in the IAM User Guide.If any one of the tags is invalid or if you exceed the allowed maximum numberof tags, then the entire request fails and the resource is not created.",
-						MarkdownDescription: "A list of tags that you want to attach to the newly created IAM instanceprofile. Each tag consists of a key name and an associated value. For moreinformation about tagging, see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html)in the IAM User Guide.If any one of the tags is invalid or if you exceed the allowed maximum numberof tags, then the entire request fails and the resource is not created.",
+						Description:         "A list of tags that you want to attach to the newly created IAM instance profile. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html) in the IAM User Guide. If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
+						MarkdownDescription: "A list of tags that you want to attach to the newly created IAM instance profile. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html) in the IAM User Guide. If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

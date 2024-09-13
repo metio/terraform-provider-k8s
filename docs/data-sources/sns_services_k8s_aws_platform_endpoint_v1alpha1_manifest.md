@@ -55,7 +55,7 @@ Optional:
 
 Required:
 
-- `platform_application_arn` (String) PlatformApplicationArn returned from CreatePlatformApplication is used tocreate a an endpoint.
+- `platform_application_arn` (String) PlatformApplicationArn returned from CreatePlatformApplication is used to create a an endpoint.
 - `token` (String)
 
 Optional:

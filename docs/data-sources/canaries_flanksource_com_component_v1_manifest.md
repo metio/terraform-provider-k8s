@@ -59,16 +59,16 @@ Optional:
 - `components` (Map of String) Create new child components
 - `configs` (Attributes List) Lookup and associate config items with this component (see [below for nested schema](#nestedatt--spec--configs))
 - `external_id` (String)
-- `for_each` (Map of String) Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself
+- `for_each` (Map of String) Only applies when using lookup, when specified the components and properties specified under ForEach will be templated using the components returned by the lookup ${.properties} can be used to reference the properties of the component ${.component} can be used to reference the component itself
 - `health` (String)
-- `health_expr` (String) healthExpr allows defining a cel expression to evaluate the health of a componentbased on the summary.
+- `health_expr` (String) healthExpr allows defining a cel expression to evaluate the health of a component based on the summary.
 - `hidden` (Boolean) If set to true, do not display in UI
 - `icon` (String)
 - `id` (Attributes) (see [below for nested schema](#nestedatt--spec--id))
 - `labels` (Map of String)
 - `lifecycle` (String) The lifecycle state of the component e.g. production, staging, dev, etc.
 - `logs` (Attributes List) Logs is a list of logs selector for apm-hub. (see [below for nested schema](#nestedatt--spec--logs))
-- `lookup` (Map of String) Lookup component definitions from an external source, use theforEach property to iterate over the results to further enrich each component.
+- `lookup` (Map of String) Lookup component definitions from an external source, use the forEach property to iterate over the results to further enrich each component.
 - `name` (String)
 - `namespace` (String)
 - `order` (Number)
@@ -77,7 +77,7 @@ Optional:
 - `properties` (Map of String)
 - `relationships` (Attributes List) (see [below for nested schema](#nestedatt--spec--relationships))
 - `selectors` (Attributes List) Lookup and associcate other components with this component (see [below for nested schema](#nestedatt--spec--selectors))
-- `status_expr` (String) statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.
+- `status_expr` (String) statusExpr allows defining a cel expression to evaluate the status of a component based on the summary.
 - `summary` (Attributes) Summary is the health, incidents, insights & check summary (see [below for nested schema](#nestedatt--spec--summary))
 - `tooltip` (String)
 - `type` (String) The type of component, e.g. service, API, website, library, database, etc.

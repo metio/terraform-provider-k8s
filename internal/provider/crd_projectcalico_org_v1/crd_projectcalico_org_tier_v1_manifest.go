@@ -112,8 +112,8 @@ func (r *CrdProjectcalicoOrgTierV1Manifest) Schema(_ context.Context, _ datasour
 				MarkdownDescription: "TierSpec contains the specification for a security policy tier resource.",
 				Attributes: map[string]schema.Attribute{
 					"order": schema.Float64Attribute{
-						Description:         "Order is an optional field that specifies the order in which the tier is applied. Tiers with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the tier will be applied last.  Tiers with identical order will be applied in alphanumerical order based on the Tier 'Name'.",
-						MarkdownDescription: "Order is an optional field that specifies the order in which the tier is applied. Tiers with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the tier will be applied last.  Tiers with identical order will be applied in alphanumerical order based on the Tier 'Name'.",
+						Description:         "Order is an optional field that specifies the order in which the tier is applied. Tiers with higher 'order' are applied after those with lower order. If the order is omitted, it may be considered to be 'infinite' - i.e. the tier will be applied last. Tiers with identical order will be applied in alphanumerical order based on the Tier 'Name'.",
+						MarkdownDescription: "Order is an optional field that specifies the order in which the tier is applied. Tiers with higher 'order' are applied after those with lower order. If the order is omitted, it may be considered to be 'infinite' - i.e. the tier will be applied last. Tiers with identical order will be applied in alphanumerical order based on the Tier 'Name'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

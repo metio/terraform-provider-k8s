@@ -105,7 +105,7 @@ Optional:
 
 Optional:
 
-- `ip` (String) The IP address of the interface. This will be an IPv4 or IPv6 address if one is present.  If both IPv4 and IPv6 addresses are present in a dual-stack environment, two nics will be output, one with each IP.
+- `ip` (String) The IP address of the interface. This will be an IPv4 or IPv6 address if one is present. If both IPv4 and IPv6 addresses are present in a dual-stack environment, two nics will be output, one with each IP.
 - `mac` (String) The device MAC address
 - `model` (String) The vendor and product IDs of the NIC, e.g. '0x8086 0x1572'
 - `name` (String) The name of the network interface, e.g. 'en0'

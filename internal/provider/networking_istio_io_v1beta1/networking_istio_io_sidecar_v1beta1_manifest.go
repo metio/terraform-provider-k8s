@@ -234,8 +234,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"capture_mode": schema.StringAttribute{
-									Description:         "When the bind address is an IP, the captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE",
-									MarkdownDescription: "When the bind address is an IP, the captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE",
+									Description:         "When the bind address is an IP, the captureMode option dictates how traffic to the listener is expected to be captured (or not). Valid Options: DEFAULT, IPTABLES, NONE",
+									MarkdownDescription: "When the bind address is an IP, the captureMode option dictates how traffic to the listener is expected to be captured (or not). Valid Options: DEFAULT, IPTABLES, NONE",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -317,8 +317,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 								MarkdownDescription: "HTTP connection pool settings.",
 								Attributes: map[string]schema.Attribute{
 									"h2_upgrade_policy": schema.StringAttribute{
-										Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
-										MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+										Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+										MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -485,8 +485,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"capture_mode": schema.StringAttribute{
-									Description:         "The captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE",
-									MarkdownDescription: "The captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE",
+									Description:         "The captureMode option dictates how traffic to the listener is expected to be captured (or not). Valid Options: DEFAULT, IPTABLES, NONE",
+									MarkdownDescription: "The captureMode option dictates how traffic to the listener is expected to be captured (or not). Valid Options: DEFAULT, IPTABLES, NONE",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -504,8 +504,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 											MarkdownDescription: "HTTP connection pool settings.",
 											Attributes: map[string]schema.Attribute{
 												"h2_upgrade_policy": schema.StringAttribute{
-													Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
-													MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+													Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+													MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -761,8 +761,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"max_protocol_version": schema.StringAttribute{
-											Description:         "Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
-											MarkdownDescription: "Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											Description:         "Optional: Maximum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											MarkdownDescription: "Optional: Maximum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -772,8 +772,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"min_protocol_version": schema.StringAttribute{
-											Description:         "Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
-											MarkdownDescription: "Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											Description:         "Optional: Minimum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											MarkdownDescription: "Optional: Minimum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -783,8 +783,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"mode": schema.StringAttribute{
-											Description:         "Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
-											MarkdownDescription: "Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
+											Description:         "Optional: Indicates whether connections to this port should be secured using TLS. Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
+											MarkdownDescription: "Optional: Indicates whether connections to this port should be secured using TLS. Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -898,8 +898,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"mode": schema.StringAttribute{
-								Description:         "Valid Options: REGISTRY_ONLY, ALLOW_ANY",
-								MarkdownDescription: "Valid Options: REGISTRY_ONLY, ALLOW_ANY",
+								Description:         " Valid Options: REGISTRY_ONLY, ALLOW_ANY",
+								MarkdownDescription: " Valid Options: REGISTRY_ONLY, ALLOW_ANY",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

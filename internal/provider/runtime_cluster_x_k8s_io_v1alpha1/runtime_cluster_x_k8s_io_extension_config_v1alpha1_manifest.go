@@ -145,8 +145,8 @@ func (r *RuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"service": schema.SingleNestedAttribute{
-								Description:         "Service is a reference to the Kubernetes service for the Extension server.Note: Exactly one of 'url' or 'service' must be specified.If the Extension server is running within a cluster, then you should use 'service'.",
-								MarkdownDescription: "Service is a reference to the Kubernetes service for the Extension server.Note: Exactly one of 'url' or 'service' must be specified.If the Extension server is running within a cluster, then you should use 'service'.",
+								Description:         "Service is a reference to the Kubernetes service for the Extension server. Note: Exactly one of 'url' or 'service' must be specified. If the Extension server is running within a cluster, then you should use 'service'.",
+								MarkdownDescription: "Service is a reference to the Kubernetes service for the Extension server. Note: Exactly one of 'url' or 'service' must be specified. If the Extension server is running within a cluster, then you should use 'service'.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name is the name of the service.",
@@ -165,16 +165,16 @@ func (r *RuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"path": schema.StringAttribute{
-										Description:         "Path is an optional URL path and if present may be any string permissible ina URL. If a path is set it will be used as prefix to the hook-specific path.",
-										MarkdownDescription: "Path is an optional URL path and if present may be any string permissible ina URL. If a path is set it will be used as prefix to the hook-specific path.",
+										Description:         "Path is an optional URL path and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path.",
+										MarkdownDescription: "Path is an optional URL path and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "Port is the port on the service that's hosting the Extension server.Defaults to 443.Port should be a valid port number (1-65535, inclusive).",
-										MarkdownDescription: "Port is the port on the service that's hosting the Extension server.Defaults to 443.Port should be a valid port number (1-65535, inclusive).",
+										Description:         "Port is the port on the service that's hosting the Extension server. Defaults to 443. Port should be a valid port number (1-65535, inclusive).",
+										MarkdownDescription: "Port is the port on the service that's hosting the Extension server. Defaults to 443. Port should be a valid port number (1-65535, inclusive).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -186,8 +186,8 @@ func (r *RuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"url": schema.StringAttribute{
-								Description:         "URL gives the location of the Extension server, in standard URL form('scheme://host:port/path').Note: Exactly one of 'url' or 'service' must be specified.The scheme must be 'https'.The 'host' should not refer to a service running in the cluster; usethe 'service' field instead.A path is optional, and if present may be any string permissible ina URL. If a path is set it will be used as prefix to the hook-specific path.Attempting to use a user or basic auth e.g. 'user:password@' is notallowed. Fragments ('#...') and query parameters ('?...') are notallowed either.",
-								MarkdownDescription: "URL gives the location of the Extension server, in standard URL form('scheme://host:port/path').Note: Exactly one of 'url' or 'service' must be specified.The scheme must be 'https'.The 'host' should not refer to a service running in the cluster; usethe 'service' field instead.A path is optional, and if present may be any string permissible ina URL. If a path is set it will be used as prefix to the hook-specific path.Attempting to use a user or basic auth e.g. 'user:password@' is notallowed. Fragments ('#...') and query parameters ('?...') are notallowed either.",
+								Description:         "URL gives the location of the Extension server, in standard URL form ('scheme://host:port/path'). Note: Exactly one of 'url' or 'service' must be specified. The scheme must be 'https'. The 'host' should not refer to a service running in the cluster; use the 'service' field instead. A path is optional, and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path. Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed either.",
+								MarkdownDescription: "URL gives the location of the Extension server, in standard URL form ('scheme://host:port/path'). Note: Exactly one of 'url' or 'service' must be specified. The scheme must be 'https'. The 'host' should not refer to a service running in the cluster; use the 'service' field instead. A path is optional, and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path. Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed either.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -199,8 +199,8 @@ func (r *RuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"namespace_selector": schema.SingleNestedAttribute{
-						Description:         "NamespaceSelector decides whether to call the hook for an object basedon whether the namespace for that object matches the selector.Defaults to the empty LabelSelector, which matches all objects.",
-						MarkdownDescription: "NamespaceSelector decides whether to call the hook for an object basedon whether the namespace for that object matches the selector.Defaults to the empty LabelSelector, which matches all objects.",
+						Description:         "NamespaceSelector decides whether to call the hook for an object based on whether the namespace for that object matches the selector. Defaults to the empty LabelSelector, which matches all objects.",
+						MarkdownDescription: "NamespaceSelector decides whether to call the hook for an object based on whether the namespace for that object matches the selector. Defaults to the empty LabelSelector, which matches all objects.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -216,16 +216,16 @@ func (r *RuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest) Schema(_ context.C
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -239,8 +239,8 @@ func (r *RuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -253,8 +253,8 @@ func (r *RuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"settings": schema.MapAttribute{
-						Description:         "Settings defines key value pairs to be passed to all callsto all supported RuntimeExtensions.Note: Settings can be overridden on the ClusterClass.",
-						MarkdownDescription: "Settings defines key value pairs to be passed to all callsto all supported RuntimeExtensions.Note: Settings can be overridden on the ClusterClass.",
+						Description:         "Settings defines key value pairs to be passed to all calls to all supported RuntimeExtensions. Note: Settings can be overridden on the ClusterClass.",
+						MarkdownDescription: "Settings defines key value pairs to be passed to all calls to all supported RuntimeExtensions. Note: Settings can be overridden on the ClusterClass.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

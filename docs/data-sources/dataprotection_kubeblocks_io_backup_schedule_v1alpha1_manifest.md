@@ -60,7 +60,7 @@ Required:
 
 Optional:
 
-- `starting_deadline_minutes` (Number) Defines the deadline in minutes for starting the backup workload if itmisses its scheduled time for any reason.
+- `starting_deadline_minutes` (Number) Defines the deadline in minutes for starting the backup workload if it misses its scheduled time for any reason.
 
 <a id="nestedatt--spec--schedules"></a>
 ### Nested Schema for `spec.schedules`
@@ -68,9 +68,9 @@ Optional:
 Required:
 
 - `backup_method` (String) Specifies the backup method name that is defined in backupPolicy.
-- `cron_expression` (String) Specifies the cron expression for the schedule. The timezone is in UTC.see https://en.wikipedia.org/wiki/Cron.
+- `cron_expression` (String) Specifies the cron expression for the schedule. The timezone is in UTC. see https://en.wikipedia.org/wiki/Cron.
 
 Optional:
 
 - `enabled` (Boolean) Specifies whether the backup schedule is enabled or not.
-- `retention_period` (String) Determines the duration for which the backup should be kept.KubeBlocks will remove all backups that are older than the RetentionPeriod.For example, RetentionPeriod of '30d' will keep only the backups of last 30 days.Sample duration format:- years: 	2y- months: 	6mo- days: 		30d- hours: 	12h- minutes: 	30mYou can also combine the above durations. For example: 30d12h30m
+- `retention_period` (String) Determines the duration for which the backup should be kept. KubeBlocks will remove all backups that are older than the RetentionPeriod. For example, RetentionPeriod of '30d' will keep only the backups of last 30 days. Sample duration format: - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m You can also combine the above durations. For example: 30d12h30m

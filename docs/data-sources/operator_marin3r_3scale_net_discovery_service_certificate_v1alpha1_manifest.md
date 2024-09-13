@@ -57,7 +57,7 @@ Required:
 
 - `common_name` (String) CommonName is the CommonName of the certificate
 - `secret_ref` (Attributes) SecretRef is a reference to the secret that will hold the certificate and the private key. (see [below for nested schema](#nestedatt--spec--secret_ref))
-- `signer` (Attributes) Signer specifies  the signer to use to create this certificate. Supported signers are CertManager and SelfSigned. (see [below for nested schema](#nestedatt--spec--signer))
+- `signer` (Attributes) Signer specifies the signer to use to create this certificate. Supported signers are CertManager and SelfSigned. (see [below for nested schema](#nestedatt--spec--signer))
 - `valid_for` (Number) ValidFor specifies the validity of the certificate in seconds
 
 Optional:

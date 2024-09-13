@@ -70,8 +70,8 @@ func (r *TraefikIoServersTransportV1Alpha1Manifest) Metadata(_ context.Context, 
 
 func (r *TraefikIoServersTransportV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ServersTransport is the CRD implementation of a ServersTransport.If no serversTransport is specified, the default@internal will be used.The default@internal serversTransport is created from the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_1",
-		MarkdownDescription: "ServersTransport is the CRD implementation of a ServersTransport.If no serversTransport is specified, the default@internal will be used.The default@internal serversTransport is created from the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_1",
+		Description:         "ServersTransport is the CRD implementation of a ServersTransport. If no serversTransport is specified, the default@internal will be used. The default@internal serversTransport is created from the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_1",
+		MarkdownDescription: "ServersTransport is the CRD implementation of a ServersTransport. If no serversTransport is specified, the default@internal will be used. The default@internal serversTransport is created from the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_1",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

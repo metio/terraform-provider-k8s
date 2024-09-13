@@ -190,8 +190,8 @@ func (r *ChaosMeshOrgStatusCheckV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"headers": schema.MapAttribute{
-								Description:         "A Header represents the key-value pairs in an HTTP header.  The keys should be in canonical form, as returned by CanonicalHeaderKey.",
-								MarkdownDescription: "A Header represents the key-value pairs in an HTTP header.  The keys should be in canonical form, as returned by CanonicalHeaderKey.",
+								Description:         "A Header represents the key-value pairs in an HTTP header. The keys should be in canonical form, as returned by CanonicalHeaderKey.",
+								MarkdownDescription: "A Header represents the key-value pairs in an HTTP header. The keys should be in canonical form, as returned by CanonicalHeaderKey.",
 								ElementType:         types.ListType{ElemType: types.StringType},
 								Required:            false,
 								Optional:            true,

@@ -132,8 +132,8 @@ func (r *SchedulingVolcanoShQueueV1Beta1Manifest) Schema(_ context.Context, _ da
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Specification of the desired behavior of the queue.More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
-				MarkdownDescription: "Specification of the desired behavior of the queue.More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
+				Description:         "Specification of the desired behavior of the queue. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
+				MarkdownDescription: "Specification of the desired behavior of the queue. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status",
 				Attributes: map[string]schema.Attribute{
 					"affinity": schema.SingleNestedAttribute{
 						Description:         "If specified, the pod owned by the queue will be scheduled with constraint",

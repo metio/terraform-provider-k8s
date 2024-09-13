@@ -58,7 +58,7 @@ Required:
 
 Optional:
 
-- `allowed_uses` (List of String) AllowedUse controls what the IP pool will be used for.  If not specified or empty, defaults to ['Tunnel', 'Workload'] for back-compatibility
+- `allowed_uses` (List of String) AllowedUse controls what the IP pool will be used for. If not specified or empty, defaults to ['Tunnel', 'Workload'] for back-compatibility
 - `block_size` (Number) The block size to use for IP address assignments from this pool. Defaults to 26 for IPv4 and 122 for IPv6.
 - `disable_bgp_export` (Boolean) Disable exporting routes from this IP Pool's CIDR over BGP. [Default: false]
 - `disabled` (Boolean) When disabled is true, Calico IPAM will not assign addresses from this pool.
@@ -74,4 +74,4 @@ Optional:
 Optional:
 
 - `enabled` (Boolean) When enabled is true, ipip tunneling will be used to deliver packets to destinations within this pool.
-- `mode` (String) The IPIP mode.  This can be one of 'always' or 'cross-subnet'.  A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool.  A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node.  The default value (if not specified) is 'always'.
+- `mode` (String) The IPIP mode. This can be one of 'always' or 'cross-subnet'. A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool. A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node. The default value (if not specified) is 'always'.

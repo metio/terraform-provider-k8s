@@ -55,12 +55,12 @@ Optional:
 
 Optional:
 
-- `concurrency_policy` (String) Specifics if this task can be run concurrently with other active tasks. Valid values are:- 'Allow': allows multiple Tasks to run concurrently on Cassandra cluster- 'Forbid' (default): only a single task is executed at onceThe 'Allow' property is only valid if all the other active Tasks have 'Allow' as well.
-- `datacenter` (Attributes) Which datacenter this task is targetting. Note, this must be a datacenter which the current cass-operatorcan access (see [below for nested schema](#nestedatt--spec--datacenter))
+- `concurrency_policy` (String) Specifics if this task can be run concurrently with other active tasks. Valid values are: - 'Allow': allows multiple Tasks to run concurrently on Cassandra cluster - 'Forbid' (default): only a single task is executed at once The 'Allow' property is only valid if all the other active Tasks have 'Allow' as well.
+- `datacenter` (Attributes) Which datacenter this task is targetting. Note, this must be a datacenter which the current cass-operator can access (see [below for nested schema](#nestedatt--spec--datacenter))
 - `jobs` (Attributes List) Jobs defines the jobs this task will execute (and their order) (see [below for nested schema](#nestedatt--spec--jobs))
 - `restart_policy` (String) RestartPolicy indicates the behavior n case of failure. Default is Never.
-- `scheduled_time` (String) ScheduledTime indicates the earliest possible time this task is executed. This does not necessarilyequal to the time it is actually executed (if other tasks are blocking for example). If not set,the task will be executed immediately.
-- `ttl_seconds_after_finished` (Number) TTLSecondsAfterFinished defines how long the completed job will kept before being cleaned up. If set to 0the task will not be cleaned up by the cass-operator. If unset, the default time (86400s) is used.
+- `scheduled_time` (String) ScheduledTime indicates the earliest possible time this task is executed. This does not necessarily equal to the time it is actually executed (if other tasks are blocking for example). If not set, the task will be executed immediately.
+- `ttl_seconds_after_finished` (Number) TTLSecondsAfterFinished defines how long the completed job will kept before being cleaned up. If set to 0 the task will not be cleaned up by the cass-operator. If unset, the default time (86400s) is used.
 
 <a id="nestedatt--spec--datacenter"></a>
 ### Nested Schema for `spec.datacenter`
@@ -68,12 +68,12 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 <a id="nestedatt--spec--jobs"></a>
@@ -96,7 +96,7 @@ Optional:
 - `end_token` (String)
 - `jobs` (Number)
 - `keyspace_name` (String)
-- `new_tokens` (Map of String) NewTokens is a map of pod names to their newly-assigned tokens. Required for the movecommand, ignored otherwise. Pods referenced in this map must exist; any existing pod notreferenced in this map will not be moved.
+- `new_tokens` (Map of String) NewTokens is a map of pod names to their newly-assigned tokens. Required for the move command, ignored otherwise. Pods referenced in this map must exist; any existing pod not referenced in this map will not be moved.
 - `no_snapshot` (Boolean)
 - `no_validate` (Boolean) Scrub arguments
 - `pod_name` (String)

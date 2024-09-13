@@ -3,12 +3,12 @@
 page_title: "k8s_app_terraform_io_module_v1alpha2_manifest Data Source - terraform-provider-k8s"
 subcategory: "app.terraform.io"
 description: |-
-  Module is the Schema for the modules APIModule implements the API-driven Run WorkflowMore information:  - https://developer.hashicorp.com/terraform/cloud-docs/run/api
+  Module is the Schema for the modules API Module implements the API-driven Run Workflow More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/api
 ---
 
 # k8s_app_terraform_io_module_v1alpha2_manifest (Data Source)
 
-Module is the Schema for the modules APIModule implements the API-driven Run WorkflowMore information:  - https://developer.hashicorp.com/terraform/cloud-docs/run/api
+Module is the Schema for the modules API Module implements the API-driven Run Workflow More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/api
 
 ## Example Usage
 
@@ -65,16 +65,16 @@ Optional:
 Required:
 
 - `module` (Attributes) Module source and version to execute. (see [below for nested schema](#nestedatt--spec--module))
-- `organization` (String) Organization name where the Workspace will be created.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations
+- `organization` (String) Organization name where the Workspace will be created. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations
 - `token` (Attributes) API Token to be used for API calls. (see [below for nested schema](#nestedatt--spec--token))
 - `workspace` (Attributes) Workspace to execute the module. (see [below for nested schema](#nestedatt--spec--workspace))
 
 Optional:
 
-- `destroy_on_deletion` (Boolean) Specify whether or not to execute a Destroy run when the object is deleted from the Kubernetes.Default: 'false'.
-- `name` (String) Name of the module that will be uploaded and executed.Default: 'this'.
+- `destroy_on_deletion` (Boolean) Specify whether or not to execute a Destroy run when the object is deleted from the Kubernetes. Default: 'false'.
+- `name` (String) Name of the module that will be uploaded and executed. Default: 'this'.
 - `outputs` (Attributes List) Module outputs to store in ConfigMap(non-sensitive) or Secret(sensitive). (see [below for nested schema](#nestedatt--spec--outputs))
-- `restarted_at` (String) Allows executing a new Run without changing any Workspace or Module attributes.Example: kubectl patch <KIND> <NAME> --type=merge --patch '{'spec': {'restartedAt': '''date -u -Iseconds'''}}'
+- `restarted_at` (String) Allows executing a new Run without changing any Workspace or Module attributes. Example: kubectl patch <KIND> <NAME> --type=merge --patch '{'spec': {'restartedAt': '''date -u -Iseconds'''}}'
 - `variables` (Attributes List) Variables to pass to the module, they must exist in the Workspace. (see [below for nested schema](#nestedatt--spec--variables))
 
 <a id="nestedatt--spec--module"></a>
@@ -82,7 +82,7 @@ Optional:
 
 Required:
 
-- `source` (String) Non local Terraform module source.More information:  - https://developer.hashicorp.com/terraform/language/modules/sources
+- `source` (String) Non local Terraform module source. More information: - https://developer.hashicorp.com/terraform/language/modules/sources
 
 Optional:
 
@@ -101,11 +101,11 @@ Required:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -115,7 +115,7 @@ Optional:
 
 Optional:
 
-- `id` (String) Module Workspace ID.Must match pattern: '^ws-[a-zA-Z0-9]+$'
+- `id` (String) Module Workspace ID. Must match pattern: '^ws-[a-zA-Z0-9]+$'
 - `name` (String) Module Workspace Name.
 
 
@@ -128,7 +128,7 @@ Required:
 
 Optional:
 
-- `sensitive` (Boolean) Specify whether or not the output is sensitive.Default: 'false'.
+- `sensitive` (Boolean) Specify whether or not the output is sensitive. Default: 'false'.
 
 
 <a id="nestedatt--spec--variables"></a>

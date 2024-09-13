@@ -55,19 +55,19 @@ Optional:
 
 Required:
 
-- `daemon_node_selector` (Map of String) DaemonNodeSelector specifies the node selector for the linuxptp daemon.This is a map of key-value pairs used to select the nodes where thelinuxptp daemon will run.If empty {}, the linuxptp daemon will be deployed on each node of the cluster.
+- `daemon_node_selector` (Map of String) DaemonNodeSelector specifies the node selector for the linuxptp daemon. This is a map of key-value pairs used to select the nodes where the linuxptp daemon will run. If empty {}, the linuxptp daemon will be deployed on each node of the cluster.
 
 Optional:
 
-- `plugins` (Map of String) EnabledPlugins is a map of plugin names to their configuration settings.Each entry in the map specifies the configuration for a specific plugin.This field is optional and can be omitted if no plugins are enabled.
-- `ptp_event_config` (Attributes) EventConfig contains the configuration settings for the PTP event sidecar.This field is optional and can be omitted if event sidecar configuration is not required. (see [below for nested schema](#nestedatt--spec--ptp_event_config))
+- `plugins` (Map of String) EnabledPlugins is a map of plugin names to their configuration settings. Each entry in the map specifies the configuration for a specific plugin. This field is optional and can be omitted if no plugins are enabled.
+- `ptp_event_config` (Attributes) EventConfig contains the configuration settings for the PTP event sidecar. This field is optional and can be omitted if event sidecar configuration is not required. (see [below for nested schema](#nestedatt--spec--ptp_event_config))
 
 <a id="nestedatt--spec--ptp_event_config"></a>
 ### Nested Schema for `spec.ptp_event_config`
 
 Optional:
 
-- `api_version` (String) ApiVersion is used to determine which API is used for the event service1.0: default version. event service is mapped to internal REST-API.2.x: event service is mapped to O-RAN v3.0 Compliant O-Cloud Notification REST-API.
+- `api_version` (String) ApiVersion is used to determine which API is used for the event service 1.0: default version. event service is mapped to internal REST-API. 2.x: event service is mapped to O-RAN v3.0 Compliant O-Cloud Notification REST-API.
 - `enable_event_publisher` (Boolean) EnableEventPublisher will deploy event proxy as a sidecar
 - `storage_type` (String) StorageType is the type of storage to store subscription data
-- `transport_host` (String) TransportHost format is <protocol>://<transport-service>.<namespace>.svc.cluster.local:<transport-port>Example HTTP transport: 'http://ptp-event-publisher-service-NODE_NAME.openshift-ptp.svc.cluster.local:9043'
+- `transport_host` (String) TransportHost format is <protocol>://<transport-service>.<namespace>.svc.cluster.local:<transport-port> Example HTTP transport: 'http://ptp-event-publisher-service-NODE_NAME.openshift-ptp.svc.cluster.local:9043'

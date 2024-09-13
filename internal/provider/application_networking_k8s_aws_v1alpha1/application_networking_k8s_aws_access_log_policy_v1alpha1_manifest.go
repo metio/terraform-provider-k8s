@@ -132,8 +132,8 @@ func (r *ApplicationNetworkingK8SAwsAccessLogPolicyV1Alpha1Manifest) Schema(_ co
 				MarkdownDescription: "AccessLogPolicySpec defines the desired state of AccessLogPolicy.",
 				Attributes: map[string]schema.Attribute{
 					"destination_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the destination that will store access logs. Supported values are S3 Bucket, CloudWatch Log Group, and Firehose Delivery Stream ARNs.  Changes to this value results in replacement of the VPC Lattice Access Log Subscription.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the destination that will store access logs. Supported values are S3 Bucket, CloudWatch Log Group, and Firehose Delivery Stream ARNs.  Changes to this value results in replacement of the VPC Lattice Access Log Subscription.",
+						Description:         "The Amazon Resource Name (ARN) of the destination that will store access logs. Supported values are S3 Bucket, CloudWatch Log Group, and Firehose Delivery Stream ARNs. Changes to this value results in replacement of the VPC Lattice Access Log Subscription.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the destination that will store access logs. Supported values are S3 Bucket, CloudWatch Log Group, and Firehose Delivery Stream ARNs. Changes to this value results in replacement of the VPC Lattice Access Log Subscription.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -143,8 +143,8 @@ func (r *ApplicationNetworkingK8SAwsAccessLogPolicyV1Alpha1Manifest) Schema(_ co
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef points to the Kubernetes Gateway, HTTPRoute, or GRPCRoute resource that will have this policy attached.  This field is following the guidelines of Kubernetes Gateway API policy attachment.",
-						MarkdownDescription: "TargetRef points to the Kubernetes Gateway, HTTPRoute, or GRPCRoute resource that will have this policy attached.  This field is following the guidelines of Kubernetes Gateway API policy attachment.",
+						Description:         "TargetRef points to the Kubernetes Gateway, HTTPRoute, or GRPCRoute resource that will have this policy attached. This field is following the guidelines of Kubernetes Gateway API policy attachment.",
+						MarkdownDescription: "TargetRef points to the Kubernetes Gateway, HTTPRoute, or GRPCRoute resource that will have this policy attached. This field is following the guidelines of Kubernetes Gateway API policy attachment.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "Group is the group of the target resource.",

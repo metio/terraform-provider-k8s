@@ -151,8 +151,8 @@ func (r *AppsClusternetIoLocalizationV1Alpha1Manifest) Schema(_ context.Context,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind is a string value representing the REST resource this object represents.In CamelCase.",
-								MarkdownDescription: "Kind is a string value representing the REST resource this object represents.In CamelCase.",
+								Description:         "Kind is a string value representing the REST resource this object represents. In CamelCase.",
+								MarkdownDescription: "Kind is a string value representing the REST resource this object represents. In CamelCase.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -237,8 +237,8 @@ func (r *AppsClusternetIoLocalizationV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"priority": schema.Int64Attribute{
-						Description:         "Priority is an integer defining the relative importance of this Localization compared to others.Lower numbers are considered lower priority.And these Localization(s) will be applied by order from lower priority to higher.That means override values in lower Localization will be overridden by those in higher Localization.",
-						MarkdownDescription: "Priority is an integer defining the relative importance of this Localization compared to others.Lower numbers are considered lower priority.And these Localization(s) will be applied by order from lower priority to higher.That means override values in lower Localization will be overridden by those in higher Localization.",
+						Description:         "Priority is an integer defining the relative importance of this Localization compared to others. Lower numbers are considered lower priority. And these Localization(s) will be applied by order from lower priority to higher. That means override values in lower Localization will be overridden by those in higher Localization.",
+						MarkdownDescription: "Priority is an integer defining the relative importance of this Localization compared to others. Lower numbers are considered lower priority. And these Localization(s) will be applied by order from lower priority to higher. That means override values in lower Localization will be overridden by those in higher Localization.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

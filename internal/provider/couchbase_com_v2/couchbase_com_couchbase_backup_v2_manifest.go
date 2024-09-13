@@ -106,8 +106,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Metadata(_ context.Context, requ
 
 func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CouchbaseBackup allows automatic backup of all data from a Couchbase clusterinto persistent storage.",
-		MarkdownDescription: "CouchbaseBackup allows automatic backup of all data from a Couchbase clusterinto persistent storage.",
+		Description:         "CouchbaseBackup allows automatic backup of all data from a Couchbase cluster into persistent storage.",
+		MarkdownDescription: "CouchbaseBackup allows automatic backup of all data from a Couchbase cluster into persistent storage.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -174,16 +174,16 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "CouchbaseBackupSpec is allows the specification of how a Couchbase backup isconfigured, including when backups are performed, how long they are retainedfor, and where they are backed up to.",
-				MarkdownDescription: "CouchbaseBackupSpec is allows the specification of how a Couchbase backup isconfigured, including when backups are performed, how long they are retainedfor, and where they are backed up to.",
+				Description:         "CouchbaseBackupSpec is allows the specification of how a Couchbase backup is configured, including when backups are performed, how long they are retained for, and where they are backed up to.",
+				MarkdownDescription: "CouchbaseBackupSpec is allows the specification of how a Couchbase backup is configured, including when backups are performed, how long they are retained for, and where they are backed up to.",
 				Attributes: map[string]schema.Attribute{
 					"auto_scaling": schema.SingleNestedAttribute{
-						Description:         "AutoScaling allows the volume size to be dynamically increased.When specified, the backup volume will start with an initial sizeas defined by 'spec.size', and increase as required.",
-						MarkdownDescription: "AutoScaling allows the volume size to be dynamically increased.When specified, the backup volume will start with an initial sizeas defined by 'spec.size', and increase as required.",
+						Description:         "AutoScaling allows the volume size to be dynamically increased. When specified, the backup volume will start with an initial size as defined by 'spec.size', and increase as required.",
+						MarkdownDescription: "AutoScaling allows the volume size to be dynamically increased. When specified, the backup volume will start with an initial size as defined by 'spec.size', and increase as required.",
 						Attributes: map[string]schema.Attribute{
 							"increment_percent": schema.Int64Attribute{
-								Description:         "IncrementPercent controls how much the volume is increased each time thethreshold is exceeded, upto a maximum as defined by the limit.This field defaults to 20 if not specified.",
-								MarkdownDescription: "IncrementPercent controls how much the volume is increased each time thethreshold is exceeded, upto a maximum as defined by the limit.This field defaults to 20 if not specified.",
+								Description:         "IncrementPercent controls how much the volume is increased each time the threshold is exceeded, upto a maximum as defined by the limit. This field defaults to 20 if not specified.",
+								MarkdownDescription: "IncrementPercent controls how much the volume is increased each time the threshold is exceeded, upto a maximum as defined by the limit. This field defaults to 20 if not specified.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -193,8 +193,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 							},
 
 							"limit": schema.StringAttribute{
-								Description:         "Limit imposes a hard limit on the size we can autoscale to.  When notspecified no bounds are imposed. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-								MarkdownDescription: "Limit imposes a hard limit on the size we can autoscale to.  When notspecified no bounds are imposed. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								Description:         "Limit imposes a hard limit on the size we can autoscale to. When not specified no bounds are imposed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+								MarkdownDescription: "Limit imposes a hard limit on the size we can autoscale to. When not specified no bounds are imposed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -204,8 +204,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 							},
 
 							"threshold_percent": schema.Int64Attribute{
-								Description:         "ThresholdPercent determines the point at which a volume is autoscaled.This represents the percentage of free space remaining on the volume,when less than this threshold, it will trigger a volume expansion.For example, if the volume is 100Gi, and the threshold 20%, then a resizewill be triggered when the used capacity exceeds 80Gi, and free space isless than 20Gi.  This field defaults to 20 if not specified.",
-								MarkdownDescription: "ThresholdPercent determines the point at which a volume is autoscaled.This represents the percentage of free space remaining on the volume,when less than this threshold, it will trigger a volume expansion.For example, if the volume is 100Gi, and the threshold 20%, then a resizewill be triggered when the used capacity exceeds 80Gi, and free space isless than 20Gi.  This field defaults to 20 if not specified.",
+								Description:         "ThresholdPercent determines the point at which a volume is autoscaled. This represents the percentage of free space remaining on the volume, when less than this threshold, it will trigger a volume expansion. For example, if the volume is 100Gi, and the threshold 20%, then a resize will be triggered when the used capacity exceeds 80Gi, and free space is less than 20Gi. This field defaults to 20 if not specified.",
+								MarkdownDescription: "ThresholdPercent determines the point at which a volume is autoscaled. This represents the percentage of free space remaining on the volume, when less than this threshold, it will trigger a volume expansion. For example, if the volume is 100Gi, and the threshold 20%, then a resize will be triggered when the used capacity exceeds 80Gi, and free space is less than 20Gi. This field defaults to 20 if not specified.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -221,28 +221,28 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"backoff_limit": schema.Int64Attribute{
-						Description:         "Number of times a backup job should try to execute.Once it hits the BackoffLimit it will not run until the next scheduled job.",
-						MarkdownDescription: "Number of times a backup job should try to execute.Once it hits the BackoffLimit it will not run until the next scheduled job.",
+						Description:         "Number of times a backup job should try to execute. Once it hits the BackoffLimit it will not run until the next scheduled job.",
+						MarkdownDescription: "Number of times a backup job should try to execute. Once it hits the BackoffLimit it will not run until the next scheduled job.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"backup_retention": schema.StringAttribute{
-						Description:         "Number of hours to hold backups for, everything older will be deleted.  More info:https://golang.org/pkg/time/#ParseDuration",
-						MarkdownDescription: "Number of hours to hold backups for, everything older will be deleted.  More info:https://golang.org/pkg/time/#ParseDuration",
+						Description:         "Number of hours to hold backups for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration",
+						MarkdownDescription: "Number of hours to hold backups for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"data": schema.SingleNestedAttribute{
-						Description:         "Data allows control over what key-value/document data is included in thebackup.  By default, all data is included.  Modificationsto this field will only take effect on the next full backup.",
-						MarkdownDescription: "Data allows control over what key-value/document data is included in thebackup.  By default, all data is included.  Modificationsto this field will only take effect on the next full backup.",
+						Description:         "Data allows control over what key-value/document data is included in the backup. By default, all data is included. Modifications to this field will only take effect on the next full backup.",
+						MarkdownDescription: "Data allows control over what key-value/document data is included in the backup. By default, all data is included. Modifications to this field will only take effect on the next full backup.",
 						Attributes: map[string]schema.Attribute{
 							"exclude": schema.ListAttribute{
-								Description:         "Exclude defines the buckets, scopes or collections that are excluded from the backup.When this field is set, it implies that by default everything will be backed up,and data items can be explicitly excluded.  You may define an exclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Excluded data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as included items.",
-								MarkdownDescription: "Exclude defines the buckets, scopes or collections that are excluded from the backup.When this field is set, it implies that by default everything will be backed up,and data items can be explicitly excluded.  You may define an exclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Excluded data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as included items.",
+								Description:         "Exclude defines the buckets, scopes or collections that are excluded from the backup. When this field is set, it implies that by default everything will be backed up, and data items can be explicitly excluded. You may define an exclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections. Excluded data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal. This field cannot be used at the same time as included items.",
+								MarkdownDescription: "Exclude defines the buckets, scopes or collections that are excluded from the backup. When this field is set, it implies that by default everything will be backed up, and data items can be explicitly excluded. You may define an exclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections. Excluded data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal. This field cannot be used at the same time as included items.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -250,8 +250,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 							},
 
 							"include": schema.ListAttribute{
-								Description:         "Include defines the buckets, scopes or collections that are included in the backup.When this field is set, it implies that by default nothing will be backed up,and data items must be explicitly included.  You may define an inclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Included data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as excluded items.",
-								MarkdownDescription: "Include defines the buckets, scopes or collections that are included in the backup.When this field is set, it implies that by default nothing will be backed up,and data items must be explicitly included.  You may define an inclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Included data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as excluded items.",
+								Description:         "Include defines the buckets, scopes or collections that are included in the backup. When this field is set, it implies that by default nothing will be backed up, and data items must be explicitly included. You may define an inclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections. Included data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal. This field cannot be used at the same time as excluded items.",
+								MarkdownDescription: "Include defines the buckets, scopes or collections that are included in the backup. When this field is set, it implies that by default nothing will be backed up, and data items must be explicitly included. You may define an inclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections. Included data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal. This field cannot be used at the same time as excluded items.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -264,8 +264,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"default_recovery_method": schema.StringAttribute{
-						Description:         "DefaultRecoveryMethod specifies how cbbackupmgr shouldrecover from broken backup/restore attempts.",
-						MarkdownDescription: "DefaultRecoveryMethod specifies how cbbackupmgr shouldrecover from broken backup/restore attempts.",
+						Description:         "DefaultRecoveryMethod specifies how cbbackupmgr should recover from broken backup/restore attempts.",
+						MarkdownDescription: "DefaultRecoveryMethod specifies how cbbackupmgr should recover from broken backup/restore attempts.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -275,8 +275,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"ephemeral_volume": schema.BoolAttribute{
-						Description:         "EphemeralVolume sets backup to use an ephemeral volume insteadof a persistent volume. This is used when backing up to a remotecloud provider, where a persistent volume is not needed.",
-						MarkdownDescription: "EphemeralVolume sets backup to use an ephemeral volume insteadof a persistent volume. This is used when backing up to a remotecloud provider, where a persistent volume is not needed.",
+						Description:         "EphemeralVolume sets backup to use an ephemeral volume instead of a persistent volume. This is used when backing up to a remote cloud provider, where a persistent volume is not needed.",
+						MarkdownDescription: "EphemeralVolume sets backup to use an ephemeral volume instead of a persistent volume. This is used when backing up to a remote cloud provider, where a persistent volume is not needed.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -294,8 +294,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"full": schema.SingleNestedAttribute{
-						Description:         "Full is the schedule on when to take full backups.Used in Full/Incremental and FullOnly backup strategies.",
-						MarkdownDescription: "Full is the schedule on when to take full backups.Used in Full/Incremental and FullOnly backup strategies.",
+						Description:         "Full is the schedule on when to take full backups. Used in Full/Incremental and FullOnly backup strategies.",
+						MarkdownDescription: "Full is the schedule on when to take full backups. Used in Full/Incremental and FullOnly backup strategies.",
 						Attributes: map[string]schema.Attribute{
 							"schedule": schema.StringAttribute{
 								Description:         "Schedule takes a cron schedule in string format.",
@@ -311,8 +311,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"incremental": schema.SingleNestedAttribute{
-						Description:         "Incremental is the schedule on when to take incremental backups.Used in Full/Incremental backup strategies.",
-						MarkdownDescription: "Incremental is the schedule on when to take incremental backups.Used in Full/Incremental backup strategies.",
+						Description:         "Incremental is the schedule on when to take incremental backups. Used in Full/Incremental backup strategies.",
+						MarkdownDescription: "Incremental is the schedule on when to take incremental backups. Used in Full/Incremental backup strategies.",
 						Attributes: map[string]schema.Attribute{
 							"schedule": schema.StringAttribute{
 								Description:         "Schedule takes a cron schedule in string format.",
@@ -328,8 +328,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"log_retention": schema.StringAttribute{
-						Description:         "Number of hours to hold script logs for, everything older will be deleted.  More info:https://golang.org/pkg/time/#ParseDuration",
-						MarkdownDescription: "Number of hours to hold script logs for, everything older will be deleted.  More info:https://golang.org/pkg/time/#ParseDuration",
+						Description:         "Number of hours to hold script logs for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration",
+						MarkdownDescription: "Number of hours to hold script logs for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -340,12 +340,12 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 						MarkdownDescription: "ObjectStore allows for backing up to a remote cloud storage.",
 						Attributes: map[string]schema.Attribute{
 							"endpoint": schema.SingleNestedAttribute{
-								Description:         "Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store.If set will override 'CouchbaseCluster.spec.backup.objectEndpoint'See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores",
-								MarkdownDescription: "Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store.If set will override 'CouchbaseCluster.spec.backup.objectEndpoint'See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores",
+								Description:         "Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store. If set will override 'CouchbaseCluster.spec.backup.objectEndpoint' See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores",
+								MarkdownDescription: "Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store. If set will override 'CouchbaseCluster.spec.backup.objectEndpoint' See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores",
 								Attributes: map[string]schema.Attribute{
 									"secret": schema.StringAttribute{
-										Description:         "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpointThe secret must have the key with the name 'tls.crt'",
-										MarkdownDescription: "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpointThe secret must have the key with the name 'tls.crt'",
+										Description:         "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint The secret must have the key with the name 'tls.crt'",
+										MarkdownDescription: "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint The secret must have the key with the name 'tls.crt'",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -360,8 +360,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 									},
 
 									"use_virtual_path": schema.BoolAttribute{
-										Description:         "UseVirtualPath will force the AWS SDK to use the new virtual style pathswhich are often required by S3 compatible object stores.",
-										MarkdownDescription: "UseVirtualPath will force the AWS SDK to use the new virtual style pathswhich are often required by S3 compatible object stores.",
+										Description:         "UseVirtualPath will force the AWS SDK to use the new virtual style paths which are often required by S3 compatible object stores.",
+										MarkdownDescription: "UseVirtualPath will force the AWS SDK to use the new virtual style paths which are often required by S3 compatible object stores.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -373,16 +373,16 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 							},
 
 							"secret": schema.StringAttribute{
-								Description:         "ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token.These correspond to the fields used by cbbackupmgrhttps://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2",
-								MarkdownDescription: "ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token.These correspond to the fields used by cbbackupmgrhttps://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2",
+								Description:         "ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token. These correspond to the fields used by cbbackupmgr https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2",
+								MarkdownDescription: "ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token. These correspond to the fields used by cbbackupmgr https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"uri": schema.StringAttribute{
-								Description:         "URI is a reference to a remote object store.This is the prefix of the object store and the bucket name.i.e s3://bucket, az://bucket or gs://bucket.",
-								MarkdownDescription: "URI is a reference to a remote object store.This is the prefix of the object store and the bucket name.i.e s3://bucket, az://bucket or gs://bucket.",
+								Description:         "URI is a reference to a remote object store. This is the prefix of the object store and the bucket name. i.e s3://bucket, az://bucket or gs://bucket.",
+								MarkdownDescription: "URI is a reference to a remote object store. This is the prefix of the object store and the bucket name. i.e s3://bucket, az://bucket or gs://bucket.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -392,8 +392,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 							},
 
 							"use_iam": schema.BoolAttribute{
-								Description:         "Whether to allow the backup SDK to attempt to authenticateusing the instance metadata api.If set, will override 'CouchbaseCluster.spec.backup.useIAM'.",
-								MarkdownDescription: "Whether to allow the backup SDK to attempt to authenticateusing the instance metadata api.If set, will override 'CouchbaseCluster.spec.backup.useIAM'.",
+								Description:         "Whether to allow the backup SDK to attempt to authenticate using the instance metadata api. If set, will override 'CouchbaseCluster.spec.backup.useIAM'.",
+								MarkdownDescription: "Whether to allow the backup SDK to attempt to authenticate using the instance metadata api. If set, will override 'CouchbaseCluster.spec.backup.useIAM'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -405,8 +405,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"s3bucket": schema.StringAttribute{
-						Description:         "DEPRECATED - by spec.objectStore.uriName of S3 bucket to backup to. If non-empty this overrides local backup.",
-						MarkdownDescription: "DEPRECATED - by spec.objectStore.uriName of S3 bucket to backup to. If non-empty this overrides local backup.",
+						Description:         "DEPRECATED - by spec.objectStore.uri Name of S3 bucket to backup to. If non-empty this overrides local backup.",
+						MarkdownDescription: "DEPRECATED - by spec.objectStore.uri Name of S3 bucket to backup to. If non-empty this overrides local backup.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -416,100 +416,100 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"services": schema.SingleNestedAttribute{
-						Description:         "Services allows control over what services are included in the backup.By default, all service data and metadata are included apart from users.Modifications to this field will only take effect on the next full backup.",
-						MarkdownDescription: "Services allows control over what services are included in the backup.By default, all service data and metadata are included apart from users.Modifications to this field will only take effect on the next full backup.",
+						Description:         "Services allows control over what services are included in the backup. By default, all service data and metadata are included apart from users. Modifications to this field will only take effect on the next full backup.",
+						MarkdownDescription: "Services allows control over what services are included in the backup. By default, all service data and metadata are included apart from users. Modifications to this field will only take effect on the next full backup.",
 						Attributes: map[string]schema.Attribute{
 							"analytics": schema.BoolAttribute{
-								Description:         "Analytics enables the backup of analytics data.This field defaults to 'true'.",
-								MarkdownDescription: "Analytics enables the backup of analytics data.This field defaults to 'true'.",
+								Description:         "Analytics enables the backup of analytics data. This field defaults to 'true'.",
+								MarkdownDescription: "Analytics enables the backup of analytics data. This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"bucket_config": schema.BoolAttribute{
-								Description:         "BucketConfig enables the backup of bucket configuration.This field defaults to 'true'.",
-								MarkdownDescription: "BucketConfig enables the backup of bucket configuration.This field defaults to 'true'.",
+								Description:         "BucketConfig enables the backup of bucket configuration. This field defaults to 'true'.",
+								MarkdownDescription: "BucketConfig enables the backup of bucket configuration. This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"bucket_query": schema.BoolAttribute{
-								Description:         "BucketQuery enables the backup of query metadata for all buckets.This field defaults to 'true'.",
-								MarkdownDescription: "BucketQuery enables the backup of query metadata for all buckets.This field defaults to 'true'.",
+								Description:         "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
+								MarkdownDescription: "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"cluster_analytics": schema.BoolAttribute{
-								Description:         "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms.This field defaults to 'true'.",
-								MarkdownDescription: "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms.This field defaults to 'true'.",
+								Description:         "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms. This field defaults to 'true'.",
+								MarkdownDescription: "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms. This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"cluster_query": schema.BoolAttribute{
-								Description:         "ClusterQuery enables the backup of cluster level query metadata.This field defaults to 'true'.",
-								MarkdownDescription: "ClusterQuery enables the backup of cluster level query metadata.This field defaults to 'true'.",
+								Description:         "ClusterQuery enables the backup of cluster level query metadata. This field defaults to 'true'.",
+								MarkdownDescription: "ClusterQuery enables the backup of cluster level query metadata. This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"data": schema.BoolAttribute{
-								Description:         "Data enables the backup of key-value data/documents for all buckets.This can be further refined with the couchbasebackups.spec.data configuration.This field defaults to 'true'.",
-								MarkdownDescription: "Data enables the backup of key-value data/documents for all buckets.This can be further refined with the couchbasebackups.spec.data configuration.This field defaults to 'true'.",
+								Description:         "Data enables the backup of key-value data/documents for all buckets. This can be further refined with the couchbasebackups.spec.data configuration. This field defaults to 'true'.",
+								MarkdownDescription: "Data enables the backup of key-value data/documents for all buckets. This can be further refined with the couchbasebackups.spec.data configuration. This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"eventing": schema.BoolAttribute{
-								Description:         "Eventing enables the backup of eventing service metadata.This field defaults to 'true'.",
-								MarkdownDescription: "Eventing enables the backup of eventing service metadata.This field defaults to 'true'.",
+								Description:         "Eventing enables the backup of eventing service metadata. This field defaults to 'true'.",
+								MarkdownDescription: "Eventing enables the backup of eventing service metadata. This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"fts_aliases": schema.BoolAttribute{
-								Description:         "FTSAliases enables the backup of full-text search alias definitions.This field defaults to 'true'.",
-								MarkdownDescription: "FTSAliases enables the backup of full-text search alias definitions.This field defaults to 'true'.",
+								Description:         "FTSAliases enables the backup of full-text search alias definitions. This field defaults to 'true'.",
+								MarkdownDescription: "FTSAliases enables the backup of full-text search alias definitions. This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"fts_indexes": schema.BoolAttribute{
-								Description:         "FTSIndexes enables the backup of full-text search index definitions for all buckets.This field defaults to 'true'.",
-								MarkdownDescription: "FTSIndexes enables the backup of full-text search index definitions for all buckets.This field defaults to 'true'.",
+								Description:         "FTSIndexes enables the backup of full-text search index definitions for all buckets. This field defaults to 'true'.",
+								MarkdownDescription: "FTSIndexes enables the backup of full-text search index definitions for all buckets. This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"gs_indexes": schema.BoolAttribute{
-								Description:         "GSIndexes enables the backup of global secondary index definitions for all buckets.This field defaults to 'true'.",
-								MarkdownDescription: "GSIndexes enables the backup of global secondary index definitions for all buckets.This field defaults to 'true'.",
+								Description:         "GSIndexes enables the backup of global secondary index definitions for all buckets. This field defaults to 'true'.",
+								MarkdownDescription: "GSIndexes enables the backup of global secondary index definitions for all buckets. This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"users": schema.BoolAttribute{
-								Description:         "Users enables the backup of users including their roles and permissions. This isonly available for Couchbase Server 7.6 and later. This field defaults to 'false'.",
-								MarkdownDescription: "Users enables the backup of users including their roles and permissions. This isonly available for Couchbase Server 7.6 and later. This field defaults to 'false'.",
+								Description:         "Users enables the backup of users including their roles and permissions. This is only available for Couchbase Server 7.6 and later. This field defaults to 'false'.",
+								MarkdownDescription: "Users enables the backup of users including their roles and permissions. This is only available for Couchbase Server 7.6 and later. This field defaults to 'false'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"views": schema.BoolAttribute{
-								Description:         "Views enables the backup of view definitions for all buckets.This field defaults to 'true'.",
-								MarkdownDescription: "Views enables the backup of view definitions for all buckets.This field defaults to 'true'.",
+								Description:         "Views enables the backup of view definitions for all buckets. This field defaults to 'true'.",
+								MarkdownDescription: "Views enables the backup of view definitions for all buckets. This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -521,8 +521,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"size": schema.StringAttribute{
-						Description:         "Size allows the specification of a backup persistent volume, when usingvolume based backup. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-						MarkdownDescription: "Size allows the specification of a backup persistent volume, when usingvolume based backup. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+						Description:         "Size allows the specification of a backup persistent volume, when using volume based backup. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+						MarkdownDescription: "Size allows the specification of a backup persistent volume, when using volume based backup. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -540,8 +540,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"strategy": schema.StringAttribute{
-						Description:         "Strategy defines how to perform backups.  'full_only' will only perform fullbackups, and you must define a schedule in the 'spec.full' field.  'full_incremental'will perform periodic full backups, and incremental backups in between.  You mustdefine full and incremental schedules in the 'spec.full' and 'spec.incremental' fieldsrespectively.  Care should be taken to ensure full and incremental schedules do notoverlap, taking into account the backup time, as this will cause failures as the jobsattempt to mount the same backup volume. To cause a backup to occur immediately use 'immediate_incremental'or 'immediate_full' for incremental or full backups respectively.This field default to 'full_incremental'.Info: https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html",
-						MarkdownDescription: "Strategy defines how to perform backups.  'full_only' will only perform fullbackups, and you must define a schedule in the 'spec.full' field.  'full_incremental'will perform periodic full backups, and incremental backups in between.  You mustdefine full and incremental schedules in the 'spec.full' and 'spec.incremental' fieldsrespectively.  Care should be taken to ensure full and incremental schedules do notoverlap, taking into account the backup time, as this will cause failures as the jobsattempt to mount the same backup volume. To cause a backup to occur immediately use 'immediate_incremental'or 'immediate_full' for incremental or full backups respectively.This field default to 'full_incremental'.Info: https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html",
+						Description:         "Strategy defines how to perform backups. 'full_only' will only perform full backups, and you must define a schedule in the 'spec.full' field. 'full_incremental' will perform periodic full backups, and incremental backups in between. You must define full and incremental schedules in the 'spec.full' and 'spec.incremental' fields respectively. Care should be taken to ensure full and incremental schedules do not overlap, taking into account the backup time, as this will cause failures as the jobs attempt to mount the same backup volume. To cause a backup to occur immediately use 'immediate_incremental' or 'immediate_full' for incremental or full backups respectively. This field default to 'full_incremental'. Info: https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html",
+						MarkdownDescription: "Strategy defines how to perform backups. 'full_only' will only perform full backups, and you must define a schedule in the 'spec.full' field. 'full_incremental' will perform periodic full backups, and incremental backups in between. You must define full and incremental schedules in the 'spec.full' and 'spec.incremental' fields respectively. Care should be taken to ensure full and incremental schedules do not overlap, taking into account the backup time, as this will cause failures as the jobs attempt to mount the same backup volume. To cause a backup to occur immediately use 'immediate_incremental' or 'immediate_full' for incremental or full backups respectively. This field default to 'full_incremental'. Info: https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -562,8 +562,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"threads": schema.Int64Attribute{
-						Description:         "How many threads to use during the backup.  This field defaults to 1.",
-						MarkdownDescription: "How many threads to use during the backup.  This field defaults to 1.",
+						Description:         "How many threads to use during the backup. This field defaults to 1.",
+						MarkdownDescription: "How many threads to use during the backup. This field defaults to 1.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

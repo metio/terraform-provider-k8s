@@ -965,8 +965,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 								MarkdownDescription: "Spec is the specification of the desired behavior of the machine.",
 								Attributes: map[string]schema.Attribute{
 									"infra_cluster_secret_ref": schema.SingleNestedAttribute{
-										Description:         "InfraClusterSecretRef is a reference to a secret with a kubeconfig for external cluster used for infra.When nil, this defaults to the value present in the KubevirtCluster object's spec associated with this machine.",
-										MarkdownDescription: "InfraClusterSecretRef is a reference to a secret with a kubeconfig for external cluster used for infra.When nil, this defaults to the value present in the KubevirtCluster object's spec associated with this machine.",
+										Description:         "InfraClusterSecretRef is a reference to a secret with a kubeconfig for external cluster used for infra. When nil, this defaults to the value present in the KubevirtCluster object's spec associated with this machine.",
+										MarkdownDescription: "InfraClusterSecretRef is a reference to a secret with a kubeconfig for external cluster used for infra. When nil, this defaults to the value present in the KubevirtCluster object's spec associated with this machine.",
 										Attributes: map[string]schema.Attribute{
 											"api_version": schema.StringAttribute{
 												Description:         "API version of the referent.",
@@ -977,48 +977,48 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 											},
 
 											"field_path": schema.StringAttribute{
-												Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
-												MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+												Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+												MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"kind": schema.StringAttribute{
-												Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-												MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+												Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+												MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-												MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+												Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+												MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"resource_version": schema.StringAttribute{
-												Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-												MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+												Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+												MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"uid": schema.StringAttribute{
-												Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-												MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+												Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+												MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1042,8 +1042,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 										MarkdownDescription: "BootstrapCheckSpec defines how the CAPK controller is checking CAPI Sentinel file inside the VM.",
 										Attributes: map[string]schema.Attribute{
 											"check_strategy": schema.StringAttribute{
-												Description:         "CheckStrategy describes how CAPK controller will validate a successful CAPI bootstrap.Following specified method, CAPK will try to retrieve the state of the CAPI Sentinel file from the VM.Possible values are: 'none' or 'ssh' (default is 'ssh') and this value is validated by apiserver.",
-												MarkdownDescription: "CheckStrategy describes how CAPK controller will validate a successful CAPI bootstrap.Following specified method, CAPK will try to retrieve the state of the CAPI Sentinel file from the VM.Possible values are: 'none' or 'ssh' (default is 'ssh') and this value is validated by apiserver.",
+												Description:         "CheckStrategy describes how CAPK controller will validate a successful CAPI bootstrap. Following specified method, CAPK will try to retrieve the state of the CAPI Sentinel file from the VM. Possible values are: 'none' or 'ssh' (default is 'ssh') and this value is validated by apiserver.",
+												MarkdownDescription: "CheckStrategy describes how CAPK controller will validate a successful CAPI bootstrap. Following specified method, CAPK will try to retrieve the state of the CAPI Sentinel file from the VM. Possible values are: 'none' or 'ssh' (default is 'ssh') and this value is validated by apiserver.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1075,21 +1075,21 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 												MarkdownDescription: "VirtualMachineSpec contains the VirtualMachine specification.",
 												Attributes: map[string]schema.Attribute{
 													"data_volume_templates": schema.ListNestedAttribute{
-														Description:         "dataVolumeTemplates is a list of dataVolumes that the VirtualMachineInstance template can reference.DataVolumes in this list are dynamically created for the VirtualMachine and are tied to the VirtualMachine's life-cycle.",
-														MarkdownDescription: "dataVolumeTemplates is a list of dataVolumes that the VirtualMachineInstance template can reference.DataVolumes in this list are dynamically created for the VirtualMachine and are tied to the VirtualMachine's life-cycle.",
+														Description:         "dataVolumeTemplates is a list of dataVolumes that the VirtualMachineInstance template can reference. DataVolumes in this list are dynamically created for the VirtualMachine and are tied to the VirtualMachine's life-cycle.",
+														MarkdownDescription: "dataVolumeTemplates is a list of dataVolumes that the VirtualMachineInstance template can reference. DataVolumes in this list are dynamically created for the VirtualMachine and are tied to the VirtualMachine's life-cycle.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
-																	Description:         "APIVersion defines the versioned schema of this representation of an object.Servers should convert recognized schemas to the latest internal value, andmay reject unrecognized values.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-																	MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object.Servers should convert recognized schemas to the latest internal value, andmay reject unrecognized values.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+																	Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+																	MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "Kind is a string value representing the REST resource this object represents.Servers may infer this from the endpoint the client submits requests to.Cannot be updated.In CamelCase.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-																	MarkdownDescription: "Kind is a string value representing the REST resource this object represents.Servers may infer this from the endpoint the client submits requests to.Cannot be updated.In CamelCase.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																	Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																	MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1175,8 +1175,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																			MarkdownDescription: "PVC is the PVC specification",
 																			Attributes: map[string]schema.Attribute{
 																				"access_modes": schema.ListAttribute{
-																					Description:         "accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-																					MarkdownDescription: "accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+																					Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+																					MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -1184,12 +1184,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"data_source": schema.SingleNestedAttribute{
-																					Description:         "dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
-																					MarkdownDescription: "dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
+																					Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
+																					MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
 																					Attributes: map[string]schema.Attribute{
 																						"api_group": schema.StringAttribute{
-																							Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
-																							MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+																							Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																							MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -1217,12 +1217,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"data_source_ref": schema.SingleNestedAttribute{
-																					Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-																					MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																					Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																					MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 																					Attributes: map[string]schema.Attribute{
 																						"api_group": schema.StringAttribute{
-																							Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
-																							MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+																							Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																							MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -1245,8 +1245,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"namespace": schema.StringAttribute{
-																							Description:         "Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-																							MarkdownDescription: "Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																							Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																							MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -1258,12 +1258,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"resources": schema.SingleNestedAttribute{
-																					Description:         "resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-																					MarkdownDescription: "resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+																					Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+																					MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																					Attributes: map[string]schema.Attribute{
 																						"limits": schema.MapAttribute{
-																							Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																							MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																							Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																							MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -1271,8 +1271,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"requests": schema.MapAttribute{
-																							Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																							MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																							Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																							MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -1302,16 +1302,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																									},
 
 																									"operator": schema.StringAttribute{
-																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"values": schema.ListAttribute{
-																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -1325,8 +1325,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"match_labels": schema.MapAttribute{
-																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -1339,24 +1339,24 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"storage_class_name": schema.StringAttribute{
-																					Description:         "storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-																					MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																					Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																					MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"volume_attributes_class_name": schema.StringAttribute{
-																					Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-																					MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																					Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																					MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"volume_mode": schema.StringAttribute{
-																					Description:         "volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.",
-																					MarkdownDescription: "volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.",
+																					Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
+																					MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -1746,8 +1746,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																			MarkdownDescription: "Storage is the requested storage specification",
 																			Attributes: map[string]schema.Attribute{
 																				"access_modes": schema.ListAttribute{
-																					Description:         "AccessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-																					MarkdownDescription: "AccessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+																					Description:         "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+																					MarkdownDescription: "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -1755,12 +1755,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"data_source": schema.SingleNestedAttribute{
-																					Description:         "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) * An existing custom resource that implements data population (Alpha) In order to use custom resource types that implement data population, the AnyVolumeDataSource feature gate must be enabled. If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source.If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
-																					MarkdownDescription: "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) * An existing custom resource that implements data population (Alpha) In order to use custom resource types that implement data population, the AnyVolumeDataSource feature gate must be enabled. If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source.If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+																					Description:         "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) * An existing custom resource that implements data population (Alpha) In order to use custom resource types that implement data population, the AnyVolumeDataSource feature gate must be enabled. If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+																					MarkdownDescription: "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) * An existing custom resource that implements data population (Alpha) In order to use custom resource types that implement data population, the AnyVolumeDataSource feature gate must be enabled. If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
 																					Attributes: map[string]schema.Attribute{
 																						"api_group": schema.StringAttribute{
-																							Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
-																							MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+																							Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																							MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -1788,12 +1788,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"data_source_ref": schema.SingleNestedAttribute{
-																					Description:         "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner.This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty.There are two important differences between DataSource and DataSourceRef:* While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects.* While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
-																					MarkdownDescription: "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner.This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty.There are two important differences between DataSource and DataSourceRef:* While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects.* While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+																					Description:         "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+																					MarkdownDescription: "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
 																					Attributes: map[string]schema.Attribute{
 																						"api_group": schema.StringAttribute{
-																							Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
-																							MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+																							Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																							MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -1816,8 +1816,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"namespace": schema.StringAttribute{
-																							Description:         "Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-																							MarkdownDescription: "Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																							Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																							MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -1829,17 +1829,17 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"resources": schema.SingleNestedAttribute{
-																					Description:         "Resources represents the minimum resources the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-																					MarkdownDescription: "Resources represents the minimum resources the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+																					Description:         "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+																					MarkdownDescription: "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																					Attributes: map[string]schema.Attribute{
 																						"claims": schema.ListNestedAttribute{
-																							Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-																							MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																							Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																							MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"name": schema.StringAttribute{
-																										Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																										MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																										Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																										MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -1852,8 +1852,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"limits": schema.MapAttribute{
-																							Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																							MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																							Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																							MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -1861,8 +1861,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"requests": schema.MapAttribute{
-																							Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																							MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																							Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																							MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -1892,16 +1892,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																									},
 
 																									"operator": schema.StringAttribute{
-																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"values": schema.ListAttribute{
-																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -1915,8 +1915,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"match_labels": schema.MapAttribute{
-																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -1929,16 +1929,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"storage_class_name": schema.StringAttribute{
-																					Description:         "Name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-																					MarkdownDescription: "Name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																					Description:         "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																					MarkdownDescription: "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"volume_mode": schema.StringAttribute{
-																					Description:         "volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.",
-																					MarkdownDescription: "volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.",
+																					Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
+																					MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -1963,8 +1963,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																},
 
 																"status": schema.MapAttribute{
-																	Description:         "DataVolumeTemplateDummyStatus is here simply for backwards compatibility witha previous API.",
-																	MarkdownDescription: "DataVolumeTemplateDummyStatus is here simply for backwards compatibility witha previous API.",
+																	Description:         "DataVolumeTemplateDummyStatus is here simply for backwards compatibility with a previous API.",
+																	MarkdownDescription: "DataVolumeTemplateDummyStatus is here simply for backwards compatibility with a previous API.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1982,24 +1982,24 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 														MarkdownDescription: "InstancetypeMatcher references a instancetype that is used to fill fields in Template",
 														Attributes: map[string]schema.Attribute{
 															"infer_from_volume": schema.StringAttribute{
-																Description:         "InferFromVolume lists the name of a volume that should be used to infer or discover the instancetypeto be used through known annotations on the underlying resource. Once applied to the InstancetypeMatcherthis field is removed.",
-																MarkdownDescription: "InferFromVolume lists the name of a volume that should be used to infer or discover the instancetypeto be used through known annotations on the underlying resource. Once applied to the InstancetypeMatcherthis field is removed.",
+																Description:         "InferFromVolume lists the name of a volume that should be used to infer or discover the instancetype to be used through known annotations on the underlying resource. Once applied to the InstancetypeMatcher this field is removed.",
+																MarkdownDescription: "InferFromVolume lists the name of a volume that should be used to infer or discover the instancetype to be used through known annotations on the underlying resource. Once applied to the InstancetypeMatcher this field is removed.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"infer_from_volume_failure_policy": schema.StringAttribute{
-																Description:         "InferFromVolumeFailurePolicy controls what should happen on failure when inferring the instancetype.Allowed values are: 'RejectInferFromVolumeFailure' and 'IgnoreInferFromVolumeFailure'.If not specified, 'RejectInferFromVolumeFailure' is used by default.",
-																MarkdownDescription: "InferFromVolumeFailurePolicy controls what should happen on failure when inferring the instancetype.Allowed values are: 'RejectInferFromVolumeFailure' and 'IgnoreInferFromVolumeFailure'.If not specified, 'RejectInferFromVolumeFailure' is used by default.",
+																Description:         "InferFromVolumeFailurePolicy controls what should happen on failure when inferring the instancetype. Allowed values are: 'RejectInferFromVolumeFailure' and 'IgnoreInferFromVolumeFailure'. If not specified, 'RejectInferFromVolumeFailure' is used by default.",
+																MarkdownDescription: "InferFromVolumeFailurePolicy controls what should happen on failure when inferring the instancetype. Allowed values are: 'RejectInferFromVolumeFailure' and 'IgnoreInferFromVolumeFailure'. If not specified, 'RejectInferFromVolumeFailure' is used by default.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"kind": schema.StringAttribute{
-																Description:         "Kind specifies which instancetype resource is referenced.Allowed values are: 'VirtualMachineInstancetype' and 'VirtualMachineClusterInstancetype'.If not specified, 'VirtualMachineClusterInstancetype' is used by default.",
-																MarkdownDescription: "Kind specifies which instancetype resource is referenced.Allowed values are: 'VirtualMachineInstancetype' and 'VirtualMachineClusterInstancetype'.If not specified, 'VirtualMachineClusterInstancetype' is used by default.",
+																Description:         "Kind specifies which instancetype resource is referenced. Allowed values are: 'VirtualMachineInstancetype' and 'VirtualMachineClusterInstancetype'. If not specified, 'VirtualMachineClusterInstancetype' is used by default.",
+																MarkdownDescription: "Kind specifies which instancetype resource is referenced. Allowed values are: 'VirtualMachineInstancetype' and 'VirtualMachineClusterInstancetype'. If not specified, 'VirtualMachineClusterInstancetype' is used by default.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2014,8 +2014,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 															},
 
 															"revision_name": schema.StringAttribute{
-																Description:         "RevisionName specifies a ControllerRevision containing a specific copy of theVirtualMachineInstancetype or VirtualMachineClusterInstancetype to be used. This is initiallycaptured the first time the instancetype is applied to the VirtualMachineInstance.",
-																MarkdownDescription: "RevisionName specifies a ControllerRevision containing a specific copy of theVirtualMachineInstancetype or VirtualMachineClusterInstancetype to be used. This is initiallycaptured the first time the instancetype is applied to the VirtualMachineInstance.",
+																Description:         "RevisionName specifies a ControllerRevision containing a specific copy of the VirtualMachineInstancetype or VirtualMachineClusterInstancetype to be used. This is initially captured the first time the instancetype is applied to the VirtualMachineInstance.",
+																MarkdownDescription: "RevisionName specifies a ControllerRevision containing a specific copy of the VirtualMachineInstancetype or VirtualMachineClusterInstancetype to be used. This is initially captured the first time the instancetype is applied to the VirtualMachineInstance.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2031,24 +2031,24 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 														MarkdownDescription: "PreferenceMatcher references a set of preference that is used to fill fields in Template",
 														Attributes: map[string]schema.Attribute{
 															"infer_from_volume": schema.StringAttribute{
-																Description:         "InferFromVolume lists the name of a volume that should be used to infer or discover the preferenceto be used through known annotations on the underlying resource. Once applied to the PreferenceMatcherthis field is removed.",
-																MarkdownDescription: "InferFromVolume lists the name of a volume that should be used to infer or discover the preferenceto be used through known annotations on the underlying resource. Once applied to the PreferenceMatcherthis field is removed.",
+																Description:         "InferFromVolume lists the name of a volume that should be used to infer or discover the preference to be used through known annotations on the underlying resource. Once applied to the PreferenceMatcher this field is removed.",
+																MarkdownDescription: "InferFromVolume lists the name of a volume that should be used to infer or discover the preference to be used through known annotations on the underlying resource. Once applied to the PreferenceMatcher this field is removed.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"infer_from_volume_failure_policy": schema.StringAttribute{
-																Description:         "InferFromVolumeFailurePolicy controls what should happen on failure when preference the instancetype.Allowed values are: 'RejectInferFromVolumeFailure' and 'IgnoreInferFromVolumeFailure'.If not specified, 'RejectInferFromVolumeFailure' is used by default.",
-																MarkdownDescription: "InferFromVolumeFailurePolicy controls what should happen on failure when preference the instancetype.Allowed values are: 'RejectInferFromVolumeFailure' and 'IgnoreInferFromVolumeFailure'.If not specified, 'RejectInferFromVolumeFailure' is used by default.",
+																Description:         "InferFromVolumeFailurePolicy controls what should happen on failure when preference the instancetype. Allowed values are: 'RejectInferFromVolumeFailure' and 'IgnoreInferFromVolumeFailure'. If not specified, 'RejectInferFromVolumeFailure' is used by default.",
+																MarkdownDescription: "InferFromVolumeFailurePolicy controls what should happen on failure when preference the instancetype. Allowed values are: 'RejectInferFromVolumeFailure' and 'IgnoreInferFromVolumeFailure'. If not specified, 'RejectInferFromVolumeFailure' is used by default.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"kind": schema.StringAttribute{
-																Description:         "Kind specifies which preference resource is referenced.Allowed values are: 'VirtualMachinePreference' and 'VirtualMachineClusterPreference'.If not specified, 'VirtualMachineClusterPreference' is used by default.",
-																MarkdownDescription: "Kind specifies which preference resource is referenced.Allowed values are: 'VirtualMachinePreference' and 'VirtualMachineClusterPreference'.If not specified, 'VirtualMachineClusterPreference' is used by default.",
+																Description:         "Kind specifies which preference resource is referenced. Allowed values are: 'VirtualMachinePreference' and 'VirtualMachineClusterPreference'. If not specified, 'VirtualMachineClusterPreference' is used by default.",
+																MarkdownDescription: "Kind specifies which preference resource is referenced. Allowed values are: 'VirtualMachinePreference' and 'VirtualMachineClusterPreference'. If not specified, 'VirtualMachineClusterPreference' is used by default.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2063,8 +2063,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 															},
 
 															"revision_name": schema.StringAttribute{
-																Description:         "RevisionName specifies a ControllerRevision containing a specific copy of theVirtualMachinePreference or VirtualMachineClusterPreference to be used. This isinitially captured the first time the instancetype is applied to the VirtualMachineInstance.",
-																MarkdownDescription: "RevisionName specifies a ControllerRevision containing a specific copy of theVirtualMachinePreference or VirtualMachineClusterPreference to be used. This isinitially captured the first time the instancetype is applied to the VirtualMachineInstance.",
+																Description:         "RevisionName specifies a ControllerRevision containing a specific copy of the VirtualMachinePreference or VirtualMachineClusterPreference to be used. This is initially captured the first time the instancetype is applied to the VirtualMachineInstance.",
+																MarkdownDescription: "RevisionName specifies a ControllerRevision containing a specific copy of the VirtualMachinePreference or VirtualMachineClusterPreference to be used. This is initially captured the first time the instancetype is applied to the VirtualMachineInstance.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2076,16 +2076,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 													},
 
 													"run_strategy": schema.StringAttribute{
-														Description:         "Running state indicates the requested running state of the VirtualMachineInstancemutually exclusive with Running",
-														MarkdownDescription: "Running state indicates the requested running state of the VirtualMachineInstancemutually exclusive with Running",
+														Description:         "Running state indicates the requested running state of the VirtualMachineInstance mutually exclusive with Running",
+														MarkdownDescription: "Running state indicates the requested running state of the VirtualMachineInstance mutually exclusive with Running",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"running": schema.BoolAttribute{
-														Description:         "Running controls whether the associatied VirtualMachineInstance is created or notMutually exclusive with RunStrategy",
-														MarkdownDescription: "Running controls whether the associatied VirtualMachineInstance is created or notMutually exclusive with RunStrategy",
+														Description:         "Running controls whether the associatied VirtualMachineInstance is created or not Mutually exclusive with RunStrategy",
+														MarkdownDescription: "Running controls whether the associatied VirtualMachineInstance is created or not Mutually exclusive with RunStrategy",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2114,16 +2114,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"ssh_public_key": schema.SingleNestedAttribute{
-																					Description:         "SSHPublicKey represents the source and method of applying a ssh publickey into a guest virtual machine.",
-																					MarkdownDescription: "SSHPublicKey represents the source and method of applying a ssh publickey into a guest virtual machine.",
+																					Description:         "SSHPublicKey represents the source and method of applying a ssh public key into a guest virtual machine.",
+																					MarkdownDescription: "SSHPublicKey represents the source and method of applying a ssh public key into a guest virtual machine.",
 																					Attributes: map[string]schema.Attribute{
 																						"propagation_method": schema.SingleNestedAttribute{
 																							Description:         "PropagationMethod represents how the public key is injected into the vm guest.",
 																							MarkdownDescription: "PropagationMethod represents how the public key is injected into the vm guest.",
 																							Attributes: map[string]schema.Attribute{
 																								"config_drive": schema.MapAttribute{
-																									Description:         "ConfigDrivePropagation means that the ssh public keys are injectedinto the VM using metadata using the configDrive cloud-init provider",
-																									MarkdownDescription: "ConfigDrivePropagation means that the ssh public keys are injectedinto the VM using metadata using the configDrive cloud-init provider",
+																									Description:         "ConfigDrivePropagation means that the ssh public keys are injected into the VM using metadata using the configDrive cloud-init provider",
+																									MarkdownDescription: "ConfigDrivePropagation means that the ssh public keys are injected into the VM using metadata using the configDrive cloud-init provider",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -2131,8 +2131,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"no_cloud": schema.MapAttribute{
-																									Description:         "NoCloudPropagation means that the ssh public keys are injectedinto the VM using metadata using the noCloud cloud-init provider",
-																									MarkdownDescription: "NoCloudPropagation means that the ssh public keys are injectedinto the VM using metadata using the noCloud cloud-init provider",
+																									Description:         "NoCloudPropagation means that the ssh public keys are injected into the VM using metadata using the noCloud cloud-init provider",
+																									MarkdownDescription: "NoCloudPropagation means that the ssh public keys are injected into the VM using metadata using the noCloud cloud-init provider",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -2140,12 +2140,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"qemu_guest_agent": schema.SingleNestedAttribute{
-																									Description:         "QemuGuestAgentAccessCredentailPropagation means ssh public keys aredynamically injected into the vm at runtime via the qemu guest agent.This feature requires the qemu guest agent to be running within the guest.",
-																									MarkdownDescription: "QemuGuestAgentAccessCredentailPropagation means ssh public keys aredynamically injected into the vm at runtime via the qemu guest agent.This feature requires the qemu guest agent to be running within the guest.",
+																									Description:         "QemuGuestAgentAccessCredentailPropagation means ssh public keys are dynamically injected into the vm at runtime via the qemu guest agent. This feature requires the qemu guest agent to be running within the guest.",
+																									MarkdownDescription: "QemuGuestAgentAccessCredentailPropagation means ssh public keys are dynamically injected into the vm at runtime via the qemu guest agent. This feature requires the qemu guest agent to be running within the guest.",
 																									Attributes: map[string]schema.Attribute{
 																										"users": schema.ListAttribute{
-																											Description:         "Users represents a list of guest users that should have the ssh public keysadded to their authorized_keys file.",
-																											MarkdownDescription: "Users represents a list of guest users that should have the ssh public keysadded to their authorized_keys file.",
+																											Description:         "Users represents a list of guest users that should have the ssh public keys added to their authorized_keys file.",
+																											MarkdownDescription: "Users represents a list of guest users that should have the ssh public keys added to their authorized_keys file.",
 																											ElementType:         types.StringType,
 																											Required:            true,
 																											Optional:            false,
@@ -2194,16 +2194,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"user_password": schema.SingleNestedAttribute{
-																					Description:         "UserPassword represents the source and method for applying a guest user'spassword",
-																					MarkdownDescription: "UserPassword represents the source and method for applying a guest user'spassword",
+																					Description:         "UserPassword represents the source and method for applying a guest user's password",
+																					MarkdownDescription: "UserPassword represents the source and method for applying a guest user's password",
 																					Attributes: map[string]schema.Attribute{
 																						"propagation_method": schema.SingleNestedAttribute{
 																							Description:         "propagationMethod represents how the user passwords are injected into the vm guest.",
 																							MarkdownDescription: "propagationMethod represents how the user passwords are injected into the vm guest.",
 																							Attributes: map[string]schema.Attribute{
 																								"qemu_guest_agent": schema.MapAttribute{
-																									Description:         "QemuGuestAgentAccessCredentailPropagation means passwords aredynamically injected into the vm at runtime via the qemu guest agent.This feature requires the qemu guest agent to be running within the guest.",
-																									MarkdownDescription: "QemuGuestAgentAccessCredentailPropagation means passwords aredynamically injected into the vm at runtime via the qemu guest agent.This feature requires the qemu guest agent to be running within the guest.",
+																									Description:         "QemuGuestAgentAccessCredentailPropagation means passwords are dynamically injected into the vm at runtime via the qemu guest agent. This feature requires the qemu guest agent to be running within the guest.",
+																									MarkdownDescription: "QemuGuestAgentAccessCredentailPropagation means passwords are dynamically injected into the vm at runtime via the qemu guest agent. This feature requires the qemu guest agent to be running within the guest.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -2261,8 +2261,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
 																				Attributes: map[string]schema.Attribute{
 																					"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																						Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
-																						MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+																						Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+																						MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
 																						NestedObject: schema.NestedAttributeObject{
 																							Attributes: map[string]schema.Attribute{
 																								"preference": schema.SingleNestedAttribute{
@@ -2283,16 +2283,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																													},
 
 																													"operator": schema.StringAttribute{
-																														Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																														MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																														Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																														MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																														Required:            true,
 																														Optional:            false,
 																														Computed:            false,
 																													},
 
 																													"values": schema.ListAttribute{
-																														Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																														MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																														Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -2319,16 +2319,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																													},
 
 																													"operator": schema.StringAttribute{
-																														Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																														MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																														Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																														MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																														Required:            true,
 																														Optional:            false,
 																														Computed:            false,
 																													},
 
 																													"values": schema.ListAttribute{
-																														Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																														MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																														Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -2361,8 +2361,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-																						Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
-																						MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+																						Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+																						MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
 																						Attributes: map[string]schema.Attribute{
 																							"node_selector_terms": schema.ListNestedAttribute{
 																								Description:         "Required. A list of node selector terms. The terms are ORed.",
@@ -2383,16 +2383,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																													},
 
 																													"operator": schema.StringAttribute{
-																														Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																														MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																														Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																														MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																														Required:            true,
 																														Optional:            false,
 																														Computed:            false,
 																													},
 
 																													"values": schema.ListAttribute{
-																														Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																														MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																														Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -2419,16 +2419,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																													},
 
 																													"operator": schema.StringAttribute{
-																														Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																														MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																														Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																														MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																														Required:            true,
 																														Optional:            false,
 																														Computed:            false,
 																													},
 
 																													"values": schema.ListAttribute{
-																														Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																														MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																														Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -2462,8 +2462,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
 																				Attributes: map[string]schema.Attribute{
 																					"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																						Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
-																						MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																						Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																						MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 																						NestedObject: schema.NestedAttributeObject{
 																							Attributes: map[string]schema.Attribute{
 																								"pod_affinity_term": schema.SingleNestedAttribute{
@@ -2471,8 +2471,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																									MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																									Attributes: map[string]schema.Attribute{
 																										"label_selector": schema.SingleNestedAttribute{
-																											Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																											MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																											Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																											MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																											Attributes: map[string]schema.Attribute{
 																												"match_expressions": schema.ListNestedAttribute{
 																													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2488,16 +2488,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																															},
 
 																															"operator": schema.StringAttribute{
-																																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																Required:            true,
 																																Optional:            false,
 																																Computed:            false,
 																															},
 
 																															"values": schema.ListAttribute{
-																																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																ElementType:         types.StringType,
 																																Required:            false,
 																																Optional:            true,
@@ -2511,8 +2511,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																												},
 
 																												"match_labels": schema.MapAttribute{
-																													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																													ElementType:         types.StringType,
 																													Required:            false,
 																													Optional:            true,
@@ -2525,8 +2525,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"match_label_keys": schema.ListAttribute{
-																											Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																											MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																											Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																											MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -2534,8 +2534,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"mismatch_label_keys": schema.ListAttribute{
-																											Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																											MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																											Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																											MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -2543,8 +2543,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"namespace_selector": schema.SingleNestedAttribute{
-																											Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																											MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																											Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																											MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																											Attributes: map[string]schema.Attribute{
 																												"match_expressions": schema.ListNestedAttribute{
 																													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2560,16 +2560,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																															},
 
 																															"operator": schema.StringAttribute{
-																																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																Required:            true,
 																																Optional:            false,
 																																Computed:            false,
 																															},
 
 																															"values": schema.ListAttribute{
-																																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																ElementType:         types.StringType,
 																																Required:            false,
 																																Optional:            true,
@@ -2583,8 +2583,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																												},
 
 																												"match_labels": schema.MapAttribute{
-																													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																													ElementType:         types.StringType,
 																													Required:            false,
 																													Optional:            true,
@@ -2597,8 +2597,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"namespaces": schema.ListAttribute{
-																											Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																											MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																											Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																											MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -2606,8 +2606,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"topology_key": schema.StringAttribute{
-																											Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																											MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																											Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																											MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
@@ -2619,8 +2619,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"weight": schema.Int64Attribute{
-																									Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
-																									MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																									Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																									MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -2633,13 +2633,13 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																						Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
-																						MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																						Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																						MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 																						NestedObject: schema.NestedAttributeObject{
 																							Attributes: map[string]schema.Attribute{
 																								"label_selector": schema.SingleNestedAttribute{
-																									Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																									MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																									Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																									MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																									Attributes: map[string]schema.Attribute{
 																										"match_expressions": schema.ListNestedAttribute{
 																											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2655,16 +2655,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																													},
 
 																													"operator": schema.StringAttribute{
-																														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																														Required:            true,
 																														Optional:            false,
 																														Computed:            false,
 																													},
 
 																													"values": schema.ListAttribute{
-																														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -2678,8 +2678,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"match_labels": schema.MapAttribute{
-																											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -2692,8 +2692,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"match_label_keys": schema.ListAttribute{
-																									Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																									MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																									Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																									MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -2701,8 +2701,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"mismatch_label_keys": schema.ListAttribute{
-																									Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																									MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																									Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																									MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -2710,8 +2710,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"namespace_selector": schema.SingleNestedAttribute{
-																									Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																									MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																									Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																									MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																									Attributes: map[string]schema.Attribute{
 																										"match_expressions": schema.ListNestedAttribute{
 																											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2727,16 +2727,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																													},
 
 																													"operator": schema.StringAttribute{
-																														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																														Required:            true,
 																														Optional:            false,
 																														Computed:            false,
 																													},
 
 																													"values": schema.ListAttribute{
-																														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -2750,8 +2750,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"match_labels": schema.MapAttribute{
-																											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -2764,8 +2764,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"namespaces": schema.ListAttribute{
-																									Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																									MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																									Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																									MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -2773,8 +2773,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"topology_key": schema.StringAttribute{
-																									Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																									MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																									Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																									MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -2796,8 +2796,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
 																				Attributes: map[string]schema.Attribute{
 																					"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																						Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
-																						MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																						Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																						MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 																						NestedObject: schema.NestedAttributeObject{
 																							Attributes: map[string]schema.Attribute{
 																								"pod_affinity_term": schema.SingleNestedAttribute{
@@ -2805,8 +2805,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																									MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																									Attributes: map[string]schema.Attribute{
 																										"label_selector": schema.SingleNestedAttribute{
-																											Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																											MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																											Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																											MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																											Attributes: map[string]schema.Attribute{
 																												"match_expressions": schema.ListNestedAttribute{
 																													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2822,16 +2822,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																															},
 
 																															"operator": schema.StringAttribute{
-																																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																Required:            true,
 																																Optional:            false,
 																																Computed:            false,
 																															},
 
 																															"values": schema.ListAttribute{
-																																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																ElementType:         types.StringType,
 																																Required:            false,
 																																Optional:            true,
@@ -2845,8 +2845,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																												},
 
 																												"match_labels": schema.MapAttribute{
-																													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																													ElementType:         types.StringType,
 																													Required:            false,
 																													Optional:            true,
@@ -2859,8 +2859,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"match_label_keys": schema.ListAttribute{
-																											Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																											MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																											Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																											MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -2868,8 +2868,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"mismatch_label_keys": schema.ListAttribute{
-																											Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																											MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																											Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																											MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -2877,8 +2877,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"namespace_selector": schema.SingleNestedAttribute{
-																											Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																											MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																											Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																											MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																											Attributes: map[string]schema.Attribute{
 																												"match_expressions": schema.ListNestedAttribute{
 																													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2894,16 +2894,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																															},
 
 																															"operator": schema.StringAttribute{
-																																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																Required:            true,
 																																Optional:            false,
 																																Computed:            false,
 																															},
 
 																															"values": schema.ListAttribute{
-																																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																ElementType:         types.StringType,
 																																Required:            false,
 																																Optional:            true,
@@ -2917,8 +2917,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																												},
 
 																												"match_labels": schema.MapAttribute{
-																													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																													ElementType:         types.StringType,
 																													Required:            false,
 																													Optional:            true,
@@ -2931,8 +2931,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"namespaces": schema.ListAttribute{
-																											Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																											MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																											Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																											MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -2940,8 +2940,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"topology_key": schema.StringAttribute{
-																											Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																											MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																											Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																											MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
@@ -2953,8 +2953,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"weight": schema.Int64Attribute{
-																									Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
-																									MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																									Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																									MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -2967,13 +2967,13 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																						Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
-																						MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																						Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																						MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 																						NestedObject: schema.NestedAttributeObject{
 																							Attributes: map[string]schema.Attribute{
 																								"label_selector": schema.SingleNestedAttribute{
-																									Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																									MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																									Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																									MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																									Attributes: map[string]schema.Attribute{
 																										"match_expressions": schema.ListNestedAttribute{
 																											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2989,16 +2989,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																													},
 
 																													"operator": schema.StringAttribute{
-																														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																														Required:            true,
 																														Optional:            false,
 																														Computed:            false,
 																													},
 
 																													"values": schema.ListAttribute{
-																														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -3012,8 +3012,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"match_labels": schema.MapAttribute{
-																											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -3026,8 +3026,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"match_label_keys": schema.ListAttribute{
-																									Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																									MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																									Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																									MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -3035,8 +3035,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"mismatch_label_keys": schema.ListAttribute{
-																									Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																									MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																									Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																									MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -3044,8 +3044,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"namespace_selector": schema.SingleNestedAttribute{
-																									Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																									MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																									Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																									MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																									Attributes: map[string]schema.Attribute{
 																										"match_expressions": schema.ListNestedAttribute{
 																											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3061,16 +3061,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																													},
 
 																													"operator": schema.StringAttribute{
-																														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																														Required:            true,
 																														Optional:            false,
 																														Computed:            false,
 																													},
 
 																													"values": schema.ListAttribute{
-																														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -3084,8 +3084,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"match_labels": schema.MapAttribute{
-																											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																											ElementType:         types.StringType,
 																											Required:            false,
 																											Optional:            true,
@@ -3098,8 +3098,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"namespaces": schema.ListAttribute{
-																									Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																									MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																									Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																									MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																									ElementType:         types.StringType,
 																									Required:            false,
 																									Optional:            true,
@@ -3107,8 +3107,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"topology_key": schema.StringAttribute{
-																									Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																									MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																									Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																									MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -3139,12 +3139,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																	},
 
 																	"dns_config": schema.SingleNestedAttribute{
-																		Description:         "Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy.",
-																		MarkdownDescription: "Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy.",
+																		Description:         "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
+																		MarkdownDescription: "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
 																		Attributes: map[string]schema.Attribute{
 																			"nameservers": schema.ListAttribute{
-																				Description:         "A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.",
-																				MarkdownDescription: "A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.",
+																				Description:         "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
+																				MarkdownDescription: "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3152,8 +3152,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																			},
 
 																			"options": schema.ListNestedAttribute{
-																				Description:         "A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy.",
-																				MarkdownDescription: "A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy.",
+																				Description:         "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+																				MarkdownDescription: "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
 																				NestedObject: schema.NestedAttributeObject{
 																					Attributes: map[string]schema.Attribute{
 																						"name": schema.StringAttribute{
@@ -3179,8 +3179,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																			},
 
 																			"searches": schema.ListAttribute{
-																				Description:         "A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.",
-																				MarkdownDescription: "A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.",
+																				Description:         "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
+																				MarkdownDescription: "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3193,8 +3193,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																	},
 
 																	"dns_policy": schema.StringAttribute{
-																		Description:         "Set DNS policy for the pod.Defaults to 'ClusterFirst'.Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy.To have DNS options set along with hostNetwork, you have to specify DNS policyexplicitly to 'ClusterFirstWithHostNet'.",
-																		MarkdownDescription: "Set DNS policy for the pod.Defaults to 'ClusterFirst'.Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy.To have DNS options set along with hostNetwork, you have to specify DNS policyexplicitly to 'ClusterFirstWithHostNet'.",
+																		Description:         "Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.",
+																		MarkdownDescription: "Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3266,16 +3266,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								MarkdownDescription: "HPET (High Precision Event Timer) - multiple timers with periodic interrupts.",
 																								Attributes: map[string]schema.Attribute{
 																									"present": schema.BoolAttribute{
-																										Description:         "Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.",
-																										MarkdownDescription: "Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.",
+																										Description:         "Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.",
+																										MarkdownDescription: "Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"tick_policy": schema.StringAttribute{
-																										Description:         "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest.One of 'delay', 'catchup', 'merge', 'discard'.",
-																										MarkdownDescription: "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest.One of 'delay', 'catchup', 'merge', 'discard'.",
+																										Description:         "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest. One of 'delay', 'catchup', 'merge', 'discard'.",
+																										MarkdownDescription: "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest. One of 'delay', 'catchup', 'merge', 'discard'.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -3291,8 +3291,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								MarkdownDescription: "Hyperv (Hypervclock) - lets guests read the host’s wall clock time (paravirtualized). For windows guests.",
 																								Attributes: map[string]schema.Attribute{
 																									"present": schema.BoolAttribute{
-																										Description:         "Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.",
-																										MarkdownDescription: "Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.",
+																										Description:         "Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.",
+																										MarkdownDescription: "Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -3304,12 +3304,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"kvm": schema.SingleNestedAttribute{
-																								Description:         "KVM 	(KVM clock) - lets guests read the host’s wall clock time (paravirtualized). For linux guests.",
-																								MarkdownDescription: "KVM 	(KVM clock) - lets guests read the host’s wall clock time (paravirtualized). For linux guests.",
+																								Description:         "KVM (KVM clock) - lets guests read the host’s wall clock time (paravirtualized). For linux guests.",
+																								MarkdownDescription: "KVM (KVM clock) - lets guests read the host’s wall clock time (paravirtualized). For linux guests.",
 																								Attributes: map[string]schema.Attribute{
 																									"present": schema.BoolAttribute{
-																										Description:         "Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.",
-																										MarkdownDescription: "Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.",
+																										Description:         "Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.",
+																										MarkdownDescription: "Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -3325,16 +3325,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								MarkdownDescription: "PIT (Programmable Interval Timer) - a timer with periodic interrupts.",
 																								Attributes: map[string]schema.Attribute{
 																									"present": schema.BoolAttribute{
-																										Description:         "Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.",
-																										MarkdownDescription: "Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.",
+																										Description:         "Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.",
+																										MarkdownDescription: "Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"tick_policy": schema.StringAttribute{
-																										Description:         "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest.One of 'delay', 'catchup', 'discard'.",
-																										MarkdownDescription: "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest.One of 'delay', 'catchup', 'discard'.",
+																										Description:         "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest. One of 'delay', 'catchup', 'discard'.",
+																										MarkdownDescription: "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest. One of 'delay', 'catchup', 'discard'.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -3350,16 +3350,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								MarkdownDescription: "RTC (Real Time Clock) - a continuously running timer with periodic interrupts.",
 																								Attributes: map[string]schema.Attribute{
 																									"present": schema.BoolAttribute{
-																										Description:         "Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.",
-																										MarkdownDescription: "Enabled set to false makes sure that the machine type or a preset can't add the timer.Defaults to true.",
+																										Description:         "Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.",
+																										MarkdownDescription: "Enabled set to false makes sure that the machine type or a preset can't add the timer. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"tick_policy": schema.StringAttribute{
-																										Description:         "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest.One of 'delay', 'catchup'.",
-																										MarkdownDescription: "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest.One of 'delay', 'catchup'.",
+																										Description:         "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest. One of 'delay', 'catchup'.",
+																										MarkdownDescription: "TickPolicy determines what happens when QEMU misses a deadline for injecting a tick to the guest. One of 'delay', 'catchup'.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -3384,20 +3384,20 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"timezone": schema.StringAttribute{
-																						Description:         "Timezone sets the guest clock to the specified timezone.Zone name follows the TZ environment variable format (e.g. 'America/New_York').",
-																						MarkdownDescription: "Timezone sets the guest clock to the specified timezone.Zone name follows the TZ environment variable format (e.g. 'America/New_York').",
+																						Description:         "Timezone sets the guest clock to the specified timezone. Zone name follows the TZ environment variable format (e.g. 'America/New_York').",
+																						MarkdownDescription: "Timezone sets the guest clock to the specified timezone. Zone name follows the TZ environment variable format (e.g. 'America/New_York').",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"utc": schema.SingleNestedAttribute{
-																						Description:         "UTC sets the guest clock to UTC on each boot. If an offset is specified,guest changes to the clock will be kept during reboots and are not reset.",
-																						MarkdownDescription: "UTC sets the guest clock to UTC on each boot. If an offset is specified,guest changes to the clock will be kept during reboots and are not reset.",
+																						Description:         "UTC sets the guest clock to UTC on each boot. If an offset is specified, guest changes to the clock will be kept during reboots and are not reset.",
+																						MarkdownDescription: "UTC sets the guest clock to UTC on each boot. If an offset is specified, guest changes to the clock will be kept during reboots and are not reset.",
 																						Attributes: map[string]schema.Attribute{
 																							"offset_seconds": schema.Int64Attribute{
-																								Description:         "OffsetSeconds specifies an offset in seconds, relative to UTC. If set,guest changes to the clock will be kept during reboots and not reset.",
-																								MarkdownDescription: "OffsetSeconds specifies an offset in seconds, relative to UTC. If set,guest changes to the clock will be kept during reboots and not reset.",
+																								Description:         "OffsetSeconds specifies an offset in seconds, relative to UTC. If set, guest changes to the clock will be kept during reboots and not reset.",
+																								MarkdownDescription: "OffsetSeconds specifies an offset in seconds, relative to UTC. If set, guest changes to the clock will be kept during reboots and not reset.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -3418,16 +3418,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				MarkdownDescription: "CPU allow specified the detailed CPU topology inside the vmi.",
 																				Attributes: map[string]schema.Attribute{
 																					"cores": schema.Int64Attribute{
-																						Description:         "Cores specifies the number of cores inside the vmi.Must be a value greater or equal 1.",
-																						MarkdownDescription: "Cores specifies the number of cores inside the vmi.Must be a value greater or equal 1.",
+																						Description:         "Cores specifies the number of cores inside the vmi. Must be a value greater or equal 1.",
+																						MarkdownDescription: "Cores specifies the number of cores inside the vmi. Must be a value greater or equal 1.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"dedicated_cpu_placement": schema.BoolAttribute{
-																						Description:         "DedicatedCPUPlacement requests the scheduler to place the VirtualMachineInstance on a nodewith enough dedicated pCPUs and pin the vCPUs to it.",
-																						MarkdownDescription: "DedicatedCPUPlacement requests the scheduler to place the VirtualMachineInstance on a nodewith enough dedicated pCPUs and pin the vCPUs to it.",
+																						Description:         "DedicatedCPUPlacement requests the scheduler to place the VirtualMachineInstance on a node with enough dedicated pCPUs and pin the vCPUs to it.",
+																						MarkdownDescription: "DedicatedCPUPlacement requests the scheduler to place the VirtualMachineInstance on a node with enough dedicated pCPUs and pin the vCPUs to it.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -3447,8 +3447,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"policy": schema.StringAttribute{
-																									Description:         "Policy is the CPU feature attribute which can have the following attributes:force    - The virtual CPU will claim the feature is supported regardless of it being supported by host CPU.require  - Guest creation will fail unless the feature is supported by the host CPU or the hypervisor is able to emulate it.optional - The feature will be supported by virtual CPU if and only if it is supported by host CPU.disable  - The feature will not be supported by virtual CPU.forbid   - Guest creation will fail if the feature is supported by host CPU.Defaults to require",
-																									MarkdownDescription: "Policy is the CPU feature attribute which can have the following attributes:force    - The virtual CPU will claim the feature is supported regardless of it being supported by host CPU.require  - Guest creation will fail unless the feature is supported by the host CPU or the hypervisor is able to emulate it.optional - The feature will be supported by virtual CPU if and only if it is supported by host CPU.disable  - The feature will not be supported by virtual CPU.forbid   - Guest creation will fail if the feature is supported by host CPU.Defaults to require",
+																									Description:         "Policy is the CPU feature attribute which can have the following attributes: force - The virtual CPU will claim the feature is supported regardless of it being supported by host CPU. require - Guest creation will fail unless the feature is supported by the host CPU or the hypervisor is able to emulate it. optional - The feature will be supported by virtual CPU if and only if it is supported by host CPU. disable - The feature will not be supported by virtual CPU. forbid - Guest creation will fail if the feature is supported by host CPU. Defaults to require",
+																									MarkdownDescription: "Policy is the CPU feature attribute which can have the following attributes: force - The virtual CPU will claim the feature is supported regardless of it being supported by host CPU. require - Guest creation will fail unless the feature is supported by the host CPU or the hypervisor is able to emulate it. optional - The feature will be supported by virtual CPU if and only if it is supported by host CPU. disable - The feature will not be supported by virtual CPU. forbid - Guest creation will fail if the feature is supported by host CPU. Defaults to require",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -3461,24 +3461,24 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"isolate_emulator_thread": schema.BoolAttribute{
-																						Description:         "IsolateEmulatorThread requests one more dedicated pCPU to be allocated for the VMI to placethe emulator thread on it.",
-																						MarkdownDescription: "IsolateEmulatorThread requests one more dedicated pCPU to be allocated for the VMI to placethe emulator thread on it.",
+																						Description:         "IsolateEmulatorThread requests one more dedicated pCPU to be allocated for the VMI to place the emulator thread on it.",
+																						MarkdownDescription: "IsolateEmulatorThread requests one more dedicated pCPU to be allocated for the VMI to place the emulator thread on it.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"max_sockets": schema.Int64Attribute{
-																						Description:         "MaxSockets specifies the maximum amount of sockets that canbe hotplugged",
-																						MarkdownDescription: "MaxSockets specifies the maximum amount of sockets that canbe hotplugged",
+																						Description:         "MaxSockets specifies the maximum amount of sockets that can be hotplugged",
+																						MarkdownDescription: "MaxSockets specifies the maximum amount of sockets that can be hotplugged",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"model": schema.StringAttribute{
-																						Description:         "Model specifies the CPU model inside the VMI.List of available models https://github.com/libvirt/libvirt/tree/master/src/cpu_map.It is possible to specify special cases like 'host-passthrough' to get the same CPU as the nodeand 'host-model' to get CPU closest to the node one.Defaults to host-model.",
-																						MarkdownDescription: "Model specifies the CPU model inside the VMI.List of available models https://github.com/libvirt/libvirt/tree/master/src/cpu_map.It is possible to specify special cases like 'host-passthrough' to get the same CPU as the nodeand 'host-model' to get CPU closest to the node one.Defaults to host-model.",
+																						Description:         "Model specifies the CPU model inside the VMI. List of available models https://github.com/libvirt/libvirt/tree/master/src/cpu_map. It is possible to specify special cases like 'host-passthrough' to get the same CPU as the node and 'host-model' to get CPU closest to the node one. Defaults to host-model.",
+																						MarkdownDescription: "Model specifies the CPU model inside the VMI. List of available models https://github.com/libvirt/libvirt/tree/master/src/cpu_map. It is possible to specify special cases like 'host-passthrough' to get the same CPU as the node and 'host-model' to get CPU closest to the node one. Defaults to host-model.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -3489,8 +3489,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						MarkdownDescription: "NUMA allows specifying settings for the guest NUMA topology",
 																						Attributes: map[string]schema.Attribute{
 																							"guest_mapping_passthrough": schema.MapAttribute{
-																								Description:         "GuestMappingPassthrough will create an efficient guest topology based on host CPUs exclusively assigned to a pod.The created topology ensures that memory and CPUs on the virtual numa nodes never cross boundaries of host numa nodes.",
-																								MarkdownDescription: "GuestMappingPassthrough will create an efficient guest topology based on host CPUs exclusively assigned to a pod.The created topology ensures that memory and CPUs on the virtual numa nodes never cross boundaries of host numa nodes.",
+																								Description:         "GuestMappingPassthrough will create an efficient guest topology based on host CPUs exclusively assigned to a pod. The created topology ensures that memory and CPUs on the virtual numa nodes never cross boundaries of host numa nodes.",
+																								MarkdownDescription: "GuestMappingPassthrough will create an efficient guest topology based on host CPUs exclusively assigned to a pod. The created topology ensures that memory and CPUs on the virtual numa nodes never cross boundaries of host numa nodes.",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            true,
@@ -3507,8 +3507,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						MarkdownDescription: "Realtime instructs the virt-launcher to tune the VMI for lower latency, optional for real time workloads",
 																						Attributes: map[string]schema.Attribute{
 																							"mask": schema.StringAttribute{
-																								Description:         "Mask defines the vcpu mask expression that defines which vcpus are used for realtime. Format matches libvirt's expressions.Example: '0-3,^1','0,2,3','2-3'",
-																								MarkdownDescription: "Mask defines the vcpu mask expression that defines which vcpus are used for realtime. Format matches libvirt's expressions.Example: '0-3,^1','0,2,3','2-3'",
+																								Description:         "Mask defines the vcpu mask expression that defines which vcpus are used for realtime. Format matches libvirt's expressions. Example: '0-3,^1','0,2,3','2-3'",
+																								MarkdownDescription: "Mask defines the vcpu mask expression that defines which vcpus are used for realtime. Format matches libvirt's expressions. Example: '0-3,^1','0,2,3','2-3'",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -3520,16 +3520,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"sockets": schema.Int64Attribute{
-																						Description:         "Sockets specifies the number of sockets inside the vmi.Must be a value greater or equal 1.",
-																						MarkdownDescription: "Sockets specifies the number of sockets inside the vmi.Must be a value greater or equal 1.",
+																						Description:         "Sockets specifies the number of sockets inside the vmi. Must be a value greater or equal 1.",
+																						MarkdownDescription: "Sockets specifies the number of sockets inside the vmi. Must be a value greater or equal 1.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"threads": schema.Int64Attribute{
-																						Description:         "Threads specifies the number of threads inside the vmi.Must be a value greater or equal 1.",
-																						MarkdownDescription: "Threads specifies the number of threads inside the vmi.Must be a value greater or equal 1.",
+																						Description:         "Threads specifies the number of threads inside the vmi. Must be a value greater or equal 1.",
+																						MarkdownDescription: "Threads specifies the number of threads inside the vmi. Must be a value greater or equal 1.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -3545,24 +3545,24 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				MarkdownDescription: "Devices allows adding disks, network interfaces, and others",
 																				Attributes: map[string]schema.Attribute{
 																					"autoattach_graphics_device": schema.BoolAttribute{
-																						Description:         "Whether to attach the default graphics device or not.VNC will not be available if set to false. Defaults to true.",
-																						MarkdownDescription: "Whether to attach the default graphics device or not.VNC will not be available if set to false. Defaults to true.",
+																						Description:         "Whether to attach the default graphics device or not. VNC will not be available if set to false. Defaults to true.",
+																						MarkdownDescription: "Whether to attach the default graphics device or not. VNC will not be available if set to false. Defaults to true.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"autoattach_input_device": schema.BoolAttribute{
-																						Description:         "Whether to attach an Input Device.Defaults to false.",
-																						MarkdownDescription: "Whether to attach an Input Device.Defaults to false.",
+																						Description:         "Whether to attach an Input Device. Defaults to false.",
+																						MarkdownDescription: "Whether to attach an Input Device. Defaults to false.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"autoattach_mem_balloon": schema.BoolAttribute{
-																						Description:         "Whether to attach the Memory balloon device with default period.Period can be adjusted in virt-config.Defaults to true.",
-																						MarkdownDescription: "Whether to attach the Memory balloon device with default period.Period can be adjusted in virt-config.Defaults to true.",
+																						Description:         "Whether to attach the Memory balloon device with default period. Period can be adjusted in virt-config. Defaults to true.",
+																						MarkdownDescription: "Whether to attach the Memory balloon device with default period. Period can be adjusted in virt-config. Defaults to true.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -3577,24 +3577,24 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"autoattach_serial_console": schema.BoolAttribute{
-																						Description:         "Whether to attach the default virtio-serial console or not.Serial console access will not be available if set to false. Defaults to true.",
-																						MarkdownDescription: "Whether to attach the default virtio-serial console or not.Serial console access will not be available if set to false. Defaults to true.",
+																						Description:         "Whether to attach the default virtio-serial console or not. Serial console access will not be available if set to false. Defaults to true.",
+																						MarkdownDescription: "Whether to attach the default virtio-serial console or not. Serial console access will not be available if set to false. Defaults to true.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"autoattach_vsock": schema.BoolAttribute{
-																						Description:         "Whether to attach the VSOCK CID to the VM or not.VSOCK access will be available if set to true. Defaults to false.",
-																						MarkdownDescription: "Whether to attach the VSOCK CID to the VM or not.VSOCK access will be available if set to true. Defaults to false.",
+																						Description:         "Whether to attach the VSOCK CID to the VM or not. VSOCK access will be available if set to true. Defaults to false.",
+																						MarkdownDescription: "Whether to attach the VSOCK CID to the VM or not. VSOCK access will be available if set to true. Defaults to false.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"block_multi_queue": schema.BoolAttribute{
-																						Description:         "Whether or not to enable virtio multi-queue for block devices.Defaults to false.",
-																						MarkdownDescription: "Whether or not to enable virtio multi-queue for block devices.Defaults to false.",
+																						Description:         "Whether or not to enable virtio multi-queue for block devices. Defaults to false.",
+																						MarkdownDescription: "Whether or not to enable virtio multi-queue for block devices. Defaults to false.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -3656,8 +3656,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																											MarkdownDescription: "Represents if a feature is enabled or disabled.",
 																											Attributes: map[string]schema.Attribute{
 																												"enabled": schema.BoolAttribute{
-																													Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																													MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																													Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																													MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
@@ -3674,16 +3674,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"boot_order": schema.Int64Attribute{
-																									Description:         "BootOrder is an integer value > 0, used to determine ordering of boot devices.Lower values take precedence.Each disk or interface that has a boot order must have a unique value.Disks without a boot order are not tried if a disk with a boot order exists.",
-																									MarkdownDescription: "BootOrder is an integer value > 0, used to determine ordering of boot devices.Lower values take precedence.Each disk or interface that has a boot order must have a unique value.Disks without a boot order are not tried if a disk with a boot order exists.",
+																									Description:         "BootOrder is an integer value > 0, used to determine ordering of boot devices. Lower values take precedence. Each disk or interface that has a boot order must have a unique value. Disks without a boot order are not tried if a disk with a boot order exists.",
+																									MarkdownDescription: "BootOrder is an integer value > 0, used to determine ordering of boot devices. Lower values take precedence. Each disk or interface that has a boot order must have a unique value. Disks without a boot order are not tried if a disk with a boot order exists.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"cache": schema.StringAttribute{
-																									Description:         "Cache specifies which kvm disk cache mode should be used.Supported values are: CacheNone, CacheWriteThrough.",
-																									MarkdownDescription: "Cache specifies which kvm disk cache mode should be used.Supported values are: CacheNone, CacheWriteThrough.",
+																									Description:         "Cache specifies which kvm disk cache mode should be used. Supported values are: CacheNone, CacheWriteThrough.",
+																									MarkdownDescription: "Cache specifies which kvm disk cache mode should be used. Supported values are: CacheNone, CacheWriteThrough.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -3694,24 +3694,24 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																									MarkdownDescription: "Attach a volume as a cdrom to the vmi.",
 																									Attributes: map[string]schema.Attribute{
 																										"bus": schema.StringAttribute{
-																											Description:         "Bus indicates the type of disk device to emulate.supported values: virtio, sata, scsi.",
-																											MarkdownDescription: "Bus indicates the type of disk device to emulate.supported values: virtio, sata, scsi.",
+																											Description:         "Bus indicates the type of disk device to emulate. supported values: virtio, sata, scsi.",
+																											MarkdownDescription: "Bus indicates the type of disk device to emulate. supported values: virtio, sata, scsi.",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
 																										},
 
 																										"readonly": schema.BoolAttribute{
-																											Description:         "ReadOnly.Defaults to true.",
-																											MarkdownDescription: "ReadOnly.Defaults to true.",
+																											Description:         "ReadOnly. Defaults to true.",
+																											MarkdownDescription: "ReadOnly. Defaults to true.",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
 																										},
 
 																										"tray": schema.StringAttribute{
-																											Description:         "Tray indicates if the tray of the device is open or closed.Allowed values are 'open' and 'closed'.Defaults to closed.",
-																											MarkdownDescription: "Tray indicates if the tray of the device is open or closed.Allowed values are 'open' and 'closed'.Defaults to closed.",
+																											Description:         "Tray indicates if the tray of the device is open or closed. Allowed values are 'open' and 'closed'. Defaults to closed.",
+																											MarkdownDescription: "Tray indicates if the tray of the device is open or closed. Allowed values are 'open' and 'closed'. Defaults to closed.",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
@@ -3723,8 +3723,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"dedicated_io_thread": schema.BoolAttribute{
-																									Description:         "dedicatedIOThread indicates this disk should have an exclusive IO Thread.Enabling this implies useIOThreads = true.Defaults to false.",
-																									MarkdownDescription: "dedicatedIOThread indicates this disk should have an exclusive IO Thread.Enabling this implies useIOThreads = true.Defaults to false.",
+																									Description:         "dedicatedIOThread indicates this disk should have an exclusive IO Thread. Enabling this implies useIOThreads = true. Defaults to false.",
+																									MarkdownDescription: "dedicatedIOThread indicates this disk should have an exclusive IO Thread. Enabling this implies useIOThreads = true. Defaults to false.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -3735,8 +3735,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																									MarkdownDescription: "Attach a volume as a disk to the vmi.",
 																									Attributes: map[string]schema.Attribute{
 																										"bus": schema.StringAttribute{
-																											Description:         "Bus indicates the type of disk device to emulate.supported values: virtio, sata, scsi, usb.",
-																											MarkdownDescription: "Bus indicates the type of disk device to emulate.supported values: virtio, sata, scsi, usb.",
+																											Description:         "Bus indicates the type of disk device to emulate. supported values: virtio, sata, scsi, usb.",
+																											MarkdownDescription: "Bus indicates the type of disk device to emulate. supported values: virtio, sata, scsi, usb.",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
@@ -3751,8 +3751,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																										},
 
 																										"readonly": schema.BoolAttribute{
-																											Description:         "ReadOnly.Defaults to false.",
-																											MarkdownDescription: "ReadOnly.Defaults to false.",
+																											Description:         "ReadOnly. Defaults to false.",
+																											MarkdownDescription: "ReadOnly. Defaults to false.",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
@@ -3772,8 +3772,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"io": schema.StringAttribute{
-																									Description:         "IO specifies which QEMU disk IO mode should be used.Supported values are: native, default, threads.",
-																									MarkdownDescription: "IO specifies which QEMU disk IO mode should be used.Supported values are: native, default, threads.",
+																									Description:         "IO specifies which QEMU disk IO mode should be used. Supported values are: native, default, threads.",
+																									MarkdownDescription: "IO specifies which QEMU disk IO mode should be used. Supported values are: native, default, threads.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -3784,16 +3784,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																									MarkdownDescription: "Attach a volume as a LUN to the vmi.",
 																									Attributes: map[string]schema.Attribute{
 																										"bus": schema.StringAttribute{
-																											Description:         "Bus indicates the type of disk device to emulate.supported values: virtio, sata, scsi.",
-																											MarkdownDescription: "Bus indicates the type of disk device to emulate.supported values: virtio, sata, scsi.",
+																											Description:         "Bus indicates the type of disk device to emulate. supported values: virtio, sata, scsi.",
+																											MarkdownDescription: "Bus indicates the type of disk device to emulate. supported values: virtio, sata, scsi.",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
 																										},
 
 																										"readonly": schema.BoolAttribute{
-																											Description:         "ReadOnly.Defaults to false.",
-																											MarkdownDescription: "ReadOnly.Defaults to false.",
+																											Description:         "ReadOnly. Defaults to false.",
+																											MarkdownDescription: "ReadOnly. Defaults to false.",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
@@ -3925,20 +3925,20 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																											MarkdownDescription: "",
 																											Attributes: map[string]schema.Attribute{
 																												"enabled": schema.BoolAttribute{
-																													Description:         "Enabled determines if a display addapter backed by a vGPU should be enabled or disabled on the guest.Defaults to true.",
-																													MarkdownDescription: "Enabled determines if a display addapter backed by a vGPU should be enabled or disabled on the guest.Defaults to true.",
+																													Description:         "Enabled determines if a display addapter backed by a vGPU should be enabled or disabled on the guest. Defaults to true.",
+																													MarkdownDescription: "Enabled determines if a display addapter backed by a vGPU should be enabled or disabled on the guest. Defaults to true.",
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
 																												},
 
 																												"ram_fb": schema.SingleNestedAttribute{
-																													Description:         "Enables a boot framebuffer, until the guest OS loads a real GPU driverDefaults to true.",
-																													MarkdownDescription: "Enables a boot framebuffer, until the guest OS loads a real GPU driverDefaults to true.",
+																													Description:         "Enables a boot framebuffer, until the guest OS loads a real GPU driver Defaults to true.",
+																													MarkdownDescription: "Enables a boot framebuffer, until the guest OS loads a real GPU driver Defaults to true.",
 																													Attributes: map[string]schema.Attribute{
 																														"enabled": schema.BoolAttribute{
-																															Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																															MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																															Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																															MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																															Required:            false,
 																															Optional:            true,
 																															Computed:            false,
@@ -4006,8 +4006,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						NestedObject: schema.NestedAttributeObject{
 																							Attributes: map[string]schema.Attribute{
 																								"bus": schema.StringAttribute{
-																									Description:         "Bus indicates the bus of input device to emulate.Supported values: virtio, usb.",
-																									MarkdownDescription: "Bus indicates the bus of input device to emulate.Supported values: virtio, usb.",
+																									Description:         "Bus indicates the bus of input device to emulate. Supported values: virtio, usb.",
+																									MarkdownDescription: "Bus indicates the bus of input device to emulate. Supported values: virtio, usb.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4022,8 +4022,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"type": schema.StringAttribute{
-																									Description:         "Type indicated the type of input device.Supported values: tablet.",
-																									MarkdownDescription: "Type indicated the type of input device.Supported values: tablet.",
+																									Description:         "Type indicated the type of input device. Supported values: tablet.",
+																									MarkdownDescription: "Type indicated the type of input device. Supported values: tablet.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -4041,20 +4041,20 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						NestedObject: schema.NestedAttributeObject{
 																							Attributes: map[string]schema.Attribute{
 																								"acpi_index": schema.Int64Attribute{
-																									Description:         "If specified, the ACPI index is used to provide network interface device naming, that is stable across changesin PCI addresses assigned to the device.This value is required to be unique across all devices and be between 1 and (16*1024-1).",
-																									MarkdownDescription: "If specified, the ACPI index is used to provide network interface device naming, that is stable across changesin PCI addresses assigned to the device.This value is required to be unique across all devices and be between 1 and (16*1024-1).",
+																									Description:         "If specified, the ACPI index is used to provide network interface device naming, that is stable across changes in PCI addresses assigned to the device. This value is required to be unique across all devices and be between 1 and (16*1024-1).",
+																									MarkdownDescription: "If specified, the ACPI index is used to provide network interface device naming, that is stable across changes in PCI addresses assigned to the device. This value is required to be unique across all devices and be between 1 and (16*1024-1).",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"binding": schema.SingleNestedAttribute{
-																									Description:         "Binding specifies the binding plugin that will be used to connect the interface to the guest.It provides an alternative to InterfaceBindingMethod.version: 1alphav1",
-																									MarkdownDescription: "Binding specifies the binding plugin that will be used to connect the interface to the guest.It provides an alternative to InterfaceBindingMethod.version: 1alphav1",
+																									Description:         "Binding specifies the binding plugin that will be used to connect the interface to the guest. It provides an alternative to InterfaceBindingMethod. version: 1alphav1",
+																									MarkdownDescription: "Binding specifies the binding plugin that will be used to connect the interface to the guest. It provides an alternative to InterfaceBindingMethod. version: 1alphav1",
 																									Attributes: map[string]schema.Attribute{
 																										"name": schema.StringAttribute{
-																											Description:         "Name references to the binding name as denined in the kubevirt CR.version: 1alphav1",
-																											MarkdownDescription: "Name references to the binding name as denined in the kubevirt CR.version: 1alphav1",
+																											Description:         "Name references to the binding name as denined in the kubevirt CR. version: 1alphav1",
+																											MarkdownDescription: "Name references to the binding name as denined in the kubevirt CR. version: 1alphav1",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
@@ -4066,8 +4066,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"boot_order": schema.Int64Attribute{
-																									Description:         "BootOrder is an integer value > 0, used to determine ordering of boot devices.Lower values take precedence.Each interface or disk that has a boot order must have a unique value.Interfaces without a boot order are not tried.",
-																									MarkdownDescription: "BootOrder is an integer value > 0, used to determine ordering of boot devices.Lower values take precedence.Each interface or disk that has a boot order must have a unique value.Interfaces without a boot order are not tried.",
+																									Description:         "BootOrder is an integer value > 0, used to determine ordering of boot devices. Lower values take precedence. Each interface or disk that has a boot order must have a unique value. Interfaces without a boot order are not tried.",
+																									MarkdownDescription: "BootOrder is an integer value > 0, used to determine ordering of boot devices. Lower values take precedence. Each interface or disk that has a boot order must have a unique value. Interfaces without a boot order are not tried.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4109,16 +4109,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																											NestedObject: schema.NestedAttributeObject{
 																												Attributes: map[string]schema.Attribute{
 																													"option": schema.Int64Attribute{
-																														Description:         "Option is an Integer value from 224-254Required.",
-																														MarkdownDescription: "Option is an Integer value from 224-254Required.",
+																														Description:         "Option is an Integer value from 224-254 Required.",
+																														MarkdownDescription: "Option is an Integer value from 224-254 Required.",
 																														Required:            true,
 																														Optional:            false,
 																														Computed:            false,
 																													},
 
 																													"value": schema.StringAttribute{
-																														Description:         "Value is a String value for the Option providedRequired.",
-																														MarkdownDescription: "Value is a String value for the Option providedRequired.",
+																														Description:         "Value is a String value for the Option provided Required.",
+																														MarkdownDescription: "Value is a String value for the Option provided Required.",
 																														Required:            true,
 																														Optional:            false,
 																														Computed:            false,
@@ -4170,16 +4170,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"model": schema.StringAttribute{
-																									Description:         "Interface model.One of: e1000, e1000e, ne2k_pci, pcnet, rtl8139, virtio.Defaults to virtio.TODO:(ihar) switch to enums once opengen-api supports them. See: https://github.com/kubernetes/kube-openapi/issues/51",
-																									MarkdownDescription: "Interface model.One of: e1000, e1000e, ne2k_pci, pcnet, rtl8139, virtio.Defaults to virtio.TODO:(ihar) switch to enums once opengen-api supports them. See: https://github.com/kubernetes/kube-openapi/issues/51",
+																									Description:         "Interface model. One of: e1000, e1000e, ne2k_pci, pcnet, rtl8139, virtio. Defaults to virtio. TODO:(ihar) switch to enums once opengen-api supports them. See: https://github.com/kubernetes/kube-openapi/issues/51",
+																									MarkdownDescription: "Interface model. One of: e1000, e1000e, ne2k_pci, pcnet, rtl8139, virtio. Defaults to virtio. TODO:(ihar) switch to enums once opengen-api supports them. See: https://github.com/kubernetes/kube-openapi/issues/51",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Logical name of the interface as well as a reference to the associated networks.Must match the Name of a Network.",
-																									MarkdownDescription: "Logical name of the interface as well as a reference to the associated networks.Must match the Name of a Network.",
+																									Description:         "Logical name of the interface as well as a reference to the associated networks. Must match the Name of a Network.",
+																									MarkdownDescription: "Logical name of the interface as well as a reference to the associated networks. Must match the Name of a Network.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -4208,24 +4208,24 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																									NestedObject: schema.NestedAttributeObject{
 																										Attributes: map[string]schema.Attribute{
 																											"name": schema.StringAttribute{
-																												Description:         "If specified, this must be an IANA_SVC_NAME and unique within the pod. Eachnamed port in a pod must have a unique name. Name for the port that can bereferred to by services.",
-																												MarkdownDescription: "If specified, this must be an IANA_SVC_NAME and unique within the pod. Eachnamed port in a pod must have a unique name. Name for the port that can bereferred to by services.",
+																												Description:         "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
+																												MarkdownDescription: "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
 																												Required:            false,
 																												Optional:            true,
 																												Computed:            false,
 																											},
 
 																											"port": schema.Int64Attribute{
-																												Description:         "Number of port to expose for the virtual machine.This must be a valid port number, 0 < x < 65536.",
-																												MarkdownDescription: "Number of port to expose for the virtual machine.This must be a valid port number, 0 < x < 65536.",
+																												Description:         "Number of port to expose for the virtual machine. This must be a valid port number, 0 < x < 65536.",
+																												MarkdownDescription: "Number of port to expose for the virtual machine. This must be a valid port number, 0 < x < 65536.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
 																											},
 
 																											"protocol": schema.StringAttribute{
-																												Description:         "Protocol for port. Must be UDP or TCP.Defaults to 'TCP'.",
-																												MarkdownDescription: "Protocol for port. Must be UDP or TCP.Defaults to 'TCP'.",
+																												Description:         "Protocol for port. Must be UDP or TCP. Defaults to 'TCP'.",
+																												MarkdownDescription: "Protocol for port. Must be UDP or TCP. Defaults to 'TCP'.",
 																												Required:            false,
 																												Optional:            true,
 																												Computed:            false,
@@ -4256,8 +4256,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								},
 
 																								"state": schema.StringAttribute{
-																									Description:         "State represents the requested operational state of the interface.The (only) value supported is 'absent', expressing a request to remove the interface.",
-																									MarkdownDescription: "State represents the requested operational state of the interface.The (only) value supported is 'absent', expressing a request to remove the interface.",
+																									Description:         "State represents the requested operational state of the interface. The (only) value supported is 'absent', expressing a request to remove the interface.",
+																									MarkdownDescription: "State represents the requested operational state of the interface. The (only) value supported is 'absent', expressing a request to remove the interface.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4278,8 +4278,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"log_serial_console": schema.BoolAttribute{
-																						Description:         "Whether to log the auto-attached default serial console or not.Serial console logs will be collect to a file and then streamed from a named 'guest-console-log'.Not relevant if autoattachSerialConsole is disabled.Defaults to cluster wide setting on VirtualMachineOptions.",
-																						MarkdownDescription: "Whether to log the auto-attached default serial console or not.Serial console logs will be collect to a file and then streamed from a named 'guest-console-log'.Not relevant if autoattachSerialConsole is disabled.Defaults to cluster wide setting on VirtualMachineOptions.",
+																						Description:         "Whether to log the auto-attached default serial console or not. Serial console logs will be collect to a file and then streamed from a named 'guest-console-log'. Not relevant if autoattachSerialConsole is disabled. Defaults to cluster wide setting on VirtualMachineOptions.",
+																						MarkdownDescription: "Whether to log the auto-attached default serial console or not. Serial console logs will be collect to a file and then streamed from a named 'guest-console-log'. Not relevant if autoattachSerialConsole is disabled. Defaults to cluster wide setting on VirtualMachineOptions.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -4307,8 +4307,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						MarkdownDescription: "Whether to emulate a sound device.",
 																						Attributes: map[string]schema.Attribute{
 																							"model": schema.StringAttribute{
-																								Description:         "We only support ich9 or ac97.If SoundDevice is not set: No sound card is emulated.If SoundDevice is set but Model is not: ich9",
-																								MarkdownDescription: "We only support ich9 or ac97.If SoundDevice is not set: No sound card is emulated.If SoundDevice is set but Model is not: ich9",
+																								Description:         "We only support ich9 or ac97. If SoundDevice is not set: No sound card is emulated. If SoundDevice is set but Model is not: ich9",
+																								MarkdownDescription: "We only support ich9 or ac97. If SoundDevice is not set: No sound card is emulated. If SoundDevice is set but Model is not: ich9",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -4332,8 +4332,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						MarkdownDescription: "Whether to emulate a TPM device.",
 																						Attributes: map[string]schema.Attribute{
 																							"persistent": schema.BoolAttribute{
-																								Description:         "Persistent indicates the state of the TPM device should be kept accross rebootsDefaults to false",
-																								MarkdownDescription: "Persistent indicates the state of the TPM device should be kept accross rebootsDefaults to false",
+																								Description:         "Persistent indicates the state of the TPM device should be kept accross reboots Defaults to false",
+																								MarkdownDescription: "Persistent indicates the state of the TPM device should be kept accross reboots Defaults to false",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -4345,8 +4345,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"use_virtio_transitional": schema.BoolAttribute{
-																						Description:         "Fall back to legacy virtio 0.9 support if virtio bus is selected on devices.This is helpful for old machines like CentOS6 or RHEL6 whichdo not understand virtio_non_transitional (virtio 1.0).",
-																						MarkdownDescription: "Fall back to legacy virtio 0.9 support if virtio bus is selected on devices.This is helpful for old machines like CentOS6 or RHEL6 whichdo not understand virtio_non_transitional (virtio 1.0).",
+																						Description:         "Fall back to legacy virtio 0.9 support if virtio bus is selected on devices. This is helpful for old machines like CentOS6 or RHEL6 which do not understand virtio_non_transitional (virtio 1.0).",
+																						MarkdownDescription: "Fall back to legacy virtio 0.9 support if virtio bus is selected on devices. This is helpful for old machines like CentOS6 or RHEL6 which do not understand virtio_non_transitional (virtio 1.0).",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -4361,8 +4361,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								MarkdownDescription: "i6300esb watchdog device.",
 																								Attributes: map[string]schema.Attribute{
 																									"action": schema.StringAttribute{
-																										Description:         "The action to take. Valid values are poweroff, reset, shutdown.Defaults to reset.",
-																										MarkdownDescription: "The action to take. Valid values are poweroff, reset, shutdown.Defaults to reset.",
+																										Description:         "The action to take. Valid values are poweroff, reset, shutdown. Defaults to reset.",
+																										MarkdownDescription: "The action to take. Valid values are poweroff, reset, shutdown. Defaults to reset.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4396,12 +4396,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				MarkdownDescription: "Features like acpi, apic, hyperv, smm.",
 																				Attributes: map[string]schema.Attribute{
 																					"acpi": schema.SingleNestedAttribute{
-																						Description:         "ACPI enables/disables ACPI inside the guest.Defaults to enabled.",
-																						MarkdownDescription: "ACPI enables/disables ACPI inside the guest.Defaults to enabled.",
+																						Description:         "ACPI enables/disables ACPI inside the guest. Defaults to enabled.",
+																						MarkdownDescription: "ACPI enables/disables ACPI inside the guest. Defaults to enabled.",
 																						Attributes: map[string]schema.Attribute{
 																							"enabled": schema.BoolAttribute{
-																								Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																								MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																								Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																								MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -4417,16 +4417,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						MarkdownDescription: "Defaults to the machine type setting.",
 																						Attributes: map[string]schema.Attribute{
 																							"enabled": schema.BoolAttribute{
-																								Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																								MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																								Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																								MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"end_of_interrupt": schema.BoolAttribute{
-																								Description:         "EndOfInterrupt enables the end of interrupt notification in the guest.Defaults to false.",
-																								MarkdownDescription: "EndOfInterrupt enables the end of interrupt notification in the guest.Defaults to false.",
+																								Description:         "EndOfInterrupt enables the end of interrupt notification in the guest. Defaults to false.",
+																								MarkdownDescription: "EndOfInterrupt enables the end of interrupt notification in the guest. Defaults to false.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -4442,12 +4442,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						MarkdownDescription: "Defaults to the machine type setting.",
 																						Attributes: map[string]schema.Attribute{
 																							"evmcs": schema.SingleNestedAttribute{
-																								Description:         "EVMCS Speeds up L2 vmexits, but disables other virtualization features. Requires vapic.Defaults to the machine type setting.",
-																								MarkdownDescription: "EVMCS Speeds up L2 vmexits, but disables other virtualization features. Requires vapic.Defaults to the machine type setting.",
+																								Description:         "EVMCS Speeds up L2 vmexits, but disables other virtualization features. Requires vapic. Defaults to the machine type setting.",
+																								MarkdownDescription: "EVMCS Speeds up L2 vmexits, but disables other virtualization features. Requires vapic. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4459,12 +4459,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"frequencies": schema.SingleNestedAttribute{
-																								Description:         "Frequencies improves the TSC clock source handling for Hyper-V on KVM.Defaults to the machine type setting.",
-																								MarkdownDescription: "Frequencies improves the TSC clock source handling for Hyper-V on KVM.Defaults to the machine type setting.",
+																								Description:         "Frequencies improves the TSC clock source handling for Hyper-V on KVM. Defaults to the machine type setting.",
+																								MarkdownDescription: "Frequencies improves the TSC clock source handling for Hyper-V on KVM. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4476,12 +4476,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"ipi": schema.SingleNestedAttribute{
-																								Description:         "IPI improves performances in overcommited environments. Requires vpindex.Defaults to the machine type setting.",
-																								MarkdownDescription: "IPI improves performances in overcommited environments. Requires vpindex.Defaults to the machine type setting.",
+																								Description:         "IPI improves performances in overcommited environments. Requires vpindex. Defaults to the machine type setting.",
+																								MarkdownDescription: "IPI improves performances in overcommited environments. Requires vpindex. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4493,12 +4493,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"reenlightenment": schema.SingleNestedAttribute{
-																								Description:         "Reenlightenment enables the notifications on TSC frequency changes.Defaults to the machine type setting.",
-																								MarkdownDescription: "Reenlightenment enables the notifications on TSC frequency changes.Defaults to the machine type setting.",
+																								Description:         "Reenlightenment enables the notifications on TSC frequency changes. Defaults to the machine type setting.",
+																								MarkdownDescription: "Reenlightenment enables the notifications on TSC frequency changes. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4510,12 +4510,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"relaxed": schema.SingleNestedAttribute{
-																								Description:         "Relaxed instructs the guest OS to disable watchdog timeouts.Defaults to the machine type setting.",
-																								MarkdownDescription: "Relaxed instructs the guest OS to disable watchdog timeouts.Defaults to the machine type setting.",
+																								Description:         "Relaxed instructs the guest OS to disable watchdog timeouts. Defaults to the machine type setting.",
+																								MarkdownDescription: "Relaxed instructs the guest OS to disable watchdog timeouts. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4527,12 +4527,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"reset": schema.SingleNestedAttribute{
-																								Description:         "Reset enables Hyperv reboot/reset for the vmi. Requires synic.Defaults to the machine type setting.",
-																								MarkdownDescription: "Reset enables Hyperv reboot/reset for the vmi. Requires synic.Defaults to the machine type setting.",
+																								Description:         "Reset enables Hyperv reboot/reset for the vmi. Requires synic. Defaults to the machine type setting.",
+																								MarkdownDescription: "Reset enables Hyperv reboot/reset for the vmi. Requires synic. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4544,12 +4544,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"runtime": schema.SingleNestedAttribute{
-																								Description:         "Runtime improves the time accounting to improve scheduling in the guest.Defaults to the machine type setting.",
-																								MarkdownDescription: "Runtime improves the time accounting to improve scheduling in the guest.Defaults to the machine type setting.",
+																								Description:         "Runtime improves the time accounting to improve scheduling in the guest. Defaults to the machine type setting.",
+																								MarkdownDescription: "Runtime improves the time accounting to improve scheduling in the guest. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4565,16 +4565,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								MarkdownDescription: "Spinlocks allows to configure the spinlock retry attempts.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"spinlocks": schema.Int64Attribute{
-																										Description:         "Retries indicates the number of retries.Must be a value greater or equal 4096.Defaults to 4096.",
-																										MarkdownDescription: "Retries indicates the number of retries.Must be a value greater or equal 4096.Defaults to 4096.",
+																										Description:         "Retries indicates the number of retries. Must be a value greater or equal 4096. Defaults to 4096.",
+																										MarkdownDescription: "Retries indicates the number of retries. Must be a value greater or equal 4096. Defaults to 4096.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4586,12 +4586,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"synic": schema.SingleNestedAttribute{
-																								Description:         "SyNIC enables the Synthetic Interrupt Controller.Defaults to the machine type setting.",
-																								MarkdownDescription: "SyNIC enables the Synthetic Interrupt Controller.Defaults to the machine type setting.",
+																								Description:         "SyNIC enables the Synthetic Interrupt Controller. Defaults to the machine type setting.",
+																								MarkdownDescription: "SyNIC enables the Synthetic Interrupt Controller. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4603,16 +4603,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"synictimer": schema.SingleNestedAttribute{
-																								Description:         "SyNICTimer enables Synthetic Interrupt Controller Timers, reducing CPU load.Defaults to the machine type setting.",
-																								MarkdownDescription: "SyNICTimer enables Synthetic Interrupt Controller Timers, reducing CPU load.Defaults to the machine type setting.",
+																								Description:         "SyNICTimer enables Synthetic Interrupt Controller Timers, reducing CPU load. Defaults to the machine type setting.",
+																								MarkdownDescription: "SyNICTimer enables Synthetic Interrupt Controller Timers, reducing CPU load. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"direct": schema.SingleNestedAttribute{
 																										Description:         "Represents if a feature is enabled or disabled.",
 																										MarkdownDescription: "Represents if a feature is enabled or disabled.",
 																										Attributes: map[string]schema.Attribute{
 																											"enabled": schema.BoolAttribute{
-																												Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																												MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																												Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																												MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																												Required:            false,
 																												Optional:            true,
 																												Computed:            false,
@@ -4637,12 +4637,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"tlbflush": schema.SingleNestedAttribute{
-																								Description:         "TLBFlush improves performances in overcommited environments. Requires vpindex.Defaults to the machine type setting.",
-																								MarkdownDescription: "TLBFlush improves performances in overcommited environments. Requires vpindex.Defaults to the machine type setting.",
+																								Description:         "TLBFlush improves performances in overcommited environments. Requires vpindex. Defaults to the machine type setting.",
+																								MarkdownDescription: "TLBFlush improves performances in overcommited environments. Requires vpindex. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4654,12 +4654,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"vapic": schema.SingleNestedAttribute{
-																								Description:         "VAPIC improves the paravirtualized handling of interrupts.Defaults to the machine type setting.",
-																								MarkdownDescription: "VAPIC improves the paravirtualized handling of interrupts.Defaults to the machine type setting.",
+																								Description:         "VAPIC improves the paravirtualized handling of interrupts. Defaults to the machine type setting.",
+																								MarkdownDescription: "VAPIC improves the paravirtualized handling of interrupts. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4671,20 +4671,20 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"vendorid": schema.SingleNestedAttribute{
-																								Description:         "VendorID allows setting the hypervisor vendor id.Defaults to the machine type setting.",
-																								MarkdownDescription: "VendorID allows setting the hypervisor vendor id.Defaults to the machine type setting.",
+																								Description:         "VendorID allows setting the hypervisor vendor id. Defaults to the machine type setting.",
+																								MarkdownDescription: "VendorID allows setting the hypervisor vendor id. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"vendorid": schema.StringAttribute{
-																										Description:         "VendorID sets the hypervisor vendor id, visible to the vmi.String up to twelve characters.",
-																										MarkdownDescription: "VendorID sets the hypervisor vendor id, visible to the vmi.String up to twelve characters.",
+																										Description:         "VendorID sets the hypervisor vendor id, visible to the vmi. String up to twelve characters.",
+																										MarkdownDescription: "VendorID sets the hypervisor vendor id, visible to the vmi. String up to twelve characters.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4696,12 +4696,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"vpindex": schema.SingleNestedAttribute{
-																								Description:         "VPIndex enables the Virtual Processor Index to help windows identifying virtual processors.Defaults to the machine type setting.",
-																								MarkdownDescription: "VPIndex enables the Virtual Processor Index to help windows identifying virtual processors.Defaults to the machine type setting.",
+																								Description:         "VPIndex enables the Virtual Processor Index to help windows identifying virtual processors. Defaults to the machine type setting.",
+																								MarkdownDescription: "VPIndex enables the Virtual Processor Index to help windows identifying virtual processors. Defaults to the machine type setting.",
 																								Attributes: map[string]schema.Attribute{
 																									"enabled": schema.BoolAttribute{
-																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																										Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																										MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4722,8 +4722,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						MarkdownDescription: "Configure how KVM presence is exposed to the guest.",
 																						Attributes: map[string]schema.Attribute{
 																							"hidden": schema.BoolAttribute{
-																								Description:         "Hide the KVM hypervisor from standard MSR based discovery.Defaults to false",
-																								MarkdownDescription: "Hide the KVM hypervisor from standard MSR based discovery.Defaults to false",
+																								Description:         "Hide the KVM hypervisor from standard MSR based discovery. Defaults to false",
+																								MarkdownDescription: "Hide the KVM hypervisor from standard MSR based discovery. Defaults to false",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -4735,12 +4735,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"pvspinlock": schema.SingleNestedAttribute{
-																						Description:         "Notify the guest that the host supports paravirtual spinlocks.For older kernels this feature should be explicitly disabled.",
-																						MarkdownDescription: "Notify the guest that the host supports paravirtual spinlocks.For older kernels this feature should be explicitly disabled.",
+																						Description:         "Notify the guest that the host supports paravirtual spinlocks. For older kernels this feature should be explicitly disabled.",
+																						MarkdownDescription: "Notify the guest that the host supports paravirtual spinlocks. For older kernels this feature should be explicitly disabled.",
 																						Attributes: map[string]schema.Attribute{
 																							"enabled": schema.BoolAttribute{
-																								Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																								MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																								Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																								MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -4752,12 +4752,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"smm": schema.SingleNestedAttribute{
-																						Description:         "SMM enables/disables System Management Mode.TSEG not yet implemented.",
-																						MarkdownDescription: "SMM enables/disables System Management Mode.TSEG not yet implemented.",
+																						Description:         "SMM enables/disables System Management Mode. TSEG not yet implemented.",
+																						MarkdownDescription: "SMM enables/disables System Management Mode. TSEG not yet implemented.",
 																						Attributes: map[string]schema.Attribute{
 																							"enabled": schema.BoolAttribute{
-																								Description:         "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
-																								MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest.Defaults to true.",
+																								Description:         "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
+																								MarkdownDescription: "Enabled determines if the feature should be enabled or disabled on the guest. Defaults to true.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -4782,8 +4782,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						MarkdownDescription: "Information that can be set in the ACPI table",
 																						Attributes: map[string]schema.Attribute{
 																							"slic_name_ref": schema.StringAttribute{
-																								Description:         "SlicNameRef should match the volume name of a secret object. The data in the secret shouldbe a binary blob that follows the ACPI SLIC standard, see:https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn653305(v=vs.85)",
-																								MarkdownDescription: "SlicNameRef should match the volume name of a secret object. The data in the secret shouldbe a binary blob that follows the ACPI SLIC standard, see:https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn653305(v=vs.85)",
+																								Description:         "SlicNameRef should match the volume name of a secret object. The data in the secret should be a binary blob that follows the ACPI SLIC standard, see: https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn653305(v=vs.85)",
+																								MarkdownDescription: "SlicNameRef should match the volume name of a secret object. The data in the secret should be a binary blob that follows the ACPI SLIC standard, see: https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn653305(v=vs.85)",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -4820,16 +4820,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																								MarkdownDescription: "If set, EFI will be used instead of BIOS.",
 																								Attributes: map[string]schema.Attribute{
 																									"persistent": schema.BoolAttribute{
-																										Description:         "If set to true, Persistent will persist the EFI NVRAM across reboots.Defaults to false",
-																										MarkdownDescription: "If set to true, Persistent will persist the EFI NVRAM across reboots.Defaults to false",
+																										Description:         "If set to true, Persistent will persist the EFI NVRAM across reboots. Defaults to false",
+																										MarkdownDescription: "If set to true, Persistent will persist the EFI NVRAM across reboots. Defaults to false",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"secure_boot": schema.BoolAttribute{
-																										Description:         "If set, SecureBoot will be enabled and the OVMF roms will be swapped forSecureBoot-enabled ones.Requires SMM to be enabled.Defaults to true",
-																										MarkdownDescription: "If set, SecureBoot will be enabled and the OVMF roms will be swapped forSecureBoot-enabled ones.Requires SMM to be enabled.Defaults to true",
+																										Description:         "If set, SecureBoot will be enabled and the OVMF roms will be swapped for SecureBoot-enabled ones. Requires SMM to be enabled. Defaults to true",
+																										MarkdownDescription: "If set, SecureBoot will be enabled and the OVMF roms will be swapped for SecureBoot-enabled ones. Requires SMM to be enabled. Defaults to true",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4862,8 +4862,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																									},
 
 																									"image_pull_policy": schema.StringAttribute{
-																										Description:         "Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
-																										MarkdownDescription: "Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+																										Description:         "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+																										MarkdownDescription: "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -4920,8 +4920,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"uuid": schema.StringAttribute{
-																						Description:         "UUID reported by the vmi bios.Defaults to a random generated uid.",
-																						MarkdownDescription: "UUID reported by the vmi bios.Defaults to a random generated uid.",
+																						Description:         "UUID reported by the vmi bios. Defaults to a random generated uid.",
+																						MarkdownDescription: "UUID reported by the vmi bios. Defaults to a random generated uid.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -4933,8 +4933,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																			},
 
 																			"io_threads_policy": schema.StringAttribute{
-																				Description:         "Controls whether or not disks will share IOThreads.Omitting IOThreadsPolicy disables use of IOThreads.One of: shared, auto",
-																				MarkdownDescription: "Controls whether or not disks will share IOThreads.Omitting IOThreadsPolicy disables use of IOThreads.One of: shared, auto",
+																				Description:         "Controls whether or not disks will share IOThreads. Omitting IOThreadsPolicy disables use of IOThreads. One of: shared, auto",
+																				MarkdownDescription: "Controls whether or not disks will share IOThreads. Omitting IOThreadsPolicy disables use of IOThreads. One of: shared, auto",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -4966,12 +4966,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							},
 
 																							"policy": schema.SingleNestedAttribute{
-																								Description:         "Guest policy flags as defined in AMD SEV API specification.Note: due to security reasons it is not allowed to enable guest debugging. Therefore NoDebug flag is not exposed to users and is always true.",
-																								MarkdownDescription: "Guest policy flags as defined in AMD SEV API specification.Note: due to security reasons it is not allowed to enable guest debugging. Therefore NoDebug flag is not exposed to users and is always true.",
+																								Description:         "Guest policy flags as defined in AMD SEV API specification. Note: due to security reasons it is not allowed to enable guest debugging. Therefore NoDebug flag is not exposed to users and is always true.",
+																								MarkdownDescription: "Guest policy flags as defined in AMD SEV API specification. Note: due to security reasons it is not allowed to enable guest debugging. Therefore NoDebug flag is not exposed to users and is always true.",
 																								Attributes: map[string]schema.Attribute{
 																									"encrypted_state": schema.BoolAttribute{
-																										Description:         "SEV-ES is required.Defaults to false.",
-																										MarkdownDescription: "SEV-ES is required.Defaults to false.",
+																										Description:         "SEV-ES is required. Defaults to false.",
+																										MarkdownDescription: "SEV-ES is required. Defaults to false.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
@@ -5022,8 +5022,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				MarkdownDescription: "Memory allow specifying the VMI memory features.",
 																				Attributes: map[string]schema.Attribute{
 																					"guest": schema.StringAttribute{
-																						Description:         "Guest allows to specifying the amount of memory which is visible inside the Guest OS.The Guest must lie between Requests and Limits from the resources section.Defaults to the requested memory in the resources section if not specified.",
-																						MarkdownDescription: "Guest allows to specifying the amount of memory which is visible inside the Guest OS.The Guest must lie between Requests and Limits from the resources section.Defaults to the requested memory in the resources section if not specified.",
+																						Description:         "Guest allows to specifying the amount of memory which is visible inside the Guest OS. The Guest must lie between Requests and Limits from the resources section. Defaults to the requested memory in the resources section if not specified.",
+																						MarkdownDescription: "Guest allows to specifying the amount of memory which is visible inside the Guest OS. The Guest must lie between Requests and Limits from the resources section. Defaults to the requested memory in the resources section if not specified.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5047,8 +5047,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"max_guest": schema.StringAttribute{
-																						Description:         "MaxGuest allows to specify the maximum amount of memory which is visible inside the Guest OS.The delta between MaxGuest and Guest is the amount of memory that can be hot(un)plugged.",
-																						MarkdownDescription: "MaxGuest allows to specify the maximum amount of memory which is visible inside the Guest OS.The delta between MaxGuest and Guest is the amount of memory that can be hot(un)plugged.",
+																						Description:         "MaxGuest allows to specify the maximum amount of memory which is visible inside the Guest OS. The delta between MaxGuest and Guest is the amount of memory that can be hot(un)plugged.",
+																						MarkdownDescription: "MaxGuest allows to specify the maximum amount of memory which is visible inside the Guest OS. The delta between MaxGuest and Guest is the amount of memory that can be hot(un)plugged.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5064,8 +5064,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				MarkdownDescription: "Resources describes the Compute Resources required by this vmi.",
 																				Attributes: map[string]schema.Attribute{
 																					"limits": schema.MapAttribute{
-																						Description:         "Limits describes the maximum amount of compute resources allowed.Valid resource keys are 'memory' and 'cpu'.",
-																						MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.Valid resource keys are 'memory' and 'cpu'.",
+																						Description:         "Limits describes the maximum amount of compute resources allowed. Valid resource keys are 'memory' and 'cpu'.",
+																						MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. Valid resource keys are 'memory' and 'cpu'.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -5073,16 +5073,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"overcommit_guest_overhead": schema.BoolAttribute{
-																						Description:         "Don't ask the scheduler to take the guest-management overhead into account. Insteadput the overhead only into the container's memory limit. This can lead to crashes ifall memory is in use on a node. Defaults to false.",
-																						MarkdownDescription: "Don't ask the scheduler to take the guest-management overhead into account. Insteadput the overhead only into the container's memory limit. This can lead to crashes ifall memory is in use on a node. Defaults to false.",
+																						Description:         "Don't ask the scheduler to take the guest-management overhead into account. Instead put the overhead only into the container's memory limit. This can lead to crashes if all memory is in use on a node. Defaults to false.",
+																						MarkdownDescription: "Don't ask the scheduler to take the guest-management overhead into account. Instead put the overhead only into the container's memory limit. This can lead to crashes if all memory is in use on a node. Defaults to false.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"requests": schema.MapAttribute{
-																						Description:         "Requests is a description of the initial vmi resources.Valid resource keys are 'memory' and 'cpu'.",
-																						MarkdownDescription: "Requests is a description of the initial vmi resources.Valid resource keys are 'memory' and 'cpu'.",
+																						Description:         "Requests is a description of the initial vmi resources. Valid resource keys are 'memory' and 'cpu'.",
+																						MarkdownDescription: "Requests is a description of the initial vmi resources. Valid resource keys are 'memory' and 'cpu'.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -5100,32 +5100,32 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																	},
 
 																	"eviction_strategy": schema.StringAttribute{
-																		Description:         "EvictionStrategy describes the strategy to follow when a node drain occurs.The possible options are:- 'None': No action will be taken, according to the specified 'RunStrategy' the VirtualMachine will be restarted or shutdown.- 'LiveMigrate': the VirtualMachineInstance will be migrated instead of being shutdown.- 'LiveMigrateIfPossible': the same as 'LiveMigrate' but only if the VirtualMachine is Live-Migratable, otherwise it will behave as 'None'.- 'External': the VirtualMachineInstance will be protected by a PDB and 'vmi.Status.EvacuationNodeName' will be set on eviction. This is mainly useful for cluster-api-provider-kubevirt (capk) which needs a way for VMI's to be blocked from eviction, yet signal capk that eviction has been called on the VMI so the capk controller can handle tearing the VMI down. Details can be found in the commit description https://github.com/kubevirt/kubevirt/commit/c1d77face705c8b126696bac9a3ee3825f27f1fa.",
-																		MarkdownDescription: "EvictionStrategy describes the strategy to follow when a node drain occurs.The possible options are:- 'None': No action will be taken, according to the specified 'RunStrategy' the VirtualMachine will be restarted or shutdown.- 'LiveMigrate': the VirtualMachineInstance will be migrated instead of being shutdown.- 'LiveMigrateIfPossible': the same as 'LiveMigrate' but only if the VirtualMachine is Live-Migratable, otherwise it will behave as 'None'.- 'External': the VirtualMachineInstance will be protected by a PDB and 'vmi.Status.EvacuationNodeName' will be set on eviction. This is mainly useful for cluster-api-provider-kubevirt (capk) which needs a way for VMI's to be blocked from eviction, yet signal capk that eviction has been called on the VMI so the capk controller can handle tearing the VMI down. Details can be found in the commit description https://github.com/kubevirt/kubevirt/commit/c1d77face705c8b126696bac9a3ee3825f27f1fa.",
+																		Description:         "EvictionStrategy describes the strategy to follow when a node drain occurs. The possible options are: - 'None': No action will be taken, according to the specified 'RunStrategy' the VirtualMachine will be restarted or shutdown. - 'LiveMigrate': the VirtualMachineInstance will be migrated instead of being shutdown. - 'LiveMigrateIfPossible': the same as 'LiveMigrate' but only if the VirtualMachine is Live-Migratable, otherwise it will behave as 'None'. - 'External': the VirtualMachineInstance will be protected by a PDB and 'vmi.Status.EvacuationNodeName' will be set on eviction. This is mainly useful for cluster-api-provider-kubevirt (capk) which needs a way for VMI's to be blocked from eviction, yet signal capk that eviction has been called on the VMI so the capk controller can handle tearing the VMI down. Details can be found in the commit description https://github.com/kubevirt/kubevirt/commit/c1d77face705c8b126696bac9a3ee3825f27f1fa.",
+																		MarkdownDescription: "EvictionStrategy describes the strategy to follow when a node drain occurs. The possible options are: - 'None': No action will be taken, according to the specified 'RunStrategy' the VirtualMachine will be restarted or shutdown. - 'LiveMigrate': the VirtualMachineInstance will be migrated instead of being shutdown. - 'LiveMigrateIfPossible': the same as 'LiveMigrate' but only if the VirtualMachine is Live-Migratable, otherwise it will behave as 'None'. - 'External': the VirtualMachineInstance will be protected by a PDB and 'vmi.Status.EvacuationNodeName' will be set on eviction. This is mainly useful for cluster-api-provider-kubevirt (capk) which needs a way for VMI's to be blocked from eviction, yet signal capk that eviction has been called on the VMI so the capk controller can handle tearing the VMI down. Details can be found in the commit description https://github.com/kubevirt/kubevirt/commit/c1d77face705c8b126696bac9a3ee3825f27f1fa.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"hostname": schema.StringAttribute{
-																		Description:         "Specifies the hostname of the vmiIf not specified, the hostname will be set to the name of the vmi, if dhcp or cloud-init is configured properly.",
-																		MarkdownDescription: "Specifies the hostname of the vmiIf not specified, the hostname will be set to the name of the vmi, if dhcp or cloud-init is configured properly.",
+																		Description:         "Specifies the hostname of the vmi If not specified, the hostname will be set to the name of the vmi, if dhcp or cloud-init is configured properly.",
+																		MarkdownDescription: "Specifies the hostname of the vmi If not specified, the hostname will be set to the name of the vmi, if dhcp or cloud-init is configured properly.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"liveness_probe": schema.SingleNestedAttribute{
-																		Description:         "Periodic probe of VirtualMachineInstance liveness.VirtualmachineInstances will be stopped if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Periodic probe of VirtualMachineInstance liveness.VirtualmachineInstances will be stopped if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		Description:         "Periodic probe of VirtualMachineInstance liveness. VirtualmachineInstances will be stopped if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Periodic probe of VirtualMachineInstance liveness. VirtualmachineInstances will be stopped if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																		Attributes: map[string]schema.Attribute{
 																			"exec": schema.SingleNestedAttribute{
-																				Description:         "One and only one of the following should be specified.Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent.If the guest agent is not available, this probe will fail.",
-																				MarkdownDescription: "One and only one of the following should be specified.Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent.If the guest agent is not available, this probe will fail.",
+																				Description:         "One and only one of the following should be specified. Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent. If the guest agent is not available, this probe will fail.",
+																				MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent. If the guest agent is not available, this probe will fail.",
 																				Attributes: map[string]schema.Attribute{
 																					"command": schema.ListAttribute{
-																						Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																						MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																						Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																						MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -5138,8 +5138,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																			},
 
 																			"failure_threshold": schema.Int64Attribute{
-																				Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
-																				MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+																				Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+																				MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5159,8 +5159,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																				Attributes: map[string]schema.Attribute{
 																					"host": schema.StringAttribute{
-																						Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
-																						MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																						Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																						MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5172,8 +5172,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						NestedObject: schema.NestedAttributeObject{
 																							Attributes: map[string]schema.Attribute{
 																								"name": schema.StringAttribute{
-																									Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																									MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																									Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																									MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -5202,16 +5202,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"port": schema.StringAttribute{
-																						Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
-																						MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																						Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																						MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"scheme": schema.StringAttribute{
-																						Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
-																						MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
+																						Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																						MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5223,32 +5223,32 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																			},
 
 																			"initial_delay_seconds": schema.Int64Attribute{
-																				Description:         "Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																				MarkdownDescription: "Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																				Description:         "Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																				MarkdownDescription: "Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"period_seconds": schema.Int64Attribute{
-																				Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
-																				MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+																				Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+																				MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"success_threshold": schema.Int64Attribute{
-																				Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
-																				MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
+																				Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
+																				MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"tcp_socket": schema.SingleNestedAttribute{
-																				Description:         "TCPSocket specifies an action involving a TCP port.TCP hooks not yet supportedTODO: implement a realistic TCP lifecycle hook",
-																				MarkdownDescription: "TCPSocket specifies an action involving a TCP port.TCP hooks not yet supportedTODO: implement a realistic TCP lifecycle hook",
+																				Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																				MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
 																				Attributes: map[string]schema.Attribute{
 																					"host": schema.StringAttribute{
 																						Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5259,8 +5259,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"port": schema.StringAttribute{
-																						Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
-																						MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																						Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																						MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -5272,8 +5272,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																			},
 
 																			"timeout_seconds": schema.Int64Attribute{
-																				Description:         "Number of seconds after which the probe times out.For exec probes the timeout fails the probe but does not terminate the command running on the guest.This means a blocking command can result in an increasing load on the guest.A small buffer will be added to the resulting workload exec probe to compensate for delayscaused by the qemu guest exec mechanism.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																				MarkdownDescription: "Number of seconds after which the probe times out.For exec probes the timeout fails the probe but does not terminate the command running on the guest.This means a blocking command can result in an increasing load on the guest.A small buffer will be added to the resulting workload exec probe to compensate for delayscaused by the qemu guest exec mechanism.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																				Description:         "Number of seconds after which the probe times out. For exec probes the timeout fails the probe but does not terminate the command running on the guest. This means a blocking command can result in an increasing load on the guest. A small buffer will be added to the resulting workload exec probe to compensate for delays caused by the qemu guest exec mechanism. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																				MarkdownDescription: "Number of seconds after which the probe times out. For exec probes the timeout fails the probe but does not terminate the command running on the guest. This means a blocking command can result in an increasing load on the guest. A small buffer will be added to the resulting workload exec probe to compensate for delays caused by the qemu guest exec mechanism. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5294,16 +5294,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					MarkdownDescription: "Represents the multus cni network.",
 																					Attributes: map[string]schema.Attribute{
 																						"default": schema.BoolAttribute{
-																							Description:         "Select the default network and add it to themultus-cni.io/default-network annotation.",
-																							MarkdownDescription: "Select the default network and add it to themultus-cni.io/default-network annotation.",
+																							Description:         "Select the default network and add it to the multus-cni.io/default-network annotation.",
+																							MarkdownDescription: "Select the default network and add it to the multus-cni.io/default-network annotation.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"network_name": schema.StringAttribute{
-																							Description:         "References to a NetworkAttachmentDefinition CRD object. Format:<networkName>, <namespace>/<networkName>. If namespace is notspecified, VMI namespace is assumed.",
-																							MarkdownDescription: "References to a NetworkAttachmentDefinition CRD object. Format:<networkName>, <namespace>/<networkName>. If namespace is notspecified, VMI namespace is assumed.",
+																							Description:         "References to a NetworkAttachmentDefinition CRD object. Format: <networkName>, <namespace>/<networkName>. If namespace is not specified, VMI namespace is assumed.",
+																							MarkdownDescription: "References to a NetworkAttachmentDefinition CRD object. Format: <networkName>, <namespace>/<networkName>. If namespace is not specified, VMI namespace is assumed.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -5315,8 +5315,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Network name.Must be a DNS_LABEL and unique within the vm.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																					MarkdownDescription: "Network name.Must be a DNS_LABEL and unique within the vm.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																					Description:         "Network name. Must be a DNS_LABEL and unique within the vm. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																					MarkdownDescription: "Network name. Must be a DNS_LABEL and unique within the vm. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -5327,16 +5327,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					MarkdownDescription: "Represents the stock pod network interface.",
 																					Attributes: map[string]schema.Attribute{
 																						"vm_i_pv6_network_cidr": schema.StringAttribute{
-																							Description:         "IPv6 CIDR for the vm network.Defaults to fd10:0:2::/120 if not specified.",
-																							MarkdownDescription: "IPv6 CIDR for the vm network.Defaults to fd10:0:2::/120 if not specified.",
+																							Description:         "IPv6 CIDR for the vm network. Defaults to fd10:0:2::/120 if not specified.",
+																							MarkdownDescription: "IPv6 CIDR for the vm network. Defaults to fd10:0:2::/120 if not specified.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"vm_network_cidr": schema.StringAttribute{
-																							Description:         "CIDR for vm network.Default 10.0.2.0/24 if not specified.",
-																							MarkdownDescription: "CIDR for vm network.Default 10.0.2.0/24 if not specified.",
+																							Description:         "CIDR for vm network. Default 10.0.2.0/24 if not specified.",
+																							MarkdownDescription: "CIDR for vm network. Default 10.0.2.0/24 if not specified.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -5354,8 +5354,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																	},
 
 																	"node_selector": schema.MapAttribute{
-																		Description:         "NodeSelector is a selector which must be true for the vmi to fit on a node.Selector which must match a node's labels for the vmi to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-																		MarkdownDescription: "NodeSelector is a selector which must be true for the vmi to fit on a node.Selector which must match a node's labels for the vmi to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+																		Description:         "NodeSelector is a selector which must be true for the vmi to fit on a node. Selector which must match a node's labels for the vmi to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+																		MarkdownDescription: "NodeSelector is a selector which must be true for the vmi to fit on a node. Selector which must match a node's labels for the vmi to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -5363,24 +5363,24 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																	},
 
 																	"priority_class_name": schema.StringAttribute{
-																		Description:         "If specified, indicates the pod's priority.If not specified, the pod priority will be default or zero if there is nodefault.",
-																		MarkdownDescription: "If specified, indicates the pod's priority.If not specified, the pod priority will be default or zero if there is nodefault.",
+																		Description:         "If specified, indicates the pod's priority. If not specified, the pod priority will be default or zero if there is no default.",
+																		MarkdownDescription: "If specified, indicates the pod's priority. If not specified, the pod priority will be default or zero if there is no default.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"readiness_probe": schema.SingleNestedAttribute{
-																		Description:         "Periodic probe of VirtualMachineInstance service readiness.VirtualmachineInstances will be removed from service endpoints if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Periodic probe of VirtualMachineInstance service readiness.VirtualmachineInstances will be removed from service endpoints if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		Description:         "Periodic probe of VirtualMachineInstance service readiness. VirtualmachineInstances will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Periodic probe of VirtualMachineInstance service readiness. VirtualmachineInstances will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																		Attributes: map[string]schema.Attribute{
 																			"exec": schema.SingleNestedAttribute{
-																				Description:         "One and only one of the following should be specified.Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent.If the guest agent is not available, this probe will fail.",
-																				MarkdownDescription: "One and only one of the following should be specified.Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent.If the guest agent is not available, this probe will fail.",
+																				Description:         "One and only one of the following should be specified. Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent. If the guest agent is not available, this probe will fail.",
+																				MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take, it will be executed on the guest through the qemu-guest-agent. If the guest agent is not available, this probe will fail.",
 																				Attributes: map[string]schema.Attribute{
 																					"command": schema.ListAttribute{
-																						Description:         "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																						MarkdownDescription: "Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																						Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																						MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -5393,8 +5393,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																			},
 
 																			"failure_threshold": schema.Int64Attribute{
-																				Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
-																				MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.",
+																				Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+																				MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5414,8 +5414,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				MarkdownDescription: "HTTPGet specifies the http request to perform.",
 																				Attributes: map[string]schema.Attribute{
 																					"host": schema.StringAttribute{
-																						Description:         "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
-																						MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.",
+																						Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																						MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5427,8 +5427,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						NestedObject: schema.NestedAttributeObject{
 																							Attributes: map[string]schema.Attribute{
 																								"name": schema.StringAttribute{
-																									Description:         "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																									MarkdownDescription: "The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																									Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																									MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -5457,16 +5457,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"port": schema.StringAttribute{
-																						Description:         "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
-																						MarkdownDescription: "Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																						Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																						MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"scheme": schema.StringAttribute{
-																						Description:         "Scheme to use for connecting to the host.Defaults to HTTP.",
-																						MarkdownDescription: "Scheme to use for connecting to the host.Defaults to HTTP.",
+																						Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																						MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5478,32 +5478,32 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																			},
 
 																			"initial_delay_seconds": schema.Int64Attribute{
-																				Description:         "Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																				MarkdownDescription: "Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																				Description:         "Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																				MarkdownDescription: "Number of seconds after the VirtualMachineInstance has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"period_seconds": schema.Int64Attribute{
-																				Description:         "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
-																				MarkdownDescription: "How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.",
+																				Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+																				MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"success_threshold": schema.Int64Attribute{
-																				Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
-																				MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
+																				Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
+																				MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"tcp_socket": schema.SingleNestedAttribute{
-																				Description:         "TCPSocket specifies an action involving a TCP port.TCP hooks not yet supportedTODO: implement a realistic TCP lifecycle hook",
-																				MarkdownDescription: "TCPSocket specifies an action involving a TCP port.TCP hooks not yet supportedTODO: implement a realistic TCP lifecycle hook",
+																				Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																				MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
 																				Attributes: map[string]schema.Attribute{
 																					"host": schema.StringAttribute{
 																						Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5514,8 +5514,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					},
 
 																					"port": schema.StringAttribute{
-																						Description:         "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
-																						MarkdownDescription: "Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.",
+																						Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																						MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -5527,8 +5527,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																			},
 
 																			"timeout_seconds": schema.Int64Attribute{
-																				Description:         "Number of seconds after which the probe times out.For exec probes the timeout fails the probe but does not terminate the command running on the guest.This means a blocking command can result in an increasing load on the guest.A small buffer will be added to the resulting workload exec probe to compensate for delayscaused by the qemu guest exec mechanism.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																				MarkdownDescription: "Number of seconds after which the probe times out.For exec probes the timeout fails the probe but does not terminate the command running on the guest.This means a blocking command can result in an increasing load on the guest.A small buffer will be added to the resulting workload exec probe to compensate for delayscaused by the qemu guest exec mechanism.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																				Description:         "Number of seconds after which the probe times out. For exec probes the timeout fails the probe but does not terminate the command running on the guest. This means a blocking command can result in an increasing load on the guest. A small buffer will be added to the resulting workload exec probe to compensate for delays caused by the qemu guest exec mechanism. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																				MarkdownDescription: "Number of seconds after which the probe times out. For exec probes the timeout fails the probe but does not terminate the command running on the guest. This means a blocking command can result in an increasing load on the guest. A small buffer will be added to the resulting workload exec probe to compensate for delays caused by the qemu guest exec mechanism. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5540,8 +5540,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																	},
 
 																	"scheduler_name": schema.StringAttribute{
-																		Description:         "If specified, the VMI will be dispatched by specified scheduler.If not specified, the VMI will be dispatched by default scheduler.",
-																		MarkdownDescription: "If specified, the VMI will be dispatched by specified scheduler.If not specified, the VMI will be dispatched by default scheduler.",
+																		Description:         "If specified, the VMI will be dispatched by specified scheduler. If not specified, the VMI will be dispatched by default scheduler.",
+																		MarkdownDescription: "If specified, the VMI will be dispatched by specified scheduler. If not specified, the VMI will be dispatched by default scheduler.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5556,8 +5556,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																	},
 
 																	"subdomain": schema.StringAttribute{
-																		Description:         "If specified, the fully qualified vmi hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'.If not specified, the vmi will not have a domainname at all. The DNS entry will resolve to the vmi,no matter if the vmi itself can pick up a hostname.",
-																		MarkdownDescription: "If specified, the fully qualified vmi hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'.If not specified, the vmi will not have a domainname at all. The DNS entry will resolve to the vmi,no matter if the vmi itself can pick up a hostname.",
+																		Description:         "If specified, the fully qualified vmi hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'. If not specified, the vmi will not have a domainname at all. The DNS entry will resolve to the vmi, no matter if the vmi itself can pick up a hostname.",
+																		MarkdownDescription: "If specified, the fully qualified vmi hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'. If not specified, the vmi will not have a domainname at all. The DNS entry will resolve to the vmi, no matter if the vmi itself can pick up a hostname.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5577,40 +5577,40 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"effect": schema.StringAttribute{
-																					Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-																					MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																					Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																					MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"key": schema.StringAttribute{
-																					Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-																					MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																					Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																					MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
-																					MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+																					Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+																					MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"toleration_seconds": schema.Int64Attribute{
-																					Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
-																					MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+																					Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+																					MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"value": schema.StringAttribute{
-																					Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
-																					MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																					Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																					MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5623,13 +5623,13 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																	},
 
 																	"topology_spread_constraints": schema.ListNestedAttribute{
-																		Description:         "TopologySpreadConstraints describes how a group of VMIs will be spread across a given topologydomains. K8s scheduler will schedule VMI pods in a way which abides by the constraints.",
-																		MarkdownDescription: "TopologySpreadConstraints describes how a group of VMIs will be spread across a given topologydomains. K8s scheduler will schedule VMI pods in a way which abides by the constraints.",
+																		Description:         "TopologySpreadConstraints describes how a group of VMIs will be spread across a given topology domains. K8s scheduler will schedule VMI pods in a way which abides by the constraints.",
+																		MarkdownDescription: "TopologySpreadConstraints describes how a group of VMIs will be spread across a given topology domains. K8s scheduler will schedule VMI pods in a way which abides by the constraints.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"label_selector": schema.SingleNestedAttribute{
-																					Description:         "LabelSelector is used to find matching pods.Pods that match this label selector are counted to determine the number of podsin their corresponding topology domain.",
-																					MarkdownDescription: "LabelSelector is used to find matching pods.Pods that match this label selector are counted to determine the number of podsin their corresponding topology domain.",
+																					Description:         "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
+																					MarkdownDescription: "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
 																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -5645,16 +5645,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																									},
 
 																									"operator": schema.StringAttribute{
-																										Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																										MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"values": schema.ListAttribute{
-																										Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -5668,8 +5668,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"match_labels": schema.MapAttribute{
-																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -5682,8 +5682,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"match_label_keys": schema.ListAttribute{
-																					Description:         "MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
-																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+																					Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector. This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+																					MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector. This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -5691,48 +5691,48 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"max_skew": schema.Int64Attribute{
-																					Description:         "MaxSkew describes the degree to which pods may be unevenly distributed.When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted differencebetween the number of matching pods in the target topology and the global minimum.The global minimum is the minimum number of matching pods in an eligible domainor zero if the number of eligible domains is less than MinDomains.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 2/2/1:In this case, the global minimum is 1.| zone1 | zone2 | zone3 ||  P P  |  P P  |   P   |- if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2;scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2)violate MaxSkew(1).- if MaxSkew is 2, incoming pod can be scheduled onto any zone.When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedenceto topologies that satisfy it.It's a required field. Default value is 1 and 0 is not allowed.",
-																					MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed.When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted differencebetween the number of matching pods in the target topology and the global minimum.The global minimum is the minimum number of matching pods in an eligible domainor zero if the number of eligible domains is less than MinDomains.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 2/2/1:In this case, the global minimum is 1.| zone1 | zone2 | zone3 ||  P P  |  P P  |   P   |- if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2;scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2)violate MaxSkew(1).- if MaxSkew is 2, incoming pod can be scheduled onto any zone.When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedenceto topologies that satisfy it.It's a required field. Default value is 1 and 0 is not allowed.",
+																					Description:         "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | | P P | P P | P | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
+																					MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | | P P | P P | P | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"min_domains": schema.Int64Attribute{
-																					Description:         "MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.",
-																					MarkdownDescription: "MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.",
+																					Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
+																					MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"node_affinity_policy": schema.StringAttribute{
-																					Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelectorwhen calculating pod topology spread skew. Options are:- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-																					MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelectorwhen calculating pod topology spread skew. Options are:- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																					Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																					MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"node_taints_policy": schema.StringAttribute{
-																					Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculatingpod topology spread skew. Options are:- Honor: nodes without taints, along with tainted nodes for which the incoming podhas a toleration, are included.- Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-																					MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculatingpod topology spread skew. Options are:- Honor: nodes without taints, along with tainted nodes for which the incoming podhas a toleration, are included.- Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																					Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																					MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"topology_key": schema.StringAttribute{
-																					Description:         "TopologyKey is the key of node labels. Nodes that have a label with this keyand identical values are considered to be in the same topology.We consider each <key, value> as a 'bucket', and try to put balanced numberof pods into each bucket.We define a domain as a particular instance of a topology.Also, we define an eligible domain as a domain whose nodes meet the requirements ofnodeAffinityPolicy and nodeTaintsPolicy.e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology.And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology.It's a required field.",
-																					MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this keyand identical values are considered to be in the same topology.We consider each <key, value> as a 'bucket', and try to put balanced numberof pods into each bucket.We define a domain as a particular instance of a topology.Also, we define an eligible domain as a domain whose nodes meet the requirements ofnodeAffinityPolicy and nodeTaintsPolicy.e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology.And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology.It's a required field.",
+																					Description:         "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.",
+																					MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"when_unsatisfiable": schema.StringAttribute{
-																					Description:         "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfythe spread constraint.- DoNotSchedule (default) tells the scheduler not to schedule it.- ScheduleAnyway tells the scheduler to schedule the pod in any location,  but giving higher precedence to topologies that would help reduce the  skew.A constraint is considered 'Unsatisfiable' for an incoming podif and only if every possible node assignment for that pod would violate'MaxSkew' on some topology.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 3/1/1:| zone1 | zone2 | zone3 || P P P |   P   |   P   |If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduledto zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfiesMaxSkew(1). In other words, the cluster can still be imbalanced, but schedulerwon't make it *more* imbalanced.It's a required field.",
-																					MarkdownDescription: "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfythe spread constraint.- DoNotSchedule (default) tells the scheduler not to schedule it.- ScheduleAnyway tells the scheduler to schedule the pod in any location,  but giving higher precedence to topologies that would help reduce the  skew.A constraint is considered 'Unsatisfiable' for an incoming podif and only if every possible node assignment for that pod would violate'MaxSkew' on some topology.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 3/1/1:| zone1 | zone2 | zone3 || P P P |   P   |   P   |If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduledto zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfiesMaxSkew(1). In other words, the cluster can still be imbalanced, but schedulerwon't make it *more* imbalanced.It's a required field.",
+																					Description:         "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P | P | P | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.",
+																					MarkdownDescription: "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P | P | P | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -5750,8 +5750,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"cloud_init_config_drive": schema.SingleNestedAttribute{
-																					Description:         "CloudInitConfigDrive represents a cloud-init Config Drive user-data source.The Config Drive data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest.More info: https://cloudinit.readthedocs.io/en/latest/topics/datasources/configdrive.html",
-																					MarkdownDescription: "CloudInitConfigDrive represents a cloud-init Config Drive user-data source.The Config Drive data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest.More info: https://cloudinit.readthedocs.io/en/latest/topics/datasources/configdrive.html",
+																					Description:         "CloudInitConfigDrive represents a cloud-init Config Drive user-data source. The Config Drive data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest. More info: https://cloudinit.readthedocs.io/en/latest/topics/datasources/configdrive.html",
+																					MarkdownDescription: "CloudInitConfigDrive represents a cloud-init Config Drive user-data source. The Config Drive data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest. More info: https://cloudinit.readthedocs.io/en/latest/topics/datasources/configdrive.html",
 																					Attributes: map[string]schema.Attribute{
 																						"network_data": schema.StringAttribute{
 																							Description:         "NetworkData contains config drive inline cloud-init networkdata.",
@@ -5774,8 +5774,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							MarkdownDescription: "NetworkDataSecretRef references a k8s secret that contains config drive networkdata.",
 																							Attributes: map[string]schema.Attribute{
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -5791,8 +5791,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							MarkdownDescription: "UserDataSecretRef references a k8s secret that contains config drive userdata.",
 																							Attributes: map[string]schema.Attribute{
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -5825,8 +5825,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"cloud_init_no_cloud": schema.SingleNestedAttribute{
-																					Description:         "CloudInitNoCloud represents a cloud-init NoCloud user-data source.The NoCloud data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest.More info: http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html",
-																					MarkdownDescription: "CloudInitNoCloud represents a cloud-init NoCloud user-data source.The NoCloud data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest.More info: http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html",
+																					Description:         "CloudInitNoCloud represents a cloud-init NoCloud user-data source. The NoCloud data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest. More info: http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html",
+																					MarkdownDescription: "CloudInitNoCloud represents a cloud-init NoCloud user-data source. The NoCloud data will be added as a disk to the vmi. A proper cloud-init installation is required inside the guest. More info: http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html",
 																					Attributes: map[string]schema.Attribute{
 																						"network_data": schema.StringAttribute{
 																							Description:         "NetworkData contains NoCloud inline cloud-init networkdata.",
@@ -5849,8 +5849,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							MarkdownDescription: "NetworkDataSecretRef references a k8s secret that contains NoCloud networkdata.",
 																							Attributes: map[string]schema.Attribute{
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -5866,8 +5866,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							MarkdownDescription: "UserDataSecretRef references a k8s secret that contains NoCloud userdata.",
 																							Attributes: map[string]schema.Attribute{
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -5900,12 +5900,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"config_map": schema.SingleNestedAttribute{
-																					Description:         "ConfigMapSource represents a reference to a ConfigMap in the same namespace.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/",
-																					MarkdownDescription: "ConfigMapSource represents a reference to a ConfigMap in the same namespace.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/",
+																					Description:         "ConfigMapSource represents a reference to a ConfigMap in the same namespace. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/",
+																					MarkdownDescription: "ConfigMapSource represents a reference to a ConfigMap in the same namespace. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/",
 																					Attributes: map[string]schema.Attribute{
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																							MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -5920,8 +5920,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"volume_label": schema.StringAttribute{
-																							Description:         "The volume label of the resulting disk inside the VMI.Different bootstrapping mechanisms require different values.Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
-																							MarkdownDescription: "The volume label of the resulting disk inside the VMI.Different bootstrapping mechanisms require different values.Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
+																							Description:         "The volume label of the resulting disk inside the VMI. Different bootstrapping mechanisms require different values. Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
+																							MarkdownDescription: "The volume label of the resulting disk inside the VMI. Different bootstrapping mechanisms require different values. Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -5933,8 +5933,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"container_disk": schema.SingleNestedAttribute{
-																					Description:         "ContainerDisk references a docker image, embedding a qcow or raw disk.More info: https://kubevirt.gitbooks.io/user-guide/registry-disk.html",
-																					MarkdownDescription: "ContainerDisk references a docker image, embedding a qcow or raw disk.More info: https://kubevirt.gitbooks.io/user-guide/registry-disk.html",
+																					Description:         "ContainerDisk references a docker image, embedding a qcow or raw disk. More info: https://kubevirt.gitbooks.io/user-guide/registry-disk.html",
+																					MarkdownDescription: "ContainerDisk references a docker image, embedding a qcow or raw disk. More info: https://kubevirt.gitbooks.io/user-guide/registry-disk.html",
 																					Attributes: map[string]schema.Attribute{
 																						"image": schema.StringAttribute{
 																							Description:         "Image is the name of the image with the embedded disk.",
@@ -5945,8 +5945,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"image_pull_policy": schema.StringAttribute{
-																							Description:         "Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
-																							MarkdownDescription: "Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+																							Description:         "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+																							MarkdownDescription: "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -5974,8 +5974,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"data_volume": schema.SingleNestedAttribute{
-																					Description:         "DataVolume represents the dynamic creation a PVC for this volume as well asthe process of populating that PVC with a disk image.",
-																					MarkdownDescription: "DataVolume represents the dynamic creation a PVC for this volume as well asthe process of populating that PVC with a disk image.",
+																					Description:         "DataVolume represents the dynamic creation a PVC for this volume as well as the process of populating that PVC with a disk image.",
+																					MarkdownDescription: "DataVolume represents the dynamic creation a PVC for this volume as well as the process of populating that PVC with a disk image.",
 																					Attributes: map[string]schema.Attribute{
 																						"hotpluggable": schema.BoolAttribute{
 																							Description:         "Hotpluggable indicates whether the volume can be hotplugged and hotunplugged.",
@@ -5986,8 +5986,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of both the DataVolume and the PVC in the same namespace.After PVC population the DataVolume is garbage collected by default.",
-																							MarkdownDescription: "Name of both the DataVolume and the PVC in the same namespace.After PVC population the DataVolume is garbage collected by default.",
+																							Description:         "Name of both the DataVolume and the PVC in the same namespace. After PVC population the DataVolume is garbage collected by default.",
+																							MarkdownDescription: "Name of both the DataVolume and the PVC in the same namespace. After PVC population the DataVolume is garbage collected by default.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -6033,24 +6033,24 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																									},
 
 																									"mode": schema.Int64Attribute{
-																										Description:         "Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
-																										MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
+																										Description:         "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																										MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"path": schema.StringAttribute{
-																										Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
-																										MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																										Description:         "Required: Path is the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																										MarkdownDescription: "Required: Path is the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"resource_field_ref": schema.SingleNestedAttribute{
-																										Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
-																										MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+																										Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+																										MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
 																										Attributes: map[string]schema.Attribute{
 																											"container_name": schema.StringAttribute{
 																												Description:         "Container name: required for volumes, optional for env vars",
@@ -6088,8 +6088,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"volume_label": schema.StringAttribute{
-																							Description:         "The volume label of the resulting disk inside the VMI.Different bootstrapping mechanisms require different values.Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
-																							MarkdownDescription: "The volume label of the resulting disk inside the VMI.Different bootstrapping mechanisms require different values.Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
+																							Description:         "The volume label of the resulting disk inside the VMI. Different bootstrapping mechanisms require different values. Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
+																							MarkdownDescription: "The volume label of the resulting disk inside the VMI. Different bootstrapping mechanisms require different values. Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -6101,8 +6101,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"downward_metrics": schema.MapAttribute{
-																					Description:         "DownwardMetrics adds a very small disk to VMIs which contains a limited view of host and guestmetrics. The disk content is compatible with vhostmd (https://github.com/vhostmd/vhostmd) and vm-dump-metrics.",
-																					MarkdownDescription: "DownwardMetrics adds a very small disk to VMIs which contains a limited view of host and guestmetrics. The disk content is compatible with vhostmd (https://github.com/vhostmd/vhostmd) and vm-dump-metrics.",
+																					Description:         "DownwardMetrics adds a very small disk to VMIs which contains a limited view of host and guest metrics. The disk content is compatible with vhostmd (https://github.com/vhostmd/vhostmd) and vm-dump-metrics.",
+																					MarkdownDescription: "DownwardMetrics adds a very small disk to VMIs which contains a limited view of host and guest metrics. The disk content is compatible with vhostmd (https://github.com/vhostmd/vhostmd) and vm-dump-metrics.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -6110,8 +6110,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"empty_disk": schema.SingleNestedAttribute{
-																					Description:         "EmptyDisk represents a temporary disk which shares the vmis lifecycle.More info: https://kubevirt.gitbooks.io/user-guide/disks-and-volumes.html",
-																					MarkdownDescription: "EmptyDisk represents a temporary disk which shares the vmis lifecycle.More info: https://kubevirt.gitbooks.io/user-guide/disks-and-volumes.html",
+																					Description:         "EmptyDisk represents a temporary disk which shares the vmis lifecycle. More info: https://kubevirt.gitbooks.io/user-guide/disks-and-volumes.html",
+																					MarkdownDescription: "EmptyDisk represents a temporary disk which shares the vmis lifecycle. More info: https://kubevirt.gitbooks.io/user-guide/disks-and-volumes.html",
 																					Attributes: map[string]schema.Attribute{
 																						"capacity": schema.StringAttribute{
 																							Description:         "Capacity of the sparse disk.",
@@ -6131,20 +6131,20 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					MarkdownDescription: "Ephemeral is a special volume source that 'wraps' specified source and provides copy-on-write image on top of it.",
 																					Attributes: map[string]schema.Attribute{
 																						"persistent_volume_claim": schema.SingleNestedAttribute{
-																							Description:         "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace.Directly attached to the vmi via qemu.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																							MarkdownDescription: "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace.Directly attached to the vmi via qemu.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																							Description:         "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. Directly attached to the vmi via qemu. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																							MarkdownDescription: "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. Directly attached to the vmi via qemu. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																							Attributes: map[string]schema.Attribute{
 																								"claim_name": schema.StringAttribute{
-																									Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																									MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																									Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																									MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"read_only": schema.BoolAttribute{
-																									Description:         "readOnly Will force the ReadOnly setting in VolumeMounts.Default false.",
-																									MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts.Default false.",
+																									Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+																									MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -6189,8 +6189,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"type": schema.StringAttribute{
-																							Description:         "Contains information if disk.img exists or should be createdallowed options are 'Disk' and 'DiskOrCreate'",
-																							MarkdownDescription: "Contains information if disk.img exists or should be createdallowed options are 'Disk' and 'DiskOrCreate'",
+																							Description:         "Contains information if disk.img exists or should be created allowed options are 'Disk' and 'DiskOrCreate'",
+																							MarkdownDescription: "Contains information if disk.img exists or should be created allowed options are 'Disk' and 'DiskOrCreate'",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -6206,8 +6206,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																					MarkdownDescription: "MemoryDump is attached to the virt launcher and is populated with a memory dump of the vmi",
 																					Attributes: map[string]schema.Attribute{
 																						"claim_name": schema.StringAttribute{
-																							Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																							MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																							Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																							MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -6222,8 +6222,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"read_only": schema.BoolAttribute{
-																							Description:         "readOnly Will force the ReadOnly setting in VolumeMounts.Default false.",
-																							MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts.Default false.",
+																							Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+																							MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -6235,20 +6235,20 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Volume's name.Must be a DNS_LABEL and unique within the vmi.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																					MarkdownDescription: "Volume's name.Must be a DNS_LABEL and unique within the vmi.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																					Description:         "Volume's name. Must be a DNS_LABEL and unique within the vmi. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																					MarkdownDescription: "Volume's name. Must be a DNS_LABEL and unique within the vmi. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"persistent_volume_claim": schema.SingleNestedAttribute{
-																					Description:         "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace.Directly attached to the vmi via qemu.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																					MarkdownDescription: "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace.Directly attached to the vmi via qemu.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																					Description:         "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. Directly attached to the vmi via qemu. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																					MarkdownDescription: "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. Directly attached to the vmi via qemu. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																					Attributes: map[string]schema.Attribute{
 																						"claim_name": schema.StringAttribute{
-																							Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																							MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																							Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																							MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -6263,8 +6263,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"read_only": schema.BoolAttribute{
-																							Description:         "readOnly Will force the ReadOnly setting in VolumeMounts.Default false.",
-																							MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts.Default false.",
+																							Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+																							MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -6276,8 +6276,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"secret": schema.SingleNestedAttribute{
-																					Description:         "SecretVolumeSource represents a reference to a secret data in the same namespace.More info: https://kubernetes.io/docs/concepts/configuration/secret/",
-																					MarkdownDescription: "SecretVolumeSource represents a reference to a secret data in the same namespace.More info: https://kubernetes.io/docs/concepts/configuration/secret/",
+																					Description:         "SecretVolumeSource represents a reference to a secret data in the same namespace. More info: https://kubernetes.io/docs/concepts/configuration/secret/",
+																					MarkdownDescription: "SecretVolumeSource represents a reference to a secret data in the same namespace. More info: https://kubernetes.io/docs/concepts/configuration/secret/",
 																					Attributes: map[string]schema.Attribute{
 																						"optional": schema.BoolAttribute{
 																							Description:         "Specify whether the Secret or it's keys must be defined",
@@ -6288,16 +6288,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																						},
 
 																						"secret_name": schema.StringAttribute{
-																							Description:         "Name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-																							MarkdownDescription: "Name of the secret in the pod's namespace to use.More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																							Description:         "Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																							MarkdownDescription: "Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"volume_label": schema.StringAttribute{
-																							Description:         "The volume label of the resulting disk inside the VMI.Different bootstrapping mechanisms require different values.Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
-																							MarkdownDescription: "The volume label of the resulting disk inside the VMI.Different bootstrapping mechanisms require different values.Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
+																							Description:         "The volume label of the resulting disk inside the VMI. Different bootstrapping mechanisms require different values. Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
+																							MarkdownDescription: "The volume label of the resulting disk inside the VMI. Different bootstrapping mechanisms require different values. Typical values are 'cidata' (cloud-init), 'config-2' (cloud-init) or 'OEMDRV' (kickstart).",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -6309,12 +6309,12 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																				},
 
 																				"service_account": schema.SingleNestedAttribute{
-																					Description:         "ServiceAccountVolumeSource represents a reference to a service account.There can only be one volume of this type!More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
-																					MarkdownDescription: "ServiceAccountVolumeSource represents a reference to a service account.There can only be one volume of this type!More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+																					Description:         "ServiceAccountVolumeSource represents a reference to a service account. There can only be one volume of this type! More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+																					MarkdownDescription: "ServiceAccountVolumeSource represents a reference to a service account. There can only be one volume of this type! More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
 																					Attributes: map[string]schema.Attribute{
 																						"service_account_name": schema.StringAttribute{
-																							Description:         "Name of the service account in the pod's namespace to use.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
-																							MarkdownDescription: "Name of the service account in the pod's namespace to use.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+																							Description:         "Name of the service account in the pod's namespace to use. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+																							MarkdownDescription: "Name of the service account in the pod's namespace to use. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -6334,8 +6334,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							MarkdownDescription: "ConfigMap references a ConfigMap that contains Sysprep answer file named autounattend.xml that should be attached as disk of CDROM type.",
 																							Attributes: map[string]schema.Attribute{
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -6351,8 +6351,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineTemplateV1Alpha1Manifest) Sch
 																							MarkdownDescription: "Secret references a k8s Secret that contains Sysprep answer file named autounattend.xml that should be attached as disk of CDROM type.",
 																							Attributes: map[string]schema.Attribute{
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,

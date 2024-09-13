@@ -56,9 +56,9 @@ Required:
 
 Optional:
 
-- `kubelet` (Attributes) Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types. (see [below for nested schema](#nestedatt--spec--kubelet))
+- `kubelet` (Attributes) Kubelet defines args to be used when configuring kubelet on provisioned nodes. They are a subset of the upstream types, recognizing not all options may be supported. Wherever possible, the types and names should reflect the upstream kubelet types. (see [below for nested schema](#nestedatt--spec--kubelet))
 - `resources` (Attributes) Resources models the resource requirements for the NodeClaim to launch (see [below for nested schema](#nestedatt--spec--resources))
-- `startup_taints` (Attributes List) StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automaticallywithin a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used bydaemonsets to allow initialization and enforce startup ordering.  StartupTaints are ignored for provisioningpurposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them. (see [below for nested schema](#nestedatt--spec--startup_taints))
+- `startup_taints` (Attributes List) StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automatically within a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used by daemonsets to allow initialization and enforce startup ordering. StartupTaints are ignored for provisioning purposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them. (see [below for nested schema](#nestedatt--spec--startup_taints))
 - `taints` (Attributes List) Taints will be applied to the NodeClaim's node. (see [below for nested schema](#nestedatt--spec--taints))
 
 <a id="nestedatt--spec--node_class_ref"></a>
@@ -80,12 +80,12 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `min_values` (Number) This field is ALPHA and can be dropped or replaced at any timeMinValues is the minimum number of unique values required to define the flexibility of the specific requirement.
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `min_values` (Number) This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--kubelet"></a>
@@ -93,17 +93,17 @@ Optional:
 
 Optional:
 
-- `cluster_dns` (List of String) clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.
+- `cluster_dns` (List of String) clusterDNS is a list of IP addresses for the cluster DNS server. Note that not all providers may use all addresses.
 - `cpu_cfs_quota` (Boolean) CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits.
 - `eviction_hard` (Map of String) EvictionHard is the map of signal names to quantities that define hard eviction thresholds
-- `eviction_max_pod_grace_period` (Number) EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.
+- `eviction_max_pod_grace_period` (Number) EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods in response to soft eviction thresholds being met.
 - `eviction_soft` (Map of String) EvictionSoft is the map of signal names to quantities that define soft eviction thresholds
 - `eviction_soft_grace_period` (Map of String) EvictionSoftGracePeriod is the map of signal names to quantities that define grace periods for each eviction signal
-- `image_gc_high_threshold_percent` (Number) ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.
-- `image_gc_low_threshold_percent` (Number) ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent
+- `image_gc_high_threshold_percent` (Number) ImageGCHighThresholdPercent is the percent of disk usage after which image garbage collection is always run. The percent is calculated by dividing this field value by 100, so this field must be between 0 and 100, inclusive. When specified, the value must be greater than ImageGCLowThresholdPercent.
+- `image_gc_low_threshold_percent` (Number) ImageGCLowThresholdPercent is the percent of disk usage before which image garbage collection is never run. Lowest disk usage to garbage collect to. The percent is calculated by dividing this field value by 100, so the field value must be between 0 and 100, inclusive. When specified, the value must be less than imageGCHighThresholdPercent
 - `kube_reserved` (Map of String) KubeReserved contains resources reserved for Kubernetes system components.
-- `max_pods` (Number) MaxPods is an override for the maximum number of pods that can run ona worker node instance.
-- `pods_per_core` (Number) PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.
+- `max_pods` (Number) MaxPods is an override for the maximum number of pods that can run on a worker node instance.
+- `pods_per_core` (Number) PodsPerCore is an override for the number of pods that can run on a worker node instance based on the number of cpu cores. This value cannot exceed MaxPods, so, if MaxPods is a lower value, that value will be used.
 - `system_reserved` (Map of String) SystemReserved contains resources reserved for OS system daemons and kernel memory.
 
 
@@ -120,12 +120,12 @@ Optional:
 
 Required:
 
-- `effect` (String) Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
+- `effect` (String) Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
 - `key` (String) Required. The taint key to be applied to a node.
 
 Optional:
 
-- `time_added` (String) TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.
+- `time_added` (String) TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
 - `value` (String) The taint value corresponding to the taint key.
 
 
@@ -134,10 +134,10 @@ Optional:
 
 Required:
 
-- `effect` (String) Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
+- `effect` (String) Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
 - `key` (String) Required. The taint key to be applied to a node.
 
 Optional:
 
-- `time_added` (String) TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.
+- `time_added` (String) TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
 - `value` (String) The taint value corresponding to the taint key.

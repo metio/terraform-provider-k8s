@@ -3,12 +3,12 @@
 page_title: "k8s_snapshot_storage_k8s_io_volume_snapshot_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "snapshot.storage.k8s.io"
 description: |-
-  VolumeSnapshot is a user's request for either creating a point-in-timesnapshot of a persistent volume, or binding to a pre-existing snapshot.
+  VolumeSnapshot is a user's request for either creating a point-in-time snapshot of a persistent volume, or binding to a pre-existing snapshot.
 ---
 
 # k8s_snapshot_storage_k8s_io_volume_snapshot_v1_manifest (Data Source)
 
-VolumeSnapshot is a user's request for either creating a point-in-timesnapshot of a persistent volume, or binding to a pre-existing snapshot.
+VolumeSnapshot is a user's request for either creating a point-in-time snapshot of a persistent volume, or binding to a pre-existing snapshot.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_snapshot_storage_k8s_io_volume_snapshot_v1_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) spec defines the desired characteristics of a snapshot requested by a user.More info: https://kubernetes.io/docs/concepts/storage/volume-snapshots#volumesnapshotsRequired. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) spec defines the desired characteristics of a snapshot requested by a user. More info: https://kubernetes.io/docs/concepts/storage/volume-snapshots#volumesnapshots Required. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,16 +55,16 @@ Optional:
 
 Required:
 
-- `source` (Attributes) source specifies where a snapshot will be created from.This field is immutable after creation.Required. (see [below for nested schema](#nestedatt--spec--source))
+- `source` (Attributes) source specifies where a snapshot will be created from. This field is immutable after creation. Required. (see [below for nested schema](#nestedatt--spec--source))
 
 Optional:
 
-- `volume_snapshot_class_name` (String) VolumeSnapshotClassName is the name of the VolumeSnapshotClassrequested by the VolumeSnapshot.VolumeSnapshotClassName may be left nil to indicate that the defaultSnapshotClass should be used.A given cluster may have multiple default Volume SnapshotClasses: onedefault per CSI Driver. If a VolumeSnapshot does not specify a SnapshotClass,VolumeSnapshotSource will be checked to figure out what the associatedCSI Driver is, and the default VolumeSnapshotClass associated with thatCSI Driver will be used. If more than one VolumeSnapshotClass exist fora given CSI Driver and more than one have been marked as default,CreateSnapshot will fail and generate an event.Empty string is not allowed for this field.
+- `volume_snapshot_class_name` (String) VolumeSnapshotClassName is the name of the VolumeSnapshotClass requested by the VolumeSnapshot. VolumeSnapshotClassName may be left nil to indicate that the default SnapshotClass should be used. A given cluster may have multiple default Volume SnapshotClasses: one default per CSI Driver. If a VolumeSnapshot does not specify a SnapshotClass, VolumeSnapshotSource will be checked to figure out what the associated CSI Driver is, and the default VolumeSnapshotClass associated with that CSI Driver will be used. If more than one VolumeSnapshotClass exist for a given CSI Driver and more than one have been marked as default, CreateSnapshot will fail and generate an event. Empty string is not allowed for this field.
 
 <a id="nestedatt--spec--source"></a>
 ### Nested Schema for `spec.source`
 
 Optional:
 
-- `persistent_volume_claim_name` (String) persistentVolumeClaimName specifies the name of the PersistentVolumeClaimobject representing the volume from which a snapshot should be created.This PVC is assumed to be in the same namespace as the VolumeSnapshotobject.This field should be set if the snapshot does not exists, and needs to becreated.This field is immutable.
-- `volume_snapshot_content_name` (String) volumeSnapshotContentName specifies the name of a pre-existing VolumeSnapshotContentobject representing an existing volume snapshot.This field should be set if the snapshot already exists and only needs a representation in Kubernetes.This field is immutable.
+- `persistent_volume_claim_name` (String) persistentVolumeClaimName specifies the name of the PersistentVolumeClaim object representing the volume from which a snapshot should be created. This PVC is assumed to be in the same namespace as the VolumeSnapshot object. This field should be set if the snapshot does not exists, and needs to be created. This field is immutable.
+- `volume_snapshot_content_name` (String) volumeSnapshotContentName specifies the name of a pre-existing VolumeSnapshotContent object representing an existing volume snapshot. This field should be set if the snapshot already exists and only needs a representation in Kubernetes. This field is immutable.

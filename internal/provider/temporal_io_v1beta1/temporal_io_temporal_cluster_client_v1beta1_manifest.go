@@ -140,8 +140,8 @@ func (r *TemporalIoTemporalClusterClientV1Beta1Manifest) Schema(_ context.Contex
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "The namespace of the temporal object to reference.Defaults to the namespace of the requested resource if omitted.",
-								MarkdownDescription: "The namespace of the temporal object to reference.Defaults to the namespace of the requested resource if omitted.",
+								Description:         "The namespace of the temporal object to reference. Defaults to the namespace of the requested resource if omitted.",
+								MarkdownDescription: "The namespace of the temporal object to reference. Defaults to the namespace of the requested resource if omitted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

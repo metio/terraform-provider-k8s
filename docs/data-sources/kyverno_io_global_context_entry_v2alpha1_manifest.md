@@ -51,20 +51,20 @@ Optional:
 
 Optional:
 
-- `api_call` (Attributes) Stores results from an API call which will be cached.Mutually exclusive with KubernetesResource.This can be used to make calls to external (non-Kubernetes API server) services.It can also be used to make calls to the Kubernetes API server in such cases:1. A POST is needed to create a resource.2. Finer-grained control is needed. Example: To restrict the number of resources cached. (see [below for nested schema](#nestedatt--spec--api_call))
-- `kubernetes_resource` (Attributes) Stores a list of Kubernetes resources which will be cached.Mutually exclusive with APICall. (see [below for nested schema](#nestedatt--spec--kubernetes_resource))
+- `api_call` (Attributes) Stores results from an API call which will be cached. Mutually exclusive with KubernetesResource. This can be used to make calls to external (non-Kubernetes API server) services. It can also be used to make calls to the Kubernetes API server in such cases: 1. A POST is needed to create a resource. 2. Finer-grained control is needed. Example: To restrict the number of resources cached. (see [below for nested schema](#nestedatt--spec--api_call))
+- `kubernetes_resource` (Attributes) Stores a list of Kubernetes resources which will be cached. Mutually exclusive with APICall. (see [below for nested schema](#nestedatt--spec--kubernetes_resource))
 
 <a id="nestedatt--spec--api_call"></a>
 ### Nested Schema for `spec.api_call`
 
 Optional:
 
-- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--api_call--data))
+- `data` (Attributes List) The data object specifies the POST data sent to the server. Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--api_call--data))
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
-- `refresh_interval` (String) RefreshInterval defines the interval in duration at which to poll the APICall.The duration is a sequence of decimal numbers, each with optional fraction and a unit suffix,such as '300ms', '1.5h' or '2h45m'. Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.
+- `refresh_interval` (String) RefreshInterval defines the interval in duration at which to poll the APICall. The duration is a sequence of decimal numbers, each with optional fraction and a unit suffix, such as '300ms', '1.5h' or '2h45m'. Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.
 - `retry_limit` (Number) RetryLimit defines the number of times the APICall should be retried in case of failure.
-- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--api_call--service))
-- `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.
+- `service` (Attributes) Service is an API call to a JSON web service. This is used for non-Kubernetes API server calls. It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--api_call--service))
+- `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to the Kubernetes API server (e.g. '/api/v1/namespaces' or '/apis/apps/v1/deployments'). The format required is the same format used by the 'kubectl get --raw' command. See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-calls for details. It's mutually exclusive with the Service field.
 
 <a id="nestedatt--spec--api_call--data"></a>
 ### Nested Schema for `spec.api_call.data`
@@ -80,11 +80,21 @@ Required:
 
 Required:
 
-- `url` (String) URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.
+- `url` (String) URL is the JSON web service URL. A typical form is 'https://{service}.{namespace}:{port}/{path}'.
 
 Optional:
 
-- `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
+- `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validate the server certificate.
+- `headers` (Attributes List) Headers is a list of optional HTTP headers to be included in the request. (see [below for nested schema](#nestedatt--spec--api_call--service--headers))
+
+<a id="nestedatt--spec--api_call--service--headers"></a>
+### Nested Schema for `spec.api_call.service.headers`
+
+Required:
+
+- `key` (String) Key is the header key
+- `value` (String) Value is the header value
+
 
 
 
@@ -93,10 +103,10 @@ Optional:
 
 Required:
 
-- `resource` (String) Resource defines the type of the resource.Requires the pluralized form of the resource kind in lowercase. (Ex., 'deployments')
+- `resource` (String) Resource defines the type of the resource. Requires the pluralized form of the resource kind in lowercase. (Ex., 'deployments')
 - `version` (String) Version defines the version of the resource.
 
 Optional:
 
 - `group` (String) Group defines the group of the resource.
-- `namespace` (String) Namespace defines the namespace of the resource. Leave empty for cluster scoped resources.If left empty for namespaced resources, all resources from all namespaces will be cached.
+- `namespace` (String) Namespace defines the namespace of the resource. Leave empty for cluster scoped resources. If left empty for namespaced resources, all resources from all namespaces will be cached.

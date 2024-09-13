@@ -61,8 +61,8 @@ Required:
 
 Optional:
 
-- `resource_spec` (Attributes) The instance type and the Amazon Resource Name (ARN) of the SageMaker imagecreated on the instance.The value of InstanceType passed as part of the ResourceSpec in the CreateAppcall overrides the value passed as part of the ResourceSpec configured forthe user profile or the domain. If InstanceType is not specified in any ofthose three ResourceSpec values for a KernelGateway app, the CreateApp callfails with a request validation error. (see [below for nested schema](#nestedatt--spec--resource_spec))
-- `tags` (Attributes List) Each tag consists of a key and an optional value. Tag keys must be uniqueper resource. (see [below for nested schema](#nestedatt--spec--tags))
+- `resource_spec` (Attributes) The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance. The value of InstanceType passed as part of the ResourceSpec in the CreateApp call overrides the value passed as part of the ResourceSpec configured for the user profile or the domain. If InstanceType is not specified in any of those three ResourceSpec values for a KernelGateway app, the CreateApp call fails with a request validation error. (see [below for nested schema](#nestedatt--spec--resource_spec))
+- `tags` (Attributes List) Each tag consists of a key and an optional value. Tag keys must be unique per resource. (see [below for nested schema](#nestedatt--spec--tags))
 - `user_profile_name` (String) The user profile name. If this value is not set, then SpaceName must be set.
 
 <a id="nestedatt--spec--resource_spec"></a>

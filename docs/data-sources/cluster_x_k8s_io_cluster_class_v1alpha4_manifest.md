@@ -3,12 +3,12 @@
 page_title: "k8s_cluster_x_k8s_io_cluster_class_v1alpha4_manifest Data Source - terraform-provider-k8s"
 subcategory: "cluster.x-k8s.io"
 description: |-
-  ClusterClass is a template which can be used to create managed topologies.Deprecated: This type will be removed in one of the next releases.
+  ClusterClass is a template which can be used to create managed topologies. Deprecated: This type will be removed in one of the next releases.
 ---
 
 # k8s_cluster_x_k8s_io_cluster_class_v1alpha4_manifest (Data Source)
 
-ClusterClass is a template which can be used to create managed topologies.Deprecated: This type will be removed in one of the next releases.
+ClusterClass is a template which can be used to create managed topologies. Deprecated: This type will be removed in one of the next releases.
 
 ## Example Usage
 
@@ -55,21 +55,21 @@ Optional:
 
 Optional:
 
-- `control_plane` (Attributes) ControlPlane is a reference to a local struct that holds the detailsfor provisioning the Control Plane for the Cluster. (see [below for nested schema](#nestedatt--spec--control_plane))
-- `infrastructure` (Attributes) Infrastructure is a reference to a provider-specific template that holdsthe details for provisioning infrastructure specific clusterfor the underlying provider.The underlying provider is responsible for the implementationof the template to an infrastructure cluster. (see [below for nested schema](#nestedatt--spec--infrastructure))
-- `workers` (Attributes) Workers describes the worker nodes for the cluster.It is a collection of node types which can be used to createthe worker nodes of the cluster. (see [below for nested schema](#nestedatt--spec--workers))
+- `control_plane` (Attributes) ControlPlane is a reference to a local struct that holds the details for provisioning the Control Plane for the Cluster. (see [below for nested schema](#nestedatt--spec--control_plane))
+- `infrastructure` (Attributes) Infrastructure is a reference to a provider-specific template that holds the details for provisioning infrastructure specific cluster for the underlying provider. The underlying provider is responsible for the implementation of the template to an infrastructure cluster. (see [below for nested schema](#nestedatt--spec--infrastructure))
+- `workers` (Attributes) Workers describes the worker nodes for the cluster. It is a collection of node types which can be used to create the worker nodes of the cluster. (see [below for nested schema](#nestedatt--spec--workers))
 
 <a id="nestedatt--spec--control_plane"></a>
 ### Nested Schema for `spec.control_plane`
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--control_plane--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--control_plane--ref))
 
 Optional:
 
-- `machine_infrastructure` (Attributes) MachineTemplate defines the metadata and infrastructure informationfor control plane machines.This field is supported if and only if the control plane provider templatereferenced above is Machine based and supports setting replicas. (see [below for nested schema](#nestedatt--spec--control_plane--machine_infrastructure))
-- `metadata` (Attributes) Metadata is the metadata applied to the machines of the ControlPlane.At runtime this metadata is merged with the corresponding metadata from the topology.This field is supported if and only if the control plane provider templatereferenced is Machine based. (see [below for nested schema](#nestedatt--spec--control_plane--metadata))
+- `machine_infrastructure` (Attributes) MachineTemplate defines the metadata and infrastructure information for control plane machines. This field is supported if and only if the control plane provider template referenced above is Machine based and supports setting replicas. (see [below for nested schema](#nestedatt--spec--control_plane--machine_infrastructure))
+- `metadata` (Attributes) Metadata is the metadata applied to the machines of the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the topology. This field is supported if and only if the control plane provider template referenced is Machine based. (see [below for nested schema](#nestedatt--spec--control_plane--metadata))
 
 <a id="nestedatt--spec--control_plane--ref"></a>
 ### Nested Schema for `spec.control_plane.ref`
@@ -77,12 +77,12 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 <a id="nestedatt--spec--control_plane--machine_infrastructure"></a>
@@ -90,7 +90,7 @@ Optional:
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--control_plane--machine_infrastructure--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--control_plane--machine_infrastructure--ref))
 
 <a id="nestedatt--spec--control_plane--machine_infrastructure--ref"></a>
 ### Nested Schema for `spec.control_plane.machine_infrastructure.ref`
@@ -98,12 +98,12 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -112,8 +112,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
 
 
 
@@ -122,7 +122,7 @@ Optional:
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--infrastructure--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--infrastructure--ref))
 
 <a id="nestedatt--spec--infrastructure--ref"></a>
 ### Nested Schema for `spec.infrastructure.ref`
@@ -130,12 +130,12 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -144,34 +144,34 @@ Optional:
 
 Optional:
 
-- `machine_deployments` (Attributes List) MachineDeployments is a list of machine deployment classes that can be used to createa set of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments))
+- `machine_deployments` (Attributes List) MachineDeployments is a list of machine deployment classes that can be used to create a set of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments))
 
 <a id="nestedatt--spec--workers--machine_deployments"></a>
 ### Nested Schema for `spec.workers.machine_deployments`
 
 Required:
 
-- `class` (String) Class denotes a type of worker node present in the cluster,this name MUST be unique within a ClusterClass and can be referencedin the Cluster to create a managed MachineDeployment.
-- `template` (Attributes) Template is a local struct containing a collection of templates for creation ofMachineDeployment objects representing a set of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template))
+- `class` (String) Class denotes a type of worker node present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachineDeployment.
+- `template` (Attributes) Template is a local struct containing a collection of templates for creation of MachineDeployment objects representing a set of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template))
 
 <a id="nestedatt--spec--workers--machine_deployments--template"></a>
 ### Nested Schema for `spec.workers.machine_deployments.template`
 
 Required:
 
-- `bootstrap` (Attributes) Bootstrap contains the bootstrap template reference to be usedfor the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--bootstrap))
-- `infrastructure` (Attributes) Infrastructure contains the infrastructure template reference to be usedfor the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--infrastructure))
+- `bootstrap` (Attributes) Bootstrap contains the bootstrap template reference to be used for the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--bootstrap))
+- `infrastructure` (Attributes) Infrastructure contains the infrastructure template reference to be used for the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--infrastructure))
 
 Optional:
 
-- `metadata` (Attributes) Metadata is the metadata applied to the machines of the MachineDeployment.At runtime this metadata is merged with the corresponding metadata from the topology. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--metadata))
+- `metadata` (Attributes) Metadata is the metadata applied to the machines of the MachineDeployment. At runtime this metadata is merged with the corresponding metadata from the topology. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--metadata))
 
 <a id="nestedatt--spec--workers--machine_deployments--template--bootstrap"></a>
 ### Nested Schema for `spec.workers.machine_deployments.template.bootstrap`
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--bootstrap--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--bootstrap--ref))
 
 <a id="nestedatt--spec--workers--machine_deployments--template--bootstrap--ref"></a>
 ### Nested Schema for `spec.workers.machine_deployments.template.bootstrap.ref`
@@ -179,12 +179,12 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -193,7 +193,7 @@ Optional:
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--infrastructure--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--infrastructure--ref))
 
 <a id="nestedatt--spec--workers--machine_deployments--template--infrastructure--ref"></a>
 ### Nested Schema for `spec.workers.machine_deployments.template.infrastructure.ref`
@@ -201,12 +201,12 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -215,5 +215,5 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels

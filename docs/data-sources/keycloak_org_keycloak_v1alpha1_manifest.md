@@ -60,7 +60,7 @@ Optional:
 - `extensions` (List of String) A list of extensions, where each one is a URL to a JAR files that will be deployed in Keycloak.
 - `external` (Attributes) Contains configuration for external Keycloak instances. Unmanaged needs to be set to true to use this. (see [below for nested schema](#nestedatt--spec--external))
 - `external_access` (Attributes) Controls external Ingress/Route settings. (see [below for nested schema](#nestedatt--spec--external_access))
-- `external_database` (Attributes) Controls external database settings. Using an external database requires providing a secret containing credentials as well as connection details. Here's an example of such secret:      apiVersion: v1     kind: Secret     metadata:         name: keycloak-db-secret         namespace: keycloak     stringData:         POSTGRES_DATABASE: <Database Name>         POSTGRES_EXTERNAL_ADDRESS: <External Database IP or URL (resolvable by K8s)>         POSTGRES_EXTERNAL_PORT: <External Database Port>         # Strongly recommended to use <'Keycloak CR Name'-postgresql>         POSTGRES_HOST: <Database Service Name>         POSTGRES_PASSWORD: <Database Password>         # Required for AWS Backup functionality         POSTGRES_SUPERUSER: true         POSTGRES_USERNAME: <Database Username>      type: Opaque  Both POSTGRES_EXTERNAL_ADDRESS and POSTGRES_EXTERNAL_PORT are specifically required for creating connection to the external database. The secret name is created using the following convention:       <Custom Resource Name>-db-secret  For more information, please refer to the Operator documentation. (see [below for nested schema](#nestedatt--spec--external_database))
+- `external_database` (Attributes) Controls external database settings. Using an external database requires providing a secret containing credentials as well as connection details. Here's an example of such secret: apiVersion: v1 kind: Secret metadata: name: keycloak-db-secret namespace: keycloak stringData: POSTGRES_DATABASE: <Database Name> POSTGRES_EXTERNAL_ADDRESS: <External Database IP or URL (resolvable by K8s)> POSTGRES_EXTERNAL_PORT: <External Database Port> # Strongly recommended to use <'Keycloak CR Name'-postgresql> POSTGRES_HOST: <Database Service Name> POSTGRES_PASSWORD: <Database Password> # Required for AWS Backup functionality POSTGRES_SUPERUSER: true POSTGRES_USERNAME: <Database Username> type: Opaque Both POSTGRES_EXTERNAL_ADDRESS and POSTGRES_EXTERNAL_PORT are specifically required for creating connection to the external database. The secret name is created using the following convention: <Custom Resource Name>-db-secret For more information, please refer to the Operator documentation. (see [below for nested schema](#nestedatt--spec--external_database))
 - `instances` (Number) Number of Keycloak instances in HA mode. Default is 1.
 - `keycloak_deployment_spec` (Attributes) Resources (Requests and Limits) and ImagePullPolicy for KeycloakDeployment. (see [below for nested schema](#nestedatt--spec--keycloak_deployment_spec))
 - `migration` (Attributes) Specify Migration configuration (see [below for nested schema](#nestedatt--spec--migration))
@@ -469,7 +469,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 

@@ -279,16 +279,16 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "HelmReleaseSpec defines the desired state of a Helm release.",
 				Attributes: map[string]schema.Attribute{
 					"chart": schema.SingleNestedAttribute{
-						Description:         "Chart defines the template of the v1.HelmChart that should be createdfor this HelmRelease.",
-						MarkdownDescription: "Chart defines the template of the v1.HelmChart that should be createdfor this HelmRelease.",
+						Description:         "Chart defines the template of the v1.HelmChart that should be created for this HelmRelease.",
+						MarkdownDescription: "Chart defines the template of the v1.HelmChart that should be created for this HelmRelease.",
 						Attributes: map[string]schema.Attribute{
 							"metadata": schema.SingleNestedAttribute{
 								Description:         "ObjectMeta holds the template for metadata like labels and annotations.",
 								MarkdownDescription: "ObjectMeta holds the template for metadata like labels and annotations.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
-										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
+										Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
+										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -296,8 +296,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
-										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+										Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -334,8 +334,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 									},
 
 									"interval": schema.StringAttribute{
-										Description:         "Interval at which to check the v1.Source for updates. Defaults to'HelmReleaseSpec.Interval'.",
-										MarkdownDescription: "Interval at which to check the v1.Source for updates. Defaults to'HelmReleaseSpec.Interval'.",
+										Description:         "Interval at which to check the v1.Source for updates. Defaults to 'HelmReleaseSpec.Interval'.",
+										MarkdownDescription: "Interval at which to check the v1.Source for updates. Defaults to 'HelmReleaseSpec.Interval'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -345,8 +345,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 									},
 
 									"reconcile_strategy": schema.StringAttribute{
-										Description:         "Determines what enables the creation of a new artifact. Valid values are('ChartVersion', 'Revision').See the documentation of the values for an explanation on their behavior.Defaults to ChartVersion when omitted.",
-										MarkdownDescription: "Determines what enables the creation of a new artifact. Valid values are('ChartVersion', 'Revision').See the documentation of the values for an explanation on their behavior.Defaults to ChartVersion when omitted.",
+										Description:         "Determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
+										MarkdownDescription: "Determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -408,8 +408,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 									},
 
 									"values_files": schema.ListAttribute{
-										Description:         "Alternative list of values files to use as the chart values (values.yamlis not included by default), expected to be a relative path in the SourceRef.Values files are merged in the order of this list with the last file overridingthe first. Ignored when omitted.",
-										MarkdownDescription: "Alternative list of values files to use as the chart values (values.yamlis not included by default), expected to be a relative path in the SourceRef.Values files are merged in the order of this list with the last file overridingthe first. Ignored when omitted.",
+										Description:         "Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
+										MarkdownDescription: "Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -417,8 +417,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 									},
 
 									"verify": schema.SingleNestedAttribute{
-										Description:         "Verify contains the secret name containing the trusted public keysused to verify the signature and specifies which provider to use to checkwhether OCI image is authentic.This field is only supported for OCI sources.Chart dependencies, which are not bundled in the umbrella chart artifact,are not verified.",
-										MarkdownDescription: "Verify contains the secret name containing the trusted public keysused to verify the signature and specifies which provider to use to checkwhether OCI image is authentic.This field is only supported for OCI sources.Chart dependencies, which are not bundled in the umbrella chart artifact,are not verified.",
+										Description:         "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. This field is only supported for OCI sources. Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.",
+										MarkdownDescription: "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. This field is only supported for OCI sources. Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.",
 										Attributes: map[string]schema.Attribute{
 											"provider": schema.StringAttribute{
 												Description:         "Provider specifies the technology used to sign the OCI Helm chart.",
@@ -432,8 +432,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 											},
 
 											"secret_ref": schema.SingleNestedAttribute{
-												Description:         "SecretRef specifies the Kubernetes Secret containing thetrusted public keys.",
-												MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing thetrusted public keys.",
+												Description:         "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
+												MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
 														Description:         "Name of the referent.",
@@ -454,8 +454,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 									},
 
 									"version": schema.StringAttribute{
-										Description:         "Version semver expression, ignored for charts from v1.GitRepository andv1beta2.Bucket sources. Defaults to latest when omitted.",
-										MarkdownDescription: "Version semver expression, ignored for charts from v1.GitRepository andv1beta2.Bucket sources. Defaults to latest when omitted.",
+										Description:         "Version semver expression, ignored for charts from v1.GitRepository and v1beta2.Bucket sources. Defaults to latest when omitted.",
+										MarkdownDescription: "Version semver expression, ignored for charts from v1.GitRepository and v1beta2.Bucket sources. Defaults to latest when omitted.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -472,8 +472,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"chart_ref": schema.SingleNestedAttribute{
-						Description:         "ChartRef holds a reference to a source controller resource containing theHelm chart artifact.",
-						MarkdownDescription: "ChartRef holds a reference to a source controller resource containing theHelm chart artifact.",
+						Description:         "ChartRef holds a reference to a source controller resource containing the Helm chart artifact.",
+						MarkdownDescription: "ChartRef holds a reference to a source controller resource containing the Helm chart artifact.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "APIVersion of the referent.",
@@ -507,8 +507,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent, defaults to the namespace of the Kubernetesresource object that contains the reference.",
-								MarkdownDescription: "Namespace of the referent, defaults to the namespace of the Kubernetesresource object that contains the reference.",
+								Description:         "Namespace of the referent, defaults to the namespace of the Kubernetes resource object that contains the reference.",
+								MarkdownDescription: "Namespace of the referent, defaults to the namespace of the Kubernetes resource object that contains the reference.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -524,8 +524,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"depends_on": schema.ListNestedAttribute{
-						Description:         "DependsOn may contain a meta.NamespacedObjectReference slice withreferences to HelmRelease resources that must be ready before this HelmReleasecan be reconciled.",
-						MarkdownDescription: "DependsOn may contain a meta.NamespacedObjectReference slice withreferences to HelmRelease resources that must be ready before this HelmReleasecan be reconciled.",
+						Description:         "DependsOn may contain a meta.NamespacedObjectReference slice with references to HelmRelease resources that must be ready before this HelmRelease can be reconciled.",
+						MarkdownDescription: "DependsOn may contain a meta.NamespacedObjectReference slice with references to HelmRelease resources that must be ready before this HelmRelease can be reconciled.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -551,17 +551,17 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"drift_detection": schema.SingleNestedAttribute{
-						Description:         "DriftDetection holds the configuration for detecting and handlingdifferences between the manifest in the Helm storage and the resourcescurrently existing in the cluster.",
-						MarkdownDescription: "DriftDetection holds the configuration for detecting and handlingdifferences between the manifest in the Helm storage and the resourcescurrently existing in the cluster.",
+						Description:         "DriftDetection holds the configuration for detecting and handling differences between the manifest in the Helm storage and the resources currently existing in the cluster.",
+						MarkdownDescription: "DriftDetection holds the configuration for detecting and handling differences between the manifest in the Helm storage and the resources currently existing in the cluster.",
 						Attributes: map[string]schema.Attribute{
 							"ignore": schema.ListNestedAttribute{
-								Description:         "Ignore contains a list of rules for specifying which changes to ignoreduring diffing.",
-								MarkdownDescription: "Ignore contains a list of rules for specifying which changes to ignoreduring diffing.",
+								Description:         "Ignore contains a list of rules for specifying which changes to ignore during diffing.",
+								MarkdownDescription: "Ignore contains a list of rules for specifying which changes to ignore during diffing.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"paths": schema.ListAttribute{
-											Description:         "Paths is a list of JSON Pointer (RFC 6901) paths to be excluded fromconsideration in a Kubernetes object.",
-											MarkdownDescription: "Paths is a list of JSON Pointer (RFC 6901) paths to be excluded fromconsideration in a Kubernetes object.",
+											Description:         "Paths is a list of JSON Pointer (RFC 6901) paths to be excluded from consideration in a Kubernetes object.",
+											MarkdownDescription: "Paths is a list of JSON Pointer (RFC 6901) paths to be excluded from consideration in a Kubernetes object.",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,
@@ -569,36 +569,36 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"target": schema.SingleNestedAttribute{
-											Description:         "Target is a selector for specifying Kubernetes objects to which thisrule applies.If Target is not set, the Paths will be ignored for all Kubernetesobjects within the manifest of the Helm release.",
-											MarkdownDescription: "Target is a selector for specifying Kubernetes objects to which thisrule applies.If Target is not set, the Paths will be ignored for all Kubernetesobjects within the manifest of the Helm release.",
+											Description:         "Target is a selector for specifying Kubernetes objects to which this rule applies. If Target is not set, the Paths will be ignored for all Kubernetes objects within the manifest of the Helm release.",
+											MarkdownDescription: "Target is a selector for specifying Kubernetes objects to which this rule applies. If Target is not set, the Paths will be ignored for all Kubernetes objects within the manifest of the Helm release.",
 											Attributes: map[string]schema.Attribute{
 												"annotation_selector": schema.StringAttribute{
-													Description:         "AnnotationSelector is a string that follows the label selection expressionhttps://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#apiIt matches with the resource annotations.",
-													MarkdownDescription: "AnnotationSelector is a string that follows the label selection expressionhttps://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#apiIt matches with the resource annotations.",
+													Description:         "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
+													MarkdownDescription: "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"group": schema.StringAttribute{
-													Description:         "Group is the API group to select resources from.Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-													MarkdownDescription: "Group is the API group to select resources from.Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+													Description:         "Group is the API group to select resources from. Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+													MarkdownDescription: "Group is the API group to select resources from. Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"kind": schema.StringAttribute{
-													Description:         "Kind of the API Group to select resources from.Together with Group and Version it is capable of unambiguouslyidentifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-													MarkdownDescription: "Kind of the API Group to select resources from.Together with Group and Version it is capable of unambiguouslyidentifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+													Description:         "Kind of the API Group to select resources from. Together with Group and Version it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+													MarkdownDescription: "Kind of the API Group to select resources from. Together with Group and Version it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"label_selector": schema.StringAttribute{
-													Description:         "LabelSelector is a string that follows the label selection expressionhttps://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#apiIt matches with the resource labels.",
-													MarkdownDescription: "LabelSelector is a string that follows the label selection expressionhttps://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#apiIt matches with the resource labels.",
+													Description:         "LabelSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource labels.",
+													MarkdownDescription: "LabelSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource labels.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -621,8 +621,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"version": schema.StringAttribute{
-													Description:         "Version of the API Group to select resources from.Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-													MarkdownDescription: "Version of the API Group to select resources from.Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+													Description:         "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+													MarkdownDescription: "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -640,8 +640,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"mode": schema.StringAttribute{
-								Description:         "Mode defines how differences should be handled between the Helm manifestand the manifest currently applied to the cluster.If not explicitly set, it defaults to DiffModeDisabled.",
-								MarkdownDescription: "Mode defines how differences should be handled between the Helm manifestand the manifest currently applied to the cluster.If not explicitly set, it defaults to DiffModeDisabled.",
+								Description:         "Mode defines how differences should be handled between the Helm manifest and the manifest currently applied to the cluster. If not explicitly set, it defaults to DiffModeDisabled.",
+								MarkdownDescription: "Mode defines how differences should be handled between the Helm manifest and the manifest currently applied to the cluster. If not explicitly set, it defaults to DiffModeDisabled.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -660,8 +660,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "Install holds the configuration for Helm install actions for this HelmRelease.",
 						Attributes: map[string]schema.Attribute{
 							"crds": schema.StringAttribute{
-								Description:         "CRDs upgrade CRDs from the Helm Chart's crds directory accordingto the CRD upgrade policy provided here. Valid values are 'Skip','Create' or 'CreateReplace'. Default is 'Create' and if omittedCRDs are installed but not updated.Skip: do neither install nor replace (update) any CRDs.Create: new CRDs are created, existing CRDs are neither updated nor deleted.CreateReplace: new CRDs are created, existing CRDs are updated (replaced)but not deleted.By default, CRDs are applied (installed) during Helm install action.With this option users can opt in to CRD replace existing CRDs on Helminstall actions, which is not (yet) natively supported by Helm.https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
-								MarkdownDescription: "CRDs upgrade CRDs from the Helm Chart's crds directory accordingto the CRD upgrade policy provided here. Valid values are 'Skip','Create' or 'CreateReplace'. Default is 'Create' and if omittedCRDs are installed but not updated.Skip: do neither install nor replace (update) any CRDs.Create: new CRDs are created, existing CRDs are neither updated nor deleted.CreateReplace: new CRDs are created, existing CRDs are updated (replaced)but not deleted.By default, CRDs are applied (installed) during Helm install action.With this option users can opt in to CRD replace existing CRDs on Helminstall actions, which is not (yet) natively supported by Helm.https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
+								Description:         "CRDs upgrade CRDs from the Helm Chart's crds directory according to the CRD upgrade policy provided here. Valid values are 'Skip', 'Create' or 'CreateReplace'. Default is 'Create' and if omitted CRDs are installed but not updated. Skip: do neither install nor replace (update) any CRDs. Create: new CRDs are created, existing CRDs are neither updated nor deleted. CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted. By default, CRDs are applied (installed) during Helm install action. With this option users can opt in to CRD replace existing CRDs on Helm install actions, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
+								MarkdownDescription: "CRDs upgrade CRDs from the Helm Chart's crds directory according to the CRD upgrade policy provided here. Valid values are 'Skip', 'Create' or 'CreateReplace'. Default is 'Create' and if omitted CRDs are installed but not updated. Skip: do neither install nor replace (update) any CRDs. Create: new CRDs are created, existing CRDs are neither updated nor deleted. CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted. By default, CRDs are applied (installed) during Helm install action. With this option users can opt in to CRD replace existing CRDs on Helm install actions, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -671,8 +671,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"create_namespace": schema.BoolAttribute{
-								Description:         "CreateNamespace tells the Helm install action to create theHelmReleaseSpec.TargetNamespace if it does not exist yet.On uninstall, the namespace will not be garbage collected.",
-								MarkdownDescription: "CreateNamespace tells the Helm install action to create theHelmReleaseSpec.TargetNamespace if it does not exist yet.On uninstall, the namespace will not be garbage collected.",
+								Description:         "CreateNamespace tells the Helm install action to create the HelmReleaseSpec.TargetNamespace if it does not exist yet. On uninstall, the namespace will not be garbage collected.",
+								MarkdownDescription: "CreateNamespace tells the Helm install action to create the HelmReleaseSpec.TargetNamespace if it does not exist yet. On uninstall, the namespace will not be garbage collected.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -687,52 +687,52 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"disable_open_api_validation": schema.BoolAttribute{
-								Description:         "DisableOpenAPIValidation prevents the Helm install action from validatingrendered templates against the Kubernetes OpenAPI Schema.",
-								MarkdownDescription: "DisableOpenAPIValidation prevents the Helm install action from validatingrendered templates against the Kubernetes OpenAPI Schema.",
+								Description:         "DisableOpenAPIValidation prevents the Helm install action from validating rendered templates against the Kubernetes OpenAPI Schema.",
+								MarkdownDescription: "DisableOpenAPIValidation prevents the Helm install action from validating rendered templates against the Kubernetes OpenAPI Schema.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"disable_wait": schema.BoolAttribute{
-								Description:         "DisableWait disables the waiting for resources to be ready after a Helminstall has been performed.",
-								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helminstall has been performed.",
+								Description:         "DisableWait disables the waiting for resources to be ready after a Helm install has been performed.",
+								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helm install has been performed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"disable_wait_for_jobs": schema.BoolAttribute{
-								Description:         "DisableWaitForJobs disables waiting for jobs to complete after a Helminstall has been performed.",
-								MarkdownDescription: "DisableWaitForJobs disables waiting for jobs to complete after a Helminstall has been performed.",
+								Description:         "DisableWaitForJobs disables waiting for jobs to complete after a Helm install has been performed.",
+								MarkdownDescription: "DisableWaitForJobs disables waiting for jobs to complete after a Helm install has been performed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"remediation": schema.SingleNestedAttribute{
-								Description:         "Remediation holds the remediation configuration for when the Helm installaction for the HelmRelease fails. The default is to not perform any action.",
-								MarkdownDescription: "Remediation holds the remediation configuration for when the Helm installaction for the HelmRelease fails. The default is to not perform any action.",
+								Description:         "Remediation holds the remediation configuration for when the Helm install action for the HelmRelease fails. The default is to not perform any action.",
+								MarkdownDescription: "Remediation holds the remediation configuration for when the Helm install action for the HelmRelease fails. The default is to not perform any action.",
 								Attributes: map[string]schema.Attribute{
 									"ignore_test_failures": schema.BoolAttribute{
-										Description:         "IgnoreTestFailures tells the controller to skip remediation when the Helmtests are run after an install action but fail. Defaults to'Test.IgnoreFailures'.",
-										MarkdownDescription: "IgnoreTestFailures tells the controller to skip remediation when the Helmtests are run after an install action but fail. Defaults to'Test.IgnoreFailures'.",
+										Description:         "IgnoreTestFailures tells the controller to skip remediation when the Helm tests are run after an install action but fail. Defaults to 'Test.IgnoreFailures'.",
+										MarkdownDescription: "IgnoreTestFailures tells the controller to skip remediation when the Helm tests are run after an install action but fail. Defaults to 'Test.IgnoreFailures'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"remediate_last_failure": schema.BoolAttribute{
-										Description:         "RemediateLastFailure tells the controller to remediate the last failure, whenno retries remain. Defaults to 'false'.",
-										MarkdownDescription: "RemediateLastFailure tells the controller to remediate the last failure, whenno retries remain. Defaults to 'false'.",
+										Description:         "RemediateLastFailure tells the controller to remediate the last failure, when no retries remain. Defaults to 'false'.",
+										MarkdownDescription: "RemediateLastFailure tells the controller to remediate the last failure, when no retries remain. Defaults to 'false'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"retries": schema.Int64Attribute{
-										Description:         "Retries is the number of retries that should be attempted on failures beforebailing. Remediation, using an uninstall, is performed between each attempt.Defaults to '0', a negative integer equals to unlimited retries.",
-										MarkdownDescription: "Retries is the number of retries that should be attempted on failures beforebailing. Remediation, using an uninstall, is performed between each attempt.Defaults to '0', a negative integer equals to unlimited retries.",
+										Description:         "Retries is the number of retries that should be attempted on failures before bailing. Remediation, using an uninstall, is performed between each attempt. Defaults to '0', a negative integer equals to unlimited retries.",
+										MarkdownDescription: "Retries is the number of retries that should be attempted on failures before bailing. Remediation, using an uninstall, is performed between each attempt. Defaults to '0', a negative integer equals to unlimited retries.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -744,24 +744,24 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"replace": schema.BoolAttribute{
-								Description:         "Replace tells the Helm install action to re-use the 'ReleaseName', but onlyif that name is a deleted release which remains in the history.",
-								MarkdownDescription: "Replace tells the Helm install action to re-use the 'ReleaseName', but onlyif that name is a deleted release which remains in the history.",
+								Description:         "Replace tells the Helm install action to re-use the 'ReleaseName', but only if that name is a deleted release which remains in the history.",
+								MarkdownDescription: "Replace tells the Helm install action to re-use the 'ReleaseName', but only if that name is a deleted release which remains in the history.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"skip_cr_ds": schema.BoolAttribute{
-								Description:         "SkipCRDs tells the Helm install action to not install any CRDs. By default,CRDs are installed if not already present.Deprecated use CRD policy ('crds') attribute with value 'Skip' instead.",
-								MarkdownDescription: "SkipCRDs tells the Helm install action to not install any CRDs. By default,CRDs are installed if not already present.Deprecated use CRD policy ('crds') attribute with value 'Skip' instead.",
+								Description:         "SkipCRDs tells the Helm install action to not install any CRDs. By default, CRDs are installed if not already present. Deprecated use CRD policy ('crds') attribute with value 'Skip' instead.",
+								MarkdownDescription: "SkipCRDs tells the Helm install action to not install any CRDs. By default, CRDs are installed if not already present. Deprecated use CRD policy ('crds') attribute with value 'Skip' instead.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"timeout": schema.StringAttribute{
-								Description:         "Timeout is the time to wait for any individual Kubernetes operation (likeJobs for hooks) during the performance of a Helm install action. Defaults to'HelmReleaseSpec.Timeout'.",
-								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (likeJobs for hooks) during the performance of a Helm install action. Defaults to'HelmReleaseSpec.Timeout'.",
+								Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm install action. Defaults to 'HelmReleaseSpec.Timeout'.",
+								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm install action. Defaults to 'HelmReleaseSpec.Timeout'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -787,12 +787,12 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"kube_config": schema.SingleNestedAttribute{
-						Description:         "KubeConfig for reconciling the HelmRelease on a remote cluster.When used in combination with HelmReleaseSpec.ServiceAccountName,forces the controller to act on behalf of that Service Account at thetarget cluster.If the --default-service-account flag is set, its value will be used asa controller level fallback for when HelmReleaseSpec.ServiceAccountNameis empty.",
-						MarkdownDescription: "KubeConfig for reconciling the HelmRelease on a remote cluster.When used in combination with HelmReleaseSpec.ServiceAccountName,forces the controller to act on behalf of that Service Account at thetarget cluster.If the --default-service-account flag is set, its value will be used asa controller level fallback for when HelmReleaseSpec.ServiceAccountNameis empty.",
+						Description:         "KubeConfig for reconciling the HelmRelease on a remote cluster. When used in combination with HelmReleaseSpec.ServiceAccountName, forces the controller to act on behalf of that Service Account at the target cluster. If the --default-service-account flag is set, its value will be used as a controller level fallback for when HelmReleaseSpec.ServiceAccountName is empty.",
+						MarkdownDescription: "KubeConfig for reconciling the HelmRelease on a remote cluster. When used in combination with HelmReleaseSpec.ServiceAccountName, forces the controller to act on behalf of that Service Account at the target cluster. If the --default-service-account flag is set, its value will be used as a controller level fallback for when HelmReleaseSpec.ServiceAccountName is empty.",
 						Attributes: map[string]schema.Attribute{
 							"secret_ref": schema.SingleNestedAttribute{
-								Description:         "SecretRef holds the name of a secret that contains a key withthe kubeconfig file as the value. If no key is set, the key will defaultto 'value'.It is recommended that the kubeconfig is self-contained, and the secretis regularly updated if credentials such as a cloud-access-token expire.Cloud specific 'cmd-path' auth helpers will not function without addingbinaries and credentials to the Pod that is responsible for reconcilingKubernetes resources.",
-								MarkdownDescription: "SecretRef holds the name of a secret that contains a key withthe kubeconfig file as the value. If no key is set, the key will defaultto 'value'.It is recommended that the kubeconfig is self-contained, and the secretis regularly updated if credentials such as a cloud-access-token expire.Cloud specific 'cmd-path' auth helpers will not function without addingbinaries and credentials to the Pod that is responsible for reconcilingKubernetes resources.",
+								Description:         "SecretRef holds the name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling Kubernetes resources.",
+								MarkdownDescription: "SecretRef holds the name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling Kubernetes resources.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "Key in the Secret, when not specified an implementation-specific default key is used.",
@@ -821,24 +821,24 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"max_history": schema.Int64Attribute{
-						Description:         "MaxHistory is the number of revisions saved by Helm for this HelmRelease.Use '0' for an unlimited number of revisions; defaults to '5'.",
-						MarkdownDescription: "MaxHistory is the number of revisions saved by Helm for this HelmRelease.Use '0' for an unlimited number of revisions; defaults to '5'.",
+						Description:         "MaxHistory is the number of revisions saved by Helm for this HelmRelease. Use '0' for an unlimited number of revisions; defaults to '5'.",
+						MarkdownDescription: "MaxHistory is the number of revisions saved by Helm for this HelmRelease. Use '0' for an unlimited number of revisions; defaults to '5'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"persistent_client": schema.BoolAttribute{
-						Description:         "PersistentClient tells the controller to use a persistent Kubernetesclient for this release. When enabled, the client will be reused for theduration of the reconciliation, instead of being created and destroyedfor each (step of a) Helm action.This can improve performance, but may cause issues with some Helm chartsthat for example do create Custom Resource Definitions during installationoutside Helm's CRD lifecycle hooks, which are then not observed to beavailable by e.g. post-install hooks.If not set, it defaults to true.",
-						MarkdownDescription: "PersistentClient tells the controller to use a persistent Kubernetesclient for this release. When enabled, the client will be reused for theduration of the reconciliation, instead of being created and destroyedfor each (step of a) Helm action.This can improve performance, but may cause issues with some Helm chartsthat for example do create Custom Resource Definitions during installationoutside Helm's CRD lifecycle hooks, which are then not observed to beavailable by e.g. post-install hooks.If not set, it defaults to true.",
+						Description:         "PersistentClient tells the controller to use a persistent Kubernetes client for this release. When enabled, the client will be reused for the duration of the reconciliation, instead of being created and destroyed for each (step of a) Helm action. This can improve performance, but may cause issues with some Helm charts that for example do create Custom Resource Definitions during installation outside Helm's CRD lifecycle hooks, which are then not observed to be available by e.g. post-install hooks. If not set, it defaults to true.",
+						MarkdownDescription: "PersistentClient tells the controller to use a persistent Kubernetes client for this release. When enabled, the client will be reused for the duration of the reconciliation, instead of being created and destroyed for each (step of a) Helm action. This can improve performance, but may cause issues with some Helm charts that for example do create Custom Resource Definitions during installation outside Helm's CRD lifecycle hooks, which are then not observed to be available by e.g. post-install hooks. If not set, it defaults to true.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"post_renderers": schema.ListNestedAttribute{
-						Description:         "PostRenderers holds an array of Helm PostRenderers, which will be applied in orderof their definition.",
-						MarkdownDescription: "PostRenderers holds an array of Helm PostRenderers, which will be applied in orderof their definition.",
+						Description:         "PostRenderers holds an array of Helm PostRenderers, which will be applied in order of their definition.",
+						MarkdownDescription: "PostRenderers holds an array of Helm PostRenderers, which will be applied in order of their definition.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"kustomize": schema.SingleNestedAttribute{
@@ -846,13 +846,13 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 									MarkdownDescription: "Kustomization to apply as PostRenderer.",
 									Attributes: map[string]schema.Attribute{
 										"images": schema.ListNestedAttribute{
-											Description:         "Images is a list of (image name, new name, new tag or digest)for changing image names, tags or digests. This can also be achieved with apatch, but this operator is simpler to specify.",
-											MarkdownDescription: "Images is a list of (image name, new name, new tag or digest)for changing image names, tags or digests. This can also be achieved with apatch, but this operator is simpler to specify.",
+											Description:         "Images is a list of (image name, new name, new tag or digest) for changing image names, tags or digests. This can also be achieved with a patch, but this operator is simpler to specify.",
+											MarkdownDescription: "Images is a list of (image name, new name, new tag or digest) for changing image names, tags or digests. This can also be achieved with a patch, but this operator is simpler to specify.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"digest": schema.StringAttribute{
-														Description:         "Digest is the value used to replace the original image tag.If digest is present NewTag value is ignored.",
-														MarkdownDescription: "Digest is the value used to replace the original image tag.If digest is present NewTag value is ignored.",
+														Description:         "Digest is the value used to replace the original image tag. If digest is present NewTag value is ignored.",
+														MarkdownDescription: "Digest is the value used to replace the original image tag. If digest is present NewTag value is ignored.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -889,13 +889,13 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"patches": schema.ListNestedAttribute{
-											Description:         "Strategic merge and JSON patches, defined as inline YAML objects,capable of targeting objects based on kind, label and annotation selectors.",
-											MarkdownDescription: "Strategic merge and JSON patches, defined as inline YAML objects,capable of targeting objects based on kind, label and annotation selectors.",
+											Description:         "Strategic merge and JSON patches, defined as inline YAML objects, capable of targeting objects based on kind, label and annotation selectors.",
+											MarkdownDescription: "Strategic merge and JSON patches, defined as inline YAML objects, capable of targeting objects based on kind, label and annotation selectors.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"patch": schema.StringAttribute{
-														Description:         "Patch contains an inline StrategicMerge patch or an inline JSON6902 patch withan array of operation objects.",
-														MarkdownDescription: "Patch contains an inline StrategicMerge patch or an inline JSON6902 patch withan array of operation objects.",
+														Description:         "Patch contains an inline StrategicMerge patch or an inline JSON6902 patch with an array of operation objects.",
+														MarkdownDescription: "Patch contains an inline StrategicMerge patch or an inline JSON6902 patch with an array of operation objects.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -906,32 +906,32 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "Target points to the resources that the patch document should be applied to.",
 														Attributes: map[string]schema.Attribute{
 															"annotation_selector": schema.StringAttribute{
-																Description:         "AnnotationSelector is a string that follows the label selection expressionhttps://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#apiIt matches with the resource annotations.",
-																MarkdownDescription: "AnnotationSelector is a string that follows the label selection expressionhttps://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#apiIt matches with the resource annotations.",
+																Description:         "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
+																MarkdownDescription: "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"group": schema.StringAttribute{
-																Description:         "Group is the API group to select resources from.Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-																MarkdownDescription: "Group is the API group to select resources from.Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+																Description:         "Group is the API group to select resources from. Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+																MarkdownDescription: "Group is the API group to select resources from. Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"kind": schema.StringAttribute{
-																Description:         "Kind of the API Group to select resources from.Together with Group and Version it is capable of unambiguouslyidentifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-																MarkdownDescription: "Kind of the API Group to select resources from.Together with Group and Version it is capable of unambiguouslyidentifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+																Description:         "Kind of the API Group to select resources from. Together with Group and Version it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+																MarkdownDescription: "Kind of the API Group to select resources from. Together with Group and Version it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"label_selector": schema.StringAttribute{
-																Description:         "LabelSelector is a string that follows the label selection expressionhttps://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#apiIt matches with the resource labels.",
-																MarkdownDescription: "LabelSelector is a string that follows the label selection expressionhttps://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#apiIt matches with the resource labels.",
+																Description:         "LabelSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource labels.",
+																MarkdownDescription: "LabelSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource labels.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -954,8 +954,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 															},
 
 															"version": schema.StringAttribute{
-																Description:         "Version of the API Group to select resources from.Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-																MarkdownDescription: "Version of the API Group to select resources from.Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources.https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+																Description:         "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+																MarkdownDescription: "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -984,8 +984,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"release_name": schema.StringAttribute{
-						Description:         "ReleaseName used for the Helm release. Defaults to a composition of'[TargetNamespace-]Name'.",
-						MarkdownDescription: "ReleaseName used for the Helm release. Defaults to a composition of'[TargetNamespace-]Name'.",
+						Description:         "ReleaseName used for the Helm release. Defaults to a composition of '[TargetNamespace-]Name'.",
+						MarkdownDescription: "ReleaseName used for the Helm release. Defaults to a composition of '[TargetNamespace-]Name'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1000,8 +1000,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "Rollback holds the configuration for Helm rollback actions for this HelmRelease.",
 						Attributes: map[string]schema.Attribute{
 							"cleanup_on_fail": schema.BoolAttribute{
-								Description:         "CleanupOnFail allows deletion of new resources created during the Helmrollback action when it fails.",
-								MarkdownDescription: "CleanupOnFail allows deletion of new resources created during the Helmrollback action when it fails.",
+								Description:         "CleanupOnFail allows deletion of new resources created during the Helm rollback action when it fails.",
+								MarkdownDescription: "CleanupOnFail allows deletion of new resources created during the Helm rollback action when it fails.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1016,16 +1016,16 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"disable_wait": schema.BoolAttribute{
-								Description:         "DisableWait disables the waiting for resources to be ready after a Helmrollback has been performed.",
-								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helmrollback has been performed.",
+								Description:         "DisableWait disables the waiting for resources to be ready after a Helm rollback has been performed.",
+								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helm rollback has been performed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"disable_wait_for_jobs": schema.BoolAttribute{
-								Description:         "DisableWaitForJobs disables waiting for jobs to complete after a Helmrollback has been performed.",
-								MarkdownDescription: "DisableWaitForJobs disables waiting for jobs to complete after a Helmrollback has been performed.",
+								Description:         "DisableWaitForJobs disables waiting for jobs to complete after a Helm rollback has been performed.",
+								MarkdownDescription: "DisableWaitForJobs disables waiting for jobs to complete after a Helm rollback has been performed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1048,8 +1048,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"timeout": schema.StringAttribute{
-								Description:         "Timeout is the time to wait for any individual Kubernetes operation (likeJobs for hooks) during the performance of a Helm rollback action. Defaults to'HelmReleaseSpec.Timeout'.",
-								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (likeJobs for hooks) during the performance of a Helm rollback action. Defaults to'HelmReleaseSpec.Timeout'.",
+								Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm rollback action. Defaults to 'HelmReleaseSpec.Timeout'.",
+								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm rollback action. Defaults to 'HelmReleaseSpec.Timeout'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1064,8 +1064,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"service_account_name": schema.StringAttribute{
-						Description:         "The name of the Kubernetes service account to impersonatewhen reconciling this HelmRelease.",
-						MarkdownDescription: "The name of the Kubernetes service account to impersonatewhen reconciling this HelmRelease.",
+						Description:         "The name of the Kubernetes service account to impersonate when reconciling this HelmRelease.",
+						MarkdownDescription: "The name of the Kubernetes service account to impersonate when reconciling this HelmRelease.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1076,8 +1076,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"storage_namespace": schema.StringAttribute{
-						Description:         "StorageNamespace used for the Helm storage.Defaults to the namespace of the HelmRelease.",
-						MarkdownDescription: "StorageNamespace used for the Helm storage.Defaults to the namespace of the HelmRelease.",
+						Description:         "StorageNamespace used for the Helm storage. Defaults to the namespace of the HelmRelease.",
+						MarkdownDescription: "StorageNamespace used for the Helm storage. Defaults to the namespace of the HelmRelease.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1088,16 +1088,16 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "Suspend tells the controller to suspend reconciliation for this HelmRelease,it does not apply to already started reconciliations. Defaults to false.",
-						MarkdownDescription: "Suspend tells the controller to suspend reconciliation for this HelmRelease,it does not apply to already started reconciliations. Defaults to false.",
+						Description:         "Suspend tells the controller to suspend reconciliation for this HelmRelease, it does not apply to already started reconciliations. Defaults to false.",
+						MarkdownDescription: "Suspend tells the controller to suspend reconciliation for this HelmRelease, it does not apply to already started reconciliations. Defaults to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"target_namespace": schema.StringAttribute{
-						Description:         "TargetNamespace to target when performing operations for the HelmRelease.Defaults to the namespace of the HelmRelease.",
-						MarkdownDescription: "TargetNamespace to target when performing operations for the HelmRelease.Defaults to the namespace of the HelmRelease.",
+						Description:         "TargetNamespace to target when performing operations for the HelmRelease. Defaults to the namespace of the HelmRelease.",
+						MarkdownDescription: "TargetNamespace to target when performing operations for the HelmRelease. Defaults to the namespace of the HelmRelease.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1112,8 +1112,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "Test holds the configuration for Helm test actions for this HelmRelease.",
 						Attributes: map[string]schema.Attribute{
 							"enable": schema.BoolAttribute{
-								Description:         "Enable enables Helm test actions for this HelmRelease after an Helm installor upgrade action has been performed.",
-								MarkdownDescription: "Enable enables Helm test actions for this HelmRelease after an Helm installor upgrade action has been performed.",
+								Description:         "Enable enables Helm test actions for this HelmRelease after an Helm install or upgrade action has been performed.",
+								MarkdownDescription: "Enable enables Helm test actions for this HelmRelease after an Helm install or upgrade action has been performed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1151,16 +1151,16 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"ignore_failures": schema.BoolAttribute{
-								Description:         "IgnoreFailures tells the controller to skip remediation when the Helm testsare run but fail. Can be overwritten for tests run after install or upgradeactions in 'Install.IgnoreTestFailures' and 'Upgrade.IgnoreTestFailures'.",
-								MarkdownDescription: "IgnoreFailures tells the controller to skip remediation when the Helm testsare run but fail. Can be overwritten for tests run after install or upgradeactions in 'Install.IgnoreTestFailures' and 'Upgrade.IgnoreTestFailures'.",
+								Description:         "IgnoreFailures tells the controller to skip remediation when the Helm tests are run but fail. Can be overwritten for tests run after install or upgrade actions in 'Install.IgnoreTestFailures' and 'Upgrade.IgnoreTestFailures'.",
+								MarkdownDescription: "IgnoreFailures tells the controller to skip remediation when the Helm tests are run but fail. Can be overwritten for tests run after install or upgrade actions in 'Install.IgnoreTestFailures' and 'Upgrade.IgnoreTestFailures'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"timeout": schema.StringAttribute{
-								Description:         "Timeout is the time to wait for any individual Kubernetes operation duringthe performance of a Helm test action. Defaults to 'HelmReleaseSpec.Timeout'.",
-								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation duringthe performance of a Helm test action. Defaults to 'HelmReleaseSpec.Timeout'.",
+								Description:         "Timeout is the time to wait for any individual Kubernetes operation during the performance of a Helm test action. Defaults to 'HelmReleaseSpec.Timeout'.",
+								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation during the performance of a Helm test action. Defaults to 'HelmReleaseSpec.Timeout'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1175,8 +1175,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"timeout": schema.StringAttribute{
-						Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobsfor hooks) during the performance of a Helm action. Defaults to '5m0s'.",
-						MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobsfor hooks) during the performance of a Helm action. Defaults to '5m0s'.",
+						Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm action. Defaults to '5m0s'.",
+						MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm action. Defaults to '5m0s'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1190,8 +1190,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "Uninstall holds the configuration for Helm uninstall actions for this HelmRelease.",
 						Attributes: map[string]schema.Attribute{
 							"deletion_propagation": schema.StringAttribute{
-								Description:         "DeletionPropagation specifies the deletion propagation policy whena Helm uninstall is performed.",
-								MarkdownDescription: "DeletionPropagation specifies the deletion propagation policy whena Helm uninstall is performed.",
+								Description:         "DeletionPropagation specifies the deletion propagation policy when a Helm uninstall is performed.",
+								MarkdownDescription: "DeletionPropagation specifies the deletion propagation policy when a Helm uninstall is performed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1209,24 +1209,24 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"disable_wait": schema.BoolAttribute{
-								Description:         "DisableWait disables waiting for all the resources to be deleted aftera Helm uninstall is performed.",
-								MarkdownDescription: "DisableWait disables waiting for all the resources to be deleted aftera Helm uninstall is performed.",
+								Description:         "DisableWait disables waiting for all the resources to be deleted after a Helm uninstall is performed.",
+								MarkdownDescription: "DisableWait disables waiting for all the resources to be deleted after a Helm uninstall is performed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"keep_history": schema.BoolAttribute{
-								Description:         "KeepHistory tells Helm to remove all associated resources and mark therelease as deleted, but retain the release history.",
-								MarkdownDescription: "KeepHistory tells Helm to remove all associated resources and mark therelease as deleted, but retain the release history.",
+								Description:         "KeepHistory tells Helm to remove all associated resources and mark the release as deleted, but retain the release history.",
+								MarkdownDescription: "KeepHistory tells Helm to remove all associated resources and mark the release as deleted, but retain the release history.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"timeout": schema.StringAttribute{
-								Description:         "Timeout is the time to wait for any individual Kubernetes operation (likeJobs for hooks) during the performance of a Helm uninstall action. Defaultsto 'HelmReleaseSpec.Timeout'.",
-								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (likeJobs for hooks) during the performance of a Helm uninstall action. Defaultsto 'HelmReleaseSpec.Timeout'.",
+								Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm uninstall action. Defaults to 'HelmReleaseSpec.Timeout'.",
+								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm uninstall action. Defaults to 'HelmReleaseSpec.Timeout'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1245,16 +1245,16 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "Upgrade holds the configuration for Helm upgrade actions for this HelmRelease.",
 						Attributes: map[string]schema.Attribute{
 							"cleanup_on_fail": schema.BoolAttribute{
-								Description:         "CleanupOnFail allows deletion of new resources created during the Helmupgrade action when it fails.",
-								MarkdownDescription: "CleanupOnFail allows deletion of new resources created during the Helmupgrade action when it fails.",
+								Description:         "CleanupOnFail allows deletion of new resources created during the Helm upgrade action when it fails.",
+								MarkdownDescription: "CleanupOnFail allows deletion of new resources created during the Helm upgrade action when it fails.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"crds": schema.StringAttribute{
-								Description:         "CRDs upgrade CRDs from the Helm Chart's crds directory accordingto the CRD upgrade policy provided here. Valid values are 'Skip','Create' or 'CreateReplace'. Default is 'Skip' and if omittedCRDs are neither installed nor upgraded.Skip: do neither install nor replace (update) any CRDs.Create: new CRDs are created, existing CRDs are neither updated nor deleted.CreateReplace: new CRDs are created, existing CRDs are updated (replaced)but not deleted.By default, CRDs are not applied during Helm upgrade action. With thisoption users can opt-in to CRD upgrade, which is not (yet) natively supported by Helm.https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
-								MarkdownDescription: "CRDs upgrade CRDs from the Helm Chart's crds directory accordingto the CRD upgrade policy provided here. Valid values are 'Skip','Create' or 'CreateReplace'. Default is 'Skip' and if omittedCRDs are neither installed nor upgraded.Skip: do neither install nor replace (update) any CRDs.Create: new CRDs are created, existing CRDs are neither updated nor deleted.CreateReplace: new CRDs are created, existing CRDs are updated (replaced)but not deleted.By default, CRDs are not applied during Helm upgrade action. With thisoption users can opt-in to CRD upgrade, which is not (yet) natively supported by Helm.https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
+								Description:         "CRDs upgrade CRDs from the Helm Chart's crds directory according to the CRD upgrade policy provided here. Valid values are 'Skip', 'Create' or 'CreateReplace'. Default is 'Skip' and if omitted CRDs are neither installed nor upgraded. Skip: do neither install nor replace (update) any CRDs. Create: new CRDs are created, existing CRDs are neither updated nor deleted. CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted. By default, CRDs are not applied during Helm upgrade action. With this option users can opt-in to CRD upgrade, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
+								MarkdownDescription: "CRDs upgrade CRDs from the Helm Chart's crds directory according to the CRD upgrade policy provided here. Valid values are 'Skip', 'Create' or 'CreateReplace'. Default is 'Skip' and if omitted CRDs are neither installed nor upgraded. Skip: do neither install nor replace (update) any CRDs. Create: new CRDs are created, existing CRDs are neither updated nor deleted. CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted. By default, CRDs are not applied during Helm upgrade action. With this option users can opt-in to CRD upgrade, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1272,24 +1272,24 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"disable_open_api_validation": schema.BoolAttribute{
-								Description:         "DisableOpenAPIValidation prevents the Helm upgrade action from validatingrendered templates against the Kubernetes OpenAPI Schema.",
-								MarkdownDescription: "DisableOpenAPIValidation prevents the Helm upgrade action from validatingrendered templates against the Kubernetes OpenAPI Schema.",
+								Description:         "DisableOpenAPIValidation prevents the Helm upgrade action from validating rendered templates against the Kubernetes OpenAPI Schema.",
+								MarkdownDescription: "DisableOpenAPIValidation prevents the Helm upgrade action from validating rendered templates against the Kubernetes OpenAPI Schema.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"disable_wait": schema.BoolAttribute{
-								Description:         "DisableWait disables the waiting for resources to be ready after a Helmupgrade has been performed.",
-								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helmupgrade has been performed.",
+								Description:         "DisableWait disables the waiting for resources to be ready after a Helm upgrade has been performed.",
+								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helm upgrade has been performed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"disable_wait_for_jobs": schema.BoolAttribute{
-								Description:         "DisableWaitForJobs disables waiting for jobs to complete after a Helmupgrade has been performed.",
-								MarkdownDescription: "DisableWaitForJobs disables waiting for jobs to complete after a Helmupgrade has been performed.",
+								Description:         "DisableWaitForJobs disables waiting for jobs to complete after a Helm upgrade has been performed.",
+								MarkdownDescription: "DisableWaitForJobs disables waiting for jobs to complete after a Helm upgrade has been performed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1304,36 +1304,36 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"preserve_values": schema.BoolAttribute{
-								Description:         "PreserveValues will make Helm reuse the last release's values and merge inoverrides from 'Values'. Setting this flag makes the HelmReleasenon-declarative.",
-								MarkdownDescription: "PreserveValues will make Helm reuse the last release's values and merge inoverrides from 'Values'. Setting this flag makes the HelmReleasenon-declarative.",
+								Description:         "PreserveValues will make Helm reuse the last release's values and merge in overrides from 'Values'. Setting this flag makes the HelmRelease non-declarative.",
+								MarkdownDescription: "PreserveValues will make Helm reuse the last release's values and merge in overrides from 'Values'. Setting this flag makes the HelmRelease non-declarative.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"remediation": schema.SingleNestedAttribute{
-								Description:         "Remediation holds the remediation configuration for when the Helm upgradeaction for the HelmRelease fails. The default is to not perform any action.",
-								MarkdownDescription: "Remediation holds the remediation configuration for when the Helm upgradeaction for the HelmRelease fails. The default is to not perform any action.",
+								Description:         "Remediation holds the remediation configuration for when the Helm upgrade action for the HelmRelease fails. The default is to not perform any action.",
+								MarkdownDescription: "Remediation holds the remediation configuration for when the Helm upgrade action for the HelmRelease fails. The default is to not perform any action.",
 								Attributes: map[string]schema.Attribute{
 									"ignore_test_failures": schema.BoolAttribute{
-										Description:         "IgnoreTestFailures tells the controller to skip remediation when the Helmtests are run after an upgrade action but fail.Defaults to 'Test.IgnoreFailures'.",
-										MarkdownDescription: "IgnoreTestFailures tells the controller to skip remediation when the Helmtests are run after an upgrade action but fail.Defaults to 'Test.IgnoreFailures'.",
+										Description:         "IgnoreTestFailures tells the controller to skip remediation when the Helm tests are run after an upgrade action but fail. Defaults to 'Test.IgnoreFailures'.",
+										MarkdownDescription: "IgnoreTestFailures tells the controller to skip remediation when the Helm tests are run after an upgrade action but fail. Defaults to 'Test.IgnoreFailures'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"remediate_last_failure": schema.BoolAttribute{
-										Description:         "RemediateLastFailure tells the controller to remediate the last failure, whenno retries remain. Defaults to 'false' unless 'Retries' is greater than 0.",
-										MarkdownDescription: "RemediateLastFailure tells the controller to remediate the last failure, whenno retries remain. Defaults to 'false' unless 'Retries' is greater than 0.",
+										Description:         "RemediateLastFailure tells the controller to remediate the last failure, when no retries remain. Defaults to 'false' unless 'Retries' is greater than 0.",
+										MarkdownDescription: "RemediateLastFailure tells the controller to remediate the last failure, when no retries remain. Defaults to 'false' unless 'Retries' is greater than 0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"retries": schema.Int64Attribute{
-										Description:         "Retries is the number of retries that should be attempted on failures beforebailing. Remediation, using 'Strategy', is performed between each attempt.Defaults to '0', a negative integer equals to unlimited retries.",
-										MarkdownDescription: "Retries is the number of retries that should be attempted on failures beforebailing. Remediation, using 'Strategy', is performed between each attempt.Defaults to '0', a negative integer equals to unlimited retries.",
+										Description:         "Retries is the number of retries that should be attempted on failures before bailing. Remediation, using 'Strategy', is performed between each attempt. Defaults to '0', a negative integer equals to unlimited retries.",
+										MarkdownDescription: "Retries is the number of retries that should be attempted on failures before bailing. Remediation, using 'Strategy', is performed between each attempt. Defaults to '0', a negative integer equals to unlimited retries.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1356,8 +1356,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							},
 
 							"timeout": schema.StringAttribute{
-								Description:         "Timeout is the time to wait for any individual Kubernetes operation (likeJobs for hooks) during the performance of a Helm upgrade action. Defaults to'HelmReleaseSpec.Timeout'.",
-								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (likeJobs for hooks) during the performance of a Helm upgrade action. Defaults to'HelmReleaseSpec.Timeout'.",
+								Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm upgrade action. Defaults to 'HelmReleaseSpec.Timeout'.",
+								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm upgrade action. Defaults to 'HelmReleaseSpec.Timeout'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1381,8 +1381,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"values_from": schema.ListNestedAttribute{
-						Description:         "ValuesFrom holds references to resources containing Helm values for this HelmRelease,and information about how they should be merged.",
-						MarkdownDescription: "ValuesFrom holds references to resources containing Helm values for this HelmRelease,and information about how they should be merged.",
+						Description:         "ValuesFrom holds references to resources containing Helm values for this HelmRelease, and information about how they should be merged.",
+						MarkdownDescription: "ValuesFrom holds references to resources containing Helm values for this HelmRelease, and information about how they should be merged.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"kind": schema.StringAttribute{
@@ -1397,8 +1397,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name of the values referent. Should reside in the same namespace as thereferring resource.",
-									MarkdownDescription: "Name of the values referent. Should reside in the same namespace as thereferring resource.",
+									Description:         "Name of the values referent. Should reside in the same namespace as the referring resource.",
+									MarkdownDescription: "Name of the values referent. Should reside in the same namespace as the referring resource.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -1409,16 +1409,16 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 								},
 
 								"optional": schema.BoolAttribute{
-									Description:         "Optional marks this ValuesReference as optional. When set, a not found errorfor the values reference is ignored, but any ValuesKey, TargetPath ortransient error will still result in a reconciliation failure.",
-									MarkdownDescription: "Optional marks this ValuesReference as optional. When set, a not found errorfor the values reference is ignored, but any ValuesKey, TargetPath ortransient error will still result in a reconciliation failure.",
+									Description:         "Optional marks this ValuesReference as optional. When set, a not found error for the values reference is ignored, but any ValuesKey, TargetPath or transient error will still result in a reconciliation failure.",
+									MarkdownDescription: "Optional marks this ValuesReference as optional. When set, a not found error for the values reference is ignored, but any ValuesKey, TargetPath or transient error will still result in a reconciliation failure.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"target_path": schema.StringAttribute{
-									Description:         "TargetPath is the YAML dot notation path the value should be merged at. Whenset, the ValuesKey is expected to be a single flat value. Defaults to 'None',which results in the values getting merged at the root.",
-									MarkdownDescription: "TargetPath is the YAML dot notation path the value should be merged at. Whenset, the ValuesKey is expected to be a single flat value. Defaults to 'None',which results in the values getting merged at the root.",
+									Description:         "TargetPath is the YAML dot notation path the value should be merged at. When set, the ValuesKey is expected to be a single flat value. Defaults to 'None', which results in the values getting merged at the root.",
+									MarkdownDescription: "TargetPath is the YAML dot notation path the value should be merged at. When set, the ValuesKey is expected to be a single flat value. Defaults to 'None', which results in the values getting merged at the root.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1429,8 +1429,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 								},
 
 								"values_key": schema.StringAttribute{
-									Description:         "ValuesKey is the data key where the values.yaml or a specific value can befound at. Defaults to 'values.yaml'.",
-									MarkdownDescription: "ValuesKey is the data key where the values.yaml or a specific value can befound at. Defaults to 'values.yaml'.",
+									Description:         "ValuesKey is the data key where the values.yaml or a specific value can be found at. Defaults to 'values.yaml'.",
+									MarkdownDescription: "ValuesKey is the data key where the values.yaml or a specific value can be found at. Defaults to 'values.yaml'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

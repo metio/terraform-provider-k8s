@@ -144,8 +144,8 @@ func (r *FenceAgentsRemediationMedik8SIoFenceAgentsRemediationTemplateV1Alpha1Ma
 								MarkdownDescription: "FenceAgentsRemediationSpec defines the desired state of FenceAgentsRemediation",
 								Attributes: map[string]schema.Attribute{
 									"agent": schema.StringAttribute{
-										Description:         "Agent is the name of fence agent that will be used.It should have a fence_ prefix.",
-										MarkdownDescription: "Agent is the name of fence agent that will be used.It should have a fence_ prefix.",
+										Description:         "Agent is the name of fence agent that will be used. It should have a fence_ prefix.",
+										MarkdownDescription: "Agent is the name of fence agent that will be used. It should have a fence_ prefix.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -164,8 +164,8 @@ func (r *FenceAgentsRemediationMedik8SIoFenceAgentsRemediationTemplateV1Alpha1Ma
 									},
 
 									"remediation_strategy": schema.StringAttribute{
-										Description:         "RemediationStrategy is the remediation method for unhealthy nodes.Currently, it could be either 'OutOfServiceTaint' or 'ResourceDeletion'.ResourceDeletion will iterate over all pods related to the unhealthy node and delete them.OutOfServiceTaint will add the out-of-service taint which is a new well-known taint 'node.kubernetes.io/out-of-service'that enables automatic deletion of pv-attached pods on failed nodes, 'out-of-service' taint is only supported on clusters with k8s version 1.26+ or OCP/OKD version 4.13+.",
-										MarkdownDescription: "RemediationStrategy is the remediation method for unhealthy nodes.Currently, it could be either 'OutOfServiceTaint' or 'ResourceDeletion'.ResourceDeletion will iterate over all pods related to the unhealthy node and delete them.OutOfServiceTaint will add the out-of-service taint which is a new well-known taint 'node.kubernetes.io/out-of-service'that enables automatic deletion of pv-attached pods on failed nodes, 'out-of-service' taint is only supported on clusters with k8s version 1.26+ or OCP/OKD version 4.13+.",
+										Description:         "RemediationStrategy is the remediation method for unhealthy nodes. Currently, it could be either 'OutOfServiceTaint' or 'ResourceDeletion'. ResourceDeletion will iterate over all pods related to the unhealthy node and delete them. OutOfServiceTaint will add the out-of-service taint which is a new well-known taint 'node.kubernetes.io/out-of-service' that enables automatic deletion of pv-attached pods on failed nodes, 'out-of-service' taint is only supported on clusters with k8s version 1.26+ or OCP/OKD version 4.13+.",
+										MarkdownDescription: "RemediationStrategy is the remediation method for unhealthy nodes. Currently, it could be either 'OutOfServiceTaint' or 'ResourceDeletion'. ResourceDeletion will iterate over all pods related to the unhealthy node and delete them. OutOfServiceTaint will add the out-of-service taint which is a new well-known taint 'node.kubernetes.io/out-of-service' that enables automatic deletion of pv-attached pods on failed nodes, 'out-of-service' taint is only supported on clusters with k8s version 1.26+ or OCP/OKD version 4.13+.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

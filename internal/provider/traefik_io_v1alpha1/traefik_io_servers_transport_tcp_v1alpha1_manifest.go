@@ -66,8 +66,8 @@ func (r *TraefikIoServersTransportTcpV1Alpha1Manifest) Metadata(_ context.Contex
 
 func (r *TraefikIoServersTransportTcpV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ServersTransportTCP is the CRD implementation of a TCPServersTransport.If no tcpServersTransport is specified, a default one named default@internal will be used.The default@internal tcpServersTransport can be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_3",
-		MarkdownDescription: "ServersTransportTCP is the CRD implementation of a TCPServersTransport.If no tcpServersTransport is specified, a default one named default@internal will be used.The default@internal tcpServersTransport can be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_3",
+		Description:         "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_3",
+		MarkdownDescription: "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_3",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -183,8 +183,8 @@ func (r *TraefikIoServersTransportTcpV1Alpha1Manifest) Schema(_ context.Context,
 							},
 
 							"peer_cert_uri": schema.StringAttribute{
-								Description:         "MaxIdleConnsPerHost controls the maximum idle (keep-alive) to keep per-host.PeerCertURI defines the peer cert URI used to match against SAN URI during the peer certificate verification.",
-								MarkdownDescription: "MaxIdleConnsPerHost controls the maximum idle (keep-alive) to keep per-host.PeerCertURI defines the peer cert URI used to match against SAN URI during the peer certificate verification.",
+								Description:         "MaxIdleConnsPerHost controls the maximum idle (keep-alive) to keep per-host. PeerCertURI defines the peer cert URI used to match against SAN URI during the peer certificate verification.",
+								MarkdownDescription: "MaxIdleConnsPerHost controls the maximum idle (keep-alive) to keep per-host. PeerCertURI defines the peer cert URI used to match against SAN URI during the peer certificate verification.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

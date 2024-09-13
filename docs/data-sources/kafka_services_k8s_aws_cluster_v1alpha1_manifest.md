@@ -30,7 +30,7 @@ data "k8s_kafka_services_k8s_aws_cluster_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) ClusterSpec defines the desired state of Cluster.Returns information about a cluster of either the provisioned or the serverlesstype. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ClusterSpec defines the desired state of Cluster. Returns information about a cluster of either the provisioned or the serverless type. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -67,7 +67,7 @@ Optional:
 - `client_authentication` (Attributes) Includes all client authentication related information. (see [below for nested schema](#nestedatt--spec--client_authentication))
 - `configuration_info` (Attributes) Represents the configuration that you want MSK to use for the cluster. (see [below for nested schema](#nestedatt--spec--configuration_info))
 - `encryption_info` (Attributes) Includes all encryption-related information. (see [below for nested schema](#nestedatt--spec--encryption_info))
-- `enhanced_monitoring` (String) Specifies the level of monitoring for the MSK cluster. The possible valuesare DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION.
+- `enhanced_monitoring` (String) Specifies the level of monitoring for the MSK cluster. The possible values are DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION.
 - `logging_info` (Attributes) LoggingInfo details. (see [below for nested schema](#nestedatt--spec--logging_info))
 - `open_monitoring` (Attributes) The settings for open monitoring. (see [below for nested schema](#nestedatt--spec--open_monitoring))
 - `storage_mode` (String) This controls storage mode for supported storage tiers.
@@ -78,7 +78,7 @@ Optional:
 
 Optional:
 
-- `broker_az_distribution` (String) The distribution of broker nodes across Availability Zones. By default, brokernodes are distributed among the Availability Zones of your Region. Currently,the only supported value is DEFAULT. You can either specify this value explicitlyor leave it out.
+- `broker_az_distribution` (String) The distribution of broker nodes across Availability Zones. By default, broker nodes are distributed among the Availability Zones of your Region. Currently, the only supported value is DEFAULT. You can either specify this value explicitly or leave it out.
 - `client_subnets` (List of String)
 - `connectivity_info` (Attributes) Information about the broker access configuration. (see [below for nested schema](#nestedatt--spec--broker_node_group_info--connectivity_info))
 - `instance_type` (String)
@@ -106,14 +106,14 @@ Optional:
 
 Optional:
 
-- `ebs_storage_info` (Attributes) Contains information about the EBS storage volumes attached to Apache Kafkabroker nodes. (see [below for nested schema](#nestedatt--spec--broker_node_group_info--storage_info--ebs_storage_info))
+- `ebs_storage_info` (Attributes) Contains information about the EBS storage volumes attached to Apache Kafka broker nodes. (see [below for nested schema](#nestedatt--spec--broker_node_group_info--storage_info--ebs_storage_info))
 
 <a id="nestedatt--spec--broker_node_group_info--storage_info--ebs_storage_info"></a>
 ### Nested Schema for `spec.broker_node_group_info.storage_info.ebs_storage_info`
 
 Optional:
 
-- `provisioned_throughput` (Attributes) Contains information about provisioned throughput for EBS storage volumesattached to kafka broker nodes. (see [below for nested schema](#nestedatt--spec--broker_node_group_info--storage_info--ebs_storage_info--provisioned_throughput))
+- `provisioned_throughput` (Attributes) Contains information about provisioned throughput for EBS storage volumes attached to kafka broker nodes. (see [below for nested schema](#nestedatt--spec--broker_node_group_info--storage_info--ebs_storage_info--provisioned_throughput))
 - `volume_size` (Number)
 
 <a id="nestedatt--spec--broker_node_group_info--storage_info--ebs_storage_info--provisioned_throughput"></a>
@@ -133,7 +133,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--associated_scram_secret_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--associated_scram_secret_refs--from))
 
 <a id="nestedatt--spec--associated_scram_secret_refs--from"></a>
 ### Nested Schema for `spec.associated_scram_secret_refs.from`

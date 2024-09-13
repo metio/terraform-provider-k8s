@@ -198,8 +198,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "Concurrency defines the behaviour of multiple concurrent Jobs.",
 						Attributes: map[string]schema.Attribute{
 							"max_concurrency": schema.Int64Attribute{
-								Description:         "Maximum number of Jobs that can be running concurrently for the same JobConfig. Cannot be specified if Policy is set to Allow.  Defaults to 1.",
-								MarkdownDescription: "Maximum number of Jobs that can be running concurrently for the same JobConfig. Cannot be specified if Policy is set to Allow.  Defaults to 1.",
+								Description:         "Maximum number of Jobs that can be running concurrently for the same JobConfig. Cannot be specified if Policy is set to Allow. Defaults to 1.",
+								MarkdownDescription: "Maximum number of Jobs that can be running concurrently for the same JobConfig. Cannot be specified if Policy is set to Allow. Defaults to 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -248,8 +248,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 												},
 
 												"format": schema.StringAttribute{
-													Description:         "Determines how to format the value as string. Can be one of: TrueFalse, OneZero, YesNo, Custom  Default: TrueFalse",
-													MarkdownDescription: "Determines how to format the value as string. Can be one of: TrueFalse, OneZero, YesNo, Custom  Default: TrueFalse",
+													Description:         "Determines how to format the value as string. Can be one of: TrueFalse, OneZero, YesNo, Custom Default: TrueFalse",
+													MarkdownDescription: "Determines how to format the value as string. Can be one of: TrueFalse, OneZero, YesNo, Custom Default: TrueFalse",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -273,8 +273,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "Date adds additional configuration for OptionTypeDate.",
 											Attributes: map[string]schema.Attribute{
 												"format": schema.StringAttribute{
-													Description:         "Date format in moment.js format. If not specified, will use RFC3339 format by default.  Date format reference: https://momentjs.com/docs/#/displaying/format/  Default:",
-													MarkdownDescription: "Date format in moment.js format. If not specified, will use RFC3339 format by default.  Date format reference: https://momentjs.com/docs/#/displaying/format/  Default:",
+													Description:         "Date format in moment.js format. If not specified, will use RFC3339 format by default. Date format reference: https://momentjs.com/docs/#/displaying/format/ Default:",
+													MarkdownDescription: "Date format in moment.js format. If not specified, will use RFC3339 format by default. Date format reference: https://momentjs.com/docs/#/displaying/format/ Default:",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -298,8 +298,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "Multi adds additional configuration for OptionTypeMulti.",
 											Attributes: map[string]schema.Attribute{
 												"allow_custom": schema.BoolAttribute{
-													Description:         "Whether to allow custom values instead of just the list of allowed values.  Default: false",
-													MarkdownDescription: "Whether to allow custom values instead of just the list of allowed values.  Default: false",
+													Description:         "Whether to allow custom values instead of just the list of allowed values. Default: false",
+													MarkdownDescription: "Whether to allow custom values instead of just the list of allowed values. Default: false",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -345,8 +345,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 										},
 
 										"required": schema.BoolAttribute{
-											Description:         "Required defines whether this field is required.  Default: false",
-											MarkdownDescription: "Required defines whether this field is required.  Default: false",
+											Description:         "Required defines whether this field is required. Default: false",
+											MarkdownDescription: "Required defines whether this field is required. Default: false",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -357,8 +357,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "Select adds additional configuration for OptionTypeSelect.",
 											Attributes: map[string]schema.Attribute{
 												"allow_custom": schema.BoolAttribute{
-													Description:         "Whether to allow custom values instead of just the list of allowed values.  Default: false",
-													MarkdownDescription: "Whether to allow custom values instead of just the list of allowed values.  Default: false",
+													Description:         "Whether to allow custom values instead of just the list of allowed values. Default: false",
+													MarkdownDescription: "Whether to allow custom values instead of just the list of allowed values. Default: false",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -399,8 +399,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 												},
 
 												"trim_spaces": schema.BoolAttribute{
-													Description:         "Whether to trim spaces before substitution.  Default: false",
-													MarkdownDescription: "Whether to trim spaces before substitution.  Default: false",
+													Description:         "Whether to trim spaces before substitution. Default: false",
+													MarkdownDescription: "Whether to trim spaces before substitution. Default: false",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -470,16 +470,16 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "Specify a schedule using cron expressions.",
 								Attributes: map[string]schema.Attribute{
 									"expression": schema.StringAttribute{
-										Description:         "Cron expression to specify how the JobConfig will be periodically scheduled. Example: '0 0/5 * * *'.  Supports cron schedules with optional 'seconds' and 'years' fields, i.e. can parse between 5 to 7 tokens.  More information: https://github.com/furiko-io/cronexpr",
-										MarkdownDescription: "Cron expression to specify how the JobConfig will be periodically scheduled. Example: '0 0/5 * * *'.  Supports cron schedules with optional 'seconds' and 'years' fields, i.e. can parse between 5 to 7 tokens.  More information: https://github.com/furiko-io/cronexpr",
+										Description:         "Cron expression to specify how the JobConfig will be periodically scheduled. Example: '0 0/5 * * *'. Supports cron schedules with optional 'seconds' and 'years' fields, i.e. can parse between 5 to 7 tokens. More information: https://github.com/furiko-io/cronexpr",
+										MarkdownDescription: "Cron expression to specify how the JobConfig will be periodically scheduled. Example: '0 0/5 * * *'. Supports cron schedules with optional 'seconds' and 'years' fields, i.e. can parse between 5 to 7 tokens. More information: https://github.com/furiko-io/cronexpr",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"expressions": schema.ListAttribute{
-										Description:         "List of cron expressions to specify how the JobConfig will be periodically scheduled.  Take for example a requirement to schedule a job every day at 3AM, 3:30AM and 4AM. There is no way to represent this with a single cron expression, but we could do so with two cron expressions: '0/30 3 * * *', and '0 4 * * *'.  Exactly one of Expression or Expressions must be specified. If two expressions fall on the same time, only one of them will take effect.",
-										MarkdownDescription: "List of cron expressions to specify how the JobConfig will be periodically scheduled.  Take for example a requirement to schedule a job every day at 3AM, 3:30AM and 4AM. There is no way to represent this with a single cron expression, but we could do so with two cron expressions: '0/30 3 * * *', and '0 4 * * *'.  Exactly one of Expression or Expressions must be specified. If two expressions fall on the same time, only one of them will take effect.",
+										Description:         "List of cron expressions to specify how the JobConfig will be periodically scheduled. Take for example a requirement to schedule a job every day at 3AM, 3:30AM and 4AM. There is no way to represent this with a single cron expression, but we could do so with two cron expressions: '0/30 3 * * *', and '0 4 * * *'. Exactly one of Expression or Expressions must be specified. If two expressions fall on the same time, only one of them will take effect.",
+										MarkdownDescription: "List of cron expressions to specify how the JobConfig will be periodically scheduled. Take for example a requirement to schedule a job every day at 3AM, 3:30AM and 4AM. There is no way to represent this with a single cron expression, but we could do so with two cron expressions: '0/30 3 * * *', and '0 4 * * *'. Exactly one of Expression or Expressions must be specified. If two expressions fall on the same time, only one of them will take effect.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -487,8 +487,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 									},
 
 									"timezone": schema.StringAttribute{
-										Description:         "Timezone to interpret the cron schedule in. For example, a cron schedule of '0 10 * * *' with a timezone of 'Asia/Singapore' will be interpreted as running at 02:00:00 UTC time every day.  Timezone must be one of the following:  1. A valid tz string (e.g. 'Asia/Singapore', 'America/New_York'). 2. A UTC offset with minutes (e.g. UTC-10:00). 3. A GMT offset with minutes (e.g. GMT+05:30). The meaning is the same as its UTC counterpart.  This field merely is used for parsing the cron Expression, and has nothing to do with /etc/timezone inside the container (i.e. it will not set $TZ automatically).  Defaults to the controller's default configured timezone.",
-										MarkdownDescription: "Timezone to interpret the cron schedule in. For example, a cron schedule of '0 10 * * *' with a timezone of 'Asia/Singapore' will be interpreted as running at 02:00:00 UTC time every day.  Timezone must be one of the following:  1. A valid tz string (e.g. 'Asia/Singapore', 'America/New_York'). 2. A UTC offset with minutes (e.g. UTC-10:00). 3. A GMT offset with minutes (e.g. GMT+05:30). The meaning is the same as its UTC counterpart.  This field merely is used for parsing the cron Expression, and has nothing to do with /etc/timezone inside the container (i.e. it will not set $TZ automatically).  Defaults to the controller's default configured timezone.",
+										Description:         "Timezone to interpret the cron schedule in. For example, a cron schedule of '0 10 * * *' with a timezone of 'Asia/Singapore' will be interpreted as running at 02:00:00 UTC time every day. Timezone must be one of the following: 1. A valid tz string (e.g. 'Asia/Singapore', 'America/New_York'). 2. A UTC offset with minutes (e.g. UTC-10:00). 3. A GMT offset with minutes (e.g. GMT+05:30). The meaning is the same as its UTC counterpart. This field merely is used for parsing the cron Expression, and has nothing to do with /etc/timezone inside the container (i.e. it will not set $TZ automatically). Defaults to the controller's default configured timezone.",
+										MarkdownDescription: "Timezone to interpret the cron schedule in. For example, a cron schedule of '0 10 * * *' with a timezone of 'Asia/Singapore' will be interpreted as running at 02:00:00 UTC time every day. Timezone must be one of the following: 1. A valid tz string (e.g. 'Asia/Singapore', 'America/New_York'). 2. A UTC offset with minutes (e.g. UTC-10:00). 3. A GMT offset with minutes (e.g. GMT+05:30). The meaning is the same as its UTC counterpart. This field merely is used for parsing the cron Expression, and has nothing to do with /etc/timezone inside the container (i.e. it will not set $TZ automatically). Defaults to the controller's default configured timezone.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -508,8 +508,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"last_updated": schema.StringAttribute{
-								Description:         "Specifies the time that the schedule was last updated. This prevents accidental back-scheduling.  For example, if a JobConfig that was previously disabled from automatic scheduling is now enabled, we do not want to perform back-scheduling for schedules after LastScheduled prior to updating of the JobConfig.",
-								MarkdownDescription: "Specifies the time that the schedule was last updated. This prevents accidental back-scheduling.  For example, if a JobConfig that was previously disabled from automatic scheduling is now enabled, we do not want to perform back-scheduling for schedules after LastScheduled prior to updating of the JobConfig.",
+								Description:         "Specifies the time that the schedule was last updated. This prevents accidental back-scheduling. For example, if a JobConfig that was previously disabled from automatic scheduling is now enabled, we do not want to perform back-scheduling for schedules after LastScheduled prior to updating of the JobConfig.",
+								MarkdownDescription: "Specifies the time that the schedule was last updated. This prevents accidental back-scheduling. For example, if a JobConfig that was previously disabled from automatic scheduling is now enabled, we do not want to perform back-scheduling for schedules after LastScheduled prior to updating of the JobConfig.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -541,16 +541,16 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "Specification of the desired behavior of the job.",
 								Attributes: map[string]schema.Attribute{
 									"forbid_task_force_deletion": schema.BoolAttribute{
-										Description:         "Defines whether tasks are allowed to be force deleted or not. If the node is unresponsive, it may be possible that the task cannot be killed by normal graceful deletion. The controller may choose to force delete the task, which would ignore the final state of the task since the node is unable to return whether the task is actually still alive.  If not set to true, there may be some cases when there may actually be two concurrently running tasks when even when ConcurrencyPolicyForbid. Setting this to true would prevent this from happening, but the Job may remain stuck indefinitely until the node recovers.",
-										MarkdownDescription: "Defines whether tasks are allowed to be force deleted or not. If the node is unresponsive, it may be possible that the task cannot be killed by normal graceful deletion. The controller may choose to force delete the task, which would ignore the final state of the task since the node is unable to return whether the task is actually still alive.  If not set to true, there may be some cases when there may actually be two concurrently running tasks when even when ConcurrencyPolicyForbid. Setting this to true would prevent this from happening, but the Job may remain stuck indefinitely until the node recovers.",
+										Description:         "Defines whether tasks are allowed to be force deleted or not. If the node is unresponsive, it may be possible that the task cannot be killed by normal graceful deletion. The controller may choose to force delete the task, which would ignore the final state of the task since the node is unable to return whether the task is actually still alive. If not set to true, there may be some cases when there may actually be two concurrently running tasks when even when ConcurrencyPolicyForbid. Setting this to true would prevent this from happening, but the Job may remain stuck indefinitely until the node recovers.",
+										MarkdownDescription: "Defines whether tasks are allowed to be force deleted or not. If the node is unresponsive, it may be possible that the task cannot be killed by normal graceful deletion. The controller may choose to force delete the task, which would ignore the final state of the task since the node is unable to return whether the task is actually still alive. If not set to true, there may be some cases when there may actually be two concurrently running tasks when even when ConcurrencyPolicyForbid. Setting this to true would prevent this from happening, but the Job may remain stuck indefinitely until the node recovers.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"max_attempts": schema.Int64Attribute{
-										Description:         "Specifies maximum number of attempts before the Job will terminate in failure. If defined, the controller will wait retryDelaySeconds before creating the next task. Once maxAttempts is reached, the Job terminates in RetryLimitExceeded.  If parallelism is also defined, this corresponds to the maximum attempts for each parallel task. That is, if there are 5 parallel task to be run at a time, with maxAttempts of 3, the Job may create up to a maximum of 15 tasks if each has failed.  Value must be a positive integer. Defaults to 1.",
-										MarkdownDescription: "Specifies maximum number of attempts before the Job will terminate in failure. If defined, the controller will wait retryDelaySeconds before creating the next task. Once maxAttempts is reached, the Job terminates in RetryLimitExceeded.  If parallelism is also defined, this corresponds to the maximum attempts for each parallel task. That is, if there are 5 parallel task to be run at a time, with maxAttempts of 3, the Job may create up to a maximum of 15 tasks if each has failed.  Value must be a positive integer. Defaults to 1.",
+										Description:         "Specifies maximum number of attempts before the Job will terminate in failure. If defined, the controller will wait retryDelaySeconds before creating the next task. Once maxAttempts is reached, the Job terminates in RetryLimitExceeded. If parallelism is also defined, this corresponds to the maximum attempts for each parallel task. That is, if there are 5 parallel task to be run at a time, with maxAttempts of 3, the Job may create up to a maximum of 15 tasks if each has failed. Value must be a positive integer. Defaults to 1.",
+										MarkdownDescription: "Specifies maximum number of attempts before the Job will terminate in failure. If defined, the controller will wait retryDelaySeconds before creating the next task. Once maxAttempts is reached, the Job terminates in RetryLimitExceeded. If parallelism is also defined, this corresponds to the maximum attempts for each parallel task. That is, if there are 5 parallel task to be run at a time, with maxAttempts of 3, the Job may create up to a maximum of 15 tasks if each has failed. Value must be a positive integer. Defaults to 1.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -600,8 +600,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 									},
 
 									"retry_delay_seconds": schema.Int64Attribute{
-										Description:         "Optional duration in seconds to wait between retries. If left empty or zero, it means no delay (i.e. retry immediately).  If parallelism is also defined, the retry delay is from the time of the last failed task with the same index. That is, if there are two parallel tasks - index 0 and index 1 - which failed at t=0 and t=15, with retryDelaySeconds of 30, the controller will only create the next attempts at t=30 and t=45 respectively.  Value must be a non-negative integer.",
-										MarkdownDescription: "Optional duration in seconds to wait between retries. If left empty or zero, it means no delay (i.e. retry immediately).  If parallelism is also defined, the retry delay is from the time of the last failed task with the same index. That is, if there are two parallel tasks - index 0 and index 1 - which failed at t=0 and t=15, with retryDelaySeconds of 30, the controller will only create the next attempts at t=30 and t=45 respectively.  Value must be a non-negative integer.",
+										Description:         "Optional duration in seconds to wait between retries. If left empty or zero, it means no delay (i.e. retry immediately). If parallelism is also defined, the retry delay is from the time of the last failed task with the same index. That is, if there are two parallel tasks - index 0 and index 1 - which failed at t=0 and t=15, with retryDelaySeconds of 30, the controller will only create the next attempts at t=30 and t=45 respectively. Value must be a non-negative integer.",
+										MarkdownDescription: "Optional duration in seconds to wait between retries. If left empty or zero, it means no delay (i.e. retry immediately). If parallelism is also defined, the retry delay is from the time of the last failed task with the same index. That is, if there are two parallel tasks - index 0 and index 1 - which failed at t=0 and t=15, with retryDelaySeconds of 30, the controller will only create the next attempts at t=30 and t=45 respectively. Value must be a non-negative integer.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -633,8 +633,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _
 													},
 
 													"spec": schema.MapAttribute{
-														Description:         "Specification of the desired behavior of the pod. API docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podspec-v1-core  Supports context variable substitution in the following fields for containers and initContainers: image, command, args, env.value",
-														MarkdownDescription: "Specification of the desired behavior of the pod. API docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podspec-v1-core  Supports context variable substitution in the following fields for containers and initContainers: image, command, args, env.value",
+														Description:         "Specification of the desired behavior of the pod. API docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podspec-v1-core Supports context variable substitution in the following fields for containers and initContainers: image, command, args, env.value",
+														MarkdownDescription: "Specification of the desired behavior of the pod. API docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podspec-v1-core Supports context variable substitution in the following fields for containers and initContainers: image, command, args, env.value",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,

@@ -30,7 +30,7 @@ data "k8s_sns_services_k8s_aws_platform_application_v1alpha1_manifest" "example"
 
 ### Optional
 
-- `spec` (Attributes) PlatformApplicationSpec defines the desired state of PlatformApplication.Platform application object. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) PlatformApplicationSpec defines the desired state of PlatformApplication. Platform application object. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,24 +55,24 @@ Optional:
 
 Required:
 
-- `name` (String) Application names must be made up of only uppercase and lowercase ASCII letters,numbers, underscores, hyphens, and periods, and must be between 1 and 256characters long.
-- `platform` (String) The following platforms are supported: ADM (Amazon Device Messaging), APNS(Apple Push Notification Service), APNS_SANDBOX, and GCM (Firebase CloudMessaging).
+- `name` (String) Application names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, hyphens, and periods, and must be between 1 and 256 characters long.
+- `platform` (String) The following platforms are supported: ADM (Amazon Device Messaging), APNS (Apple Push Notification Service), APNS_SANDBOX, and GCM (Firebase Cloud Messaging).
 
 Optional:
 
 - `event_delivery_failure` (String)
 - `event_endpoint_created` (String)
-- `event_endpoint_created_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--event_endpoint_created_ref))
+- `event_endpoint_created_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--event_endpoint_created_ref))
 - `event_endpoint_deleted` (String)
-- `event_endpoint_deleted_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--event_endpoint_deleted_ref))
+- `event_endpoint_deleted_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--event_endpoint_deleted_ref))
 - `event_endpoint_updated` (String)
-- `event_endpoint_updated_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--event_endpoint_updated_ref))
+- `event_endpoint_updated_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--event_endpoint_updated_ref))
 - `failure_feedback_role_arn` (String)
-- `failure_feedback_role_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--failure_feedback_role_ref))
+- `failure_feedback_role_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--failure_feedback_role_ref))
 - `platform_credential` (String)
 - `platform_principal` (String)
 - `success_feedback_role_arn` (String)
-- `success_feedback_role_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--success_feedback_role_ref))
+- `success_feedback_role_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--success_feedback_role_ref))
 - `success_feedback_sample_rate` (String)
 
 <a id="nestedatt--spec--event_endpoint_created_ref"></a>
@@ -80,7 +80,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--event_endpoint_created_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--event_endpoint_created_ref--from))
 
 <a id="nestedatt--spec--event_endpoint_created_ref--from"></a>
 ### Nested Schema for `spec.event_endpoint_created_ref.from`
@@ -97,7 +97,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--event_endpoint_deleted_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--event_endpoint_deleted_ref--from))
 
 <a id="nestedatt--spec--event_endpoint_deleted_ref--from"></a>
 ### Nested Schema for `spec.event_endpoint_deleted_ref.from`
@@ -114,7 +114,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--event_endpoint_updated_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--event_endpoint_updated_ref--from))
 
 <a id="nestedatt--spec--event_endpoint_updated_ref--from"></a>
 ### Nested Schema for `spec.event_endpoint_updated_ref.from`
@@ -131,7 +131,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--failure_feedback_role_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--failure_feedback_role_ref--from))
 
 <a id="nestedatt--spec--failure_feedback_role_ref--from"></a>
 ### Nested Schema for `spec.failure_feedback_role_ref.from`
@@ -148,7 +148,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--success_feedback_role_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--success_feedback_role_ref--from))
 
 <a id="nestedatt--spec--success_feedback_role_ref--from"></a>
 ### Nested Schema for `spec.success_feedback_role_ref.from`

@@ -3,12 +3,12 @@
 page_title: "k8s_apiextensions_crossplane_io_composition_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apiextensions.crossplane.io"
 description: |-
-  A Composition defines a collection of managed resources or functions thatCrossplane uses to create and manage new composite resources.Read the Crossplane documentation formore information about Compositions https://docs.crossplane.io/latest/concepts/compositions.
+  A Composition defines a collection of managed resources or functions that Crossplane uses to create and manage new composite resources. Read the Crossplane documentation for more information about Compositions https://docs.crossplane.io/latest/concepts/compositions.
 ---
 
 # k8s_apiextensions_crossplane_io_composition_v1_manifest (Data Source)
 
-A Composition defines a collection of managed resources or functions thatCrossplane uses to create and manage new composite resources.Read the Crossplane documentation for[more information about Compositions](https://docs.crossplane.io/latest/concepts/compositions).
+A Composition defines a collection of managed resources or functions that Crossplane uses to create and manage new composite resources. Read the Crossplane documentation for [more information about Compositions](https://docs.crossplane.io/latest/concepts/compositions).
 
 ## Example Usage
 
@@ -54,17 +54,17 @@ Optional:
 
 Required:
 
-- `composite_type_ref` (Attributes) CompositeTypeRef specifies the type of composite resource that thiscomposition is compatible with. (see [below for nested schema](#nestedatt--spec--composite_type_ref))
+- `composite_type_ref` (Attributes) CompositeTypeRef specifies the type of composite resource that this composition is compatible with. (see [below for nested schema](#nestedatt--spec--composite_type_ref))
 
 Optional:
 
-- `environment` (Attributes) Environment configures the environment in which resources are rendered.THIS IS AN ALPHA FIELD. Do not use it in production. It is not honoredunless the relevant Crossplane feature flag is enabled, and may bechanged or removed without notice. (see [below for nested schema](#nestedatt--spec--environment))
-- `mode` (String) Mode controls what type or 'mode' of Composition will be used.'Pipeline' indicates that a Composition specifies a pipeline ofComposition Functions, each of which is responsible for producingcomposed resources that Crossplane should create or update.'Resources' indicates that a Composition uses what is commonly referredto as 'Patch & Transform' or P&T composition. This mode of Compositionuses an array of resources, each a template for a composed resource.All Compositions should use Pipeline mode. Resources mode is deprecated.Resources mode won't be removed in Crossplane 1.x, and will remain thedefault to avoid breaking legacy Compositions. However, it's no longeraccepting new features, and only accepting security related bug fixes.
-- `patch_sets` (Attributes List) PatchSets define a named set of patches that may be included by anyresource in this Composition. PatchSets cannot themselves refer to otherPatchSets.PatchSets are only used by the 'Resources' mode of Composition. Theyare ignored by other modes.Deprecated: Use Composition Functions instead. (see [below for nested schema](#nestedatt--spec--patch_sets))
-- `pipeline` (Attributes List) Pipeline is a list of composition function steps that will be used when acomposite resource referring to this composition is created. One ofresources and pipeline must be specified - you cannot specify both.The Pipeline is only used by the 'Pipeline' mode of Composition. It isignored by other modes. (see [below for nested schema](#nestedatt--spec--pipeline))
-- `publish_connection_details_with_store_config_ref` (Attributes) PublishConnectionDetailsWithStoreConfig specifies the secret store configwith which the connection details of composite resources dynamicallyprovisioned using this composition will be published.THIS IS AN ALPHA FIELD. Do not use it in production. It is not honoredunless the relevant Crossplane feature flag is enabled, and may bechanged or removed without notice. (see [below for nested schema](#nestedatt--spec--publish_connection_details_with_store_config_ref))
-- `resources` (Attributes List) Resources is a list of resource templates that will be used when acomposite resource referring to this composition is created.Resources are only used by the 'Resources' mode of Composition. They areignored by other modes.Deprecated: Use Composition Functions instead. (see [below for nested schema](#nestedatt--spec--resources))
-- `write_connection_secrets_to_namespace` (String) WriteConnectionSecretsToNamespace specifies the namespace in which theconnection secrets of composite resource dynamically provisioned usingthis composition will be created.This field is planned to be replaced in a future release in favor ofPublishConnectionDetailsWithStoreConfigRef. Currently, both could beset independently and connection details would be published to bothwithout affecting each other as long as related fields at MR levelspecified.
+- `environment` (Attributes) Environment configures the environment in which resources are rendered. THIS IS AN ALPHA FIELD. Do not use it in production. It is not honored unless the relevant Crossplane feature flag is enabled, and may be changed or removed without notice. (see [below for nested schema](#nestedatt--spec--environment))
+- `mode` (String) Mode controls what type or 'mode' of Composition will be used. 'Pipeline' indicates that a Composition specifies a pipeline of Composition Functions, each of which is responsible for producing composed resources that Crossplane should create or update. 'Resources' indicates that a Composition uses what is commonly referred to as 'Patch & Transform' or P&T composition. This mode of Composition uses an array of resources, each a template for a composed resource. All Compositions should use Pipeline mode. Resources mode is deprecated. Resources mode won't be removed in Crossplane 1.x, and will remain the default to avoid breaking legacy Compositions. However, it's no longer accepting new features, and only accepting security related bug fixes.
+- `patch_sets` (Attributes List) PatchSets define a named set of patches that may be included by any resource in this Composition. PatchSets cannot themselves refer to other PatchSets. PatchSets are only used by the 'Resources' mode of Composition. They are ignored by other modes. Deprecated: Use Composition Functions instead. (see [below for nested schema](#nestedatt--spec--patch_sets))
+- `pipeline` (Attributes List) Pipeline is a list of composition function steps that will be used when a composite resource referring to this composition is created. One of resources and pipeline must be specified - you cannot specify both. The Pipeline is only used by the 'Pipeline' mode of Composition. It is ignored by other modes. (see [below for nested schema](#nestedatt--spec--pipeline))
+- `publish_connection_details_with_store_config_ref` (Attributes) PublishConnectionDetailsWithStoreConfig specifies the secret store config with which the connection details of composite resources dynamically provisioned using this composition will be published. THIS IS AN ALPHA FIELD. Do not use it in production. It is not honored unless the relevant Crossplane feature flag is enabled, and may be changed or removed without notice. (see [below for nested schema](#nestedatt--spec--publish_connection_details_with_store_config_ref))
+- `resources` (Attributes List) Resources is a list of resource templates that will be used when a composite resource referring to this composition is created. Resources are only used by the 'Resources' mode of Composition. They are ignored by other modes. Deprecated: Use Composition Functions instead. (see [below for nested schema](#nestedatt--spec--resources))
+- `write_connection_secrets_to_namespace` (String) WriteConnectionSecretsToNamespace specifies the namespace in which the connection secrets of composite resource dynamically provisioned using this composition will be created. This field is planned to be replaced in a future release in favor of PublishConnectionDetailsWithStoreConfigRef. Currently, both could be set independently and connection details would be published to both without affecting each other as long as related fields at MR level specified.
 
 <a id="nestedatt--spec--composite_type_ref"></a>
 ### Nested Schema for `spec.composite_type_ref`
@@ -80,19 +80,19 @@ Required:
 
 Optional:
 
-- `default_data` (Map of String) DefaultData statically defines the initial state of the environment.It has the same schema-less structure as the data field inenvironment configs.It is overwritten by the selected environment configs.
-- `environment_configs` (Attributes List) EnvironmentConfigs selects a list of 'EnvironmentConfig's. The resolvedresources are stored in the composite resource at'spec.environmentConfigRefs' and is only updated if it is null.The list of references is used to compute an in-memory environment atcompose time. The data of all object is merged in the order they arelisted, meaning the values of EnvironmentConfigs with a larger index takepriority over ones with smaller indices.The computed environment can be accessed in a composition using'FromEnvironmentFieldPath' and 'CombineFromEnvironment' patches. (see [below for nested schema](#nestedatt--spec--environment--environment_configs))
-- `patches` (Attributes List) Patches is a list of environment patches that are executed before acomposition's resources are composed. (see [below for nested schema](#nestedatt--spec--environment--patches))
-- `policy` (Attributes) Policy represents the Resolve and Resolution policies which apply toall EnvironmentSourceReferences in EnvironmentConfigs list. (see [below for nested schema](#nestedatt--spec--environment--policy))
+- `default_data` (Map of String) DefaultData statically defines the initial state of the environment. It has the same schema-less structure as the data field in environment configs. It is overwritten by the selected environment configs.
+- `environment_configs` (Attributes List) EnvironmentConfigs selects a list of 'EnvironmentConfig's. The resolved resources are stored in the composite resource at 'spec.environmentConfigRefs' and is only updated if it is null. The list of references is used to compute an in-memory environment at compose time. The data of all object is merged in the order they are listed, meaning the values of EnvironmentConfigs with a larger index take priority over ones with smaller indices. The computed environment can be accessed in a composition using 'FromEnvironmentFieldPath' and 'CombineFromEnvironment' patches. (see [below for nested schema](#nestedatt--spec--environment--environment_configs))
+- `patches` (Attributes List) Patches is a list of environment patches that are executed before a composition's resources are composed. (see [below for nested schema](#nestedatt--spec--environment--patches))
+- `policy` (Attributes) Policy represents the Resolve and Resolution policies which apply to all EnvironmentSourceReferences in EnvironmentConfigs list. (see [below for nested schema](#nestedatt--spec--environment--policy))
 
 <a id="nestedatt--spec--environment--environment_configs"></a>
 ### Nested Schema for `spec.environment.environment_configs`
 
 Optional:
 
-- `ref` (Attributes) Ref is a named reference to a single EnvironmentConfig.Either Ref or Selector is required. (see [below for nested schema](#nestedatt--spec--environment--environment_configs--ref))
+- `ref` (Attributes) Ref is a named reference to a single EnvironmentConfig. Either Ref or Selector is required. (see [below for nested schema](#nestedatt--spec--environment--environment_configs--ref))
 - `selector` (Attributes) Selector selects EnvironmentConfig(s) via labels. (see [below for nested schema](#nestedatt--spec--environment--environment_configs--selector))
-- `type` (String) Type specifies the way the EnvironmentConfig is selected.Default is 'Reference'
+- `type` (String) Type specifies the way the EnvironmentConfig is selected. Default is 'Reference'
 
 <a id="nestedatt--spec--environment--environment_configs--ref"></a>
 ### Nested Schema for `spec.environment.environment_configs.ref`
@@ -122,7 +122,7 @@ Required:
 
 Optional:
 
-- `from_field_path_policy` (String) FromFieldPathPolicy specifies the policy for the valueFromFieldPath.The default is Required, meaning that an error will be returned if thefield is not found in the composite resource.Optional means that if the field is not found in the composite resource,that label pair will just be skipped. N.B. other specified labelmatchers will still be used to retrieve the desiredenvironment config, if any.
+- `from_field_path_policy` (String) FromFieldPathPolicy specifies the policy for the valueFromFieldPath. The default is Required, meaning that an error will be returned if the field is not found in the composite resource. Optional means that if the field is not found in the composite resource, that label pair will just be skipped. N.B. other specified label matchers will still be used to retrieve the desired environment config, if any.
 - `type` (String) Type specifies where the value for a label comes from.
 - `value` (String) Value specifies a literal label value.
 - `value_from_field_path` (String) ValueFromFieldPath specifies the field path to look for the label value.
@@ -135,31 +135,31 @@ Optional:
 
 Optional:
 
-- `combine` (Attributes) Combine is the patch configuration for a CombineFromComposite orCombineToComposite patch. (see [below for nested schema](#nestedatt--spec--environment--patches--combine))
-- `from_field_path` (String) FromFieldPath is the path of the field on the resource whose value isto be used as input. Required when type is FromCompositeFieldPath orToCompositeFieldPath.
+- `combine` (Attributes) Combine is the patch configuration for a CombineFromComposite or CombineToComposite patch. (see [below for nested schema](#nestedatt--spec--environment--patches--combine))
+- `from_field_path` (String) FromFieldPath is the path of the field on the resource whose value is to be used as input. Required when type is FromCompositeFieldPath or ToCompositeFieldPath.
 - `policy` (Attributes) Policy configures the specifics of patching behaviour. (see [below for nested schema](#nestedatt--spec--environment--patches--policy))
-- `to_field_path` (String) ToFieldPath is the path of the field on the resource whose value willbe changed with the result of transforms. Leave empty if you'd like topropagate to the same path as fromFieldPath.
-- `transforms` (Attributes List) Transforms are the list of functions that are used as a FIFO pipe for theinput to be transformed. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms))
-- `type` (String) Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.
+- `to_field_path` (String) ToFieldPath is the path of the field on the resource whose value will be changed with the result of transforms. Leave empty if you'd like to propagate to the same path as fromFieldPath.
+- `transforms` (Attributes List) Transforms are the list of functions that are used as a FIFO pipe for the input to be transformed. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms))
+- `type` (String) Type sets the patching behaviour to be used. Each patch type may require its own fields to be set on the Patch object.
 
 <a id="nestedatt--spec--environment--patches--combine"></a>
 ### Nested Schema for `spec.environment.patches.combine`
 
 Required:
 
-- `strategy` (String) Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.
-- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved andcombined. (see [below for nested schema](#nestedatt--spec--environment--patches--combine--variables))
+- `strategy` (String) Strategy defines the strategy to use to combine the input variable values. Currently only string is supported.
+- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved and combined. (see [below for nested schema](#nestedatt--spec--environment--patches--combine--variables))
 
 Optional:
 
-- `string` (Attributes) String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--environment--patches--combine--string))
+- `string` (Attributes) String declares that input variables should be combined into a single string, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--environment--patches--combine--string))
 
 <a id="nestedatt--spec--environment--patches--combine--variables"></a>
 ### Nested Schema for `spec.environment.patches.combine.variables`
 
 Required:
 
-- `from_field_path` (String) FromFieldPath is the path of the field on the source whose value isto be used as input.
+- `from_field_path` (String) FromFieldPath is the path of the field on the source whose value is to be used as input.
 
 
 <a id="nestedatt--spec--environment--patches--combine--string"></a>
@@ -167,7 +167,7 @@ Required:
 
 Required:
 
-- `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
+- `fmt` (String) Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.
 
 
 
@@ -176,7 +176,7 @@ Required:
 
 Optional:
 
-- `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.
+- `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is 'Optional', which means the patch will be a no-op if the specified fromFieldPath does not exist. Use 'Required' if the patch should fail if the specified path does not exist.
 - `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--environment--patches--policy--merge_options))
 
 <a id="nestedatt--spec--environment--patches--policy--merge_options"></a>
@@ -201,8 +201,8 @@ Optional:
 - `convert` (Attributes) Convert is used to cast the input into the given output type. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--convert))
 - `map` (Map of String) Map uses the input as a key in the given map and returns the value.
 - `match` (Attributes) Match is a more complex version of Map that matches a list of patterns. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--match))
-- `math` (Attributes) Math is used to transform the input via mathematical operations such asmultiplication. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--math))
-- `string` (Attributes) String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--string))
+- `math` (Attributes) Math is used to transform the input via mathematical operations such as multiplication. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--math))
+- `string` (Attributes) String is used to transform the input into a string or a different kind of string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--string))
 
 <a id="nestedatt--spec--environment--patches--transforms--convert"></a>
 ### Nested Schema for `spec.environment.patches.transforms.convert`
@@ -213,7 +213,7 @@ Required:
 
 Optional:
 
-- `format` (String) The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.
+- `format` (String) The expected input format. * 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity). Only used during 'string -> float64' conversions. * 'json' - parses the input as a JSON string. Only used during 'string -> object' or 'string -> list' conversions. If this property is null, the default conversion is applied.
 
 
 <a id="nestedatt--spec--environment--patches--transforms--match"></a>
@@ -222,8 +222,8 @@ Optional:
 Optional:
 
 - `fallback_to` (String) Determines to what value the transform should fallback if no pattern matches.
-- `fallback_value` (Map of String) The fallback value that should be returned by the transform if now patternmatches.
-- `patterns` (Attributes List) The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--match--patterns))
+- `fallback_value` (Map of String) The fallback value that should be returned by the transform if now pattern matches.
+- `patterns` (Attributes List) The patterns that should be tested against the input string. Patterns are tested in order. The value of the first match is used as result of this transform. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--match--patterns))
 
 <a id="nestedatt--spec--environment--patches--transforms--match--patterns"></a>
 ### Nested Schema for `spec.environment.patches.transforms.match.patterns`
@@ -231,12 +231,12 @@ Optional:
 Required:
 
 - `result` (Map of String) The value that is used as result of the transform if the pattern matches.
-- `type` (String) Type specifies how the pattern matches the input.* 'literal' - the pattern value has to exactly match (case sensitive) theinput string. This is the default.* 'regexp' - the pattern treated as a regular expression againstwhich the input string is tested. Crossplane will throw an error if thekey is not a valid regexp.
+- `type` (String) Type specifies how the pattern matches the input. * 'literal' - the pattern value has to exactly match (case sensitive) the input string. This is the default. * 'regexp' - the pattern treated as a regular expression against which the input string is tested. Crossplane will throw an error if the key is not a valid regexp.
 
 Optional:
 
-- `literal` (String) Literal exactly matches the input string (case sensitive).Is required if 'type' is 'literal'.
-- `regexp` (String) Regexp to match against the input string.Is required if 'type' is 'regexp'.
+- `literal` (String) Literal exactly matches the input string (case sensitive). Is required if 'type' is 'literal'.
+- `regexp` (String) Regexp to match against the input string. Is required if 'type' is 'regexp'.
 
 
 
@@ -256,8 +256,8 @@ Optional:
 
 Optional:
 
-- `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.
-- `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
+- `convert` (String) Optional conversion method to be specified. 'ToUpper' and 'ToLower' change the letter case of the input string. 'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string. 'ToJson' converts any input value into its raw JSON representation. 'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the input converted to JSON. 'ToAdler32' generate a addler32 hash based on the input string.
+- `fmt` (String) Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.
 - `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--string--join))
 - `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--environment--patches--transforms--string--regexp))
 - `trim` (String) Trim the prefix or suffix from the input
@@ -268,7 +268,7 @@ Optional:
 
 Required:
 
-- `separator` (String) Separator defines the character that should separate the values from eachother in the joined string.
+- `separator` (String) Separator defines the character that should separate the values from each other in the joined string.
 
 
 <a id="nestedatt--spec--environment--patches--transforms--string--regexp"></a>
@@ -276,7 +276,7 @@ Required:
 
 Required:
 
-- `match` (String) Match string. May optionally include submatches, aka capture groups.See https://pkg.go.dev/regexp/ for details.
+- `match` (String) Match string. May optionally include submatches, aka capture groups. See https://pkg.go.dev/regexp/ for details.
 
 Optional:
 
@@ -291,8 +291,8 @@ Optional:
 
 Optional:
 
-- `resolution` (String) Resolution specifies whether resolution of this reference is required.The default is 'Required', which means the reconcile will fail if thereference cannot be resolved. 'Optional' means this reference will bea no-op if it cannot be resolved.
-- `resolve` (String) Resolve specifies when this reference should be resolved. The defaultis 'IfNotPresent', which will attempt to resolve the reference only whenthe corresponding field is not present. Use 'Always' to resolve thereference on every reconcile.
+- `resolution` (String) Resolution specifies whether resolution of this reference is required. The default is 'Required', which means the reconcile will fail if the reference cannot be resolved. 'Optional' means this reference will be a no-op if it cannot be resolved.
+- `resolve` (String) Resolve specifies when this reference should be resolved. The default is 'IfNotPresent', which will attempt to resolve the reference only when the corresponding field is not present. Use 'Always' to resolve the reference on every reconcile.
 
 
 
@@ -309,32 +309,32 @@ Required:
 
 Optional:
 
-- `combine` (Attributes) Combine is the patch configuration for a CombineFromComposite,CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--combine))
-- `from_field_path` (String) FromFieldPath is the path of the field on the resource whose value isto be used as input. Required when type is FromCompositeFieldPath,FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.
+- `combine` (Attributes) Combine is the patch configuration for a CombineFromComposite, CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--combine))
+- `from_field_path` (String) FromFieldPath is the path of the field on the resource whose value is to be used as input. Required when type is FromCompositeFieldPath, FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.
 - `patch_set_name` (String) PatchSetName to include patches from. Required when type is PatchSet.
 - `policy` (Attributes) Policy configures the specifics of patching behaviour. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--policy))
-- `to_field_path` (String) ToFieldPath is the path of the field on the resource whose value willbe changed with the result of transforms. Leave empty if you'd like topropagate to the same path as fromFieldPath.
-- `transforms` (Attributes List) Transforms are the list of functions that are used as a FIFO pipe for theinput to be transformed. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms))
-- `type` (String) Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.
+- `to_field_path` (String) ToFieldPath is the path of the field on the resource whose value will be changed with the result of transforms. Leave empty if you'd like to propagate to the same path as fromFieldPath.
+- `transforms` (Attributes List) Transforms are the list of functions that are used as a FIFO pipe for the input to be transformed. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms))
+- `type` (String) Type sets the patching behaviour to be used. Each patch type may require its own fields to be set on the Patch object.
 
 <a id="nestedatt--spec--patch_sets--patches--combine"></a>
 ### Nested Schema for `spec.patch_sets.patches.combine`
 
 Required:
 
-- `strategy` (String) Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.
-- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved andcombined. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--combine--variables))
+- `strategy` (String) Strategy defines the strategy to use to combine the input variable values. Currently only string is supported.
+- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved and combined. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--combine--variables))
 
 Optional:
 
-- `string` (Attributes) String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--combine--string))
+- `string` (Attributes) String declares that input variables should be combined into a single string, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--combine--string))
 
 <a id="nestedatt--spec--patch_sets--patches--combine--variables"></a>
 ### Nested Schema for `spec.patch_sets.patches.combine.variables`
 
 Required:
 
-- `from_field_path` (String) FromFieldPath is the path of the field on the source whose value isto be used as input.
+- `from_field_path` (String) FromFieldPath is the path of the field on the source whose value is to be used as input.
 
 
 <a id="nestedatt--spec--patch_sets--patches--combine--string"></a>
@@ -342,7 +342,7 @@ Required:
 
 Required:
 
-- `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
+- `fmt` (String) Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.
 
 
 
@@ -351,7 +351,7 @@ Required:
 
 Optional:
 
-- `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.
+- `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is 'Optional', which means the patch will be a no-op if the specified fromFieldPath does not exist. Use 'Required' if the patch should fail if the specified path does not exist.
 - `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--policy--merge_options))
 
 <a id="nestedatt--spec--patch_sets--patches--policy--merge_options"></a>
@@ -376,8 +376,8 @@ Optional:
 - `convert` (Attributes) Convert is used to cast the input into the given output type. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--convert))
 - `map` (Map of String) Map uses the input as a key in the given map and returns the value.
 - `match` (Attributes) Match is a more complex version of Map that matches a list of patterns. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--match))
-- `math` (Attributes) Math is used to transform the input via mathematical operations such asmultiplication. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--math))
-- `string` (Attributes) String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--string))
+- `math` (Attributes) Math is used to transform the input via mathematical operations such as multiplication. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--math))
+- `string` (Attributes) String is used to transform the input into a string or a different kind of string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--string))
 
 <a id="nestedatt--spec--patch_sets--patches--transforms--convert"></a>
 ### Nested Schema for `spec.patch_sets.patches.transforms.convert`
@@ -388,7 +388,7 @@ Required:
 
 Optional:
 
-- `format` (String) The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.
+- `format` (String) The expected input format. * 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity). Only used during 'string -> float64' conversions. * 'json' - parses the input as a JSON string. Only used during 'string -> object' or 'string -> list' conversions. If this property is null, the default conversion is applied.
 
 
 <a id="nestedatt--spec--patch_sets--patches--transforms--match"></a>
@@ -397,8 +397,8 @@ Optional:
 Optional:
 
 - `fallback_to` (String) Determines to what value the transform should fallback if no pattern matches.
-- `fallback_value` (Map of String) The fallback value that should be returned by the transform if now patternmatches.
-- `patterns` (Attributes List) The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--match--patterns))
+- `fallback_value` (Map of String) The fallback value that should be returned by the transform if now pattern matches.
+- `patterns` (Attributes List) The patterns that should be tested against the input string. Patterns are tested in order. The value of the first match is used as result of this transform. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--match--patterns))
 
 <a id="nestedatt--spec--patch_sets--patches--transforms--match--patterns"></a>
 ### Nested Schema for `spec.patch_sets.patches.transforms.match.patterns`
@@ -406,12 +406,12 @@ Optional:
 Required:
 
 - `result` (Map of String) The value that is used as result of the transform if the pattern matches.
-- `type` (String) Type specifies how the pattern matches the input.* 'literal' - the pattern value has to exactly match (case sensitive) theinput string. This is the default.* 'regexp' - the pattern treated as a regular expression againstwhich the input string is tested. Crossplane will throw an error if thekey is not a valid regexp.
+- `type` (String) Type specifies how the pattern matches the input. * 'literal' - the pattern value has to exactly match (case sensitive) the input string. This is the default. * 'regexp' - the pattern treated as a regular expression against which the input string is tested. Crossplane will throw an error if the key is not a valid regexp.
 
 Optional:
 
-- `literal` (String) Literal exactly matches the input string (case sensitive).Is required if 'type' is 'literal'.
-- `regexp` (String) Regexp to match against the input string.Is required if 'type' is 'regexp'.
+- `literal` (String) Literal exactly matches the input string (case sensitive). Is required if 'type' is 'literal'.
+- `regexp` (String) Regexp to match against the input string. Is required if 'type' is 'regexp'.
 
 
 
@@ -431,8 +431,8 @@ Optional:
 
 Optional:
 
-- `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.
-- `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
+- `convert` (String) Optional conversion method to be specified. 'ToUpper' and 'ToLower' change the letter case of the input string. 'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string. 'ToJson' converts any input value into its raw JSON representation. 'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the input converted to JSON. 'ToAdler32' generate a addler32 hash based on the input string.
+- `fmt` (String) Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.
 - `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--string--join))
 - `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--patch_sets--patches--transforms--string--regexp))
 - `trim` (String) Trim the prefix or suffix from the input
@@ -443,7 +443,7 @@ Optional:
 
 Required:
 
-- `separator` (String) Separator defines the character that should separate the values from eachother in the joined string.
+- `separator` (String) Separator defines the character that should separate the values from each other in the joined string.
 
 
 <a id="nestedatt--spec--patch_sets--patches--transforms--string--regexp"></a>
@@ -451,7 +451,7 @@ Required:
 
 Required:
 
-- `match` (String) Match string. May optionally include submatches, aka capture groups.See https://pkg.go.dev/regexp/ for details.
+- `match` (String) Match string. May optionally include submatches, aka capture groups. See https://pkg.go.dev/regexp/ for details.
 
 Optional:
 
@@ -467,13 +467,13 @@ Optional:
 
 Required:
 
-- `function_ref` (Attributes) FunctionRef is a reference to the Composition Function this step shouldexecute. (see [below for nested schema](#nestedatt--spec--pipeline--function_ref))
+- `function_ref` (Attributes) FunctionRef is a reference to the Composition Function this step should execute. (see [below for nested schema](#nestedatt--spec--pipeline--function_ref))
 - `step` (String) Step name. Must be unique within its Pipeline.
 
 Optional:
 
 - `credentials` (Attributes List) Credentials are optional credentials that the Composition Function needs. (see [below for nested schema](#nestedatt--spec--pipeline--credentials))
-- `input` (Map of String) Input is an optional, arbitrary Kubernetes resource (i.e. a resourcewith an apiVersion and kind) that will be passed to the CompositionFunction as the 'input' of its RunFunctionRequest.
+- `input` (Map of String) Input is an optional, arbitrary Kubernetes resource (i.e. a resource with an apiVersion and kind) that will be passed to the Composition Function as the 'input' of its RunFunctionRequest.
 
 <a id="nestedatt--spec--pipeline--function_ref"></a>
 ### Nested Schema for `spec.pipeline.function_ref`
@@ -493,7 +493,7 @@ Required:
 
 Optional:
 
-- `secret_ref` (Attributes) A SecretRef is a reference to a secret containing credentials that shouldbe supplied to the function. (see [below for nested schema](#nestedatt--spec--pipeline--credentials--secret_ref))
+- `secret_ref` (Attributes) A SecretRef is a reference to a secret containing credentials that should be supplied to the function. (see [below for nested schema](#nestedatt--spec--pipeline--credentials--secret_ref))
 
 <a id="nestedatt--spec--pipeline--credentials--secret_ref"></a>
 ### Nested Schema for `spec.pipeline.credentials.secret_ref`
@@ -523,21 +523,21 @@ Required:
 
 Optional:
 
-- `connection_details` (Attributes List) ConnectionDetails lists the propagation secret keys from this targetresource to the composition instance connection secret. (see [below for nested schema](#nestedatt--spec--resources--connection_details))
-- `name` (String) A Name uniquely identifies this entry within its Composition's resourcesarray. Names are optional but *strongly* recommended. When all entries inthe resources array are named entries may added, deleted, and reorderedas long as their names do not change. When entries are not named thelength and order of the resources array should be treated as immutable.Either all or no entries must be named.
+- `connection_details` (Attributes List) ConnectionDetails lists the propagation secret keys from this target resource to the composition instance connection secret. (see [below for nested schema](#nestedatt--spec--resources--connection_details))
+- `name` (String) A Name uniquely identifies this entry within its Composition's resources array. Names are optional but *strongly* recommended. When all entries in the resources array are named entries may added, deleted, and reordered as long as their names do not change. When entries are not named the length and order of the resources array should be treated as immutable. Either all or no entries must be named.
 - `patches` (Attributes List) Patches will be applied as overlay to the base resource. (see [below for nested schema](#nestedatt--spec--resources--patches))
-- `readiness_checks` (Attributes List) ReadinessChecks allows users to define custom readiness checks. All checkshave to return true in order for resource to be considered ready. Thedefault readiness check is to have the 'Ready' condition to be 'True'. (see [below for nested schema](#nestedatt--spec--resources--readiness_checks))
+- `readiness_checks` (Attributes List) ReadinessChecks allows users to define custom readiness checks. All checks have to return true in order for resource to be considered ready. The default readiness check is to have the 'Ready' condition to be 'True'. (see [below for nested schema](#nestedatt--spec--resources--readiness_checks))
 
 <a id="nestedatt--spec--resources--connection_details"></a>
 ### Nested Schema for `spec.resources.connection_details`
 
 Optional:
 
-- `from_connection_secret_key` (String) FromConnectionSecretKey is the key that will be used to fetch the valuefrom the composed resource's connection secret.
-- `from_field_path` (String) FromFieldPath is the path of the field on the composed resource whosevalue to be used as input. Name must be specified if the type isFromFieldPath.
-- `name` (String) Name of the connection secret key that will be propagated to theconnection secret of the composition instance. Leave empty if you'd liketo use the same key name.
-- `type` (String) Type sets the connection detail fetching behaviour to be used. Eachconnection detail type may require its own fields to be set on theConnectionDetail object. If the type is omitted Crossplane will attemptto infer it based on which other fields were specified. If multiplefields are specified the order of precedence is:1. FromValue2. FromConnectionSecretKey3. FromFieldPath
-- `value` (String) Value that will be propagated to the connection secret of the compositeresource. May be set to inject a fixed, non-sensitive connection secretvalue, for example a well-known port.
+- `from_connection_secret_key` (String) FromConnectionSecretKey is the key that will be used to fetch the value from the composed resource's connection secret.
+- `from_field_path` (String) FromFieldPath is the path of the field on the composed resource whose value to be used as input. Name must be specified if the type is FromFieldPath.
+- `name` (String) Name of the connection secret key that will be propagated to the connection secret of the composition instance. Leave empty if you'd like to use the same key name.
+- `type` (String) Type sets the connection detail fetching behaviour to be used. Each connection detail type may require its own fields to be set on the ConnectionDetail object. If the type is omitted Crossplane will attempt to infer it based on which other fields were specified. If multiple fields are specified the order of precedence is: 1. FromValue 2. FromConnectionSecretKey 3. FromFieldPath
+- `value` (String) Value that will be propagated to the connection secret of the composite resource. May be set to inject a fixed, non-sensitive connection secret value, for example a well-known port.
 
 
 <a id="nestedatt--spec--resources--patches"></a>
@@ -545,32 +545,32 @@ Optional:
 
 Optional:
 
-- `combine` (Attributes) Combine is the patch configuration for a CombineFromComposite,CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch. (see [below for nested schema](#nestedatt--spec--resources--patches--combine))
-- `from_field_path` (String) FromFieldPath is the path of the field on the resource whose value isto be used as input. Required when type is FromCompositeFieldPath,FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.
+- `combine` (Attributes) Combine is the patch configuration for a CombineFromComposite, CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch. (see [below for nested schema](#nestedatt--spec--resources--patches--combine))
+- `from_field_path` (String) FromFieldPath is the path of the field on the resource whose value is to be used as input. Required when type is FromCompositeFieldPath, FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.
 - `patch_set_name` (String) PatchSetName to include patches from. Required when type is PatchSet.
 - `policy` (Attributes) Policy configures the specifics of patching behaviour. (see [below for nested schema](#nestedatt--spec--resources--patches--policy))
-- `to_field_path` (String) ToFieldPath is the path of the field on the resource whose value willbe changed with the result of transforms. Leave empty if you'd like topropagate to the same path as fromFieldPath.
-- `transforms` (Attributes List) Transforms are the list of functions that are used as a FIFO pipe for theinput to be transformed. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms))
-- `type` (String) Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.
+- `to_field_path` (String) ToFieldPath is the path of the field on the resource whose value will be changed with the result of transforms. Leave empty if you'd like to propagate to the same path as fromFieldPath.
+- `transforms` (Attributes List) Transforms are the list of functions that are used as a FIFO pipe for the input to be transformed. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms))
+- `type` (String) Type sets the patching behaviour to be used. Each patch type may require its own fields to be set on the Patch object.
 
 <a id="nestedatt--spec--resources--patches--combine"></a>
 ### Nested Schema for `spec.resources.patches.combine`
 
 Required:
 
-- `strategy` (String) Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.
-- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved andcombined. (see [below for nested schema](#nestedatt--spec--resources--patches--combine--variables))
+- `strategy` (String) Strategy defines the strategy to use to combine the input variable values. Currently only string is supported.
+- `variables` (Attributes List) Variables are the list of variables whose values will be retrieved and combined. (see [below for nested schema](#nestedatt--spec--resources--patches--combine--variables))
 
 Optional:
 
-- `string` (Attributes) String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--resources--patches--combine--string))
+- `string` (Attributes) String declares that input variables should be combined into a single string, using the relevant settings for formatting purposes. (see [below for nested schema](#nestedatt--spec--resources--patches--combine--string))
 
 <a id="nestedatt--spec--resources--patches--combine--variables"></a>
 ### Nested Schema for `spec.resources.patches.combine.variables`
 
 Required:
 
-- `from_field_path` (String) FromFieldPath is the path of the field on the source whose value isto be used as input.
+- `from_field_path` (String) FromFieldPath is the path of the field on the source whose value is to be used as input.
 
 
 <a id="nestedatt--spec--resources--patches--combine--string"></a>
@@ -578,7 +578,7 @@ Required:
 
 Required:
 
-- `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
+- `fmt` (String) Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.
 
 
 
@@ -587,7 +587,7 @@ Required:
 
 Optional:
 
-- `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.
+- `from_field_path` (String) FromFieldPath specifies how to patch from a field path. The default is 'Optional', which means the patch will be a no-op if the specified fromFieldPath does not exist. Use 'Required' if the patch should fail if the specified path does not exist.
 - `merge_options` (Attributes) MergeOptions Specifies merge options on a field path. (see [below for nested schema](#nestedatt--spec--resources--patches--policy--merge_options))
 
 <a id="nestedatt--spec--resources--patches--policy--merge_options"></a>
@@ -612,8 +612,8 @@ Optional:
 - `convert` (Attributes) Convert is used to cast the input into the given output type. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--convert))
 - `map` (Map of String) Map uses the input as a key in the given map and returns the value.
 - `match` (Attributes) Match is a more complex version of Map that matches a list of patterns. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--match))
-- `math` (Attributes) Math is used to transform the input via mathematical operations such asmultiplication. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--math))
-- `string` (Attributes) String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--string))
+- `math` (Attributes) Math is used to transform the input via mathematical operations such as multiplication. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--math))
+- `string` (Attributes) String is used to transform the input into a string or a different kind of string. Note that the input does not necessarily need to be a string. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--string))
 
 <a id="nestedatt--spec--resources--patches--transforms--convert"></a>
 ### Nested Schema for `spec.resources.patches.transforms.convert`
@@ -624,7 +624,7 @@ Required:
 
 Optional:
 
-- `format` (String) The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.
+- `format` (String) The expected input format. * 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity). Only used during 'string -> float64' conversions. * 'json' - parses the input as a JSON string. Only used during 'string -> object' or 'string -> list' conversions. If this property is null, the default conversion is applied.
 
 
 <a id="nestedatt--spec--resources--patches--transforms--match"></a>
@@ -633,8 +633,8 @@ Optional:
 Optional:
 
 - `fallback_to` (String) Determines to what value the transform should fallback if no pattern matches.
-- `fallback_value` (Map of String) The fallback value that should be returned by the transform if now patternmatches.
-- `patterns` (Attributes List) The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--match--patterns))
+- `fallback_value` (Map of String) The fallback value that should be returned by the transform if now pattern matches.
+- `patterns` (Attributes List) The patterns that should be tested against the input string. Patterns are tested in order. The value of the first match is used as result of this transform. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--match--patterns))
 
 <a id="nestedatt--spec--resources--patches--transforms--match--patterns"></a>
 ### Nested Schema for `spec.resources.patches.transforms.match.patterns`
@@ -642,12 +642,12 @@ Optional:
 Required:
 
 - `result` (Map of String) The value that is used as result of the transform if the pattern matches.
-- `type` (String) Type specifies how the pattern matches the input.* 'literal' - the pattern value has to exactly match (case sensitive) theinput string. This is the default.* 'regexp' - the pattern treated as a regular expression againstwhich the input string is tested. Crossplane will throw an error if thekey is not a valid regexp.
+- `type` (String) Type specifies how the pattern matches the input. * 'literal' - the pattern value has to exactly match (case sensitive) the input string. This is the default. * 'regexp' - the pattern treated as a regular expression against which the input string is tested. Crossplane will throw an error if the key is not a valid regexp.
 
 Optional:
 
-- `literal` (String) Literal exactly matches the input string (case sensitive).Is required if 'type' is 'literal'.
-- `regexp` (String) Regexp to match against the input string.Is required if 'type' is 'regexp'.
+- `literal` (String) Literal exactly matches the input string (case sensitive). Is required if 'type' is 'literal'.
+- `regexp` (String) Regexp to match against the input string. Is required if 'type' is 'regexp'.
 
 
 
@@ -667,8 +667,8 @@ Optional:
 
 Optional:
 
-- `convert` (String) Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.
-- `fmt` (String) Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.
+- `convert` (String) Optional conversion method to be specified. 'ToUpper' and 'ToLower' change the letter case of the input string. 'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string. 'ToJson' converts any input value into its raw JSON representation. 'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the input converted to JSON. 'ToAdler32' generate a addler32 hash based on the input string.
+- `fmt` (String) Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.
 - `join` (Attributes) Join defines parameters to join a slice of values to a string. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--string--join))
 - `regexp` (Attributes) Extract a match from the input using a regular expression. (see [below for nested schema](#nestedatt--spec--resources--patches--transforms--string--regexp))
 - `trim` (String) Trim the prefix or suffix from the input
@@ -679,7 +679,7 @@ Optional:
 
 Required:
 
-- `separator` (String) Separator defines the character that should separate the values from eachother in the joined string.
+- `separator` (String) Separator defines the character that should separate the values from each other in the joined string.
 
 
 <a id="nestedatt--spec--resources--patches--transforms--string--regexp"></a>
@@ -687,7 +687,7 @@ Required:
 
 Required:
 
-- `match` (String) Match string. May optionally include submatches, aka capture groups.See https://pkg.go.dev/regexp/ for details.
+- `match` (String) Match string. May optionally include submatches, aka capture groups. See https://pkg.go.dev/regexp/ for details.
 
 Optional:
 

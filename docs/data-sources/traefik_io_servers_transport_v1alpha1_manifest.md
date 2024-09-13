@@ -3,12 +3,12 @@
 page_title: "k8s_traefik_io_servers_transport_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  ServersTransport is the CRD implementation of a ServersTransport.If no serversTransport is specified, the default@internal will be used.The default@internal serversTransport is created from the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_1
+  ServersTransport is the CRD implementation of a ServersTransport. If no serversTransport is specified, the default@internal will be used. The default@internal serversTransport is created from the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_1
 ---
 
 # k8s_traefik_io_servers_transport_v1alpha1_manifest (Data Source)
 
-ServersTransport is the CRD implementation of a ServersTransport.If no serversTransport is specified, the default@internal will be used.The default@internal serversTransport is created from the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_1
+ServersTransport is the CRD implementation of a ServersTransport. If no serversTransport is specified, the default@internal will be used. The default@internal serversTransport is created from the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_1
 
 ## Example Usage
 

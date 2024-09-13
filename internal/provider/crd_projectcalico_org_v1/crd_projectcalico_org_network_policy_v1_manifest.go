@@ -246,8 +246,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"egress": schema.ListNestedAttribute{
-						Description:         "The ordered set of egress rules.  Each rule contains a set of packet match criteria and a corresponding action to apply.",
-						MarkdownDescription: "The ordered set of egress rules.  Each rule contains a set of packet match criteria and a corresponding action to apply.",
+						Description:         "The ordered set of egress rules. Each rule contains a set of packet match criteria and a corresponding action to apply.",
+						MarkdownDescription: "The ordered set of egress rules. Each rule contains a set of packet match criteria and a corresponding action to apply.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
@@ -263,8 +263,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "Destination contains the match criteria that apply to destination entity.",
 									Attributes: map[string]schema.Attribute{
 										"namespace_selector": schema.StringAttribute{
-											Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
-											MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+											Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule. For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy. For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint. For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+											MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule. For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy. For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint. For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -298,16 +298,16 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"not_selector": schema.StringAttribute{
-											Description:         "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
-											MarkdownDescription: "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
+											Description:         "NotSelector is the negated version of the Selector field. See Selector field for subtleties with negated selectors.",
+											MarkdownDescription: "NotSelector is the negated version of the Selector field. See Selector field for subtleties with negated selectors.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"ports": schema.ListAttribute{
-											Description:         "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
-											MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+											Description:         "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+											MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -315,8 +315,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"selector": schema.StringAttribute{
-											Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
-											MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+											Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax). Only traffic that originates from (terminates at) endpoints matching the selector will be matched. Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation. The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match: Selector = '!has(my_label)' matches packets that are from other Calico-controlled endpoints that do not have the label 'my_label'. NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled endpoints that do have the label 'my_label'. The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+											MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax). Only traffic that originates from (terminates at) endpoints matching the selector will be matched. Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation. The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match: Selector = '!has(my_label)' matches packets that are from other Calico-controlled endpoints that do not have the label 'my_label'. NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled endpoints that do have the label 'my_label'. The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -349,8 +349,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"services": schema.SingleNestedAttribute{
-											Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
-											MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
+											Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port. Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts. Ports and NotPorts can only be specified with Services on ingress rules.",
+											MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port. Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts. Ports and NotPorts can only be specified with Services on ingress rules.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "Name specifies the name of a Kubernetes Service to match.",
@@ -424,20 +424,20 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 								},
 
 								"icmp": schema.SingleNestedAttribute{
-									Description:         "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
-									MarkdownDescription: "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
+									Description:         "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic. This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
+									MarkdownDescription: "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic. This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
 									Attributes: map[string]schema.Attribute{
 										"code": schema.Int64Attribute{
-											Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
-											MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+											Description:         "Match on a specific ICMP code. If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+											MarkdownDescription: "Match on a specific ICMP code. If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"type": schema.Int64Attribute{
-											Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
-											MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+											Description:         "Match on a specific ICMP type. For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+											MarkdownDescription: "Match on a specific ICMP type. For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -479,16 +479,16 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "NotICMP is the negated version of the ICMP field.",
 									Attributes: map[string]schema.Attribute{
 										"code": schema.Int64Attribute{
-											Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
-											MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+											Description:         "Match on a specific ICMP code. If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+											MarkdownDescription: "Match on a specific ICMP code. If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"type": schema.Int64Attribute{
-											Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
-											MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+											Description:         "Match on a specific ICMP type. For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+											MarkdownDescription: "Match on a specific ICMP type. For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -508,8 +508,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 								},
 
 								"protocol": schema.StringAttribute{
-									Description:         "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
-									MarkdownDescription: "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
+									Description:         "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols). Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
+									MarkdownDescription: "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols). Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -520,8 +520,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "Source contains the match criteria that apply to source entity.",
 									Attributes: map[string]schema.Attribute{
 										"namespace_selector": schema.StringAttribute{
-											Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
-											MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+											Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule. For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy. For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint. For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+											MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule. For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy. For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint. For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -555,16 +555,16 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"not_selector": schema.StringAttribute{
-											Description:         "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
-											MarkdownDescription: "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
+											Description:         "NotSelector is the negated version of the Selector field. See Selector field for subtleties with negated selectors.",
+											MarkdownDescription: "NotSelector is the negated version of the Selector field. See Selector field for subtleties with negated selectors.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"ports": schema.ListAttribute{
-											Description:         "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
-											MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+											Description:         "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+											MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -572,8 +572,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"selector": schema.StringAttribute{
-											Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
-											MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+											Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax). Only traffic that originates from (terminates at) endpoints matching the selector will be matched. Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation. The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match: Selector = '!has(my_label)' matches packets that are from other Calico-controlled endpoints that do not have the label 'my_label'. NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled endpoints that do have the label 'my_label'. The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+											MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax). Only traffic that originates from (terminates at) endpoints matching the selector will be matched. Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation. The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match: Selector = '!has(my_label)' matches packets that are from other Calico-controlled endpoints that do not have the label 'my_label'. NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled endpoints that do have the label 'my_label'. The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -606,8 +606,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"services": schema.SingleNestedAttribute{
-											Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
-											MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
+											Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port. Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts. Ports and NotPorts can only be specified with Services on ingress rules.",
+											MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port. Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts. Ports and NotPorts can only be specified with Services on ingress rules.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "Name specifies the name of a Kubernetes Service to match.",
@@ -642,8 +642,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 					},
 
 					"ingress": schema.ListNestedAttribute{
-						Description:         "The ordered set of ingress rules.  Each rule contains a set of packet match criteria and a corresponding action to apply.",
-						MarkdownDescription: "The ordered set of ingress rules.  Each rule contains a set of packet match criteria and a corresponding action to apply.",
+						Description:         "The ordered set of ingress rules. Each rule contains a set of packet match criteria and a corresponding action to apply.",
+						MarkdownDescription: "The ordered set of ingress rules. Each rule contains a set of packet match criteria and a corresponding action to apply.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
@@ -659,8 +659,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "Destination contains the match criteria that apply to destination entity.",
 									Attributes: map[string]schema.Attribute{
 										"namespace_selector": schema.StringAttribute{
-											Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
-											MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+											Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule. For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy. For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint. For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+											MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule. For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy. For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint. For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -694,16 +694,16 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"not_selector": schema.StringAttribute{
-											Description:         "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
-											MarkdownDescription: "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
+											Description:         "NotSelector is the negated version of the Selector field. See Selector field for subtleties with negated selectors.",
+											MarkdownDescription: "NotSelector is the negated version of the Selector field. See Selector field for subtleties with negated selectors.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"ports": schema.ListAttribute{
-											Description:         "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
-											MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+											Description:         "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+											MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -711,8 +711,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"selector": schema.StringAttribute{
-											Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
-											MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+											Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax). Only traffic that originates from (terminates at) endpoints matching the selector will be matched. Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation. The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match: Selector = '!has(my_label)' matches packets that are from other Calico-controlled endpoints that do not have the label 'my_label'. NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled endpoints that do have the label 'my_label'. The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+											MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax). Only traffic that originates from (terminates at) endpoints matching the selector will be matched. Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation. The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match: Selector = '!has(my_label)' matches packets that are from other Calico-controlled endpoints that do not have the label 'my_label'. NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled endpoints that do have the label 'my_label'. The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -745,8 +745,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"services": schema.SingleNestedAttribute{
-											Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
-											MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
+											Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port. Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts. Ports and NotPorts can only be specified with Services on ingress rules.",
+											MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port. Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts. Ports and NotPorts can only be specified with Services on ingress rules.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "Name specifies the name of a Kubernetes Service to match.",
@@ -820,20 +820,20 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 								},
 
 								"icmp": schema.SingleNestedAttribute{
-									Description:         "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
-									MarkdownDescription: "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
+									Description:         "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic. This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
+									MarkdownDescription: "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic. This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
 									Attributes: map[string]schema.Attribute{
 										"code": schema.Int64Attribute{
-											Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
-											MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+											Description:         "Match on a specific ICMP code. If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+											MarkdownDescription: "Match on a specific ICMP code. If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"type": schema.Int64Attribute{
-											Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
-											MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+											Description:         "Match on a specific ICMP type. For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+											MarkdownDescription: "Match on a specific ICMP type. For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -875,16 +875,16 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "NotICMP is the negated version of the ICMP field.",
 									Attributes: map[string]schema.Attribute{
 										"code": schema.Int64Attribute{
-											Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
-											MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+											Description:         "Match on a specific ICMP code. If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+											MarkdownDescription: "Match on a specific ICMP code. If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"type": schema.Int64Attribute{
-											Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
-											MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+											Description:         "Match on a specific ICMP type. For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+											MarkdownDescription: "Match on a specific ICMP type. For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -904,8 +904,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 								},
 
 								"protocol": schema.StringAttribute{
-									Description:         "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
-									MarkdownDescription: "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
+									Description:         "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols). Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
+									MarkdownDescription: "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols). Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -916,8 +916,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "Source contains the match criteria that apply to source entity.",
 									Attributes: map[string]schema.Attribute{
 										"namespace_selector": schema.StringAttribute{
-											Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
-											MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+											Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule. For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy. For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint. For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+											MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule. For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy. For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint. For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -951,16 +951,16 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"not_selector": schema.StringAttribute{
-											Description:         "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
-											MarkdownDescription: "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
+											Description:         "NotSelector is the negated version of the Selector field. See Selector field for subtleties with negated selectors.",
+											MarkdownDescription: "NotSelector is the negated version of the Selector field. See Selector field for subtleties with negated selectors.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"ports": schema.ListAttribute{
-											Description:         "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
-											MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+											Description:         "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+											MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -968,8 +968,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"selector": schema.StringAttribute{
-											Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
-											MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+											Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax). Only traffic that originates from (terminates at) endpoints matching the selector will be matched. Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation. The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match: Selector = '!has(my_label)' matches packets that are from other Calico-controlled endpoints that do not have the label 'my_label'. NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled endpoints that do have the label 'my_label'. The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+											MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax). Only traffic that originates from (terminates at) endpoints matching the selector will be matched. Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation. The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match: Selector = '!has(my_label)' matches packets that are from other Calico-controlled endpoints that do not have the label 'my_label'. NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled endpoints that do have the label 'my_label'. The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1002,8 +1002,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 										},
 
 										"services": schema.SingleNestedAttribute{
-											Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
-											MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
+											Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port. Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts. Ports and NotPorts can only be specified with Services on ingress rules.",
+											MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port. Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts. Ports and NotPorts can only be specified with Services on ingress rules.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "Name specifies the name of a Kubernetes Service to match.",
@@ -1038,16 +1038,16 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 					},
 
 					"order": schema.Float64Attribute{
-						Description:         "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order within the same tier.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name' within the tier.",
-						MarkdownDescription: "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order within the same tier.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name' within the tier.",
+						Description:         "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order within the same tier. If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last. Policies with identical order will be applied in alphanumerical order based on the Policy 'Name' within the tier.",
+						MarkdownDescription: "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order within the same tier. If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last. Policies with identical order will be applied in alphanumerical order based on the Policy 'Name' within the tier.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"performance_hints": schema.ListAttribute{
-						Description:         "PerformanceHints contains a list of hints to Calico's policy engine to help process the policy more efficiently.  Hints never change the enforcement behaviour of the policy.  Currently, the only available hint is 'AssumeNeededOnEveryNode'.  When that hint is set on a policy, Felix will act as if the policy matches a local endpoint even if it does not. This is useful for 'preloading' any large static policies that are known to be used on every node. If the policy is _not_ used on a particular node then the work done to preload the policy (and to maintain it) is wasted.",
-						MarkdownDescription: "PerformanceHints contains a list of hints to Calico's policy engine to help process the policy more efficiently.  Hints never change the enforcement behaviour of the policy.  Currently, the only available hint is 'AssumeNeededOnEveryNode'.  When that hint is set on a policy, Felix will act as if the policy matches a local endpoint even if it does not. This is useful for 'preloading' any large static policies that are known to be used on every node. If the policy is _not_ used on a particular node then the work done to preload the policy (and to maintain it) is wasted.",
+						Description:         "PerformanceHints contains a list of hints to Calico's policy engine to help process the policy more efficiently. Hints never change the enforcement behaviour of the policy. Currently, the only available hint is 'AssumeNeededOnEveryNode'. When that hint is set on a policy, Felix will act as if the policy matches a local endpoint even if it does not. This is useful for 'preloading' any large static policies that are known to be used on every node. If the policy is _not_ used on a particular node then the work done to preload the policy (and to maintain it) is wasted.",
+						MarkdownDescription: "PerformanceHints contains a list of hints to Calico's policy engine to help process the policy more efficiently. Hints never change the enforcement behaviour of the policy. Currently, the only available hint is 'AssumeNeededOnEveryNode'. When that hint is set on a policy, Felix will act as if the policy matches a local endpoint even if it does not. This is useful for 'preloading' any large static policies that are known to be used on every node. If the policy is _not_ used on a particular node then the work done to preload the policy (and to maintain it) is wasted.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1055,8 +1055,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 					},
 
 					"selector": schema.StringAttribute{
-						Description:         "The selector is an expression used to pick out the endpoints that the policy should be applied to.  Selector expressions follow this syntax:  	label == 'string_literal'  ->  comparison, e.g. my_label == 'foo bar' 	label != 'string_literal'   ->  not equal; also matches if label is not present 	label in { 'a', 'b', 'c', ... }  ->  true if the value of label X is one of 'a', 'b', 'c' 	label not in { 'a', 'b', 'c', ... }  ->  true if the value of label X is not one of 'a', 'b', 'c' 	has(label_name)  -> True if that label is present 	! expr -> negation of expr 	expr && expr  -> Short-circuit and 	expr || expr  -> Short-circuit or 	( expr ) -> parens for grouping 	all() or the empty selector -> matches all endpoints.  Label names are allowed to contain alphanumerics, -, _ and /. String literals are more permissive but they do not support escape characters.  Examples (with made-up labels):  	type == 'webserver' && deployment == 'prod' 	type in {'frontend', 'backend'} 	deployment != 'dev' 	! has(label_name)",
-						MarkdownDescription: "The selector is an expression used to pick out the endpoints that the policy should be applied to.  Selector expressions follow this syntax:  	label == 'string_literal'  ->  comparison, e.g. my_label == 'foo bar' 	label != 'string_literal'   ->  not equal; also matches if label is not present 	label in { 'a', 'b', 'c', ... }  ->  true if the value of label X is one of 'a', 'b', 'c' 	label not in { 'a', 'b', 'c', ... }  ->  true if the value of label X is not one of 'a', 'b', 'c' 	has(label_name)  -> True if that label is present 	! expr -> negation of expr 	expr && expr  -> Short-circuit and 	expr || expr  -> Short-circuit or 	( expr ) -> parens for grouping 	all() or the empty selector -> matches all endpoints.  Label names are allowed to contain alphanumerics, -, _ and /. String literals are more permissive but they do not support escape characters.  Examples (with made-up labels):  	type == 'webserver' && deployment == 'prod' 	type in {'frontend', 'backend'} 	deployment != 'dev' 	! has(label_name)",
+						Description:         "The selector is an expression used to pick out the endpoints that the policy should be applied to. Selector expressions follow this syntax: label == 'string_literal' -> comparison, e.g. my_label == 'foo bar' label != 'string_literal' -> not equal; also matches if label is not present label in { 'a', 'b', 'c', ... } -> true if the value of label X is one of 'a', 'b', 'c' label not in { 'a', 'b', 'c', ... } -> true if the value of label X is not one of 'a', 'b', 'c' has(label_name) -> True if that label is present ! expr -> negation of expr expr && expr -> Short-circuit and expr || expr -> Short-circuit or ( expr ) -> parens for grouping all() or the empty selector -> matches all endpoints. Label names are allowed to contain alphanumerics, -, _ and /. String literals are more permissive but they do not support escape characters. Examples (with made-up labels): type == 'webserver' && deployment == 'prod' type in {'frontend', 'backend'} deployment != 'dev' ! has(label_name)",
+						MarkdownDescription: "The selector is an expression used to pick out the endpoints that the policy should be applied to. Selector expressions follow this syntax: label == 'string_literal' -> comparison, e.g. my_label == 'foo bar' label != 'string_literal' -> not equal; also matches if label is not present label in { 'a', 'b', 'c', ... } -> true if the value of label X is one of 'a', 'b', 'c' label not in { 'a', 'b', 'c', ... } -> true if the value of label X is not one of 'a', 'b', 'c' has(label_name) -> True if that label is present ! expr -> negation of expr expr && expr -> Short-circuit and expr || expr -> Short-circuit or ( expr ) -> parens for grouping all() or the empty selector -> matches all endpoints. Label names are allowed to contain alphanumerics, -, _ and /. String literals are more permissive but they do not support escape characters. Examples (with made-up labels): type == 'webserver' && deployment == 'prod' type in {'frontend', 'backend'} deployment != 'dev' ! has(label_name)",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1071,16 +1071,16 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 					},
 
 					"tier": schema.StringAttribute{
-						Description:         "The name of the tier that this policy belongs to.  If this is omitted, the default tier (name is 'default') is assumed.  The specified tier must exist in order to create security policies within the tier, the 'default' tier is created automatically if it does not exist, this means for deployments requiring only a single Tier, the tier name may be omitted on all policy management requests.",
-						MarkdownDescription: "The name of the tier that this policy belongs to.  If this is omitted, the default tier (name is 'default') is assumed.  The specified tier must exist in order to create security policies within the tier, the 'default' tier is created automatically if it does not exist, this means for deployments requiring only a single Tier, the tier name may be omitted on all policy management requests.",
+						Description:         "The name of the tier that this policy belongs to. If this is omitted, the default tier (name is 'default') is assumed. The specified tier must exist in order to create security policies within the tier, the 'default' tier is created automatically if it does not exist, this means for deployments requiring only a single Tier, the tier name may be omitted on all policy management requests.",
+						MarkdownDescription: "The name of the tier that this policy belongs to. If this is omitted, the default tier (name is 'default') is assumed. The specified tier must exist in order to create security policies within the tier, the 'default' tier is created automatically if it does not exist, this means for deployments requiring only a single Tier, the tier name may be omitted on all policy management requests.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"types": schema.ListAttribute{
-						Description:         "Types indicates whether this policy applies to ingress, or to egress, or to both.  When not explicitly specified (and so the value on creation is empty or nil), Calico defaults Types according to what Ingress and Egress are present in the policy.  The default is:  - [ PolicyTypeIngress ], if there are no Egress rules (including the case where there are   also no Ingress rules)  - [ PolicyTypeEgress ], if there are Egress rules but no Ingress rules  - [ PolicyTypeIngress, PolicyTypeEgress ], if there are both Ingress and Egress rules.  When the policy is read back again, Types will always be one of these values, never empty or nil.",
-						MarkdownDescription: "Types indicates whether this policy applies to ingress, or to egress, or to both.  When not explicitly specified (and so the value on creation is empty or nil), Calico defaults Types according to what Ingress and Egress are present in the policy.  The default is:  - [ PolicyTypeIngress ], if there are no Egress rules (including the case where there are   also no Ingress rules)  - [ PolicyTypeEgress ], if there are Egress rules but no Ingress rules  - [ PolicyTypeIngress, PolicyTypeEgress ], if there are both Ingress and Egress rules.  When the policy is read back again, Types will always be one of these values, never empty or nil.",
+						Description:         "Types indicates whether this policy applies to ingress, or to egress, or to both. When not explicitly specified (and so the value on creation is empty or nil), Calico defaults Types according to what Ingress and Egress are present in the policy. The default is: - [ PolicyTypeIngress ], if there are no Egress rules (including the case where there are also no Ingress rules) - [ PolicyTypeEgress ], if there are Egress rules but no Ingress rules - [ PolicyTypeIngress, PolicyTypeEgress ], if there are both Ingress and Egress rules. When the policy is read back again, Types will always be one of these values, never empty or nil.",
+						MarkdownDescription: "Types indicates whether this policy applies to ingress, or to egress, or to both. When not explicitly specified (and so the value on creation is empty or nil), Calico defaults Types according to what Ingress and Egress are present in the policy. The default is: - [ PolicyTypeIngress ], if there are no Egress rules (including the case where there are also no Ingress rules) - [ PolicyTypeEgress ], if there are Egress rules but no Ingress rules - [ PolicyTypeIngress, PolicyTypeEgress ], if there are both Ingress and Egress rules. When the policy is read back again, Types will always be one of these values, never empty or nil.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

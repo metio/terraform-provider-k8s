@@ -30,7 +30,7 @@ data "k8s_rds_services_k8s_aws_db_proxy_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) DBProxySpec defines the desired state of DBProxy.The data structure representing a proxy managed by the RDS Proxy.This data type is used as a response element in the DescribeDBProxies action. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) DBProxySpec defines the desired state of DBProxy. The data structure representing a proxy managed by the RDS Proxy. This data type is used as a response element in the DescribeDBProxies action. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,17 +56,17 @@ Optional:
 Required:
 
 - `auth` (Attributes List) The authorization mechanism that the proxy uses. (see [below for nested schema](#nestedatt--spec--auth))
-- `engine_family` (String) The kinds of databases that the proxy can connect to. This value determineswhich database network protocol the proxy recognizes when it interprets networktraffic to and from the database. For Aurora MySQL, RDS for MariaDB, andRDS for MySQL databases, specify MYSQL. For Aurora PostgreSQL and RDS forPostgreSQL databases, specify POSTGRESQL. For RDS for Microsoft SQL Server,specify SQLSERVER.
-- `name` (String) The identifier for the proxy. This name must be unique for all proxies ownedby your Amazon Web Services account in the specified Amazon Web ServicesRegion. An identifier must begin with a letter and must contain only ASCIIletters, digits, and hyphens; it can't end with a hyphen or contain two consecutivehyphens.
-- `role_arn` (String) The Amazon Resource Name (ARN) of the IAM role that the proxy uses to accesssecrets in Amazon Web Services Secrets Manager.
+- `engine_family` (String) The kinds of databases that the proxy can connect to. This value determines which database network protocol the proxy recognizes when it interprets network traffic to and from the database. For Aurora MySQL, RDS for MariaDB, and RDS for MySQL databases, specify MYSQL. For Aurora PostgreSQL and RDS for PostgreSQL databases, specify POSTGRESQL. For RDS for Microsoft SQL Server, specify SQLSERVER.
+- `name` (String) The identifier for the proxy. This name must be unique for all proxies owned by your Amazon Web Services account in the specified Amazon Web Services Region. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens.
+- `role_arn` (String) The Amazon Resource Name (ARN) of the IAM role that the proxy uses to access secrets in Amazon Web Services Secrets Manager.
 - `vpc_subnet_i_ds` (List of String) One or more VPC subnet IDs to associate with the new proxy.
 
 Optional:
 
-- `debug_logging` (Boolean) Whether the proxy includes detailed information about SQL statements in itslogs. This information helps you to debug issues involving SQL behavior orthe performance and scalability of the proxy connections. The debug informationincludes the text of SQL statements that you submit through the proxy. Thus,only enable this setting when needed for debugging, and only when you havesecurity measures in place to safeguard any sensitive information that appearsin the logs.
-- `idle_client_timeout` (Number) The number of seconds that a connection to the proxy can be inactive beforethe proxy disconnects it. You can set this value higher or lower than theconnection timeout limit for the associated database.
-- `require_tls` (Boolean) A Boolean parameter that specifies whether Transport Layer Security (TLS)encryption is required for connections to the proxy. By enabling this setting,you can enforce encrypted TLS connections to the proxy.
-- `tags` (Attributes List) An optional set of key-value pairs to associate arbitrary data of your choosingwith the proxy. (see [below for nested schema](#nestedatt--spec--tags))
+- `debug_logging` (Boolean) Whether the proxy includes detailed information about SQL statements in its logs. This information helps you to debug issues involving SQL behavior or the performance and scalability of the proxy connections. The debug information includes the text of SQL statements that you submit through the proxy. Thus, only enable this setting when needed for debugging, and only when you have security measures in place to safeguard any sensitive information that appears in the logs.
+- `idle_client_timeout` (Number) The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it. You can set this value higher or lower than the connection timeout limit for the associated database.
+- `require_tls` (Boolean) A Boolean parameter that specifies whether Transport Layer Security (TLS) encryption is required for connections to the proxy. By enabling this setting, you can enforce encrypted TLS connections to the proxy.
+- `tags` (Attributes List) An optional set of key-value pairs to associate arbitrary data of your choosing with the proxy. (see [below for nested schema](#nestedatt--spec--tags))
 - `vpc_security_group_i_ds` (List of String) One or more VPC security group IDs to associate with the new proxy.
 
 <a id="nestedatt--spec--auth"></a>

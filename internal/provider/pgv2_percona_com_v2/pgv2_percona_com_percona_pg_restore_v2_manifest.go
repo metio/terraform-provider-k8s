@@ -128,8 +128,8 @@ func (r *Pgv2PerconaComPerconaPgrestoreV2Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"options": schema.ListAttribute{
-						Description:         "Command line options to include when running the pgBackRest restore command.https://pgbackrest.org/command.html#command-restore",
-						MarkdownDescription: "Command line options to include when running the pgBackRest restore command.https://pgbackrest.org/command.html#command-restore",
+						Description:         "Command line options to include when running the pgBackRest restore command. https://pgbackrest.org/command.html#command-restore",
+						MarkdownDescription: "Command line options to include when running the pgBackRest restore command. https://pgbackrest.org/command.html#command-restore",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -145,8 +145,8 @@ func (r *Pgv2PerconaComPerconaPgrestoreV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"repo_name": schema.StringAttribute{
-						Description:         "The name of the pgBackRest repo within the source PostgresCluster that contains the backupsthat should be utilized to perform a pgBackRest restore when initializing the data sourcefor the new PostgresCluster.",
-						MarkdownDescription: "The name of the pgBackRest repo within the source PostgresCluster that contains the backupsthat should be utilized to perform a pgBackRest restore when initializing the data sourcefor the new PostgresCluster.",
+						Description:         "The name of the pgBackRest repo within the source PostgresCluster that contains the backups that should be utilized to perform a pgBackRest restore when initializing the data source for the new PostgresCluster.",
+						MarkdownDescription: "The name of the pgBackRest repo within the source PostgresCluster that contains the backups that should be utilized to perform a pgBackRest restore when initializing the data source for the new PostgresCluster.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

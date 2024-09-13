@@ -145,8 +145,8 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 				MarkdownDescription: "SelfNodeRemediationConfigSpec defines the desired state of SelfNodeRemediationConfig",
 				Attributes: map[string]schema.Attribute{
 					"api_check_interval": schema.StringAttribute{
-						Description:         "The frequency for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.the frequency for api-server connectivity check",
-						MarkdownDescription: "The frequency for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.the frequency for api-server connectivity check",
+						Description:         "The frequency for api-server connectivity check. Valid time units are 'ms', 's', 'm', 'h'. the frequency for api-server connectivity check",
+						MarkdownDescription: "The frequency for api-server connectivity check. Valid time units are 'ms', 's', 'm', 'h'. the frequency for api-server connectivity check",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -156,8 +156,8 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 					},
 
 					"api_server_timeout": schema.StringAttribute{
-						Description:         "Timeout for each api-connectivity check.Valid time units are 'ms', 's', 'm', 'h'.",
-						MarkdownDescription: "Timeout for each api-connectivity check.Valid time units are 'ms', 's', 'm', 'h'.",
+						Description:         "Timeout for each api-connectivity check. Valid time units are 'ms', 's', 'm', 'h'.",
+						MarkdownDescription: "Timeout for each api-connectivity check. Valid time units are 'ms', 's', 'm', 'h'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -172,40 +172,40 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"effect": schema.StringAttribute{
-									Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-									MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+									Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+									MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"key": schema.StringAttribute{
-									Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-									MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+									Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+									MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"operator": schema.StringAttribute{
-									Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
-									MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+									Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+									MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"toleration_seconds": schema.Int64Attribute{
-									Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
-									MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+									Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+									MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"value": schema.StringAttribute{
-									Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
-									MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+									Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+									MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -218,8 +218,8 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 					},
 
 					"endpoint_health_check_url": schema.StringAttribute{
-						Description:         "EndpointHealthCheckUrl is an url that self node remediation agents which run on control-plane node will try to access when they can't contact their peers.This is a part of self diagnostics which will decide whether the node should be remediated or not.It will be ignored when empty (which is the default).",
-						MarkdownDescription: "EndpointHealthCheckUrl is an url that self node remediation agents which run on control-plane node will try to access when they can't contact their peers.This is a part of self diagnostics which will decide whether the node should be remediated or not.It will be ignored when empty (which is the default).",
+						Description:         "EndpointHealthCheckUrl is an url that self node remediation agents which run on control-plane node will try to access when they can't contact their peers. This is a part of self diagnostics which will decide whether the node should be remediated or not. It will be ignored when empty (which is the default).",
+						MarkdownDescription: "EndpointHealthCheckUrl is an url that self node remediation agents which run on control-plane node will try to access when they can't contact their peers. This is a part of self diagnostics which will decide whether the node should be remediated or not. It will be ignored when empty (which is the default).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -237,8 +237,8 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 					},
 
 					"is_software_reboot_enabled": schema.BoolAttribute{
-						Description:         "IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot,if the watchdog device can not be used or will use watchdog only,without a fallback to software reboot.",
-						MarkdownDescription: "IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot,if the watchdog device can not be used or will use watchdog only,without a fallback to software reboot.",
+						Description:         "IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot, if the watchdog device can not be used or will use watchdog only, without a fallback to software reboot.",
+						MarkdownDescription: "IsSoftwareRebootEnabled indicates whether self node remediation agent will do software reboot, if the watchdog device can not be used or will use watchdog only, without a fallback to software reboot.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -256,8 +256,8 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 					},
 
 					"peer_api_server_timeout": schema.StringAttribute{
-						Description:         "The timeout for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.",
-						MarkdownDescription: "The timeout for api-server connectivity check.Valid time units are 'ms', 's', 'm', 'h'.",
+						Description:         "The timeout for api-server connectivity check. Valid time units are 'ms', 's', 'm', 'h'.",
+						MarkdownDescription: "The timeout for api-server connectivity check. Valid time units are 'ms', 's', 'm', 'h'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -267,8 +267,8 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 					},
 
 					"peer_dial_timeout": schema.StringAttribute{
-						Description:         "Timeout for establishing connection to peer.Valid time units are 'ms', 's', 'm', 'h'.",
-						MarkdownDescription: "Timeout for establishing connection to peer.Valid time units are 'ms', 's', 'm', 'h'.",
+						Description:         "Timeout for establishing connection to peer. Valid time units are 'ms', 's', 'm', 'h'.",
+						MarkdownDescription: "Timeout for establishing connection to peer. Valid time units are 'ms', 's', 'm', 'h'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -278,8 +278,8 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 					},
 
 					"peer_request_timeout": schema.StringAttribute{
-						Description:         "Timeout for each peer request.Valid time units are 'ms', 's', 'm', 'h'.",
-						MarkdownDescription: "Timeout for each peer request.Valid time units are 'ms', 's', 'm', 'h'.",
+						Description:         "Timeout for each peer request. Valid time units are 'ms', 's', 'm', 'h'.",
+						MarkdownDescription: "Timeout for each peer request. Valid time units are 'ms', 's', 'm', 'h'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -289,8 +289,8 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 					},
 
 					"peer_update_interval": schema.StringAttribute{
-						Description:         "The frequency for updating peers.Valid time units are 'ms', 's', 'm', 'h'.",
-						MarkdownDescription: "The frequency for updating peers.Valid time units are 'ms', 's', 'm', 'h'.",
+						Description:         "The frequency for updating peers. Valid time units are 'ms', 's', 'm', 'h'.",
+						MarkdownDescription: "The frequency for updating peers. Valid time units are 'ms', 's', 'm', 'h'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -300,8 +300,8 @@ func (r *SelfNodeRemediationMedik8SIoSelfNodeRemediationConfigV1Alpha1Manifest) 
 					},
 
 					"safe_time_to_assume_node_rebooted_seconds": schema.Int64Attribute{
-						Description:         "SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediationagents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads.This is extremely important as starting replacement Pods while they are still running on the failednode will likely lead to data corruption and violation of run-once semantics.In an effort to prevent this, the operator ignores values lower than a minimum calculated from theApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields,and the unhealthy node's individual watchdog timeout.",
-						MarkdownDescription: "SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediationagents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads.This is extremely important as starting replacement Pods while they are still running on the failednode will likely lead to data corruption and violation of run-once semantics.In an effort to prevent this, the operator ignores values lower than a minimum calculated from theApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields,and the unhealthy node's individual watchdog timeout.",
+						Description:         "SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediation agents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads. This is extremely important as starting replacement Pods while they are still running on the failed node will likely lead to data corruption and violation of run-once semantics. In an effort to prevent this, the operator ignores values lower than a minimum calculated from the ApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields, and the unhealthy node's individual watchdog timeout.",
+						MarkdownDescription: "SafeTimeToAssumeNodeRebootedSeconds is the time after which the healthy self node remediation agents will assume the unhealthy node has been rebooted, and it is safe to recover affected workloads. This is extremely important as starting replacement Pods while they are still running on the failed node will likely lead to data corruption and violation of run-once semantics. In an effort to prevent this, the operator ignores values lower than a minimum calculated from the ApiCheckInterval, ApiServerTimeout, MaxApiErrorThreshold, PeerDialTimeout, and PeerRequestTimeout fields, and the unhealthy node's individual watchdog timeout.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

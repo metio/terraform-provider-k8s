@@ -137,8 +137,8 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Manifest) Schema(
 				MarkdownDescription: "ProfileRecordingSpec defines the desired state of ProfileRecording.",
 				Attributes: map[string]schema.Attribute{
 					"containers": schema.ListAttribute{
-						Description:         "Containers is a set of containers to record. This allows to selectonly specific containers to record instead of all containers presentin the pod.",
-						MarkdownDescription: "Containers is a set of containers to record. This allows to selectonly specific containers to record instead of all containers presentin the pod.",
+						Description:         "Containers is a set of containers to record. This allows to select only specific containers to record instead of all containers present in the pod.",
+						MarkdownDescription: "Containers is a set of containers to record. This allows to select only specific containers to record instead of all containers present in the pod.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -146,8 +146,8 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Manifest) Schema(
 					},
 
 					"disable_profile_after_recording": schema.BoolAttribute{
-						Description:         "DisableProfileAfterRecording indicates whether the profile should be disabledafter recording and thus skipped during reconcile. In case of SELinux profiles,reconcile can take a significant amount of time and for all profiles might not be needed.This Defaults to false.",
-						MarkdownDescription: "DisableProfileAfterRecording indicates whether the profile should be disabledafter recording and thus skipped during reconcile. In case of SELinux profiles,reconcile can take a significant amount of time and for all profiles might not be needed.This Defaults to false.",
+						Description:         "DisableProfileAfterRecording indicates whether the profile should be disabled after recording and thus skipped during reconcile. In case of SELinux profiles, reconcile can take a significant amount of time and for all profiles might not be needed. This Defaults to false.",
+						MarkdownDescription: "DisableProfileAfterRecording indicates whether the profile should be disabled after recording and thus skipped during reconcile. In case of SELinux profiles, reconcile can take a significant amount of time and for all profiles might not be needed. This Defaults to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -165,8 +165,8 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Manifest) Schema(
 					},
 
 					"merge_strategy": schema.StringAttribute{
-						Description:         "Whether or how to merge recorded profiles. Can be one of 'none' or 'containers'.Default is 'none'.",
-						MarkdownDescription: "Whether or how to merge recorded profiles. Can be one of 'none' or 'containers'.Default is 'none'.",
+						Description:         "Whether or how to merge recorded profiles. Can be one of 'none' or 'containers'. Default is 'none'.",
+						MarkdownDescription: "Whether or how to merge recorded profiles. Can be one of 'none' or 'containers'. Default is 'none'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -176,8 +176,8 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Manifest) Schema(
 					},
 
 					"pod_selector": schema.SingleNestedAttribute{
-						Description:         "PodSelector selects the pods to record. This field follows standardlabel selector semantics. An empty podSelector matches all pods in thisnamespace.",
-						MarkdownDescription: "PodSelector selects the pods to record. This field follows standardlabel selector semantics. An empty podSelector matches all pods in thisnamespace.",
+						Description:         "PodSelector selects the pods to record. This field follows standard label selector semantics. An empty podSelector matches all pods in this namespace.",
+						MarkdownDescription: "PodSelector selects the pods to record. This field follows standard label selector semantics. An empty podSelector matches all pods in this namespace.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -193,16 +193,16 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Manifest) Schema(
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -216,8 +216,8 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Manifest) Schema(
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

@@ -55,4 +55,4 @@ Optional:
 
 Optional:
 
-- `volume_backup_policy` (String) The create volume backup policyCan be 'if-not-present', 'always' or 'disabled'
+- `volume_backup_policy` (String) The create volume backup policy Can be 'if-not-present', 'always' or 'disabled'

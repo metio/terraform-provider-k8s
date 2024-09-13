@@ -384,8 +384,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"instance_id": schema.StringAttribute{
-								Description:         "InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node.  OBSOLETE: This field is obsolete, please use Spec.InstanceID",
-								MarkdownDescription: "InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node.  OBSOLETE: This field is obsolete, please use Spec.InstanceID",
+								Description:         "InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node. OBSOLETE: This field is obsolete, please use Spec.InstanceID",
+								MarkdownDescription: "InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node. OBSOLETE: This field is obsolete, please use Spec.InstanceID",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -400,8 +400,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"max_above_watermark": schema.Int64Attribute{
-								Description:         "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark",
-								MarkdownDescription: "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark",
+								Description:         "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs. OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark",
+								MarkdownDescription: "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs. OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -411,8 +411,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"min_allocate": schema.Int64Attribute{
-								Description:         "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate",
-								MarkdownDescription: "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate",
+								Description:         "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs. OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate",
+								MarkdownDescription: "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs. OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -430,8 +430,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"pre_allocate": schema.Int64Attribute{
-								Description:         "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.  OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate",
-								MarkdownDescription: "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.  OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate",
+								Description:         "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved. OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate",
+								MarkdownDescription: "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved. OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -564,8 +564,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 								MarkdownDescription: "IPv6Pool is the list of IPv6 addresses available to the node for allocation. When an IPv6 address is used, it will remain on this list but will be added to Status.IPAM.IPv6Used",
 								Attributes: map[string]schema.Attribute{
 									"owner": schema.StringAttribute{
-										Description:         "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
-										MarkdownDescription: "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
+										Description:         "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
+										MarkdownDescription: "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -631,8 +631,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.Sc
 								MarkdownDescription: "Pool is the list of IPv4 addresses available to the node for allocation. When an IPv4 address is used, it will remain on this list but will be added to Status.IPAM.Used",
 								Attributes: map[string]schema.Attribute{
 									"owner": schema.StringAttribute{
-										Description:         "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
-										MarkdownDescription: "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
+										Description:         "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
+										MarkdownDescription: "Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

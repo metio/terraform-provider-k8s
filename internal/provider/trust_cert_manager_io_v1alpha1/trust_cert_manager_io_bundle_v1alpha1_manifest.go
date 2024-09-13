@@ -165,8 +165,8 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"config_map": schema.SingleNestedAttribute{
-									Description:         "ConfigMap is a reference (by name) to a ConfigMap's 'data' key, or to alist of ConfigMap's 'data' key using label selector, in the trust Namespace.",
-									MarkdownDescription: "ConfigMap is a reference (by name) to a ConfigMap's 'data' key, or to alist of ConfigMap's 'data' key using label selector, in the trust Namespace.",
+									Description:         "ConfigMap is a reference (by name) to a ConfigMap's 'data' key, or to a list of ConfigMap's 'data' key using label selector, in the trust Namespace.",
+									MarkdownDescription: "ConfigMap is a reference (by name) to a ConfigMap's 'data' key, or to a list of ConfigMap's 'data' key using label selector, in the trust Namespace.",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
 											Description:         "Key is the key of the entry in the object's 'data' field to be used.",
@@ -177,16 +177,16 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name is the name of the source object in the trust Namespace.This field must be left empty when 'selector' is set",
-											MarkdownDescription: "Name is the name of the source object in the trust Namespace.This field must be left empty when 'selector' is set",
+											Description:         "Name is the name of the source object in the trust Namespace. This field must be left empty when 'selector' is set",
+											MarkdownDescription: "Name is the name of the source object in the trust Namespace. This field must be left empty when 'selector' is set",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"selector": schema.SingleNestedAttribute{
-											Description:         "Selector is the label selector to use to fetch a list of objects. Must not be setwhen 'Name' is set.",
-											MarkdownDescription: "Selector is the label selector to use to fetch a list of objects. Must not be setwhen 'Name' is set.",
+											Description:         "Selector is the label selector to use to fetch a list of objects. Must not be set when 'Name' is set.",
+											MarkdownDescription: "Selector is the label selector to use to fetch a list of objects. Must not be set when 'Name' is set.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -202,16 +202,16 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -225,8 +225,8 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -252,8 +252,8 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"secret": schema.SingleNestedAttribute{
-									Description:         "Secret is a reference (by name) to a Secret's 'data' key, or to alist of Secret's 'data' key using label selector, in the trust Namespace.",
-									MarkdownDescription: "Secret is a reference (by name) to a Secret's 'data' key, or to alist of Secret's 'data' key using label selector, in the trust Namespace.",
+									Description:         "Secret is a reference (by name) to a Secret's 'data' key, or to a list of Secret's 'data' key using label selector, in the trust Namespace.",
+									MarkdownDescription: "Secret is a reference (by name) to a Secret's 'data' key, or to a list of Secret's 'data' key using label selector, in the trust Namespace.",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
 											Description:         "Key is the key of the entry in the object's 'data' field to be used.",
@@ -264,16 +264,16 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name is the name of the source object in the trust Namespace.This field must be left empty when 'selector' is set",
-											MarkdownDescription: "Name is the name of the source object in the trust Namespace.This field must be left empty when 'selector' is set",
+											Description:         "Name is the name of the source object in the trust Namespace. This field must be left empty when 'selector' is set",
+											MarkdownDescription: "Name is the name of the source object in the trust Namespace. This field must be left empty when 'selector' is set",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"selector": schema.SingleNestedAttribute{
-											Description:         "Selector is the label selector to use to fetch a list of objects. Must not be setwhen 'Name' is set.",
-											MarkdownDescription: "Selector is the label selector to use to fetch a list of objects. Must not be setwhen 'Name' is set.",
+											Description:         "Selector is the label selector to use to fetch a list of objects. Must not be set when 'Name' is set.",
+											MarkdownDescription: "Selector is the label selector to use to fetch a list of objects. Must not be set when 'Name' is set.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -289,16 +289,16 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -312,8 +312,8 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -331,8 +331,8 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"use_default_c_as": schema.BoolAttribute{
-									Description:         "UseDefaultCAs, when true, requests the default CA bundle to be used as a source.Default CAs are available if trust-manager was installed via Helmor was otherwise set up to include a package-injecting init container by using the'--default-package-location' flag when starting the trust-manager controller.If default CAs were not configured at start-up, any request to use the defaultCAs will fail.The version of the default CA package which is used for a Bundle is stored in thedefaultCAPackageVersion field of the Bundle's status field.",
-									MarkdownDescription: "UseDefaultCAs, when true, requests the default CA bundle to be used as a source.Default CAs are available if trust-manager was installed via Helmor was otherwise set up to include a package-injecting init container by using the'--default-package-location' flag when starting the trust-manager controller.If default CAs were not configured at start-up, any request to use the defaultCAs will fail.The version of the default CA package which is used for a Bundle is stored in thedefaultCAPackageVersion field of the Bundle's status field.",
+									Description:         "UseDefaultCAs, when true, requests the default CA bundle to be used as a source. Default CAs are available if trust-manager was installed via Helm or was otherwise set up to include a package-injecting init container by using the '--default-package-location' flag when starting the trust-manager controller. If default CAs were not configured at start-up, any request to use the default CAs will fail. The version of the default CA package which is used for a Bundle is stored in the defaultCAPackageVersion field of the Bundle's status field.",
+									MarkdownDescription: "UseDefaultCAs, when true, requests the default CA bundle to be used as a source. Default CAs are available if trust-manager was installed via Helm or was otherwise set up to include a package-injecting init container by using the '--default-package-location' flag when starting the trust-manager controller. If default CAs were not configured at start-up, any request to use the default CAs will fail. The version of the default CA package which is used for a Bundle is stored in the defaultCAPackageVersion field of the Bundle's status field.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -353,8 +353,8 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "AdditionalFormats specifies any additional formats to write to the target",
 								Attributes: map[string]schema.Attribute{
 									"jks": schema.SingleNestedAttribute{
-										Description:         "JKS requests a JKS-formatted binary trust bundle to be written to the target.The bundle has 'changeit' as the default password.For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords",
-										MarkdownDescription: "JKS requests a JKS-formatted binary trust bundle to be written to the target.The bundle has 'changeit' as the default password.For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords",
+										Description:         "JKS requests a JKS-formatted binary trust bundle to be written to the target. The bundle has 'changeit' as the default password. For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords",
+										MarkdownDescription: "JKS requests a JKS-formatted binary trust bundle to be written to the target. The bundle has 'changeit' as the default password. For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "Key is the key of the entry in the object's 'data' field to be used.",
@@ -382,8 +382,8 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"pkcs12": schema.SingleNestedAttribute{
-										Description:         "PKCS12 requests a PKCS12-formatted binary trust bundle to be written to the target.The bundle is by default created without a password.",
-										MarkdownDescription: "PKCS12 requests a PKCS12-formatted binary trust bundle to be written to the target.The bundle is by default created without a password.",
+										Description:         "PKCS12 requests a PKCS12-formatted binary trust bundle to be written to the target. The bundle is by default created without a password.",
+										MarkdownDescription: "PKCS12 requests a PKCS12-formatted binary trust bundle to be written to the target. The bundle is by default created without a password.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "Key is the key of the entry in the object's 'data' field to be used.",
@@ -415,8 +415,8 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"config_map": schema.SingleNestedAttribute{
-								Description:         "ConfigMap is the target ConfigMap in Namespaces that all Bundle sourcedata will be synced to.",
-								MarkdownDescription: "ConfigMap is the target ConfigMap in Namespaces that all Bundle sourcedata will be synced to.",
+								Description:         "ConfigMap is the target ConfigMap in Namespaces that all Bundle source data will be synced to.",
+								MarkdownDescription: "ConfigMap is the target ConfigMap in Namespaces that all Bundle source data will be synced to.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "Key is the key of the entry in the object's 'data' field to be used.",
@@ -432,12 +432,12 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"namespace_selector": schema.SingleNestedAttribute{
-								Description:         "NamespaceSelector will, if set, only sync the target resource inNamespaces which match the selector.",
-								MarkdownDescription: "NamespaceSelector will, if set, only sync the target resource inNamespaces which match the selector.",
+								Description:         "NamespaceSelector will, if set, only sync the target resource in Namespaces which match the selector.",
+								MarkdownDescription: "NamespaceSelector will, if set, only sync the target resource in Namespaces which match the selector.",
 								Attributes: map[string]schema.Attribute{
 									"match_labels": schema.MapAttribute{
-										Description:         "MatchLabels matches on the set of labels that must be present on aNamespace for the Bundle target to be synced there.",
-										MarkdownDescription: "MatchLabels matches on the set of labels that must be present on aNamespace for the Bundle target to be synced there.",
+										Description:         "MatchLabels matches on the set of labels that must be present on a Namespace for the Bundle target to be synced there.",
+										MarkdownDescription: "MatchLabels matches on the set of labels that must be present on a Namespace for the Bundle target to be synced there.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -450,8 +450,8 @@ func (r *TrustCertManagerIoBundleV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"secret": schema.SingleNestedAttribute{
-								Description:         "Secret is the target Secret that all Bundle source data will be synced to.Using Secrets as targets is only supported if enabled at trust-manager startup.By default, trust-manager has no permissions for writing to secrets and can only read secrets in the trust namespace.",
-								MarkdownDescription: "Secret is the target Secret that all Bundle source data will be synced to.Using Secrets as targets is only supported if enabled at trust-manager startup.By default, trust-manager has no permissions for writing to secrets and can only read secrets in the trust namespace.",
+								Description:         "Secret is the target Secret that all Bundle source data will be synced to. Using Secrets as targets is only supported if enabled at trust-manager startup. By default, trust-manager has no permissions for writing to secrets and can only read secrets in the trust namespace.",
+								MarkdownDescription: "Secret is the target Secret that all Bundle source data will be synced to. Using Secrets as targets is only supported if enabled at trust-manager startup. By default, trust-manager has no permissions for writing to secrets and can only read secrets in the trust namespace.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "Key is the key of the entry in the object's 'data' field to be used.",

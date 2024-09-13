@@ -54,6 +54,6 @@ Optional:
 
 Optional:
 
-- `ca_bundle` (String) CABundle is a base64-encoded string that contains the TLS CA bundle in PEM format.It is used to verify the signature of the provider's certificate.
+- `ca_bundle` (String) CABundle is a base64-encoded string that contains the TLS CA bundle in PEM format. It is used to verify the signature of the provider's certificate.
 - `timeout` (Number) Timeout is the timeout when querying the provider.
 - `url` (String) URL is the url for the provider. URL is prefixed with https://.

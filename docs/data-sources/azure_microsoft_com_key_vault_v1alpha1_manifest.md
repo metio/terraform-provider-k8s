@@ -70,7 +70,7 @@ Optional:
 
 Optional:
 
-- `application_id` (String) ApplicationID -  Application ID of the client making request on behalf of a principal
+- `application_id` (String) ApplicationID - Application ID of the client making request on behalf of a principal
 - `client_id` (String) ClientID - The client ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The client ID must be unique for the list of access policies. TODO: Remove this in a future API version, see: https://github.com/Azure/azure-service-operator/issues/1351
 - `object_id` (String) ObjectID is the AAD object id of the entity to provide access to.
 - `permissions` (Attributes) Permissions - Permissions the identity has for keys, secrets, and certificates. (see [below for nested schema](#nestedatt--spec--access_policies--permissions))
@@ -93,7 +93,7 @@ Optional:
 
 Optional:
 
-- `bypass` (String) Bypass - Tells what traffic can bypass network rules. This can be 'AzureServices' or 'None'.  If not specified the default is 'AzureServices'. Possible values include: 'AzureServices', 'None'
+- `bypass` (String) Bypass - Tells what traffic can bypass network rules. This can be 'AzureServices' or 'None'. If not specified the default is 'AzureServices'. Possible values include: 'AzureServices', 'None'
 - `default_action` (String) DefaultAction - The default action when no rule from ipRules and from virtualNetworkRules match. This is only used after the bypass property has been evaluated. Possible values include: 'Allow', 'Deny'
 - `ip_rules` (List of String) IPRules - The list of IP address rules.
 - `virtual_network_rules` (List of String) VirtualNetworkRules - The list of virtual network rules.

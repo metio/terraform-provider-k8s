@@ -143,16 +143,16 @@ func (r *KeycloakOrgKeycloakBackupV1Alpha1Manifest) Schema(_ context.Context, _ 
 						MarkdownDescription: "If provided, an automatic database backup will be created on AWS S3 instead of a local Persistent Volume. If this property is not provided - a local Persistent Volume backup will be chosen.",
 						Attributes: map[string]schema.Attribute{
 							"credentials_secret_name": schema.StringAttribute{
-								Description:         "Provides a secret name used for connecting to AWS S3 Service. The secret needs to be in the following form:      apiVersion: v1     kind: Secret     metadata:       name: <Secret name>     type: Opaque     stringData:       AWS_S3_BUCKET_NAME: <S3 Bucket Name>       AWS_ACCESS_KEY_ID: <AWS Access Key ID>       AWS_SECRET_ACCESS_KEY: <AWS Secret Key>  For more information, please refer to the Operator documentation.",
-								MarkdownDescription: "Provides a secret name used for connecting to AWS S3 Service. The secret needs to be in the following form:      apiVersion: v1     kind: Secret     metadata:       name: <Secret name>     type: Opaque     stringData:       AWS_S3_BUCKET_NAME: <S3 Bucket Name>       AWS_ACCESS_KEY_ID: <AWS Access Key ID>       AWS_SECRET_ACCESS_KEY: <AWS Secret Key>  For more information, please refer to the Operator documentation.",
+								Description:         "Provides a secret name used for connecting to AWS S3 Service. The secret needs to be in the following form: apiVersion: v1 kind: Secret metadata: name: <Secret name> type: Opaque stringData: AWS_S3_BUCKET_NAME: <S3 Bucket Name> AWS_ACCESS_KEY_ID: <AWS Access Key ID> AWS_SECRET_ACCESS_KEY: <AWS Secret Key> For more information, please refer to the Operator documentation.",
+								MarkdownDescription: "Provides a secret name used for connecting to AWS S3 Service. The secret needs to be in the following form: apiVersion: v1 kind: Secret metadata: name: <Secret name> type: Opaque stringData: AWS_S3_BUCKET_NAME: <S3 Bucket Name> AWS_ACCESS_KEY_ID: <AWS Access Key ID> AWS_SECRET_ACCESS_KEY: <AWS Secret Key> For more information, please refer to the Operator documentation.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"encryption_key_secret_name": schema.StringAttribute{
-								Description:         "If provided, the database backup will be encrypted. Provides a secret name used for encrypting database data. The secret needs to be in the following form:      apiVersion: v1     kind: Secret     metadata:       name: <Secret name>     type: Opaque     stringData:       GPG_PUBLIC_KEY: <GPG Public Key>       GPG_TRUST_MODEL: <GPG Trust Model>       GPG_RECIPIENT: <GPG Recipient>  For more information, please refer to the Operator documentation.",
-								MarkdownDescription: "If provided, the database backup will be encrypted. Provides a secret name used for encrypting database data. The secret needs to be in the following form:      apiVersion: v1     kind: Secret     metadata:       name: <Secret name>     type: Opaque     stringData:       GPG_PUBLIC_KEY: <GPG Public Key>       GPG_TRUST_MODEL: <GPG Trust Model>       GPG_RECIPIENT: <GPG Recipient>  For more information, please refer to the Operator documentation.",
+								Description:         "If provided, the database backup will be encrypted. Provides a secret name used for encrypting database data. The secret needs to be in the following form: apiVersion: v1 kind: Secret metadata: name: <Secret name> type: Opaque stringData: GPG_PUBLIC_KEY: <GPG Public Key> GPG_TRUST_MODEL: <GPG Trust Model> GPG_RECIPIENT: <GPG Recipient> For more information, please refer to the Operator documentation.",
+								MarkdownDescription: "If provided, the database backup will be encrypted. Provides a secret name used for encrypting database data. The secret needs to be in the following form: apiVersion: v1 kind: Secret metadata: name: <Secret name> type: Opaque stringData: GPG_PUBLIC_KEY: <GPG Public Key> GPG_TRUST_MODEL: <GPG Trust Model> GPG_RECIPIENT: <GPG Recipient> For more information, please refer to the Operator documentation.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -226,8 +226,8 @@ func (r *KeycloakOrgKeycloakBackupV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"restore": schema.BoolAttribute{
-						Description:         "Controls automatic restore behavior. Currently not implemented.  In the future this will be used to trigger automatic restore for a given KeycloakBackup. Each backup will correspond to a single snapshot of the database (stored either in a Persistent Volume or AWS). If a user wants to restore it, all he/she needs to do is to change this flag to true. Potentially, it will be possible to restore a single backup multiple times.",
-						MarkdownDescription: "Controls automatic restore behavior. Currently not implemented.  In the future this will be used to trigger automatic restore for a given KeycloakBackup. Each backup will correspond to a single snapshot of the database (stored either in a Persistent Volume or AWS). If a user wants to restore it, all he/she needs to do is to change this flag to true. Potentially, it will be possible to restore a single backup multiple times.",
+						Description:         "Controls automatic restore behavior. Currently not implemented. In the future this will be used to trigger automatic restore for a given KeycloakBackup. Each backup will correspond to a single snapshot of the database (stored either in a Persistent Volume or AWS). If a user wants to restore it, all he/she needs to do is to change this flag to true. Potentially, it will be possible to restore a single backup multiple times.",
+						MarkdownDescription: "Controls automatic restore behavior. Currently not implemented. In the future this will be used to trigger automatic restore for a given KeycloakBackup. Each backup will correspond to a single snapshot of the database (stored either in a Persistent Volume or AWS). If a user wants to restore it, all he/she needs to do is to change this flag to true. Potentially, it will be possible to restore a single backup multiple times.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -79,7 +79,7 @@ Required:
 Optional:
 
 - `body` (String)
-- `headers` (Map of List of String) A Header represents the key-value pairs in an HTTP header.  The keys should be in canonical form, as returned by CanonicalHeaderKey.
+- `headers` (Map of List of String) A Header represents the key-value pairs in an HTTP header. The keys should be in canonical form, as returned by CanonicalHeaderKey.
 - `method` (String)
 
 <a id="nestedatt--spec--http--criteria"></a>

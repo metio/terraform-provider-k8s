@@ -142,8 +142,8 @@ func (r *AcmpcaServicesK8SAwsCertificateAuthorityActivationV1Alpha1Manifest) Sch
 				MarkdownDescription: "CertificateAuthorityActivationSpec defines the desired state of CertificateAuthorityActivation.",
 				Attributes: map[string]schema.Attribute{
 					"certificate": schema.SingleNestedAttribute{
-						Description:         "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
-						MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
+						Description:         "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
+						MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "Key is the key within the secret",
@@ -175,20 +175,20 @@ func (r *AcmpcaServicesK8SAwsCertificateAuthorityActivationV1Alpha1Manifest) Sch
 					},
 
 					"certificate_authority_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority(https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html).This must be of the form:arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
-						MarkdownDescription: "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority(https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html).This must be of the form:arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
+						Description:         "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority (https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html). This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
+						MarkdownDescription: "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority (https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html). This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"certificate_authority_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -217,8 +217,8 @@ func (r *AcmpcaServicesK8SAwsCertificateAuthorityActivationV1Alpha1Manifest) Sch
 					},
 
 					"certificate_chain": schema.SingleNestedAttribute{
-						Description:         "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
-						MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
+						Description:         "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
+						MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "Key is the key within the secret",

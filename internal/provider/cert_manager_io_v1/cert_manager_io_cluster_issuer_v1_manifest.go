@@ -636,8 +636,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Metadata(_ context.Context, reque
 
 func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A ClusterIssuer represents a certificate issuing authority which can bereferenced as part of 'issuerRef' fields.It is similar to an Issuer, however it is cluster-scoped and therefore canbe referenced by resources that exist in *any* namespace, not just the samenamespace as the referent.",
-		MarkdownDescription: "A ClusterIssuer represents a certificate issuing authority which can bereferenced as part of 'issuerRef' fields.It is similar to an Issuer, however it is cluster-scoped and therefore canbe referenced by resources that exist in *any* namespace, not just the samenamespace as the referent.",
+		Description:         "A ClusterIssuer represents a certificate issuing authority which can be referenced as part of 'issuerRef' fields. It is similar to an Issuer, however it is cluster-scoped and therefore can be referenced by resources that exist in *any* namespace, not just the same namespace as the referent.",
+		MarkdownDescription: "A ClusterIssuer represents a certificate issuing authority which can be referenced as part of 'issuerRef' fields. It is similar to an Issuer, however it is cluster-scoped and therefore can be referenced by resources that exist in *any* namespace, not just the same namespace as the referent.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -696,12 +696,12 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 				MarkdownDescription: "Desired state of the ClusterIssuer resource.",
 				Attributes: map[string]schema.Attribute{
 					"acme": schema.SingleNestedAttribute{
-						Description:         "ACME configures this issuer to communicate with a RFC8555 (ACME) serverto obtain signed x509 certificates.",
-						MarkdownDescription: "ACME configures this issuer to communicate with a RFC8555 (ACME) serverto obtain signed x509 certificates.",
+						Description:         "ACME configures this issuer to communicate with a RFC8555 (ACME) server to obtain signed x509 certificates.",
+						MarkdownDescription: "ACME configures this issuer to communicate with a RFC8555 (ACME) server to obtain signed x509 certificates.",
 						Attributes: map[string]schema.Attribute{
 							"ca_bundle": schema.StringAttribute{
-								Description:         "Base64-encoded bundle of PEM CAs which can be used to validate the certificatechain presented by the ACME server.Mutually exclusive with SkipTLSVerify; prefer using CABundle to prevent variouskinds of security vulnerabilities.If CABundle and SkipTLSVerify are unset, the system certificate bundle insidethe container is used to validate the TLS connection.",
-								MarkdownDescription: "Base64-encoded bundle of PEM CAs which can be used to validate the certificatechain presented by the ACME server.Mutually exclusive with SkipTLSVerify; prefer using CABundle to prevent variouskinds of security vulnerabilities.If CABundle and SkipTLSVerify are unset, the system certificate bundle insidethe container is used to validate the TLS connection.",
+								Description:         "Base64-encoded bundle of PEM CAs which can be used to validate the certificate chain presented by the ACME server. Mutually exclusive with SkipTLSVerify; prefer using CABundle to prevent various kinds of security vulnerabilities. If CABundle and SkipTLSVerify are unset, the system certificate bundle inside the container is used to validate the TLS connection.",
+								MarkdownDescription: "Base64-encoded bundle of PEM CAs which can be used to validate the certificate chain presented by the ACME server. Mutually exclusive with SkipTLSVerify; prefer using CABundle to prevent various kinds of security vulnerabilities. If CABundle and SkipTLSVerify are unset, the system certificate bundle inside the container is used to validate the TLS connection.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -711,36 +711,36 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"disable_account_key_generation": schema.BoolAttribute{
-								Description:         "Enables or disables generating a new ACME account key.If true, the Issuer resource will *not* request a new account but will expectthe account key to be supplied via an existing secret.If false, the cert-manager system will generate a new ACME account keyfor the Issuer.Defaults to false.",
-								MarkdownDescription: "Enables or disables generating a new ACME account key.If true, the Issuer resource will *not* request a new account but will expectthe account key to be supplied via an existing secret.If false, the cert-manager system will generate a new ACME account keyfor the Issuer.Defaults to false.",
+								Description:         "Enables or disables generating a new ACME account key. If true, the Issuer resource will *not* request a new account but will expect the account key to be supplied via an existing secret. If false, the cert-manager system will generate a new ACME account key for the Issuer. Defaults to false.",
+								MarkdownDescription: "Enables or disables generating a new ACME account key. If true, the Issuer resource will *not* request a new account but will expect the account key to be supplied via an existing secret. If false, the cert-manager system will generate a new ACME account key for the Issuer. Defaults to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"email": schema.StringAttribute{
-								Description:         "Email is the email address to be associated with the ACME account.This field is optional, but it is strongly recommended to be set.It will be used to contact you in case of issues with your account orcertificates, including expiry notification emails.This field may be updated after the account is initially registered.",
-								MarkdownDescription: "Email is the email address to be associated with the ACME account.This field is optional, but it is strongly recommended to be set.It will be used to contact you in case of issues with your account orcertificates, including expiry notification emails.This field may be updated after the account is initially registered.",
+								Description:         "Email is the email address to be associated with the ACME account. This field is optional, but it is strongly recommended to be set. It will be used to contact you in case of issues with your account or certificates, including expiry notification emails. This field may be updated after the account is initially registered.",
+								MarkdownDescription: "Email is the email address to be associated with the ACME account. This field is optional, but it is strongly recommended to be set. It will be used to contact you in case of issues with your account or certificates, including expiry notification emails. This field may be updated after the account is initially registered.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"enable_duration_feature": schema.BoolAttribute{
-								Description:         "Enables requesting a Not After date on certificates that matches theduration of the certificate. This is not supported by all ACME serverslike Let's Encrypt. If set to true when the ACME server does not supportit, it will create an error on the Order.Defaults to false.",
-								MarkdownDescription: "Enables requesting a Not After date on certificates that matches theduration of the certificate. This is not supported by all ACME serverslike Let's Encrypt. If set to true when the ACME server does not supportit, it will create an error on the Order.Defaults to false.",
+								Description:         "Enables requesting a Not After date on certificates that matches the duration of the certificate. This is not supported by all ACME servers like Let's Encrypt. If set to true when the ACME server does not support it, it will create an error on the Order. Defaults to false.",
+								MarkdownDescription: "Enables requesting a Not After date on certificates that matches the duration of the certificate. This is not supported by all ACME servers like Let's Encrypt. If set to true when the ACME server does not support it, it will create an error on the Order. Defaults to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"external_account_binding": schema.SingleNestedAttribute{
-								Description:         "ExternalAccountBinding is a reference to a CA external account of the ACMEserver.If set, upon registration cert-manager will attempt to associate the givenexternal account credentials with the registered ACME account.",
-								MarkdownDescription: "ExternalAccountBinding is a reference to a CA external account of the ACMEserver.If set, upon registration cert-manager will attempt to associate the givenexternal account credentials with the registered ACME account.",
+								Description:         "ExternalAccountBinding is a reference to a CA external account of the ACME server. If set, upon registration cert-manager will attempt to associate the given external account credentials with the registered ACME account.",
+								MarkdownDescription: "ExternalAccountBinding is a reference to a CA external account of the ACME server. If set, upon registration cert-manager will attempt to associate the given external account credentials with the registered ACME account.",
 								Attributes: map[string]schema.Attribute{
 									"key_algorithm": schema.StringAttribute{
-										Description:         "Deprecated: keyAlgorithm field exists for historical compatibilityreasons and should not be used. The algorithm is now hardcoded to HS256in golang/x/crypto/acme.",
-										MarkdownDescription: "Deprecated: keyAlgorithm field exists for historical compatibilityreasons and should not be used. The algorithm is now hardcoded to HS256in golang/x/crypto/acme.",
+										Description:         "Deprecated: keyAlgorithm field exists for historical compatibility reasons and should not be used. The algorithm is now hardcoded to HS256 in golang/x/crypto/acme.",
+										MarkdownDescription: "Deprecated: keyAlgorithm field exists for historical compatibility reasons and should not be used. The algorithm is now hardcoded to HS256 in golang/x/crypto/acme.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -758,20 +758,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"key_secret_ref": schema.SingleNestedAttribute{
-										Description:         "keySecretRef is a Secret Key Selector referencing a data item in a KubernetesSecret which holds the symmetric MAC key of the External Account Binding.The 'key' is the index string that is paired with the key data in theSecret and should not be confused with the key data itself, or indeed withthe External Account Binding keyID above.The secret key stored in the Secret **must** be un-padded, base64 URLencoded data.",
-										MarkdownDescription: "keySecretRef is a Secret Key Selector referencing a data item in a KubernetesSecret which holds the symmetric MAC key of the External Account Binding.The 'key' is the index string that is paired with the key data in theSecret and should not be confused with the key data itself, or indeed withthe External Account Binding keyID above.The secret key stored in the Secret **must** be un-padded, base64 URLencoded data.",
+										Description:         "keySecretRef is a Secret Key Selector referencing a data item in a Kubernetes Secret which holds the symmetric MAC key of the External Account Binding. The 'key' is the index string that is paired with the key data in the Secret and should not be confused with the key data itself, or indeed with the External Account Binding keyID above. The secret key stored in the Secret **must** be un-padded, base64 URL encoded data.",
+										MarkdownDescription: "keySecretRef is a Secret Key Selector referencing a data item in a Kubernetes Secret which holds the symmetric MAC key of the External Account Binding. The 'key' is the index string that is paired with the key data in the Secret and should not be confused with the key data itself, or indeed with the External Account Binding keyID above. The secret key stored in the Secret **must** be un-padded, base64 URL encoded data.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+												Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -788,8 +788,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"preferred_chain": schema.StringAttribute{
-								Description:         "PreferredChain is the chain to use if the ACME server outputs multiple.PreferredChain is no guarantee that this one gets delivered by the ACMEendpoint.For example, for Let's Encrypt's DST crosssign you would use:'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA.This value picks the first certificate bundle in the combined set ofACME default and alternative chains that has a root-most certificate withthis value as its issuer's commonname.",
-								MarkdownDescription: "PreferredChain is the chain to use if the ACME server outputs multiple.PreferredChain is no guarantee that this one gets delivered by the ACMEendpoint.For example, for Let's Encrypt's DST crosssign you would use:'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA.This value picks the first certificate bundle in the combined set ofACME default and alternative chains that has a root-most certificate withthis value as its issuer's commonname.",
+								Description:         "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the combined set of ACME default and alternative chains that has a root-most certificate with this value as its issuer's commonname.",
+								MarkdownDescription: "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the combined set of ACME default and alternative chains that has a root-most certificate with this value as its issuer's commonname.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -799,20 +799,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"private_key_secret_ref": schema.SingleNestedAttribute{
-								Description:         "PrivateKey is the name of a Kubernetes Secret resource that will be used tostore the automatically generated ACME account private key.Optionally, a 'key' may be specified to select a specific entry withinthe named Secret resource.If 'key' is not specified, a default of 'tls.key' will be used.",
-								MarkdownDescription: "PrivateKey is the name of a Kubernetes Secret resource that will be used tostore the automatically generated ACME account private key.Optionally, a 'key' may be specified to select a specific entry withinthe named Secret resource.If 'key' is not specified, a default of 'tls.key' will be used.",
+								Description:         "PrivateKey is the name of a Kubernetes Secret resource that will be used to store the automatically generated ACME account private key. Optionally, a 'key' may be specified to select a specific entry within the named Secret resource. If 'key' is not specified, a default of 'tls.key' will be used.",
+								MarkdownDescription: "PrivateKey is the name of a Kubernetes Secret resource that will be used to store the automatically generated ACME account private key. Optionally, a 'key' may be specified to select a specific entry within the named Secret resource. If 'key' is not specified, a default of 'tls.key' will be used.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+										Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -824,49 +824,49 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"server": schema.StringAttribute{
-								Description:         "Server is the URL used to access the ACME server's 'directory' endpoint.For example, for Let's Encrypt's staging endpoint, you would use:'https://acme-staging-v02.api.letsencrypt.org/directory'.Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
-								MarkdownDescription: "Server is the URL used to access the ACME server's 'directory' endpoint.For example, for Let's Encrypt's staging endpoint, you would use:'https://acme-staging-v02.api.letsencrypt.org/directory'.Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
+								Description:         "Server is the URL used to access the ACME server's 'directory' endpoint. For example, for Let's Encrypt's staging endpoint, you would use: 'https://acme-staging-v02.api.letsencrypt.org/directory'. Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
+								MarkdownDescription: "Server is the URL used to access the ACME server's 'directory' endpoint. For example, for Let's Encrypt's staging endpoint, you would use: 'https://acme-staging-v02.api.letsencrypt.org/directory'. Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"skip_tls_verify": schema.BoolAttribute{
-								Description:         "INSECURE: Enables or disables validation of the ACME server TLS certificate.If true, requests to the ACME server will not have the TLS certificate chainvalidated.Mutually exclusive with CABundle; prefer using CABundle to prevent variouskinds of security vulnerabilities.Only enable this option in development environments.If CABundle and SkipTLSVerify are unset, the system certificate bundle insidethe container is used to validate the TLS connection.Defaults to false.",
-								MarkdownDescription: "INSECURE: Enables or disables validation of the ACME server TLS certificate.If true, requests to the ACME server will not have the TLS certificate chainvalidated.Mutually exclusive with CABundle; prefer using CABundle to prevent variouskinds of security vulnerabilities.Only enable this option in development environments.If CABundle and SkipTLSVerify are unset, the system certificate bundle insidethe container is used to validate the TLS connection.Defaults to false.",
+								Description:         "INSECURE: Enables or disables validation of the ACME server TLS certificate. If true, requests to the ACME server will not have the TLS certificate chain validated. Mutually exclusive with CABundle; prefer using CABundle to prevent various kinds of security vulnerabilities. Only enable this option in development environments. If CABundle and SkipTLSVerify are unset, the system certificate bundle inside the container is used to validate the TLS connection. Defaults to false.",
+								MarkdownDescription: "INSECURE: Enables or disables validation of the ACME server TLS certificate. If true, requests to the ACME server will not have the TLS certificate chain validated. Mutually exclusive with CABundle; prefer using CABundle to prevent various kinds of security vulnerabilities. Only enable this option in development environments. If CABundle and SkipTLSVerify are unset, the system certificate bundle inside the container is used to validate the TLS connection. Defaults to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"solvers": schema.ListNestedAttribute{
-								Description:         "Solvers is a list of challenge solvers that will be used to solveACME challenges for the matching domains.Solver configurations must be provided in order to obtain certificatesfrom an ACME server.For more information, see: https://cert-manager.io/docs/configuration/acme/",
-								MarkdownDescription: "Solvers is a list of challenge solvers that will be used to solveACME challenges for the matching domains.Solver configurations must be provided in order to obtain certificatesfrom an ACME server.For more information, see: https://cert-manager.io/docs/configuration/acme/",
+								Description:         "Solvers is a list of challenge solvers that will be used to solve ACME challenges for the matching domains. Solver configurations must be provided in order to obtain certificates from an ACME server. For more information, see: https://cert-manager.io/docs/configuration/acme/",
+								MarkdownDescription: "Solvers is a list of challenge solvers that will be used to solve ACME challenges for the matching domains. Solver configurations must be provided in order to obtain certificates from an ACME server. For more information, see: https://cert-manager.io/docs/configuration/acme/",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"dns01": schema.SingleNestedAttribute{
-											Description:         "Configures cert-manager to attempt to complete authorizations byperforming the DNS01 challenge flow.",
-											MarkdownDescription: "Configures cert-manager to attempt to complete authorizations byperforming the DNS01 challenge flow.",
+											Description:         "Configures cert-manager to attempt to complete authorizations by performing the DNS01 challenge flow.",
+											MarkdownDescription: "Configures cert-manager to attempt to complete authorizations by performing the DNS01 challenge flow.",
 											Attributes: map[string]schema.Attribute{
 												"acme_dns": schema.SingleNestedAttribute{
-													Description:         "Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manageDNS01 challenge records.",
-													MarkdownDescription: "Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manageDNS01 challenge records.",
+													Description:         "Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.",
+													MarkdownDescription: "Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.",
 													Attributes: map[string]schema.Attribute{
 														"account_secret_ref": schema.SingleNestedAttribute{
-															Description:         "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
-															MarkdownDescription: "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
+															Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+															MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -895,20 +895,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 													MarkdownDescription: "Use the Akamai DNS zone management API to manage DNS01 challenge records.",
 													Attributes: map[string]schema.Attribute{
 														"access_token_secret_ref": schema.SingleNestedAttribute{
-															Description:         "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
-															MarkdownDescription: "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
+															Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+															MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -920,20 +920,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"client_secret_secret_ref": schema.SingleNestedAttribute{
-															Description:         "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
-															MarkdownDescription: "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
+															Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+															MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -945,20 +945,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"client_token_secret_ref": schema.SingleNestedAttribute{
-															Description:         "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
-															MarkdownDescription: "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
+															Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+															MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -987,28 +987,28 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 													MarkdownDescription: "Use the Microsoft Azure DNS API to manage DNS01 challenge records.",
 													Attributes: map[string]schema.Attribute{
 														"client_id": schema.StringAttribute{
-															Description:         "Auth: Azure Service Principal:The ClientID of the Azure Service Principal used to authenticate with Azure DNS.If set, ClientSecret and TenantID must also be set.",
-															MarkdownDescription: "Auth: Azure Service Principal:The ClientID of the Azure Service Principal used to authenticate with Azure DNS.If set, ClientSecret and TenantID must also be set.",
+															Description:         "Auth: Azure Service Principal: The ClientID of the Azure Service Principal used to authenticate with Azure DNS. If set, ClientSecret and TenantID must also be set.",
+															MarkdownDescription: "Auth: Azure Service Principal: The ClientID of the Azure Service Principal used to authenticate with Azure DNS. If set, ClientSecret and TenantID must also be set.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"client_secret_secret_ref": schema.SingleNestedAttribute{
-															Description:         "Auth: Azure Service Principal:A reference to a Secret containing the password associated with the Service Principal.If set, ClientID and TenantID must also be set.",
-															MarkdownDescription: "Auth: Azure Service Principal:A reference to a Secret containing the password associated with the Service Principal.If set, ClientID and TenantID must also be set.",
+															Description:         "Auth: Azure Service Principal: A reference to a Secret containing the password associated with the Service Principal. If set, ClientID and TenantID must also be set.",
+															MarkdownDescription: "Auth: Azure Service Principal: A reference to a Secret containing the password associated with the Service Principal. If set, ClientID and TenantID must also be set.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1039,8 +1039,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"managed_identity": schema.SingleNestedAttribute{
-															Description:         "Auth: Azure Workload Identity or Azure Managed Service Identity:Settings to enable Azure Workload Identity or Azure Managed Service IdentityIf set, ClientID, ClientSecret and TenantID must not be set.",
-															MarkdownDescription: "Auth: Azure Workload Identity or Azure Managed Service Identity:Settings to enable Azure Workload Identity or Azure Managed Service IdentityIf set, ClientID, ClientSecret and TenantID must not be set.",
+															Description:         "Auth: Azure Workload Identity or Azure Managed Service Identity: Settings to enable Azure Workload Identity or Azure Managed Service Identity If set, ClientID, ClientSecret and TenantID must not be set.",
+															MarkdownDescription: "Auth: Azure Workload Identity or Azure Managed Service Identity: Settings to enable Azure Workload Identity or Azure Managed Service Identity If set, ClientID, ClientSecret and TenantID must not be set.",
 															Attributes: map[string]schema.Attribute{
 																"client_id": schema.StringAttribute{
 																	Description:         "client ID of the managed identity, can not be used at the same time as resourceID",
@@ -1051,8 +1051,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																},
 
 																"resource_id": schema.StringAttribute{
-																	Description:         "resource ID of the managed identity, can not be used at the same time as clientIDCannot be used for Azure Managed Service Identity",
-																	MarkdownDescription: "resource ID of the managed identity, can not be used at the same time as clientIDCannot be used for Azure Managed Service Identity",
+																	Description:         "resource ID of the managed identity, can not be used at the same time as clientID Cannot be used for Azure Managed Service Identity",
+																	MarkdownDescription: "resource ID of the managed identity, can not be used at the same time as clientID Cannot be used for Azure Managed Service Identity",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1080,8 +1080,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"tenant_id": schema.StringAttribute{
-															Description:         "Auth: Azure Service Principal:The TenantID of the Azure Service Principal used to authenticate with Azure DNS.If set, ClientID and ClientSecret must also be set.",
-															MarkdownDescription: "Auth: Azure Service Principal:The TenantID of the Azure Service Principal used to authenticate with Azure DNS.If set, ClientID and ClientSecret must also be set.",
+															Description:         "Auth: Azure Service Principal: The TenantID of the Azure Service Principal used to authenticate with Azure DNS. If set, ClientID and ClientSecret must also be set.",
+															MarkdownDescription: "Auth: Azure Service Principal: The TenantID of the Azure Service Principal used to authenticate with Azure DNS. If set, ClientID and ClientSecret must also be set.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1097,8 +1097,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 													MarkdownDescription: "Use the Google Cloud DNS API to manage DNS01 challenge records.",
 													Attributes: map[string]schema.Attribute{
 														"hosted_zone_name": schema.StringAttribute{
-															Description:         "HostedZoneName is an optional field that tells cert-manager in whichCloud DNS zone the challenge record has to be created.If left empty cert-manager will automatically choose a zone.",
-															MarkdownDescription: "HostedZoneName is an optional field that tells cert-manager in whichCloud DNS zone the challenge record has to be created.If left empty cert-manager will automatically choose a zone.",
+															Description:         "HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.",
+															MarkdownDescription: "HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1113,20 +1113,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"service_account_secret_ref": schema.SingleNestedAttribute{
-															Description:         "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
-															MarkdownDescription: "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
+															Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+															MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1147,20 +1147,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 													MarkdownDescription: "Use the Cloudflare API to manage DNS01 challenge records.",
 													Attributes: map[string]schema.Attribute{
 														"api_key_secret_ref": schema.SingleNestedAttribute{
-															Description:         "API key to use to authenticate with Cloudflare.Note: using an API token to authenticate is now the recommended methodas it allows greater control of permissions.",
-															MarkdownDescription: "API key to use to authenticate with Cloudflare.Note: using an API token to authenticate is now the recommended methodas it allows greater control of permissions.",
+															Description:         "API key to use to authenticate with Cloudflare. Note: using an API token to authenticate is now the recommended method as it allows greater control of permissions.",
+															MarkdownDescription: "API key to use to authenticate with Cloudflare. Note: using an API token to authenticate is now the recommended method as it allows greater control of permissions.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1176,16 +1176,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 															MarkdownDescription: "API token used to authenticate with Cloudflare.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1210,8 +1210,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"cname_strategy": schema.StringAttribute{
-													Description:         "CNAMEStrategy configures how the DNS01 provider should handle CNAMErecords when found in DNS zones.",
-													MarkdownDescription: "CNAMEStrategy configures how the DNS01 provider should handle CNAMErecords when found in DNS zones.",
+													Description:         "CNAMEStrategy configures how the DNS01 provider should handle CNAME records when found in DNS zones.",
+													MarkdownDescription: "CNAMEStrategy configures how the DNS01 provider should handle CNAME records when found in DNS zones.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1225,20 +1225,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 													MarkdownDescription: "Use the DigitalOcean DNS API to manage DNS01 challenge records.",
 													Attributes: map[string]schema.Attribute{
 														"token_secret_ref": schema.SingleNestedAttribute{
-															Description:         "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
-															MarkdownDescription: "A reference to a specific 'key' within a Secret resource.In some instances, 'key' is a required field.",
+															Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+															MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1255,48 +1255,48 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"rfc2136": schema.SingleNestedAttribute{
-													Description:         "Use RFC2136 ('Dynamic Updates in the Domain Name System') (https://datatracker.ietf.org/doc/rfc2136/)to manage DNS01 challenge records.",
-													MarkdownDescription: "Use RFC2136 ('Dynamic Updates in the Domain Name System') (https://datatracker.ietf.org/doc/rfc2136/)to manage DNS01 challenge records.",
+													Description:         "Use RFC2136 ('Dynamic Updates in the Domain Name System') (https://datatracker.ietf.org/doc/rfc2136/) to manage DNS01 challenge records.",
+													MarkdownDescription: "Use RFC2136 ('Dynamic Updates in the Domain Name System') (https://datatracker.ietf.org/doc/rfc2136/) to manage DNS01 challenge records.",
 													Attributes: map[string]schema.Attribute{
 														"nameserver": schema.StringAttribute{
-															Description:         "The IP address or hostname of an authoritative DNS server supportingRFC2136 in the form host:port. If the host is an IPv6 address it must beenclosed in square brackets (e.g [2001:db8::1]) ; port is optional.This field is required.",
-															MarkdownDescription: "The IP address or hostname of an authoritative DNS server supportingRFC2136 in the form host:port. If the host is an IPv6 address it must beenclosed in square brackets (e.g [2001:db8::1]) ; port is optional.This field is required.",
+															Description:         "The IP address or hostname of an authoritative DNS server supporting RFC2136 in the form host:port. If the host is an IPv6 address it must be enclosed in square brackets (e.g [2001:db8::1]) ; port is optional. This field is required.",
+															MarkdownDescription: "The IP address or hostname of an authoritative DNS server supporting RFC2136 in the form host:port. If the host is an IPv6 address it must be enclosed in square brackets (e.g [2001:db8::1]) ; port is optional. This field is required.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"tsig_algorithm": schema.StringAttribute{
-															Description:         "The TSIG Algorithm configured in the DNS supporting RFC2136. Used onlywhen ''tsigSecretSecretRef'' and ''tsigKeyName'' are defined.Supported values are (case-insensitive): ''HMACMD5'' (default),''HMACSHA1'', ''HMACSHA256'' or ''HMACSHA512''.",
-															MarkdownDescription: "The TSIG Algorithm configured in the DNS supporting RFC2136. Used onlywhen ''tsigSecretSecretRef'' and ''tsigKeyName'' are defined.Supported values are (case-insensitive): ''HMACMD5'' (default),''HMACSHA1'', ''HMACSHA256'' or ''HMACSHA512''.",
+															Description:         "The TSIG Algorithm configured in the DNS supporting RFC2136. Used only when ''tsigSecretSecretRef'' and ''tsigKeyName'' are defined. Supported values are (case-insensitive): ''HMACMD5'' (default), ''HMACSHA1'', ''HMACSHA256'' or ''HMACSHA512''.",
+															MarkdownDescription: "The TSIG Algorithm configured in the DNS supporting RFC2136. Used only when ''tsigSecretSecretRef'' and ''tsigKeyName'' are defined. Supported values are (case-insensitive): ''HMACMD5'' (default), ''HMACSHA1'', ''HMACSHA256'' or ''HMACSHA512''.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"tsig_key_name": schema.StringAttribute{
-															Description:         "The TSIG Key name configured in the DNS.If ''tsigSecretSecretRef'' is defined, this field is required.",
-															MarkdownDescription: "The TSIG Key name configured in the DNS.If ''tsigSecretSecretRef'' is defined, this field is required.",
+															Description:         "The TSIG Key name configured in the DNS. If ''tsigSecretSecretRef'' is defined, this field is required.",
+															MarkdownDescription: "The TSIG Key name configured in the DNS. If ''tsigSecretSecretRef'' is defined, this field is required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"tsig_secret_secret_ref": schema.SingleNestedAttribute{
-															Description:         "The name of the secret containing the TSIG value.If ''tsigKeyName'' is defined, this field is required.",
-															MarkdownDescription: "The name of the secret containing the TSIG value.If ''tsigKeyName'' is defined, this field is required.",
+															Description:         "The name of the secret containing the TSIG value. If ''tsigKeyName'' is defined, this field is required.",
+															MarkdownDescription: "The name of the secret containing the TSIG value. If ''tsigKeyName'' is defined, this field is required.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1317,28 +1317,28 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 													MarkdownDescription: "Use the AWS Route53 API to manage DNS01 challenge records.",
 													Attributes: map[string]schema.Attribute{
 														"access_key_id": schema.StringAttribute{
-															Description:         "The AccessKeyID is used for authentication.Cannot be set when SecretAccessKeyID is set.If neither the Access Key nor Key ID are set, we fall-back to using envvars, shared credentials file or AWS Instance metadata,see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-															MarkdownDescription: "The AccessKeyID is used for authentication.Cannot be set when SecretAccessKeyID is set.If neither the Access Key nor Key ID are set, we fall-back to using envvars, shared credentials file or AWS Instance metadata,see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+															Description:         "The AccessKeyID is used for authentication. Cannot be set when SecretAccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+															MarkdownDescription: "The AccessKeyID is used for authentication. Cannot be set when SecretAccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"access_key_id_secret_ref": schema.SingleNestedAttribute{
-															Description:         "The SecretAccessKey is used for authentication. If set, pull the AWSaccess key ID from a key within a Kubernetes Secret.Cannot be set when AccessKeyID is set.If neither the Access Key nor Key ID are set, we fall-back to using envvars, shared credentials file or AWS Instance metadata,see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-															MarkdownDescription: "The SecretAccessKey is used for authentication. If set, pull the AWSaccess key ID from a key within a Kubernetes Secret.Cannot be set when AccessKeyID is set.If neither the Access Key nor Key ID are set, we fall-back to using envvars, shared credentials file or AWS Instance metadata,see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+															Description:         "The SecretAccessKey is used for authentication. If set, pull the AWS access key ID from a key within a Kubernetes Secret. Cannot be set when AccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+															MarkdownDescription: "The SecretAccessKey is used for authentication. If set, pull the AWS access key ID from a key within a Kubernetes Secret. Cannot be set when AccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1354,16 +1354,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 															MarkdownDescription: "Auth configures how cert-manager authenticates.",
 															Attributes: map[string]schema.Attribute{
 																"kubernetes": schema.SingleNestedAttribute{
-																	Description:         "Kubernetes authenticates with Route53 using AssumeRoleWithWebIdentityby passing a bound ServiceAccount token.",
-																	MarkdownDescription: "Kubernetes authenticates with Route53 using AssumeRoleWithWebIdentityby passing a bound ServiceAccount token.",
+																	Description:         "Kubernetes authenticates with Route53 using AssumeRoleWithWebIdentity by passing a bound ServiceAccount token.",
+																	MarkdownDescription: "Kubernetes authenticates with Route53 using AssumeRoleWithWebIdentity by passing a bound ServiceAccount token.",
 																	Attributes: map[string]schema.Attribute{
 																		"service_account_ref": schema.SingleNestedAttribute{
-																			Description:         "A reference to a service account that will be used to request a boundtoken (also known as 'projected token'). To use this field, you mustconfigure an RBAC rule to let cert-manager request a token.",
-																			MarkdownDescription: "A reference to a service account that will be used to request a boundtoken (also known as 'projected token'). To use this field, you mustconfigure an RBAC rule to let cert-manager request a token.",
+																			Description:         "A reference to a service account that will be used to request a bound token (also known as 'projected token'). To use this field, you must configure an RBAC rule to let cert-manager request a token.",
+																			MarkdownDescription: "A reference to a service account that will be used to request a bound token (also known as 'projected token'). To use this field, you must configure an RBAC rule to let cert-manager request a token.",
 																			Attributes: map[string]schema.Attribute{
 																				"audiences": schema.ListAttribute{
-																					Description:         "TokenAudiences is an optional list of audiences to include in thetoken passed to AWS. The default token consisting of the issuer's namespaceand name is always included.If unset the audience defaults to 'sts.amazonaws.com'.",
-																					MarkdownDescription: "TokenAudiences is an optional list of audiences to include in thetoken passed to AWS. The default token consisting of the issuer's namespaceand name is always included.If unset the audience defaults to 'sts.amazonaws.com'.",
+																					Description:         "TokenAudiences is an optional list of audiences to include in the token passed to AWS. The default token consisting of the issuer's namespace and name is always included. If unset the audience defaults to 'sts.amazonaws.com'.",
+																					MarkdownDescription: "TokenAudiences is an optional list of audiences to include in the token passed to AWS. The default token consisting of the issuer's namespace and name is always included. If unset the audience defaults to 'sts.amazonaws.com'.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -1410,28 +1410,28 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"role": schema.StringAttribute{
-															Description:         "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKeyor the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
-															MarkdownDescription: "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKeyor the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
+															Description:         "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKey or the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
+															MarkdownDescription: "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKey or the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"secret_access_key_secret_ref": schema.SingleNestedAttribute{
-															Description:         "The SecretAccessKey is used for authentication.If neither the Access Key nor Key ID are set, we fall-back to using envvars, shared credentials file or AWS Instance metadata,see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-															MarkdownDescription: "The SecretAccessKey is used for authentication.If neither the Access Key nor Key ID are set, we fall-back to using envvars, shared credentials file or AWS Instance metadata,see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+															Description:         "The SecretAccessKey is used for authentication. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+															MarkdownDescription: "The SecretAccessKey is used for authentication. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+																	Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																	MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1448,12 +1448,12 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"webhook": schema.SingleNestedAttribute{
-													Description:         "Configure an external webhook based DNS01 challenge solver to manageDNS01 challenge records.",
-													MarkdownDescription: "Configure an external webhook based DNS01 challenge solver to manageDNS01 challenge records.",
+													Description:         "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
+													MarkdownDescription: "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
 													Attributes: map[string]schema.Attribute{
 														"config": schema.MapAttribute{
-															Description:         "Additional configuration that should be passed to the webhook apiserverwhen challenges are processed.This can contain arbitrary JSON data.Secret values should not be specified in this stanza.If secret values are needed (e.g. credentials for a DNS service), youshould use a SecretKeySelector to reference a Secret resource.For details on the schema of this field, consult the webhook providerimplementation's documentation.",
-															MarkdownDescription: "Additional configuration that should be passed to the webhook apiserverwhen challenges are processed.This can contain arbitrary JSON data.Secret values should not be specified in this stanza.If secret values are needed (e.g. credentials for a DNS service), youshould use a SecretKeySelector to reference a Secret resource.For details on the schema of this field, consult the webhook providerimplementation's documentation.",
+															Description:         "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
+															MarkdownDescription: "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1461,16 +1461,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"group_name": schema.StringAttribute{
-															Description:         "The API group name that should be used when POSTing ChallengePayloadresources to the webhook apiserver.This should be the same as the GroupName specified in the webhookprovider implementation.",
-															MarkdownDescription: "The API group name that should be used when POSTing ChallengePayloadresources to the webhook apiserver.This should be the same as the GroupName specified in the webhookprovider implementation.",
+															Description:         "The API group name that should be used when POSTing ChallengePayload resources to the webhook apiserver. This should be the same as the GroupName specified in the webhook provider implementation.",
+															MarkdownDescription: "The API group name that should be used when POSTing ChallengePayload resources to the webhook apiserver. This should be the same as the GroupName specified in the webhook provider implementation.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"solver_name": schema.StringAttribute{
-															Description:         "The name of the solver to use, as defined in the webhook providerimplementation.This will typically be the name of the provider, e.g. 'cloudflare'.",
-															MarkdownDescription: "The name of the solver to use, as defined in the webhook providerimplementation.This will typically be the name of the provider, e.g. 'cloudflare'.",
+															Description:         "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
+															MarkdownDescription: "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1487,16 +1487,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"http01": schema.SingleNestedAttribute{
-											Description:         "Configures cert-manager to attempt to complete authorizations byperforming the HTTP01 challenge flow.It is not possible to obtain certificates for wildcard domain names(e.g. '*.example.com') using the HTTP01 challenge mechanism.",
-											MarkdownDescription: "Configures cert-manager to attempt to complete authorizations byperforming the HTTP01 challenge flow.It is not possible to obtain certificates for wildcard domain names(e.g. '*.example.com') using the HTTP01 challenge mechanism.",
+											Description:         "Configures cert-manager to attempt to complete authorizations by performing the HTTP01 challenge flow. It is not possible to obtain certificates for wildcard domain names (e.g. '*.example.com') using the HTTP01 challenge mechanism.",
+											MarkdownDescription: "Configures cert-manager to attempt to complete authorizations by performing the HTTP01 challenge flow. It is not possible to obtain certificates for wildcard domain names (e.g. '*.example.com') using the HTTP01 challenge mechanism.",
 											Attributes: map[string]schema.Attribute{
 												"gateway_http_route": schema.SingleNestedAttribute{
-													Description:         "The Gateway API is a sig-network community API that models service networkingin Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver willcreate HTTPRoutes with the specified labels in the same namespace as the challenge.This solver is experimental, and fields / behaviour may change in the future.",
-													MarkdownDescription: "The Gateway API is a sig-network community API that models service networkingin Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver willcreate HTTPRoutes with the specified labels in the same namespace as the challenge.This solver is experimental, and fields / behaviour may change in the future.",
+													Description:         "The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.",
+													MarkdownDescription: "The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.",
 													Attributes: map[string]schema.Attribute{
 														"labels": schema.MapAttribute{
-															Description:         "Custom labels that will be applied to HTTPRoutes created by cert-managerwhile solving HTTP-01 challenges.",
-															MarkdownDescription: "Custom labels that will be applied to HTTPRoutes created by cert-managerwhile solving HTTP-01 challenges.",
+															Description:         "Custom labels that will be applied to HTTPRoutes created by cert-manager while solving HTTP-01 challenges.",
+															MarkdownDescription: "Custom labels that will be applied to HTTPRoutes created by cert-manager while solving HTTP-01 challenges.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1504,13 +1504,13 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"parent_refs": schema.ListNestedAttribute{
-															Description:         "When solving an HTTP-01 challenge, cert-manager creates an HTTPRoute.cert-manager needs to know which parentRefs should be used when creatingthe HTTPRoute. Usually, the parentRef references a Gateway. See:https://gateway-api.sigs.k8s.io/api-types/httproute/#attaching-to-gateways",
-															MarkdownDescription: "When solving an HTTP-01 challenge, cert-manager creates an HTTPRoute.cert-manager needs to know which parentRefs should be used when creatingthe HTTPRoute. Usually, the parentRef references a Gateway. See:https://gateway-api.sigs.k8s.io/api-types/httproute/#attaching-to-gateways",
+															Description:         "When solving an HTTP-01 challenge, cert-manager creates an HTTPRoute. cert-manager needs to know which parentRefs should be used when creating the HTTPRoute. Usually, the parentRef references a Gateway. See: https://gateway-api.sigs.k8s.io/api-types/httproute/#attaching-to-gateways",
+															MarkdownDescription: "When solving an HTTP-01 challenge, cert-manager creates an HTTPRoute. cert-manager needs to know which parentRefs should be used when creating the HTTPRoute. Usually, the parentRef references a Gateway. See: https://gateway-api.sigs.k8s.io/api-types/httproute/#attaching-to-gateways",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"group": schema.StringAttribute{
-																		Description:         "Group is the group of the referent.When unspecified, 'gateway.networking.k8s.io' is inferred.To set the core API group (such as for a 'Service' kind referent),Group must be explicitly set to '' (empty string).Support: Core",
-																		MarkdownDescription: "Group is the group of the referent.When unspecified, 'gateway.networking.k8s.io' is inferred.To set the core API group (such as for a 'Service' kind referent),Group must be explicitly set to '' (empty string).Support: Core",
+																		Description:         "Group is the group of the referent. When unspecified, 'gateway.networking.k8s.io' is inferred. To set the core API group (such as for a 'Service' kind referent), Group must be explicitly set to '' (empty string). Support: Core",
+																		MarkdownDescription: "Group is the group of the referent. When unspecified, 'gateway.networking.k8s.io' is inferred. To set the core API group (such as for a 'Service' kind referent), Group must be explicitly set to '' (empty string). Support: Core",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1521,8 +1521,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																	},
 
 																	"kind": schema.StringAttribute{
-																		Description:         "Kind is kind of the referent.There are two kinds of parent resources with 'Core' support:* Gateway (Gateway conformance profile)* Service (Mesh conformance profile, ClusterIP Services only)Support for other resources is Implementation-Specific.",
-																		MarkdownDescription: "Kind is kind of the referent.There are two kinds of parent resources with 'Core' support:* Gateway (Gateway conformance profile)* Service (Mesh conformance profile, ClusterIP Services only)Support for other resources is Implementation-Specific.",
+																		Description:         "Kind is kind of the referent. There are two kinds of parent resources with 'Core' support: * Gateway (Gateway conformance profile) * Service (Mesh conformance profile, ClusterIP Services only) Support for other resources is Implementation-Specific.",
+																		MarkdownDescription: "Kind is kind of the referent. There are two kinds of parent resources with 'Core' support: * Gateway (Gateway conformance profile) * Service (Mesh conformance profile, ClusterIP Services only) Support for other resources is Implementation-Specific.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1534,8 +1534,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name is the name of the referent.Support: Core",
-																		MarkdownDescription: "Name is the name of the referent.Support: Core",
+																		Description:         "Name is the name of the referent. Support: Core",
+																		MarkdownDescription: "Name is the name of the referent. Support: Core",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -1546,8 +1546,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																	},
 
 																	"namespace": schema.StringAttribute{
-																		Description:         "Namespace is the namespace of the referent. When unspecified, this refersto the local namespace of the Route.Note that there are specific rules for ParentRefs which cross namespaceboundaries. Cross-namespace references are only valid if they are explicitlyallowed by something in the namespace they are referring to. For example:Gateway has the AllowedRoutes field, and ReferenceGrant provides ageneric way to enable any other kind of cross-namespace reference.<gateway:experimental:description>ParentRefs from a Route to a Service in the same namespace are 'producer'routes, which apply default routing rules to inbound connections fromany namespace to the Service.ParentRefs from a Route to a Service in a different namespace are'consumer' routes, and these routing rules are only applied to outboundconnections originating from the same namespace as the Route, for whichthe intended destination of the connections are a Service targeted as aParentRef of the Route.</gateway:experimental:description>Support: Core",
-																		MarkdownDescription: "Namespace is the namespace of the referent. When unspecified, this refersto the local namespace of the Route.Note that there are specific rules for ParentRefs which cross namespaceboundaries. Cross-namespace references are only valid if they are explicitlyallowed by something in the namespace they are referring to. For example:Gateway has the AllowedRoutes field, and ReferenceGrant provides ageneric way to enable any other kind of cross-namespace reference.<gateway:experimental:description>ParentRefs from a Route to a Service in the same namespace are 'producer'routes, which apply default routing rules to inbound connections fromany namespace to the Service.ParentRefs from a Route to a Service in a different namespace are'consumer' routes, and these routing rules are only applied to outboundconnections originating from the same namespace as the Route, for whichthe intended destination of the connections are a Service targeted as aParentRef of the Route.</gateway:experimental:description>Support: Core",
+																		Description:         "Namespace is the namespace of the referent. When unspecified, this refers to the local namespace of the Route. Note that there are specific rules for ParentRefs which cross namespace boundaries. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example: Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable any other kind of cross-namespace reference. <gateway:experimental:description> ParentRefs from a Route to a Service in the same namespace are 'producer' routes, which apply default routing rules to inbound connections from any namespace to the Service. ParentRefs from a Route to a Service in a different namespace are 'consumer' routes, and these routing rules are only applied to outbound connections originating from the same namespace as the Route, for which the intended destination of the connections are a Service targeted as a ParentRef of the Route. </gateway:experimental:description> Support: Core",
+																		MarkdownDescription: "Namespace is the namespace of the referent. When unspecified, this refers to the local namespace of the Route. Note that there are specific rules for ParentRefs which cross namespace boundaries. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example: Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable any other kind of cross-namespace reference. <gateway:experimental:description> ParentRefs from a Route to a Service in the same namespace are 'producer' routes, which apply default routing rules to inbound connections from any namespace to the Service. ParentRefs from a Route to a Service in a different namespace are 'consumer' routes, and these routing rules are only applied to outbound connections originating from the same namespace as the Route, for which the intended destination of the connections are a Service targeted as a ParentRef of the Route. </gateway:experimental:description> Support: Core",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1559,8 +1559,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																	},
 
 																	"port": schema.Int64Attribute{
-																		Description:         "Port is the network port this Route targets. It can be interpreteddifferently based on the type of parent resource.When the parent resource is a Gateway, this targets all listenerslistening on the specified port that also support this kind of Route(andselect this Route). It's not recommended to set 'Port' unless thenetworking behaviors specified in a Route must apply to a specific portas opposed to a listener(s) whose port(s) may be changed. When both Portand SectionName are specified, the name and port of the selected listenermust match both specified values.<gateway:experimental:description>When the parent resource is a Service, this targets a specific port in theService spec. When both Port (experimental) and SectionName are specified,the name and port of the selected port must match both specified values.</gateway:experimental:description>Implementations MAY choose to support other parent resources.Implementations supporting other types of parent resources MUST clearlydocument how/if Port is interpreted.For the purpose of status, an attachment is considered successful aslong as the parent resource accepts it partially. For example, Gatewaylisteners can restrict which Routes can attach to them by Route kind,namespace, or hostname. If 1 of 2 Gateway listeners accept attachmentfrom the referencing Route, the Route MUST be considered successfullyattached. If no Gateway listeners accept attachment from this Route,the Route MUST be considered detached from the Gateway.Support: Extended",
-																		MarkdownDescription: "Port is the network port this Route targets. It can be interpreteddifferently based on the type of parent resource.When the parent resource is a Gateway, this targets all listenerslistening on the specified port that also support this kind of Route(andselect this Route). It's not recommended to set 'Port' unless thenetworking behaviors specified in a Route must apply to a specific portas opposed to a listener(s) whose port(s) may be changed. When both Portand SectionName are specified, the name and port of the selected listenermust match both specified values.<gateway:experimental:description>When the parent resource is a Service, this targets a specific port in theService spec. When both Port (experimental) and SectionName are specified,the name and port of the selected port must match both specified values.</gateway:experimental:description>Implementations MAY choose to support other parent resources.Implementations supporting other types of parent resources MUST clearlydocument how/if Port is interpreted.For the purpose of status, an attachment is considered successful aslong as the parent resource accepts it partially. For example, Gatewaylisteners can restrict which Routes can attach to them by Route kind,namespace, or hostname. If 1 of 2 Gateway listeners accept attachmentfrom the referencing Route, the Route MUST be considered successfullyattached. If no Gateway listeners accept attachment from this Route,the Route MUST be considered detached from the Gateway.Support: Extended",
+																		Description:         "Port is the network port this Route targets. It can be interpreted differently based on the type of parent resource. When the parent resource is a Gateway, this targets all listeners listening on the specified port that also support this kind of Route(and select this Route). It's not recommended to set 'Port' unless the networking behaviors specified in a Route must apply to a specific port as opposed to a listener(s) whose port(s) may be changed. When both Port and SectionName are specified, the name and port of the selected listener must match both specified values. <gateway:experimental:description> When the parent resource is a Service, this targets a specific port in the Service spec. When both Port (experimental) and SectionName are specified, the name and port of the selected port must match both specified values. </gateway:experimental:description> Implementations MAY choose to support other parent resources. Implementations supporting other types of parent resources MUST clearly document how/if Port is interpreted. For the purpose of status, an attachment is considered successful as long as the parent resource accepts it partially. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway. Support: Extended",
+																		MarkdownDescription: "Port is the network port this Route targets. It can be interpreted differently based on the type of parent resource. When the parent resource is a Gateway, this targets all listeners listening on the specified port that also support this kind of Route(and select this Route). It's not recommended to set 'Port' unless the networking behaviors specified in a Route must apply to a specific port as opposed to a listener(s) whose port(s) may be changed. When both Port and SectionName are specified, the name and port of the selected listener must match both specified values. <gateway:experimental:description> When the parent resource is a Service, this targets a specific port in the Service spec. When both Port (experimental) and SectionName are specified, the name and port of the selected port must match both specified values. </gateway:experimental:description> Implementations MAY choose to support other parent resources. Implementations supporting other types of parent resources MUST clearly document how/if Port is interpreted. For the purpose of status, an attachment is considered successful as long as the parent resource accepts it partially. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway. Support: Extended",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1571,8 +1571,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																	},
 
 																	"section_name": schema.StringAttribute{
-																		Description:         "SectionName is the name of a section within the target resource. In thefollowing resources, SectionName is interpreted as the following:* Gateway: Listener name. When both Port (experimental) and SectionNameare specified, the name and port of the selected listener must matchboth specified values.* Service: Port name. When both Port (experimental) and SectionNameare specified, the name and port of the selected listener must matchboth specified values.Implementations MAY choose to support attaching Routes to other resources.If that is the case, they MUST clearly document how SectionName isinterpreted.When unspecified (empty string), this will reference the entire resource.For the purpose of status, an attachment is considered successful if atleast one section in the parent resource accepts it. For example, Gatewaylisteners can restrict which Routes can attach to them by Route kind,namespace, or hostname. If 1 of 2 Gateway listeners accept attachment fromthe referencing Route, the Route MUST be considered successfullyattached. If no Gateway listeners accept attachment from this Route, theRoute MUST be considered detached from the Gateway.Support: Core",
-																		MarkdownDescription: "SectionName is the name of a section within the target resource. In thefollowing resources, SectionName is interpreted as the following:* Gateway: Listener name. When both Port (experimental) and SectionNameare specified, the name and port of the selected listener must matchboth specified values.* Service: Port name. When both Port (experimental) and SectionNameare specified, the name and port of the selected listener must matchboth specified values.Implementations MAY choose to support attaching Routes to other resources.If that is the case, they MUST clearly document how SectionName isinterpreted.When unspecified (empty string), this will reference the entire resource.For the purpose of status, an attachment is considered successful if atleast one section in the parent resource accepts it. For example, Gatewaylisteners can restrict which Routes can attach to them by Route kind,namespace, or hostname. If 1 of 2 Gateway listeners accept attachment fromthe referencing Route, the Route MUST be considered successfullyattached. If no Gateway listeners accept attachment from this Route, theRoute MUST be considered detached from the Gateway.Support: Core",
+																		Description:         "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following: * Gateway: Listener name. When both Port (experimental) and SectionName are specified, the name and port of the selected listener must match both specified values. * Service: Port name. When both Port (experimental) and SectionName are specified, the name and port of the selected listener must match both specified values. Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted. When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway. Support: Core",
+																		MarkdownDescription: "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following: * Gateway: Listener name. When both Port (experimental) and SectionName are specified, the name and port of the selected listener must match both specified values. * Service: Port name. When both Port (experimental) and SectionName are specified, the name and port of the selected listener must match both specified values. Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted. When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway. Support: Core",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1590,12 +1590,12 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"pod_template": schema.SingleNestedAttribute{
-															Description:         "Optional pod template used to configure the ACME challenge solver podsused for HTTP01 challenges.",
-															MarkdownDescription: "Optional pod template used to configure the ACME challenge solver podsused for HTTP01 challenges.",
+															Description:         "Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.",
+															MarkdownDescription: "Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.",
 															Attributes: map[string]schema.Attribute{
 																"metadata": schema.SingleNestedAttribute{
-																	Description:         "ObjectMeta overrides for the pod used to solve HTTP01 challenges.Only the 'labels' and 'annotations' fields may be set.If labels or annotations overlap with in-built values, the values herewill override the in-built values.",
-																	MarkdownDescription: "ObjectMeta overrides for the pod used to solve HTTP01 challenges.Only the 'labels' and 'annotations' fields may be set.If labels or annotations overlap with in-built values, the values herewill override the in-built values.",
+																	Description:         "ObjectMeta overrides for the pod used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
+																	MarkdownDescription: "ObjectMeta overrides for the pod used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
 																	Attributes: map[string]schema.Attribute{
 																		"annotations": schema.MapAttribute{
 																			Description:         "Annotations that should be added to the create ACME HTTP01 solver pods.",
@@ -1621,8 +1621,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																},
 
 																"spec": schema.SingleNestedAttribute{
-																	Description:         "PodSpec defines overrides for the HTTP01 challenge solver pod.Check ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields.All other fields will be ignored.",
-																	MarkdownDescription: "PodSpec defines overrides for the HTTP01 challenge solver pod.Check ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields.All other fields will be ignored.",
+																	Description:         "PodSpec defines overrides for the HTTP01 challenge solver pod. Check ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields. All other fields will be ignored.",
+																	MarkdownDescription: "PodSpec defines overrides for the HTTP01 challenge solver pod. Check ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields. All other fields will be ignored.",
 																	Attributes: map[string]schema.Attribute{
 																		"affinity": schema.SingleNestedAttribute{
 																			Description:         "If specified, the pod's scheduling constraints",
@@ -1633,8 +1633,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																					MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
 																					Attributes: map[string]schema.Attribute{
 																						"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
-																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"preference": schema.SingleNestedAttribute{
@@ -1655,16 +1655,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																															MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																															MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																															Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -1691,16 +1691,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																															MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																															MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																															Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -1733,8 +1733,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																						},
 
 																						"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-																							Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
-																							MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+																							Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+																							MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
 																							Attributes: map[string]schema.Attribute{
 																								"node_selector_terms": schema.ListNestedAttribute{
 																									Description:         "Required. A list of node selector terms. The terms are ORed.",
@@ -1755,16 +1755,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																															MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																															MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																															Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -1791,16 +1791,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																															MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																															MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																															Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -1834,8 +1834,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																					MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
 																					Attributes: map[string]schema.Attribute{
 																						"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
-																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"pod_affinity_term": schema.SingleNestedAttribute{
@@ -1843,8 +1843,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																										MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																										Attributes: map[string]schema.Attribute{
 																											"label_selector": schema.SingleNestedAttribute{
-																												Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																												MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																												Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																												MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																												Attributes: map[string]schema.Attribute{
 																													"match_expressions": schema.ListNestedAttribute{
 																														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1860,16 +1860,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																																},
 
 																																"operator": schema.StringAttribute{
-																																	Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																	MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																	Required:            true,
 																																	Optional:            false,
 																																	Computed:            false,
 																																},
 
 																																"values": schema.ListAttribute{
-																																	Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																	ElementType:         types.StringType,
 																																	Required:            false,
 																																	Optional:            true,
@@ -1883,8 +1883,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																													},
 
 																													"match_labels": schema.MapAttribute{
-																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -1897,8 +1897,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_label_keys": schema.ListAttribute{
-																												Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																												MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -1906,8 +1906,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"mismatch_label_keys": schema.ListAttribute{
-																												Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																												MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -1915,8 +1915,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"namespace_selector": schema.SingleNestedAttribute{
-																												Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																												MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																												Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																												MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																												Attributes: map[string]schema.Attribute{
 																													"match_expressions": schema.ListNestedAttribute{
 																														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1932,16 +1932,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																																},
 
 																																"operator": schema.StringAttribute{
-																																	Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																	MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																	Required:            true,
 																																	Optional:            false,
 																																	Computed:            false,
 																																},
 
 																																"values": schema.ListAttribute{
-																																	Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																	ElementType:         types.StringType,
 																																	Required:            false,
 																																	Optional:            true,
@@ -1955,8 +1955,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																													},
 
 																													"match_labels": schema.MapAttribute{
-																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -1969,8 +1969,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"namespaces": schema.ListAttribute{
-																												Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																												MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																												Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																												MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -1978,8 +1978,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"topology_key": schema.StringAttribute{
-																												Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																												MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																												Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																												MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
@@ -1991,8 +1991,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"weight": schema.Int64Attribute{
-																										Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
-																										MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																										Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																										MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -2005,13 +2005,13 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																						},
 
 																						"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																							Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
-																							MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																							Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																							MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"label_selector": schema.SingleNestedAttribute{
-																										Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																										MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																										Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																										MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																										Attributes: map[string]schema.Attribute{
 																											"match_expressions": schema.ListNestedAttribute{
 																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2027,16 +2027,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -2050,8 +2050,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_labels": schema.MapAttribute{
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -2064,8 +2064,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"match_label_keys": schema.ListAttribute{
-																										Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																										MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2073,8 +2073,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"mismatch_label_keys": schema.ListAttribute{
-																										Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																										MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2082,8 +2082,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"namespace_selector": schema.SingleNestedAttribute{
-																										Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																										MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																										Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																										MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																										Attributes: map[string]schema.Attribute{
 																											"match_expressions": schema.ListNestedAttribute{
 																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2099,16 +2099,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -2122,8 +2122,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_labels": schema.MapAttribute{
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -2136,8 +2136,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"namespaces": schema.ListAttribute{
-																										Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																										Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2145,8 +2145,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"topology_key": schema.StringAttribute{
-																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -2168,8 +2168,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																					MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
 																					Attributes: map[string]schema.Attribute{
 																						"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
-																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"pod_affinity_term": schema.SingleNestedAttribute{
@@ -2177,8 +2177,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																										MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																										Attributes: map[string]schema.Attribute{
 																											"label_selector": schema.SingleNestedAttribute{
-																												Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																												MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																												Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																												MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																												Attributes: map[string]schema.Attribute{
 																													"match_expressions": schema.ListNestedAttribute{
 																														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2194,16 +2194,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																																},
 
 																																"operator": schema.StringAttribute{
-																																	Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																	MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																	Required:            true,
 																																	Optional:            false,
 																																	Computed:            false,
 																																},
 
 																																"values": schema.ListAttribute{
-																																	Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																	ElementType:         types.StringType,
 																																	Required:            false,
 																																	Optional:            true,
@@ -2217,8 +2217,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																													},
 
 																													"match_labels": schema.MapAttribute{
-																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -2231,8 +2231,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_label_keys": schema.ListAttribute{
-																												Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																												MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -2240,8 +2240,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"mismatch_label_keys": schema.ListAttribute{
-																												Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																												MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -2249,8 +2249,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"namespace_selector": schema.SingleNestedAttribute{
-																												Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																												MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																												Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																												MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																												Attributes: map[string]schema.Attribute{
 																													"match_expressions": schema.ListNestedAttribute{
 																														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2266,16 +2266,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																																},
 
 																																"operator": schema.StringAttribute{
-																																	Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																	MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																	Required:            true,
 																																	Optional:            false,
 																																	Computed:            false,
 																																},
 
 																																"values": schema.ListAttribute{
-																																	Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																	ElementType:         types.StringType,
 																																	Required:            false,
 																																	Optional:            true,
@@ -2289,8 +2289,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																													},
 
 																													"match_labels": schema.MapAttribute{
-																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -2303,8 +2303,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"namespaces": schema.ListAttribute{
-																												Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																												MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																												Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																												MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -2312,8 +2312,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"topology_key": schema.StringAttribute{
-																												Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																												MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																												Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																												MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
@@ -2325,8 +2325,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"weight": schema.Int64Attribute{
-																										Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
-																										MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																										Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																										MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -2339,13 +2339,13 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																						},
 
 																						"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																							Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
-																							MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																							Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																							MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"label_selector": schema.SingleNestedAttribute{
-																										Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																										MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																										Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																										MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																										Attributes: map[string]schema.Attribute{
 																											"match_expressions": schema.ListNestedAttribute{
 																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2361,16 +2361,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -2384,8 +2384,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_labels": schema.MapAttribute{
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -2398,8 +2398,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"match_label_keys": schema.ListAttribute{
-																										Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																										MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2407,8 +2407,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"mismatch_label_keys": schema.ListAttribute{
-																										Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																										MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2416,8 +2416,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"namespace_selector": schema.SingleNestedAttribute{
-																										Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																										MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																										Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																										MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																										Attributes: map[string]schema.Attribute{
 																											"match_expressions": schema.ListNestedAttribute{
 																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2433,16 +2433,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -2456,8 +2456,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_labels": schema.MapAttribute{
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -2470,8 +2470,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"namespaces": schema.ListAttribute{
-																										Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																										Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -2479,8 +2479,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"topology_key": schema.StringAttribute{
-																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -2508,8 +2508,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																						MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2522,8 +2522,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																		},
 
 																		"node_selector": schema.MapAttribute{
-																			Description:         "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-																			MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+																			Description:         "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+																			MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2543,48 +2543,48 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																			MarkdownDescription: "If specified, the pod's security context",
 																			Attributes: map[string]schema.Attribute{
 																				"fs_group": schema.Int64Attribute{
-																					Description:         "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"fs_group_change_policy": schema.StringAttribute{
-																					Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"run_as_group": schema.Int64Attribute{
-																					Description:         "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"run_as_non_root": schema.BoolAttribute{
-																					Description:         "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
-																					MarkdownDescription: "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+																					Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																					MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"run_as_user": schema.Int64Attribute{
-																					Description:         "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"se_linux_options": schema.SingleNestedAttribute{
-																					Description:         "The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 																					Attributes: map[string]schema.Attribute{
 																						"level": schema.StringAttribute{
 																							Description:         "Level is SELinux level label that applies to the container.",
@@ -2624,20 +2624,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																				},
 
 																				"seccomp_profile": schema.SingleNestedAttribute{
-																					Description:         "The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
 																					Attributes: map[string]schema.Attribute{
 																						"localhost_profile": schema.StringAttribute{
-																							Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
-																							MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																							Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																							MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"type": schema.StringAttribute{
-																							Description:         "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
-																							MarkdownDescription: "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
+																							Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																							MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -2649,8 +2649,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																				},
 
 																				"supplemental_groups": schema.ListAttribute{
-																					Description:         "A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2658,8 +2658,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																				},
 
 																				"sysctls": schema.ListNestedAttribute{
-																					Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
@@ -2703,40 +2703,40 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"effect": schema.StringAttribute{
-																						Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-																						MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																						Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																						MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"key": schema.StringAttribute{
-																						Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-																						MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																						Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																						MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
-																						MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+																						Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+																						MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"toleration_seconds": schema.Int64Attribute{
-																						Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
-																						MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+																						Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+																						MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"value": schema.StringAttribute{
-																						Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
-																						MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																						Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																						MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2759,8 +2759,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"service_type": schema.StringAttribute{
-															Description:         "Optional service type for Kubernetes solver service. Supported valuesare NodePort or ClusterIP. If unset, defaults to NodePort.",
-															MarkdownDescription: "Optional service type for Kubernetes solver service. Supported valuesare NodePort or ClusterIP. If unset, defaults to NodePort.",
+															Description:         "Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.",
+															MarkdownDescription: "Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2772,32 +2772,32 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"ingress": schema.SingleNestedAttribute{
-													Description:         "The ingress based HTTP01 challenge solver will solve challenges bycreating or modifying Ingress resources in order to route requests for'/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that areprovisioned by cert-manager for each Challenge to be completed.",
-													MarkdownDescription: "The ingress based HTTP01 challenge solver will solve challenges bycreating or modifying Ingress resources in order to route requests for'/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that areprovisioned by cert-manager for each Challenge to be completed.",
+													Description:         "The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.",
+													MarkdownDescription: "The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.",
 													Attributes: map[string]schema.Attribute{
 														"class": schema.StringAttribute{
-															Description:         "This field configures the annotation 'kubernetes.io/ingress.class' whencreating Ingress resources to solve ACME challenges that use thischallenge solver. Only one of 'class', 'name' or 'ingressClassName' maybe specified.",
-															MarkdownDescription: "This field configures the annotation 'kubernetes.io/ingress.class' whencreating Ingress resources to solve ACME challenges that use thischallenge solver. Only one of 'class', 'name' or 'ingressClassName' maybe specified.",
+															Description:         "This field configures the annotation 'kubernetes.io/ingress.class' when creating Ingress resources to solve ACME challenges that use this challenge solver. Only one of 'class', 'name' or 'ingressClassName' may be specified.",
+															MarkdownDescription: "This field configures the annotation 'kubernetes.io/ingress.class' when creating Ingress resources to solve ACME challenges that use this challenge solver. Only one of 'class', 'name' or 'ingressClassName' may be specified.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"ingress_class_name": schema.StringAttribute{
-															Description:         "This field configures the field 'ingressClassName' on the created Ingressresources used to solve ACME challenges that use this challenge solver.This is the recommended way of configuring the ingress class. Only one of'class', 'name' or 'ingressClassName' may be specified.",
-															MarkdownDescription: "This field configures the field 'ingressClassName' on the created Ingressresources used to solve ACME challenges that use this challenge solver.This is the recommended way of configuring the ingress class. Only one of'class', 'name' or 'ingressClassName' may be specified.",
+															Description:         "This field configures the field 'ingressClassName' on the created Ingress resources used to solve ACME challenges that use this challenge solver. This is the recommended way of configuring the ingress class. Only one of 'class', 'name' or 'ingressClassName' may be specified.",
+															MarkdownDescription: "This field configures the field 'ingressClassName' on the created Ingress resources used to solve ACME challenges that use this challenge solver. This is the recommended way of configuring the ingress class. Only one of 'class', 'name' or 'ingressClassName' may be specified.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"ingress_template": schema.SingleNestedAttribute{
-															Description:         "Optional ingress template used to configure the ACME challenge solveringress used for HTTP01 challenges.",
-															MarkdownDescription: "Optional ingress template used to configure the ACME challenge solveringress used for HTTP01 challenges.",
+															Description:         "Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.",
+															MarkdownDescription: "Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.",
 															Attributes: map[string]schema.Attribute{
 																"metadata": schema.SingleNestedAttribute{
-																	Description:         "ObjectMeta overrides for the ingress used to solve HTTP01 challenges.Only the 'labels' and 'annotations' fields may be set.If labels or annotations overlap with in-built values, the values herewill override the in-built values.",
-																	MarkdownDescription: "ObjectMeta overrides for the ingress used to solve HTTP01 challenges.Only the 'labels' and 'annotations' fields may be set.If labels or annotations overlap with in-built values, the values herewill override the in-built values.",
+																	Description:         "ObjectMeta overrides for the ingress used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
+																	MarkdownDescription: "ObjectMeta overrides for the ingress used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
 																	Attributes: map[string]schema.Attribute{
 																		"annotations": schema.MapAttribute{
 																			Description:         "Annotations that should be added to the created ACME HTTP01 solver ingress.",
@@ -2828,20 +2828,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "The name of the ingress resource that should have ACME challenge solvingroutes inserted into it in order to solve HTTP01 challenges.This is typically used in conjunction with ingress controllers likeingress-gce, which maintains a 1:1 mapping between external IPs andingress resources. Only one of 'class', 'name' or 'ingressClassName' maybe specified.",
-															MarkdownDescription: "The name of the ingress resource that should have ACME challenge solvingroutes inserted into it in order to solve HTTP01 challenges.This is typically used in conjunction with ingress controllers likeingress-gce, which maintains a 1:1 mapping between external IPs andingress resources. Only one of 'class', 'name' or 'ingressClassName' maybe specified.",
+															Description:         "The name of the ingress resource that should have ACME challenge solving routes inserted into it in order to solve HTTP01 challenges. This is typically used in conjunction with ingress controllers like ingress-gce, which maintains a 1:1 mapping between external IPs and ingress resources. Only one of 'class', 'name' or 'ingressClassName' may be specified.",
+															MarkdownDescription: "The name of the ingress resource that should have ACME challenge solving routes inserted into it in order to solve HTTP01 challenges. This is typically used in conjunction with ingress controllers like ingress-gce, which maintains a 1:1 mapping between external IPs and ingress resources. Only one of 'class', 'name' or 'ingressClassName' may be specified.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"pod_template": schema.SingleNestedAttribute{
-															Description:         "Optional pod template used to configure the ACME challenge solver podsused for HTTP01 challenges.",
-															MarkdownDescription: "Optional pod template used to configure the ACME challenge solver podsused for HTTP01 challenges.",
+															Description:         "Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.",
+															MarkdownDescription: "Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.",
 															Attributes: map[string]schema.Attribute{
 																"metadata": schema.SingleNestedAttribute{
-																	Description:         "ObjectMeta overrides for the pod used to solve HTTP01 challenges.Only the 'labels' and 'annotations' fields may be set.If labels or annotations overlap with in-built values, the values herewill override the in-built values.",
-																	MarkdownDescription: "ObjectMeta overrides for the pod used to solve HTTP01 challenges.Only the 'labels' and 'annotations' fields may be set.If labels or annotations overlap with in-built values, the values herewill override the in-built values.",
+																	Description:         "ObjectMeta overrides for the pod used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
+																	MarkdownDescription: "ObjectMeta overrides for the pod used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
 																	Attributes: map[string]schema.Attribute{
 																		"annotations": schema.MapAttribute{
 																			Description:         "Annotations that should be added to the create ACME HTTP01 solver pods.",
@@ -2867,8 +2867,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																},
 
 																"spec": schema.SingleNestedAttribute{
-																	Description:         "PodSpec defines overrides for the HTTP01 challenge solver pod.Check ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields.All other fields will be ignored.",
-																	MarkdownDescription: "PodSpec defines overrides for the HTTP01 challenge solver pod.Check ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields.All other fields will be ignored.",
+																	Description:         "PodSpec defines overrides for the HTTP01 challenge solver pod. Check ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields. All other fields will be ignored.",
+																	MarkdownDescription: "PodSpec defines overrides for the HTTP01 challenge solver pod. Check ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields. All other fields will be ignored.",
 																	Attributes: map[string]schema.Attribute{
 																		"affinity": schema.SingleNestedAttribute{
 																			Description:         "If specified, the pod's scheduling constraints",
@@ -2879,8 +2879,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																					MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
 																					Attributes: map[string]schema.Attribute{
 																						"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
-																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"preference": schema.SingleNestedAttribute{
@@ -2901,16 +2901,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																															MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																															MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																															Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -2937,16 +2937,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																															MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																															MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																															Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -2979,8 +2979,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																						},
 
 																						"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-																							Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
-																							MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+																							Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+																							MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
 																							Attributes: map[string]schema.Attribute{
 																								"node_selector_terms": schema.ListNestedAttribute{
 																									Description:         "Required. A list of node selector terms. The terms are ORed.",
@@ -3001,16 +3001,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																															MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																															MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																															Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -3037,16 +3037,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																															MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																															MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																															MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																															Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -3080,8 +3080,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																					MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
 																					Attributes: map[string]schema.Attribute{
 																						"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
-																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"pod_affinity_term": schema.SingleNestedAttribute{
@@ -3089,8 +3089,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																										MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																										Attributes: map[string]schema.Attribute{
 																											"label_selector": schema.SingleNestedAttribute{
-																												Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																												MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																												Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																												MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																												Attributes: map[string]schema.Attribute{
 																													"match_expressions": schema.ListNestedAttribute{
 																														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3106,16 +3106,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																																},
 
 																																"operator": schema.StringAttribute{
-																																	Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																	MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																	Required:            true,
 																																	Optional:            false,
 																																	Computed:            false,
 																																},
 
 																																"values": schema.ListAttribute{
-																																	Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																	ElementType:         types.StringType,
 																																	Required:            false,
 																																	Optional:            true,
@@ -3129,8 +3129,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																													},
 
 																													"match_labels": schema.MapAttribute{
-																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -3143,8 +3143,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_label_keys": schema.ListAttribute{
-																												Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																												MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -3152,8 +3152,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"mismatch_label_keys": schema.ListAttribute{
-																												Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																												MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -3161,8 +3161,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"namespace_selector": schema.SingleNestedAttribute{
-																												Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																												MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																												Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																												MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																												Attributes: map[string]schema.Attribute{
 																													"match_expressions": schema.ListNestedAttribute{
 																														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3178,16 +3178,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																																},
 
 																																"operator": schema.StringAttribute{
-																																	Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																	MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																	Required:            true,
 																																	Optional:            false,
 																																	Computed:            false,
 																																},
 
 																																"values": schema.ListAttribute{
-																																	Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																	ElementType:         types.StringType,
 																																	Required:            false,
 																																	Optional:            true,
@@ -3201,8 +3201,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																													},
 
 																													"match_labels": schema.MapAttribute{
-																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -3215,8 +3215,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"namespaces": schema.ListAttribute{
-																												Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																												MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																												Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																												MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -3224,8 +3224,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"topology_key": schema.StringAttribute{
-																												Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																												MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																												Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																												MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
@@ -3237,8 +3237,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"weight": schema.Int64Attribute{
-																										Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
-																										MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																										Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																										MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -3251,13 +3251,13 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																						},
 
 																						"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																							Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
-																							MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																							Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																							MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"label_selector": schema.SingleNestedAttribute{
-																										Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																										MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																										Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																										MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																										Attributes: map[string]schema.Attribute{
 																											"match_expressions": schema.ListNestedAttribute{
 																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3273,16 +3273,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -3296,8 +3296,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_labels": schema.MapAttribute{
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -3310,8 +3310,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"match_label_keys": schema.ListAttribute{
-																										Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																										MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -3319,8 +3319,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"mismatch_label_keys": schema.ListAttribute{
-																										Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																										MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -3328,8 +3328,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"namespace_selector": schema.SingleNestedAttribute{
-																										Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																										MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																										Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																										MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																										Attributes: map[string]schema.Attribute{
 																											"match_expressions": schema.ListNestedAttribute{
 																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3345,16 +3345,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -3368,8 +3368,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_labels": schema.MapAttribute{
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -3382,8 +3382,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"namespaces": schema.ListAttribute{
-																										Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																										Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -3391,8 +3391,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"topology_key": schema.StringAttribute{
-																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -3414,8 +3414,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																					MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
 																					Attributes: map[string]schema.Attribute{
 																						"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
-																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+																							Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																							MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"pod_affinity_term": schema.SingleNestedAttribute{
@@ -3423,8 +3423,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																										MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																										Attributes: map[string]schema.Attribute{
 																											"label_selector": schema.SingleNestedAttribute{
-																												Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																												MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																												Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																												MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																												Attributes: map[string]schema.Attribute{
 																													"match_expressions": schema.ListNestedAttribute{
 																														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3440,16 +3440,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																																},
 
 																																"operator": schema.StringAttribute{
-																																	Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																	MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																	Required:            true,
 																																	Optional:            false,
 																																	Computed:            false,
 																																},
 
 																																"values": schema.ListAttribute{
-																																	Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																	ElementType:         types.StringType,
 																																	Required:            false,
 																																	Optional:            true,
@@ -3463,8 +3463,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																													},
 
 																													"match_labels": schema.MapAttribute{
-																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -3477,8 +3477,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_label_keys": schema.ListAttribute{
-																												Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																												MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -3486,8 +3486,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"mismatch_label_keys": schema.ListAttribute{
-																												Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																												MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																												MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -3495,8 +3495,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"namespace_selector": schema.SingleNestedAttribute{
-																												Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																												MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																												Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																												MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																												Attributes: map[string]schema.Attribute{
 																													"match_expressions": schema.ListNestedAttribute{
 																														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3512,16 +3512,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																																},
 
 																																"operator": schema.StringAttribute{
-																																	Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																																	MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																																	Required:            true,
 																																	Optional:            false,
 																																	Computed:            false,
 																																},
 
 																																"values": schema.ListAttribute{
-																																	Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																																	ElementType:         types.StringType,
 																																	Required:            false,
 																																	Optional:            true,
@@ -3535,8 +3535,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																													},
 
 																													"match_labels": schema.MapAttribute{
-																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																														ElementType:         types.StringType,
 																														Required:            false,
 																														Optional:            true,
@@ -3549,8 +3549,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"namespaces": schema.ListAttribute{
-																												Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																												MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																												Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																												MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -3558,8 +3558,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"topology_key": schema.StringAttribute{
-																												Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																												MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																												Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																												MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
@@ -3571,8 +3571,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"weight": schema.Int64Attribute{
-																										Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
-																										MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+																										Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																										MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -3585,13 +3585,13 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																						},
 
 																						"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-																							Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
-																							MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																							Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																							MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"label_selector": schema.SingleNestedAttribute{
-																										Description:         "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
-																										MarkdownDescription: "A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods.",
+																										Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																										MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																										Attributes: map[string]schema.Attribute{
 																											"match_expressions": schema.ListNestedAttribute{
 																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3607,16 +3607,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -3630,8 +3630,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_labels": schema.MapAttribute{
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -3644,8 +3644,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"match_label_keys": schema.ListAttribute{
-																										Description:         "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																										MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -3653,8 +3653,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"mismatch_label_keys": schema.ListAttribute{
-																										Description:         "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																										MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																										MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -3662,8 +3662,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"namespace_selector": schema.SingleNestedAttribute{
-																										Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
-																										MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																										Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																										MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																										Attributes: map[string]schema.Attribute{
 																											"match_expressions": schema.ListNestedAttribute{
 																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3679,16 +3679,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																														},
 
 																														"operator": schema.StringAttribute{
-																															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
 																														},
 
 																														"values": schema.ListAttribute{
-																															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																															ElementType:         types.StringType,
 																															Required:            false,
 																															Optional:            true,
@@ -3702,8 +3702,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																											},
 
 																											"match_labels": schema.MapAttribute{
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																												ElementType:         types.StringType,
 																												Required:            false,
 																												Optional:            true,
@@ -3716,8 +3716,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"namespaces": schema.ListAttribute{
-																										Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																										Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																										ElementType:         types.StringType,
 																										Required:            false,
 																										Optional:            true,
@@ -3725,8 +3725,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																									},
 
 																									"topology_key": schema.StringAttribute{
-																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
-																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -3754,8 +3754,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																						MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -3768,8 +3768,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																		},
 
 																		"node_selector": schema.MapAttribute{
-																			Description:         "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-																			MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+																			Description:         "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+																			MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3789,48 +3789,48 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																			MarkdownDescription: "If specified, the pod's security context",
 																			Attributes: map[string]schema.Attribute{
 																				"fs_group": schema.Int64Attribute{
-																					Description:         "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"fs_group_change_policy": schema.StringAttribute{
-																					Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"run_as_group": schema.Int64Attribute{
-																					Description:         "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"run_as_non_root": schema.BoolAttribute{
-																					Description:         "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
-																					MarkdownDescription: "Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.",
+																					Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																					MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"run_as_user": schema.Int64Attribute{
-																					Description:         "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"se_linux_options": schema.SingleNestedAttribute{
-																					Description:         "The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 																					Attributes: map[string]schema.Attribute{
 																						"level": schema.StringAttribute{
 																							Description:         "Level is SELinux level label that applies to the container.",
@@ -3870,20 +3870,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																				},
 
 																				"seccomp_profile": schema.SingleNestedAttribute{
-																					Description:         "The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
 																					Attributes: map[string]schema.Attribute{
 																						"localhost_profile": schema.StringAttribute{
-																							Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
-																							MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																							Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																							MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"type": schema.StringAttribute{
-																							Description:         "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
-																							MarkdownDescription: "type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.",
+																							Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																							MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -3895,8 +3895,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																				},
 
 																				"supplemental_groups": schema.ListAttribute{
-																					Description:         "A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3904,8 +3904,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																				},
 
 																				"sysctls": schema.ListNestedAttribute{
-																					Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows.",
-																					MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows.",
+																					Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+																					MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
@@ -3949,40 +3949,40 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"effect": schema.StringAttribute{
-																						Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-																						MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																						Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																						MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"key": schema.StringAttribute{
-																						Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-																						MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																						Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																						MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
-																						MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+																						Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+																						MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"toleration_seconds": schema.Int64Attribute{
-																						Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
-																						MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+																						Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+																						MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"value": schema.StringAttribute{
-																						Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
-																						MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																						Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																						MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -4005,8 +4005,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"service_type": schema.StringAttribute{
-															Description:         "Optional service type for Kubernetes solver service. Supported valuesare NodePort or ClusterIP. If unset, defaults to NodePort.",
-															MarkdownDescription: "Optional service type for Kubernetes solver service. Supported valuesare NodePort or ClusterIP. If unset, defaults to NodePort.",
+															Description:         "Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.",
+															MarkdownDescription: "Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4023,12 +4023,12 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"selector": schema.SingleNestedAttribute{
-											Description:         "Selector selects a set of DNSNames on the Certificate resource thatshould be solved using this challenge solver.If not specified, the solver will be treated as the 'default' solverwith the lowest priority, i.e. if any other solver has a more specificmatch, it will be used instead.",
-											MarkdownDescription: "Selector selects a set of DNSNames on the Certificate resource thatshould be solved using this challenge solver.If not specified, the solver will be treated as the 'default' solverwith the lowest priority, i.e. if any other solver has a more specificmatch, it will be used instead.",
+											Description:         "Selector selects a set of DNSNames on the Certificate resource that should be solved using this challenge solver. If not specified, the solver will be treated as the 'default' solver with the lowest priority, i.e. if any other solver has a more specific match, it will be used instead.",
+											MarkdownDescription: "Selector selects a set of DNSNames on the Certificate resource that should be solved using this challenge solver. If not specified, the solver will be treated as the 'default' solver with the lowest priority, i.e. if any other solver has a more specific match, it will be used instead.",
 											Attributes: map[string]schema.Attribute{
 												"dns_names": schema.ListAttribute{
-													Description:         "List of DNSNames that this solver will be used to solve.If specified and a match is found, a dnsNames selector will takeprecedence over a dnsZones selector.If multiple solvers match with the same dnsNames value, the solverwith the most matching labels in matchLabels will be selected.If neither has more matches, the solver defined earlier in the listwill be selected.",
-													MarkdownDescription: "List of DNSNames that this solver will be used to solve.If specified and a match is found, a dnsNames selector will takeprecedence over a dnsZones selector.If multiple solvers match with the same dnsNames value, the solverwith the most matching labels in matchLabels will be selected.If neither has more matches, the solver defined earlier in the listwill be selected.",
+													Description:         "List of DNSNames that this solver will be used to solve. If specified and a match is found, a dnsNames selector will take precedence over a dnsZones selector. If multiple solvers match with the same dnsNames value, the solver with the most matching labels in matchLabels will be selected. If neither has more matches, the solver defined earlier in the list will be selected.",
+													MarkdownDescription: "List of DNSNames that this solver will be used to solve. If specified and a match is found, a dnsNames selector will take precedence over a dnsZones selector. If multiple solvers match with the same dnsNames value, the solver with the most matching labels in matchLabels will be selected. If neither has more matches, the solver defined earlier in the list will be selected.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4036,8 +4036,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"dns_zones": schema.ListAttribute{
-													Description:         "List of DNSZones that this solver will be used to solve.The most specific DNS zone match specified here will take precedenceover other DNS zone matches, so a solver specifying sys.example.comwill be selected over one specifying example.com for the domainwww.sys.example.com.If multiple solvers match with the same dnsZones value, the solverwith the most matching labels in matchLabels will be selected.If neither has more matches, the solver defined earlier in the listwill be selected.",
-													MarkdownDescription: "List of DNSZones that this solver will be used to solve.The most specific DNS zone match specified here will take precedenceover other DNS zone matches, so a solver specifying sys.example.comwill be selected over one specifying example.com for the domainwww.sys.example.com.If multiple solvers match with the same dnsZones value, the solverwith the most matching labels in matchLabels will be selected.If neither has more matches, the solver defined earlier in the listwill be selected.",
+													Description:         "List of DNSZones that this solver will be used to solve. The most specific DNS zone match specified here will take precedence over other DNS zone matches, so a solver specifying sys.example.com will be selected over one specifying example.com for the domain www.sys.example.com. If multiple solvers match with the same dnsZones value, the solver with the most matching labels in matchLabels will be selected. If neither has more matches, the solver defined earlier in the list will be selected.",
+													MarkdownDescription: "List of DNSZones that this solver will be used to solve. The most specific DNS zone match specified here will take precedence over other DNS zone matches, so a solver specifying sys.example.com will be selected over one specifying example.com for the domain www.sys.example.com. If multiple solvers match with the same dnsZones value, the solver with the most matching labels in matchLabels will be selected. If neither has more matches, the solver defined earlier in the list will be selected.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4045,8 +4045,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "A label selector that is used to refine the set of certificate's thatthis challenge solver will apply to.",
-													MarkdownDescription: "A label selector that is used to refine the set of certificate's thatthis challenge solver will apply to.",
+													Description:         "A label selector that is used to refine the set of certificate's that this challenge solver will apply to.",
+													MarkdownDescription: "A label selector that is used to refine the set of certificate's that this challenge solver will apply to.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4070,12 +4070,12 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"ca": schema.SingleNestedAttribute{
-						Description:         "CA configures this issuer to sign certificates using a signing CA keypairstored in a Secret resource.This is used to build internal PKIs that are managed by cert-manager.",
-						MarkdownDescription: "CA configures this issuer to sign certificates using a signing CA keypairstored in a Secret resource.This is used to build internal PKIs that are managed by cert-manager.",
+						Description:         "CA configures this issuer to sign certificates using a signing CA keypair stored in a Secret resource. This is used to build internal PKIs that are managed by cert-manager.",
+						MarkdownDescription: "CA configures this issuer to sign certificates using a signing CA keypair stored in a Secret resource. This is used to build internal PKIs that are managed by cert-manager.",
 						Attributes: map[string]schema.Attribute{
 							"crl_distribution_points": schema.ListAttribute{
-								Description:         "The CRL distribution points is an X.509 v3 certificate extension which identifiesthe location of the CRL from which the revocation of this certificate can be checked.If not set, certificates will be issued without distribution points set.",
-								MarkdownDescription: "The CRL distribution points is an X.509 v3 certificate extension which identifiesthe location of the CRL from which the revocation of this certificate can be checked.If not set, certificates will be issued without distribution points set.",
+								Description:         "The CRL distribution points is an X.509 v3 certificate extension which identifies the location of the CRL from which the revocation of this certificate can be checked. If not set, certificates will be issued without distribution points set.",
+								MarkdownDescription: "The CRL distribution points is an X.509 v3 certificate extension which identifies the location of the CRL from which the revocation of this certificate can be checked. If not set, certificates will be issued without distribution points set.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -4083,8 +4083,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"issuing_certificate_urls": schema.ListAttribute{
-								Description:         "IssuingCertificateURLs is a list of URLs which this issuer should embed into certificatesit creates. See https://www.rfc-editor.org/rfc/rfc5280#section-4.2.2.1 for more details.As an example, such a URL might be 'http://ca.domain.com/ca.crt'.",
-								MarkdownDescription: "IssuingCertificateURLs is a list of URLs which this issuer should embed into certificatesit creates. See https://www.rfc-editor.org/rfc/rfc5280#section-4.2.2.1 for more details.As an example, such a URL might be 'http://ca.domain.com/ca.crt'.",
+								Description:         "IssuingCertificateURLs is a list of URLs which this issuer should embed into certificates it creates. See https://www.rfc-editor.org/rfc/rfc5280#section-4.2.2.1 for more details. As an example, such a URL might be 'http://ca.domain.com/ca.crt'.",
+								MarkdownDescription: "IssuingCertificateURLs is a list of URLs which this issuer should embed into certificates it creates. See https://www.rfc-editor.org/rfc/rfc5280#section-4.2.2.1 for more details. As an example, such a URL might be 'http://ca.domain.com/ca.crt'.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -4092,8 +4092,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"ocsp_servers": schema.ListAttribute{
-								Description:         "The OCSP server list is an X.509 v3 extension that defines a list ofURLs of OCSP responders. The OCSP responders can be queried for therevocation status of an issued certificate. If not set, thecertificate will be issued with no OCSP servers set. For example, anOCSP server URL could be 'http://ocsp.int-x3.letsencrypt.org'.",
-								MarkdownDescription: "The OCSP server list is an X.509 v3 extension that defines a list ofURLs of OCSP responders. The OCSP responders can be queried for therevocation status of an issued certificate. If not set, thecertificate will be issued with no OCSP servers set. For example, anOCSP server URL could be 'http://ocsp.int-x3.letsencrypt.org'.",
+								Description:         "The OCSP server list is an X.509 v3 extension that defines a list of URLs of OCSP responders. The OCSP responders can be queried for the revocation status of an issued certificate. If not set, the certificate will be issued with no OCSP servers set. For example, an OCSP server URL could be 'http://ocsp.int-x3.letsencrypt.org'.",
+								MarkdownDescription: "The OCSP server list is an X.509 v3 extension that defines a list of URLs of OCSP responders. The OCSP responders can be queried for the revocation status of an issued certificate. If not set, the certificate will be issued with no OCSP servers set. For example, an OCSP server URL could be 'http://ocsp.int-x3.letsencrypt.org'.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -4101,8 +4101,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"secret_name": schema.StringAttribute{
-								Description:         "SecretName is the name of the secret used to sign Certificates issuedby this Issuer.",
-								MarkdownDescription: "SecretName is the name of the secret used to sign Certificates issuedby this Issuer.",
+								Description:         "SecretName is the name of the secret used to sign Certificates issued by this Issuer.",
+								MarkdownDescription: "SecretName is the name of the secret used to sign Certificates issued by this Issuer.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -4114,12 +4114,12 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"self_signed": schema.SingleNestedAttribute{
-						Description:         "SelfSigned configures this issuer to 'self sign' certificates using theprivate key used to create the CertificateRequest object.",
-						MarkdownDescription: "SelfSigned configures this issuer to 'self sign' certificates using theprivate key used to create the CertificateRequest object.",
+						Description:         "SelfSigned configures this issuer to 'self sign' certificates using the private key used to create the CertificateRequest object.",
+						MarkdownDescription: "SelfSigned configures this issuer to 'self sign' certificates using the private key used to create the CertificateRequest object.",
 						Attributes: map[string]schema.Attribute{
 							"crl_distribution_points": schema.ListAttribute{
-								Description:         "The CRL distribution points is an X.509 v3 certificate extension which identifiesthe location of the CRL from which the revocation of this certificate can be checked.If not set certificate will be issued without CDP. Values are strings.",
-								MarkdownDescription: "The CRL distribution points is an X.509 v3 certificate extension which identifiesthe location of the CRL from which the revocation of this certificate can be checked.If not set certificate will be issued without CDP. Values are strings.",
+								Description:         "The CRL distribution points is an X.509 v3 certificate extension which identifies the location of the CRL from which the revocation of this certificate can be checked. If not set certificate will be issued without CDP. Values are strings.",
+								MarkdownDescription: "The CRL distribution points is an X.509 v3 certificate extension which identifies the location of the CRL from which the revocation of this certificate can be checked. If not set certificate will be issued without CDP. Values are strings.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -4132,48 +4132,48 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"vault": schema.SingleNestedAttribute{
-						Description:         "Vault configures this issuer to sign certificates using a HashiCorp VaultPKI backend.",
-						MarkdownDescription: "Vault configures this issuer to sign certificates using a HashiCorp VaultPKI backend.",
+						Description:         "Vault configures this issuer to sign certificates using a HashiCorp Vault PKI backend.",
+						MarkdownDescription: "Vault configures this issuer to sign certificates using a HashiCorp Vault PKI backend.",
 						Attributes: map[string]schema.Attribute{
 							"auth": schema.SingleNestedAttribute{
 								Description:         "Auth configures how cert-manager authenticates with the Vault server.",
 								MarkdownDescription: "Auth configures how cert-manager authenticates with the Vault server.",
 								Attributes: map[string]schema.Attribute{
 									"app_role": schema.SingleNestedAttribute{
-										Description:         "AppRole authenticates with Vault using the App Role auth mechanism,with the role and secret stored in a Kubernetes Secret resource.",
-										MarkdownDescription: "AppRole authenticates with Vault using the App Role auth mechanism,with the role and secret stored in a Kubernetes Secret resource.",
+										Description:         "AppRole authenticates with Vault using the App Role auth mechanism, with the role and secret stored in a Kubernetes Secret resource.",
+										MarkdownDescription: "AppRole authenticates with Vault using the App Role auth mechanism, with the role and secret stored in a Kubernetes Secret resource.",
 										Attributes: map[string]schema.Attribute{
 											"path": schema.StringAttribute{
-												Description:         "Path where the App Role authentication backend is mounted in Vault, e.g:'approle'",
-												MarkdownDescription: "Path where the App Role authentication backend is mounted in Vault, e.g:'approle'",
+												Description:         "Path where the App Role authentication backend is mounted in Vault, e.g: 'approle'",
+												MarkdownDescription: "Path where the App Role authentication backend is mounted in Vault, e.g: 'approle'",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"role_id": schema.StringAttribute{
-												Description:         "RoleID configured in the App Role authentication backend when settingup the authentication backend in Vault.",
-												MarkdownDescription: "RoleID configured in the App Role authentication backend when settingup the authentication backend in Vault.",
+												Description:         "RoleID configured in the App Role authentication backend when setting up the authentication backend in Vault.",
+												MarkdownDescription: "RoleID configured in the App Role authentication backend when setting up the authentication backend in Vault.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"secret_ref": schema.SingleNestedAttribute{
-												Description:         "Reference to a key in a Secret that contains the App Role secret usedto authenticate with Vault.The 'key' field must be specified and denotes which entry within the Secretresource is used as the app role secret.",
-												MarkdownDescription: "Reference to a key in a Secret that contains the App Role secret usedto authenticate with Vault.The 'key' field must be specified and denotes which entry within the Secretresource is used as the app role secret.",
+												Description:         "Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault. The 'key' field must be specified and denotes which entry within the Secret resource is used as the app role secret.",
+												MarkdownDescription: "Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault. The 'key' field must be specified and denotes which entry within the Secret resource is used as the app role secret.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-														MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -4190,28 +4190,28 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"client_certificate": schema.SingleNestedAttribute{
-										Description:         "ClientCertificate authenticates with Vault by presenting a clientcertificate during the request's TLS handshake.Works only when using HTTPS protocol.",
-										MarkdownDescription: "ClientCertificate authenticates with Vault by presenting a clientcertificate during the request's TLS handshake.Works only when using HTTPS protocol.",
+										Description:         "ClientCertificate authenticates with Vault by presenting a client certificate during the request's TLS handshake. Works only when using HTTPS protocol.",
+										MarkdownDescription: "ClientCertificate authenticates with Vault by presenting a client certificate during the request's TLS handshake. Works only when using HTTPS protocol.",
 										Attributes: map[string]schema.Attribute{
 											"mount_path": schema.StringAttribute{
-												Description:         "The Vault mountPath here is the mount path to use when authenticating withVault. For example, setting a value to '/v1/auth/foo', will use the path'/v1/auth/foo/login' to authenticate with Vault. If unspecified, thedefault value '/v1/auth/cert' will be used.",
-												MarkdownDescription: "The Vault mountPath here is the mount path to use when authenticating withVault. For example, setting a value to '/v1/auth/foo', will use the path'/v1/auth/foo/login' to authenticate with Vault. If unspecified, thedefault value '/v1/auth/cert' will be used.",
+												Description:         "The Vault mountPath here is the mount path to use when authenticating with Vault. For example, setting a value to '/v1/auth/foo', will use the path '/v1/auth/foo/login' to authenticate with Vault. If unspecified, the default value '/v1/auth/cert' will be used.",
+												MarkdownDescription: "The Vault mountPath here is the mount path to use when authenticating with Vault. For example, setting a value to '/v1/auth/foo', will use the path '/v1/auth/foo/login' to authenticate with Vault. If unspecified, the default value '/v1/auth/cert' will be used.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the certificate role to authenticate against.If not set, matching any certificate role, if available.",
-												MarkdownDescription: "Name of the certificate role to authenticate against.If not set, matching any certificate role, if available.",
+												Description:         "Name of the certificate role to authenticate against. If not set, matching any certificate role, if available.",
+												MarkdownDescription: "Name of the certificate role to authenticate against. If not set, matching any certificate role, if available.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"secret_name": schema.StringAttribute{
-												Description:         "Reference to Kubernetes Secret of type 'kubernetes.io/tls' (hence containingtls.crt and tls.key) used to authenticate to Vault using TLS clientauthentication.",
-												MarkdownDescription: "Reference to Kubernetes Secret of type 'kubernetes.io/tls' (hence containingtls.crt and tls.key) used to authenticate to Vault using TLS clientauthentication.",
+												Description:         "Reference to Kubernetes Secret of type 'kubernetes.io/tls' (hence containing tls.crt and tls.key) used to authenticate to Vault using TLS client authentication.",
+												MarkdownDescription: "Reference to Kubernetes Secret of type 'kubernetes.io/tls' (hence containing tls.crt and tls.key) used to authenticate to Vault using TLS client authentication.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4223,40 +4223,40 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"kubernetes": schema.SingleNestedAttribute{
-										Description:         "Kubernetes authenticates with Vault by passing the ServiceAccounttoken stored in the named Secret resource to the Vault server.",
-										MarkdownDescription: "Kubernetes authenticates with Vault by passing the ServiceAccounttoken stored in the named Secret resource to the Vault server.",
+										Description:         "Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.",
+										MarkdownDescription: "Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.",
 										Attributes: map[string]schema.Attribute{
 											"mount_path": schema.StringAttribute{
-												Description:         "The Vault mountPath here is the mount path to use when authenticating withVault. For example, setting a value to '/v1/auth/foo', will use the path'/v1/auth/foo/login' to authenticate with Vault. If unspecified, thedefault value '/v1/auth/kubernetes' will be used.",
-												MarkdownDescription: "The Vault mountPath here is the mount path to use when authenticating withVault. For example, setting a value to '/v1/auth/foo', will use the path'/v1/auth/foo/login' to authenticate with Vault. If unspecified, thedefault value '/v1/auth/kubernetes' will be used.",
+												Description:         "The Vault mountPath here is the mount path to use when authenticating with Vault. For example, setting a value to '/v1/auth/foo', will use the path '/v1/auth/foo/login' to authenticate with Vault. If unspecified, the default value '/v1/auth/kubernetes' will be used.",
+												MarkdownDescription: "The Vault mountPath here is the mount path to use when authenticating with Vault. For example, setting a value to '/v1/auth/foo', will use the path '/v1/auth/foo/login' to authenticate with Vault. If unspecified, the default value '/v1/auth/kubernetes' will be used.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"role": schema.StringAttribute{
-												Description:         "A required field containing the Vault Role to assume. A Role binds aKubernetes ServiceAccount with a set of Vault policies.",
-												MarkdownDescription: "A required field containing the Vault Role to assume. A Role binds aKubernetes ServiceAccount with a set of Vault policies.",
+												Description:         "A required field containing the Vault Role to assume. A Role binds a Kubernetes ServiceAccount with a set of Vault policies.",
+												MarkdownDescription: "A required field containing the Vault Role to assume. A Role binds a Kubernetes ServiceAccount with a set of Vault policies.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"secret_ref": schema.SingleNestedAttribute{
-												Description:         "The required Secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Vault. Use of 'ambient credentials' is notsupported.",
-												MarkdownDescription: "The required Secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Vault. Use of 'ambient credentials' is notsupported.",
+												Description:         "The required Secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault. Use of 'ambient credentials' is not supported.",
+												MarkdownDescription: "The required Secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault. Use of 'ambient credentials' is not supported.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-														MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -4268,12 +4268,12 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"service_account_ref": schema.SingleNestedAttribute{
-												Description:         "A reference to a service account that will be used to request a boundtoken (also known as 'projected token'). Compared to using 'secretRef',using this field means that you don't rely on statically bound tokens. Touse this field, you must configure an RBAC rule to let cert-managerrequest a token.",
-												MarkdownDescription: "A reference to a service account that will be used to request a boundtoken (also known as 'projected token'). Compared to using 'secretRef',using this field means that you don't rely on statically bound tokens. Touse this field, you must configure an RBAC rule to let cert-managerrequest a token.",
+												Description:         "A reference to a service account that will be used to request a bound token (also known as 'projected token'). Compared to using 'secretRef', using this field means that you don't rely on statically bound tokens. To use this field, you must configure an RBAC rule to let cert-manager request a token.",
+												MarkdownDescription: "A reference to a service account that will be used to request a bound token (also known as 'projected token'). Compared to using 'secretRef', using this field means that you don't rely on statically bound tokens. To use this field, you must configure an RBAC rule to let cert-manager request a token.",
 												Attributes: map[string]schema.Attribute{
 													"audiences": schema.ListAttribute{
-														Description:         "TokenAudiences is an optional list of extra audiences to include in the token passed to Vault. The default tokenconsisting of the issuer's namespace and name is always included.",
-														MarkdownDescription: "TokenAudiences is an optional list of extra audiences to include in the token passed to Vault. The default tokenconsisting of the issuer's namespace and name is always included.",
+														Description:         "TokenAudiences is an optional list of extra audiences to include in the token passed to Vault. The default token consisting of the issuer's namespace and name is always included.",
+														MarkdownDescription: "TokenAudiences is an optional list of extra audiences to include in the token passed to Vault. The default token consisting of the issuer's namespace and name is always included.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -4303,16 +4303,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 										MarkdownDescription: "TokenSecretRef authenticates with Vault by presenting a token.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+												Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -4329,8 +4329,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"ca_bundle": schema.StringAttribute{
-								Description:         "Base64-encoded bundle of PEM CAs which will be used to validate the certificatechain presented by Vault. Only used if using HTTPS to connect to Vault andignored for HTTP connections.Mutually exclusive with CABundleSecretRef.If neither CABundle nor CABundleSecretRef are defined, the certificate bundle inthe cert-manager controller container is used to validate the TLS connection.",
-								MarkdownDescription: "Base64-encoded bundle of PEM CAs which will be used to validate the certificatechain presented by Vault. Only used if using HTTPS to connect to Vault andignored for HTTP connections.Mutually exclusive with CABundleSecretRef.If neither CABundle nor CABundleSecretRef are defined, the certificate bundle inthe cert-manager controller container is used to validate the TLS connection.",
+								Description:         "Base64-encoded bundle of PEM CAs which will be used to validate the certificate chain presented by Vault. Only used if using HTTPS to connect to Vault and ignored for HTTP connections. Mutually exclusive with CABundleSecretRef. If neither CABundle nor CABundleSecretRef are defined, the certificate bundle in the cert-manager controller container is used to validate the TLS connection.",
+								MarkdownDescription: "Base64-encoded bundle of PEM CAs which will be used to validate the certificate chain presented by Vault. Only used if using HTTPS to connect to Vault and ignored for HTTP connections. Mutually exclusive with CABundleSecretRef. If neither CABundle nor CABundleSecretRef are defined, the certificate bundle in the cert-manager controller container is used to validate the TLS connection.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4340,20 +4340,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"ca_bundle_secret_ref": schema.SingleNestedAttribute{
-								Description:         "Reference to a Secret containing a bundle of PEM-encoded CAs to use whenverifying the certificate chain presented by Vault when using HTTPS.Mutually exclusive with CABundle.If neither CABundle nor CABundleSecretRef are defined, the certificate bundle inthe cert-manager controller container is used to validate the TLS connection.If no key for the Secret is specified, cert-manager will default to 'ca.crt'.",
-								MarkdownDescription: "Reference to a Secret containing a bundle of PEM-encoded CAs to use whenverifying the certificate chain presented by Vault when using HTTPS.Mutually exclusive with CABundle.If neither CABundle nor CABundleSecretRef are defined, the certificate bundle inthe cert-manager controller container is used to validate the TLS connection.If no key for the Secret is specified, cert-manager will default to 'ca.crt'.",
+								Description:         "Reference to a Secret containing a bundle of PEM-encoded CAs to use when verifying the certificate chain presented by Vault when using HTTPS. Mutually exclusive with CABundle. If neither CABundle nor CABundleSecretRef are defined, the certificate bundle in the cert-manager controller container is used to validate the TLS connection. If no key for the Secret is specified, cert-manager will default to 'ca.crt'.",
+								MarkdownDescription: "Reference to a Secret containing a bundle of PEM-encoded CAs to use when verifying the certificate chain presented by Vault when using HTTPS. Mutually exclusive with CABundle. If neither CABundle nor CABundleSecretRef are defined, the certificate bundle in the cert-manager controller container is used to validate the TLS connection. If no key for the Secret is specified, cert-manager will default to 'ca.crt'.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+										Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -4365,20 +4365,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"client_cert_secret_ref": schema.SingleNestedAttribute{
-								Description:         "Reference to a Secret containing a PEM-encoded Client Certificate to use when theVault server requires mTLS.",
-								MarkdownDescription: "Reference to a Secret containing a PEM-encoded Client Certificate to use when theVault server requires mTLS.",
+								Description:         "Reference to a Secret containing a PEM-encoded Client Certificate to use when the Vault server requires mTLS.",
+								MarkdownDescription: "Reference to a Secret containing a PEM-encoded Client Certificate to use when the Vault server requires mTLS.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+										Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -4390,20 +4390,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"client_key_secret_ref": schema.SingleNestedAttribute{
-								Description:         "Reference to a Secret containing a PEM-encoded Client Private Key to use when theVault server requires mTLS.",
-								MarkdownDescription: "Reference to a Secret containing a PEM-encoded Client Private Key to use when theVault server requires mTLS.",
+								Description:         "Reference to a Secret containing a PEM-encoded Client Private Key to use when the Vault server requires mTLS.",
+								MarkdownDescription: "Reference to a Secret containing a PEM-encoded Client Private Key to use when the Vault server requires mTLS.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+										Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -4415,16 +4415,16 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: 'ns1'More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces",
-								MarkdownDescription: "Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: 'ns1'More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces",
+								Description:         "Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: 'ns1' More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces",
+								MarkdownDescription: "Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: 'ns1' More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"path": schema.StringAttribute{
-								Description:         "Path is the mount path of the Vault PKI backend's 'sign' endpoint, e.g:'my_pki_mount/sign/my-role-name'.",
-								MarkdownDescription: "Path is the mount path of the Vault PKI backend's 'sign' endpoint, e.g:'my_pki_mount/sign/my-role-name'.",
+								Description:         "Path is the mount path of the Vault PKI backend's 'sign' endpoint, e.g: 'my_pki_mount/sign/my-role-name'.",
+								MarkdownDescription: "Path is the mount path of the Vault PKI backend's 'sign' endpoint, e.g: 'my_pki_mount/sign/my-role-name'.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -4444,28 +4444,28 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"venafi": schema.SingleNestedAttribute{
-						Description:         "Venafi configures this issuer to sign certificates using a Venafi TPPor Venafi Cloud policy zone.",
-						MarkdownDescription: "Venafi configures this issuer to sign certificates using a Venafi TPPor Venafi Cloud policy zone.",
+						Description:         "Venafi configures this issuer to sign certificates using a Venafi TPP or Venafi Cloud policy zone.",
+						MarkdownDescription: "Venafi configures this issuer to sign certificates using a Venafi TPP or Venafi Cloud policy zone.",
 						Attributes: map[string]schema.Attribute{
 							"cloud": schema.SingleNestedAttribute{
-								Description:         "Cloud specifies the Venafi cloud configuration settings.Only one of TPP or Cloud may be specified.",
-								MarkdownDescription: "Cloud specifies the Venafi cloud configuration settings.Only one of TPP or Cloud may be specified.",
+								Description:         "Cloud specifies the Venafi cloud configuration settings. Only one of TPP or Cloud may be specified.",
+								MarkdownDescription: "Cloud specifies the Venafi cloud configuration settings. Only one of TPP or Cloud may be specified.",
 								Attributes: map[string]schema.Attribute{
 									"api_token_secret_ref": schema.SingleNestedAttribute{
 										Description:         "APITokenSecretRef is a secret key selector for the Venafi Cloud API token.",
 										MarkdownDescription: "APITokenSecretRef is a secret key selector for the Venafi Cloud API token.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+												Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -4477,8 +4477,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"url": schema.StringAttribute{
-										Description:         "URL is the base URL for Venafi Cloud.Defaults to 'https://api.venafi.cloud/v1'.",
-										MarkdownDescription: "URL is the base URL for Venafi Cloud.Defaults to 'https://api.venafi.cloud/v1'.",
+										Description:         "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
+										MarkdownDescription: "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4490,12 +4490,12 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"tpp": schema.SingleNestedAttribute{
-								Description:         "TPP specifies Trust Protection Platform configuration settings.Only one of TPP or Cloud may be specified.",
-								MarkdownDescription: "TPP specifies Trust Protection Platform configuration settings.Only one of TPP or Cloud may be specified.",
+								Description:         "TPP specifies Trust Protection Platform configuration settings. Only one of TPP or Cloud may be specified.",
+								MarkdownDescription: "TPP specifies Trust Protection Platform configuration settings. Only one of TPP or Cloud may be specified.",
 								Attributes: map[string]schema.Attribute{
 									"ca_bundle": schema.StringAttribute{
-										Description:         "Base64-encoded bundle of PEM CAs which will be used to validate the certificatechain presented by the TPP server. Only used if using HTTPS; ignored for HTTP.If undefined, the certificate bundle in the cert-manager controller containeris used to validate the chain.",
-										MarkdownDescription: "Base64-encoded bundle of PEM CAs which will be used to validate the certificatechain presented by the TPP server. Only used if using HTTPS; ignored for HTTP.If undefined, the certificate bundle in the cert-manager controller containeris used to validate the chain.",
+										Description:         "Base64-encoded bundle of PEM CAs which will be used to validate the certificate chain presented by the TPP server. Only used if using HTTPS; ignored for HTTP. If undefined, the certificate bundle in the cert-manager controller container is used to validate the chain.",
+										MarkdownDescription: "Base64-encoded bundle of PEM CAs which will be used to validate the certificate chain presented by the TPP server. Only used if using HTTPS; ignored for HTTP. If undefined, the certificate bundle in the cert-manager controller container is used to validate the chain.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4505,20 +4505,20 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"ca_bundle_secret_ref": schema.SingleNestedAttribute{
-										Description:         "Reference to a Secret containing a base64-encoded bundle of PEM CAswhich will be used to validate the certificate chain presented by the TPP server.Only used if using HTTPS; ignored for HTTP. Mutually exclusive with CABundle.If neither CABundle nor CABundleSecretRef is defined, the certificate bundle inthe cert-manager controller container is used to validate the TLS connection.",
-										MarkdownDescription: "Reference to a Secret containing a base64-encoded bundle of PEM CAswhich will be used to validate the certificate chain presented by the TPP server.Only used if using HTTPS; ignored for HTTP. Mutually exclusive with CABundle.If neither CABundle nor CABundleSecretRef is defined, the certificate bundle inthe cert-manager controller container is used to validate the TLS connection.",
+										Description:         "Reference to a Secret containing a base64-encoded bundle of PEM CAs which will be used to validate the certificate chain presented by the TPP server. Only used if using HTTPS; ignored for HTTP. Mutually exclusive with CABundle. If neither CABundle nor CABundleSecretRef is defined, the certificate bundle in the cert-manager controller container is used to validate the TLS connection.",
+										MarkdownDescription: "Reference to a Secret containing a base64-encoded bundle of PEM CAs which will be used to validate the certificate chain presented by the TPP server. Only used if using HTTPS; ignored for HTTP. Mutually exclusive with CABundle. If neither CABundle nor CABundleSecretRef is defined, the certificate bundle in the cert-manager controller container is used to validate the TLS connection.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
-												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used.Some instances of this field may be defaulted, in others it may berequired.",
+												Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -4530,12 +4530,12 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"credentials_ref": schema.SingleNestedAttribute{
-										Description:         "CredentialsRef is a reference to a Secret containing the Venafi TPP API credentials.The secret must contain the key 'access-token' for the Access Token Authentication,or two keys, 'username' and 'password' for the API Keys Authentication.",
-										MarkdownDescription: "CredentialsRef is a reference to a Secret containing the Venafi TPP API credentials.The secret must contain the key 'access-token' for the Access Token Authentication,or two keys, 'username' and 'password' for the API Keys Authentication.",
+										Description:         "CredentialsRef is a reference to a Secret containing the Venafi TPP API credentials. The secret must contain the key 'access-token' for the Access Token Authentication, or two keys, 'username' and 'password' for the API Keys Authentication.",
+										MarkdownDescription: "CredentialsRef is a reference to a Secret containing the Venafi TPP API credentials. The secret must contain the key 'access-token' for the Access Token Authentication, or two keys, 'username' and 'password' for the API Keys Authentication.",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the resource being referred to.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -4547,8 +4547,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"url": schema.StringAttribute{
-										Description:         "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance,for example: 'https://tpp.example.com/vedsdk'.",
-										MarkdownDescription: "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance,for example: 'https://tpp.example.com/vedsdk'.",
+										Description:         "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance, for example: 'https://tpp.example.com/vedsdk'.",
+										MarkdownDescription: "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance, for example: 'https://tpp.example.com/vedsdk'.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -4560,8 +4560,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"zone": schema.StringAttribute{
-								Description:         "Zone is the Venafi Policy Zone to use for this issuer.All requests made to the Venafi platform will be restricted by the namedzone policy.This field is required.",
-								MarkdownDescription: "Zone is the Venafi Policy Zone to use for this issuer.All requests made to the Venafi platform will be restricted by the namedzone policy.This field is required.",
+								Description:         "Zone is the Venafi Policy Zone to use for this issuer. All requests made to the Venafi platform will be restricted by the named zone policy. This field is required.",
+								MarkdownDescription: "Zone is the Venafi Policy Zone to use for this issuer. All requests made to the Venafi platform will be restricted by the named zone policy. This field is required.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

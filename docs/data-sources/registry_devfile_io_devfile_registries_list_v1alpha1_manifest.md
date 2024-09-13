@@ -3,12 +3,12 @@
 page_title: "k8s_registry_devfile_io_devfile_registries_list_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "registry.devfile.io"
 description: |-
-  DevfileRegistriesList is a custom resource where namespace users can add a list of Devfile Registries to allow devfiles to be visible at the namespace level.  In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.
+  DevfileRegistriesList is a custom resource where namespace users can add a list of Devfile Registries to allow devfiles to be visible at the namespace level. In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.
 ---
 
 # k8s_registry_devfile_io_devfile_registries_list_v1alpha1_manifest (Data Source)
 
-DevfileRegistriesList is a custom resource where namespace users can add a list of Devfile Registries to allow devfiles to be visible at the namespace level.  In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.
+DevfileRegistriesList is a custom resource where namespace users can add a list of Devfile Registries to allow devfiles to be visible at the namespace level. In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.
 
 ## Example Usage
 
@@ -67,4 +67,4 @@ Required:
 
 Optional:
 
-- `skip_tls_verify` (Boolean) SkipTLSVerify defaults to false.  Set to true in a non-production environment to bypass certificate checking
+- `skip_tls_verify` (Boolean) SkipTLSVerify defaults to false. Set to true in a non-production environment to bypass certificate checking

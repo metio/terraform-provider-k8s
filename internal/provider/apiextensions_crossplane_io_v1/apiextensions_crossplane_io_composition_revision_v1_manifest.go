@@ -302,8 +302,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Metadata(_ cont
 
 func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A CompositionRevision represents a revision of a Composition. Crossplanecreates new revisions when there are changes to the Composition.Crossplane creates and manages CompositionRevisions. Don't directly editCompositionRevisions.",
-		MarkdownDescription: "A CompositionRevision represents a revision of a Composition. Crossplanecreates new revisions when there are changes to the Composition.Crossplane creates and manages CompositionRevisions. Don't directly editCompositionRevisions.",
+		Description:         "A CompositionRevision represents a revision of a Composition. Crossplane creates new revisions when there are changes to the Composition. Crossplane creates and manages CompositionRevisions. Don't directly edit CompositionRevisions.",
+		MarkdownDescription: "A CompositionRevision represents a revision of a Composition. Crossplane creates new revisions when there are changes to the Composition. Crossplane creates and manages CompositionRevisions. Don't directly edit CompositionRevisions.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -358,12 +358,12 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "CompositionRevisionSpec specifies the desired state of the compositionrevision.",
-				MarkdownDescription: "CompositionRevisionSpec specifies the desired state of the compositionrevision.",
+				Description:         "CompositionRevisionSpec specifies the desired state of the composition revision.",
+				MarkdownDescription: "CompositionRevisionSpec specifies the desired state of the composition revision.",
 				Attributes: map[string]schema.Attribute{
 					"composite_type_ref": schema.SingleNestedAttribute{
-						Description:         "CompositeTypeRef specifies the type of composite resource that thiscomposition is compatible with.",
-						MarkdownDescription: "CompositeTypeRef specifies the type of composite resource that thiscomposition is compatible with.",
+						Description:         "CompositeTypeRef specifies the type of composite resource that this composition is compatible with.",
+						MarkdownDescription: "CompositeTypeRef specifies the type of composite resource that this composition is compatible with.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "APIVersion of the type.",
@@ -387,12 +387,12 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 					},
 
 					"environment": schema.SingleNestedAttribute{
-						Description:         "Environment configures the environment in which resources are rendered.THIS IS AN ALPHA FIELD. Do not use it in production. It is not honoredunless the relevant Crossplane feature flag is enabled, and may bechanged or removed without notice.",
-						MarkdownDescription: "Environment configures the environment in which resources are rendered.THIS IS AN ALPHA FIELD. Do not use it in production. It is not honoredunless the relevant Crossplane feature flag is enabled, and may bechanged or removed without notice.",
+						Description:         "Environment configures the environment in which resources are rendered. THIS IS AN ALPHA FIELD. Do not use it in production. It is not honored unless the relevant Crossplane feature flag is enabled, and may be changed or removed without notice.",
+						MarkdownDescription: "Environment configures the environment in which resources are rendered. THIS IS AN ALPHA FIELD. Do not use it in production. It is not honored unless the relevant Crossplane feature flag is enabled, and may be changed or removed without notice.",
 						Attributes: map[string]schema.Attribute{
 							"default_data": schema.MapAttribute{
-								Description:         "DefaultData statically defines the initial state of the environment.It has the same schema-less structure as the data field inenvironment configs.It is overwritten by the selected environment configs.",
-								MarkdownDescription: "DefaultData statically defines the initial state of the environment.It has the same schema-less structure as the data field inenvironment configs.It is overwritten by the selected environment configs.",
+								Description:         "DefaultData statically defines the initial state of the environment. It has the same schema-less structure as the data field in environment configs. It is overwritten by the selected environment configs.",
+								MarkdownDescription: "DefaultData statically defines the initial state of the environment. It has the same schema-less structure as the data field in environment configs. It is overwritten by the selected environment configs.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -400,13 +400,13 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 							},
 
 							"environment_configs": schema.ListNestedAttribute{
-								Description:         "EnvironmentConfigs selects a list of 'EnvironmentConfig's. The resolvedresources are stored in the composite resource at'spec.environmentConfigRefs' and is only updated if it is null.The list of references is used to compute an in-memory environment atcompose time. The data of all object is merged in the order they arelisted, meaning the values of EnvironmentConfigs with a larger index takepriority over ones with smaller indices.The computed environment can be accessed in a composition using'FromEnvironmentFieldPath' and 'CombineFromEnvironment' patches.",
-								MarkdownDescription: "EnvironmentConfigs selects a list of 'EnvironmentConfig's. The resolvedresources are stored in the composite resource at'spec.environmentConfigRefs' and is only updated if it is null.The list of references is used to compute an in-memory environment atcompose time. The data of all object is merged in the order they arelisted, meaning the values of EnvironmentConfigs with a larger index takepriority over ones with smaller indices.The computed environment can be accessed in a composition using'FromEnvironmentFieldPath' and 'CombineFromEnvironment' patches.",
+								Description:         "EnvironmentConfigs selects a list of 'EnvironmentConfig's. The resolved resources are stored in the composite resource at 'spec.environmentConfigRefs' and is only updated if it is null. The list of references is used to compute an in-memory environment at compose time. The data of all object is merged in the order they are listed, meaning the values of EnvironmentConfigs with a larger index take priority over ones with smaller indices. The computed environment can be accessed in a composition using 'FromEnvironmentFieldPath' and 'CombineFromEnvironment' patches.",
+								MarkdownDescription: "EnvironmentConfigs selects a list of 'EnvironmentConfig's. The resolved resources are stored in the composite resource at 'spec.environmentConfigRefs' and is only updated if it is null. The list of references is used to compute an in-memory environment at compose time. The data of all object is merged in the order they are listed, meaning the values of EnvironmentConfigs with a larger index take priority over ones with smaller indices. The computed environment can be accessed in a composition using 'FromEnvironmentFieldPath' and 'CombineFromEnvironment' patches.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"ref": schema.SingleNestedAttribute{
-											Description:         "Ref is a named reference to a single EnvironmentConfig.Either Ref or Selector is required.",
-											MarkdownDescription: "Ref is a named reference to a single EnvironmentConfig.Either Ref or Selector is required.",
+											Description:         "Ref is a named reference to a single EnvironmentConfig. Either Ref or Selector is required.",
+											MarkdownDescription: "Ref is a named reference to a single EnvironmentConfig. Either Ref or Selector is required.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "The name of the object.",
@@ -431,8 +431,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"from_field_path_policy": schema.StringAttribute{
-																Description:         "FromFieldPathPolicy specifies the policy for the valueFromFieldPath.The default is Required, meaning that an error will be returned if thefield is not found in the composite resource.Optional means that if the field is not found in the composite resource,that label pair will just be skipped. N.B. other specified labelmatchers will still be used to retrieve the desiredenvironment config, if any.",
-																MarkdownDescription: "FromFieldPathPolicy specifies the policy for the valueFromFieldPath.The default is Required, meaning that an error will be returned if thefield is not found in the composite resource.Optional means that if the field is not found in the composite resource,that label pair will just be skipped. N.B. other specified labelmatchers will still be used to retrieve the desiredenvironment config, if any.",
+																Description:         "FromFieldPathPolicy specifies the policy for the valueFromFieldPath. The default is Required, meaning that an error will be returned if the field is not found in the composite resource. Optional means that if the field is not found in the composite resource, that label pair will just be skipped. N.B. other specified label matchers will still be used to retrieve the desired environment config, if any.",
+																MarkdownDescription: "FromFieldPathPolicy specifies the policy for the valueFromFieldPath. The default is Required, meaning that an error will be returned if the field is not found in the composite resource. Optional means that if the field is not found in the composite resource, that label pair will just be skipped. N.B. other specified label matchers will still be used to retrieve the desired environment config, if any.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -523,8 +523,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "Type specifies the way the EnvironmentConfig is selected.Default is 'Reference'",
-											MarkdownDescription: "Type specifies the way the EnvironmentConfig is selected.Default is 'Reference'",
+											Description:         "Type specifies the way the EnvironmentConfig is selected. Default is 'Reference'",
+											MarkdownDescription: "Type specifies the way the EnvironmentConfig is selected. Default is 'Reference'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -540,17 +540,17 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 							},
 
 							"patches": schema.ListNestedAttribute{
-								Description:         "Patches is a list of environment patches that are executed before acomposition's resources are composed.",
-								MarkdownDescription: "Patches is a list of environment patches that are executed before acomposition's resources are composed.",
+								Description:         "Patches is a list of environment patches that are executed before a composition's resources are composed.",
+								MarkdownDescription: "Patches is a list of environment patches that are executed before a composition's resources are composed.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"combine": schema.SingleNestedAttribute{
-											Description:         "Combine is the patch configuration for a CombineFromComposite orCombineToComposite patch.",
-											MarkdownDescription: "Combine is the patch configuration for a CombineFromComposite orCombineToComposite patch.",
+											Description:         "Combine is the patch configuration for a CombineFromComposite or CombineToComposite patch.",
+											MarkdownDescription: "Combine is the patch configuration for a CombineFromComposite or CombineToComposite patch.",
 											Attributes: map[string]schema.Attribute{
 												"strategy": schema.StringAttribute{
-													Description:         "Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.",
-													MarkdownDescription: "Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.",
+													Description:         "Strategy defines the strategy to use to combine the input variable values. Currently only string is supported.",
+													MarkdownDescription: "Strategy defines the strategy to use to combine the input variable values. Currently only string is supported.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -560,12 +560,12 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 												},
 
 												"string": schema.SingleNestedAttribute{
-													Description:         "String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes.",
-													MarkdownDescription: "String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes.",
+													Description:         "String declares that input variables should be combined into a single string, using the relevant settings for formatting purposes.",
+													MarkdownDescription: "String declares that input variables should be combined into a single string, using the relevant settings for formatting purposes.",
 													Attributes: map[string]schema.Attribute{
 														"fmt": schema.StringAttribute{
-															Description:         "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
-															MarkdownDescription: "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
+															Description:         "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
+															MarkdownDescription: "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -577,13 +577,13 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 												},
 
 												"variables": schema.ListNestedAttribute{
-													Description:         "Variables are the list of variables whose values will be retrieved andcombined.",
-													MarkdownDescription: "Variables are the list of variables whose values will be retrieved andcombined.",
+													Description:         "Variables are the list of variables whose values will be retrieved and combined.",
+													MarkdownDescription: "Variables are the list of variables whose values will be retrieved and combined.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"from_field_path": schema.StringAttribute{
-																Description:         "FromFieldPath is the path of the field on the source whose value isto be used as input.",
-																MarkdownDescription: "FromFieldPath is the path of the field on the source whose value isto be used as input.",
+																Description:         "FromFieldPath is the path of the field on the source whose value is to be used as input.",
+																MarkdownDescription: "FromFieldPath is the path of the field on the source whose value is to be used as input.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -601,8 +601,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 										},
 
 										"from_field_path": schema.StringAttribute{
-											Description:         "FromFieldPath is the path of the field on the resource whose value isto be used as input. Required when type is FromCompositeFieldPath orToCompositeFieldPath.",
-											MarkdownDescription: "FromFieldPath is the path of the field on the resource whose value isto be used as input. Required when type is FromCompositeFieldPath orToCompositeFieldPath.",
+											Description:         "FromFieldPath is the path of the field on the resource whose value is to be used as input. Required when type is FromCompositeFieldPath or ToCompositeFieldPath.",
+											MarkdownDescription: "FromFieldPath is the path of the field on the resource whose value is to be used as input. Required when type is FromCompositeFieldPath or ToCompositeFieldPath.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -613,8 +613,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 											MarkdownDescription: "Policy configures the specifics of patching behaviour.",
 											Attributes: map[string]schema.Attribute{
 												"from_field_path": schema.StringAttribute{
-													Description:         "FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.",
-													MarkdownDescription: "FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.",
+													Description:         "FromFieldPath specifies how to patch from a field path. The default is 'Optional', which means the patch will be a no-op if the specified fromFieldPath does not exist. Use 'Required' if the patch should fail if the specified path does not exist.",
+													MarkdownDescription: "FromFieldPath specifies how to patch from a field path. The default is 'Optional', which means the patch will be a no-op if the specified fromFieldPath does not exist. Use 'Required' if the patch should fail if the specified path does not exist.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -654,16 +654,16 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 										},
 
 										"to_field_path": schema.StringAttribute{
-											Description:         "ToFieldPath is the path of the field on the resource whose value willbe changed with the result of transforms. Leave empty if you'd like topropagate to the same path as fromFieldPath.",
-											MarkdownDescription: "ToFieldPath is the path of the field on the resource whose value willbe changed with the result of transforms. Leave empty if you'd like topropagate to the same path as fromFieldPath.",
+											Description:         "ToFieldPath is the path of the field on the resource whose value will be changed with the result of transforms. Leave empty if you'd like to propagate to the same path as fromFieldPath.",
+											MarkdownDescription: "ToFieldPath is the path of the field on the resource whose value will be changed with the result of transforms. Leave empty if you'd like to propagate to the same path as fromFieldPath.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"transforms": schema.ListNestedAttribute{
-											Description:         "Transforms are the list of functions that are used as a FIFO pipe for theinput to be transformed.",
-											MarkdownDescription: "Transforms are the list of functions that are used as a FIFO pipe for theinput to be transformed.",
+											Description:         "Transforms are the list of functions that are used as a FIFO pipe for the input to be transformed.",
+											MarkdownDescription: "Transforms are the list of functions that are used as a FIFO pipe for the input to be transformed.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"convert": schema.SingleNestedAttribute{
@@ -671,8 +671,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 														MarkdownDescription: "Convert is used to cast the input into the given output type.",
 														Attributes: map[string]schema.Attribute{
 															"format": schema.StringAttribute{
-																Description:         "The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.",
-																MarkdownDescription: "The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.",
+																Description:         "The expected input format. * 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity). Only used during 'string -> float64' conversions. * 'json' - parses the input as a JSON string. Only used during 'string -> object' or 'string -> list' conversions. If this property is null, the default conversion is applied.",
+																MarkdownDescription: "The expected input format. * 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity). Only used during 'string -> float64' conversions. * 'json' - parses the input as a JSON string. Only used during 'string -> object' or 'string -> list' conversions. If this property is null, the default conversion is applied.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -722,8 +722,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 															},
 
 															"fallback_value": schema.MapAttribute{
-																Description:         "The fallback value that should be returned by the transform if now patternmatches.",
-																MarkdownDescription: "The fallback value that should be returned by the transform if now patternmatches.",
+																Description:         "The fallback value that should be returned by the transform if now pattern matches.",
+																MarkdownDescription: "The fallback value that should be returned by the transform if now pattern matches.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -731,21 +731,21 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 															},
 
 															"patterns": schema.ListNestedAttribute{
-																Description:         "The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform.",
-																MarkdownDescription: "The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform.",
+																Description:         "The patterns that should be tested against the input string. Patterns are tested in order. The value of the first match is used as result of this transform.",
+																MarkdownDescription: "The patterns that should be tested against the input string. Patterns are tested in order. The value of the first match is used as result of this transform.",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"literal": schema.StringAttribute{
-																			Description:         "Literal exactly matches the input string (case sensitive).Is required if 'type' is 'literal'.",
-																			MarkdownDescription: "Literal exactly matches the input string (case sensitive).Is required if 'type' is 'literal'.",
+																			Description:         "Literal exactly matches the input string (case sensitive). Is required if 'type' is 'literal'.",
+																			MarkdownDescription: "Literal exactly matches the input string (case sensitive). Is required if 'type' is 'literal'.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"regexp": schema.StringAttribute{
-																			Description:         "Regexp to match against the input string.Is required if 'type' is 'regexp'.",
-																			MarkdownDescription: "Regexp to match against the input string.Is required if 'type' is 'regexp'.",
+																			Description:         "Regexp to match against the input string. Is required if 'type' is 'regexp'.",
+																			MarkdownDescription: "Regexp to match against the input string. Is required if 'type' is 'regexp'.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -761,8 +761,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																		},
 
 																		"type": schema.StringAttribute{
-																			Description:         "Type specifies how the pattern matches the input.* 'literal' - the pattern value has to exactly match (case sensitive) theinput string. This is the default.* 'regexp' - the pattern treated as a regular expression againstwhich the input string is tested. Crossplane will throw an error if thekey is not a valid regexp.",
-																			MarkdownDescription: "Type specifies how the pattern matches the input.* 'literal' - the pattern value has to exactly match (case sensitive) theinput string. This is the default.* 'regexp' - the pattern treated as a regular expression againstwhich the input string is tested. Crossplane will throw an error if thekey is not a valid regexp.",
+																			Description:         "Type specifies how the pattern matches the input. * 'literal' - the pattern value has to exactly match (case sensitive) the input string. This is the default. * 'regexp' - the pattern treated as a regular expression against which the input string is tested. Crossplane will throw an error if the key is not a valid regexp.",
+																			MarkdownDescription: "Type specifies how the pattern matches the input. * 'literal' - the pattern value has to exactly match (case sensitive) the input string. This is the default. * 'regexp' - the pattern treated as a regular expression against which the input string is tested. Crossplane will throw an error if the key is not a valid regexp.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -783,8 +783,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 													},
 
 													"math": schema.SingleNestedAttribute{
-														Description:         "Math is used to transform the input via mathematical operations such asmultiplication.",
-														MarkdownDescription: "Math is used to transform the input via mathematical operations such asmultiplication.",
+														Description:         "Math is used to transform the input via mathematical operations such as multiplication.",
+														MarkdownDescription: "Math is used to transform the input via mathematical operations such as multiplication.",
 														Attributes: map[string]schema.Attribute{
 															"clamp_max": schema.Int64Attribute{
 																Description:         "ClampMax makes sure that the value is not bigger than the given value.",
@@ -827,12 +827,12 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 													},
 
 													"string": schema.SingleNestedAttribute{
-														Description:         "String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string.",
-														MarkdownDescription: "String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string.",
+														Description:         "String is used to transform the input into a string or a different kind of string. Note that the input does not necessarily need to be a string.",
+														MarkdownDescription: "String is used to transform the input into a string or a different kind of string. Note that the input does not necessarily need to be a string.",
 														Attributes: map[string]schema.Attribute{
 															"convert": schema.StringAttribute{
-																Description:         "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
-																MarkdownDescription: "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
+																Description:         "Optional conversion method to be specified. 'ToUpper' and 'ToLower' change the letter case of the input string. 'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string. 'ToJson' converts any input value into its raw JSON representation. 'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the input converted to JSON. 'ToAdler32' generate a addler32 hash based on the input string.",
+																MarkdownDescription: "Optional conversion method to be specified. 'ToUpper' and 'ToLower' change the letter case of the input string. 'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string. 'ToJson' converts any input value into its raw JSON representation. 'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the input converted to JSON. 'ToAdler32' generate a addler32 hash based on the input string.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -842,8 +842,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 															},
 
 															"fmt": schema.StringAttribute{
-																Description:         "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
-																MarkdownDescription: "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
+																Description:         "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
+																MarkdownDescription: "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -854,8 +854,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																MarkdownDescription: "Join defines parameters to join a slice of values to a string.",
 																Attributes: map[string]schema.Attribute{
 																	"separator": schema.StringAttribute{
-																		Description:         "Separator defines the character that should separate the values from eachother in the joined string.",
-																		MarkdownDescription: "Separator defines the character that should separate the values from eachother in the joined string.",
+																		Description:         "Separator defines the character that should separate the values from each other in the joined string.",
+																		MarkdownDescription: "Separator defines the character that should separate the values from each other in the joined string.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -879,8 +879,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																	},
 
 																	"match": schema.StringAttribute{
-																		Description:         "Match string. May optionally include submatches, aka capture groups.See https://pkg.go.dev/regexp/ for details.",
-																		MarkdownDescription: "Match string. May optionally include submatches, aka capture groups.See https://pkg.go.dev/regexp/ for details.",
+																		Description:         "Match string. May optionally include submatches, aka capture groups. See https://pkg.go.dev/regexp/ for details.",
+																		MarkdownDescription: "Match string. May optionally include submatches, aka capture groups. See https://pkg.go.dev/regexp/ for details.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -933,8 +933,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.",
-											MarkdownDescription: "Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.",
+											Description:         "Type sets the patching behaviour to be used. Each patch type may require its own fields to be set on the Patch object.",
+											MarkdownDescription: "Type sets the patching behaviour to be used. Each patch type may require its own fields to be set on the Patch object.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -950,12 +950,12 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 							},
 
 							"policy": schema.SingleNestedAttribute{
-								Description:         "Policy represents the Resolve and Resolution policies which apply toall EnvironmentSourceReferences in EnvironmentConfigs list.",
-								MarkdownDescription: "Policy represents the Resolve and Resolution policies which apply toall EnvironmentSourceReferences in EnvironmentConfigs list.",
+								Description:         "Policy represents the Resolve and Resolution policies which apply to all EnvironmentSourceReferences in EnvironmentConfigs list.",
+								MarkdownDescription: "Policy represents the Resolve and Resolution policies which apply to all EnvironmentSourceReferences in EnvironmentConfigs list.",
 								Attributes: map[string]schema.Attribute{
 									"resolution": schema.StringAttribute{
-										Description:         "Resolution specifies whether resolution of this reference is required.The default is 'Required', which means the reconcile will fail if thereference cannot be resolved. 'Optional' means this reference will bea no-op if it cannot be resolved.",
-										MarkdownDescription: "Resolution specifies whether resolution of this reference is required.The default is 'Required', which means the reconcile will fail if thereference cannot be resolved. 'Optional' means this reference will bea no-op if it cannot be resolved.",
+										Description:         "Resolution specifies whether resolution of this reference is required. The default is 'Required', which means the reconcile will fail if the reference cannot be resolved. 'Optional' means this reference will be a no-op if it cannot be resolved.",
+										MarkdownDescription: "Resolution specifies whether resolution of this reference is required. The default is 'Required', which means the reconcile will fail if the reference cannot be resolved. 'Optional' means this reference will be a no-op if it cannot be resolved.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -965,8 +965,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 									},
 
 									"resolve": schema.StringAttribute{
-										Description:         "Resolve specifies when this reference should be resolved. The defaultis 'IfNotPresent', which will attempt to resolve the reference only whenthe corresponding field is not present. Use 'Always' to resolve thereference on every reconcile.",
-										MarkdownDescription: "Resolve specifies when this reference should be resolved. The defaultis 'IfNotPresent', which will attempt to resolve the reference only whenthe corresponding field is not present. Use 'Always' to resolve thereference on every reconcile.",
+										Description:         "Resolve specifies when this reference should be resolved. The default is 'IfNotPresent', which will attempt to resolve the reference only when the corresponding field is not present. Use 'Always' to resolve the reference on every reconcile.",
+										MarkdownDescription: "Resolve specifies when this reference should be resolved. The default is 'IfNotPresent', which will attempt to resolve the reference only when the corresponding field is not present. Use 'Always' to resolve the reference on every reconcile.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -986,8 +986,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 					},
 
 					"mode": schema.StringAttribute{
-						Description:         "Mode controls what type or 'mode' of Composition will be used.'Pipeline' indicates that a Composition specifies a pipeline ofComposition Functions, each of which is responsible for producingcomposed resources that Crossplane should create or update.'Resources' indicates that a Composition uses what is commonly referredto as 'Patch & Transform' or P&T composition. This mode of Compositionuses an array of resources, each a template for a composed resource.All Compositions should use Pipeline mode. Resources mode is deprecated.Resources mode won't be removed in Crossplane 1.x, and will remain thedefault to avoid breaking legacy Compositions. However, it's no longeraccepting new features, and only accepting security related bug fixes.",
-						MarkdownDescription: "Mode controls what type or 'mode' of Composition will be used.'Pipeline' indicates that a Composition specifies a pipeline ofComposition Functions, each of which is responsible for producingcomposed resources that Crossplane should create or update.'Resources' indicates that a Composition uses what is commonly referredto as 'Patch & Transform' or P&T composition. This mode of Compositionuses an array of resources, each a template for a composed resource.All Compositions should use Pipeline mode. Resources mode is deprecated.Resources mode won't be removed in Crossplane 1.x, and will remain thedefault to avoid breaking legacy Compositions. However, it's no longeraccepting new features, and only accepting security related bug fixes.",
+						Description:         "Mode controls what type or 'mode' of Composition will be used. 'Pipeline' indicates that a Composition specifies a pipeline of Composition Functions, each of which is responsible for producing composed resources that Crossplane should create or update. 'Resources' indicates that a Composition uses what is commonly referred to as 'Patch & Transform' or P&T composition. This mode of Composition uses an array of resources, each a template for a composed resource. All Compositions should use Pipeline mode. Resources mode is deprecated. Resources mode won't be removed in Crossplane 1.x, and will remain the default to avoid breaking legacy Compositions. However, it's no longer accepting new features, and only accepting security related bug fixes.",
+						MarkdownDescription: "Mode controls what type or 'mode' of Composition will be used. 'Pipeline' indicates that a Composition specifies a pipeline of Composition Functions, each of which is responsible for producing composed resources that Crossplane should create or update. 'Resources' indicates that a Composition uses what is commonly referred to as 'Patch & Transform' or P&T composition. This mode of Composition uses an array of resources, each a template for a composed resource. All Compositions should use Pipeline mode. Resources mode is deprecated. Resources mode won't be removed in Crossplane 1.x, and will remain the default to avoid breaking legacy Compositions. However, it's no longer accepting new features, and only accepting security related bug fixes.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -997,8 +997,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 					},
 
 					"patch_sets": schema.ListNestedAttribute{
-						Description:         "PatchSets define a named set of patches that may be included by anyresource in this Composition. PatchSets cannot themselves refer to otherPatchSets.PatchSets are only used by the 'Resources' mode of Composition. Theyare ignored by other modes.Deprecated: Use Composition Functions instead.",
-						MarkdownDescription: "PatchSets define a named set of patches that may be included by anyresource in this Composition. PatchSets cannot themselves refer to otherPatchSets.PatchSets are only used by the 'Resources' mode of Composition. Theyare ignored by other modes.Deprecated: Use Composition Functions instead.",
+						Description:         "PatchSets define a named set of patches that may be included by any resource in this Composition. PatchSets cannot themselves refer to other PatchSets. PatchSets are only used by the 'Resources' mode of Composition. They are ignored by other modes. Deprecated: Use Composition Functions instead.",
+						MarkdownDescription: "PatchSets define a named set of patches that may be included by any resource in this Composition. PatchSets cannot themselves refer to other PatchSets. PatchSets are only used by the 'Resources' mode of Composition. They are ignored by other modes. Deprecated: Use Composition Functions instead.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -1015,12 +1015,12 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"combine": schema.SingleNestedAttribute{
-												Description:         "Combine is the patch configuration for a CombineFromComposite,CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch.",
-												MarkdownDescription: "Combine is the patch configuration for a CombineFromComposite,CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch.",
+												Description:         "Combine is the patch configuration for a CombineFromComposite, CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch.",
+												MarkdownDescription: "Combine is the patch configuration for a CombineFromComposite, CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch.",
 												Attributes: map[string]schema.Attribute{
 													"strategy": schema.StringAttribute{
-														Description:         "Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.",
-														MarkdownDescription: "Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.",
+														Description:         "Strategy defines the strategy to use to combine the input variable values. Currently only string is supported.",
+														MarkdownDescription: "Strategy defines the strategy to use to combine the input variable values. Currently only string is supported.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -1030,12 +1030,12 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 													},
 
 													"string": schema.SingleNestedAttribute{
-														Description:         "String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes.",
-														MarkdownDescription: "String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes.",
+														Description:         "String declares that input variables should be combined into a single string, using the relevant settings for formatting purposes.",
+														MarkdownDescription: "String declares that input variables should be combined into a single string, using the relevant settings for formatting purposes.",
 														Attributes: map[string]schema.Attribute{
 															"fmt": schema.StringAttribute{
-																Description:         "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
-																MarkdownDescription: "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
+																Description:         "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
+																MarkdownDescription: "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -1047,13 +1047,13 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 													},
 
 													"variables": schema.ListNestedAttribute{
-														Description:         "Variables are the list of variables whose values will be retrieved andcombined.",
-														MarkdownDescription: "Variables are the list of variables whose values will be retrieved andcombined.",
+														Description:         "Variables are the list of variables whose values will be retrieved and combined.",
+														MarkdownDescription: "Variables are the list of variables whose values will be retrieved and combined.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"from_field_path": schema.StringAttribute{
-																	Description:         "FromFieldPath is the path of the field on the source whose value isto be used as input.",
-																	MarkdownDescription: "FromFieldPath is the path of the field on the source whose value isto be used as input.",
+																	Description:         "FromFieldPath is the path of the field on the source whose value is to be used as input.",
+																	MarkdownDescription: "FromFieldPath is the path of the field on the source whose value is to be used as input.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1071,8 +1071,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 											},
 
 											"from_field_path": schema.StringAttribute{
-												Description:         "FromFieldPath is the path of the field on the resource whose value isto be used as input. Required when type is FromCompositeFieldPath,FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.",
-												MarkdownDescription: "FromFieldPath is the path of the field on the resource whose value isto be used as input. Required when type is FromCompositeFieldPath,FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.",
+												Description:         "FromFieldPath is the path of the field on the resource whose value is to be used as input. Required when type is FromCompositeFieldPath, FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.",
+												MarkdownDescription: "FromFieldPath is the path of the field on the resource whose value is to be used as input. Required when type is FromCompositeFieldPath, FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1091,8 +1091,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 												MarkdownDescription: "Policy configures the specifics of patching behaviour.",
 												Attributes: map[string]schema.Attribute{
 													"from_field_path": schema.StringAttribute{
-														Description:         "FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.",
-														MarkdownDescription: "FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.",
+														Description:         "FromFieldPath specifies how to patch from a field path. The default is 'Optional', which means the patch will be a no-op if the specified fromFieldPath does not exist. Use 'Required' if the patch should fail if the specified path does not exist.",
+														MarkdownDescription: "FromFieldPath specifies how to patch from a field path. The default is 'Optional', which means the patch will be a no-op if the specified fromFieldPath does not exist. Use 'Required' if the patch should fail if the specified path does not exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1132,16 +1132,16 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 											},
 
 											"to_field_path": schema.StringAttribute{
-												Description:         "ToFieldPath is the path of the field on the resource whose value willbe changed with the result of transforms. Leave empty if you'd like topropagate to the same path as fromFieldPath.",
-												MarkdownDescription: "ToFieldPath is the path of the field on the resource whose value willbe changed with the result of transforms. Leave empty if you'd like topropagate to the same path as fromFieldPath.",
+												Description:         "ToFieldPath is the path of the field on the resource whose value will be changed with the result of transforms. Leave empty if you'd like to propagate to the same path as fromFieldPath.",
+												MarkdownDescription: "ToFieldPath is the path of the field on the resource whose value will be changed with the result of transforms. Leave empty if you'd like to propagate to the same path as fromFieldPath.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"transforms": schema.ListNestedAttribute{
-												Description:         "Transforms are the list of functions that are used as a FIFO pipe for theinput to be transformed.",
-												MarkdownDescription: "Transforms are the list of functions that are used as a FIFO pipe for theinput to be transformed.",
+												Description:         "Transforms are the list of functions that are used as a FIFO pipe for the input to be transformed.",
+												MarkdownDescription: "Transforms are the list of functions that are used as a FIFO pipe for the input to be transformed.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"convert": schema.SingleNestedAttribute{
@@ -1149,8 +1149,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 															MarkdownDescription: "Convert is used to cast the input into the given output type.",
 															Attributes: map[string]schema.Attribute{
 																"format": schema.StringAttribute{
-																	Description:         "The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.",
-																	MarkdownDescription: "The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.",
+																	Description:         "The expected input format. * 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity). Only used during 'string -> float64' conversions. * 'json' - parses the input as a JSON string. Only used during 'string -> object' or 'string -> list' conversions. If this property is null, the default conversion is applied.",
+																	MarkdownDescription: "The expected input format. * 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity). Only used during 'string -> float64' conversions. * 'json' - parses the input as a JSON string. Only used during 'string -> object' or 'string -> list' conversions. If this property is null, the default conversion is applied.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1200,8 +1200,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																},
 
 																"fallback_value": schema.MapAttribute{
-																	Description:         "The fallback value that should be returned by the transform if now patternmatches.",
-																	MarkdownDescription: "The fallback value that should be returned by the transform if now patternmatches.",
+																	Description:         "The fallback value that should be returned by the transform if now pattern matches.",
+																	MarkdownDescription: "The fallback value that should be returned by the transform if now pattern matches.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1209,21 +1209,21 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																},
 
 																"patterns": schema.ListNestedAttribute{
-																	Description:         "The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform.",
-																	MarkdownDescription: "The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform.",
+																	Description:         "The patterns that should be tested against the input string. Patterns are tested in order. The value of the first match is used as result of this transform.",
+																	MarkdownDescription: "The patterns that should be tested against the input string. Patterns are tested in order. The value of the first match is used as result of this transform.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"literal": schema.StringAttribute{
-																				Description:         "Literal exactly matches the input string (case sensitive).Is required if 'type' is 'literal'.",
-																				MarkdownDescription: "Literal exactly matches the input string (case sensitive).Is required if 'type' is 'literal'.",
+																				Description:         "Literal exactly matches the input string (case sensitive). Is required if 'type' is 'literal'.",
+																				MarkdownDescription: "Literal exactly matches the input string (case sensitive). Is required if 'type' is 'literal'.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"regexp": schema.StringAttribute{
-																				Description:         "Regexp to match against the input string.Is required if 'type' is 'regexp'.",
-																				MarkdownDescription: "Regexp to match against the input string.Is required if 'type' is 'regexp'.",
+																				Description:         "Regexp to match against the input string. Is required if 'type' is 'regexp'.",
+																				MarkdownDescription: "Regexp to match against the input string. Is required if 'type' is 'regexp'.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1239,8 +1239,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																			},
 
 																			"type": schema.StringAttribute{
-																				Description:         "Type specifies how the pattern matches the input.* 'literal' - the pattern value has to exactly match (case sensitive) theinput string. This is the default.* 'regexp' - the pattern treated as a regular expression againstwhich the input string is tested. Crossplane will throw an error if thekey is not a valid regexp.",
-																				MarkdownDescription: "Type specifies how the pattern matches the input.* 'literal' - the pattern value has to exactly match (case sensitive) theinput string. This is the default.* 'regexp' - the pattern treated as a regular expression againstwhich the input string is tested. Crossplane will throw an error if thekey is not a valid regexp.",
+																				Description:         "Type specifies how the pattern matches the input. * 'literal' - the pattern value has to exactly match (case sensitive) the input string. This is the default. * 'regexp' - the pattern treated as a regular expression against which the input string is tested. Crossplane will throw an error if the key is not a valid regexp.",
+																				MarkdownDescription: "Type specifies how the pattern matches the input. * 'literal' - the pattern value has to exactly match (case sensitive) the input string. This is the default. * 'regexp' - the pattern treated as a regular expression against which the input string is tested. Crossplane will throw an error if the key is not a valid regexp.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -1261,8 +1261,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 														},
 
 														"math": schema.SingleNestedAttribute{
-															Description:         "Math is used to transform the input via mathematical operations such asmultiplication.",
-															MarkdownDescription: "Math is used to transform the input via mathematical operations such asmultiplication.",
+															Description:         "Math is used to transform the input via mathematical operations such as multiplication.",
+															MarkdownDescription: "Math is used to transform the input via mathematical operations such as multiplication.",
 															Attributes: map[string]schema.Attribute{
 																"clamp_max": schema.Int64Attribute{
 																	Description:         "ClampMax makes sure that the value is not bigger than the given value.",
@@ -1305,12 +1305,12 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 														},
 
 														"string": schema.SingleNestedAttribute{
-															Description:         "String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string.",
-															MarkdownDescription: "String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string.",
+															Description:         "String is used to transform the input into a string or a different kind of string. Note that the input does not necessarily need to be a string.",
+															MarkdownDescription: "String is used to transform the input into a string or a different kind of string. Note that the input does not necessarily need to be a string.",
 															Attributes: map[string]schema.Attribute{
 																"convert": schema.StringAttribute{
-																	Description:         "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
-																	MarkdownDescription: "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
+																	Description:         "Optional conversion method to be specified. 'ToUpper' and 'ToLower' change the letter case of the input string. 'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string. 'ToJson' converts any input value into its raw JSON representation. 'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the input converted to JSON. 'ToAdler32' generate a addler32 hash based on the input string.",
+																	MarkdownDescription: "Optional conversion method to be specified. 'ToUpper' and 'ToLower' change the letter case of the input string. 'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string. 'ToJson' converts any input value into its raw JSON representation. 'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the input converted to JSON. 'ToAdler32' generate a addler32 hash based on the input string.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1320,8 +1320,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																},
 
 																"fmt": schema.StringAttribute{
-																	Description:         "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
-																	MarkdownDescription: "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
+																	Description:         "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
+																	MarkdownDescription: "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1332,8 +1332,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																	MarkdownDescription: "Join defines parameters to join a slice of values to a string.",
 																	Attributes: map[string]schema.Attribute{
 																		"separator": schema.StringAttribute{
-																			Description:         "Separator defines the character that should separate the values from eachother in the joined string.",
-																			MarkdownDescription: "Separator defines the character that should separate the values from eachother in the joined string.",
+																			Description:         "Separator defines the character that should separate the values from each other in the joined string.",
+																			MarkdownDescription: "Separator defines the character that should separate the values from each other in the joined string.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -1357,8 +1357,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																		},
 
 																		"match": schema.StringAttribute{
-																			Description:         "Match string. May optionally include submatches, aka capture groups.See https://pkg.go.dev/regexp/ for details.",
-																			MarkdownDescription: "Match string. May optionally include submatches, aka capture groups.See https://pkg.go.dev/regexp/ for details.",
+																			Description:         "Match string. May optionally include submatches, aka capture groups. See https://pkg.go.dev/regexp/ for details.",
+																			MarkdownDescription: "Match string. May optionally include submatches, aka capture groups. See https://pkg.go.dev/regexp/ for details.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -1411,8 +1411,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 											},
 
 											"type": schema.StringAttribute{
-												Description:         "Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.",
-												MarkdownDescription: "Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.",
+												Description:         "Type sets the patching behaviour to be used. Each patch type may require its own fields to be set on the Patch object.",
+												MarkdownDescription: "Type sets the patching behaviour to be used. Each patch type may require its own fields to be set on the Patch object.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1434,8 +1434,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 					},
 
 					"pipeline": schema.ListNestedAttribute{
-						Description:         "Pipeline is a list of composition function steps that will be used when acomposite resource referring to this composition is created. One ofresources and pipeline must be specified - you cannot specify both.The Pipeline is only used by the 'Pipeline' mode of Composition. It isignored by other modes.",
-						MarkdownDescription: "Pipeline is a list of composition function steps that will be used when acomposite resource referring to this composition is created. One ofresources and pipeline must be specified - you cannot specify both.The Pipeline is only used by the 'Pipeline' mode of Composition. It isignored by other modes.",
+						Description:         "Pipeline is a list of composition function steps that will be used when a composite resource referring to this composition is created. One of resources and pipeline must be specified - you cannot specify both. The Pipeline is only used by the 'Pipeline' mode of Composition. It is ignored by other modes.",
+						MarkdownDescription: "Pipeline is a list of composition function steps that will be used when a composite resource referring to this composition is created. One of resources and pipeline must be specified - you cannot specify both. The Pipeline is only used by the 'Pipeline' mode of Composition. It is ignored by other modes.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"credentials": schema.ListNestedAttribute{
@@ -1452,8 +1452,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 											},
 
 											"secret_ref": schema.SingleNestedAttribute{
-												Description:         "A SecretRef is a reference to a secret containing credentials that shouldbe supplied to the function.",
-												MarkdownDescription: "A SecretRef is a reference to a secret containing credentials that shouldbe supplied to the function.",
+												Description:         "A SecretRef is a reference to a secret containing credentials that should be supplied to the function.",
+												MarkdownDescription: "A SecretRef is a reference to a secret containing credentials that should be supplied to the function.",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
 														Description:         "Name of the secret.",
@@ -1494,8 +1494,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 								},
 
 								"function_ref": schema.SingleNestedAttribute{
-									Description:         "FunctionRef is a reference to the Composition Function this step shouldexecute.",
-									MarkdownDescription: "FunctionRef is a reference to the Composition Function this step shouldexecute.",
+									Description:         "FunctionRef is a reference to the Composition Function this step should execute.",
+									MarkdownDescription: "FunctionRef is a reference to the Composition Function this step should execute.",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "Name of the referenced Function.",
@@ -1511,8 +1511,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 								},
 
 								"input": schema.MapAttribute{
-									Description:         "Input is an optional, arbitrary Kubernetes resource (i.e. a resourcewith an apiVersion and kind) that will be passed to the CompositionFunction as the 'input' of its RunFunctionRequest.",
-									MarkdownDescription: "Input is an optional, arbitrary Kubernetes resource (i.e. a resourcewith an apiVersion and kind) that will be passed to the CompositionFunction as the 'input' of its RunFunctionRequest.",
+									Description:         "Input is an optional, arbitrary Kubernetes resource (i.e. a resource with an apiVersion and kind) that will be passed to the Composition Function as the 'input' of its RunFunctionRequest.",
+									MarkdownDescription: "Input is an optional, arbitrary Kubernetes resource (i.e. a resource with an apiVersion and kind) that will be passed to the Composition Function as the 'input' of its RunFunctionRequest.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1534,8 +1534,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 					},
 
 					"publish_connection_details_with_store_config_ref": schema.SingleNestedAttribute{
-						Description:         "PublishConnectionDetailsWithStoreConfig specifies the secret store configwith which the connection details of composite resources dynamicallyprovisioned using this composition will be published.THIS IS AN ALPHA FIELD. Do not use it in production. It is not honoredunless the relevant Crossplane feature flag is enabled, and may bechanged or removed without notice.",
-						MarkdownDescription: "PublishConnectionDetailsWithStoreConfig specifies the secret store configwith which the connection details of composite resources dynamicallyprovisioned using this composition will be published.THIS IS AN ALPHA FIELD. Do not use it in production. It is not honoredunless the relevant Crossplane feature flag is enabled, and may bechanged or removed without notice.",
+						Description:         "PublishConnectionDetailsWithStoreConfig specifies the secret store config with which the connection details of composite resources dynamically provisioned using this composition will be published. THIS IS AN ALPHA FIELD. Do not use it in production. It is not honored unless the relevant Crossplane feature flag is enabled, and may be changed or removed without notice.",
+						MarkdownDescription: "PublishConnectionDetailsWithStoreConfig specifies the secret store config with which the connection details of composite resources dynamically provisioned using this composition will be published. THIS IS AN ALPHA FIELD. Do not use it in production. It is not honored unless the relevant Crossplane feature flag is enabled, and may be changed or removed without notice.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referenced StoreConfig.",
@@ -1551,8 +1551,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 					},
 
 					"resources": schema.ListNestedAttribute{
-						Description:         "Resources is a list of resource templates that will be used when acomposite resource referring to this composition is created.Resources are only used by the 'Resources' mode of Composition. They areignored by other modes.Deprecated: Use Composition Functions instead.",
-						MarkdownDescription: "Resources is a list of resource templates that will be used when acomposite resource referring to this composition is created.Resources are only used by the 'Resources' mode of Composition. They areignored by other modes.Deprecated: Use Composition Functions instead.",
+						Description:         "Resources is a list of resource templates that will be used when a composite resource referring to this composition is created. Resources are only used by the 'Resources' mode of Composition. They are ignored by other modes. Deprecated: Use Composition Functions instead.",
+						MarkdownDescription: "Resources is a list of resource templates that will be used when a composite resource referring to this composition is created. Resources are only used by the 'Resources' mode of Composition. They are ignored by other modes. Deprecated: Use Composition Functions instead.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"base": schema.MapAttribute{
@@ -1565,37 +1565,37 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 								},
 
 								"connection_details": schema.ListNestedAttribute{
-									Description:         "ConnectionDetails lists the propagation secret keys from this targetresource to the composition instance connection secret.",
-									MarkdownDescription: "ConnectionDetails lists the propagation secret keys from this targetresource to the composition instance connection secret.",
+									Description:         "ConnectionDetails lists the propagation secret keys from this target resource to the composition instance connection secret.",
+									MarkdownDescription: "ConnectionDetails lists the propagation secret keys from this target resource to the composition instance connection secret.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"from_connection_secret_key": schema.StringAttribute{
-												Description:         "FromConnectionSecretKey is the key that will be used to fetch the valuefrom the composed resource's connection secret.",
-												MarkdownDescription: "FromConnectionSecretKey is the key that will be used to fetch the valuefrom the composed resource's connection secret.",
+												Description:         "FromConnectionSecretKey is the key that will be used to fetch the value from the composed resource's connection secret.",
+												MarkdownDescription: "FromConnectionSecretKey is the key that will be used to fetch the value from the composed resource's connection secret.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"from_field_path": schema.StringAttribute{
-												Description:         "FromFieldPath is the path of the field on the composed resource whosevalue to be used as input. Name must be specified if the type isFromFieldPath.",
-												MarkdownDescription: "FromFieldPath is the path of the field on the composed resource whosevalue to be used as input. Name must be specified if the type isFromFieldPath.",
+												Description:         "FromFieldPath is the path of the field on the composed resource whose value to be used as input. Name must be specified if the type is FromFieldPath.",
+												MarkdownDescription: "FromFieldPath is the path of the field on the composed resource whose value to be used as input. Name must be specified if the type is FromFieldPath.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the connection secret key that will be propagated to theconnection secret of the composition instance. Leave empty if you'd liketo use the same key name.",
-												MarkdownDescription: "Name of the connection secret key that will be propagated to theconnection secret of the composition instance. Leave empty if you'd liketo use the same key name.",
+												Description:         "Name of the connection secret key that will be propagated to the connection secret of the composition instance. Leave empty if you'd like to use the same key name.",
+												MarkdownDescription: "Name of the connection secret key that will be propagated to the connection secret of the composition instance. Leave empty if you'd like to use the same key name.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"type": schema.StringAttribute{
-												Description:         "Type sets the connection detail fetching behaviour to be used. Eachconnection detail type may require its own fields to be set on theConnectionDetail object. If the type is omitted Crossplane will attemptto infer it based on which other fields were specified. If multiplefields are specified the order of precedence is:1. FromValue2. FromConnectionSecretKey3. FromFieldPath",
-												MarkdownDescription: "Type sets the connection detail fetching behaviour to be used. Eachconnection detail type may require its own fields to be set on theConnectionDetail object. If the type is omitted Crossplane will attemptto infer it based on which other fields were specified. If multiplefields are specified the order of precedence is:1. FromValue2. FromConnectionSecretKey3. FromFieldPath",
+												Description:         "Type sets the connection detail fetching behaviour to be used. Each connection detail type may require its own fields to be set on the ConnectionDetail object. If the type is omitted Crossplane will attempt to infer it based on which other fields were specified. If multiple fields are specified the order of precedence is: 1. FromValue 2. FromConnectionSecretKey 3. FromFieldPath",
+												MarkdownDescription: "Type sets the connection detail fetching behaviour to be used. Each connection detail type may require its own fields to be set on the ConnectionDetail object. If the type is omitted Crossplane will attempt to infer it based on which other fields were specified. If multiple fields are specified the order of precedence is: 1. FromValue 2. FromConnectionSecretKey 3. FromFieldPath",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1605,8 +1605,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 											},
 
 											"value": schema.StringAttribute{
-												Description:         "Value that will be propagated to the connection secret of the compositeresource. May be set to inject a fixed, non-sensitive connection secretvalue, for example a well-known port.",
-												MarkdownDescription: "Value that will be propagated to the connection secret of the compositeresource. May be set to inject a fixed, non-sensitive connection secretvalue, for example a well-known port.",
+												Description:         "Value that will be propagated to the connection secret of the composite resource. May be set to inject a fixed, non-sensitive connection secret value, for example a well-known port.",
+												MarkdownDescription: "Value that will be propagated to the connection secret of the composite resource. May be set to inject a fixed, non-sensitive connection secret value, for example a well-known port.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1619,8 +1619,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "A Name uniquely identifies this entry within its Composition's resourcesarray. Names are optional but *strongly* recommended. When all entries inthe resources array are named entries may added, deleted, and reorderedas long as their names do not change. When entries are not named thelength and order of the resources array should be treated as immutable.Either all or no entries must be named.",
-									MarkdownDescription: "A Name uniquely identifies this entry within its Composition's resourcesarray. Names are optional but *strongly* recommended. When all entries inthe resources array are named entries may added, deleted, and reorderedas long as their names do not change. When entries are not named thelength and order of the resources array should be treated as immutable.Either all or no entries must be named.",
+									Description:         "A Name uniquely identifies this entry within its Composition's resources array. Names are optional but *strongly* recommended. When all entries in the resources array are named entries may added, deleted, and reordered as long as their names do not change. When entries are not named the length and order of the resources array should be treated as immutable. Either all or no entries must be named.",
+									MarkdownDescription: "A Name uniquely identifies this entry within its Composition's resources array. Names are optional but *strongly* recommended. When all entries in the resources array are named entries may added, deleted, and reordered as long as their names do not change. When entries are not named the length and order of the resources array should be treated as immutable. Either all or no entries must be named.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1632,12 +1632,12 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"combine": schema.SingleNestedAttribute{
-												Description:         "Combine is the patch configuration for a CombineFromComposite,CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch.",
-												MarkdownDescription: "Combine is the patch configuration for a CombineFromComposite,CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch.",
+												Description:         "Combine is the patch configuration for a CombineFromComposite, CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch.",
+												MarkdownDescription: "Combine is the patch configuration for a CombineFromComposite, CombineFromEnvironment, CombineToComposite or CombineToEnvironment patch.",
 												Attributes: map[string]schema.Attribute{
 													"strategy": schema.StringAttribute{
-														Description:         "Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.",
-														MarkdownDescription: "Strategy defines the strategy to use to combine the input variable values.Currently only string is supported.",
+														Description:         "Strategy defines the strategy to use to combine the input variable values. Currently only string is supported.",
+														MarkdownDescription: "Strategy defines the strategy to use to combine the input variable values. Currently only string is supported.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -1647,12 +1647,12 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 													},
 
 													"string": schema.SingleNestedAttribute{
-														Description:         "String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes.",
-														MarkdownDescription: "String declares that input variables should be combined into a singlestring, using the relevant settings for formatting purposes.",
+														Description:         "String declares that input variables should be combined into a single string, using the relevant settings for formatting purposes.",
+														MarkdownDescription: "String declares that input variables should be combined into a single string, using the relevant settings for formatting purposes.",
 														Attributes: map[string]schema.Attribute{
 															"fmt": schema.StringAttribute{
-																Description:         "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
-																MarkdownDescription: "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
+																Description:         "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
+																MarkdownDescription: "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -1664,13 +1664,13 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 													},
 
 													"variables": schema.ListNestedAttribute{
-														Description:         "Variables are the list of variables whose values will be retrieved andcombined.",
-														MarkdownDescription: "Variables are the list of variables whose values will be retrieved andcombined.",
+														Description:         "Variables are the list of variables whose values will be retrieved and combined.",
+														MarkdownDescription: "Variables are the list of variables whose values will be retrieved and combined.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"from_field_path": schema.StringAttribute{
-																	Description:         "FromFieldPath is the path of the field on the source whose value isto be used as input.",
-																	MarkdownDescription: "FromFieldPath is the path of the field on the source whose value isto be used as input.",
+																	Description:         "FromFieldPath is the path of the field on the source whose value is to be used as input.",
+																	MarkdownDescription: "FromFieldPath is the path of the field on the source whose value is to be used as input.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1688,8 +1688,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 											},
 
 											"from_field_path": schema.StringAttribute{
-												Description:         "FromFieldPath is the path of the field on the resource whose value isto be used as input. Required when type is FromCompositeFieldPath,FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.",
-												MarkdownDescription: "FromFieldPath is the path of the field on the resource whose value isto be used as input. Required when type is FromCompositeFieldPath,FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.",
+												Description:         "FromFieldPath is the path of the field on the resource whose value is to be used as input. Required when type is FromCompositeFieldPath, FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.",
+												MarkdownDescription: "FromFieldPath is the path of the field on the resource whose value is to be used as input. Required when type is FromCompositeFieldPath, FromEnvironmentFieldPath, ToCompositeFieldPath, ToEnvironmentFieldPath.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1708,8 +1708,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 												MarkdownDescription: "Policy configures the specifics of patching behaviour.",
 												Attributes: map[string]schema.Attribute{
 													"from_field_path": schema.StringAttribute{
-														Description:         "FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.",
-														MarkdownDescription: "FromFieldPath specifies how to patch from a field path. The default is'Optional', which means the patch will be a no-op if the specifiedfromFieldPath does not exist. Use 'Required' if the patch should fail ifthe specified path does not exist.",
+														Description:         "FromFieldPath specifies how to patch from a field path. The default is 'Optional', which means the patch will be a no-op if the specified fromFieldPath does not exist. Use 'Required' if the patch should fail if the specified path does not exist.",
+														MarkdownDescription: "FromFieldPath specifies how to patch from a field path. The default is 'Optional', which means the patch will be a no-op if the specified fromFieldPath does not exist. Use 'Required' if the patch should fail if the specified path does not exist.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1749,16 +1749,16 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 											},
 
 											"to_field_path": schema.StringAttribute{
-												Description:         "ToFieldPath is the path of the field on the resource whose value willbe changed with the result of transforms. Leave empty if you'd like topropagate to the same path as fromFieldPath.",
-												MarkdownDescription: "ToFieldPath is the path of the field on the resource whose value willbe changed with the result of transforms. Leave empty if you'd like topropagate to the same path as fromFieldPath.",
+												Description:         "ToFieldPath is the path of the field on the resource whose value will be changed with the result of transforms. Leave empty if you'd like to propagate to the same path as fromFieldPath.",
+												MarkdownDescription: "ToFieldPath is the path of the field on the resource whose value will be changed with the result of transforms. Leave empty if you'd like to propagate to the same path as fromFieldPath.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"transforms": schema.ListNestedAttribute{
-												Description:         "Transforms are the list of functions that are used as a FIFO pipe for theinput to be transformed.",
-												MarkdownDescription: "Transforms are the list of functions that are used as a FIFO pipe for theinput to be transformed.",
+												Description:         "Transforms are the list of functions that are used as a FIFO pipe for the input to be transformed.",
+												MarkdownDescription: "Transforms are the list of functions that are used as a FIFO pipe for the input to be transformed.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"convert": schema.SingleNestedAttribute{
@@ -1766,8 +1766,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 															MarkdownDescription: "Convert is used to cast the input into the given output type.",
 															Attributes: map[string]schema.Attribute{
 																"format": schema.StringAttribute{
-																	Description:         "The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.",
-																	MarkdownDescription: "The expected input format.* 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity).Only used during 'string -> float64' conversions.* 'json' - parses the input as a JSON string.Only used during 'string -> object' or 'string -> list' conversions.If this property is null, the default conversion is applied.",
+																	Description:         "The expected input format. * 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity). Only used during 'string -> float64' conversions. * 'json' - parses the input as a JSON string. Only used during 'string -> object' or 'string -> list' conversions. If this property is null, the default conversion is applied.",
+																	MarkdownDescription: "The expected input format. * 'quantity' - parses the input as a K8s ['resource.Quantity'](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Quantity). Only used during 'string -> float64' conversions. * 'json' - parses the input as a JSON string. Only used during 'string -> object' or 'string -> list' conversions. If this property is null, the default conversion is applied.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1817,8 +1817,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																},
 
 																"fallback_value": schema.MapAttribute{
-																	Description:         "The fallback value that should be returned by the transform if now patternmatches.",
-																	MarkdownDescription: "The fallback value that should be returned by the transform if now patternmatches.",
+																	Description:         "The fallback value that should be returned by the transform if now pattern matches.",
+																	MarkdownDescription: "The fallback value that should be returned by the transform if now pattern matches.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1826,21 +1826,21 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																},
 
 																"patterns": schema.ListNestedAttribute{
-																	Description:         "The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform.",
-																	MarkdownDescription: "The patterns that should be tested against the input string.Patterns are tested in order. The value of the first match is used asresult of this transform.",
+																	Description:         "The patterns that should be tested against the input string. Patterns are tested in order. The value of the first match is used as result of this transform.",
+																	MarkdownDescription: "The patterns that should be tested against the input string. Patterns are tested in order. The value of the first match is used as result of this transform.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"literal": schema.StringAttribute{
-																				Description:         "Literal exactly matches the input string (case sensitive).Is required if 'type' is 'literal'.",
-																				MarkdownDescription: "Literal exactly matches the input string (case sensitive).Is required if 'type' is 'literal'.",
+																				Description:         "Literal exactly matches the input string (case sensitive). Is required if 'type' is 'literal'.",
+																				MarkdownDescription: "Literal exactly matches the input string (case sensitive). Is required if 'type' is 'literal'.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"regexp": schema.StringAttribute{
-																				Description:         "Regexp to match against the input string.Is required if 'type' is 'regexp'.",
-																				MarkdownDescription: "Regexp to match against the input string.Is required if 'type' is 'regexp'.",
+																				Description:         "Regexp to match against the input string. Is required if 'type' is 'regexp'.",
+																				MarkdownDescription: "Regexp to match against the input string. Is required if 'type' is 'regexp'.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1856,8 +1856,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																			},
 
 																			"type": schema.StringAttribute{
-																				Description:         "Type specifies how the pattern matches the input.* 'literal' - the pattern value has to exactly match (case sensitive) theinput string. This is the default.* 'regexp' - the pattern treated as a regular expression againstwhich the input string is tested. Crossplane will throw an error if thekey is not a valid regexp.",
-																				MarkdownDescription: "Type specifies how the pattern matches the input.* 'literal' - the pattern value has to exactly match (case sensitive) theinput string. This is the default.* 'regexp' - the pattern treated as a regular expression againstwhich the input string is tested. Crossplane will throw an error if thekey is not a valid regexp.",
+																				Description:         "Type specifies how the pattern matches the input. * 'literal' - the pattern value has to exactly match (case sensitive) the input string. This is the default. * 'regexp' - the pattern treated as a regular expression against which the input string is tested. Crossplane will throw an error if the key is not a valid regexp.",
+																				MarkdownDescription: "Type specifies how the pattern matches the input. * 'literal' - the pattern value has to exactly match (case sensitive) the input string. This is the default. * 'regexp' - the pattern treated as a regular expression against which the input string is tested. Crossplane will throw an error if the key is not a valid regexp.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -1878,8 +1878,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 														},
 
 														"math": schema.SingleNestedAttribute{
-															Description:         "Math is used to transform the input via mathematical operations such asmultiplication.",
-															MarkdownDescription: "Math is used to transform the input via mathematical operations such asmultiplication.",
+															Description:         "Math is used to transform the input via mathematical operations such as multiplication.",
+															MarkdownDescription: "Math is used to transform the input via mathematical operations such as multiplication.",
 															Attributes: map[string]schema.Attribute{
 																"clamp_max": schema.Int64Attribute{
 																	Description:         "ClampMax makes sure that the value is not bigger than the given value.",
@@ -1922,12 +1922,12 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 														},
 
 														"string": schema.SingleNestedAttribute{
-															Description:         "String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string.",
-															MarkdownDescription: "String is used to transform the input into a string or a different kindof string. Note that the input does not necessarily need to be a string.",
+															Description:         "String is used to transform the input into a string or a different kind of string. Note that the input does not necessarily need to be a string.",
+															MarkdownDescription: "String is used to transform the input into a string or a different kind of string. Note that the input does not necessarily need to be a string.",
 															Attributes: map[string]schema.Attribute{
 																"convert": schema.StringAttribute{
-																	Description:         "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
-																	MarkdownDescription: "Optional conversion method to be specified.'ToUpper' and 'ToLower' change the letter case of the input string.'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string.'ToJson' converts any input value into its raw JSON representation.'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the inputconverted to JSON.'ToAdler32' generate a addler32 hash based on the input string.",
+																	Description:         "Optional conversion method to be specified. 'ToUpper' and 'ToLower' change the letter case of the input string. 'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string. 'ToJson' converts any input value into its raw JSON representation. 'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the input converted to JSON. 'ToAdler32' generate a addler32 hash based on the input string.",
+																	MarkdownDescription: "Optional conversion method to be specified. 'ToUpper' and 'ToLower' change the letter case of the input string. 'ToBase64' and 'FromBase64' perform a base64 conversion based on the input string. 'ToJson' converts any input value into its raw JSON representation. 'ToSha1', 'ToSha256' and 'ToSha512' generate a hash value based on the input converted to JSON. 'ToAdler32' generate a addler32 hash based on the input string.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1937,8 +1937,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																},
 
 																"fmt": schema.StringAttribute{
-																	Description:         "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
-																	MarkdownDescription: "Format the input using a Go format string. Seehttps://golang.org/pkg/fmt/ for details.",
+																	Description:         "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
+																	MarkdownDescription: "Format the input using a Go format string. See https://golang.org/pkg/fmt/ for details.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1949,8 +1949,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																	MarkdownDescription: "Join defines parameters to join a slice of values to a string.",
 																	Attributes: map[string]schema.Attribute{
 																		"separator": schema.StringAttribute{
-																			Description:         "Separator defines the character that should separate the values from eachother in the joined string.",
-																			MarkdownDescription: "Separator defines the character that should separate the values from eachother in the joined string.",
+																			Description:         "Separator defines the character that should separate the values from each other in the joined string.",
+																			MarkdownDescription: "Separator defines the character that should separate the values from each other in the joined string.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -1974,8 +1974,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 																		},
 
 																		"match": schema.StringAttribute{
-																			Description:         "Match string. May optionally include submatches, aka capture groups.See https://pkg.go.dev/regexp/ for details.",
-																			MarkdownDescription: "Match string. May optionally include submatches, aka capture groups.See https://pkg.go.dev/regexp/ for details.",
+																			Description:         "Match string. May optionally include submatches, aka capture groups. See https://pkg.go.dev/regexp/ for details.",
+																			MarkdownDescription: "Match string. May optionally include submatches, aka capture groups. See https://pkg.go.dev/regexp/ for details.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -2028,8 +2028,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 											},
 
 											"type": schema.StringAttribute{
-												Description:         "Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.",
-												MarkdownDescription: "Type sets the patching behaviour to be used. Each patch type may requireits own fields to be set on the Patch object.",
+												Description:         "Type sets the patching behaviour to be used. Each patch type may require its own fields to be set on the Patch object.",
+												MarkdownDescription: "Type sets the patching behaviour to be used. Each patch type may require its own fields to be set on the Patch object.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2045,8 +2045,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 								},
 
 								"readiness_checks": schema.ListNestedAttribute{
-									Description:         "ReadinessChecks allows users to define custom readiness checks. All checkshave to return true in order for resource to be considered ready. Thedefault readiness check is to have the 'Ready' condition to be 'True'.",
-									MarkdownDescription: "ReadinessChecks allows users to define custom readiness checks. All checkshave to return true in order for resource to be considered ready. Thedefault readiness check is to have the 'Ready' condition to be 'True'.",
+									Description:         "ReadinessChecks allows users to define custom readiness checks. All checks have to return true in order for resource to be considered ready. The default readiness check is to have the 'Ready' condition to be 'True'.",
+									MarkdownDescription: "ReadinessChecks allows users to define custom readiness checks. All checks have to return true in order for resource to be considered ready. The default readiness check is to have the 'Ready' condition to be 'True'.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"field_path": schema.StringAttribute{
@@ -2122,16 +2122,16 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Manifest) Schema(_ contex
 					},
 
 					"revision": schema.Int64Attribute{
-						Description:         "Revision number. Newer revisions have larger numbers.",
-						MarkdownDescription: "Revision number. Newer revisions have larger numbers.",
+						Description:         "Revision number. Newer revisions have larger numbers. This number can change. When a Composition transitions from state A -> B -> A there will be only two CompositionRevisions. Crossplane will edit the original CompositionRevision to change its revision number from 0 to 2.",
+						MarkdownDescription: "Revision number. Newer revisions have larger numbers. This number can change. When a Composition transitions from state A -> B -> A there will be only two CompositionRevisions. Crossplane will edit the original CompositionRevision to change its revision number from 0 to 2.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"write_connection_secrets_to_namespace": schema.StringAttribute{
-						Description:         "WriteConnectionSecretsToNamespace specifies the namespace in which theconnection secrets of composite resource dynamically provisioned usingthis composition will be created.This field is planned to be replaced in a future release in favor ofPublishConnectionDetailsWithStoreConfigRef. Currently, both could beset independently and connection details would be published to bothwithout affecting each other as long as related fields at MR levelspecified.",
-						MarkdownDescription: "WriteConnectionSecretsToNamespace specifies the namespace in which theconnection secrets of composite resource dynamically provisioned usingthis composition will be created.This field is planned to be replaced in a future release in favor ofPublishConnectionDetailsWithStoreConfigRef. Currently, both could beset independently and connection details would be published to bothwithout affecting each other as long as related fields at MR levelspecified.",
+						Description:         "WriteConnectionSecretsToNamespace specifies the namespace in which the connection secrets of composite resource dynamically provisioned using this composition will be created. This field is planned to be replaced in a future release in favor of PublishConnectionDetailsWithStoreConfigRef. Currently, both could be set independently and connection details would be published to both without affecting each other as long as related fields at MR level specified.",
+						MarkdownDescription: "WriteConnectionSecretsToNamespace specifies the namespace in which the connection secrets of composite resource dynamically provisioned using this composition will be created. This field is planned to be replaced in a future release in favor of PublishConnectionDetailsWithStoreConfigRef. Currently, both could be set independently and connection details would be published to both without affecting each other as long as related fields at MR level specified.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

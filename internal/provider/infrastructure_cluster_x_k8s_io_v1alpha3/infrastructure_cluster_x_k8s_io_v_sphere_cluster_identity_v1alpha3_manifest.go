@@ -62,8 +62,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterIdentityV1Alpha3Manifest) Meta
 
 func (r *InfrastructureClusterXK8SIoVsphereClusterIdentityV1Alpha3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereClusterIdentity defines the account to be used for reconciling clustersDeprecated: This type will be removed in one of the next releases.",
-		MarkdownDescription: "VSphereClusterIdentity defines the account to be used for reconciling clustersDeprecated: This type will be removed in one of the next releases.",
+		Description:         "VSphereClusterIdentity defines the account to be used for reconciling clusters Deprecated: This type will be removed in one of the next releases.",
+		MarkdownDescription: "VSphereClusterIdentity defines the account to be used for reconciling clusters Deprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -122,8 +122,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterIdentityV1Alpha3Manifest) Sche
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"allowed_namespaces": schema.SingleNestedAttribute{
-						Description:         "AllowedNamespaces is used to identify which namespaces are allowed to use this account.Namespaces can be selected with a label selector.If this object is nil, no namespaces will be allowed",
-						MarkdownDescription: "AllowedNamespaces is used to identify which namespaces are allowed to use this account.Namespaces can be selected with a label selector.If this object is nil, no namespaces will be allowed",
+						Description:         "AllowedNamespaces is used to identify which namespaces are allowed to use this account. Namespaces can be selected with a label selector. If this object is nil, no namespaces will be allowed",
+						MarkdownDescription: "AllowedNamespaces is used to identify which namespaces are allowed to use this account. Namespaces can be selected with a label selector. If this object is nil, no namespaces will be allowed",
 						Attributes: map[string]schema.Attribute{
 							"selector": schema.SingleNestedAttribute{
 								Description:         "Selector is a standard Kubernetes LabelSelector. A label query over a set of resources.",
@@ -143,16 +143,16 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterIdentityV1Alpha3Manifest) Sche
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -166,8 +166,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterIdentityV1Alpha3Manifest) Sche
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,

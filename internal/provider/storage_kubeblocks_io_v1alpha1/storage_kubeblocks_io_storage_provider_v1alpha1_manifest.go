@@ -60,8 +60,8 @@ func (r *StorageKubeblocksIoStorageProviderV1Alpha1Manifest) Metadata(_ context.
 
 func (r *StorageKubeblocksIoStorageProviderV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "StorageProvider comprises specifications that provide guidance on accessing remote storage.Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool.In case of CSI driver, the specification expounds on provisioning PVCs for that driver.As for the 'datasafed' tool, the specification provides insights on generating the necessaryconfiguration file.Deprecated since v0.9, moving to dataprotection.kubeblocks.io API group,will be removed in v0.11.",
-		MarkdownDescription: "StorageProvider comprises specifications that provide guidance on accessing remote storage.Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool.In case of CSI driver, the specification expounds on provisioning PVCs for that driver.As for the 'datasafed' tool, the specification provides insights on generating the necessaryconfiguration file.Deprecated since v0.9, moving to dataprotection.kubeblocks.io API group,will be removed in v0.11.",
+		Description:         "StorageProvider comprises specifications that provide guidance on accessing remote storage. Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool. In case of CSI driver, the specification expounds on provisioning PVCs for that driver. As for the 'datasafed' tool, the specification provides insights on generating the necessary configuration file. Deprecated since v0.9, moving to dataprotection.kubeblocks.io API group, will be removed in v0.11.",
+		MarkdownDescription: "StorageProvider comprises specifications that provide guidance on accessing remote storage. Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool. In case of CSI driver, the specification expounds on provisioning PVCs for that driver. As for the 'datasafed' tool, the specification provides insights on generating the necessary configuration file. Deprecated since v0.9, moving to dataprotection.kubeblocks.io API group, will be removed in v0.11.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -120,36 +120,36 @@ func (r *StorageKubeblocksIoStorageProviderV1Alpha1Manifest) Schema(_ context.Co
 				MarkdownDescription: "StorageProviderSpec defines the desired state of 'StorageProvider'.",
 				Attributes: map[string]schema.Attribute{
 					"csi_driver_name": schema.StringAttribute{
-						Description:         "Specifies the name of the CSI driver used to access remote storage.This field can be empty, it indicates that the storage is not accessible via CSI.",
-						MarkdownDescription: "Specifies the name of the CSI driver used to access remote storage.This field can be empty, it indicates that the storage is not accessible via CSI.",
+						Description:         "Specifies the name of the CSI driver used to access remote storage. This field can be empty, it indicates that the storage is not accessible via CSI.",
+						MarkdownDescription: "Specifies the name of the CSI driver used to access remote storage. This field can be empty, it indicates that the storage is not accessible via CSI.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"csi_driver_secret_template": schema.StringAttribute{
-						Description:         "A Go template that used to render and generate 'k8s.io/api/core/v1.Secret'resources for a specific CSI driver.For example, 'accessKey' and 'secretKey' needed by CSI-S3 are stored in this'Secret' resource.",
-						MarkdownDescription: "A Go template that used to render and generate 'k8s.io/api/core/v1.Secret'resources for a specific CSI driver.For example, 'accessKey' and 'secretKey' needed by CSI-S3 are stored in this'Secret' resource.",
+						Description:         "A Go template that used to render and generate 'k8s.io/api/core/v1.Secret' resources for a specific CSI driver. For example, 'accessKey' and 'secretKey' needed by CSI-S3 are stored in this 'Secret' resource.",
+						MarkdownDescription: "A Go template that used to render and generate 'k8s.io/api/core/v1.Secret' resources for a specific CSI driver. For example, 'accessKey' and 'secretKey' needed by CSI-S3 are stored in this 'Secret' resource.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"datasafed_config_template": schema.StringAttribute{
-						Description:         "A Go template used to render and generate 'k8s.io/api/core/v1.Secret'.This 'Secret' involves the configuration details required by the 'datasafed' toolto access remote storage. For example, the 'Secret' should contain 'endpoint','bucket', 'region', 'accessKey', 'secretKey', or something else for S3 storage.This field can be empty, it means this kind of storage is not accessible viathe 'datasafed' tool.",
-						MarkdownDescription: "A Go template used to render and generate 'k8s.io/api/core/v1.Secret'.This 'Secret' involves the configuration details required by the 'datasafed' toolto access remote storage. For example, the 'Secret' should contain 'endpoint','bucket', 'region', 'accessKey', 'secretKey', or something else for S3 storage.This field can be empty, it means this kind of storage is not accessible viathe 'datasafed' tool.",
+						Description:         "A Go template used to render and generate 'k8s.io/api/core/v1.Secret'. This 'Secret' involves the configuration details required by the 'datasafed' tool to access remote storage. For example, the 'Secret' should contain 'endpoint', 'bucket', 'region', 'accessKey', 'secretKey', or something else for S3 storage. This field can be empty, it means this kind of storage is not accessible via the 'datasafed' tool.",
+						MarkdownDescription: "A Go template used to render and generate 'k8s.io/api/core/v1.Secret'. This 'Secret' involves the configuration details required by the 'datasafed' tool to access remote storage. For example, the 'Secret' should contain 'endpoint', 'bucket', 'region', 'accessKey', 'secretKey', or something else for S3 storage. This field can be empty, it means this kind of storage is not accessible via the 'datasafed' tool.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"parameters_schema": schema.SingleNestedAttribute{
-						Description:         "Describes the parameters required for storage.The parameters defined here can be referenced in the above templates,and 'kbcli' uses this definition for dynamic command-line parameter parsing.",
-						MarkdownDescription: "Describes the parameters required for storage.The parameters defined here can be referenced in the above templates,and 'kbcli' uses this definition for dynamic command-line parameter parsing.",
+						Description:         "Describes the parameters required for storage. The parameters defined here can be referenced in the above templates, and 'kbcli' uses this definition for dynamic command-line parameter parsing.",
+						MarkdownDescription: "Describes the parameters required for storage. The parameters defined here can be referenced in the above templates, and 'kbcli' uses this definition for dynamic command-line parameter parsing.",
 						Attributes: map[string]schema.Attribute{
 							"credential_fields": schema.ListAttribute{
-								Description:         "Defines which parameters are credential fields, which need to be handled specifically.For instance, these should be stored in a 'Secret' instead of a 'ConfigMap'.",
-								MarkdownDescription: "Defines which parameters are credential fields, which need to be handled specifically.For instance, these should be stored in a 'Secret' instead of a 'ConfigMap'.",
+								Description:         "Defines which parameters are credential fields, which need to be handled specifically. For instance, these should be stored in a 'Secret' instead of a 'ConfigMap'.",
+								MarkdownDescription: "Defines which parameters are credential fields, which need to be handled specifically. For instance, these should be stored in a 'Secret' instead of a 'ConfigMap'.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -171,16 +171,16 @@ func (r *StorageKubeblocksIoStorageProviderV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"persistent_volume_claim_template": schema.StringAttribute{
-						Description:         "A Go template that renders and generates 'k8s.io/api/core/v1.PersistentVolumeClaim'resources. This PVC can reference the 'StorageClass' created from 'storageClassTemplate',allowing Pods to access remote storage by mounting the PVC.",
-						MarkdownDescription: "A Go template that renders and generates 'k8s.io/api/core/v1.PersistentVolumeClaim'resources. This PVC can reference the 'StorageClass' created from 'storageClassTemplate',allowing Pods to access remote storage by mounting the PVC.",
+						Description:         "A Go template that renders and generates 'k8s.io/api/core/v1.PersistentVolumeClaim' resources. This PVC can reference the 'StorageClass' created from 'storageClassTemplate', allowing Pods to access remote storage by mounting the PVC.",
+						MarkdownDescription: "A Go template that renders and generates 'k8s.io/api/core/v1.PersistentVolumeClaim' resources. This PVC can reference the 'StorageClass' created from 'storageClassTemplate', allowing Pods to access remote storage by mounting the PVC.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"storage_class_template": schema.StringAttribute{
-						Description:         "A Go template utilized to render and generate 'kubernetes.storage.k8s.io.v1.StorageClass'resources. The 'StorageClass' created by this template is aimed at using the CSI driver.",
-						MarkdownDescription: "A Go template utilized to render and generate 'kubernetes.storage.k8s.io.v1.StorageClass'resources. The 'StorageClass' created by this template is aimed at using the CSI driver.",
+						Description:         "A Go template utilized to render and generate 'kubernetes.storage.k8s.io.v1.StorageClass' resources. The 'StorageClass' created by this template is aimed at using the CSI driver.",
+						MarkdownDescription: "A Go template utilized to render and generate 'kubernetes.storage.k8s.io.v1.StorageClass' resources. The 'StorageClass' created by this template is aimed at using the CSI driver.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

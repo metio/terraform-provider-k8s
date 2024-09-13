@@ -161,8 +161,8 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "PlatformApplicationSpec defines the desired state of PlatformApplication.Platform application object.",
-				MarkdownDescription: "PlatformApplicationSpec defines the desired state of PlatformApplication.Platform application object.",
+				Description:         "PlatformApplicationSpec defines the desired state of PlatformApplication. Platform application object.",
+				MarkdownDescription: "PlatformApplicationSpec defines the desired state of PlatformApplication. Platform application object.",
 				Attributes: map[string]schema.Attribute{
 					"event_delivery_failure": schema.StringAttribute{
 						Description:         "",
@@ -181,12 +181,12 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"event_endpoint_created_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -223,12 +223,12 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"event_endpoint_deleted_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -265,12 +265,12 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"event_endpoint_updated_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -307,12 +307,12 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"failure_feedback_role_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -341,16 +341,16 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "Application names must be made up of only uppercase and lowercase ASCII letters,numbers, underscores, hyphens, and periods, and must be between 1 and 256characters long.",
-						MarkdownDescription: "Application names must be made up of only uppercase and lowercase ASCII letters,numbers, underscores, hyphens, and periods, and must be between 1 and 256characters long.",
+						Description:         "Application names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, hyphens, and periods, and must be between 1 and 256 characters long.",
+						MarkdownDescription: "Application names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, hyphens, and periods, and must be between 1 and 256 characters long.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"platform": schema.StringAttribute{
-						Description:         "The following platforms are supported: ADM (Amazon Device Messaging), APNS(Apple Push Notification Service), APNS_SANDBOX, and GCM (Firebase CloudMessaging).",
-						MarkdownDescription: "The following platforms are supported: ADM (Amazon Device Messaging), APNS(Apple Push Notification Service), APNS_SANDBOX, and GCM (Firebase CloudMessaging).",
+						Description:         "The following platforms are supported: ADM (Amazon Device Messaging), APNS (Apple Push Notification Service), APNS_SANDBOX, and GCM (Firebase Cloud Messaging).",
+						MarkdownDescription: "The following platforms are supported: ADM (Amazon Device Messaging), APNS (Apple Push Notification Service), APNS_SANDBOX, and GCM (Firebase Cloud Messaging).",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -381,12 +381,12 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"success_feedback_role_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",

@@ -55,20 +55,20 @@ Optional:
 
 Optional:
 
-- `inhibit_rules` (Attributes List) InhibitRules will only apply for alerts matchingthe resource's namespace. (see [below for nested schema](#nestedatt--spec--inhibit_rules))
-- `mute_time_intervals` (Attributes List) MuteTimeInterval - global mute timeSee https://prometheus.io/docs/alerting/latest/configuration/#mute_time_interval (see [below for nested schema](#nestedatt--spec--mute_time_intervals))
-- `receivers` (Attributes List) Receivers defines alert receivers.without defined Route, receivers will be skipped. (see [below for nested schema](#nestedatt--spec--receivers))
+- `inhibit_rules` (Attributes List) InhibitRules will only apply for alerts matching the resource's namespace. (see [below for nested schema](#nestedatt--spec--inhibit_rules))
+- `mute_time_intervals` (Attributes List) MuteTimeInterval - global mute time See https://prometheus.io/docs/alerting/latest/configuration/#mute_time_interval (see [below for nested schema](#nestedatt--spec--mute_time_intervals))
+- `receivers` (Attributes List) Receivers defines alert receivers. without defined Route, receivers will be skipped. (see [below for nested schema](#nestedatt--spec--receivers))
 - `route` (Attributes) Route definition for alertmanager, may include nested routes. (see [below for nested schema](#nestedatt--spec--route))
-- `time_intervals` (Attributes List) ParsingError contents error with context if operator was failed to parse json object from kubernetes api serverTimeIntervals modern config option, use it instead of  mute_time_intervals (see [below for nested schema](#nestedatt--spec--time_intervals))
+- `time_intervals` (Attributes List) ParsingError contents error with context if operator was failed to parse json object from kubernetes api server TimeIntervals modern config option, use it instead of mute_time_intervals (see [below for nested schema](#nestedatt--spec--time_intervals))
 
 <a id="nestedatt--spec--inhibit_rules"></a>
 ### Nested Schema for `spec.inhibit_rules`
 
 Optional:
 
-- `equal` (List of String) Labels that must have an equal value in the source and target alert forthe inhibition to take effect.
-- `source_matchers` (List of String) SourceMatchers defines a list of matchers for which one or more alerts haveto exist for the inhibition to take effect.
-- `target_matchers` (List of String) TargetMatchers defines a list of matchers that have to be fulfilled by the targetalerts to be muted.
+- `equal` (List of String) Labels that must have an equal value in the source and target alert for the inhibition to take effect.
+- `source_matchers` (List of String) SourceMatchers defines a list of matchers for which one or more alerts have to exist for the inhibition to take effect.
+- `target_matchers` (List of String) TargetMatchers defines a list of matchers that have to be fulfilled by the target alerts to be muted.
 
 
 <a id="nestedatt--spec--mute_time_intervals"></a>
@@ -87,12 +87,12 @@ Optional:
 
 Optional:
 
-- `days_of_month` (List of String) DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted.for example, ['1:5', '-3:-1']
+- `days_of_month` (List of String) DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted. for example, ['1:5', '-3:-1']
 - `location` (String) Location in golang time location form, e.g. UTC
-- `months` (List of String) Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']
+- `months` (List of String) Months defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1. For example, ['1:3', 'may:august', 'december']
 - `times` (Attributes List) Times defines time range for mute (see [below for nested schema](#nestedatt--spec--mute_time_intervals--time_intervals--times))
 - `weekdays` (List of String) Weekdays defines list of days of the week, where the week begins on Sunday and ends on Saturday.
-- `years` (List of String) Years defines numerical list of years, ranges are accepted.For example, ['2020:2022', '2030']
+- `years` (List of String) Years defines numerical list of years, ranges are accepted. For example, ['2020:2022', '2030']
 
 <a id="nestedatt--spec--mute_time_intervals--time_intervals--times"></a>
 ### Nested Schema for `spec.mute_time_intervals.time_intervals.times`
@@ -100,7 +100,7 @@ Optional:
 Required:
 
 - `end_time` (String) EndTime for example HH:MM
-- `start_time` (String) StartTime for example  HH:MM
+- `start_time` (String) StartTime for example HH:MM
 
 
 
@@ -137,17 +137,17 @@ Optional:
 - `message` (String) The message body template
 - `send_resolved` (Boolean) SendResolved controls notify about resolved alerts.
 - `title` (String) The message title template
-- `webhook_url` (String) The discord webhook URLone of 'urlSecret' and 'url' must be defined.
-- `webhook_url_secret` (Attributes) URLSecret defines secret name and key at the CRD namespace.It must contain the webhook URL.one of 'urlSecret' and 'url' must be defined. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret))
+- `webhook_url` (String) The discord webhook URL one of 'urlSecret' and 'url' must be defined.
+- `webhook_url_secret` (Attributes) URLSecret defines secret name and key at the CRD namespace. It must contain the webhook URL. one of 'urlSecret' and 'url' must be defined. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--webhook_url_secret))
 
 <a id="nestedatt--spec--receivers--discord_configs--http_config"></a>
 ### Nested Schema for `spec.receivers.discord_configs.http_config`
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--tls_config))
 
@@ -156,20 +156,20 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--discord_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.discord_configs.http_config.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -178,11 +178,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -192,11 +192,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -231,7 +231,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -240,11 +240,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -266,7 +266,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -275,11 +275,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -289,11 +289,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -304,11 +304,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -320,13 +320,13 @@ Optional:
 
 - `auth_identity` (String) The identity to use for authentication.
 - `auth_password` (Attributes) AuthPassword defines secret name and key at CRD namespace. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--auth_password))
-- `auth_secret` (Attributes) AuthSecret defines secrent name and key at CRD namespace.It must contain the CRAM-MD5 secret. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--auth_secret))
+- `auth_secret` (Attributes) AuthSecret defines secrent name and key at CRD namespace. It must contain the CRAM-MD5 secret. (see [below for nested schema](#nestedatt--spec--receivers--email_configs--auth_secret))
 - `auth_username` (String) The username to use for authentication.
 - `from` (String) The sender address.
-- `headers` (Map of String) Further headers email header key/value pairs. Overrides any headerspreviously set by the notification implementation.
+- `headers` (Map of String) Further headers email header key/value pairs. Overrides any headers previously set by the notification implementation.
 - `hello` (String) The hostname to identify to the SMTP server.
 - `html` (String) The HTML body of the email notification.
-- `require_tls` (Boolean) The SMTP TLS requirement.Note that Go does not support unencrypted connections to remote SMTP endpoints.
+- `require_tls` (Boolean) The SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints.
 - `send_resolved` (Boolean) SendResolved controls notify about resolved alerts.
 - `smarthost` (String) The SMTP host through which emails are sent.
 - `text` (String) The text body of the email notification.
@@ -338,11 +338,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -351,11 +351,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -390,7 +390,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -399,11 +399,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -425,7 +425,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -434,11 +434,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -448,11 +448,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -467,17 +467,17 @@ Optional:
 - `send_resolved` (Boolean) SendResolved controls notify about resolved alerts.
 - `text` (String) The text body of the teams notification.
 - `title` (String) The title of the teams notification.
-- `webhook_url` (String) The incoming webhook URLone of 'urlSecret' and 'url' must be defined.
-- `webhook_url_secret` (Attributes) URLSecret defines secret name and key at the CRD namespace.It must contain the webhook URL.one of 'urlSecret' and 'url' must be defined. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret))
+- `webhook_url` (String) The incoming webhook URL one of 'urlSecret' and 'url' must be defined.
+- `webhook_url_secret` (Attributes) URLSecret defines secret name and key at the CRD namespace. It must contain the webhook URL. one of 'urlSecret' and 'url' must be defined. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url_secret))
 
 <a id="nestedatt--spec--receivers--msteams_configs--http_config"></a>
 ### Nested Schema for `spec.receivers.msteams_configs.http_config`
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--tls_config))
 
@@ -486,20 +486,20 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--msteams_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.msteams_configs.http_config.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -508,11 +508,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -522,11 +522,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -561,7 +561,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -570,11 +570,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -596,7 +596,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -605,11 +605,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -619,11 +619,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -634,11 +634,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -649,7 +649,7 @@ Optional:
 Optional:
 
 - `actions` (String) Comma separated list of actions that will be available for the alert.
-- `api_key` (Attributes) The secret's key that contains the OpsGenie API key.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--api_key))
+- `api_key` (Attributes) The secret's key that contains the OpsGenie API key. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--api_key))
 - `api_url` (String) The URL to send OpsGenie API requests to.
 - `description` (String) Description of the incident.
 - `details` (Map of String) A set of arbitrary key/value pairs that provide further detail about the incident.
@@ -662,18 +662,18 @@ Optional:
 - `send_resolved` (Boolean) SendResolved controls notify about resolved alerts.
 - `source` (String) Backlink to the sender of the notification.
 - `tags` (String) Comma separated list of tags attached to the notifications.
-- `update_alerts` (Boolean) Whether to update message and description of the alert in OpsGenie if it already existsBy default, the alert is never updated in OpsGenie, the new message only appears in activity log.
+- `update_alerts` (Boolean) Whether to update message and description of the alert in OpsGenie if it already exists By default, the alert is never updated in OpsGenie, the new message only appears in activity log.
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--api_key"></a>
 ### Nested Schema for `spec.receivers.opsgenie_configs.api_key`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -707,9 +707,9 @@ Optional:
 - `http_config` (Map of String) HTTP client configuration.
 - `images` (Attributes List) Images to attach to the incident. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--images))
 - `links` (Attributes List) Links to attach to the incident. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--links))
-- `routing_key` (Attributes) The secret's key that contains the PagerDuty integration key (when usingEvents API v2). Either this field or 'serviceKey' needs to be defined.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--routing_key))
+- `routing_key` (Attributes) The secret's key that contains the PagerDuty integration key (when using Events API v2). Either this field or 'serviceKey' needs to be defined. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--routing_key))
 - `send_resolved` (Boolean) SendResolved controls notify about resolved alerts.
-- `service_key` (Attributes) The secret's key that contains the PagerDuty service key (when usingintegration type 'Prometheus'). Either this field or 'routingKey' needs tobe defined.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--service_key))
+- `service_key` (Attributes) The secret's key that contains the PagerDuty service key (when using integration type 'Prometheus'). Either this field or 'routingKey' needs to be defined. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--service_key))
 - `severity` (String) Severity of the incident.
 - `url` (String) The URL to send requests to.
 
@@ -743,11 +743,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -756,11 +756,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -770,30 +770,30 @@ Optional:
 
 Optional:
 
-- `expire` (String) How long your notification will continue to be retried for, unless the useracknowledges the notification.
+- `expire` (String) How long your notification will continue to be retried for, unless the user acknowledges the notification.
 - `html` (Boolean) Whether notification message is HTML or plain text.
 - `http_config` (Map of String) HTTP client configuration.
 - `message` (String) Notification message.
 - `priority` (String) Priority, see https://pushover.net/api#priority
-- `retry` (String) How often the Pushover servers will send the same notification to the user.Must be at least 30 seconds.
+- `retry` (String) How often the Pushover servers will send the same notification to the user. Must be at least 30 seconds.
 - `send_resolved` (Boolean) SendResolved controls notify about resolved alerts.
 - `sound` (String) The name of one of the sounds supported by device clients to override the user's default sound choice
 - `title` (String) Notification title.
-- `token` (Attributes) The secret's key that contains the registered application’s API token, see https://pushover.net/apps.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--token))
+- `token` (Attributes) The secret's key that contains the registered application’s API token, see https://pushover.net/apps. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--token))
 - `url` (String) A supplementary URL shown alongside the message.
 - `url_title` (String) A title for supplementary URL, otherwise just the URL is shown
-- `user_key` (Attributes) The secret's key that contains the recipient user’s user key.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key))
+- `user_key` (Attributes) The secret's key that contains the recipient user’s user key. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key))
 
 <a id="nestedatt--spec--receivers--pushover_configs--token"></a>
 ### Nested Schema for `spec.receivers.pushover_configs.token`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -802,11 +802,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -817,7 +817,7 @@ Optional:
 Optional:
 
 - `actions` (Attributes List) A list of Slack actions that are sent with each notification. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--actions))
-- `api_url` (Attributes) The secret's key that contains the Slack webhook URL.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--api_url))
+- `api_url` (Attributes) The secret's key that contains the Slack webhook URL. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--api_url))
 - `callback_id` (String)
 - `channel` (String) The channel or user to send notifications to.
 - `color` (String)
@@ -849,7 +849,7 @@ Required:
 
 Optional:
 
-- `confirm` (Attributes) SlackConfirmationField protect users from destructive actions orparticularly distinguished decisions by asking them to confirm their buttonclick one more time.See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fieldsfor more information. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--actions--confirm))
+- `confirm` (Attributes) SlackConfirmationField protect users from destructive actions or particularly distinguished decisions by asking them to confirm their button click one more time. See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fields for more information. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--actions--confirm))
 - `name` (String)
 - `style` (String)
 - `url` (String)
@@ -875,11 +875,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -906,11 +906,11 @@ Optional:
 - `attributes` (Map of String) SNS message attributes
 - `http_config` (Attributes) HTTP client configuration. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config))
 - `message` (String) The message content of the SNS notification.
-- `phone_number` (String) Phone number if message is delivered via SMSSpecify this, topic_arn or target_arn
+- `phone_number` (String) Phone number if message is delivered via SMS Specify this, topic_arn or target_arn
 - `send_resolved` (Boolean) SendResolved controls notify about resolved alerts.
 - `sigv4` (Attributes) Configure the AWS Signature Verification 4 signing process (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--sigv4))
 - `subject` (String) The subject line if message is delivered to an email endpoint.
-- `target_arn` (String) Mobile platform endpoint ARN if message is delivered via mobile notificationsSpecify this, topic_arn or phone_number
+- `target_arn` (String) Mobile platform endpoint ARN if message is delivered via mobile notifications Specify this, topic_arn or phone_number
 - `topic_arn` (String) SNS topic ARN, either specify this, phone_number or target_arn
 
 <a id="nestedatt--spec--receivers--sns_configs--http_config"></a>
@@ -918,9 +918,9 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--tls_config))
 
@@ -929,20 +929,20 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--sns_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.sns_configs.http_config.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -951,11 +951,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -965,11 +965,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1004,7 +1004,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1013,11 +1013,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1039,7 +1039,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1048,11 +1048,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1062,11 +1062,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1077,7 +1077,7 @@ Optional:
 
 Optional:
 
-- `access_key` (String) The AWS API keys. Both access_key and secret_key must be supplied or both must be blank.If blank the environment variables 'AWS_ACCESS_KEY_ID' and 'AWS_SECRET_ACCESS_KEY' are used.
+- `access_key` (String) The AWS API keys. Both access_key and secret_key must be supplied or both must be blank. If blank the environment variables 'AWS_ACCESS_KEY_ID' and 'AWS_SECRET_ACCESS_KEY' are used.
 - `access_key_selector` (Attributes) secret key selector to get the keys from a Kubernetes Secret (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--sigv4--access_key_selector))
 - `profile` (String) Named AWS profile used to authenticate
 - `region` (String) AWS region, if blank the region from the default credentials chain is used
@@ -1089,11 +1089,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1102,11 +1102,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1117,7 +1117,7 @@ Optional:
 
 Required:
 
-- `bot_token` (Attributes) BotToken token for the bothttps://core.telegram.org/bots/api (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--bot_token))
+- `bot_token` (Attributes) BotToken token for the bot https://core.telegram.org/bots/api (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--bot_token))
 - `chat_id` (Number) ChatID is ID of the chat where to send the messages.
 
 Optional:
@@ -1126,7 +1126,7 @@ Optional:
 - `disable_notifications` (Boolean) DisableNotifications
 - `http_config` (Map of String) HTTP client configuration.
 - `message` (String) Message is templated message
-- `parse_mode` (String) ParseMode for telegram message,supported values are MarkdownV2, Markdown, Markdown and empty string for plain text.
+- `parse_mode` (String) ParseMode for telegram message, supported values are MarkdownV2, Markdown, Markdown and empty string for plain text.
 - `send_resolved` (Boolean) SendResolved controls notify about resolved alerts.
 
 <a id="nestedatt--spec--receivers--telegram_configs--bot_token"></a>
@@ -1134,11 +1134,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1148,9 +1148,9 @@ Optional:
 
 Optional:
 
-- `api_key` (Attributes) The secret's key that contains the API key to use when talking to the VictorOps API.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--api_key))
+- `api_key` (Attributes) The secret's key that contains the API key to use when talking to the VictorOps API. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--api_key))
 - `api_url` (String) The VictorOps API URL.
-- `custom_fields` (Map of String) Adds optional custom fieldshttps://github.com/prometheus/alertmanager/blob/v0.24.0/config/notifiers.go#L537
+- `custom_fields` (Map of String) Adds optional custom fields https://github.com/prometheus/alertmanager/blob/v0.24.0/config/notifiers.go#L537
 - `entity_display_name` (String) Contains summary of the alerted problem.
 - `http_config` (Attributes) The HTTP client's configuration. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config))
 - `message_type` (String) Describes the behavior of the alert (CRITICAL, WARNING, INFO).
@@ -1164,11 +1164,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1177,9 +1177,9 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--tls_config))
 
@@ -1188,20 +1188,20 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--victorops_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.victorops_configs.http_config.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1210,11 +1210,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1224,11 +1224,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1263,7 +1263,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1272,11 +1272,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1298,7 +1298,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1307,11 +1307,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1321,11 +1321,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1348,9 +1348,9 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--tls_config))
 
@@ -1359,20 +1359,20 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--webex_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.webex_configs.http_config.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1381,11 +1381,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1395,11 +1395,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1434,7 +1434,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1443,11 +1443,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1469,7 +1469,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1478,11 +1478,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1492,11 +1492,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1511,19 +1511,19 @@ Optional:
 - `http_config` (Map of String) HTTP client configuration.
 - `max_alerts` (Number) Maximum number of alerts to be sent per webhook message. When 0, all alerts are included.
 - `send_resolved` (Boolean) SendResolved controls notify about resolved alerts.
-- `url` (String) URL to send requests to,one of 'urlSecret' and 'url' must be defined.
-- `url_secret` (Attributes) URLSecret defines secret name and key at the CRD namespace.It must contain the webhook URL.one of 'urlSecret' and 'url' must be defined. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret))
+- `url` (String) URL to send requests to, one of 'urlSecret' and 'url' must be defined.
+- `url_secret` (Attributes) URLSecret defines secret name and key at the CRD namespace. It must contain the webhook URL. one of 'urlSecret' and 'url' must be defined. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret))
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret"></a>
 ### Nested Schema for `spec.receivers.webhook_configs.url_secret`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1534,7 +1534,7 @@ Optional:
 Optional:
 
 - `agent_id` (String)
-- `api_secret` (Attributes) The secret's key that contains the WeChat API key.The secret needs to be in the same namespace as the AlertmanagerConfigobject and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--api_secret))
+- `api_secret` (Attributes) The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--api_secret))
 - `api_url` (String) The WeChat API URL.
 - `corp_id` (String) The corp id for authentication.
 - `http_config` (Attributes) HTTP client configuration. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config))
@@ -1550,11 +1550,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1563,9 +1563,9 @@ Optional:
 
 Optional:
 
-- `basic_auth` (Attributes) TODO oAuth2 supportBasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth))
+- `basic_auth` (Attributes) TODO oAuth2 support BasicAuth for the client. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth))
 - `bearer_token_file` (String) BearerTokenFile defines filename for bearer token, it must be mounted to pod.
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer tokenIt must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--bearer_token_secret))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer token It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--bearer_token_secret))
 - `proxy_url` (String) Optional proxy URL.
 - `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--tls_config))
 
@@ -1574,20 +1574,20 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--wechat_configs--http_config--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.wechat_configs.http_config.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1596,11 +1596,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1610,11 +1610,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1649,7 +1649,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1658,11 +1658,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1684,7 +1684,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1693,11 +1693,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1707,11 +1707,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1728,15 +1728,15 @@ Required:
 
 Optional:
 
-- `active_time_intervals` (List of String) ActiveTimeIntervals Times when the route should be activeThese must match the name at time_intervals
-- `continue` (Boolean) Continue indicating whether an alert should continue matching subsequentsibling nodes. It will always be true for the first-level route if disableRouteContinueEnforce for vmalertmanager not set.
+- `active_time_intervals` (List of String) ActiveTimeIntervals Times when the route should be active These must match the name at time_intervals
+- `continue` (Boolean) Continue indicating whether an alert should continue matching subsequent sibling nodes. It will always be true for the first-level route if disableRouteContinueEnforce for vmalertmanager not set.
 - `group_by` (List of String) List of labels to group by.
 - `group_interval` (String) How long to wait before sending an updated notification.
 - `group_wait` (String) How long to wait before sending the initial notification.
-- `matchers` (List of String) List of matchers that the alert’s labels should match. For the firstlevel route, the operator adds a namespace: 'CRD_NS' matcher.https://prometheus.io/docs/alerting/latest/configuration/#matcher
+- `matchers` (List of String) List of matchers that the alert’s labels should match. For the first level route, the operator adds a namespace: 'CRD_NS' matcher. https://prometheus.io/docs/alerting/latest/configuration/#matcher
 - `mute_time_intervals` (List of String) MuteTimeIntervals for alerts
 - `repeat_interval` (String) How long to wait before repeating the last notification.
-- `routes` (List of String) Child routes.https://prometheus.io/docs/alerting/latest/configuration/#route
+- `routes` (List of String) Child routes. https://prometheus.io/docs/alerting/latest/configuration/#route
 
 
 <a id="nestedatt--spec--time_intervals"></a>
@@ -1755,12 +1755,12 @@ Optional:
 
 Optional:
 
-- `days_of_month` (List of String) DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted.for example, ['1:5', '-3:-1']
+- `days_of_month` (List of String) DayOfMonth defines list of numerical days in the month. Days begin at 1. Negative values are also accepted. for example, ['1:5', '-3:-1']
 - `location` (String) Location in golang time location form, e.g. UTC
-- `months` (List of String) Months  defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1.For example, ['1:3', 'may:august', 'december']
+- `months` (List of String) Months defines list of calendar months identified by a case-insensitive name (e.g. ‘January’) or numeric 1. For example, ['1:3', 'may:august', 'december']
 - `times` (Attributes List) Times defines time range for mute (see [below for nested schema](#nestedatt--spec--time_intervals--time_intervals--times))
 - `weekdays` (List of String) Weekdays defines list of days of the week, where the week begins on Sunday and ends on Saturday.
-- `years` (List of String) Years defines numerical list of years, ranges are accepted.For example, ['2020:2022', '2030']
+- `years` (List of String) Years defines numerical list of years, ranges are accepted. For example, ['2020:2022', '2030']
 
 <a id="nestedatt--spec--time_intervals--time_intervals--times"></a>
 ### Nested Schema for `spec.time_intervals.time_intervals.times`
@@ -1768,4 +1768,4 @@ Optional:
 Required:
 
 - `end_time` (String) EndTime for example HH:MM
-- `start_time` (String) StartTime for example  HH:MM
+- `start_time` (String) StartTime for example HH:MM

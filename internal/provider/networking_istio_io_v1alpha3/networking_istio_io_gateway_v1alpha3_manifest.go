@@ -294,8 +294,8 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Manifest) Schema(_ context.Context, _ d
 										},
 
 										"max_protocol_version": schema.StringAttribute{
-											Description:         "Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
-											MarkdownDescription: "Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											Description:         "Optional: Maximum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											MarkdownDescription: "Optional: Maximum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -305,8 +305,8 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Manifest) Schema(_ context.Context, _ d
 										},
 
 										"min_protocol_version": schema.StringAttribute{
-											Description:         "Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
-											MarkdownDescription: "Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											Description:         "Optional: Minimum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											MarkdownDescription: "Optional: Minimum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -316,8 +316,8 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Manifest) Schema(_ context.Context, _ d
 										},
 
 										"mode": schema.StringAttribute{
-											Description:         "Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
-											MarkdownDescription: "Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
+											Description:         "Optional: Indicates whether connections to this port should be secured using TLS. Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
+											MarkdownDescription: "Optional: Indicates whether connections to this port should be secured using TLS. Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

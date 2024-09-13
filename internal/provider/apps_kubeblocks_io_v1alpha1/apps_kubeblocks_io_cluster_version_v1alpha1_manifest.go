@@ -89,8 +89,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Metadata(_ context.Cont
 
 func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ClusterVersion is the Schema for the ClusterVersions API.Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9.This struct is maintained for backward compatibility and its use is discouraged.",
-		MarkdownDescription: "ClusterVersion is the Schema for the ClusterVersions API.Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9.This struct is maintained for backward compatibility and its use is discouraged.",
+		Description:         "ClusterVersion is the Schema for the ClusterVersions API. Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9. This struct is maintained for backward compatibility and its use is discouraged.",
+		MarkdownDescription: "ClusterVersion is the Schema for the ClusterVersions API. Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9. This struct is maintained for backward compatibility and its use is discouraged.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -145,8 +145,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterVersionSpec defines the desired state of ClusterVersion.Deprecated since v0.9.This struct is maintained for backward compatibility and its use is discouraged.",
-				MarkdownDescription: "ClusterVersionSpec defines the desired state of ClusterVersion.Deprecated since v0.9.This struct is maintained for backward compatibility and its use is discouraged.",
+				Description:         "ClusterVersionSpec defines the desired state of ClusterVersion. Deprecated since v0.9. This struct is maintained for backward compatibility and its use is discouraged.",
+				MarkdownDescription: "ClusterVersionSpec defines the desired state of ClusterVersion. Deprecated since v0.9. This struct is maintained for backward compatibility and its use is discouraged.",
 				Attributes: map[string]schema.Attribute{
 					"cluster_definition_ref": schema.StringAttribute{
 						Description:         "Specifies a reference to the ClusterDefinition.",
@@ -177,13 +177,13 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 								},
 
 								"config_specs": schema.ListNestedAttribute{
-									Description:         "Defines a configuration extension mechanism to handle configuration differences between versions.The configTemplateRefs field, in conjunction with the configTemplateRefs in the ClusterDefinition, determinesthe final configuration file.",
-									MarkdownDescription: "Defines a configuration extension mechanism to handle configuration differences between versions.The configTemplateRefs field, in conjunction with the configTemplateRefs in the ClusterDefinition, determinesthe final configuration file.",
+									Description:         "Defines a configuration extension mechanism to handle configuration differences between versions. The configTemplateRefs field, in conjunction with the configTemplateRefs in the ClusterDefinition, determines the final configuration file.",
+									MarkdownDescription: "Defines a configuration extension mechanism to handle configuration differences between versions. The configTemplateRefs field, in conjunction with the configTemplateRefs in the ClusterDefinition, determines the final configuration file.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"as_env_from": schema.ListAttribute{
-												Description:         "Specifies the containers to inject the ConfigMap parameters as environment variables.This is useful when application images accept parameters through environment variables andgenerate the final configuration file in the startup script based on these variables.This field allows users to specify a list of container names, and KubeBlocks will inject the environmentvariables converted from the ConfigMap into these designated containers. This provides a flexible way topass the configuration items from the ConfigMap to the container without modifying the image.Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0.Use 'injectEnvTo' instead.",
-												MarkdownDescription: "Specifies the containers to inject the ConfigMap parameters as environment variables.This is useful when application images accept parameters through environment variables andgenerate the final configuration file in the startup script based on these variables.This field allows users to specify a list of container names, and KubeBlocks will inject the environmentvariables converted from the ConfigMap into these designated containers. This provides a flexible way topass the configuration items from the ConfigMap to the container without modifying the image.Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0.Use 'injectEnvTo' instead.",
+												Description:         "Specifies the containers to inject the ConfigMap parameters as environment variables. This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables. This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image. Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0. Use 'injectEnvTo' instead.",
+												MarkdownDescription: "Specifies the containers to inject the ConfigMap parameters as environment variables. This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables. This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image. Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0. Use 'injectEnvTo' instead.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -203,16 +203,16 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"default_mode": schema.Int64Attribute{
-												Description:         "The operator attempts to set default file permissions for scripts (0555) and configurations (0444).However, certain database engines may require different file permissions.You can specify the desired file permissions here.Must be specified as an octal value between 0000 and 0777 (inclusive),or as a decimal value between 0 and 511 (inclusive).YAML supports both octal and decimal values for file permissions.Please note that this setting only affects the permissions of the files themselves.Directories within the specified path are not impacted by this setting.It's important to be aware that this setting might conflict with other optionsthat influence the file mode, such as fsGroup.In such cases, the resulting file mode may have additional bits set.Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
-												MarkdownDescription: "The operator attempts to set default file permissions for scripts (0555) and configurations (0444).However, certain database engines may require different file permissions.You can specify the desired file permissions here.Must be specified as an octal value between 0000 and 0777 (inclusive),or as a decimal value between 0 and 511 (inclusive).YAML supports both octal and decimal values for file permissions.Please note that this setting only affects the permissions of the files themselves.Directories within the specified path are not impacted by this setting.It's important to be aware that this setting might conflict with other optionsthat influence the file mode, such as fsGroup.In such cases, the resulting file mode may have additional bits set.Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
+												Description:         "The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here. Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions. Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
+												MarkdownDescription: "The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here. Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions. Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"inject_env_to": schema.ListAttribute{
-												Description:         "Specifies the containers to inject the ConfigMap parameters as environment variables.This is useful when application images accept parameters through environment variables andgenerate the final configuration file in the startup script based on these variables.This field allows users to specify a list of container names, and KubeBlocks will inject the environmentvariables converted from the ConfigMap into these designated containers. This provides a flexible way topass the configuration items from the ConfigMap to the container without modifying the image.",
-												MarkdownDescription: "Specifies the containers to inject the ConfigMap parameters as environment variables.This is useful when application images accept parameters through environment variables andgenerate the final configuration file in the startup script based on these variables.This field allows users to specify a list of container names, and KubeBlocks will inject the environmentvariables converted from the ConfigMap into these designated containers. This provides a flexible way topass the configuration items from the ConfigMap to the container without modifying the image.",
+												Description:         "Specifies the containers to inject the ConfigMap parameters as environment variables. This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables. This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.",
+												MarkdownDescription: "Specifies the containers to inject the ConfigMap parameters as environment variables. This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables. This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -220,8 +220,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"keys": schema.ListAttribute{
-												Description:         "Specifies the configuration files within the ConfigMap that support dynamic updates.A configuration template (provided in the form of a ConfigMap) may contain templates for multipleconfiguration files.Each configuration file corresponds to a key in the ConfigMap.Some of these configuration files may support dynamic modification and reloading without requiringa pod restart.If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates,and ConfigConstraint applies to all keys.",
-												MarkdownDescription: "Specifies the configuration files within the ConfigMap that support dynamic updates.A configuration template (provided in the form of a ConfigMap) may contain templates for multipleconfiguration files.Each configuration file corresponds to a key in the ConfigMap.Some of these configuration files may support dynamic modification and reloading without requiringa pod restart.If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates,and ConfigConstraint applies to all keys.",
+												Description:         "Specifies the configuration files within the ConfigMap that support dynamic updates. A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart. If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.",
+												MarkdownDescription: "Specifies the configuration files within the ConfigMap that support dynamic updates. A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart. If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -229,12 +229,12 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"legacy_rendered_config_spec": schema.SingleNestedAttribute{
-												Description:         "Specifies the secondary rendered config spec for pod-specific customization.The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the maintemplate's render result to generate the final configuration file.This field is intended to handle scenarios where different pods within the same Component havevarying configurations. It allows for pod-specific customization of the configuration.Note: This field will be deprecated in future versions, and the functionality will be moved to'cluster.spec.componentSpecs[*].instances[*]'.",
-												MarkdownDescription: "Specifies the secondary rendered config spec for pod-specific customization.The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the maintemplate's render result to generate the final configuration file.This field is intended to handle scenarios where different pods within the same Component havevarying configurations. It allows for pod-specific customization of the configuration.Note: This field will be deprecated in future versions, and the functionality will be moved to'cluster.spec.componentSpecs[*].instances[*]'.",
+												Description:         "Specifies the secondary rendered config spec for pod-specific customization. The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file. This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration. Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'.",
+												MarkdownDescription: "Specifies the secondary rendered config spec for pod-specific customization. The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file. This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration. Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'.",
 												Attributes: map[string]schema.Attribute{
 													"namespace": schema.StringAttribute{
-														Description:         "Specifies the namespace of the referenced configuration template ConfigMap object.An empty namespace is equivalent to the 'default' namespace.",
-														MarkdownDescription: "Specifies the namespace of the referenced configuration template ConfigMap object.An empty namespace is equivalent to the 'default' namespace.",
+														Description:         "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
+														MarkdownDescription: "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -285,8 +285,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Specifies the namespace of the referenced configuration template ConfigMap object.An empty namespace is equivalent to the 'default' namespace.",
-												MarkdownDescription: "Specifies the namespace of the referenced configuration template ConfigMap object.An empty namespace is equivalent to the 'default' namespace.",
+												Description:         "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
+												MarkdownDescription: "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -297,8 +297,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"re_render_resource_types": schema.ListAttribute{
-												Description:         "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.In some scenarios, the configuration may need to be updated to reflect the changes in resource allocationor cluster topology. Examples:- Redis: adjust maxmemory after v-scale operation.- MySQL: increase max connections after v-scale operation.- Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
-												MarkdownDescription: "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes.In some scenarios, the configuration may need to be updated to reflect the changes in resource allocationor cluster topology. Examples:- Redis: adjust maxmemory after v-scale operation.- MySQL: increase max connections after v-scale operation.- Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
+												Description:         "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes. In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples: - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
+												MarkdownDescription: "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes. In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples: - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -318,8 +318,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"volume_name": schema.StringAttribute{
-												Description:         "Refers to the volume name of PodTemplate. The configuration file produced through the configurationtemplate will be mounted to the corresponding volume. Must be a DNS_LABEL name.The volume name must be defined in podSpec.containers[*].volumeMounts.",
-												MarkdownDescription: "Refers to the volume name of PodTemplate. The configuration file produced through the configurationtemplate will be mounted to the corresponding volume. Must be a DNS_LABEL name.The volume name must be defined in podSpec.containers[*].volumeMounts.",
+												Description:         "Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
+												MarkdownDescription: "Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -336,8 +336,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 								},
 
 								"switchover_spec": schema.SingleNestedAttribute{
-									Description:         "Defines the images for the component to perform a switchover.This overrides the image and env attributes defined in clusterDefinition.spec.componentDefs.SwitchoverSpec.CommandExecutorEnvItem.",
-									MarkdownDescription: "Defines the images for the component to perform a switchover.This overrides the image and env attributes defined in clusterDefinition.spec.componentDefs.SwitchoverSpec.CommandExecutorEnvItem.",
+									Description:         "Defines the images for the component to perform a switchover. This overrides the image and env attributes defined in clusterDefinition.spec.componentDefs.SwitchoverSpec.CommandExecutorEnvItem.",
+									MarkdownDescription: "Defines the images for the component to perform a switchover. This overrides the image and env attributes defined in clusterDefinition.spec.componentDefs.SwitchoverSpec.CommandExecutorEnvItem.",
 									Attributes: map[string]schema.Attribute{
 										"cmd_executor_config": schema.SingleNestedAttribute{
 											Description:         "Represents the configuration for the command executor.",
@@ -371,8 +371,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 								},
 
 								"system_account_spec": schema.SingleNestedAttribute{
-									Description:         "Defines the image for the component to connect to databases or engines.This overrides the 'image' and 'env' attributes defined in clusterDefinition.spec.componentDefs.systemAccountSpec.cmdExecutorConfig.To clear default environment settings, set systemAccountSpec.cmdExecutorConfig.env to an empty list.",
-									MarkdownDescription: "Defines the image for the component to connect to databases or engines.This overrides the 'image' and 'env' attributes defined in clusterDefinition.spec.componentDefs.systemAccountSpec.cmdExecutorConfig.To clear default environment settings, set systemAccountSpec.cmdExecutorConfig.env to an empty list.",
+									Description:         "Defines the image for the component to connect to databases or engines. This overrides the 'image' and 'env' attributes defined in clusterDefinition.spec.componentDefs.systemAccountSpec.cmdExecutorConfig. To clear default environment settings, set systemAccountSpec.cmdExecutorConfig.env to an empty list.",
+									MarkdownDescription: "Defines the image for the component to connect to databases or engines. This overrides the 'image' and 'env' attributes defined in clusterDefinition.spec.componentDefs.systemAccountSpec.cmdExecutorConfig. To clear default environment settings, set systemAccountSpec.cmdExecutorConfig.env to an empty list.",
 									Attributes: map[string]schema.Attribute{
 										"cmd_executor_config": schema.SingleNestedAttribute{
 											Description:         "Configures the method for obtaining the client SDK and executing statements.",
@@ -406,12 +406,12 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 								},
 
 								"versions_context": schema.SingleNestedAttribute{
-									Description:         "Defines the context for container images for component versions.This value replaces the values in clusterDefinition.spec.componentDefs.podSpec.[initContainers | containers].",
-									MarkdownDescription: "Defines the context for container images for component versions.This value replaces the values in clusterDefinition.spec.componentDefs.podSpec.[initContainers | containers].",
+									Description:         "Defines the context for container images for component versions. This value replaces the values in clusterDefinition.spec.componentDefs.podSpec.[initContainers | containers].",
+									MarkdownDescription: "Defines the context for container images for component versions. This value replaces the values in clusterDefinition.spec.componentDefs.podSpec.[initContainers | containers].",
 									Attributes: map[string]schema.Attribute{
 										"containers": schema.MapAttribute{
-											Description:         "Provides override values for ClusterDefinition.spec.componentDefs.podSpec.containers.Typically used in scenarios such as updating application container images.",
-											MarkdownDescription: "Provides override values for ClusterDefinition.spec.componentDefs.podSpec.containers.Typically used in scenarios such as updating application container images.",
+											Description:         "Provides override values for ClusterDefinition.spec.componentDefs.podSpec.containers. Typically used in scenarios such as updating application container images.",
+											MarkdownDescription: "Provides override values for ClusterDefinition.spec.componentDefs.podSpec.containers. Typically used in scenarios such as updating application container images.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -419,8 +419,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"init_containers": schema.MapAttribute{
-											Description:         "Provides override values for ClusterDefinition.spec.componentDefs.podSpec.initContainers.Typically used in scenarios such as updating application container images.",
-											MarkdownDescription: "Provides override values for ClusterDefinition.spec.componentDefs.podSpec.initContainers.Typically used in scenarios such as updating application container images.",
+											Description:         "Provides override values for ClusterDefinition.spec.componentDefs.podSpec.initContainers. Typically used in scenarios such as updating application container images.",
+											MarkdownDescription: "Provides override values for ClusterDefinition.spec.componentDefs.podSpec.initContainers. Typically used in scenarios such as updating application container images.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

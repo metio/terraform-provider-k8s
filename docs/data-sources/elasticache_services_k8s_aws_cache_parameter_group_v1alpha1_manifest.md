@@ -30,7 +30,7 @@ data "k8s_elasticache_services_k8s_aws_cache_parameter_group_v1alpha1_manifest" 
 
 ### Optional
 
-- `spec` (Attributes) CacheParameterGroupSpec defines the desired state of CacheParameterGroup.Represents the output of a CreateCacheParameterGroup operation. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) CacheParameterGroupSpec defines the desired state of CacheParameterGroup. Represents the output of a CreateCacheParameterGroup operation. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,14 +55,14 @@ Optional:
 
 Required:
 
-- `cache_parameter_group_family` (String) The name of the cache parameter group family that the cache parameter groupcan be used with.Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x
+- `cache_parameter_group_family` (String) The name of the cache parameter group family that the cache parameter group can be used with. Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x
 - `cache_parameter_group_name` (String) A user-specified name for the cache parameter group.
 - `description` (String) A user-specified description for the cache parameter group.
 
 Optional:
 
-- `parameter_name_values` (Attributes List) An array of parameter names and values for the parameter update. You mustsupply at least one parameter name and value; subsequent arguments are optional.A maximum of 20 parameters may be modified per request. (see [below for nested schema](#nestedatt--spec--parameter_name_values))
-- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
+- `parameter_name_values` (Attributes List) An array of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional. A maximum of 20 parameters may be modified per request. (see [below for nested schema](#nestedatt--spec--parameter_name_values))
+- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--parameter_name_values"></a>
 ### Nested Schema for `spec.parameter_name_values`

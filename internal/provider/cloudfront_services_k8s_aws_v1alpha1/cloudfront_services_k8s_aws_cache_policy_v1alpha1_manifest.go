@@ -149,8 +149,8 @@ func (r *CloudfrontServicesK8SAwsCachePolicyV1Alpha1Manifest) Schema(_ context.C
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "CachePolicySpec defines the desired state of CachePolicy.A cache policy.When it's attached to a cache behavior, the cache policy determines the following:   * The values that CloudFront includes in the cache key. These values can   include HTTP headers, cookies, and URL query strings. CloudFront uses   the cache key to find an object in its cache that it can return to the   viewer.   * The default, minimum, and maximum time to live (TTL) values that you   want objects to stay in the CloudFront cache.The headers, cookies, and query strings that are included in the cache keyare also included in requests that CloudFront sends to the origin. CloudFrontsends a request when it can't find a valid object in its cache that matchesthe request's cache key. If you want to send values to the origin but notinclude them in the cache key, use OriginRequestPolicy.",
-				MarkdownDescription: "CachePolicySpec defines the desired state of CachePolicy.A cache policy.When it's attached to a cache behavior, the cache policy determines the following:   * The values that CloudFront includes in the cache key. These values can   include HTTP headers, cookies, and URL query strings. CloudFront uses   the cache key to find an object in its cache that it can return to the   viewer.   * The default, minimum, and maximum time to live (TTL) values that you   want objects to stay in the CloudFront cache.The headers, cookies, and query strings that are included in the cache keyare also included in requests that CloudFront sends to the origin. CloudFrontsends a request when it can't find a valid object in its cache that matchesthe request's cache key. If you want to send values to the origin but notinclude them in the cache key, use OriginRequestPolicy.",
+				Description:         "CachePolicySpec defines the desired state of CachePolicy. A cache policy. When it's attached to a cache behavior, the cache policy determines the following: * The values that CloudFront includes in the cache key. These values can include HTTP headers, cookies, and URL query strings. CloudFront uses the cache key to find an object in its cache that it can return to the viewer. * The default, minimum, and maximum time to live (TTL) values that you want objects to stay in the CloudFront cache. The headers, cookies, and query strings that are included in the cache key are also included in requests that CloudFront sends to the origin. CloudFront sends a request when it can't find a valid object in its cache that matches the request's cache key. If you want to send values to the origin but not include them in the cache key, use OriginRequestPolicy.",
+				MarkdownDescription: "CachePolicySpec defines the desired state of CachePolicy. A cache policy. When it's attached to a cache behavior, the cache policy determines the following: * The values that CloudFront includes in the cache key. These values can include HTTP headers, cookies, and URL query strings. CloudFront uses the cache key to find an object in its cache that it can return to the viewer. * The default, minimum, and maximum time to live (TTL) values that you want objects to stay in the CloudFront cache. The headers, cookies, and query strings that are included in the cache key are also included in requests that CloudFront sends to the origin. CloudFront sends a request when it can't find a valid object in its cache that matches the request's cache key. If you want to send values to the origin but not include them in the cache key, use OriginRequestPolicy.",
 				Attributes: map[string]schema.Attribute{
 					"cache_policy_config": schema.SingleNestedAttribute{
 						Description:         "A cache policy configuration.",
@@ -197,12 +197,12 @@ func (r *CloudfrontServicesK8SAwsCachePolicyV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"parameters_in_cache_key_and_forwarded_to_origin": schema.SingleNestedAttribute{
-								Description:         "This object determines the values that CloudFront includes in the cache key.These values can include HTTP headers, cookies, and URL query strings. CloudFrontuses the cache key to find an object in its cache that it can return to theviewer.The headers, cookies, and query strings that are included in the cache keyare also included in requests that CloudFront sends to the origin. CloudFrontsends a request when it can't find an object in its cache that matches therequest's cache key. If you want to send values to the origin but not includethem in the cache key, use OriginRequestPolicy.",
-								MarkdownDescription: "This object determines the values that CloudFront includes in the cache key.These values can include HTTP headers, cookies, and URL query strings. CloudFrontuses the cache key to find an object in its cache that it can return to theviewer.The headers, cookies, and query strings that are included in the cache keyare also included in requests that CloudFront sends to the origin. CloudFrontsends a request when it can't find an object in its cache that matches therequest's cache key. If you want to send values to the origin but not includethem in the cache key, use OriginRequestPolicy.",
+								Description:         "This object determines the values that CloudFront includes in the cache key. These values can include HTTP headers, cookies, and URL query strings. CloudFront uses the cache key to find an object in its cache that it can return to the viewer. The headers, cookies, and query strings that are included in the cache key are also included in requests that CloudFront sends to the origin. CloudFront sends a request when it can't find an object in its cache that matches the request's cache key. If you want to send values to the origin but not include them in the cache key, use OriginRequestPolicy.",
+								MarkdownDescription: "This object determines the values that CloudFront includes in the cache key. These values can include HTTP headers, cookies, and URL query strings. CloudFront uses the cache key to find an object in its cache that it can return to the viewer. The headers, cookies, and query strings that are included in the cache key are also included in requests that CloudFront sends to the origin. CloudFront sends a request when it can't find an object in its cache that matches the request's cache key. If you want to send values to the origin but not include them in the cache key, use OriginRequestPolicy.",
 								Attributes: map[string]schema.Attribute{
 									"cookies_config": schema.SingleNestedAttribute{
-										Description:         "An object that determines whether any cookies in viewer requests (and ifso, which cookies) are included in the cache key and in requests that CloudFrontsends to the origin.",
-										MarkdownDescription: "An object that determines whether any cookies in viewer requests (and ifso, which cookies) are included in the cache key and in requests that CloudFrontsends to the origin.",
+										Description:         "An object that determines whether any cookies in viewer requests (and if so, which cookies) are included in the cache key and in requests that CloudFront sends to the origin.",
+										MarkdownDescription: "An object that determines whether any cookies in viewer requests (and if so, which cookies) are included in the cache key and in requests that CloudFront sends to the origin.",
 										Attributes: map[string]schema.Attribute{
 											"cookie_behavior": schema.StringAttribute{
 												Description:         "",
@@ -252,8 +252,8 @@ func (r *CloudfrontServicesK8SAwsCachePolicyV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"headers_config": schema.SingleNestedAttribute{
-										Description:         "An object that determines whether any HTTP headers (and if so, which headers)are included in the cache key and in requests that CloudFront sends to theorigin.",
-										MarkdownDescription: "An object that determines whether any HTTP headers (and if so, which headers)are included in the cache key and in requests that CloudFront sends to theorigin.",
+										Description:         "An object that determines whether any HTTP headers (and if so, which headers) are included in the cache key and in requests that CloudFront sends to the origin.",
+										MarkdownDescription: "An object that determines whether any HTTP headers (and if so, which headers) are included in the cache key and in requests that CloudFront sends to the origin.",
 										Attributes: map[string]schema.Attribute{
 											"header_behavior": schema.StringAttribute{
 												Description:         "",
@@ -287,8 +287,8 @@ func (r *CloudfrontServicesK8SAwsCachePolicyV1Alpha1Manifest) Schema(_ context.C
 									},
 
 									"query_strings_config": schema.SingleNestedAttribute{
-										Description:         "An object that determines whether any URL query strings in viewer requests(and if so, which query strings) are included in the cache key and in requeststhat CloudFront sends to the origin.",
-										MarkdownDescription: "An object that determines whether any URL query strings in viewer requests(and if so, which query strings) are included in the cache key and in requeststhat CloudFront sends to the origin.",
+										Description:         "An object that determines whether any URL query strings in viewer requests (and if so, which query strings) are included in the cache key and in requests that CloudFront sends to the origin.",
+										MarkdownDescription: "An object that determines whether any URL query strings in viewer requests (and if so, which query strings) are included in the cache key and in requests that CloudFront sends to the origin.",
 										Attributes: map[string]schema.Attribute{
 											"query_string_behavior": schema.StringAttribute{
 												Description:         "",

@@ -59,7 +59,7 @@ Optional:
 - `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--env))
 - `gcp_secret_manager` (Attributes) (see [below for nested schema](#nestedatt--spec--gcp_secret_manager))
 - `hashi_corp_vault` (Attributes) HashiCorpVault is used to authenticate using Hashicorp Vault (see [below for nested schema](#nestedatt--spec--hashi_corp_vault))
-- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identitymechanism (see [below for nested schema](#nestedatt--spec--pod_identity))
+- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identity mechanism (see [below for nested schema](#nestedatt--spec--pod_identity))
 - `secret_target_ref` (Attributes List) (see [below for nested schema](#nestedatt--spec--secret_target_ref))
 
 <a id="nestedatt--spec--aws_secret_manager"></a>
@@ -72,7 +72,7 @@ Required:
 Optional:
 
 - `credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials))
-- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identitymechanism (see [below for nested schema](#nestedatt--spec--aws_secret_manager--pod_identity))
+- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identity mechanism (see [below for nested schema](#nestedatt--spec--aws_secret_manager--pod_identity))
 - `region` (String)
 
 <a id="nestedatt--spec--aws_secret_manager--secrets"></a>
@@ -206,7 +206,7 @@ Optional:
 
 - `cloud` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_key_vault--cloud))
 - `credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_key_vault--credentials))
-- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identitymechanism (see [below for nested schema](#nestedatt--spec--azure_key_vault--pod_identity))
+- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identity mechanism (see [below for nested schema](#nestedatt--spec--azure_key_vault--pod_identity))
 
 <a id="nestedatt--spec--azure_key_vault--secrets"></a>
 ### Nested Schema for `spec.azure_key_vault.secrets`
@@ -319,7 +319,7 @@ Required:
 Optional:
 
 - `credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--gcp_secret_manager--credentials))
-- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identitymechanism (see [below for nested schema](#nestedatt--spec--gcp_secret_manager--pod_identity))
+- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identity mechanism (see [below for nested schema](#nestedatt--spec--gcp_secret_manager--pod_identity))
 
 <a id="nestedatt--spec--gcp_secret_manager--secrets"></a>
 ### Nested Schema for `spec.gcp_secret_manager.secrets`

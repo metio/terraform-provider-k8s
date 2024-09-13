@@ -165,8 +165,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "Extend the functionality provided by the Istio proxy through WebAssembly filters. See more details at: https://istio.io/docs/reference/config/proxy_extensions/wasm-plugin.html",
 				Attributes: map[string]schema.Attribute{
 					"fail_strategy": schema.StringAttribute{
-						Description:         "Specifies the failure behavior for the plugin due to fatal errors.Valid Options: FAIL_CLOSE, FAIL_OPEN",
-						MarkdownDescription: "Specifies the failure behavior for the plugin due to fatal errors.Valid Options: FAIL_CLOSE, FAIL_OPEN",
+						Description:         "Specifies the failure behavior for the plugin due to fatal errors. Valid Options: FAIL_CLOSE, FAIL_OPEN",
+						MarkdownDescription: "Specifies the failure behavior for the plugin due to fatal errors. Valid Options: FAIL_CLOSE, FAIL_OPEN",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -176,8 +176,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"image_pull_policy": schema.StringAttribute{
-						Description:         "The pull behaviour to be applied when fetching Wasm module by either OCI image or 'http/https'.Valid Options: IfNotPresent, Always",
-						MarkdownDescription: "The pull behaviour to be applied when fetching Wasm module by either OCI image or 'http/https'.Valid Options: IfNotPresent, Always",
+						Description:         "The pull behaviour to be applied when fetching Wasm module by either OCI image or 'http/https'. Valid Options: IfNotPresent, Always",
+						MarkdownDescription: "The pull behaviour to be applied when fetching Wasm module by either OCI image or 'http/https'. Valid Options: IfNotPresent, Always",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -204,8 +204,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"mode": schema.StringAttribute{
-									Description:         "Criteria for selecting traffic by their direction.Valid Options: CLIENT, SERVER, CLIENT_AND_SERVER",
-									MarkdownDescription: "Criteria for selecting traffic by their direction.Valid Options: CLIENT, SERVER, CLIENT_AND_SERVER",
+									Description:         "Criteria for selecting traffic by their direction. Valid Options: CLIENT, SERVER, CLIENT_AND_SERVER",
+									MarkdownDescription: "Criteria for selecting traffic by their direction. Valid Options: CLIENT, SERVER, CLIENT_AND_SERVER",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -244,8 +244,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"phase": schema.StringAttribute{
-						Description:         "Determines where in the filter chain this 'WasmPlugin' is to be injected.Valid Options: AUTHN, AUTHZ, STATS",
-						MarkdownDescription: "Determines where in the filter chain this 'WasmPlugin' is to be injected.Valid Options: AUTHN, AUTHZ, STATS",
+						Description:         "Determines where in the filter chain this 'WasmPlugin' is to be injected. Valid Options: AUTHN, AUTHZ, STATS",
+						MarkdownDescription: "Determines where in the filter chain this 'WasmPlugin' is to be injected. Valid Options: AUTHN, AUTHZ, STATS",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -423,8 +423,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "Specifies the type of Wasm Extension to be used.Valid Options: HTTP, NETWORK",
-						MarkdownDescription: "Specifies the type of Wasm Extension to be used.Valid Options: HTTP, NETWORK",
+						Description:         "Specifies the type of Wasm Extension to be used. Valid Options: HTTP, NETWORK",
+						MarkdownDescription: "Specifies the type of Wasm Extension to be used. Valid Options: HTTP, NETWORK",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -485,8 +485,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 										},
 
 										"value_from": schema.StringAttribute{
-											Description:         "Source for the environment variable's value.Valid Options: INLINE, HOST",
-											MarkdownDescription: "Source for the environment variable's value.Valid Options: INLINE, HOST",
+											Description:         "Source for the environment variable's value. Valid Options: INLINE, HOST",
+											MarkdownDescription: "Source for the environment variable's value. Valid Options: INLINE, HOST",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

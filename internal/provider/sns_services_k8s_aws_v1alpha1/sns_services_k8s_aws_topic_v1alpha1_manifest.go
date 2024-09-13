@@ -146,8 +146,8 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Schema(_ context.Context, _ dat
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "TopicSpec defines the desired state of Topic.A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve atopic's attributes, use GetTopicAttributes.",
-				MarkdownDescription: "TopicSpec defines the desired state of Topic.A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve atopic's attributes, use GetTopicAttributes.",
+				Description:         "TopicSpec defines the desired state of Topic. A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve a topic's attributes, use GetTopicAttributes.",
+				MarkdownDescription: "TopicSpec defines the desired state of Topic. A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve a topic's attributes, use GetTopicAttributes.",
 				Attributes: map[string]schema.Attribute{
 					"content_based_deduplication": schema.StringAttribute{
 						Description:         "",
@@ -158,8 +158,8 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"data_protection_policy": schema.StringAttribute{
-						Description:         "The body of the policy document you want to use for this topic.You can only add one policy per topic.The policy must be in JSON string format.Length Constraints: Maximum length of 30,720.",
-						MarkdownDescription: "The body of the policy document you want to use for this topic.You can only add one policy per topic.The policy must be in JSON string format.Length Constraints: Maximum length of 30,720.",
+						Description:         "The body of the policy document you want to use for this topic. You can only add one policy per topic. The policy must be in JSON string format. Length Constraints: Maximum length of 30,720.",
+						MarkdownDescription: "The body of the policy document you want to use for this topic. You can only add one policy per topic. The policy must be in JSON string format. Length Constraints: Maximum length of 30,720.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -198,12 +198,12 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"kms_master_key_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -232,8 +232,8 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the topic you want to create.Constraints: Topic names must be made up of only uppercase and lowercaseASCII letters, numbers, underscores, and hyphens, and must be between 1 and256 characters long.For a FIFO (first-in-first-out) topic, the name must end with the .fifo suffix.",
-						MarkdownDescription: "The name of the topic you want to create.Constraints: Topic names must be made up of only uppercase and lowercaseASCII letters, numbers, underscores, and hyphens, and must be between 1 and256 characters long.For a FIFO (first-in-first-out) topic, the name must end with the .fifo suffix.",
+						Description:         "The name of the topic you want to create. Constraints: Topic names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. For a FIFO (first-in-first-out) topic, the name must end with the .fifo suffix.",
+						MarkdownDescription: "The name of the topic you want to create. Constraints: Topic names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. For a FIFO (first-in-first-out) topic, the name must end with the .fifo suffix.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -248,12 +248,12 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"policy_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -290,8 +290,8 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "The list of tags to add to a new topic.To be able to tag a topic on creation, you must have the sns:CreateTopicand sns:TagResource permissions.",
-						MarkdownDescription: "The list of tags to add to a new topic.To be able to tag a topic on creation, you must have the sns:CreateTopicand sns:TagResource permissions.",
+						Description:         "The list of tags to add to a new topic. To be able to tag a topic on creation, you must have the sns:CreateTopic and sns:TagResource permissions.",
+						MarkdownDescription: "The list of tags to add to a new topic. To be able to tag a topic on creation, you must have the sns:CreateTopic and sns:TagResource permissions.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

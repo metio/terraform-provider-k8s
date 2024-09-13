@@ -30,7 +30,7 @@ data "k8s_kuma_io_health_check_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `mesh` (String) Mesh is the name of the Kuma mesh this resource belongs to.It may be omitted for cluster-scoped resources.
+- `mesh` (String) Mesh is the name of the Kuma mesh this resource belongs to. It may be omitted for cluster-scoped resources.
 - `spec` (Map of String) Spec is the specification of the Kuma HealthCheck resource.
 
 ### Read-Only

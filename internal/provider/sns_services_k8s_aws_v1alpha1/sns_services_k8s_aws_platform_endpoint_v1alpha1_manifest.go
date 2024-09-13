@@ -144,8 +144,8 @@ func (r *SnsServicesK8SAwsPlatformEndpointV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"platform_application_arn": schema.StringAttribute{
-						Description:         "PlatformApplicationArn returned from CreatePlatformApplication is used tocreate a an endpoint.",
-						MarkdownDescription: "PlatformApplicationArn returned from CreatePlatformApplication is used tocreate a an endpoint.",
+						Description:         "PlatformApplicationArn returned from CreatePlatformApplication is used to create a an endpoint.",
+						MarkdownDescription: "PlatformApplicationArn returned from CreatePlatformApplication is used to create a an endpoint.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

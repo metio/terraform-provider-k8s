@@ -75,7 +75,7 @@ Required:
 Optional:
 
 - `conditions` (Attributes List) Used to constraint a ClusterSecretStore to specific namespaces. Relevant only to ClusterSecretStore (see [below for nested schema](#nestedatt--spec--conditions))
-- `controller` (String) Used to select the correct ESO controller (think: ingress.ingressClassName)The ESO controller is instantiated with a specific controller name and filters ES based on this property
+- `controller` (String) Used to select the correct ESO controller (think: ingress.ingressClassName) The ESO controller is instantiated with a specific controller name and filters ES based on this property
 - `refresh_interval` (Number) Used to configure store refresh interval in seconds. Empty or 0 will default to the controller config.
 - `retry_settings` (Attributes) Used to configure http retries if failed (see [below for nested schema](#nestedatt--spec--retry_settings))
 
@@ -92,7 +92,7 @@ Optional:
 - `bitwardensecretsmanager` (Attributes) BitwardenSecretsManager configures this store to sync secrets using BitwardenSecretsManager provider (see [below for nested schema](#nestedatt--spec--provider--bitwardensecretsmanager))
 - `chef` (Attributes) Chef configures this store to sync secrets with chef server (see [below for nested schema](#nestedatt--spec--provider--chef))
 - `conjur` (Attributes) Conjur configures this store to sync secrets using conjur provider (see [below for nested schema](#nestedatt--spec--provider--conjur))
-- `delinea` (Attributes) Delinea DevOps Secrets Vaulthttps://docs.delinea.com/online-help/products/devops-secrets-vault/current (see [below for nested schema](#nestedatt--spec--provider--delinea))
+- `delinea` (Attributes) Delinea DevOps Secrets Vault https://docs.delinea.com/online-help/products/devops-secrets-vault/current (see [below for nested schema](#nestedatt--spec--provider--delinea))
 - `device42` (Attributes) Device42 configures this store to sync secrets using the Device42 provider (see [below for nested schema](#nestedatt--spec--provider--device42))
 - `doppler` (Attributes) Doppler configures this store to sync secrets using the Doppler provider (see [below for nested schema](#nestedatt--spec--provider--doppler))
 - `fake` (Attributes) Fake configures a store with static key/value pairs (see [below for nested schema](#nestedatt--spec--provider--fake))
@@ -110,7 +110,7 @@ Optional:
 - `passworddepot` (Attributes) Configures a store to sync secrets with a Password Depot instance. (see [below for nested schema](#nestedatt--spec--provider--passworddepot))
 - `pulumi` (Attributes) Pulumi configures this store to sync secrets using the Pulumi provider (see [below for nested schema](#nestedatt--spec--provider--pulumi))
 - `scaleway` (Attributes) Scaleway (see [below for nested schema](#nestedatt--spec--provider--scaleway))
-- `secretserver` (Attributes) SecretServer configures this store to sync secrets using SecretServer providerhttps://docs.delinea.com/online-help/secret-server/start.htm (see [below for nested schema](#nestedatt--spec--provider--secretserver))
+- `secretserver` (Attributes) SecretServer configures this store to sync secrets using SecretServer provider https://docs.delinea.com/online-help/secret-server/start.htm (see [below for nested schema](#nestedatt--spec--provider--secretserver))
 - `senhasegura` (Attributes) Senhasegura configures this store to sync secrets using senhasegura provider (see [below for nested schema](#nestedatt--spec--provider--senhasegura))
 - `vault` (Attributes) Vault configures this store to sync secrets using Hashi provider (see [below for nested schema](#nestedatt--spec--provider--vault))
 - `webhook` (Attributes) Webhook configures this store to sync secrets using a generic templated webhook (see [below for nested schema](#nestedatt--spec--provider--webhook))
@@ -127,7 +127,7 @@ Required:
 
 Optional:
 
-- `ca_bundle` (String) PEM/base64 encoded CA bundle used to validate Akeyless Gateway certificate. Only usedif the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificatesare used to validate the TLS connection.
+- `ca_bundle` (String) PEM/base64 encoded CA bundle used to validate Akeyless Gateway certificate. Only used if the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificates are used to validate the TLS connection.
 - `ca_provider` (Attributes) The provider for the CA bundle to use to validate Akeyless Gateway certificate. (see [below for nested schema](#nestedatt--spec--provider--akeyless--ca_provider))
 
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref"></a>
@@ -135,8 +135,8 @@ Optional:
 
 Optional:
 
-- `kubernetes_auth` (Attributes) Kubernetes authenticates with Akeyless by passing the ServiceAccounttoken stored in the named Secret resource. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth))
-- `secret_ref` (Attributes) Reference to a Secret that contains the detailsto authenticate with Akeyless. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref))
+- `kubernetes_auth` (Attributes) Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth))
+- `secret_ref` (Attributes) Reference to a Secret that contains the details to authenticate with Akeyless. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref))
 
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth"></a>
 ### Nested Schema for `spec.provider.akeyless.auth_secret_ref.kubernetes_auth`
@@ -148,17 +148,17 @@ Required:
 
 Optional:
 
-- `secret_ref` (Attributes) Optional secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Akeyless. If a name is specified without a key,'token' is the default. If one is not specified, the one bound tothe controller will be used. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--secret_ref))
-- `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Akeyless. If the service account selector is not supplied,the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--service_account_ref))
+- `secret_ref` (Attributes) Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--secret_ref))
+- `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--service_account_ref))
 
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--secret_ref"></a>
 ### Nested Schema for `spec.provider.akeyless.auth_secret_ref.kubernetes_auth.secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--service_account_ref"></a>
@@ -170,8 +170,8 @@ Required:
 
 Optional:
 
-- `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -181,17 +181,17 @@ Optional:
 Optional:
 
 - `access_id` (Attributes) The SecretAccessID is used for authentication (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_id))
-- `access_type` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_type))
-- `access_type_param` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_type_param))
+- `access_type` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_type))
+- `access_type_param` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_type_param))
 
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_id"></a>
 ### Nested Schema for `spec.provider.akeyless.auth_secret_ref.secret_ref.access_id`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_type"></a>
@@ -199,9 +199,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref--access_type_param"></a>
@@ -209,9 +209,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -227,7 +227,7 @@ Required:
 Optional:
 
 - `key` (String) The key where the CA certificate can be found in the Secret or ConfigMap.
-- `namespace` (String) The namespace the Provider type is in.Can only be defined when used in a ClusterSecretStore.
+- `namespace` (String) The namespace the Provider type is in. Can only be defined when used in a ClusterSecretStore.
 
 
 
@@ -271,9 +271,9 @@ Required:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--alibaba--auth--secret_ref--access_key_secret_secret_ref"></a>
@@ -281,9 +281,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -300,7 +300,7 @@ Required:
 Optional:
 
 - `additional_roles` (List of String) AdditionalRoles is a chained list of Role ARNs which the provider will sequentially assume before assuming the Role
-- `auth` (Attributes) Auth defines the information necessary to authenticate against AWSif not set aws sdk will infer credentials from your environmentsee: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials (see [below for nested schema](#nestedatt--spec--provider--aws--auth))
+- `auth` (Attributes) Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials (see [below for nested schema](#nestedatt--spec--provider--aws--auth))
 - `external_id` (String) AWS External ID set on assumed IAM roles
 - `prefix` (String) Prefix adds a prefix to all retrieved values.
 - `role` (String) Role is a Role ARN which the provider will assume
@@ -314,7 +314,7 @@ Optional:
 Optional:
 
 - `jwt` (Attributes) Authenticate against AWS using service account tokens. (see [below for nested schema](#nestedatt--spec--provider--aws--auth--jwt))
-- `secret_ref` (Attributes) AWSAuthSecretRef holds secret references for AWS credentialsboth AccessKeyID and SecretAccessKey must be defined in order to properly authenticate. (see [below for nested schema](#nestedatt--spec--provider--aws--auth--secret_ref))
+- `secret_ref` (Attributes) AWSAuthSecretRef holds secret references for AWS credentials both AccessKeyID and SecretAccessKey must be defined in order to properly authenticate. (see [below for nested schema](#nestedatt--spec--provider--aws--auth--secret_ref))
 
 <a id="nestedatt--spec--provider--aws--auth--jwt"></a>
 ### Nested Schema for `spec.provider.aws.auth.jwt`
@@ -332,8 +332,8 @@ Required:
 
 Optional:
 
-- `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -344,16 +344,16 @@ Optional:
 
 - `access_key_id_secret_ref` (Attributes) The AccessKeyID is used for authentication (see [below for nested schema](#nestedatt--spec--provider--aws--auth--secret_ref--access_key_id_secret_ref))
 - `secret_access_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication (see [below for nested schema](#nestedatt--spec--provider--aws--auth--secret_ref--secret_access_key_secret_ref))
-- `session_token_secret_ref` (Attributes) The SessionToken used for authenticationThis must be defined if AccessKeyID and SecretAccessKey are temporary credentialssee: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html (see [below for nested schema](#nestedatt--spec--provider--aws--auth--secret_ref--session_token_secret_ref))
+- `session_token_secret_ref` (Attributes) The SessionToken used for authentication This must be defined if AccessKeyID and SecretAccessKey are temporary credentials see: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html (see [below for nested schema](#nestedatt--spec--provider--aws--auth--secret_ref--session_token_secret_ref))
 
 <a id="nestedatt--spec--provider--aws--auth--secret_ref--access_key_id_secret_ref"></a>
 ### Nested Schema for `spec.provider.aws.auth.secret_ref.access_key_id_secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--aws--auth--secret_ref--secret_access_key_secret_ref"></a>
@@ -361,9 +361,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--aws--auth--secret_ref--session_token_secret_ref"></a>
@@ -371,9 +371,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -383,8 +383,8 @@ Optional:
 
 Optional:
 
-- `force_delete_without_recovery` (Boolean) Specifies whether to delete the secret without any recovery window. Youcan't use both this parameter and RecoveryWindowInDays in the same call.If you don't use either, then by default Secrets Manager uses a 30 dayrecovery window.see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-ForceDeleteWithoutRecovery
-- `recovery_window_in_days` (Number) The number of days from 7 to 30 that Secrets Manager waits beforepermanently deleting the secret. You can't use both this parameter andForceDeleteWithoutRecovery in the same call. If you don't use either,then by default Secrets Manager uses a 30 day recovery window.see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-RecoveryWindowInDays
+- `force_delete_without_recovery` (Boolean) Specifies whether to delete the secret without any recovery window. You can't use both this parameter and RecoveryWindowInDays in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-ForceDeleteWithoutRecovery
+- `recovery_window_in_days` (Number) The number of days from 7 to 30 that Secrets Manager waits before permanently deleting the secret. You can't use both this parameter and ForceDeleteWithoutRecovery in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-RecoveryWindowInDays
 
 
 <a id="nestedatt--spec--provider--aws--session_tags"></a>
@@ -407,10 +407,10 @@ Required:
 Optional:
 
 - `auth_secret_ref` (Attributes) Auth configures how the operator authenticates with Azure. Required for ServicePrincipal auth type. Optional for WorkloadIdentity. (see [below for nested schema](#nestedatt--spec--provider--azurekv--auth_secret_ref))
-- `auth_type` (String) Auth type defines how to authenticate to the keyvault service.Valid values are:- 'ServicePrincipal' (default): Using a service principal (tenantId, clientId, clientSecret)- 'ManagedIdentity': Using Managed Identity assigned to the pod (see aad-pod-identity)
-- `environment_type` (String) EnvironmentType specifies the Azure cloud environment endpoints to use forconnecting and authenticating with Azure. By default it points to the public cloud AAD endpoint.The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
+- `auth_type` (String) Auth type defines how to authenticate to the keyvault service. Valid values are: - 'ServicePrincipal' (default): Using a service principal (tenantId, clientId, clientSecret) - 'ManagedIdentity': Using Managed Identity assigned to the pod (see aad-pod-identity)
+- `environment_type` (String) EnvironmentType specifies the Azure cloud environment endpoints to use for connecting and authenticating with Azure. By default it points to the public cloud AAD endpoint. The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152 PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
 - `identity_id` (String) If multiple Managed Identity is assigned to the pod, you can select the one to be used
-- `service_account_ref` (Attributes) ServiceAccountRef specified the service accountthat should be used when authenticating with WorkloadIdentity. (see [below for nested schema](#nestedatt--spec--provider--azurekv--service_account_ref))
+- `service_account_ref` (Attributes) ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity. (see [below for nested schema](#nestedatt--spec--provider--azurekv--service_account_ref))
 - `tenant_id` (String) TenantID configures the Azure Tenant to send requests to. Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
 
 <a id="nestedatt--spec--provider--azurekv--auth_secret_ref"></a>
@@ -428,9 +428,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--azurekv--auth_secret_ref--client_id"></a>
@@ -438,9 +438,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--azurekv--auth_secret_ref--client_secret"></a>
@@ -448,9 +448,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--azurekv--auth_secret_ref--tenant_id"></a>
@@ -458,9 +458,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -473,8 +473,8 @@ Required:
 
 Optional:
 
-- `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -512,9 +512,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -531,9 +531,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -550,9 +550,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -569,9 +569,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -597,7 +597,7 @@ Optional:
 
 Required:
 
-- `auth` (Attributes) Auth configures how secret-manager authenticates with a bitwarden machine account instance.Make sure that the token being used has permissions on the given secret. (see [below for nested schema](#nestedatt--spec--provider--bitwardensecretsmanager--auth))
+- `auth` (Attributes) Auth configures how secret-manager authenticates with a bitwarden machine account instance. Make sure that the token being used has permissions on the given secret. (see [below for nested schema](#nestedatt--spec--provider--bitwardensecretsmanager--auth))
 - `organization_id` (String) OrganizationID determines which organization this secret store manages.
 - `project_id` (String) ProjectID determines which project this secret store manages.
 
@@ -605,7 +605,7 @@ Optional:
 
 - `api_url` (String)
 - `bitwarden_server_sdk_url` (String)
-- `ca_bundle` (String) Base64 encoded certificate for the bitwarden server sdk. The sdk MUST run with HTTPS to make sure no MITM attackcan be performed.
+- `ca_bundle` (String) Base64 encoded certificate for the bitwarden server sdk. The sdk MUST run with HTTPS to make sure no MITM attack can be performed.
 - `ca_provider` (Attributes) see: https://external-secrets.io/latest/spec/#external-secrets.io/v1alpha1.CAProvider (see [below for nested schema](#nestedatt--spec--provider--bitwardensecretsmanager--ca_provider))
 - `identity_url` (String)
 
@@ -628,9 +628,9 @@ Required:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -646,7 +646,7 @@ Required:
 Optional:
 
 - `key` (String) The key where the CA certificate can be found in the Secret or ConfigMap.
-- `namespace` (String) The namespace the Provider type is in.Can only be defined when used in a ClusterSecretStore.
+- `namespace` (String) The namespace the Provider type is in. Can only be defined when used in a ClusterSecretStore.
 
 
 
@@ -678,9 +678,9 @@ Required:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -697,7 +697,7 @@ Required:
 Optional:
 
 - `ca_bundle` (String)
-- `ca_provider` (Attributes) Used to provide custom certificate authority (CA) certificatesfor a secret store. The CAProvider points to a Secret or ConfigMap resourcethat contains a PEM-encoded certificate. (see [below for nested schema](#nestedatt--spec--provider--conjur--ca_provider))
+- `ca_provider` (Attributes) Used to provide custom certificate authority (CA) certificates for a secret store. The CAProvider points to a Secret or ConfigMap resource that contains a PEM-encoded certificate. (see [below for nested schema](#nestedatt--spec--provider--conjur--ca_provider))
 
 <a id="nestedatt--spec--provider--conjur--auth"></a>
 ### Nested Schema for `spec.provider.conjur.auth`
@@ -713,17 +713,17 @@ Optional:
 Required:
 
 - `account` (String)
-- `api_key_ref` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--conjur--auth--apikey--api_key_ref))
-- `user_ref` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--conjur--auth--apikey--user_ref))
+- `api_key_ref` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--conjur--auth--apikey--api_key_ref))
+- `user_ref` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--conjur--auth--apikey--user_ref))
 
 <a id="nestedatt--spec--provider--conjur--auth--apikey--api_key_ref"></a>
 ### Nested Schema for `spec.provider.conjur.auth.apikey.api_key_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--conjur--auth--apikey--user_ref"></a>
@@ -731,9 +731,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -747,18 +747,18 @@ Required:
 
 Optional:
 
-- `host_id` (String) Optional HostID for JWT authentication. This may be used dependingon how the Conjur JWT authenticator policy is configured.
-- `secret_ref` (Attributes) Optional SecretRef that refers to a key in a Secret resource containing JWT token toauthenticate with Conjur using the JWT authentication method. (see [below for nested schema](#nestedatt--spec--provider--conjur--auth--jwt--secret_ref))
-- `service_account_ref` (Attributes) Optional ServiceAccountRef specifies the Kubernetes service account for which to requesta token for with the 'TokenRequest' API. (see [below for nested schema](#nestedatt--spec--provider--conjur--auth--jwt--service_account_ref))
+- `host_id` (String) Optional HostID for JWT authentication. This may be used depending on how the Conjur JWT authenticator policy is configured.
+- `secret_ref` (Attributes) Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Conjur using the JWT authentication method. (see [below for nested schema](#nestedatt--spec--provider--conjur--auth--jwt--secret_ref))
+- `service_account_ref` (Attributes) Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the 'TokenRequest' API. (see [below for nested schema](#nestedatt--spec--provider--conjur--auth--jwt--service_account_ref))
 
 <a id="nestedatt--spec--provider--conjur--auth--jwt--secret_ref"></a>
 ### Nested Schema for `spec.provider.conjur.auth.jwt.secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--conjur--auth--jwt--service_account_ref"></a>
@@ -770,8 +770,8 @@ Required:
 
 Optional:
 
-- `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -787,7 +787,7 @@ Required:
 Optional:
 
 - `key` (String) The key where the CA certificate can be found in the Secret or ConfigMap.
-- `namespace` (String) The namespace the Provider type is in.Can only be defined when used in a ClusterSecretStore.
+- `namespace` (String) The namespace the Provider type is in. Can only be defined when used in a ClusterSecretStore.
 
 
 
@@ -802,8 +802,8 @@ Required:
 
 Optional:
 
-- `tld` (String) TLD is based on the server location that was chosen during provisioning.If unset, defaults to 'com'.
-- `url_template` (String) URLTemplateIf unset, defaults to 'https://%s.secretsvaultcloud.%s/v1/%s%s'.
+- `tld` (String) TLD is based on the server location that was chosen during provisioning. If unset, defaults to 'com'.
+- `url_template` (String) URLTemplate If unset, defaults to 'https://%s.secretsvaultcloud.%s/v1/%s%s'.
 
 <a id="nestedatt--spec--provider--delinea--client_id"></a>
 ### Nested Schema for `spec.provider.delinea.client_id`
@@ -818,9 +818,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -837,9 +837,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -871,9 +871,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -905,16 +905,16 @@ Required:
 
 Required:
 
-- `doppler_token` (Attributes) The DopplerToken is used for authentication.See https://docs.doppler.com/reference/api#authentication for auth token types.The Key attribute defaults to dopplerToken if not specified. (see [below for nested schema](#nestedatt--spec--provider--doppler--auth--secret_ref--doppler_token))
+- `doppler_token` (Attributes) The DopplerToken is used for authentication. See https://docs.doppler.com/reference/api#authentication for auth token types. The Key attribute defaults to dopplerToken if not specified. (see [below for nested schema](#nestedatt--spec--provider--doppler--auth--secret_ref--doppler_token))
 
 <a id="nestedatt--spec--provider--doppler--auth--secret_ref--doppler_token"></a>
 ### Nested Schema for `spec.provider.doppler.auth.secret_ref.doppler_token`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -962,9 +962,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -998,9 +998,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1026,8 +1026,8 @@ Required:
 
 Optional:
 
-- `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1067,9 +1067,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1119,9 +1119,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1151,17 +1151,17 @@ Optional:
 
 Required:
 
-- `client_id` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--infisical--auth--universal_auth_credentials--client_id))
-- `client_secret` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--infisical--auth--universal_auth_credentials--client_secret))
+- `client_id` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--infisical--auth--universal_auth_credentials--client_id))
+- `client_secret` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--infisical--auth--universal_auth_credentials--client_secret))
 
 <a id="nestedatt--spec--provider--infisical--auth--universal_auth_credentials--client_id"></a>
 ### Nested Schema for `spec.provider.infisical.auth.universal_auth_credentials.client_id`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--infisical--auth--universal_auth_credentials--client_secret"></a>
@@ -1169,9 +1169,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1195,7 +1195,7 @@ Optional:
 
 Required:
 
-- `auth_ref` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--keepersecurity--auth_ref))
+- `auth_ref` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--keepersecurity--auth_ref))
 - `folder_id` (String)
 
 <a id="nestedatt--spec--provider--keepersecurity--auth_ref"></a>
@@ -1203,9 +1203,9 @@ Required:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1233,17 +1233,17 @@ Optional:
 
 Optional:
 
-- `client_cert` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--cert--client_cert))
-- `client_key` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--cert--client_key))
+- `client_cert` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--cert--client_cert))
+- `client_key` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--cert--client_key))
 
 <a id="nestedatt--spec--provider--kubernetes--auth--cert--client_cert"></a>
 ### Nested Schema for `spec.provider.kubernetes.auth.cert.client_cert`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--kubernetes--auth--cert--client_key"></a>
@@ -1251,9 +1251,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1266,8 +1266,8 @@ Required:
 
 Optional:
 
-- `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--kubernetes--auth--token"></a>
@@ -1275,16 +1275,16 @@ Optional:
 
 Optional:
 
-- `bearer_token` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--token--bearer_token))
+- `bearer_token` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--kubernetes--auth--token--bearer_token))
 
 <a id="nestedatt--spec--provider--kubernetes--auth--token--bearer_token"></a>
 ### Nested Schema for `spec.provider.kubernetes.auth.token.bearer_token`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1294,9 +1294,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--kubernetes--server"></a>
@@ -1319,7 +1319,7 @@ Required:
 Optional:
 
 - `key` (String) The key where the CA certificate can be found in the Secret or ConfigMap.
-- `namespace` (String) The namespace the Provider type is in.Can only be defined when used in a ClusterSecretStore.
+- `namespace` (String) The namespace the Provider type is in. Can only be defined when used in a ClusterSecretStore.
 
 
 
@@ -1339,7 +1339,7 @@ Required:
 
 Required:
 
-- `api_key_ref` (Attributes) OnboardbaseAPIKey is the APIKey generated by an admin account.It is used to recognize and authorize access to a project and environment within onboardbase (see [below for nested schema](#nestedatt--spec--provider--onboardbase--auth--api_key_ref))
+- `api_key_ref` (Attributes) OnboardbaseAPIKey is the APIKey generated by an admin account. It is used to recognize and authorize access to a project and environment within onboardbase (see [below for nested schema](#nestedatt--spec--provider--onboardbase--auth--api_key_ref))
 - `passcode_ref` (Attributes) OnboardbasePasscode is the passcode attached to the API Key (see [below for nested schema](#nestedatt--spec--provider--onboardbase--auth--passcode_ref))
 
 <a id="nestedatt--spec--provider--onboardbase--auth--api_key_ref"></a>
@@ -1347,9 +1347,9 @@ Required:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--onboardbase--auth--passcode_ref"></a>
@@ -1357,9 +1357,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1392,9 +1392,9 @@ Required:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1410,11 +1410,11 @@ Required:
 
 Optional:
 
-- `auth` (Attributes) Auth configures how secret-manager authenticates with the Oracle Vault.If empty, use the instance principal, otherwise the user credentials specified in Auth. (see [below for nested schema](#nestedatt--spec--provider--oracle--auth))
-- `compartment` (String) Compartment is the vault compartment OCID.Required for PushSecret
-- `encryption_key` (String) EncryptionKey is the OCID of the encryption key within the vault.Required for PushSecret
-- `principal_type` (String) The type of principal to use for authentication. If left blank, the Auth struct willdetermine the principal type. This optional field must be specified if usingworkload identity.
-- `service_account_ref` (Attributes) ServiceAccountRef specified the service accountthat should be used when authenticating with WorkloadIdentity. (see [below for nested schema](#nestedatt--spec--provider--oracle--service_account_ref))
+- `auth` (Attributes) Auth configures how secret-manager authenticates with the Oracle Vault. If empty, use the instance principal, otherwise the user credentials specified in Auth. (see [below for nested schema](#nestedatt--spec--provider--oracle--auth))
+- `compartment` (String) Compartment is the vault compartment OCID. Required for PushSecret
+- `encryption_key` (String) EncryptionKey is the OCID of the encryption key within the vault. Required for PushSecret
+- `principal_type` (String) The type of principal to use for authentication. If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+- `service_account_ref` (Attributes) ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity. (see [below for nested schema](#nestedatt--spec--provider--oracle--service_account_ref))
 
 <a id="nestedatt--spec--provider--oracle--auth"></a>
 ### Nested Schema for `spec.provider.oracle.auth`
@@ -1438,9 +1438,9 @@ Required:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--oracle--auth--secret_ref--privatekey"></a>
@@ -1448,9 +1448,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1464,8 +1464,8 @@ Required:
 
 Optional:
 
-- `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1482,17 +1482,17 @@ Required:
 
 Required:
 
-- `password_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--passbolt--auth--password_secret_ref))
-- `private_key_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--passbolt--auth--private_key_secret_ref))
+- `password_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--passbolt--auth--password_secret_ref))
+- `private_key_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--passbolt--auth--private_key_secret_ref))
 
 <a id="nestedatt--spec--provider--passbolt--auth--password_secret_ref"></a>
 ### Nested Schema for `spec.provider.passbolt.auth.password_secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--passbolt--auth--private_key_secret_ref"></a>
@@ -1500,9 +1500,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1535,9 +1535,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1549,8 +1549,8 @@ Optional:
 Required:
 
 - `access_token` (Attributes) AccessToken is the access tokens to sign in to the Pulumi Cloud Console. (see [below for nested schema](#nestedatt--spec--provider--pulumi--access_token))
-- `environment` (String) Environment are YAML documents composed of static key-value pairs, programmatic expressions,dynamically retrieved values from supported providers including all major clouds,and other Pulumi ESC environments.To create a new environment, visit https://www.pulumi.com/docs/esc/environments/ for more information.
-- `organization` (String) Organization are a space to collaborate on shared projects and stacks.To create a new organization, visit https://app.pulumi.com/ and click 'New Organization'.
+- `environment` (String) Environment are YAML documents composed of static key-value pairs, programmatic expressions, dynamically retrieved values from supported providers including all major clouds, and other Pulumi ESC environments. To create a new environment, visit https://www.pulumi.com/docs/esc/environments/ for more information.
+- `organization` (String) Organization are a space to collaborate on shared projects and stacks. To create a new organization, visit https://app.pulumi.com/ and click 'New Organization'.
 
 Optional:
 
@@ -1568,9 +1568,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1602,9 +1602,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1621,9 +1621,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1634,7 +1634,7 @@ Optional:
 Required:
 
 - `password` (Attributes) Password is the secret server account password. (see [below for nested schema](#nestedatt--spec--provider--secretserver--password))
-- `server_url` (String) ServerURLURL to your secret server installation
+- `server_url` (String) ServerURL URL to your secret server installation
 - `username` (Attributes) Username is the secret server account username. (see [below for nested schema](#nestedatt--spec--provider--secretserver--username))
 
 <a id="nestedatt--spec--provider--secretserver--password"></a>
@@ -1650,9 +1650,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1669,9 +1669,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1695,16 +1695,16 @@ Optional:
 Required:
 
 - `client_id` (String)
-- `client_secret_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--senhasegura--auth--client_secret_secret_ref))
+- `client_secret_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--senhasegura--auth--client_secret_secret_ref))
 
 <a id="nestedatt--spec--provider--senhasegura--auth--client_secret_secret_ref"></a>
 ### Nested Schema for `spec.provider.senhasegura.auth.client_secret_secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1719,28 +1719,28 @@ Required:
 
 Optional:
 
-- `ca_bundle` (String) PEM encoded CA bundle used to validate Vault server certificate. Only usedif the Server URL is using HTTPS protocol. This parameter is ignored forplain HTTP protocol connection. If not set the system root certificatesare used to validate the TLS connection.
+- `ca_bundle` (String) PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
 - `ca_provider` (Attributes) The provider for the CA bundle to use to validate Vault server certificate. (see [below for nested schema](#nestedatt--spec--provider--vault--ca_provider))
-- `forward_inconsistent` (Boolean) ForwardInconsistent tells Vault to forward read-after-write requests to the Vaultleader instead of simply retrying within a loop. This can increase performance ifthe option is enabled serverside.https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
+- `forward_inconsistent` (Boolean) ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop. This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
 - `headers` (Map of String) Headers to be added in Vault request
-- `namespace` (String) Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allowsVault environments to support Secure Multi-tenancy. e.g: 'ns1'.More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
-- `path` (String) Path is the mount path of the Vault KV backend endpoint, e.g:'secret'. The v2 KV secret engine version specific '/data' path suffixfor fetching secrets from Vault is optional and will be appendedif not present in specified path.
-- `read_your_writes` (Boolean) ReadYourWrites ensures isolated read-after-write semantics byproviding discovered cluster replication states in each request.More information about eventual consistency in Vault can be found herehttps://www.vaultproject.io/docs/enterprise/consistency
-- `tls` (Attributes) The configuration used for client side related TLS communication, when the Vault serverrequires mutual authentication. Only used if the Server URL is using HTTPS protocol.This parameter is ignored for plain HTTP protocol connection.It's worth noting this configuration is different from the 'TLS certificates auth method',which is available under the 'auth.cert' section. (see [below for nested schema](#nestedatt--spec--provider--vault--tls))
-- `version` (String) Version is the Vault KV secret engine version. This can be either 'v1' or'v2'. Version defaults to 'v2'.
+- `namespace` (String) Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: 'ns1'. More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
+- `path` (String) Path is the mount path of the Vault KV backend endpoint, e.g: 'secret'. The v2 KV secret engine version specific '/data' path suffix for fetching secrets from Vault is optional and will be appended if not present in specified path.
+- `read_your_writes` (Boolean) ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request. More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency
+- `tls` (Attributes) The configuration used for client side related TLS communication, when the Vault server requires mutual authentication. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. It's worth noting this configuration is different from the 'TLS certificates auth method', which is available under the 'auth.cert' section. (see [below for nested schema](#nestedatt--spec--provider--vault--tls))
+- `version` (String) Version is the Vault KV secret engine version. This can be either 'v1' or 'v2'. Version defaults to 'v2'.
 
 <a id="nestedatt--spec--provider--vault--auth"></a>
 ### Nested Schema for `spec.provider.vault.auth`
 
 Optional:
 
-- `app_role` (Attributes) AppRole authenticates with Vault using the App Role auth mechanism,with the role and secret stored in a Kubernetes Secret resource. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--app_role))
-- `cert` (Attributes) Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificateCert authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--cert))
-- `iam` (Attributes) Iam authenticates with vault by passing a special AWS request signed with AWS IAM credentialsAWS IAM authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--iam))
-- `jwt` (Attributes) Jwt authenticates with Vault by passing role and JWT token using theJWT/OIDC authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--jwt))
-- `kubernetes` (Attributes) Kubernetes authenticates with Vault by passing the ServiceAccounttoken stored in the named Secret resource to the Vault server. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--kubernetes))
-- `ldap` (Attributes) Ldap authenticates with Vault by passing username/password pair usingthe LDAP authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--ldap))
-- `namespace` (String) Name of the vault namespace to authenticate to. This can be different than the namespace your secret is in.Namespaces is a set of features within Vault Enterprise that allowsVault environments to support Secure Multi-tenancy. e.g: 'ns1'.More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespacesThis will default to Vault.Namespace field if set, or empty otherwise
+- `app_role` (Attributes) AppRole authenticates with Vault using the App Role auth mechanism, with the role and secret stored in a Kubernetes Secret resource. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--app_role))
+- `cert` (Attributes) Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificate Cert authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--cert))
+- `iam` (Attributes) Iam authenticates with vault by passing a special AWS request signed with AWS IAM credentials AWS IAM authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--iam))
+- `jwt` (Attributes) Jwt authenticates with Vault by passing role and JWT token using the JWT/OIDC authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--jwt))
+- `kubernetes` (Attributes) Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--kubernetes))
+- `ldap` (Attributes) Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--ldap))
+- `namespace` (String) Name of the vault namespace to authenticate to. This can be different than the namespace your secret is in. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: 'ns1'. More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces This will default to Vault.Namespace field if set, or empty otherwise
 - `token_secret_ref` (Attributes) TokenSecretRef authenticates with Vault by presenting a token. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--token_secret_ref))
 - `user_pass` (Attributes) UserPass authenticates with Vault by passing username/password pair (see [below for nested schema](#nestedatt--spec--provider--vault--auth--user_pass))
 
@@ -1749,22 +1749,22 @@ Optional:
 
 Required:
 
-- `path` (String) Path where the App Role authentication backend is mountedin Vault, e.g: 'approle'
-- `secret_ref` (Attributes) Reference to a key in a Secret that contains the App Role secret usedto authenticate with Vault.The 'key' field must be specified and denotes which entry within the Secretresource is used as the app role secret. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--app_role--secret_ref))
+- `path` (String) Path where the App Role authentication backend is mounted in Vault, e.g: 'approle'
+- `secret_ref` (Attributes) Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault. The 'key' field must be specified and denotes which entry within the Secret resource is used as the app role secret. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--app_role--secret_ref))
 
 Optional:
 
-- `role_id` (String) RoleID configured in the App Role authentication backend when settingup the authentication backend in Vault.
-- `role_ref` (Attributes) Reference to a key in a Secret that contains the App Role ID usedto authenticate with Vault.The 'key' field must be specified and denotes which entry within the Secretresource is used as the app role id. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--app_role--role_ref))
+- `role_id` (String) RoleID configured in the App Role authentication backend when setting up the authentication backend in Vault.
+- `role_ref` (Attributes) Reference to a key in a Secret that contains the App Role ID used to authenticate with Vault. The 'key' field must be specified and denotes which entry within the Secret resource is used as the app role id. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--app_role--role_ref))
 
 <a id="nestedatt--spec--provider--vault--auth--app_role--secret_ref"></a>
 ### Nested Schema for `spec.provider.vault.auth.app_role.secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--vault--auth--app_role--role_ref"></a>
@@ -1772,9 +1772,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1783,17 +1783,17 @@ Optional:
 
 Optional:
 
-- `client_cert` (Attributes) ClientCert is a certificate to authenticate using the Cert Vaultauthentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--cert--client_cert))
-- `secret_ref` (Attributes) SecretRef to a key in a Secret resource containing client private key toauthenticate with Vault using the Cert authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--cert--secret_ref))
+- `client_cert` (Attributes) ClientCert is a certificate to authenticate using the Cert Vault authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--cert--client_cert))
+- `secret_ref` (Attributes) SecretRef to a key in a Secret resource containing client private key to authenticate with Vault using the Cert authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--cert--secret_ref))
 
 <a id="nestedatt--spec--provider--vault--auth--cert--client_cert"></a>
 ### Nested Schema for `spec.provider.vault.auth.cert.client_cert`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--vault--auth--cert--secret_ref"></a>
@@ -1801,9 +1801,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1840,8 +1840,8 @@ Required:
 
 Optional:
 
-- `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1852,16 +1852,16 @@ Optional:
 
 - `access_key_id_secret_ref` (Attributes) The AccessKeyID is used for authentication (see [below for nested schema](#nestedatt--spec--provider--vault--auth--iam--secret_ref--access_key_id_secret_ref))
 - `secret_access_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication (see [below for nested schema](#nestedatt--spec--provider--vault--auth--iam--secret_ref--secret_access_key_secret_ref))
-- `session_token_secret_ref` (Attributes) The SessionToken used for authenticationThis must be defined if AccessKeyID and SecretAccessKey are temporary credentialssee: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html (see [below for nested schema](#nestedatt--spec--provider--vault--auth--iam--secret_ref--session_token_secret_ref))
+- `session_token_secret_ref` (Attributes) The SessionToken used for authentication This must be defined if AccessKeyID and SecretAccessKey are temporary credentials see: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html (see [below for nested schema](#nestedatt--spec--provider--vault--auth--iam--secret_ref--session_token_secret_ref))
 
 <a id="nestedatt--spec--provider--vault--auth--iam--secret_ref--access_key_id_secret_ref"></a>
 ### Nested Schema for `spec.provider.vault.auth.iam.secret_ref.access_key_id_secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--vault--auth--iam--secret_ref--secret_access_key_secret_ref"></a>
@@ -1869,9 +1869,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--vault--auth--iam--secret_ref--session_token_secret_ref"></a>
@@ -1879,9 +1879,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1891,13 +1891,13 @@ Optional:
 
 Required:
 
-- `path` (String) Path where the JWT authentication backend is mountedin Vault, e.g: 'jwt'
+- `path` (String) Path where the JWT authentication backend is mounted in Vault, e.g: 'jwt'
 
 Optional:
 
-- `kubernetes_service_account_token` (Attributes) Optional ServiceAccountToken specifies the Kubernetes service account for which to requesta token for with the 'TokenRequest' API. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--jwt--kubernetes_service_account_token))
-- `role` (String) Role is a JWT role to authenticate using the JWT/OIDC Vaultauthentication method
-- `secret_ref` (Attributes) Optional SecretRef that refers to a key in a Secret resource containing JWT token toauthenticate with Vault using the JWT/OIDC authentication method. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--jwt--secret_ref))
+- `kubernetes_service_account_token` (Attributes) Optional ServiceAccountToken specifies the Kubernetes service account for which to request a token for with the 'TokenRequest' API. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--jwt--kubernetes_service_account_token))
+- `role` (String) Role is a JWT role to authenticate using the JWT/OIDC Vault authentication method
+- `secret_ref` (Attributes) Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Vault using the JWT/OIDC authentication method. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--jwt--secret_ref))
 
 <a id="nestedatt--spec--provider--vault--auth--jwt--kubernetes_service_account_token"></a>
 ### Nested Schema for `spec.provider.vault.auth.jwt.kubernetes_service_account_token`
@@ -1908,8 +1908,8 @@ Required:
 
 Optional:
 
-- `audiences` (List of String) Optional audiences field that will be used to request a temporary Kubernetes serviceaccount token for the service account referenced by 'serviceAccountRef'.Defaults to a single audience 'vault' it not specified.Deprecated: use serviceAccountRef.Audiences instead
-- `expiration_seconds` (Number) Optional expiration time in seconds that will be used to request a temporaryKubernetes service account token for the service account referenced by'serviceAccountRef'.Deprecated: this will be removed in the future.Defaults to 10 minutes.
+- `audiences` (List of String) Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Defaults to a single audience 'vault' it not specified. Deprecated: use serviceAccountRef.Audiences instead
+- `expiration_seconds` (Number) Optional expiration time in seconds that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Deprecated: this will be removed in the future. Defaults to 10 minutes.
 
 <a id="nestedatt--spec--provider--vault--auth--jwt--kubernetes_service_account_token--service_account_ref"></a>
 ### Nested Schema for `spec.provider.vault.auth.jwt.kubernetes_service_account_token.service_account_ref`
@@ -1920,8 +1920,8 @@ Required:
 
 Optional:
 
-- `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1930,9 +1930,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1941,22 +1941,22 @@ Optional:
 
 Required:
 
-- `mount_path` (String) Path where the Kubernetes authentication backend is mounted in Vault, e.g:'kubernetes'
-- `role` (String) A required field containing the Vault Role to assume. A Role binds aKubernetes ServiceAccount with a set of Vault policies.
+- `mount_path` (String) Path where the Kubernetes authentication backend is mounted in Vault, e.g: 'kubernetes'
+- `role` (String) A required field containing the Vault Role to assume. A Role binds a Kubernetes ServiceAccount with a set of Vault policies.
 
 Optional:
 
-- `secret_ref` (Attributes) Optional secret field containing a Kubernetes ServiceAccount JWT usedfor authenticating with Vault. If a name is specified without a key,'token' is the default. If one is not specified, the one bound tothe controller will be used. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--kubernetes--secret_ref))
-- `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount.If the service account is specified, the service account secret token JWT will be usedfor authenticating with Vault. If the service account selector is not supplied,the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--kubernetes--service_account_ref))
+- `secret_ref` (Attributes) Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--kubernetes--secret_ref))
+- `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--vault--auth--kubernetes--service_account_ref))
 
 <a id="nestedatt--spec--provider--vault--auth--kubernetes--secret_ref"></a>
 ### Nested Schema for `spec.provider.vault.auth.kubernetes.secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--vault--auth--kubernetes--service_account_ref"></a>
@@ -1968,8 +1968,8 @@ Required:
 
 Optional:
 
-- `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -1978,21 +1978,21 @@ Optional:
 
 Required:
 
-- `path` (String) Path where the LDAP authentication backend is mountedin Vault, e.g: 'ldap'
-- `username` (String) Username is a LDAP user name used to authenticate using the LDAP Vaultauthentication method
+- `path` (String) Path where the LDAP authentication backend is mounted in Vault, e.g: 'ldap'
+- `username` (String) Username is a LDAP user name used to authenticate using the LDAP Vault authentication method
 
 Optional:
 
-- `secret_ref` (Attributes) SecretRef to a key in a Secret resource containing password for the LDAPuser used to authenticate with Vault using the LDAP authenticationmethod (see [below for nested schema](#nestedatt--spec--provider--vault--auth--ldap--secret_ref))
+- `secret_ref` (Attributes) SecretRef to a key in a Secret resource containing password for the LDAP user used to authenticate with Vault using the LDAP authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--ldap--secret_ref))
 
 <a id="nestedatt--spec--provider--vault--auth--ldap--secret_ref"></a>
 ### Nested Schema for `spec.provider.vault.auth.ldap.secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -2001,9 +2001,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--vault--auth--user_pass"></a>
@@ -2011,21 +2011,21 @@ Optional:
 
 Required:
 
-- `path` (String) Path where the UserPassword authentication backend is mountedin Vault, e.g: 'user'
-- `username` (String) Username is a user name used to authenticate using the UserPass Vaultauthentication method
+- `path` (String) Path where the UserPassword authentication backend is mounted in Vault, e.g: 'user'
+- `username` (String) Username is a user name used to authenticate using the UserPass Vault authentication method
 
 Optional:
 
-- `secret_ref` (Attributes) SecretRef to a key in a Secret resource containing password for theuser used to authenticate with Vault using the UserPass authenticationmethod (see [below for nested schema](#nestedatt--spec--provider--vault--auth--user_pass--secret_ref))
+- `secret_ref` (Attributes) SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method (see [below for nested schema](#nestedatt--spec--provider--vault--auth--user_pass--secret_ref))
 
 <a id="nestedatt--spec--provider--vault--auth--user_pass--secret_ref"></a>
 ### Nested Schema for `spec.provider.vault.auth.user_pass.secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -2041,7 +2041,7 @@ Required:
 Optional:
 
 - `key` (String) The key where the CA certificate can be found in the Secret or ConfigMap.
-- `namespace` (String) The namespace the Provider type is in.Can only be defined when used in a ClusterSecretStore.
+- `namespace` (String) The namespace the Provider type is in. Can only be defined when used in a ClusterSecretStore.
 
 
 <a id="nestedatt--spec--provider--vault--tls"></a>
@@ -2049,17 +2049,17 @@ Optional:
 
 Optional:
 
-- `cert_secret_ref` (Attributes) CertSecretRef is a certificate added to the transport layerwhen communicating with the Vault server.If no key for the Secret is specified, external-secret will default to 'tls.crt'. (see [below for nested schema](#nestedatt--spec--provider--vault--tls--cert_secret_ref))
-- `key_secret_ref` (Attributes) KeySecretRef to a key in a Secret resource containing client private keyadded to the transport layer when communicating with the Vault server.If no key for the Secret is specified, external-secret will default to 'tls.key'. (see [below for nested schema](#nestedatt--spec--provider--vault--tls--key_secret_ref))
+- `cert_secret_ref` (Attributes) CertSecretRef is a certificate added to the transport layer when communicating with the Vault server. If no key for the Secret is specified, external-secret will default to 'tls.crt'. (see [below for nested schema](#nestedatt--spec--provider--vault--tls--cert_secret_ref))
+- `key_secret_ref` (Attributes) KeySecretRef to a key in a Secret resource containing client private key added to the transport layer when communicating with the Vault server. If no key for the Secret is specified, external-secret will default to 'tls.key'. (see [below for nested schema](#nestedatt--spec--provider--vault--tls--key_secret_ref))
 
 <a id="nestedatt--spec--provider--vault--tls--cert_secret_ref"></a>
 ### Nested Schema for `spec.provider.vault.tls.cert_secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 <a id="nestedatt--spec--provider--vault--tls--key_secret_ref"></a>
@@ -2067,9 +2067,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -2085,11 +2085,11 @@ Required:
 Optional:
 
 - `body` (String) Body
-- `ca_bundle` (String) PEM encoded CA bundle used to validate webhook server certificate. Only usedif the Server URL is using HTTPS protocol. This parameter is ignored forplain HTTP protocol connection. If not set the system root certificatesare used to validate the TLS connection.
+- `ca_bundle` (String) PEM encoded CA bundle used to validate webhook server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
 - `ca_provider` (Attributes) The provider for the CA bundle to use to validate webhook server certificate. (see [below for nested schema](#nestedatt--spec--provider--webhook--ca_provider))
 - `headers` (Map of String) Headers
 - `method` (String) Webhook Method
-- `secrets` (Attributes List) Secrets to fill in templatesThese secrets will be passed to the templating function as key value pairs under the given name (see [below for nested schema](#nestedatt--spec--provider--webhook--secrets))
+- `secrets` (Attributes List) Secrets to fill in templates These secrets will be passed to the templating function as key value pairs under the given name (see [below for nested schema](#nestedatt--spec--provider--webhook--secrets))
 - `timeout` (String) Timeout
 
 <a id="nestedatt--spec--provider--webhook--result"></a>
@@ -2127,9 +2127,9 @@ Required:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -2158,9 +2158,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -2169,16 +2169,16 @@ Optional:
 
 Optional:
 
-- `cert_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--yandexcertificatemanager--ca_provider--cert_secret_ref))
+- `cert_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--yandexcertificatemanager--ca_provider--cert_secret_ref))
 
 <a id="nestedatt--spec--provider--yandexcertificatemanager--ca_provider--cert_secret_ref"></a>
 ### Nested Schema for `spec.provider.yandexcertificatemanager.ca_provider.cert_secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -2207,9 +2207,9 @@ Optional:
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -2218,16 +2218,16 @@ Optional:
 
 Optional:
 
-- `cert_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource,In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--yandexlockbox--ca_provider--cert_secret_ref))
+- `cert_secret_ref` (Attributes) A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field. (see [below for nested schema](#nestedatt--spec--provider--yandexlockbox--ca_provider--cert_secret_ref))
 
 <a id="nestedatt--spec--provider--yandexlockbox--ca_provider--cert_secret_ref"></a>
 ### Nested Schema for `spec.provider.yandexlockbox.ca_provider.cert_secret_ref`
 
 Optional:
 
-- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
 - `name` (String) The name of the Secret resource being referred to.
-- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
 
 
@@ -2248,7 +2248,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--conditions--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--conditions--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.conditions.namespace_selector.match_expressions`
@@ -2256,11 +2256,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 

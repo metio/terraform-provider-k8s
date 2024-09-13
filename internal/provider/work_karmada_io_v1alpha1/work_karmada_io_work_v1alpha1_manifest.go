@@ -128,8 +128,8 @@ func (r *WorkKarmadaIoWorkV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 				MarkdownDescription: "Spec represents the desired behavior of Work.",
 				Attributes: map[string]schema.Attribute{
 					"suspend_dispatching": schema.BoolAttribute{
-						Description:         "SuspendDispatching controls whether dispatching shouldbe suspended, nil means not suspend.Note: true means stop propagating to all clusters.",
-						MarkdownDescription: "SuspendDispatching controls whether dispatching shouldbe suspended, nil means not suspend.Note: true means stop propagating to all clusters.",
+						Description:         "SuspendDispatching controls whether dispatching should be suspended, nil means not suspend. Note: true means stop propagating to all clusters.",
+						MarkdownDescription: "SuspendDispatching controls whether dispatching should be suspended, nil means not suspend. Note: true means stop propagating to all clusters.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

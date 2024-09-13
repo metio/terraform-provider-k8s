@@ -180,12 +180,12 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "NodegroupSpec defines the desired state of Nodegroup.An object representing an Amazon EKS managed node group.",
-				MarkdownDescription: "NodegroupSpec defines the desired state of Nodegroup.An object representing an Amazon EKS managed node group.",
+				Description:         "NodegroupSpec defines the desired state of Nodegroup. An object representing an Amazon EKS managed node group.",
+				MarkdownDescription: "NodegroupSpec defines the desired state of Nodegroup. An object representing an Amazon EKS managed node group.",
 				Attributes: map[string]schema.Attribute{
 					"ami_type": schema.StringAttribute{
-						Description:         "The AMI type for your node group. If you specify launchTemplate, and yourlaunch template uses a custom AMI, then don't specify amiType, or the nodegroup deployment will fail. If your launch template uses a Windows customAMI, then add eks:kube-proxy-windows to your Windows nodes rolearn in theaws-auth ConfigMap. For more information about using launch templates withAmazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
-						MarkdownDescription: "The AMI type for your node group. If you specify launchTemplate, and yourlaunch template uses a custom AMI, then don't specify amiType, or the nodegroup deployment will fail. If your launch template uses a Windows customAMI, then add eks:kube-proxy-windows to your Windows nodes rolearn in theaws-auth ConfigMap. For more information about using launch templates withAmazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
+						Description:         "The AMI type for your node group. If you specify launchTemplate, and your launch template uses a custom AMI, then don't specify amiType, or the node group deployment will fail. If your launch template uses a Windows custom AMI, then add eks:kube-proxy-windows to your Windows nodes rolearn in the aws-auth ConfigMap. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
+						MarkdownDescription: "The AMI type for your node group. If you specify launchTemplate, and your launch template uses a custom AMI, then don't specify amiType, or the node group deployment will fail. If your launch template uses a Windows custom AMI, then add eks:kube-proxy-windows to your Windows nodes rolearn in the aws-auth ConfigMap. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -200,8 +200,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"client_request_token": schema.StringAttribute{
-						Description:         "A unique, case-sensitive identifier that you provide to ensure the idempotencyof the request.",
-						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensure the idempotencyof the request.",
+						Description:         "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -216,12 +216,12 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"cluster_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -250,16 +250,16 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"disk_size": schema.Int64Attribute{
-						Description:         "The root device disk size (in GiB) for your node group instances. The defaultdisk size is 20 GiB for Linux and Bottlerocket. The default disk size is50 GiB for Windows. If you specify launchTemplate, then don't specify diskSize,or the node group deployment will fail. For more information about usinglaunch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
-						MarkdownDescription: "The root device disk size (in GiB) for your node group instances. The defaultdisk size is 20 GiB for Linux and Bottlerocket. The default disk size is50 GiB for Windows. If you specify launchTemplate, then don't specify diskSize,or the node group deployment will fail. For more information about usinglaunch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
+						Description:         "The root device disk size (in GiB) for your node group instances. The default disk size is 20 GiB for Linux and Bottlerocket. The default disk size is 50 GiB for Windows. If you specify launchTemplate, then don't specify diskSize, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
+						MarkdownDescription: "The root device disk size (in GiB) for your node group instances. The default disk size is 20 GiB for Linux and Bottlerocket. The default disk size is 50 GiB for Windows. If you specify launchTemplate, then don't specify diskSize, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"instance_types": schema.ListAttribute{
-						Description:         "Specify the instance types for a node group. If you specify a GPU instancetype, make sure to also specify an applicable GPU AMI type with the amiTypeparameter. If you specify launchTemplate, then you can specify zero or oneinstance type in your launch template or you can specify 0-20 instance typesfor instanceTypes. If however, you specify an instance type in your launchtemplate and specify any instanceTypes, the node group deployment will fail.If you don't specify an instance type in a launch template or for instanceTypes,then t3.medium is used, by default. If you specify Spot for capacityType,then we recommend specifying multiple values for instanceTypes. For moreinformation, see Managed node group capacity types (https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html#managed-node-group-capacity-types)and Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
-						MarkdownDescription: "Specify the instance types for a node group. If you specify a GPU instancetype, make sure to also specify an applicable GPU AMI type with the amiTypeparameter. If you specify launchTemplate, then you can specify zero or oneinstance type in your launch template or you can specify 0-20 instance typesfor instanceTypes. If however, you specify an instance type in your launchtemplate and specify any instanceTypes, the node group deployment will fail.If you don't specify an instance type in a launch template or for instanceTypes,then t3.medium is used, by default. If you specify Spot for capacityType,then we recommend specifying multiple values for instanceTypes. For moreinformation, see Managed node group capacity types (https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html#managed-node-group-capacity-types)and Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
+						Description:         "Specify the instance types for a node group. If you specify a GPU instance type, make sure to also specify an applicable GPU AMI type with the amiType parameter. If you specify launchTemplate, then you can specify zero or one instance type in your launch template or you can specify 0-20 instance types for instanceTypes. If however, you specify an instance type in your launch template and specify any instanceTypes, the node group deployment will fail. If you don't specify an instance type in a launch template or for instanceTypes, then t3.medium is used, by default. If you specify Spot for capacityType, then we recommend specifying multiple values for instanceTypes. For more information, see Managed node group capacity types (https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html#managed-node-group-capacity-types) and Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
+						MarkdownDescription: "Specify the instance types for a node group. If you specify a GPU instance type, make sure to also specify an applicable GPU AMI type with the amiType parameter. If you specify launchTemplate, then you can specify zero or one instance type in your launch template or you can specify 0-20 instance types for instanceTypes. If however, you specify an instance type in your launch template and specify any instanceTypes, the node group deployment will fail. If you don't specify an instance type in a launch template or for instanceTypes, then t3.medium is used, by default. If you specify Spot for capacityType, then we recommend specifying multiple values for instanceTypes. For more information, see Managed node group capacity types (https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html#managed-node-group-capacity-types) and Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -267,8 +267,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"labels": schema.MapAttribute{
-						Description:         "The Kubernetes labels to apply to the nodes in the node group when they arecreated.",
-						MarkdownDescription: "The Kubernetes labels to apply to the nodes in the node group when they arecreated.",
+						Description:         "The Kubernetes labels to apply to the nodes in the node group when they are created.",
+						MarkdownDescription: "The Kubernetes labels to apply to the nodes in the node group when they are created.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -276,8 +276,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"launch_template": schema.SingleNestedAttribute{
-						Description:         "An object representing a node group's launch template specification. If specified,then do not specify instanceTypes, diskSize, or remoteAccess and make surethat the launch template meets the requirements in launchTemplateSpecification.",
-						MarkdownDescription: "An object representing a node group's launch template specification. If specified,then do not specify instanceTypes, diskSize, or remoteAccess and make surethat the launch template meets the requirements in launchTemplateSpecification.",
+						Description:         "An object representing a node group's launch template specification. If specified, then do not specify instanceTypes, diskSize, or remoteAccess and make sure that the launch template meets the requirements in launchTemplateSpecification.",
+						MarkdownDescription: "An object representing a node group's launch template specification. If specified, then do not specify instanceTypes, diskSize, or remoteAccess and make sure that the launch template meets the requirements in launchTemplateSpecification.",
 						Attributes: map[string]schema.Attribute{
 							"id": schema.StringAttribute{
 								Description:         "",
@@ -317,20 +317,20 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"node_role": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the IAM role to associate with your nodegroup. The Amazon EKS worker node kubelet daemon makes calls to Amazon WebServices APIs on your behalf. Nodes receive permissions for these API callsthrough an IAM instance profile and associated policies. Before you can launchnodes and register them into a cluster, you must create an IAM role for thosenodes to use when they are launched. For more information, see Amazon EKSnode IAM role (https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html)in the Amazon EKS User Guide . If you specify launchTemplate, then don'tspecify IamInstanceProfile (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_IamInstanceProfile.html)in your launch template, or the node group deployment will fail. For moreinformation about using launch templates with Amazon EKS, see Launch templatesupport (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM role to associate with your nodegroup. The Amazon EKS worker node kubelet daemon makes calls to Amazon WebServices APIs on your behalf. Nodes receive permissions for these API callsthrough an IAM instance profile and associated policies. Before you can launchnodes and register them into a cluster, you must create an IAM role for thosenodes to use when they are launched. For more information, see Amazon EKSnode IAM role (https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html)in the Amazon EKS User Guide . If you specify launchTemplate, then don'tspecify IamInstanceProfile (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_IamInstanceProfile.html)in your launch template, or the node group deployment will fail. For moreinformation about using launch templates with Amazon EKS, see Launch templatesupport (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
+						Description:         "The Amazon Resource Name (ARN) of the IAM role to associate with your node group. The Amazon EKS worker node kubelet daemon makes calls to Amazon Web Services APIs on your behalf. Nodes receive permissions for these API calls through an IAM instance profile and associated policies. Before you can launch nodes and register them into a cluster, you must create an IAM role for those nodes to use when they are launched. For more information, see Amazon EKS node IAM role (https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html) in the Amazon EKS User Guide . If you specify launchTemplate, then don't specify IamInstanceProfile (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_IamInstanceProfile.html) in your launch template, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM role to associate with your node group. The Amazon EKS worker node kubelet daemon makes calls to Amazon Web Services APIs on your behalf. Nodes receive permissions for these API calls through an IAM instance profile and associated policies. Before you can launch nodes and register them into a cluster, you must create an IAM role for those nodes to use when they are launched. For more information, see Amazon EKS node IAM role (https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html) in the Amazon EKS User Guide . If you specify launchTemplate, then don't specify IamInstanceProfile (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_IamInstanceProfile.html) in your launch template, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"node_role_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -359,16 +359,16 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"release_version": schema.StringAttribute{
-						Description:         "The AMI version of the Amazon EKS optimized AMI to use with your node group.By default, the latest available AMI version for the node group's currentKubernetes version is used. For information about Linux versions, see AmazonEKS optimized Amazon Linux AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html)in the Amazon EKS User Guide. Amazon EKS managed node groups support theNovember 2022 and later releases of the Windows AMIs. For information aboutWindows versions, see Amazon EKS optimized Windows AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-ami-versions-windows.html)in the Amazon EKS User Guide.If you specify launchTemplate, and your launch template uses a custom AMI,then don't specify releaseVersion, or the node group deployment will fail.For more information about using launch templates with Amazon EKS, see Launchtemplate support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
-						MarkdownDescription: "The AMI version of the Amazon EKS optimized AMI to use with your node group.By default, the latest available AMI version for the node group's currentKubernetes version is used. For information about Linux versions, see AmazonEKS optimized Amazon Linux AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html)in the Amazon EKS User Guide. Amazon EKS managed node groups support theNovember 2022 and later releases of the Windows AMIs. For information aboutWindows versions, see Amazon EKS optimized Windows AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-ami-versions-windows.html)in the Amazon EKS User Guide.If you specify launchTemplate, and your launch template uses a custom AMI,then don't specify releaseVersion, or the node group deployment will fail.For more information about using launch templates with Amazon EKS, see Launchtemplate support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
+						Description:         "The AMI version of the Amazon EKS optimized AMI to use with your node group. By default, the latest available AMI version for the node group's current Kubernetes version is used. For information about Linux versions, see Amazon EKS optimized Amazon Linux AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html) in the Amazon EKS User Guide. Amazon EKS managed node groups support the November 2022 and later releases of the Windows AMIs. For information about Windows versions, see Amazon EKS optimized Windows AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-ami-versions-windows.html) in the Amazon EKS User Guide. If you specify launchTemplate, and your launch template uses a custom AMI, then don't specify releaseVersion, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
+						MarkdownDescription: "The AMI version of the Amazon EKS optimized AMI to use with your node group. By default, the latest available AMI version for the node group's current Kubernetes version is used. For information about Linux versions, see Amazon EKS optimized Amazon Linux AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html) in the Amazon EKS User Guide. Amazon EKS managed node groups support the November 2022 and later releases of the Windows AMIs. For information about Windows versions, see Amazon EKS optimized Windows AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-ami-versions-windows.html) in the Amazon EKS User Guide. If you specify launchTemplate, and your launch template uses a custom AMI, then don't specify releaseVersion, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"remote_access": schema.SingleNestedAttribute{
-						Description:         "The remote access configuration to use with your node group. For Linux, theprotocol is SSH. For Windows, the protocol is RDP. If you specify launchTemplate,then don't specify remoteAccess, or the node group deployment will fail.For more information about using launch templates with Amazon EKS, see Launchtemplate support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
-						MarkdownDescription: "The remote access configuration to use with your node group. For Linux, theprotocol is SSH. For Windows, the protocol is RDP. If you specify launchTemplate,then don't specify remoteAccess, or the node group deployment will fail.For more information about using launch templates with Amazon EKS, see Launchtemplate support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
+						Description:         "The remote access configuration to use with your node group. For Linux, the protocol is SSH. For Windows, the protocol is RDP. If you specify launchTemplate, then don't specify remoteAccess, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
+						MarkdownDescription: "The remote access configuration to use with your node group. For Linux, the protocol is SSH. For Windows, the protocol is RDP. If you specify launchTemplate, then don't specify remoteAccess, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
 						Attributes: map[string]schema.Attribute{
 							"ec2_ssh_key": schema.StringAttribute{
 								Description:         "",
@@ -384,8 +384,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"from": schema.SingleNestedAttribute{
-											Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+											Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "",
@@ -429,8 +429,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"scaling_config": schema.SingleNestedAttribute{
-						Description:         "The scaling configuration details for the Auto Scaling group that is createdfor your node group.",
-						MarkdownDescription: "The scaling configuration details for the Auto Scaling group that is createdfor your node group.",
+						Description:         "The scaling configuration details for the Auto Scaling group that is created for your node group.",
+						MarkdownDescription: "The scaling configuration details for the Auto Scaling group that is created for your node group.",
 						Attributes: map[string]schema.Attribute{
 							"desired_size": schema.Int64Attribute{
 								Description:         "",
@@ -467,8 +467,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -498,8 +498,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"subnets": schema.ListAttribute{
-						Description:         "The subnets to use for the Auto Scaling group that is created for your nodegroup. If you specify launchTemplate, then don't specify SubnetId (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html)in your launch template, or the node group deployment will fail. For moreinformation about using launch templates with Amazon EKS, see Launch templatesupport (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
-						MarkdownDescription: "The subnets to use for the Auto Scaling group that is created for your nodegroup. If you specify launchTemplate, then don't specify SubnetId (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html)in your launch template, or the node group deployment will fail. For moreinformation about using launch templates with Amazon EKS, see Launch templatesupport (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
+						Description:         "The subnets to use for the Auto Scaling group that is created for your node group. If you specify launchTemplate, then don't specify SubnetId (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html) in your launch template, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
+						MarkdownDescription: "The subnets to use for the Auto Scaling group that is created for your node group. If you specify launchTemplate, then don't specify SubnetId (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html) in your launch template, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -507,8 +507,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "Metadata that assists with categorization and organization. Each tag consistsof a key and an optional value. You define both. Tags don't propagate toany other cluster or Amazon Web Services resources.",
-						MarkdownDescription: "Metadata that assists with categorization and organization. Each tag consistsof a key and an optional value. You define both. Tags don't propagate toany other cluster or Amazon Web Services resources.",
+						Description:         "Metadata that assists with categorization and organization. Each tag consists of a key and an optional value. You define both. Tags don't propagate to any other cluster or Amazon Web Services resources.",
+						MarkdownDescription: "Metadata that assists with categorization and organization. Each tag consists of a key and an optional value. You define both. Tags don't propagate to any other cluster or Amazon Web Services resources.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -516,8 +516,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"taints": schema.ListNestedAttribute{
-						Description:         "The Kubernetes taints to be applied to the nodes in the node group. For moreinformation, see Node taints on managed node groups (https://docs.aws.amazon.com/eks/latest/userguide/node-taints-managed-node-groups.html).",
-						MarkdownDescription: "The Kubernetes taints to be applied to the nodes in the node group. For moreinformation, see Node taints on managed node groups (https://docs.aws.amazon.com/eks/latest/userguide/node-taints-managed-node-groups.html).",
+						Description:         "The Kubernetes taints to be applied to the nodes in the node group. For more information, see Node taints on managed node groups (https://docs.aws.amazon.com/eks/latest/userguide/node-taints-managed-node-groups.html).",
+						MarkdownDescription: "The Kubernetes taints to be applied to the nodes in the node group. For more information, see Node taints on managed node groups (https://docs.aws.amazon.com/eks/latest/userguide/node-taints-managed-node-groups.html).",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"effect": schema.StringAttribute{
@@ -576,8 +576,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"version": schema.StringAttribute{
-						Description:         "The Kubernetes version to use for your managed nodes. By default, the Kubernetesversion of the cluster is used, and this is the only accepted specified value.If you specify launchTemplate, and your launch template uses a custom AMI,then don't specify version, or the node group deployment will fail. For moreinformation about using launch templates with Amazon EKS, see Launch templatesupport (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
-						MarkdownDescription: "The Kubernetes version to use for your managed nodes. By default, the Kubernetesversion of the cluster is used, and this is the only accepted specified value.If you specify launchTemplate, and your launch template uses a custom AMI,then don't specify version, or the node group deployment will fail. For moreinformation about using launch templates with Amazon EKS, see Launch templatesupport (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)in the Amazon EKS User Guide.",
+						Description:         "The Kubernetes version to use for your managed nodes. By default, the Kubernetes version of the cluster is used, and this is the only accepted specified value. If you specify launchTemplate, and your launch template uses a custom AMI, then don't specify version, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
+						MarkdownDescription: "The Kubernetes version to use for your managed nodes. By default, the Kubernetes version of the cluster is used, and this is the only accepted specified value. If you specify launchTemplate, and your launch template uses a custom AMI, then don't specify version, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

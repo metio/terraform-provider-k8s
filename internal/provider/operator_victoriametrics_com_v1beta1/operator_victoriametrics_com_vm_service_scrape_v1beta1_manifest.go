@@ -271,8 +271,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Metadata(_ co
 
 func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VMServiceScrape is scrape configuration for endpoints associated withkubernetes service,it generates scrape configuration for vmagent based on selectors.result config will scrape service endpoints",
-		MarkdownDescription: "VMServiceScrape is scrape configuration for endpoints associated withkubernetes service,it generates scrape configuration for vmagent based on selectors.result config will scrape service endpoints",
+		Description:         "VMServiceScrape is scrape configuration for endpoints associated with kubernetes service, it generates scrape configuration for vmagent based on selectors. result config will scrape service endpoints",
+		MarkdownDescription: "VMServiceScrape is scrape configuration for endpoints associated with kubernetes service, it generates scrape configuration for vmagent based on selectors. result config will scrape service endpoints",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -347,8 +347,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 						MarkdownDescription: "AttachMetadata configures metadata attaching from service discovery",
 						Attributes: map[string]schema.Attribute{
 							"node": schema.BoolAttribute{
-								Description:         "Node instructs vmagent to add node specific metadata from service discoveryValid for roles: pod, endpoints, endpointslice.",
-								MarkdownDescription: "Node instructs vmagent to add node specific metadata from service discoveryValid for roles: pod, endpoints, endpointslice.",
+								Description:         "Node instructs vmagent to add node specific metadata from service discovery Valid for roles: pod, endpoints, endpointslice.",
+								MarkdownDescription: "Node instructs vmagent to add node specific metadata from service discovery Valid for roles: pod, endpoints, endpointslice.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -360,8 +360,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 					},
 
 					"discovery_role": schema.StringAttribute{
-						Description:         "DiscoveryRole - defines kubernetes_sd role for objects discovery.by default, its endpoints.can be changed to service or endpointslices.note, that with service setting, you have to use port: 'name'and cannot use targetPort for endpoints.",
-						MarkdownDescription: "DiscoveryRole - defines kubernetes_sd role for objects discovery.by default, its endpoints.can be changed to service or endpointslices.note, that with service setting, you have to use port: 'name'and cannot use targetPort for endpoints.",
+						Description:         "DiscoveryRole - defines kubernetes_sd role for objects discovery. by default, its endpoints. can be changed to service or endpointslices. note, that with service setting, you have to use port: 'name' and cannot use targetPort for endpoints.",
+						MarkdownDescription: "DiscoveryRole - defines kubernetes_sd role for objects discovery. by default, its endpoints. can be changed to service or endpointslices. note, that with service setting, you have to use port: 'name' and cannot use targetPort for endpoints.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -380,8 +380,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 									MarkdownDescription: "AttachMetadata configures metadata attaching from service discovery",
 									Attributes: map[string]schema.Attribute{
 										"node": schema.BoolAttribute{
-											Description:         "Node instructs vmagent to add node specific metadata from service discoveryValid for roles: pod, endpoints, endpointslice.",
-											MarkdownDescription: "Node instructs vmagent to add node specific metadata from service discoveryValid for roles: pod, endpoints, endpointslice.",
+											Description:         "Node instructs vmagent to add node specific metadata from service discovery Valid for roles: pod, endpoints, endpointslice.",
+											MarkdownDescription: "Node instructs vmagent to add node specific metadata from service discovery Valid for roles: pod, endpoints, endpointslice.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -401,16 +401,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 											MarkdownDescription: "Reference to the secret with value for authorization",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -451,24 +451,24 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 								},
 
 								"basic_auth": schema.SingleNestedAttribute{
-									Description:         "BasicAuth allow an endpoint to authenticate over basic authenticationMore info: https://prometheus.io/docs/operating/configuration/#endpoints",
-									MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authenticationMore info: https://prometheus.io/docs/operating/configuration/#endpoints",
+									Description:         "BasicAuth allow an endpoint to authenticate over basic authentication More info: https://prometheus.io/docs/operating/configuration/#endpoints",
+									MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication More info: https://prometheus.io/docs/operating/configuration/#endpoints",
 									Attributes: map[string]schema.Attribute{
 										"password": schema.SingleNestedAttribute{
-											Description:         "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
-											MarkdownDescription: "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
+											Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+											MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -496,20 +496,20 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 										},
 
 										"username": schema.SingleNestedAttribute{
-											Description:         "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
-											MarkdownDescription: "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
+											Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+											MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -542,20 +542,20 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 								},
 
 								"bearer_token_secret": schema.SingleNestedAttribute{
-									Description:         "Secret to mount to read bearer token for scraping targets. The secretneeds to be in the same namespace as the service scrape and accessible bythe victoria-metrics operator.",
-									MarkdownDescription: "Secret to mount to read bearer token for scraping targets. The secretneeds to be in the same namespace as the service scrape and accessible bythe victoria-metrics operator.",
+									Description:         "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the service scrape and accessible by the victoria-metrics operator.",
+									MarkdownDescription: "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the service scrape and accessible by the victoria-metrics operator.",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Description:         "The key of the secret to select from. Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -654,8 +654,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 											},
 
 											"regex": schema.MapAttribute{
-												Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
-												MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+												Description:         "Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+												MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -663,8 +663,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 											},
 
 											"replacement": schema.StringAttribute{
-												Description:         "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
-												MarkdownDescription: "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
+												Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+												MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -679,8 +679,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 											},
 
 											"source_labels": schema.ListAttribute{
-												Description:         "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
-												MarkdownDescription: "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
+												Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+												MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -688,8 +688,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 											},
 
 											"target_label": schema.StringAttribute{
-												Description:         "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
-												MarkdownDescription: "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
+												Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+												MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -722,8 +722,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -747,16 +747,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 													MarkdownDescription: "Secret containing data to use for the targets.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -785,16 +785,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 											MarkdownDescription: "The secret containing the OAuth2 client secret",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -889,8 +889,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 								},
 
 								"relabel_configs": schema.ListNestedAttribute{
-									Description:         "RelabelConfigs to apply to samples before scraping.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
-									MarkdownDescription: "RelabelConfigs to apply to samples before scraping.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+									Description:         "RelabelConfigs to apply to samples before scraping. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+									MarkdownDescription: "RelabelConfigs to apply to samples before scraping. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"action": schema.StringAttribute{
@@ -936,8 +936,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 											},
 
 											"regex": schema.MapAttribute{
-												Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
-												MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+												Description:         "Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
+												MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -945,8 +945,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 											},
 
 											"replacement": schema.StringAttribute{
-												Description:         "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
-												MarkdownDescription: "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
+												Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+												MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -961,8 +961,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 											},
 
 											"source_labels": schema.ListAttribute{
-												Description:         "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
-												MarkdownDescription: "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
+												Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+												MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -970,8 +970,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 											},
 
 											"target_label": schema.StringAttribute{
-												Description:         "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
-												MarkdownDescription: "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
+												Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+												MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1011,16 +1011,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 								},
 
 								"scrape_interval": schema.StringAttribute{
-									Description:         "ScrapeInterval is the same as Interval and has priority over it.one of scrape_interval or interval can be used",
-									MarkdownDescription: "ScrapeInterval is the same as Interval and has priority over it.one of scrape_interval or interval can be used",
+									Description:         "ScrapeInterval is the same as Interval and has priority over it. one of scrape_interval or interval can be used",
+									MarkdownDescription: "ScrapeInterval is the same as Interval and has priority over it. one of scrape_interval or interval can be used",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"series_limit": schema.Int64Attribute{
-									Description:         "SeriesLimit defines per-scrape limit on number of unique time seriesa single target can expose during all the scrapes on the time window of 24h.",
-									MarkdownDescription: "SeriesLimit defines per-scrape limit on number of unique time seriesa single target can expose during all the scrapes on the time window of 24h.",
+									Description:         "SeriesLimit defines per-scrape limit on number of unique time series a single target can expose during all the scrapes on the time window of 24h.",
+									MarkdownDescription: "SeriesLimit defines per-scrape limit on number of unique time series a single target can expose during all the scrapes on the time window of 24h.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1055,8 +1055,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1080,16 +1080,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 													MarkdownDescription: "Secret containing data to use for the targets.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1138,8 +1138,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1163,16 +1163,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 													MarkdownDescription: "Secret containing data to use for the targets.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1225,16 +1225,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 											MarkdownDescription: "Secret containing the client key file for the targets.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1279,16 +1279,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 										},
 
 										"disable_keep_alive": schema.BoolAttribute{
-											Description:         "disable_keepalive allows disabling HTTP keep-alive when scraping targets.By default, HTTP keep-alive is enabled, so TCP connections to scrape targetscould be re-used.See https://docs.victoriametrics.com/vmagent.html#scrape_config-enhancements",
-											MarkdownDescription: "disable_keepalive allows disabling HTTP keep-alive when scraping targets.By default, HTTP keep-alive is enabled, so TCP connections to scrape targetscould be re-used.See https://docs.victoriametrics.com/vmagent.html#scrape_config-enhancements",
+											Description:         "disable_keepalive allows disabling HTTP keep-alive when scraping targets. By default, HTTP keep-alive is enabled, so TCP connections to scrape targets could be re-used. See https://docs.victoriametrics.com/vmagent.html#scrape_config-enhancements",
+											MarkdownDescription: "disable_keepalive allows disabling HTTP keep-alive when scraping targets. By default, HTTP keep-alive is enabled, so TCP connections to scrape targets could be re-used. See https://docs.victoriametrics.com/vmagent.html#scrape_config-enhancements",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"headers": schema.ListAttribute{
-											Description:         "Headers allows sending custom headers to scrape targetsmust be in of semicolon separated header with it's valueeg:headerName: headerValuevmagent supports since 1.79.0 version",
-											MarkdownDescription: "Headers allows sending custom headers to scrape targetsmust be in of semicolon separated header with it's valueeg:headerName: headerValuevmagent supports since 1.79.0 version",
+											Description:         "Headers allows sending custom headers to scrape targets must be in of semicolon separated header with it's value eg: headerName: headerValue vmagent supports since 1.79.0 version",
+											MarkdownDescription: "Headers allows sending custom headers to scrape targets must be in of semicolon separated header with it's value eg: headerName: headerValue vmagent supports since 1.79.0 version",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1312,28 +1312,28 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 										},
 
 										"proxy_client_config": schema.SingleNestedAttribute{
-											Description:         "ProxyClientConfig configures proxy auth settings for scrapingSee feature description https://docs.victoriametrics.com/vmagent.html#scraping-targets-via-a-proxy",
-											MarkdownDescription: "ProxyClientConfig configures proxy auth settings for scrapingSee feature description https://docs.victoriametrics.com/vmagent.html#scraping-targets-via-a-proxy",
+											Description:         "ProxyClientConfig configures proxy auth settings for scraping See feature description https://docs.victoriametrics.com/vmagent.html#scraping-targets-via-a-proxy",
+											MarkdownDescription: "ProxyClientConfig configures proxy auth settings for scraping See feature description https://docs.victoriametrics.com/vmagent.html#scraping-targets-via-a-proxy",
 											Attributes: map[string]schema.Attribute{
 												"basic_auth": schema.SingleNestedAttribute{
 													Description:         "BasicAuth allow an endpoint to authenticate over basic authentication",
 													MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication",
 													Attributes: map[string]schema.Attribute{
 														"password": schema.SingleNestedAttribute{
-															Description:         "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
-															MarkdownDescription: "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
+															Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+															MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1361,20 +1361,20 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 														},
 
 														"username": schema.SingleNestedAttribute{
-															Description:         "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
-															MarkdownDescription: "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
+															Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+															MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1403,16 +1403,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 													MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1460,8 +1460,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1485,16 +1485,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 																	MarkdownDescription: "Secret containing data to use for the targets.",
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																			Description:         "The key of the secret to select from. Must be a valid secret key.",
+																			MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1543,8 +1543,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1568,16 +1568,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 																	MarkdownDescription: "Secret containing data to use for the targets.",
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																			Description:         "The key of the secret to select from. Must be a valid secret key.",
+																			MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1630,16 +1630,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 															MarkdownDescription: "Secret containing the client key file for the targets.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1732,8 +1732,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 						MarkdownDescription: "Selector to select which namespaces the Endpoints objects are discovered from.",
 						Attributes: map[string]schema.Attribute{
 							"any": schema.BoolAttribute{
-								Description:         "Boolean describing whether all namespaces are selected in contrast to alist restricting them.",
-								MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to alist restricting them.",
+								Description:         "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
+								MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1788,16 +1788,16 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1811,8 +1811,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1825,8 +1825,8 @@ func (r *OperatorVictoriametricsComVmserviceScrapeV1Beta1Manifest) Schema(_ cont
 					},
 
 					"series_limit": schema.Int64Attribute{
-						Description:         "SeriesLimit defines per-scrape limit on number of unique time seriesa single target can expose during all the scrapes on the time window of 24h.",
-						MarkdownDescription: "SeriesLimit defines per-scrape limit on number of unique time seriesa single target can expose during all the scrapes on the time window of 24h.",
+						Description:         "SeriesLimit defines per-scrape limit on number of unique time series a single target can expose during all the scrapes on the time window of 24h.",
+						MarkdownDescription: "SeriesLimit defines per-scrape limit on number of unique time series a single target can expose during all the scrapes on the time window of 24h.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

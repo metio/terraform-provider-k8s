@@ -52,12 +52,15 @@ type ImageToolkitFluxcdIoImageRepositoryV1Beta2ManifestData struct {
 		CertSecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"cert_secret_ref" json:"certSecretRef,omitempty"`
-		ExclusionList *[]string `tfsdk:"exclusion_list" json:"exclusionList,omitempty"`
-		Image         *string   `tfsdk:"image" json:"image,omitempty"`
-		Insecure      *bool     `tfsdk:"insecure" json:"insecure,omitempty"`
-		Interval      *string   `tfsdk:"interval" json:"interval,omitempty"`
-		Provider      *string   `tfsdk:"provider" json:"provider,omitempty"`
-		SecretRef     *struct {
+		ExclusionList  *[]string `tfsdk:"exclusion_list" json:"exclusionList,omitempty"`
+		Image          *string   `tfsdk:"image" json:"image,omitempty"`
+		Insecure       *bool     `tfsdk:"insecure" json:"insecure,omitempty"`
+		Interval       *string   `tfsdk:"interval" json:"interval,omitempty"`
+		Provider       *string   `tfsdk:"provider" json:"provider,omitempty"`
+		ProxySecretRef *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"proxy_secret_ref" json:"proxySecretRef,omitempty"`
+		SecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
@@ -140,21 +143,21 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ImageRepositorySpec defines the parameters for scanning an imagerepository, e.g., 'fluxcd/flux'.",
-				MarkdownDescription: "ImageRepositorySpec defines the parameters for scanning an imagerepository, e.g., 'fluxcd/flux'.",
+				Description:         "ImageRepositorySpec defines the parameters for scanning an image repository, e.g., 'fluxcd/flux'.",
+				MarkdownDescription: "ImageRepositorySpec defines the parameters for scanning an image repository, e.g., 'fluxcd/flux'.",
 				Attributes: map[string]schema.Attribute{
 					"access_from": schema.SingleNestedAttribute{
-						Description:         "AccessFrom defines an ACL for allowing cross-namespace referencesto the ImageRepository object based on the caller's namespace labels.",
-						MarkdownDescription: "AccessFrom defines an ACL for allowing cross-namespace referencesto the ImageRepository object based on the caller's namespace labels.",
+						Description:         "AccessFrom defines an ACL for allowing cross-namespace references to the ImageRepository object based on the caller's namespace labels.",
+						MarkdownDescription: "AccessFrom defines an ACL for allowing cross-namespace references to the ImageRepository object based on the caller's namespace labels.",
 						Attributes: map[string]schema.Attribute{
 							"namespace_selectors": schema.ListNestedAttribute{
-								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
-								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
+								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
+								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"match_labels": schema.MapAttribute{
-											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -173,8 +176,8 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 					},
 
 					"cert_secret_ref": schema.SingleNestedAttribute{
-						Description:         "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theregistry. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.Note: Support for the 'caFile', 'certFile' and 'keyFile' keys hasbeen deprecated.",
-						MarkdownDescription: "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theregistry. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.Note: Support for the 'caFile', 'certFile' and 'keyFile' keys hasbeen deprecated.",
+						Description:         "CertSecretRef can be given the name of a Secret containing either or both of - a PEM-encoded client certificate ('tls.crt') and private key ('tls.key'); - a PEM-encoded CA certificate ('ca.crt') and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type 'Opaque' or 'kubernetes.io/tls'. Note: Support for the 'caFile', 'certFile' and 'keyFile' keys has been deprecated.",
+						MarkdownDescription: "CertSecretRef can be given the name of a Secret containing either or both of - a PEM-encoded client certificate ('tls.crt') and private key ('tls.key'); - a PEM-encoded CA certificate ('ca.crt') and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type 'Opaque' or 'kubernetes.io/tls'. Note: Support for the 'caFile', 'certFile' and 'keyFile' keys has been deprecated.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -190,8 +193,8 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 					},
 
 					"exclusion_list": schema.ListAttribute{
-						Description:         "ExclusionList is a list of regex strings used to exclude certain tagsfrom being stored in the database.",
-						MarkdownDescription: "ExclusionList is a list of regex strings used to exclude certain tagsfrom being stored in the database.",
+						Description:         "ExclusionList is a list of regex strings used to exclude certain tags from being stored in the database.",
+						MarkdownDescription: "ExclusionList is a list of regex strings used to exclude certain tags from being stored in the database.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -201,8 +204,8 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 					"image": schema.StringAttribute{
 						Description:         "Image is the name of the image repository",
 						MarkdownDescription: "Image is the name of the image repository",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 					},
 
@@ -215,10 +218,10 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 					},
 
 					"interval": schema.StringAttribute{
-						Description:         "Interval is the length of time to wait betweenscans of the image repository.",
-						MarkdownDescription: "Interval is the length of time to wait betweenscans of the image repository.",
-						Required:            false,
-						Optional:            true,
+						Description:         "Interval is the length of time to wait between scans of the image repository.",
+						MarkdownDescription: "Interval is the length of time to wait between scans of the image repository.",
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
@@ -226,8 +229,8 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 					},
 
 					"provider": schema.StringAttribute{
-						Description:         "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'.When not specified, defaults to 'generic'.",
-						MarkdownDescription: "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'.When not specified, defaults to 'generic'.",
+						Description:         "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.",
+						MarkdownDescription: "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -236,9 +239,26 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 						},
 					},
 
+					"proxy_secret_ref": schema.SingleNestedAttribute{
+						Description:         "ProxySecretRef specifies the Secret containing the proxy configuration to use while communicating with the container registry.",
+						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configuration to use while communicating with the container registry.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "SecretRef can be given the name of a secret containingcredentials to use for the image registry. The secret should becreated with 'kubectl create secret docker-registry', or theequivalent.",
-						MarkdownDescription: "SecretRef can be given the name of a secret containingcredentials to use for the image registry. The secret should becreated with 'kubectl create secret docker-registry', or theequivalent.",
+						Description:         "SecretRef can be given the name of a secret containing credentials to use for the image registry. The secret should be created with 'kubectl create secret docker-registry', or the equivalent.",
+						MarkdownDescription: "SecretRef can be given the name of a secret containing credentials to use for the image registry. The secret should be created with 'kubectl create secret docker-registry', or the equivalent.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -254,8 +274,8 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 					},
 
 					"service_account_name": schema.StringAttribute{
-						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticatethe image pull if the service account has attached pull secrets.",
-						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticatethe image pull if the service account has attached pull secrets.",
+						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets.",
+						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -265,16 +285,16 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta2Manifest) Schema(_ context.Co
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "This flag tells the controller to suspend subsequent image scans.It does not apply to already started scans. Defaults to false.",
-						MarkdownDescription: "This flag tells the controller to suspend subsequent image scans.It does not apply to already started scans. Defaults to false.",
+						Description:         "This flag tells the controller to suspend subsequent image scans. It does not apply to already started scans. Defaults to false.",
+						MarkdownDescription: "This flag tells the controller to suspend subsequent image scans. It does not apply to already started scans. Defaults to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"timeout": schema.StringAttribute{
-						Description:         "Timeout for image scanning.Defaults to 'Interval' duration.",
-						MarkdownDescription: "Timeout for image scanning.Defaults to 'Interval' duration.",
+						Description:         "Timeout for image scanning. Defaults to 'Interval' duration.",
+						MarkdownDescription: "Timeout for image scanning. Defaults to 'Interval' duration.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

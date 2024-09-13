@@ -214,8 +214,8 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 				MarkdownDescription: "Spec is the specification of the Kuma MeshProxyPatch resource.",
 				Attributes: map[string]schema.Attribute{
 					"default": schema.SingleNestedAttribute{
-						Description:         "Default is a configuration specific to the group of destinationsreferenced in 'targetRef'.",
-						MarkdownDescription: "Default is a configuration specific to the group of destinationsreferenced in 'targetRef'.",
+						Description:         "Default is a configuration specific to the group of destinations referenced in 'targetRef'.",
+						MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in 'targetRef'.",
 						Attributes: map[string]schema.Attribute{
 							"append_modifications": schema.ListNestedAttribute{
 								Description:         "AppendModifications is a list of modifications applied on the selected proxy.",
@@ -227,8 +227,8 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											MarkdownDescription: "Cluster is a modification of Envoy's Cluster resource.",
 											Attributes: map[string]schema.Attribute{
 												"json_patches": schema.ListNestedAttribute{
-													Description:         "JsonPatches specifies list of jsonpatches to apply to on Envoy's Clusterresource",
-													MarkdownDescription: "JsonPatches specifies list of jsonpatches to apply to on Envoy's Clusterresource",
+													Description:         "JsonPatches specifies list of jsonpatches to apply to on Envoy's Cluster resource",
+													MarkdownDescription: "JsonPatches specifies list of jsonpatches to apply to on Envoy's Cluster resource",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"from": schema.StringAttribute{
@@ -286,8 +286,8 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"origin": schema.StringAttribute{
-															Description:         "Origin is the name of the component or plugin that generated the resource.Here is the list of well-known origins:inbound - resources generated for handling incoming traffic.outbound - resources generated for handling outgoing traffic.transparent - resources generated for transparent proxy functionality.prometheus - resources generated when Prometheus metrics are enabled.direct-access - resources generated for Direct Access functionality.ingress - resources generated for Zone Ingress.egress - resources generated for Zone Egress.gateway - resources generated for MeshGateway.The list is not complete, because policy plugins can introduce new resources.For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
-															MarkdownDescription: "Origin is the name of the component or plugin that generated the resource.Here is the list of well-known origins:inbound - resources generated for handling incoming traffic.outbound - resources generated for handling outgoing traffic.transparent - resources generated for transparent proxy functionality.prometheus - resources generated when Prometheus metrics are enabled.direct-access - resources generated for Direct Access functionality.ingress - resources generated for Zone Ingress.egress - resources generated for Zone Egress.gateway - resources generated for MeshGateway.The list is not complete, because policy plugins can introduce new resources.For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
+															Description:         "Origin is the name of the component or plugin that generated the resource. Here is the list of well-known origins: inbound - resources generated for handling incoming traffic. outbound - resources generated for handling outgoing traffic. transparent - resources generated for transparent proxy functionality. prometheus - resources generated when Prometheus metrics are enabled. direct-access - resources generated for Direct Access functionality. ingress - resources generated for Zone Ingress. egress - resources generated for Zone Egress. gateway - resources generated for MeshGateway. The list is not complete, because policy plugins can introduce new resources. For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
+															MarkdownDescription: "Origin is the name of the component or plugin that generated the resource. Here is the list of well-known origins: inbound - resources generated for handling incoming traffic. outbound - resources generated for handling outgoing traffic. transparent - resources generated for transparent proxy functionality. prometheus - resources generated when Prometheus metrics are enabled. direct-access - resources generated for Direct Access functionality. ingress - resources generated for Zone Ingress. egress - resources generated for Zone Egress. gateway - resources generated for MeshGateway. The list is not complete, because policy plugins can introduce new resources. For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -323,12 +323,12 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"http_filter": schema.SingleNestedAttribute{
-											Description:         "HTTPFilter is a modification of Envoy HTTP Filteravailable in HTTP Connection Manager in a Listener resource.",
-											MarkdownDescription: "HTTPFilter is a modification of Envoy HTTP Filteravailable in HTTP Connection Manager in a Listener resource.",
+											Description:         "HTTPFilter is a modification of Envoy HTTP Filter available in HTTP Connection Manager in a Listener resource.",
+											MarkdownDescription: "HTTPFilter is a modification of Envoy HTTP Filter available in HTTP Connection Manager in a Listener resource.",
 											Attributes: map[string]schema.Attribute{
 												"json_patches": schema.ListNestedAttribute{
-													Description:         "JsonPatches specifies list of jsonpatches to apply to on Envoy'sHTTP Filter available in HTTP Connection Manager in a Listener resource.",
-													MarkdownDescription: "JsonPatches specifies list of jsonpatches to apply to on Envoy'sHTTP Filter available in HTTP Connection Manager in a Listener resource.",
+													Description:         "JsonPatches specifies list of jsonpatches to apply to on Envoy's HTTP Filter available in HTTP Connection Manager in a Listener resource.",
+													MarkdownDescription: "JsonPatches specifies list of jsonpatches to apply to on Envoy's HTTP Filter available in HTTP Connection Manager in a Listener resource.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"from": schema.StringAttribute{
@@ -403,8 +403,8 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"origin": schema.StringAttribute{
-															Description:         "Origin is the name of the component or plugin that generated the resource.Here is the list of well-known origins:inbound - resources generated for handling incoming traffic.outbound - resources generated for handling outgoing traffic.transparent - resources generated for transparent proxy functionality.prometheus - resources generated when Prometheus metrics are enabled.direct-access - resources generated for Direct Access functionality.ingress - resources generated for Zone Ingress.egress - resources generated for Zone Egress.gateway - resources generated for MeshGateway.The list is not complete, because policy plugins can introduce new resources.For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
-															MarkdownDescription: "Origin is the name of the component or plugin that generated the resource.Here is the list of well-known origins:inbound - resources generated for handling incoming traffic.outbound - resources generated for handling outgoing traffic.transparent - resources generated for transparent proxy functionality.prometheus - resources generated when Prometheus metrics are enabled.direct-access - resources generated for Direct Access functionality.ingress - resources generated for Zone Ingress.egress - resources generated for Zone Egress.gateway - resources generated for MeshGateway.The list is not complete, because policy plugins can introduce new resources.For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
+															Description:         "Origin is the name of the component or plugin that generated the resource. Here is the list of well-known origins: inbound - resources generated for handling incoming traffic. outbound - resources generated for handling outgoing traffic. transparent - resources generated for transparent proxy functionality. prometheus - resources generated when Prometheus metrics are enabled. direct-access - resources generated for Direct Access functionality. ingress - resources generated for Zone Ingress. egress - resources generated for Zone Egress. gateway - resources generated for MeshGateway. The list is not complete, because policy plugins can introduce new resources. For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
+															MarkdownDescription: "Origin is the name of the component or plugin that generated the resource. Here is the list of well-known origins: inbound - resources generated for handling incoming traffic. outbound - resources generated for handling outgoing traffic. transparent - resources generated for transparent proxy functionality. prometheus - resources generated when Prometheus metrics are enabled. direct-access - resources generated for Direct Access functionality. ingress - resources generated for Zone Ingress. egress - resources generated for Zone Egress. gateway - resources generated for MeshGateway. The list is not complete, because policy plugins can introduce new resources. For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -444,8 +444,8 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											MarkdownDescription: "Listener is a modification of Envoy's Listener resource.",
 											Attributes: map[string]schema.Attribute{
 												"json_patches": schema.ListNestedAttribute{
-													Description:         "JsonPatches specifies list of jsonpatches to apply to on Envoy's Listenerresource",
-													MarkdownDescription: "JsonPatches specifies list of jsonpatches to apply to on Envoy's Listenerresource",
+													Description:         "JsonPatches specifies list of jsonpatches to apply to on Envoy's Listener resource",
+													MarkdownDescription: "JsonPatches specifies list of jsonpatches to apply to on Envoy's Listener resource",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"from": schema.StringAttribute{
@@ -503,8 +503,8 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"origin": schema.StringAttribute{
-															Description:         "Origin is the name of the component or plugin that generated the resource.Here is the list of well-known origins:inbound - resources generated for handling incoming traffic.outbound - resources generated for handling outgoing traffic.transparent - resources generated for transparent proxy functionality.prometheus - resources generated when Prometheus metrics are enabled.direct-access - resources generated for Direct Access functionality.ingress - resources generated for Zone Ingress.egress - resources generated for Zone Egress.gateway - resources generated for MeshGateway.The list is not complete, because policy plugins can introduce new resources.For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
-															MarkdownDescription: "Origin is the name of the component or plugin that generated the resource.Here is the list of well-known origins:inbound - resources generated for handling incoming traffic.outbound - resources generated for handling outgoing traffic.transparent - resources generated for transparent proxy functionality.prometheus - resources generated when Prometheus metrics are enabled.direct-access - resources generated for Direct Access functionality.ingress - resources generated for Zone Ingress.egress - resources generated for Zone Egress.gateway - resources generated for MeshGateway.The list is not complete, because policy plugins can introduce new resources.For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
+															Description:         "Origin is the name of the component or plugin that generated the resource. Here is the list of well-known origins: inbound - resources generated for handling incoming traffic. outbound - resources generated for handling outgoing traffic. transparent - resources generated for transparent proxy functionality. prometheus - resources generated when Prometheus metrics are enabled. direct-access - resources generated for Direct Access functionality. ingress - resources generated for Zone Ingress. egress - resources generated for Zone Egress. gateway - resources generated for MeshGateway. The list is not complete, because policy plugins can introduce new resources. For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
+															MarkdownDescription: "Origin is the name of the component or plugin that generated the resource. Here is the list of well-known origins: inbound - resources generated for handling incoming traffic. outbound - resources generated for handling outgoing traffic. transparent - resources generated for transparent proxy functionality. prometheus - resources generated when Prometheus metrics are enabled. direct-access - resources generated for Direct Access functionality. ingress - resources generated for Zone Ingress. egress - resources generated for Zone Egress. gateway - resources generated for MeshGateway. The list is not complete, because policy plugins can introduce new resources. For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -553,8 +553,8 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											MarkdownDescription: "NetworkFilter is a modification of Envoy Listener's filter.",
 											Attributes: map[string]schema.Attribute{
 												"json_patches": schema.ListNestedAttribute{
-													Description:         "JsonPatches specifies list of jsonpatches to apply to on Envoy Listener'sfilter.",
-													MarkdownDescription: "JsonPatches specifies list of jsonpatches to apply to on Envoy Listener'sfilter.",
+													Description:         "JsonPatches specifies list of jsonpatches to apply to on Envoy Listener's filter.",
+													MarkdownDescription: "JsonPatches specifies list of jsonpatches to apply to on Envoy Listener's filter.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"from": schema.StringAttribute{
@@ -629,8 +629,8 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"origin": schema.StringAttribute{
-															Description:         "Origin is the name of the component or plugin that generated the resource.Here is the list of well-known origins:inbound - resources generated for handling incoming traffic.outbound - resources generated for handling outgoing traffic.transparent - resources generated for transparent proxy functionality.prometheus - resources generated when Prometheus metrics are enabled.direct-access - resources generated for Direct Access functionality.ingress - resources generated for Zone Ingress.egress - resources generated for Zone Egress.gateway - resources generated for MeshGateway.The list is not complete, because policy plugins can introduce new resources.For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
-															MarkdownDescription: "Origin is the name of the component or plugin that generated the resource.Here is the list of well-known origins:inbound - resources generated for handling incoming traffic.outbound - resources generated for handling outgoing traffic.transparent - resources generated for transparent proxy functionality.prometheus - resources generated when Prometheus metrics are enabled.direct-access - resources generated for Direct Access functionality.ingress - resources generated for Zone Ingress.egress - resources generated for Zone Egress.gateway - resources generated for MeshGateway.The list is not complete, because policy plugins can introduce new resources.For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
+															Description:         "Origin is the name of the component or plugin that generated the resource. Here is the list of well-known origins: inbound - resources generated for handling incoming traffic. outbound - resources generated for handling outgoing traffic. transparent - resources generated for transparent proxy functionality. prometheus - resources generated when Prometheus metrics are enabled. direct-access - resources generated for Direct Access functionality. ingress - resources generated for Zone Ingress. egress - resources generated for Zone Egress. gateway - resources generated for MeshGateway. The list is not complete, because policy plugins can introduce new resources. For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
+															MarkdownDescription: "Origin is the name of the component or plugin that generated the resource. Here is the list of well-known origins: inbound - resources generated for handling incoming traffic. outbound - resources generated for handling outgoing traffic. transparent - resources generated for transparent proxy functionality. prometheus - resources generated when Prometheus metrics are enabled. direct-access - resources generated for Direct Access functionality. ingress - resources generated for Zone Ingress. egress - resources generated for Zone Egress. gateway - resources generated for MeshGateway. The list is not complete, because policy plugins can introduce new resources. For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -666,12 +666,12 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"virtual_host": schema.SingleNestedAttribute{
-											Description:         "VirtualHost is a modification of Envoy's VirtualHostreferenced in HTTP Connection Manager in a Listener resource.",
-											MarkdownDescription: "VirtualHost is a modification of Envoy's VirtualHostreferenced in HTTP Connection Manager in a Listener resource.",
+											Description:         "VirtualHost is a modification of Envoy's VirtualHost referenced in HTTP Connection Manager in a Listener resource.",
+											MarkdownDescription: "VirtualHost is a modification of Envoy's VirtualHost referenced in HTTP Connection Manager in a Listener resource.",
 											Attributes: map[string]schema.Attribute{
 												"json_patches": schema.ListNestedAttribute{
-													Description:         "JsonPatches specifies list of jsonpatches to apply to on Envoy'sVirtualHost resource",
-													MarkdownDescription: "JsonPatches specifies list of jsonpatches to apply to on Envoy'sVirtualHost resource",
+													Description:         "JsonPatches specifies list of jsonpatches to apply to on Envoy's VirtualHost resource",
+													MarkdownDescription: "JsonPatches specifies list of jsonpatches to apply to on Envoy's VirtualHost resource",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"from": schema.StringAttribute{
@@ -729,8 +729,8 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"origin": schema.StringAttribute{
-															Description:         "Origin is the name of the component or plugin that generated the resource.Here is the list of well-known origins:inbound - resources generated for handling incoming traffic.outbound - resources generated for handling outgoing traffic.transparent - resources generated for transparent proxy functionality.prometheus - resources generated when Prometheus metrics are enabled.direct-access - resources generated for Direct Access functionality.ingress - resources generated for Zone Ingress.egress - resources generated for Zone Egress.gateway - resources generated for MeshGateway.The list is not complete, because policy plugins can introduce new resources.For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
-															MarkdownDescription: "Origin is the name of the component or plugin that generated the resource.Here is the list of well-known origins:inbound - resources generated for handling incoming traffic.outbound - resources generated for handling outgoing traffic.transparent - resources generated for transparent proxy functionality.prometheus - resources generated when Prometheus metrics are enabled.direct-access - resources generated for Direct Access functionality.ingress - resources generated for Zone Ingress.egress - resources generated for Zone Egress.gateway - resources generated for MeshGateway.The list is not complete, because policy plugins can introduce new resources.For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
+															Description:         "Origin is the name of the component or plugin that generated the resource. Here is the list of well-known origins: inbound - resources generated for handling incoming traffic. outbound - resources generated for handling outgoing traffic. transparent - resources generated for transparent proxy functionality. prometheus - resources generated when Prometheus metrics are enabled. direct-access - resources generated for Direct Access functionality. ingress - resources generated for Zone Ingress. egress - resources generated for Zone Egress. gateway - resources generated for MeshGateway. The list is not complete, because policy plugins can introduce new resources. For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
+															MarkdownDescription: "Origin is the name of the component or plugin that generated the resource. Here is the list of well-known origins: inbound - resources generated for handling incoming traffic. outbound - resources generated for handling outgoing traffic. transparent - resources generated for transparent proxy functionality. prometheus - resources generated when Prometheus metrics are enabled. direct-access - resources generated for Direct Access functionality. ingress - resources generated for Zone Ingress. egress - resources generated for Zone Egress. gateway - resources generated for MeshGateway. The list is not complete, because policy plugins can introduce new resources. For example MeshTrace plugin can create Cluster with 'mesh-trace' origin.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -785,8 +785,8 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
-						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
+						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
+						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
@@ -800,8 +800,8 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"labels": schema.MapAttribute{
-								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -817,24 +817,24 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"proxy_types": schema.ListAttribute{
-								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -842,16 +842,16 @@ func (r *KumaIoMeshProxyPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"section_name": schema.StringAttribute{
-								Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-								MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tags": schema.MapAttribute{
-								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

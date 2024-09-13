@@ -58,7 +58,7 @@ Optional:
 - `claim_selector` (Attributes) A filter to select which PVCs to snapshot via this schedule (see [below for nested schema](#nestedatt--spec--claim_selector))
 - `disabled` (Boolean) Indicates that this schedule should be temporarily disabled
 - `retention` (Attributes) Retention determines how long this schedule's snapshots will be kept. (see [below for nested schema](#nestedatt--spec--retention))
-- `schedule` (String) Schedule is a Cronspec specifying when snapshots should be taken. Seehttps://en.wikipedia.org/wiki/Cron for a description of the format.
+- `schedule` (String) Schedule is a Cronspec specifying when snapshots should be taken. See https://en.wikipedia.org/wiki/Cron for a description of the format.
 - `snapshot_template` (Attributes) A template to customize the Snapshots. (see [below for nested schema](#nestedatt--spec--snapshot_template))
 
 <a id="nestedatt--spec--claim_selector"></a>
@@ -67,7 +67,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--claim_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--claim_selector--match_expressions"></a>
 ### Nested Schema for `spec.claim_selector.match_expressions`
@@ -75,11 +75,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -88,7 +88,7 @@ Optional:
 
 Optional:
 
-- `expires` (String) The length of time (time.Duration) after which a given Snapshot will bedeleted.
+- `expires` (String) The length of time (time.Duration) after which a given Snapshot will be deleted.
 - `max_count` (Number) The maximum number of snapshots to retain per PVC
 
 
@@ -97,5 +97,5 @@ Optional:
 
 Optional:
 
-- `labels` (Map of String) A list of labels that should be added to each Snapshot created by thisschedule.
+- `labels` (Map of String) A list of labels that should be added to each Snapshot created by this schedule.
 - `snapshot_class_name` (String) The name of the VolumeSnapshotClass to be used when creating Snapshots.

@@ -155,13 +155,13 @@ func (r *OperatorTigeraIoPacketCaptureV1Manifest) Schema(_ context.Context, _ da
 												MarkdownDescription: "Spec is the PacketCapture Deployment's PodSpec.",
 												Attributes: map[string]schema.Attribute{
 													"containers": schema.ListNestedAttribute{
-														Description:         "Containers is a list of PacketCapture containers.If specified, this overrides the specified PacketCapture Deployment containers.If omitted, the PacketCapture Deployment will use its default values for its containers.",
-														MarkdownDescription: "Containers is a list of PacketCapture containers.If specified, this overrides the specified PacketCapture Deployment containers.If omitted, the PacketCapture Deployment will use its default values for its containers.",
+														Description:         "Containers is a list of PacketCapture containers. If specified, this overrides the specified PacketCapture Deployment containers. If omitted, the PacketCapture Deployment will use its default values for its containers.",
+														MarkdownDescription: "Containers is a list of PacketCapture containers. If specified, this overrides the specified PacketCapture Deployment containers. If omitted, the PacketCapture Deployment will use its default values for its containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the PacketCapture Deployment container by name.Supported values are: tigera-packetcapture-server",
-																	MarkdownDescription: "Name is an enum which identifies the PacketCapture Deployment container by name.Supported values are: tigera-packetcapture-server",
+																	Description:         "Name is an enum which identifies the PacketCapture Deployment container by name. Supported values are: tigera-packetcapture-server",
+																	MarkdownDescription: "Name is an enum which identifies the PacketCapture Deployment container by name. Supported values are: tigera-packetcapture-server",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -171,17 +171,17 @@ func (r *OperatorTigeraIoPacketCaptureV1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named PacketCapture Deployment container's resources.If omitted, the PacketCapture Deployment will use its default value for this container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named PacketCapture Deployment container's resources.If omitted, the PacketCapture Deployment will use its default value for this container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named PacketCapture Deployment container's resources. If omitted, the PacketCapture Deployment will use its default value for this container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named PacketCapture Deployment container's resources. If omitted, the PacketCapture Deployment will use its default value for this container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -194,8 +194,8 @@ func (r *OperatorTigeraIoPacketCaptureV1Manifest) Schema(_ context.Context, _ da
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -203,8 +203,8 @@ func (r *OperatorTigeraIoPacketCaptureV1Manifest) Schema(_ context.Context, _ da
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -223,13 +223,13 @@ func (r *OperatorTigeraIoPacketCaptureV1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"init_containers": schema.ListNestedAttribute{
-														Description:         "InitContainers is a list of PacketCapture init containers.If specified, this overrides the specified PacketCapture Deployment init containers.If omitted, the PacketCapture Deployment will use its default values for its init containers.",
-														MarkdownDescription: "InitContainers is a list of PacketCapture init containers.If specified, this overrides the specified PacketCapture Deployment init containers.If omitted, the PacketCapture Deployment will use its default values for its init containers.",
+														Description:         "InitContainers is a list of PacketCapture init containers. If specified, this overrides the specified PacketCapture Deployment init containers. If omitted, the PacketCapture Deployment will use its default values for its init containers.",
+														MarkdownDescription: "InitContainers is a list of PacketCapture init containers. If specified, this overrides the specified PacketCapture Deployment init containers. If omitted, the PacketCapture Deployment will use its default values for its init containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the PacketCapture Deployment init container by name.Supported values are: tigera-packetcapture-server-tls-key-cert-provisioner",
-																	MarkdownDescription: "Name is an enum which identifies the PacketCapture Deployment init container by name.Supported values are: tigera-packetcapture-server-tls-key-cert-provisioner",
+																	Description:         "Name is an enum which identifies the PacketCapture Deployment init container by name. Supported values are: tigera-packetcapture-server-tls-key-cert-provisioner",
+																	MarkdownDescription: "Name is an enum which identifies the PacketCapture Deployment init container by name. Supported values are: tigera-packetcapture-server-tls-key-cert-provisioner",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -239,17 +239,17 @@ func (r *OperatorTigeraIoPacketCaptureV1Manifest) Schema(_ context.Context, _ da
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named PacketCapture Deployment init container's resources.If omitted, the PacketCapture Deployment will use its default value for this init container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named PacketCapture Deployment init container's resources.If omitted, the PacketCapture Deployment will use its default value for this init container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named PacketCapture Deployment init container's resources. If omitted, the PacketCapture Deployment will use its default value for this init container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named PacketCapture Deployment init container's resources. If omitted, the PacketCapture Deployment will use its default value for this init container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -262,8 +262,8 @@ func (r *OperatorTigeraIoPacketCaptureV1Manifest) Schema(_ context.Context, _ da
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -271,8 +271,8 @@ func (r *OperatorTigeraIoPacketCaptureV1Manifest) Schema(_ context.Context, _ da
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,

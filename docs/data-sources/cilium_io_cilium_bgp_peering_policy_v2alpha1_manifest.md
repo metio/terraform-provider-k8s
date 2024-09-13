@@ -58,7 +58,7 @@ Required:
 
 Optional:
 
-- `node_selector` (Attributes) NodeSelector selects a group of nodes where this BGP Peering Policy applies.  If empty / nil this policy applies to all nodes. (see [below for nested schema](#nestedatt--spec--node_selector))
+- `node_selector` (Attributes) NodeSelector selects a group of nodes where this BGP Peering Policy applies. If empty / nil this policy applies to all nodes. (see [below for nested schema](#nestedatt--spec--node_selector))
 
 <a id="nestedatt--spec--virtual_routers"></a>
 ### Nested Schema for `spec.virtual_routers`
@@ -71,9 +71,9 @@ Required:
 Optional:
 
 - `export_pod_cidr` (Boolean) ExportPodCIDR determines whether to export the Node's private CIDR block to the configured neighbors.
-- `pod_ip_pool_selector` (Attributes) PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools.  If empty / nil no CiliumPodIPPools will be announced. (see [below for nested schema](#nestedatt--spec--virtual_routers--pod_ip_pool_selector))
+- `pod_ip_pool_selector` (Attributes) PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools. If empty / nil no CiliumPodIPPools will be announced. (see [below for nested schema](#nestedatt--spec--virtual_routers--pod_ip_pool_selector))
 - `service_advertisements` (List of String) ServiceAdvertisements selects a group of BGP Advertisement(s) to advertise for the selected services.
-- `service_selector` (Attributes) ServiceSelector selects a group of load balancer services which this virtual router will announce. The loadBalancerClass for a service must be nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If empty / nil no services will be announced. (see [below for nested schema](#nestedatt--spec--virtual_routers--service_selector))
+- `service_selector` (Attributes) ServiceSelector selects a group of load balancer services which this virtual router will announce. The loadBalancerClass for a service must be nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'. Refer to the following document for additional details regarding load balancer classes: https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class If empty / nil no services will be announced. (see [below for nested schema](#nestedatt--spec--virtual_routers--service_selector))
 
 <a id="nestedatt--spec--virtual_routers--neighbors"></a>
 ### Nested Schema for `spec.virtual_routers.neighbors`
@@ -89,7 +89,7 @@ Optional:
 - `auth_secret_ref` (String) AuthSecretRef is the name of the secret to use to fetch a TCP authentication password for this peer.
 - `connect_retry_time_seconds` (Number) ConnectRetryTimeSeconds defines the initial value for the BGP ConnectRetryTimer (RFC 4271, Section 8).
 - `e_bgp_multihop_ttl` (Number) EBGPMultihopTTL controls the multi-hop feature for eBGP peers. Its value defines the Time To Live (TTL) value used in BGP packets sent to the neighbor. The value 1 implies that eBGP multi-hop feature is disabled (only a single hop is allowed). This field is ignored for iBGP peers.
-- `families` (Attributes List) Families, if provided, defines a set of AFI/SAFIs the speaker will negotiate with it's peer.  If this slice is not provided the default families of IPv6 and IPv4 will be provided. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--families))
+- `families` (Attributes List) Families, if provided, defines a set of AFI/SAFIs the speaker will negotiate with it's peer. If this slice is not provided the default families of IPv6 and IPv4 will be provided. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--families))
 - `graceful_restart` (Attributes) GracefulRestart defines graceful restart parameters which are negotiated with this neighbor. If empty / nil, the graceful restart capability is disabled. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--graceful_restart))
 - `hold_time_seconds` (Number) HoldTimeSeconds defines the initial value for the BGP HoldTimer (RFC 4271, Section 4.2). Updating this value will cause a session reset.
 - `keep_alive_time_seconds` (Number) KeepaliveTimeSeconds defines the initial value for the BGP KeepaliveTimer (RFC 4271, Section 8). It can not be larger than HoldTimeSeconds. Updating this value will cause a session reset.

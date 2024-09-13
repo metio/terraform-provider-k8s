@@ -57,20 +57,20 @@ Optional:
 
 - `config` (Map of String) Application properties that will be set to the service. For example 'MY_VAR: my_value'.
 - `deployment_labels` (Map of String) Additional labels to be added to the Deployment and Pods managed by the operator.
-- `disable_route` (Boolean) A flag indicating that routes are disabled. Usable just on OpenShift.  If not provided, defaults to 'false'.
+- `disable_route` (Boolean) A flag indicating that routes are disabled. Usable just on OpenShift. If not provided, defaults to 'false'.
 - `enable_istio` (Boolean) Annotates the pods managed by the operator with the required metadata for Istio to setup its sidecars, enabling the mesh. Defaults to false.
 - `env` (Attributes List) Environment variables to be added to the runtime container. Keys must be a C_IDENTIFIER. (see [below for nested schema](#nestedatt--spec--env))
-- `image` (String) Image definition for the service. Example: 'quay.io/kiegroup/kogito-service:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.
+- `image` (String) Image definition for the service. Example: 'quay.io/kiegroup/kogito-service:latest'. On OpenShift an ImageStream will be created in the current namespace pointing to the given image.
 - `infra` (List of String) Infra provides list of dependent KogitoInfra objects.
-- `insecure_image_registry` (Boolean) A flag indicating that image streams created by Kogito Operator should be configured to allow pulling from insecure registries. Usable just on OpenShift.  Defaults to 'false'.
+- `insecure_image_registry` (Boolean) A flag indicating that image streams created by Kogito Operator should be configured to allow pulling from insecure registries. Usable just on OpenShift. Defaults to 'false'.
 - `monitoring` (Attributes) Create Service monitor instance to connect with Monitoring service (see [below for nested schema](#nestedatt--spec--monitoring))
 - `probes` (Attributes) Configure liveness, readiness and startup probes for containers (see [below for nested schema](#nestedatt--spec--probes))
-- `properties_config_map` (String) Custom ConfigMap with application.properties file to be mounted for the Kogito service.  The ConfigMap must be created in the same namespace.  Use this property if you need custom properties to be mounted before the application deployment.  If left empty, one will be created for you. Later it can be updated to add any custom properties to apply to the service.
-- `replicas` (Number) Number of replicas that the service will have deployed in the cluster.  Default value: 1.
+- `properties_config_map` (String) Custom ConfigMap with application.properties file to be mounted for the Kogito service. The ConfigMap must be created in the same namespace. Use this property if you need custom properties to be mounted before the application deployment. If left empty, one will be created for you. Later it can be updated to add any custom properties to apply to the service.
+- `replicas` (Number) Number of replicas that the service will have deployed in the cluster. Default value: 1.
 - `resources` (Attributes) Defined compute resource requirements for the deployed service. (see [below for nested schema](#nestedatt--spec--resources))
-- `runtime` (String) The name of the runtime used, either Quarkus or SpringBoot.  Default value: quarkus
+- `runtime` (String) The name of the runtime used, either Quarkus or SpringBoot. Default value: quarkus
 - `service_labels` (Map of String) Additional labels to be added to the Service managed by the operator.
-- `trust_store_secret` (String) Custom JKS TrustStore that will be used by this service to make calls to TLS endpoints.  It's expected that the secret has two keys: 'keyStorePassword' containing the password for the KeyStore and 'cacerts' containing the binary data of the given KeyStore.
+- `trust_store_secret` (String) Custom JKS TrustStore that will be used by this service to make calls to TLS endpoints. It's expected that the secret has two keys: 'keyStorePassword' containing the password for the KeyStore and 'cacerts' containing the binary data of the given KeyStore.
 
 <a id="nestedatt--spec--env"></a>
 ### Nested Schema for `spec.env`
@@ -137,7 +137,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
@@ -186,7 +186,7 @@ Optional:
 
 Optional:
 
-- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
 <a id="nestedatt--spec--probes--liveness_probe--grpc"></a>
@@ -198,7 +198,7 @@ Required:
 
 Optional:
 
-- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.
+- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
 
 
 <a id="nestedatt--spec--probes--liveness_probe--http_get"></a>
@@ -259,7 +259,7 @@ Optional:
 
 Optional:
 
-- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
 <a id="nestedatt--spec--probes--readiness_probe--grpc"></a>
@@ -271,7 +271,7 @@ Required:
 
 Optional:
 
-- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.
+- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
 
 
 <a id="nestedatt--spec--probes--readiness_probe--http_get"></a>
@@ -332,7 +332,7 @@ Optional:
 
 Optional:
 
-- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
 <a id="nestedatt--spec--probes--startup_probe--grpc"></a>
@@ -344,7 +344,7 @@ Required:
 
 Optional:
 
-- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.
+- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
 
 
 <a id="nestedatt--spec--probes--startup_probe--http_get"></a>

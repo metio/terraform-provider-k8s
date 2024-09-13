@@ -129,24 +129,24 @@ func (r *KinesisServicesK8SAwsStreamV1Alpha1Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "StreamSpec defines the desired state of Stream.",
 				Attributes: map[string]schema.Attribute{
 					"name": schema.StringAttribute{
-						Description:         "A name to identify the stream. The stream name is scoped to the Amazon WebServices account used by the application that creates the stream. It is alsoscoped by Amazon Web Services Region. That is, two streams in two differentAmazon Web Services accounts can have the same name. Two streams in the sameAmazon Web Services account but in two different Regions can also have thesame name.",
-						MarkdownDescription: "A name to identify the stream. The stream name is scoped to the Amazon WebServices account used by the application that creates the stream. It is alsoscoped by Amazon Web Services Region. That is, two streams in two differentAmazon Web Services accounts can have the same name. Two streams in the sameAmazon Web Services account but in two different Regions can also have thesame name.",
+						Description:         "A name to identify the stream. The stream name is scoped to the Amazon Web Services account used by the application that creates the stream. It is also scoped by Amazon Web Services Region. That is, two streams in two different Amazon Web Services accounts can have the same name. Two streams in the same Amazon Web Services account but in two different Regions can also have the same name.",
+						MarkdownDescription: "A name to identify the stream. The stream name is scoped to the Amazon Web Services account used by the application that creates the stream. It is also scoped by Amazon Web Services Region. That is, two streams in two different Amazon Web Services accounts can have the same name. Two streams in the same Amazon Web Services account but in two different Regions can also have the same name.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"shard_count": schema.Int64Attribute{
-						Description:         "The number of shards that the stream will use. The throughput of the streamis a function of the number of shards; more shards are required for greaterprovisioned throughput.",
-						MarkdownDescription: "The number of shards that the stream will use. The throughput of the streamis a function of the number of shards; more shards are required for greaterprovisioned throughput.",
+						Description:         "The number of shards that the stream will use. The throughput of the stream is a function of the number of shards; more shards are required for greater provisioned throughput.",
+						MarkdownDescription: "The number of shards that the stream will use. The throughput of the stream is a function of the number of shards; more shards are required for greater provisioned throughput.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"stream_mode_details": schema.SingleNestedAttribute{
-						Description:         "Indicates the capacity mode of the data stream. Currently, in Kinesis DataStreams, you can choose between an on-demand capacity mode and a provisionedcapacity mode for your data streams.",
-						MarkdownDescription: "Indicates the capacity mode of the data stream. Currently, in Kinesis DataStreams, you can choose between an on-demand capacity mode and a provisionedcapacity mode for your data streams.",
+						Description:         "Indicates the capacity mode of the data stream. Currently, in Kinesis Data Streams, you can choose between an on-demand capacity mode and a provisioned capacity mode for your data streams.",
+						MarkdownDescription: "Indicates the capacity mode of the data stream. Currently, in Kinesis Data Streams, you can choose between an on-demand capacity mode and a provisioned capacity mode for your data streams.",
 						Attributes: map[string]schema.Attribute{
 							"stream_mode": schema.StringAttribute{
 								Description:         "",

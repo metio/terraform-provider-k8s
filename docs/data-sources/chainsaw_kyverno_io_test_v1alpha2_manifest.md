@@ -83,7 +83,7 @@ Optional:
 - `cleanup` (Attributes List) Cleanup defines what will be executed after the test is terminated. (see [below for nested schema](#nestedatt--spec--steps--cleanup))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--clusters))
-- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in both the Configuration and the Test.
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation. Overrides the deletion propagation policy set in both the Configuration and the Test.
 - `description` (String) Description contains a description of the test step.
 - `finally` (Attributes List) Finally defines what the step will execute after the step is terminated. (see [below for nested schema](#nestedatt--spec--steps--finally))
 - `name` (String) Name of the step.
@@ -96,18 +96,18 @@ Optional:
 
 Optional:
 
-- `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include thingslike configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--try--apply))
+- `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include things like configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--try--apply))
 - `assert` (Attributes) Assert represents an assertion to be made. It checks whether the conditions specified in the assertion hold true. (see [below for nested schema](#nestedatt--spec--steps--try--assert))
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--try--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--steps--try--clusters))
 - `command` (Attributes) Command defines a command to run. (see [below for nested schema](#nestedatt--spec--steps--try--command))
-- `continue_on_error` (Boolean) ContinueOnError determines whether a test should continue or not in case the operation was not successful.Even if the test continues executing, it will still be reported as failed.
+- `continue_on_error` (Boolean) ContinueOnError determines whether a test should continue or not in case the operation was not successful. Even if the test continues executing, it will still be reported as failed.
 - `create` (Attributes) Create represents a creation operation. (see [below for nested schema](#nestedatt--spec--steps--try--create))
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--try--delete))
 - `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--describe))
 - `description` (String) Description contains a description of the operation.
-- `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the testwill consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--try--error))
+- `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the test will consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--try--error))
 - `events` (Attributes) Events determines the events collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--events))
 - `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--try--get))
 - `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--try--outputs))
@@ -125,7 +125,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--apply--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -148,7 +148,7 @@ Optional:
 
 Optional:
 
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -207,7 +207,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--create--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -230,9 +230,9 @@ Optional:
 
 Optional:
 
-- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation. Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--delete--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--try--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -255,13 +255,13 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `label_selector` (Attributes) Label selector to match objects to delete (see [below for nested schema](#nestedatt--spec--steps--try--delete--ref--label_selector))
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 <a id="nestedatt--spec--steps--try--delete--ref--label_selector"></a>
 ### Nested Schema for `spec.steps.try.delete.ref.label_selector`
@@ -269,7 +269,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--steps--try--delete--ref--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--steps--try--delete--ref--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.steps.try.delete.ref.label_selector.match_expressions`
@@ -277,11 +277,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -293,12 +293,12 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -309,7 +309,7 @@ Optional:
 
 Optional:
 
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -321,8 +321,8 @@ Optional:
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -333,13 +333,13 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -364,7 +364,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--patch--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -388,10 +388,10 @@ Optional:
 Optional:
 
 - `container` (String) Container in pod to get logs from else --all-containers is used.
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
+- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero, then the default is 10 if you use a selector, or -1 (all) if you use a pod name. This matches default behavior of 'kubectl logs'.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 
@@ -431,7 +431,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--try--update--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -456,13 +456,13 @@ Required:
 
 - `api_version` (String) API version of the referent.
 - `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--try--wait--for))
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -513,7 +513,7 @@ Required:
 
 Optional:
 
-- `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include thingslike configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--catch--apply))
+- `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include things like configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--catch--apply))
 - `assert` (Attributes) Assert represents an assertion to be made. It checks whether the conditions specified in the assertion hold true. (see [below for nested schema](#nestedatt--spec--steps--catch--assert))
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--catch--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
@@ -523,7 +523,7 @@ Optional:
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--catch--delete))
 - `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--catch--describe))
 - `description` (String) Description contains a description of the operation.
-- `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the testwill consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--catch--error))
+- `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the test will consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--catch--error))
 - `events` (Attributes) Events determines the events collector to execute. (see [below for nested schema](#nestedatt--spec--steps--catch--events))
 - `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--catch--get))
 - `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--catch--outputs))
@@ -541,7 +541,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--apply--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -564,7 +564,7 @@ Optional:
 
 Optional:
 
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -623,7 +623,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--create--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -646,9 +646,9 @@ Optional:
 
 Optional:
 
-- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation. Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -671,13 +671,13 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `label_selector` (Attributes) Label selector to match objects to delete (see [below for nested schema](#nestedatt--spec--steps--catch--delete--ref--label_selector))
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 <a id="nestedatt--spec--steps--catch--delete--ref--label_selector"></a>
 ### Nested Schema for `spec.steps.catch.delete.ref.label_selector`
@@ -685,7 +685,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--steps--catch--delete--ref--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--steps--catch--delete--ref--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.steps.catch.delete.ref.label_selector.match_expressions`
@@ -693,11 +693,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -709,12 +709,12 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -725,7 +725,7 @@ Optional:
 
 Optional:
 
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -737,8 +737,8 @@ Optional:
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -749,13 +749,13 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -780,7 +780,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--patch--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -804,10 +804,10 @@ Optional:
 Optional:
 
 - `container` (String) Container in pod to get logs from else --all-containers is used.
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
+- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero, then the default is 10 if you use a selector, or -1 (all) if you use a pod name. This matches default behavior of 'kubectl logs'.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 
@@ -847,7 +847,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--catch--update--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -872,13 +872,13 @@ Required:
 
 - `api_version` (String) API version of the referent.
 - `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--catch--wait--for))
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -920,7 +920,7 @@ Required:
 
 Optional:
 
-- `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include thingslike configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--cleanup--apply))
+- `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include things like configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--cleanup--apply))
 - `assert` (Attributes) Assert represents an assertion to be made. It checks whether the conditions specified in the assertion hold true. (see [below for nested schema](#nestedatt--spec--steps--cleanup--assert))
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--cleanup--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
@@ -930,7 +930,7 @@ Optional:
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete))
 - `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--describe))
 - `description` (String) Description contains a description of the operation.
-- `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the testwill consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--cleanup--error))
+- `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the test will consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--cleanup--error))
 - `events` (Attributes) Events determines the events collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--events))
 - `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--cleanup--get))
 - `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--cleanup--outputs))
@@ -948,7 +948,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--cleanup--apply--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -971,7 +971,7 @@ Optional:
 
 Optional:
 
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1030,7 +1030,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--cleanup--create--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1053,9 +1053,9 @@ Optional:
 
 Optional:
 
-- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation. Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1078,13 +1078,13 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `label_selector` (Attributes) Label selector to match objects to delete (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--ref--label_selector))
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 <a id="nestedatt--spec--steps--cleanup--delete--ref--label_selector"></a>
 ### Nested Schema for `spec.steps.cleanup.delete.ref.label_selector`
@@ -1092,7 +1092,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--steps--cleanup--delete--ref--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--steps--cleanup--delete--ref--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.steps.cleanup.delete.ref.label_selector.match_expressions`
@@ -1100,11 +1100,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1116,12 +1116,12 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1132,7 +1132,7 @@ Optional:
 
 Optional:
 
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1144,8 +1144,8 @@ Optional:
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -1156,13 +1156,13 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -1187,7 +1187,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--cleanup--patch--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1211,10 +1211,10 @@ Optional:
 Optional:
 
 - `container` (String) Container in pod to get logs from else --all-containers is used.
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
+- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero, then the default is 10 if you use a selector, or -1 (all) if you use a pod name. This matches default behavior of 'kubectl logs'.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 
@@ -1254,7 +1254,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--cleanup--update--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1279,13 +1279,13 @@ Required:
 
 - `api_version` (String) API version of the referent.
 - `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--cleanup--wait--for))
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -1339,7 +1339,7 @@ Optional:
 
 Optional:
 
-- `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include thingslike configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--finally--apply))
+- `apply` (Attributes) Apply represents resources that should be applied for this test step. This can include things like configuration settings or any other resources that need to be available during the test. (see [below for nested schema](#nestedatt--spec--steps--finally--apply))
 - `assert` (Attributes) Assert represents an assertion to be made. It checks whether the conditions specified in the assertion hold true. (see [below for nested schema](#nestedatt--spec--steps--finally--assert))
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--steps--finally--bindings))
 - `cluster` (String) Cluster defines the target cluster (default cluster will be used if not specified and/or overridden).
@@ -1349,7 +1349,7 @@ Optional:
 - `delete` (Attributes) Delete represents a deletion operation. (see [below for nested schema](#nestedatt--spec--steps--finally--delete))
 - `describe` (Attributes) Describe determines the resource describe collector to execute. (see [below for nested schema](#nestedatt--spec--steps--finally--describe))
 - `description` (String) Description contains a description of the operation.
-- `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the testwill consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--finally--error))
+- `error` (Attributes) Error represents the expected errors for this test step. If any of these errors occur, the test will consider them as expected; otherwise, they will be treated as test failures. (see [below for nested schema](#nestedatt--spec--steps--finally--error))
 - `events` (Attributes) Events determines the events collector to execute. (see [below for nested schema](#nestedatt--spec--steps--finally--events))
 - `get` (Attributes) Get determines the resource get collector to execute. (see [below for nested schema](#nestedatt--spec--steps--finally--get))
 - `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--steps--finally--outputs))
@@ -1367,7 +1367,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--apply--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1390,7 +1390,7 @@ Optional:
 
 Optional:
 
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1449,7 +1449,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--create--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1472,9 +1472,9 @@ Optional:
 
 Optional:
 
-- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation. Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1497,13 +1497,13 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `label_selector` (Attributes) Label selector to match objects to delete (see [below for nested schema](#nestedatt--spec--steps--finally--delete--ref--label_selector))
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 <a id="nestedatt--spec--steps--finally--delete--ref--label_selector"></a>
 ### Nested Schema for `spec.steps.finally.delete.ref.label_selector`
@@ -1511,7 +1511,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--steps--finally--delete--ref--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--steps--finally--delete--ref--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.steps.finally.delete.ref.label_selector.match_expressions`
@@ -1519,11 +1519,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1535,12 +1535,12 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1551,7 +1551,7 @@ Optional:
 
 Optional:
 
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Check provides a check used in assertions.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1563,8 +1563,8 @@ Optional:
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -1575,13 +1575,13 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -1606,7 +1606,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--patch--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1630,10 +1630,10 @@ Optional:
 Optional:
 
 - `container` (String) Container in pod to get logs from else --all-containers is used.
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
+- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero, then the default is 10 if you use a selector, or -1 (all) if you use a pod name. This matches default behavior of 'kubectl logs'.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 
@@ -1673,7 +1673,7 @@ Optional:
 
 - `dry_run` (Boolean) DryRun determines whether the file should be applied in dry run mode.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--steps--finally--update--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `resource` (Map of String) Resource provides a resource to be applied.
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1698,13 +1698,13 @@ Required:
 
 - `api_version` (String) API version of the referent.
 - `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--steps--finally--wait--for))
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -1790,7 +1790,7 @@ Optional:
 
 Optional:
 
-- `propagation` (String) Propagation decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.
+- `propagation` (String) Propagation decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.
 
 
 <a id="nestedatt--spec--error"></a>
@@ -1798,7 +1798,7 @@ Optional:
 
 Optional:
 
-- `catch` (Attributes List) Catch defines what the tests steps will execute when an error happens.This will be combined with catch handlers defined at the test and step levels. (see [below for nested schema](#nestedatt--spec--error--catch))
+- `catch` (Attributes List) Catch defines what the tests steps will execute when an error happens. This will be combined with catch handlers defined at the test and step levels. (see [below for nested schema](#nestedatt--spec--error--catch))
 
 <a id="nestedatt--spec--error--catch"></a>
 ### Nested Schema for `spec.error.catch`
@@ -1888,9 +1888,9 @@ Optional:
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--error--catch--delete--bindings))
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--delete--clusters))
-- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation. Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--error--catch--delete--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--error--catch--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1934,13 +1934,13 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `labels` (Map of String) Label selector to match objects to delete
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 
 
@@ -1950,14 +1950,14 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--describe--clusters))
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -1983,8 +1983,8 @@ Optional:
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--events--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -2007,15 +2007,15 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -2040,10 +2040,10 @@ Optional:
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--pod_logs--clusters))
 - `container` (String) Container in pod to get logs from else --all-containers is used.
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
+- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero, then the default is 10 if you use a selector, or -1 (all) if you use a pod name. This matches default behavior of 'kubectl logs'.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--error--catch--pod_logs--clusters"></a>
@@ -2134,15 +2134,15 @@ Required:
 
 - `api_version` (String) API version of the referent.
 - `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--error--catch--wait--for))
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -2210,7 +2210,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name defines the namespace to use for tests.If not specified, every test will execute in a random ephemeral namespaceunless the namespace is overridden in a the test spec.
+- `name` (String) Name defines the namespace to use for tests. If not specified, every test will execute in a random ephemeral namespace unless the namespace is overridden in a the test spec.
 - `template` (Map of String) Template defines a template to create the test namespace.
 
 

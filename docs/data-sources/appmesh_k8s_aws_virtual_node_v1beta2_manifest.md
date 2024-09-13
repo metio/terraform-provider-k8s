@@ -61,8 +61,8 @@ Optional:
 - `backends` (Attributes List) The backends that the virtual node is expected to send outbound traffic to. (see [below for nested schema](#nestedatt--spec--backends))
 - `listeners` (Attributes List) The listener that the virtual node is expected to receive inbound traffic from (see [below for nested schema](#nestedatt--spec--listeners))
 - `logging` (Attributes) The inbound and outbound access logging information for the virtual node. (see [below for nested schema](#nestedatt--spec--logging))
-- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this VirtualNode belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
-- `pod_selector` (Attributes) PodSelector selects Pods using labels to designate VirtualNode membership. This field follows standard label selector semantics: 	if present but empty, it selects all pods within namespace. 	if absent, it selects no pod. (see [below for nested schema](#nestedatt--spec--pod_selector))
+- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this VirtualNode belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
+- `pod_selector` (Attributes) PodSelector selects Pods using labels to designate VirtualNode membership. This field follows standard label selector semantics: if present but empty, it selects all pods within namespace. if absent, it selects no pod. (see [below for nested schema](#nestedatt--spec--pod_selector))
 - `service_discovery` (Attributes) The service discovery information for the virtual node. Optional if there is no inbound traffic(no listeners). Mandatory if a listener is specified. (see [below for nested schema](#nestedatt--spec--service_discovery))
 
 <a id="nestedatt--spec--backend_defaults"></a>

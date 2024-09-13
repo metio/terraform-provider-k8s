@@ -63,26 +63,26 @@ Optional:
 Required:
 
 - `resources` (Attributes List) A list of resources to be notified about changes. (see [below for nested schema](#nestedatt--spec--resources))
-- `type` (String) Type of webhook sender, used to determinethe validation procedure and payload deserialization.
+- `secret_ref` (Attributes) Secret reference containing the token used to validate the payload authenticity (see [below for nested schema](#nestedatt--spec--secret_ref))
+- `type` (String) Type of webhook sender, used to determine the validation procedure and payload deserialization.
 
 Optional:
 
-- `events` (List of String) A list of events to handle,e.g. 'push' for GitHub or 'Push Hook' for GitLab.
-- `secret_ref` (Attributes) Secret reference containing the token usedto validate the payload authenticity (see [below for nested schema](#nestedatt--spec--secret_ref))
-- `suspend` (Boolean) This flag tells the controller to suspend subsequent events handling.Defaults to false.
+- `events` (List of String) A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.
+- `suspend` (Boolean) This flag tells the controller to suspend subsequent events handling. Defaults to false.
 
 <a id="nestedatt--spec--resources"></a>
 ### Nested Schema for `spec.resources`
 
 Required:
 
+- `kind` (String) Kind of the referent
 - `name` (String) Name of the referent
 
 Optional:
 
 - `api_version` (String) API version of the referent
-- `kind` (String) Kind of the referent
-- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `namespace` (String) Namespace of the referent
 
 

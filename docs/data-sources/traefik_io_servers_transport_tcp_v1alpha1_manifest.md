@@ -3,12 +3,12 @@
 page_title: "k8s_traefik_io_servers_transport_tcp_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  ServersTransportTCP is the CRD implementation of a TCPServersTransport.If no tcpServersTransport is specified, a default one named default@internal will be used.The default@internal tcpServersTransport can be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_3
+  ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_3
 ---
 
 # k8s_traefik_io_servers_transport_tcp_v1alpha1_manifest (Data Source)
 
-ServersTransportTCP is the CRD implementation of a TCPServersTransport.If no tcpServersTransport is specified, a default one named default@internal will be used.The default@internal tcpServersTransport can be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_3
+ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#serverstransport_3
 
 ## Example Usage
 
@@ -65,7 +65,7 @@ Optional:
 
 - `certificates_secrets` (List of String) CertificatesSecrets defines a list of secret storing client certificates for mTLS.
 - `insecure_skip_verify` (Boolean) InsecureSkipVerify disables TLS certificate verification.
-- `peer_cert_uri` (String) MaxIdleConnsPerHost controls the maximum idle (keep-alive) to keep per-host.PeerCertURI defines the peer cert URI used to match against SAN URI during the peer certificate verification.
+- `peer_cert_uri` (String) MaxIdleConnsPerHost controls the maximum idle (keep-alive) to keep per-host. PeerCertURI defines the peer cert URI used to match against SAN URI during the peer certificate verification.
 - `root_c_as_secrets` (List of String) RootCAsSecrets defines a list of CA secret used to validate self-signed certificates.
 - `server_name` (String) ServerName defines the server name used to contact the server.
 - `spiffe` (Attributes) Spiffe defines the SPIFFE configuration. (see [below for nested schema](#nestedatt--spec--tls--spiffe))

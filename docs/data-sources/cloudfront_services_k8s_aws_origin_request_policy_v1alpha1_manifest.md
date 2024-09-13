@@ -30,7 +30,7 @@ data "k8s_cloudfront_services_k8s_aws_origin_request_policy_v1alpha1_manifest" "
 
 ### Optional
 
-- `spec` (Attributes) OriginRequestPolicySpec defines the desired state of OriginRequestPolicy.An origin request policy.When it's attached to a cache behavior, the origin request policy determinesthe values that CloudFront includes in requests that it sends to the origin.Each request that CloudFront sends to the origin includes the following:   * The request body and the URL path (without the domain name) from the   viewer request.   * The headers that CloudFront automatically includes in every origin request,   including Host, User-Agent, and X-Amz-Cf-Id.   * All HTTP headers, cookies, and URL query strings that are specified   in the cache policy or the origin request policy. These can include items   from the viewer request and, in the case of headers, additional ones that   are added by CloudFront.CloudFront sends a request when it can't find an object in its cache thatmatches the request. If you want to send values to the origin and also includethem in the cache key, use CachePolicy. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) OriginRequestPolicySpec defines the desired state of OriginRequestPolicy. An origin request policy. When it's attached to a cache behavior, the origin request policy determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following: * The request body and the URL path (without the domain name) from the viewer request. * The headers that CloudFront automatically includes in every origin request, including Host, User-Agent, and X-Amz-Cf-Id. * All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront. CloudFront sends a request when it can't find an object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use CachePolicy. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -63,10 +63,10 @@ Required:
 Optional:
 
 - `comment` (String)
-- `cookies_config` (Attributes) An object that determines whether any cookies in viewer requests (and ifso, which cookies) are included in requests that CloudFront sends to theorigin. (see [below for nested schema](#nestedatt--spec--origin_request_policy_config--cookies_config))
-- `headers_config` (Attributes) An object that determines whether any HTTP headers (and if so, which headers)are included in requests that CloudFront sends to the origin. (see [below for nested schema](#nestedatt--spec--origin_request_policy_config--headers_config))
+- `cookies_config` (Attributes) An object that determines whether any cookies in viewer requests (and if so, which cookies) are included in requests that CloudFront sends to the origin. (see [below for nested schema](#nestedatt--spec--origin_request_policy_config--cookies_config))
+- `headers_config` (Attributes) An object that determines whether any HTTP headers (and if so, which headers) are included in requests that CloudFront sends to the origin. (see [below for nested schema](#nestedatt--spec--origin_request_policy_config--headers_config))
 - `name` (String)
-- `query_strings_config` (Attributes) An object that determines whether any URL query strings in viewer requests(and if so, which query strings) are included in requests that CloudFrontsends to the origin. (see [below for nested schema](#nestedatt--spec--origin_request_policy_config--query_strings_config))
+- `query_strings_config` (Attributes) An object that determines whether any URL query strings in viewer requests (and if so, which query strings) are included in requests that CloudFront sends to the origin. (see [below for nested schema](#nestedatt--spec--origin_request_policy_config--query_strings_config))
 
 <a id="nestedatt--spec--origin_request_policy_config--cookies_config"></a>
 ### Nested Schema for `spec.origin_request_policy_config.cookies_config`

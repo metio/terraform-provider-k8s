@@ -56,5 +56,5 @@ Optional:
 Optional:
 
 - `address` (String)
-- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is:  ambassador_id: - 'default'
+- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is: ambassador_id: - 'default'
 - `datacenter` (String)

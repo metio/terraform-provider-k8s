@@ -935,12 +935,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "Override configuration for the temporal service Deployment.",
 										Attributes: map[string]schema.Attribute{
 											"metadata": schema.SingleNestedAttribute{
-												Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-												MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+												Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+												MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 												Attributes: map[string]schema.Attribute{
 													"annotations": schema.MapAttribute{
-														Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-														MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+														Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+														MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -948,8 +948,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"labels": schema.MapAttribute{
-														Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-														MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+														Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+														MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -970,12 +970,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "Template describes the pods that will be created.",
 														Attributes: map[string]schema.Attribute{
 															"metadata": schema.SingleNestedAttribute{
-																Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-																MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 																Attributes: map[string]schema.Attribute{
 																	"annotations": schema.MapAttribute{
-																		Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																		MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																		Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																		MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -983,8 +983,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																	},
 
 																	"labels": schema.MapAttribute{
-																		Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																		MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																		Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																		MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -1026,17 +1026,17 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"resources": schema.SingleNestedAttribute{
-								Description:         "Compute Resources required by the ui.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Compute Resources required by the ui.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Compute Resources required by the ui. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Compute Resources required by the ui. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1049,8 +1049,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1058,8 +1058,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1101,8 +1101,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"enabled": schema.BoolAttribute{
-										Description:         "Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
-										MarkdownDescription: "Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
+										Description:         "Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
+										MarkdownDescription: "Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1130,24 +1130,24 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"provider": schema.SingleNestedAttribute{
-								Description:         "Provider defines the archival provider for the cluster.The same provider is used for both history and visibility,but some config can be changed using spec.archival.[history|visibility].config.",
-								MarkdownDescription: "Provider defines the archival provider for the cluster.The same provider is used for both history and visibility,but some config can be changed using spec.archival.[history|visibility].config.",
+								Description:         "Provider defines the archival provider for the cluster. The same provider is used for both history and visibility, but some config can be changed using spec.archival.[history|visibility].config.",
+								MarkdownDescription: "Provider defines the archival provider for the cluster. The same provider is used for both history and visibility, but some config can be changed using spec.archival.[history|visibility].config.",
 								Attributes: map[string]schema.Attribute{
 									"filestore": schema.SingleNestedAttribute{
 										Description:         "FilestoreArchiver is the file store archival provider configuration.",
 										MarkdownDescription: "FilestoreArchiver is the file store archival provider configuration.",
 										Attributes: map[string]schema.Attribute{
 											"dir_permissions": schema.StringAttribute{
-												Description:         "DirPermissions sets the directory permissions of the archive directory.It's recommend to leave it empty and use the default value of '0766' to avoid read/write issues.",
-												MarkdownDescription: "DirPermissions sets the directory permissions of the archive directory.It's recommend to leave it empty and use the default value of '0766' to avoid read/write issues.",
+												Description:         "DirPermissions sets the directory permissions of the archive directory. It's recommend to leave it empty and use the default value of '0766' to avoid read/write issues.",
+												MarkdownDescription: "DirPermissions sets the directory permissions of the archive directory. It's recommend to leave it empty and use the default value of '0766' to avoid read/write issues.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"file_permissions": schema.StringAttribute{
-												Description:         "FilePermissions sets the file permissions of the archived files.It's recommend to leave it empty and use the default value of '0666' to avoid read/write issues.",
-												MarkdownDescription: "FilePermissions sets the file permissions of the archived files.It's recommend to leave it empty and use the default value of '0666' to avoid read/write issues.",
+												Description:         "FilePermissions sets the file permissions of the archived files. It's recommend to leave it empty and use the default value of '0666' to avoid read/write issues.",
+												MarkdownDescription: "FilePermissions sets the file permissions of the archived files. It's recommend to leave it empty and use the default value of '0666' to avoid read/write issues.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -1167,16 +1167,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "SecretAccessKeyRef is the secret key selector containing Google Cloud Storage credentials file.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1213,16 +1213,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "AccessKeyIDRef is the secret key selector containing AWS access key ID.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1246,16 +1246,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "SecretAccessKeyRef is the secret key selector containing AWS secret access key.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1296,8 +1296,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"role_name": schema.StringAttribute{
-												Description:         "Use RoleName if you want the temporal service accountto assume an AWS Identity and Access Management (IAM) role.",
-												MarkdownDescription: "Use RoleName if you want the temporal service accountto assume an AWS Identity and Access Management (IAM) role.",
+												Description:         "Use RoleName if you want the temporal service account to assume an AWS Identity and Access Management (IAM) role.",
+												MarkdownDescription: "Use RoleName if you want the temporal service account to assume an AWS Identity and Access Management (IAM) role.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1334,8 +1334,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"enabled": schema.BoolAttribute{
-										Description:         "Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
-										MarkdownDescription: "Enabled defines if the archival is enabled by default for all namespacesor for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
+										Description:         "Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
+										MarkdownDescription: "Enabled defines if the archival is enabled by default for all namespaces or for a particular namespace (depends if it's for a TemporalCluster or a TemporalNamespace).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1372,16 +1372,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "Authorization allows authorization configuration for the temporal cluster.",
 						Attributes: map[string]schema.Attribute{
 							"authorizer": schema.StringAttribute{
-								Description:         "Authorizer defines the authorization mechanism to be used. It can be left as an empty string touse a no-operation authorizer (noopAuthorizer), or set to 'default' to use the temporal's defaultauthorizer (defaultAuthorizer).",
-								MarkdownDescription: "Authorizer defines the authorization mechanism to be used. It can be left as an empty string touse a no-operation authorizer (noopAuthorizer), or set to 'default' to use the temporal's defaultauthorizer (defaultAuthorizer).",
+								Description:         "Authorizer defines the authorization mechanism to be used. It can be left as an empty string to use a no-operation authorizer (noopAuthorizer), or set to 'default' to use the temporal's default authorizer (defaultAuthorizer).",
+								MarkdownDescription: "Authorizer defines the authorization mechanism to be used. It can be left as an empty string to use a no-operation authorizer (noopAuthorizer), or set to 'default' to use the temporal's default authorizer (defaultAuthorizer).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"claim_mapper": schema.StringAttribute{
-								Description:         "ClaimMapper specifies the claim mapping mechanism used for handling JWT claims. Similar to the Authorizer,it can be left as an empty string to use a no-operation claim mapper (noopClaimMapper), or set to 'default'to use the default JWT claim mapper (defaultJWTClaimMapper).",
-								MarkdownDescription: "ClaimMapper specifies the claim mapping mechanism used for handling JWT claims. Similar to the Authorizer,it can be left as an empty string to use a no-operation claim mapper (noopClaimMapper), or set to 'default'to use the default JWT claim mapper (defaultJWTClaimMapper).",
+								Description:         "ClaimMapper specifies the claim mapping mechanism used for handling JWT claims. Similar to the Authorizer, it can be left as an empty string to use a no-operation claim mapper (noopClaimMapper), or set to 'default' to use the default JWT claim mapper (defaultJWTClaimMapper).",
+								MarkdownDescription: "ClaimMapper specifies the claim mapping mechanism used for handling JWT claims. Similar to the Authorizer, it can be left as an empty string to use a no-operation claim mapper (noopClaimMapper), or set to 'default' to use the default JWT claim mapper (defaultJWTClaimMapper).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1392,8 +1392,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "JWTKeyProvider specifies the signing key provider used for validating JWT tokens.",
 								Attributes: map[string]schema.Attribute{
 									"key_source_ur_is": schema.ListAttribute{
-										Description:         "KeySourceURIs is a list of URIs where the JWT signing keys can be obtained. These URIs are used by theauthorization system to fetch the public keys necessary for validating JWT tokens.",
-										MarkdownDescription: "KeySourceURIs is a list of URIs where the JWT signing keys can be obtained. These URIs are used by theauthorization system to fetch the public keys necessary for validating JWT tokens.",
+										Description:         "KeySourceURIs is a list of URIs where the JWT signing keys can be obtained. These URIs are used by the authorization system to fetch the public keys necessary for validating JWT tokens.",
+										MarkdownDescription: "KeySourceURIs is a list of URIs where the JWT signing keys can be obtained. These URIs are used by the authorization system to fetch the public keys necessary for validating JWT tokens.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1401,8 +1401,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"refresh_interval": schema.StringAttribute{
-										Description:         "RefreshInterval defines the time interval at which temporal should refresh the JWT signing keys fromthe specified URIs.",
-										MarkdownDescription: "RefreshInterval defines the time interval at which temporal should refresh the JWT signing keys fromthe specified URIs.",
+										Description:         "RefreshInterval defines the time interval at which temporal should refresh the JWT signing keys from the specified URIs.",
+										MarkdownDescription: "RefreshInterval defines the time interval at which temporal should refresh the JWT signing keys from the specified URIs.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1431,8 +1431,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "DynamicConfig allows advanced configuration for the temporal cluster.",
 						Attributes: map[string]schema.Attribute{
 							"poll_interval": schema.StringAttribute{
-								Description:         "PollInterval defines how often the config should be updated by checking provided values.Defaults to 10s.",
-								MarkdownDescription: "PollInterval defines how often the config should be updated by checking provided values.Defaults to 10s.",
+								Description:         "PollInterval defines how often the config should be updated by checking provided values. Defaults to 10s.",
+								MarkdownDescription: "PollInterval defines how often the config should be updated by checking provided values. Defaults to 10s.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1461,13 +1461,13 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"image_pull_secrets": schema.ListNestedAttribute{
-						Description:         "An optional list of references to secrets in the same namespaceto use for pulling temporal images from registries.",
-						MarkdownDescription: "An optional list of references to secrets in the same namespaceto use for pulling temporal images from registries.",
+						Description:         "An optional list of references to secrets in the same namespace to use for pulling temporal images from registries.",
+						MarkdownDescription: "An optional list of references to secrets in the same namespace to use for pulling temporal images from registries.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1493,13 +1493,13 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "JobResources allows set resources for setup/update jobs.",
 						Attributes: map[string]schema.Attribute{
 							"claims": schema.ListNestedAttribute{
-								Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+											Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -1512,8 +1512,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"limits": schema.MapAttribute{
-								Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1521,8 +1521,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"requests": schema.MapAttribute{
-								Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1535,8 +1535,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"job_ttl_seconds_after_finished": schema.Int64Attribute{
-						Description:         "JobTTLSecondsAfterFinished is amount of time to keep job pods after jobs are completed.Defaults to 300 seconds.",
-						MarkdownDescription: "JobTTLSecondsAfterFinished is amount of time to keep job pods after jobs are completed.Defaults to 300 seconds.",
+						Description:         "JobTTLSecondsAfterFinished is amount of time to keep job pods after jobs are completed. Defaults to 300 seconds.",
+						MarkdownDescription: "JobTTLSecondsAfterFinished is amount of time to keep job pods after jobs are completed. Defaults to 300 seconds.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1550,16 +1550,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "Log defines temporal cluster's logger configuration.",
 						Attributes: map[string]schema.Attribute{
 							"development": schema.BoolAttribute{
-								Description:         "Development determines whether the logger is run in Development (== Test) or inProduction mode.  Default is Production.  Production-stage disables panics fromDPanic logging.",
-								MarkdownDescription: "Development determines whether the logger is run in Development (== Test) or inProduction mode.  Default is Production.  Production-stage disables panics fromDPanic logging.",
+								Description:         "Development determines whether the logger is run in Development (== Test) or in Production mode. Default is Production. Production-stage disables panics from DPanic logging.",
+								MarkdownDescription: "Development determines whether the logger is run in Development (== Test) or in Production mode. Default is Production. Production-stage disables panics from DPanic logging.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"format": schema.StringAttribute{
-								Description:         "Format determines the format of each log file printed to the output.Use 'console' if you want stack traces to appear on multiple lines.",
-								MarkdownDescription: "Format determines the format of each log file printed to the output.Use 'console' if you want stack traces to appear on multiple lines.",
+								Description:         "Format determines the format of each log file printed to the output. Use 'console' if you want stack traces to appear on multiple lines.",
+								MarkdownDescription: "Format determines the format of each log file printed to the output. Use 'console' if you want stack traces to appear on multiple lines.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1605,44 +1605,44 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "MTLS allows configuration of the network traffic encryption for the cluster.",
 						Attributes: map[string]schema.Attribute{
 							"certificates_duration": schema.SingleNestedAttribute{
-								Description:         "CertificatesDuration allows configuration of maximum certificates lifetime.Useless if mTLS provider is not cert-manager.",
-								MarkdownDescription: "CertificatesDuration allows configuration of maximum certificates lifetime.Useless if mTLS provider is not cert-manager.",
+								Description:         "CertificatesDuration allows configuration of maximum certificates lifetime. Useless if mTLS provider is not cert-manager.",
+								MarkdownDescription: "CertificatesDuration allows configuration of maximum certificates lifetime. Useless if mTLS provider is not cert-manager.",
 								Attributes: map[string]schema.Attribute{
 									"client_certificates": schema.StringAttribute{
-										Description:         "ClientCertificates is the 'duration' (i.e. lifetime) of the client certificates.It defaults to 1 year.",
-										MarkdownDescription: "ClientCertificates is the 'duration' (i.e. lifetime) of the client certificates.It defaults to 1 year.",
+										Description:         "ClientCertificates is the 'duration' (i.e. lifetime) of the client certificates. It defaults to 1 year.",
+										MarkdownDescription: "ClientCertificates is the 'duration' (i.e. lifetime) of the client certificates. It defaults to 1 year.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"frontend_certificate": schema.StringAttribute{
-										Description:         "FrontendCertificate is the 'duration' (i.e. lifetime) of the frontend certificate.It defaults to 1 year.",
-										MarkdownDescription: "FrontendCertificate is the 'duration' (i.e. lifetime) of the frontend certificate.It defaults to 1 year.",
+										Description:         "FrontendCertificate is the 'duration' (i.e. lifetime) of the frontend certificate. It defaults to 1 year.",
+										MarkdownDescription: "FrontendCertificate is the 'duration' (i.e. lifetime) of the frontend certificate. It defaults to 1 year.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"intermediate_c_as_certificates": schema.StringAttribute{
-										Description:         "IntermediateCACertificates is the 'duration' (i.e. lifetime) of the intermediate CAs Certificates.It defaults to 5 years.",
-										MarkdownDescription: "IntermediateCACertificates is the 'duration' (i.e. lifetime) of the intermediate CAs Certificates.It defaults to 5 years.",
+										Description:         "IntermediateCACertificates is the 'duration' (i.e. lifetime) of the intermediate CAs Certificates. It defaults to 5 years.",
+										MarkdownDescription: "IntermediateCACertificates is the 'duration' (i.e. lifetime) of the intermediate CAs Certificates. It defaults to 5 years.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"internode_certificate": schema.StringAttribute{
-										Description:         "InternodeCertificate is the 'duration' (i.e. lifetime) of the internode certificate.It defaults to 1 year.",
-										MarkdownDescription: "InternodeCertificate is the 'duration' (i.e. lifetime) of the internode certificate.It defaults to 1 year.",
+										Description:         "InternodeCertificate is the 'duration' (i.e. lifetime) of the internode certificate. It defaults to 1 year.",
+										MarkdownDescription: "InternodeCertificate is the 'duration' (i.e. lifetime) of the internode certificate. It defaults to 1 year.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"root_ca_certificate": schema.StringAttribute{
-										Description:         "RootCACertificate is the 'duration' (i.e. lifetime) of the Root CA Certificate.It defaults to 10 years.",
-										MarkdownDescription: "RootCACertificate is the 'duration' (i.e. lifetime) of the Root CA Certificate.It defaults to 10 years.",
+										Description:         "RootCACertificate is the 'duration' (i.e. lifetime) of the Root CA Certificate. It defaults to 10 years.",
+										MarkdownDescription: "RootCACertificate is the 'duration' (i.e. lifetime) of the Root CA Certificate. It defaults to 10 years.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1654,8 +1654,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"frontend": schema.SingleNestedAttribute{
-								Description:         "Frontend allows configuration of the frontend's public endpoint traffic encryption.Useless if mTLS provider is not cert-manager.",
-								MarkdownDescription: "Frontend allows configuration of the frontend's public endpoint traffic encryption.Useless if mTLS provider is not cert-manager.",
+								Description:         "Frontend allows configuration of the frontend's public endpoint traffic encryption. Useless if mTLS provider is not cert-manager.",
+								MarkdownDescription: "Frontend allows configuration of the frontend's public endpoint traffic encryption. Useless if mTLS provider is not cert-manager.",
 								Attributes: map[string]schema.Attribute{
 									"enabled": schema.BoolAttribute{
 										Description:         "Enabled defines if the operator should enable mTLS for cluster's public endpoints.",
@@ -1666,8 +1666,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"extra_dns_names": schema.ListAttribute{
-										Description:         "ExtraDNSNames is a list of additional DNS names associated with the TemporalCluster.These DNS names can be used for accessing the TemporalCluster from external services.The DNS names specified here will be added to the TLS certificate for secure communication.",
-										MarkdownDescription: "ExtraDNSNames is a list of additional DNS names associated with the TemporalCluster.These DNS names can be used for accessing the TemporalCluster from external services.The DNS names specified here will be added to the TLS certificate for secure communication.",
+										Description:         "ExtraDNSNames is a list of additional DNS names associated with the TemporalCluster. These DNS names can be used for accessing the TemporalCluster from external services. The DNS names specified here will be added to the TLS certificate for secure communication.",
+										MarkdownDescription: "ExtraDNSNames is a list of additional DNS names associated with the TemporalCluster. These DNS names can be used for accessing the TemporalCluster from external services. The DNS names specified here will be added to the TLS certificate for secure communication.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1680,8 +1680,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"internode": schema.SingleNestedAttribute{
-								Description:         "Internode allows configuration of the internode traffic encryption.Useless if mTLS provider is not cert-manager.",
-								MarkdownDescription: "Internode allows configuration of the internode traffic encryption.Useless if mTLS provider is not cert-manager.",
+								Description:         "Internode allows configuration of the internode traffic encryption. Useless if mTLS provider is not cert-manager.",
+								MarkdownDescription: "Internode allows configuration of the internode traffic encryption. Useless if mTLS provider is not cert-manager.",
 								Attributes: map[string]schema.Attribute{
 									"enabled": schema.BoolAttribute{
 										Description:         "Enabled defines if the operator should enable mTLS for network between cluster nodes.",
@@ -1708,16 +1708,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"refresh_interval": schema.StringAttribute{
-								Description:         "RefreshInterval defines interval between refreshes of certificates in the cluster components.Defaults to 1 hour.Useless if mTLS provider is not cert-manager.",
-								MarkdownDescription: "RefreshInterval defines interval between refreshes of certificates in the cluster components.Defaults to 1 hour.Useless if mTLS provider is not cert-manager.",
+								Description:         "RefreshInterval defines interval between refreshes of certificates in the cluster components. Defaults to 1 hour. Useless if mTLS provider is not cert-manager.",
+								MarkdownDescription: "RefreshInterval defines interval between refreshes of certificates in the cluster components. Defaults to 1 hour. Useless if mTLS provider is not cert-manager.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"renew_before": schema.StringAttribute{
-								Description:         "RenewBefore is defines how long before the currently issued certificate's expirycert-manager should renew the certificate. The default is 2/3 of theissued certificate's duration. Minimum accepted value is 5 minutes.Useless if mTLS provider is not cert-manager.",
-								MarkdownDescription: "RenewBefore is defines how long before the currently issued certificate's expirycert-manager should renew the certificate. The default is 2/3 of theissued certificate's duration. Minimum accepted value is 5 minutes.Useless if mTLS provider is not cert-manager.",
+								Description:         "RenewBefore is defines how long before the currently issued certificate's expiry cert-manager should renew the certificate. The default is 2/3 of the issued certificate's duration. Minimum accepted value is 5 minutes. Useless if mTLS provider is not cert-manager.",
+								MarkdownDescription: "RenewBefore is defines how long before the currently issued certificate's expiry cert-manager should renew the certificate. The default is 2/3 of the issued certificate's duration. Minimum accepted value is 5 minutes. Useless if mTLS provider is not cert-manager.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1741,8 +1741,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"exclude_tags": schema.MapAttribute{
-								Description:         "ExcludeTags is a map from tag name string to tag values string list.Each value present in keys will have relevant tag value replaced with '_tag_excluded_'Each value in values list will white-list tag values to be reported as usual.",
-								MarkdownDescription: "ExcludeTags is a map from tag name string to tag values string list.Each value present in keys will have relevant tag value replaced with '_tag_excluded_'Each value in values list will white-list tag values to be reported as usual.",
+								Description:         "ExcludeTags is a map from tag name string to tag values string list. Each value present in keys will have relevant tag value replaced with '_tag_excluded_' Each value in values list will white-list tag values to be reported as usual.",
+								MarkdownDescription: "ExcludeTags is a map from tag name string to tag values string list. Each value present in keys will have relevant tag value replaced with '_tag_excluded_' Each value in values list will white-list tag values to be reported as usual.",
 								ElementType:         types.ListType{ElemType: types.StringType},
 								Required:            false,
 								Optional:            true,
@@ -1750,8 +1750,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"per_unit_histogram_boundaries": schema.MapAttribute{
-								Description:         "PerUnitHistogramBoundaries defines the default histogram bucket boundaries.Configuration of histogram boundaries for given metric unit.Supported values:- 'dimensionless'- 'milliseconds'- 'bytes'",
-								MarkdownDescription: "PerUnitHistogramBoundaries defines the default histogram bucket boundaries.Configuration of histogram boundaries for given metric unit.Supported values:- 'dimensionless'- 'milliseconds'- 'bytes'",
+								Description:         "PerUnitHistogramBoundaries defines the default histogram bucket boundaries. Configuration of histogram boundaries for given metric unit. Supported values: - 'dimensionless' - 'milliseconds' - 'bytes'",
+								MarkdownDescription: "PerUnitHistogramBoundaries defines the default histogram bucket boundaries. Configuration of histogram boundaries for given metric unit. Supported values: - 'dimensionless' - 'milliseconds' - 'bytes'",
 								ElementType:         types.ListType{ElemType: types.StringType},
 								Required:            false,
 								Optional:            true,
@@ -1825,8 +1825,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"action": schema.StringAttribute{
-																	Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
-																	MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+																	Description:         "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
+																	MarkdownDescription: "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1836,8 +1836,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																},
 
 																"modulus": schema.Int64Attribute{
-																	Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
-																	MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+																	Description:         "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
+																	MarkdownDescription: "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1852,8 +1852,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																},
 
 																"replacement": schema.StringAttribute{
-																	Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
-																	MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+																	Description:         "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
+																	MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1868,8 +1868,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																},
 
 																"source_labels": schema.ListAttribute{
-																	Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
-																	MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+																	Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+																	MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1877,8 +1877,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																},
 
 																"target_label": schema.StringAttribute{
-																	Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
-																	MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+																	Description:         "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
+																	MarkdownDescription: "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1891,16 +1891,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"override": schema.SingleNestedAttribute{
-														Description:         "Override allows customization of the created ServiceMonitor.All fields can be overwritten except 'endpoints', 'selector' and 'namespaceSelector'.",
-														MarkdownDescription: "Override allows customization of the created ServiceMonitor.All fields can be overwritten except 'endpoints', 'selector' and 'namespaceSelector'.",
+														Description:         "Override allows customization of the created ServiceMonitor. All fields can be overwritten except 'endpoints', 'selector' and 'namespaceSelector'.",
+														MarkdownDescription: "Override allows customization of the created ServiceMonitor. All fields can be overwritten except 'endpoints', 'selector' and 'namespaceSelector'.",
 														Attributes: map[string]schema.Attribute{
 															"attach_metadata": schema.SingleNestedAttribute{
-																Description:         "'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.37.0.",
-																MarkdownDescription: "'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.37.0.",
+																Description:         "'attachMetadata' defines additional metadata which is added to the discovered targets. It requires Prometheus >= v2.37.0.",
+																MarkdownDescription: "'attachMetadata' defines additional metadata which is added to the discovered targets. It requires Prometheus >= v2.37.0.",
 																Attributes: map[string]schema.Attribute{
 																	"node": schema.BoolAttribute{
-																		Description:         "When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.",
-																		MarkdownDescription: "When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.",
+																		Description:         "When set to true, Prometheus must have the 'get' permission on the 'Nodes' objects.",
+																		MarkdownDescription: "When set to true, Prometheus must have the 'get' permission on the 'Nodes' objects.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1912,8 +1912,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"body_size_limit": schema.StringAttribute{
-																Description:         "When defined, bodySizeLimit specifies a job level limit on the sizeof uncompressed response body that will be accepted by Prometheus.It requires Prometheus >= v2.28.0.",
-																MarkdownDescription: "When defined, bodySizeLimit specifies a job level limit on the sizeof uncompressed response body that will be accepted by Prometheus.It requires Prometheus >= v2.28.0.",
+																Description:         "When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus. It requires Prometheus >= v2.28.0.",
+																MarkdownDescription: "When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus. It requires Prometheus >= v2.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1928,24 +1928,24 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"authorization": schema.SingleNestedAttribute{
-																			Description:         "'authorization' configures the Authorization header credentials to use whenscraping the target.Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
-																			MarkdownDescription: "'authorization' configures the Authorization header credentials to use whenscraping the target.Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
+																			Description:         "'authorization' configures the Authorization header credentials to use when scraping the target. Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
+																			MarkdownDescription: "'authorization' configures the Authorization header credentials to use when scraping the target. Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
 																			Attributes: map[string]schema.Attribute{
 																				"credentials": schema.SingleNestedAttribute{
 																					Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
 																					MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
 																					Attributes: map[string]schema.Attribute{
 																						"key": schema.StringAttribute{
-																							Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																							MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																							Description:         "The key of the secret to select from. Must be a valid secret key.",
+																							MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																							MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -1965,8 +1965,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																				},
 
 																				"type": schema.StringAttribute{
-																					Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
-																					MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+																					Description:         "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
+																					MarkdownDescription: "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -1978,24 +1978,24 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"basic_auth": schema.SingleNestedAttribute{
-																			Description:         "'basicAuth' configures the Basic Authentication credentials to use whenscraping the target.Cannot be set at the same time as 'authorization', or 'oauth2'.",
-																			MarkdownDescription: "'basicAuth' configures the Basic Authentication credentials to use whenscraping the target.Cannot be set at the same time as 'authorization', or 'oauth2'.",
+																			Description:         "'basicAuth' configures the Basic Authentication credentials to use when scraping the target. Cannot be set at the same time as 'authorization', or 'oauth2'.",
+																			MarkdownDescription: "'basicAuth' configures the Basic Authentication credentials to use when scraping the target. Cannot be set at the same time as 'authorization', or 'oauth2'.",
 																			Attributes: map[string]schema.Attribute{
 																				"password": schema.SingleNestedAttribute{
-																					Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
-																					MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
+																					Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																					MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																					Attributes: map[string]schema.Attribute{
 																						"key": schema.StringAttribute{
-																							Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																							MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																							Description:         "The key of the secret to select from. Must be a valid secret key.",
+																							MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																							MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2015,20 +2015,20 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																				},
 
 																				"username": schema.SingleNestedAttribute{
-																					Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
-																					MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
+																					Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																					MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																					Attributes: map[string]schema.Attribute{
 																						"key": schema.StringAttribute{
-																							Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																							MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																							Description:         "The key of the secret to select from. Must be a valid secret key.",
+																							MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																							MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2053,28 +2053,28 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"bearer_token_file": schema.StringAttribute{
-																			Description:         "File to read bearer token for scraping the target.Deprecated: use 'authorization' instead.",
-																			MarkdownDescription: "File to read bearer token for scraping the target.Deprecated: use 'authorization' instead.",
+																			Description:         "File to read bearer token for scraping the target. Deprecated: use 'authorization' instead.",
+																			MarkdownDescription: "File to read bearer token for scraping the target. Deprecated: use 'authorization' instead.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"bearer_token_secret": schema.SingleNestedAttribute{
-																			Description:         "'bearerTokenSecret' specifies a key of a Secret containing the bearertoken for scraping targets. The secret needs to be in the same namespaceas the ServiceMonitor object and readable by the Prometheus Operator.Deprecated: use 'authorization' instead.",
-																			MarkdownDescription: "'bearerTokenSecret' specifies a key of a Secret containing the bearertoken for scraping targets. The secret needs to be in the same namespaceas the ServiceMonitor object and readable by the Prometheus Operator.Deprecated: use 'authorization' instead.",
+																			Description:         "'bearerTokenSecret' specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator. Deprecated: use 'authorization' instead.",
+																			MarkdownDescription: "'bearerTokenSecret' specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator. Deprecated: use 'authorization' instead.",
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.StringAttribute{
-																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Description:         "The key of the secret to select from. Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -2102,40 +2102,40 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"filter_running": schema.BoolAttribute{
-																			Description:         "When true, the pods which are not running (e.g. either in Failed orSucceeded state) are dropped during the target discovery.If unset, the filtering is enabled.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
-																			MarkdownDescription: "When true, the pods which are not running (e.g. either in Failed orSucceeded state) are dropped during the target discovery.If unset, the filtering is enabled.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
+																			Description:         "When true, the pods which are not running (e.g. either in Failed or Succeeded state) are dropped during the target discovery. If unset, the filtering is enabled. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
+																			MarkdownDescription: "When true, the pods which are not running (e.g. either in Failed or Succeeded state) are dropped during the target discovery. If unset, the filtering is enabled. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"follow_redirects": schema.BoolAttribute{
-																			Description:         "'followRedirects' defines whether the scrape requests should follow HTTP3xx redirects.",
-																			MarkdownDescription: "'followRedirects' defines whether the scrape requests should follow HTTP3xx redirects.",
+																			Description:         "'followRedirects' defines whether the scrape requests should follow HTTP 3xx redirects.",
+																			MarkdownDescription: "'followRedirects' defines whether the scrape requests should follow HTTP 3xx redirects.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"honor_labels": schema.BoolAttribute{
-																			Description:         "When true, 'honorLabels' preserves the metric's labels when they collidewith the target's labels.",
-																			MarkdownDescription: "When true, 'honorLabels' preserves the metric's labels when they collidewith the target's labels.",
+																			Description:         "When true, 'honorLabels' preserves the metric's labels when they collide with the target's labels.",
+																			MarkdownDescription: "When true, 'honorLabels' preserves the metric's labels when they collide with the target's labels.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"honor_timestamps": schema.BoolAttribute{
-																			Description:         "'honorTimestamps' controls whether Prometheus preserves the timestampswhen exposed by the target.",
-																			MarkdownDescription: "'honorTimestamps' controls whether Prometheus preserves the timestampswhen exposed by the target.",
+																			Description:         "'honorTimestamps' controls whether Prometheus preserves the timestamps when exposed by the target.",
+																			MarkdownDescription: "'honorTimestamps' controls whether Prometheus preserves the timestamps when exposed by the target.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"interval": schema.StringAttribute{
-																			Description:         "Interval at which Prometheus scrapes the metrics from the target.If empty, Prometheus uses the global scrape interval.",
-																			MarkdownDescription: "Interval at which Prometheus scrapes the metrics from the target.If empty, Prometheus uses the global scrape interval.",
+																			Description:         "Interval at which Prometheus scrapes the metrics from the target. If empty, Prometheus uses the global scrape interval.",
+																			MarkdownDescription: "Interval at which Prometheus scrapes the metrics from the target. If empty, Prometheus uses the global scrape interval.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2145,13 +2145,13 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"metric_relabelings": schema.ListNestedAttribute{
-																			Description:         "'metricRelabelings' configures the relabeling rules to apply to thesamples before ingestion.",
-																			MarkdownDescription: "'metricRelabelings' configures the relabeling rules to apply to thesamples before ingestion.",
+																			Description:         "'metricRelabelings' configures the relabeling rules to apply to the samples before ingestion.",
+																			MarkdownDescription: "'metricRelabelings' configures the relabeling rules to apply to the samples before ingestion.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"action": schema.StringAttribute{
-																						Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
-																						MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+																						Description:         "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
+																						MarkdownDescription: "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2161,8 +2161,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					},
 
 																					"modulus": schema.Int64Attribute{
-																						Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
-																						MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+																						Description:         "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
+																						MarkdownDescription: "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2177,8 +2177,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					},
 
 																					"replacement": schema.StringAttribute{
-																						Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
-																						MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+																						Description:         "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
+																						MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2193,8 +2193,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					},
 
 																					"source_labels": schema.ListAttribute{
-																						Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
-																						MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+																						Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+																						MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -2202,8 +2202,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					},
 
 																					"target_label": schema.StringAttribute{
-																						Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
-																						MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+																						Description:         "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
+																						MarkdownDescription: "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2216,12 +2216,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"oauth2": schema.SingleNestedAttribute{
-																			Description:         "'oauth2' configures the OAuth2 settings to use when scraping the target.It requires Prometheus >= 2.27.0.Cannot be set at the same time as 'authorization', or 'basicAuth'.",
-																			MarkdownDescription: "'oauth2' configures the OAuth2 settings to use when scraping the target.It requires Prometheus >= 2.27.0.Cannot be set at the same time as 'authorization', or 'basicAuth'.",
+																			Description:         "'oauth2' configures the OAuth2 settings to use when scraping the target. It requires Prometheus >= 2.27.0. Cannot be set at the same time as 'authorization', or 'basicAuth'.",
+																			MarkdownDescription: "'oauth2' configures the OAuth2 settings to use when scraping the target. It requires Prometheus >= 2.27.0. Cannot be set at the same time as 'authorization', or 'basicAuth'.",
 																			Attributes: map[string]schema.Attribute{
 																				"client_id": schema.SingleNestedAttribute{
-																					Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
-																					MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+																					Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																					MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																					Attributes: map[string]schema.Attribute{
 																						"config_map": schema.SingleNestedAttribute{
 																							Description:         "ConfigMap containing data to use for the targets.",
@@ -2236,8 +2236,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2261,16 +2261,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																							MarkdownDescription: "Secret containing data to use for the targets.",
 																							Attributes: map[string]schema.Attribute{
 																								"key": schema.StringAttribute{
-																									Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																									MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																									Description:         "The key of the secret to select from. Must be a valid secret key.",
+																									MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2295,20 +2295,20 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																				},
 
 																				"client_secret": schema.SingleNestedAttribute{
-																					Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
-																					MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+																					Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																					MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																					Attributes: map[string]schema.Attribute{
 																						"key": schema.StringAttribute{
-																							Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																							MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																							Description:         "The key of the secret to select from. Must be a valid secret key.",
+																							MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																							MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2328,8 +2328,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																				},
 
 																				"endpoint_params": schema.MapAttribute{
-																					Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
-																					MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+																					Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																					MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2371,37 +2371,37 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"path": schema.StringAttribute{
-																			Description:         "HTTP path from which to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').",
-																			MarkdownDescription: "HTTP path from which to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').",
+																			Description:         "HTTP path from which to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
+																			MarkdownDescription: "HTTP path from which to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"port": schema.StringAttribute{
-																			Description:         "Name of the Service port which this endpoint refers to.It takes precedence over 'targetPort'.",
-																			MarkdownDescription: "Name of the Service port which this endpoint refers to.It takes precedence over 'targetPort'.",
+																			Description:         "Name of the Service port which this endpoint refers to. It takes precedence over 'targetPort'.",
+																			MarkdownDescription: "Name of the Service port which this endpoint refers to. It takes precedence over 'targetPort'.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"proxy_url": schema.StringAttribute{
-																			Description:         "'proxyURL' configures the HTTP Proxy URL (e.g.'http://proxyserver:2195') to go through when scraping the target.",
-																			MarkdownDescription: "'proxyURL' configures the HTTP Proxy URL (e.g.'http://proxyserver:2195') to go through when scraping the target.",
+																			Description:         "'proxyURL' configures the HTTP Proxy URL (e.g. 'http://proxyserver:2195') to go through when scraping the target.",
+																			MarkdownDescription: "'proxyURL' configures the HTTP Proxy URL (e.g. 'http://proxyserver:2195') to go through when scraping the target.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"relabelings": schema.ListNestedAttribute{
-																			Description:         "'relabelings' configures the relabeling rules to apply the target'smetadata labels.The Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
-																			MarkdownDescription: "'relabelings' configures the relabeling rules to apply the target'smetadata labels.The Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+																			Description:         "'relabelings' configures the relabeling rules to apply the target's metadata labels. The Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+																			MarkdownDescription: "'relabelings' configures the relabeling rules to apply the target's metadata labels. The Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"action": schema.StringAttribute{
-																						Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
-																						MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+																						Description:         "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
+																						MarkdownDescription: "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2411,8 +2411,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					},
 
 																					"modulus": schema.Int64Attribute{
-																						Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
-																						MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+																						Description:         "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
+																						MarkdownDescription: "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2427,8 +2427,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					},
 
 																					"replacement": schema.StringAttribute{
-																						Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
-																						MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+																						Description:         "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
+																						MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2443,8 +2443,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					},
 
 																					"source_labels": schema.ListAttribute{
-																						Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
-																						MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+																						Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+																						MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -2452,8 +2452,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					},
 
 																					"target_label": schema.StringAttribute{
-																						Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
-																						MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+																						Description:         "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
+																						MarkdownDescription: "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2466,8 +2466,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"scheme": schema.StringAttribute{
-																			Description:         "HTTP scheme to use for scraping.'http' and 'https' are the expected values unless you rewrite the'__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.",
-																			MarkdownDescription: "HTTP scheme to use for scraping.'http' and 'https' are the expected values unless you rewrite the'__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.",
+																			Description:         "HTTP scheme to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
+																			MarkdownDescription: "HTTP scheme to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2477,8 +2477,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"scrape_timeout": schema.StringAttribute{
-																			Description:         "Timeout after which Prometheus considers the scrape to be failed.If empty, Prometheus uses the global scrape timeout unless it is lessthan the target's scrape interval value in which the latter is used.",
-																			MarkdownDescription: "Timeout after which Prometheus considers the scrape to be failed.If empty, Prometheus uses the global scrape timeout unless it is lessthan the target's scrape interval value in which the latter is used.",
+																			Description:         "Timeout after which Prometheus considers the scrape to be failed. If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.",
+																			MarkdownDescription: "Timeout after which Prometheus considers the scrape to be failed. If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2488,8 +2488,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"target_port": schema.StringAttribute{
-																			Description:         "Name or number of the target port of the 'Pod' object behind theService. The port must be specified with the container's port property.",
-																			MarkdownDescription: "Name or number of the target port of the 'Pod' object behind theService. The port must be specified with the container's port property.",
+																			Description:         "Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.",
+																			MarkdownDescription: "Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2516,8 +2516,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2541,16 +2541,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																							MarkdownDescription: "Secret containing data to use for the targets.",
 																							Attributes: map[string]schema.Attribute{
 																								"key": schema.StringAttribute{
-																									Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																									MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																									Description:         "The key of the secret to select from. Must be a valid secret key.",
+																									MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2599,8 +2599,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2624,16 +2624,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																							MarkdownDescription: "Secret containing data to use for the targets.",
 																							Attributes: map[string]schema.Attribute{
 																								"key": schema.StringAttribute{
-																									Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																									MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																									Description:         "The key of the secret to select from. Must be a valid secret key.",
+																									MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
 																								},
 
 																								"name": schema.StringAttribute{
-																									Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																									MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -2686,16 +2686,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																					MarkdownDescription: "Secret containing the client key file for the targets.",
 																					Attributes: map[string]schema.Attribute{
 																						"key": schema.StringAttribute{
-																							Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																							MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																							Description:         "The key of the secret to select from. Must be a valid secret key.",
+																							MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																							MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																							MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2728,8 +2728,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																		},
 
 																		"track_timestamps_staleness": schema.BoolAttribute{
-																			Description:         "'trackTimestampsStaleness' defines whether Prometheus tracks staleness ofthe metrics that have an explicit timestamp present in scraped data.Has no effect if 'honorTimestamps' is false.It requires Prometheus >= v2.48.0.",
-																			MarkdownDescription: "'trackTimestampsStaleness' defines whether Prometheus tracks staleness ofthe metrics that have an explicit timestamp present in scraped data.Has no effect if 'honorTimestamps' is false.It requires Prometheus >= v2.48.0.",
+																			Description:         "'trackTimestampsStaleness' defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false. It requires Prometheus >= v2.48.0.",
+																			MarkdownDescription: "'trackTimestampsStaleness' defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false. It requires Prometheus >= v2.48.0.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2742,52 +2742,52 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"job_label": schema.StringAttribute{
-																Description:         "'jobLabel' selects the label from the associated Kubernetes 'Service'object which will be used as the 'job' label for all metrics.For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service'object is labeled with 'foo: bar', then Prometheus adds the 'job='bar''label to all ingested metrics.If the value of this field is empty or if the label doesn't exist forthe given Service, the 'job' label of the metrics defaults to the nameof the associated Kubernetes 'Service'.",
-																MarkdownDescription: "'jobLabel' selects the label from the associated Kubernetes 'Service'object which will be used as the 'job' label for all metrics.For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service'object is labeled with 'foo: bar', then Prometheus adds the 'job='bar''label to all ingested metrics.If the value of this field is empty or if the label doesn't exist forthe given Service, the 'job' label of the metrics defaults to the nameof the associated Kubernetes 'Service'.",
+																Description:         "'jobLabel' selects the label from the associated Kubernetes 'Service' object which will be used as the 'job' label for all metrics. For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics. If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the associated Kubernetes 'Service'.",
+																MarkdownDescription: "'jobLabel' selects the label from the associated Kubernetes 'Service' object which will be used as the 'job' label for all metrics. For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics. If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the associated Kubernetes 'Service'.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"keep_dropped_targets": schema.Int64Attribute{
-																Description:         "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.",
-																MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.",
+																Description:         "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit. It requires Prometheus >= v2.47.0.",
+																MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit. It requires Prometheus >= v2.47.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"label_limit": schema.Int64Attribute{
-																Description:         "Per-scrape limit on number of labels that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
-																MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
+																Description:         "Per-scrape limit on number of labels that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
+																MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"label_name_length_limit": schema.Int64Attribute{
-																Description:         "Per-scrape limit on length of labels name that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
-																MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
+																Description:         "Per-scrape limit on length of labels name that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
+																MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"label_value_length_limit": schema.Int64Attribute{
-																Description:         "Per-scrape limit on length of labels value that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
-																MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
+																Description:         "Per-scrape limit on length of labels value that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
+																MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"namespace_selector": schema.SingleNestedAttribute{
-																Description:         "Selector to select which namespaces the Kubernetes 'Endpoints' objectsare discovered from.",
-																MarkdownDescription: "Selector to select which namespaces the Kubernetes 'Endpoints' objectsare discovered from.",
+																Description:         "Selector to select which namespaces the Kubernetes 'Endpoints' objects are discovered from.",
+																MarkdownDescription: "Selector to select which namespaces the Kubernetes 'Endpoints' objects are discovered from.",
 																Attributes: map[string]schema.Attribute{
 																	"any": schema.BoolAttribute{
-																		Description:         "Boolean describing whether all namespaces are selected in contrast to alist restricting them.",
-																		MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to alist restricting them.",
+																		Description:         "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
+																		MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2808,8 +2808,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"pod_target_labels": schema.ListAttribute{
-																Description:         "'podTargetLabels' defines the labels which are transferred from theassociated Kubernetes 'Pod' object onto the ingested metrics.",
-																MarkdownDescription: "'podTargetLabels' defines the labels which are transferred from theassociated Kubernetes 'Pod' object onto the ingested metrics.",
+																Description:         "'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.",
+																MarkdownDescription: "'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2817,8 +2817,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"sample_limit": schema.Int64Attribute{
-																Description:         "'sampleLimit' defines a per-scrape limit on the number of scraped samplesthat will be accepted.",
-																MarkdownDescription: "'sampleLimit' defines a per-scrape limit on the number of scraped samplesthat will be accepted.",
+																Description:         "'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.",
+																MarkdownDescription: "'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2836,8 +2836,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"scrape_protocols": schema.ListAttribute{
-																Description:         "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients theprotocols supported by Prometheus in order of preference (from most to least preferred).If unset, Prometheus uses its default value.It requires Prometheus >= v2.49.0.",
-																MarkdownDescription: "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients theprotocols supported by Prometheus in order of preference (from most to least preferred).If unset, Prometheus uses its default value.It requires Prometheus >= v2.49.0.",
+																Description:         "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0.",
+																MarkdownDescription: "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2862,16 +2862,16 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																				},
 
 																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2885,8 +2885,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																	},
 
 																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -2899,8 +2899,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"target_labels": schema.ListAttribute{
-																Description:         "'targetLabels' defines the labels which are transferred from theassociated Kubernetes 'Service' object onto the ingested metrics.",
-																MarkdownDescription: "'targetLabels' defines the labels which are transferred from theassociated Kubernetes 'Service' object onto the ingested metrics.",
+																Description:         "'targetLabels' defines the labels which are transferred from the associated Kubernetes 'Service' object onto the ingested metrics.",
+																MarkdownDescription: "'targetLabels' defines the labels which are transferred from the associated Kubernetes 'Service' object onto the ingested metrics.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2908,8 +2908,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"target_limit": schema.Int64Attribute{
-																Description:         "'targetLimit' defines a limit on the number of scraped targets that willbe accepted.",
-																MarkdownDescription: "'targetLimit' defines a limit on the number of scraped targets that willbe accepted.",
+																Description:         "'targetLimit' defines a limit on the number of scraped targets that will be accepted.",
+																MarkdownDescription: "'targetLimit' defines a limit on the number of scraped targets that will be accepted.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2941,8 +2941,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"num_history_shards": schema.Int64Attribute{
-						Description:         "NumHistoryShards is the desired number of history shards.This field is immutable.",
-						MarkdownDescription: "NumHistoryShards is the desired number of history shards.This field is immutable.",
+						Description:         "NumHistoryShards is the desired number of history shards. This field is immutable.",
+						MarkdownDescription: "NumHistoryShards is the desired number of history shards. This field is immutable.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -2960,8 +2960,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "AdvancedVisibilityStore holds the advanced visibility datastore specs.",
 								Attributes: map[string]schema.Attribute{
 									"cassandra": schema.SingleNestedAttribute{
-										Description:         "Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store.",
-										MarkdownDescription: "Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store.",
+										Description:         "Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store.",
+										MarkdownDescription: "Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store.",
 										Attributes: map[string]schema.Attribute{
 											"connect_timeout": schema.StringAttribute{
 												Description:         "ConnectTimeout is a timeout for initial dial to cassandra server.",
@@ -2976,8 +2976,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "Consistency configuration.",
 												Attributes: map[string]schema.Attribute{
 													"consistency": schema.Int64Attribute{
-														Description:         "Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
-														MarkdownDescription: "Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
+														Description:         "Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
+														MarkdownDescription: "Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2987,8 +2987,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"serial_consistency": schema.Int64Attribute{
-														Description:         "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)",
-														MarkdownDescription: "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)",
+														Description:         "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)",
+														MarkdownDescription: "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3161,8 +3161,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.",
-										MarkdownDescription: "Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.",
+										Description:         "Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.",
+										MarkdownDescription: "Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3420,8 +3420,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "DefaultStore holds the default datastore specs.",
 								Attributes: map[string]schema.Attribute{
 									"cassandra": schema.SingleNestedAttribute{
-										Description:         "Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store.",
-										MarkdownDescription: "Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store.",
+										Description:         "Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store.",
+										MarkdownDescription: "Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store.",
 										Attributes: map[string]schema.Attribute{
 											"connect_timeout": schema.StringAttribute{
 												Description:         "ConnectTimeout is a timeout for initial dial to cassandra server.",
@@ -3436,8 +3436,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "Consistency configuration.",
 												Attributes: map[string]schema.Attribute{
 													"consistency": schema.Int64Attribute{
-														Description:         "Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
-														MarkdownDescription: "Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
+														Description:         "Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
+														MarkdownDescription: "Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3447,8 +3447,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"serial_consistency": schema.Int64Attribute{
-														Description:         "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)",
-														MarkdownDescription: "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)",
+														Description:         "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)",
+														MarkdownDescription: "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3621,8 +3621,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.",
-										MarkdownDescription: "Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.",
+										Description:         "Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.",
+										MarkdownDescription: "Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3876,12 +3876,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"secondary_visibility_store": schema.SingleNestedAttribute{
-								Description:         "SecondaryVisibilityStore holds the secondary visibility datastore specs.Feature only available for clusters >= 1.21.0.",
-								MarkdownDescription: "SecondaryVisibilityStore holds the secondary visibility datastore specs.Feature only available for clusters >= 1.21.0.",
+								Description:         "SecondaryVisibilityStore holds the secondary visibility datastore specs. Feature only available for clusters >= 1.21.0.",
+								MarkdownDescription: "SecondaryVisibilityStore holds the secondary visibility datastore specs. Feature only available for clusters >= 1.21.0.",
 								Attributes: map[string]schema.Attribute{
 									"cassandra": schema.SingleNestedAttribute{
-										Description:         "Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store.",
-										MarkdownDescription: "Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store.",
+										Description:         "Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store.",
+										MarkdownDescription: "Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store.",
 										Attributes: map[string]schema.Attribute{
 											"connect_timeout": schema.StringAttribute{
 												Description:         "ConnectTimeout is a timeout for initial dial to cassandra server.",
@@ -3896,8 +3896,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "Consistency configuration.",
 												Attributes: map[string]schema.Attribute{
 													"consistency": schema.Int64Attribute{
-														Description:         "Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
-														MarkdownDescription: "Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
+														Description:         "Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
+														MarkdownDescription: "Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3907,8 +3907,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"serial_consistency": schema.Int64Attribute{
-														Description:         "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)",
-														MarkdownDescription: "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)",
+														Description:         "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)",
+														MarkdownDescription: "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4081,8 +4081,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.",
-										MarkdownDescription: "Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.",
+										Description:         "Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.",
+										MarkdownDescription: "Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4340,8 +4340,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "VisibilityStore holds the visibility datastore specs.",
 								Attributes: map[string]schema.Attribute{
 									"cassandra": schema.SingleNestedAttribute{
-										Description:         "Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store.",
-										MarkdownDescription: "Cassandra holds all connection parameters for Cassandra datastore.Note that cassandra is now deprecated for visibility store.",
+										Description:         "Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store.",
+										MarkdownDescription: "Cassandra holds all connection parameters for Cassandra datastore. Note that cassandra is now deprecated for visibility store.",
 										Attributes: map[string]schema.Attribute{
 											"connect_timeout": schema.StringAttribute{
 												Description:         "ConnectTimeout is a timeout for initial dial to cassandra server.",
@@ -4356,8 +4356,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "Consistency configuration.",
 												Attributes: map[string]schema.Attribute{
 													"consistency": schema.Int64Attribute{
-														Description:         "Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
-														MarkdownDescription: "Consistency sets the default consistency level.Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
+														Description:         "Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
+														MarkdownDescription: "Consistency sets the default consistency level. Values identical to gocql Consistency values. (defaults to LOCAL_QUORUM if not set).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4367,8 +4367,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"serial_consistency": schema.Int64Attribute{
-														Description:         "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)",
-														MarkdownDescription: "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values.(defaults to LOCAL_SERIAL if not set)",
+														Description:         "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)",
+														MarkdownDescription: "SerialConsistency sets the consistency for the serial prtion of queries. Values identical to gocql SerialConsistency values. (defaults to LOCAL_SERIAL if not set)",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4541,8 +4541,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.",
-										MarkdownDescription: "Name is the name of the datastore.It should be unique and will be referenced within the persistence spec.Defaults to 'default' for default sore, 'visibility' for visibility store,'secondaryVisibility' for secondary visibility store and'advancedVisibility' for advanced visibility store.",
+										Description:         "Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.",
+										MarkdownDescription: "Name is the name of the datastore. It should be unique and will be referenced within the persistence spec. Defaults to 'default' for default sore, 'visibility' for visibility store, 'secondaryVisibility' for secondary visibility store and 'advancedVisibility' for advanced visibility store.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4809,8 +4809,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "Frontend service custom specifications.",
 								Attributes: map[string]schema.Attribute{
 									"http_port": schema.Int64Attribute{
-										Description:         "HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service",
-										MarkdownDescription: "HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service",
+										Description:         "HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service",
+										MarkdownDescription: "HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4826,28 +4826,28 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"membership_port": schema.Int64Attribute{
-										Description:         "MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service",
-										MarkdownDescription: "MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service",
+										Description:         "MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service",
+										MarkdownDescription: "MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"overrides": schema.SingleNestedAttribute{
-										Description:         "Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides.",
-										MarkdownDescription: "Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides.",
+										Description:         "Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides.",
+										MarkdownDescription: "Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides.",
 										Attributes: map[string]schema.Attribute{
 											"deployment": schema.SingleNestedAttribute{
 												Description:         "Override configuration for the temporal service Deployment.",
 												MarkdownDescription: "Override configuration for the temporal service Deployment.",
 												Attributes: map[string]schema.Attribute{
 													"metadata": schema.SingleNestedAttribute{
-														Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+														Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 														Attributes: map[string]schema.Attribute{
 															"annotations": schema.MapAttribute{
-																Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4855,8 +4855,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"labels": schema.MapAttribute{
-																Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4877,12 +4877,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																MarkdownDescription: "Template describes the pods that will be created.",
 																Attributes: map[string]schema.Attribute{
 																	"metadata": schema.SingleNestedAttribute{
-																		Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-																		MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																		Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																		MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 																		Attributes: map[string]schema.Attribute{
 																			"annotations": schema.MapAttribute{
-																				Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																				MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																				Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																				MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -4890,8 +4890,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"labels": schema.MapAttribute{
-																				Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																				MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																				Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																				MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -4933,8 +4933,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service",
-										MarkdownDescription: "Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service",
+										Description:         "Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service",
+										MarkdownDescription: "Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4952,17 +4952,17 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										Attributes: map[string]schema.Attribute{
 											"claims": schema.ListNestedAttribute{
-												Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -4975,8 +4975,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"limits": schema.MapAttribute{
-												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -4984,8 +4984,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5007,8 +5007,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "History service custom specifications.",
 								Attributes: map[string]schema.Attribute{
 									"http_port": schema.Int64Attribute{
-										Description:         "HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service",
-										MarkdownDescription: "HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service",
+										Description:         "HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service",
+										MarkdownDescription: "HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5024,28 +5024,28 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"membership_port": schema.Int64Attribute{
-										Description:         "MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service",
-										MarkdownDescription: "MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service",
+										Description:         "MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service",
+										MarkdownDescription: "MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"overrides": schema.SingleNestedAttribute{
-										Description:         "Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides.",
-										MarkdownDescription: "Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides.",
+										Description:         "Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides.",
+										MarkdownDescription: "Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides.",
 										Attributes: map[string]schema.Attribute{
 											"deployment": schema.SingleNestedAttribute{
 												Description:         "Override configuration for the temporal service Deployment.",
 												MarkdownDescription: "Override configuration for the temporal service Deployment.",
 												Attributes: map[string]schema.Attribute{
 													"metadata": schema.SingleNestedAttribute{
-														Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+														Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 														Attributes: map[string]schema.Attribute{
 															"annotations": schema.MapAttribute{
-																Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5053,8 +5053,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"labels": schema.MapAttribute{
-																Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5075,12 +5075,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																MarkdownDescription: "Template describes the pods that will be created.",
 																Attributes: map[string]schema.Attribute{
 																	"metadata": schema.SingleNestedAttribute{
-																		Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-																		MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																		Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																		MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 																		Attributes: map[string]schema.Attribute{
 																			"annotations": schema.MapAttribute{
-																				Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																				MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																				Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																				MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -5088,8 +5088,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"labels": schema.MapAttribute{
-																				Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																				MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																				Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																				MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -5131,8 +5131,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service",
-										MarkdownDescription: "Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service",
+										Description:         "Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service",
+										MarkdownDescription: "Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5150,17 +5150,17 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										Attributes: map[string]schema.Attribute{
 											"claims": schema.ListNestedAttribute{
-												Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -5173,8 +5173,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"limits": schema.MapAttribute{
-												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5182,8 +5182,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5201,8 +5201,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"internal_frontend": schema.SingleNestedAttribute{
-								Description:         "Internal Frontend service custom specifications.Only compatible with temporal >= 1.20.0",
-								MarkdownDescription: "Internal Frontend service custom specifications.Only compatible with temporal >= 1.20.0",
+								Description:         "Internal Frontend service custom specifications. Only compatible with temporal >= 1.20.0",
+								MarkdownDescription: "Internal Frontend service custom specifications. Only compatible with temporal >= 1.20.0",
 								Attributes: map[string]schema.Attribute{
 									"enabled": schema.BoolAttribute{
 										Description:         "Enabled defines if we want to spawn the internal frontend service.",
@@ -5213,8 +5213,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"http_port": schema.Int64Attribute{
-										Description:         "HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service",
-										MarkdownDescription: "HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service",
+										Description:         "HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service",
+										MarkdownDescription: "HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5230,28 +5230,28 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"membership_port": schema.Int64Attribute{
-										Description:         "MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service",
-										MarkdownDescription: "MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service",
+										Description:         "MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service",
+										MarkdownDescription: "MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"overrides": schema.SingleNestedAttribute{
-										Description:         "Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides.",
-										MarkdownDescription: "Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides.",
+										Description:         "Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides.",
+										MarkdownDescription: "Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides.",
 										Attributes: map[string]schema.Attribute{
 											"deployment": schema.SingleNestedAttribute{
 												Description:         "Override configuration for the temporal service Deployment.",
 												MarkdownDescription: "Override configuration for the temporal service Deployment.",
 												Attributes: map[string]schema.Attribute{
 													"metadata": schema.SingleNestedAttribute{
-														Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+														Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 														Attributes: map[string]schema.Attribute{
 															"annotations": schema.MapAttribute{
-																Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5259,8 +5259,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"labels": schema.MapAttribute{
-																Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5281,12 +5281,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																MarkdownDescription: "Template describes the pods that will be created.",
 																Attributes: map[string]schema.Attribute{
 																	"metadata": schema.SingleNestedAttribute{
-																		Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-																		MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																		Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																		MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 																		Attributes: map[string]schema.Attribute{
 																			"annotations": schema.MapAttribute{
-																				Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																				MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																				Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																				MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -5294,8 +5294,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"labels": schema.MapAttribute{
-																				Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																				MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																				Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																				MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -5337,8 +5337,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service",
-										MarkdownDescription: "Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service",
+										Description:         "Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service",
+										MarkdownDescription: "Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5356,17 +5356,17 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										Attributes: map[string]schema.Attribute{
 											"claims": schema.ListNestedAttribute{
-												Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -5379,8 +5379,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"limits": schema.MapAttribute{
-												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5388,8 +5388,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5411,8 +5411,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "Matching service custom specifications.",
 								Attributes: map[string]schema.Attribute{
 									"http_port": schema.Int64Attribute{
-										Description:         "HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service",
-										MarkdownDescription: "HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service",
+										Description:         "HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service",
+										MarkdownDescription: "HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5428,28 +5428,28 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"membership_port": schema.Int64Attribute{
-										Description:         "MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service",
-										MarkdownDescription: "MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service",
+										Description:         "MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service",
+										MarkdownDescription: "MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"overrides": schema.SingleNestedAttribute{
-										Description:         "Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides.",
-										MarkdownDescription: "Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides.",
+										Description:         "Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides.",
+										MarkdownDescription: "Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides.",
 										Attributes: map[string]schema.Attribute{
 											"deployment": schema.SingleNestedAttribute{
 												Description:         "Override configuration for the temporal service Deployment.",
 												MarkdownDescription: "Override configuration for the temporal service Deployment.",
 												Attributes: map[string]schema.Attribute{
 													"metadata": schema.SingleNestedAttribute{
-														Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+														Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 														Attributes: map[string]schema.Attribute{
 															"annotations": schema.MapAttribute{
-																Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5457,8 +5457,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"labels": schema.MapAttribute{
-																Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5479,12 +5479,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																MarkdownDescription: "Template describes the pods that will be created.",
 																Attributes: map[string]schema.Attribute{
 																	"metadata": schema.SingleNestedAttribute{
-																		Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-																		MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																		Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																		MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 																		Attributes: map[string]schema.Attribute{
 																			"annotations": schema.MapAttribute{
-																				Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																				MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																				Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																				MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -5492,8 +5492,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"labels": schema.MapAttribute{
-																				Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																				MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																				Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																				MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -5535,8 +5535,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service",
-										MarkdownDescription: "Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service",
+										Description:         "Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service",
+										MarkdownDescription: "Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5554,17 +5554,17 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										Attributes: map[string]schema.Attribute{
 											"claims": schema.ListNestedAttribute{
-												Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -5577,8 +5577,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"limits": schema.MapAttribute{
-												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5586,8 +5586,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5605,20 +5605,20 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"overrides": schema.SingleNestedAttribute{
-								Description:         "Overrides adds some overrides to the resources deployed for all temporal services services.Those overrides can be customized per service using spec.services.<serviceName>.overrides.",
-								MarkdownDescription: "Overrides adds some overrides to the resources deployed for all temporal services services.Those overrides can be customized per service using spec.services.<serviceName>.overrides.",
+								Description:         "Overrides adds some overrides to the resources deployed for all temporal services services. Those overrides can be customized per service using spec.services.<serviceName>.overrides.",
+								MarkdownDescription: "Overrides adds some overrides to the resources deployed for all temporal services services. Those overrides can be customized per service using spec.services.<serviceName>.overrides.",
 								Attributes: map[string]schema.Attribute{
 									"deployment": schema.SingleNestedAttribute{
 										Description:         "Override configuration for the temporal service Deployment.",
 										MarkdownDescription: "Override configuration for the temporal service Deployment.",
 										Attributes: map[string]schema.Attribute{
 											"metadata": schema.SingleNestedAttribute{
-												Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-												MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+												Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+												MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 												Attributes: map[string]schema.Attribute{
 													"annotations": schema.MapAttribute{
-														Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-														MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+														Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+														MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -5626,8 +5626,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"labels": schema.MapAttribute{
-														Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-														MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+														Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+														MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -5648,12 +5648,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "Template describes the pods that will be created.",
 														Attributes: map[string]schema.Attribute{
 															"metadata": schema.SingleNestedAttribute{
-																Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-																MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 																Attributes: map[string]schema.Attribute{
 																	"annotations": schema.MapAttribute{
-																		Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																		MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																		Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																		MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -5661,8 +5661,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																	},
 
 																	"labels": schema.MapAttribute{
-																		Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																		MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																		Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																		MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -5708,8 +5708,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "Worker service custom specifications.",
 								Attributes: map[string]schema.Attribute{
 									"http_port": schema.Int64Attribute{
-										Description:         "HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service",
-										MarkdownDescription: "HTTPPort defines a custom http port for the service.Default values are:7243 for Frontend service",
+										Description:         "HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service",
+										MarkdownDescription: "HTTPPort defines a custom http port for the service. Default values are: 7243 for Frontend service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5725,28 +5725,28 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"membership_port": schema.Int64Attribute{
-										Description:         "MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service",
-										MarkdownDescription: "MembershipPort defines a custom membership port for the service.Default values are:6933 for Frontend service6934 for History service6935 for Matching service6939 for Worker service",
+										Description:         "MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service",
+										MarkdownDescription: "MembershipPort defines a custom membership port for the service. Default values are: 6933 for Frontend service 6934 for History service 6935 for Matching service 6939 for Worker service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"overrides": schema.SingleNestedAttribute{
-										Description:         "Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides.",
-										MarkdownDescription: "Overrides adds some overrides to the resources deployed for the service.Those overrides takes precedence over spec.services.overrides.",
+										Description:         "Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides.",
+										MarkdownDescription: "Overrides adds some overrides to the resources deployed for the service. Those overrides takes precedence over spec.services.overrides.",
 										Attributes: map[string]schema.Attribute{
 											"deployment": schema.SingleNestedAttribute{
 												Description:         "Override configuration for the temporal service Deployment.",
 												MarkdownDescription: "Override configuration for the temporal service Deployment.",
 												Attributes: map[string]schema.Attribute{
 													"metadata": schema.SingleNestedAttribute{
-														Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+														Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+														MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 														Attributes: map[string]schema.Attribute{
 															"annotations": schema.MapAttribute{
-																Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5754,8 +5754,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"labels": schema.MapAttribute{
-																Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5776,12 +5776,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																MarkdownDescription: "Template describes the pods that will be created.",
 																Attributes: map[string]schema.Attribute{
 																	"metadata": schema.SingleNestedAttribute{
-																		Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-																		MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																		Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																		MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 																		Attributes: map[string]schema.Attribute{
 																			"annotations": schema.MapAttribute{
-																				Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																				MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																				Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																				MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -5789,8 +5789,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																			},
 
 																			"labels": schema.MapAttribute{
-																				Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																				MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																				Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																				MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -5832,8 +5832,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service",
-										MarkdownDescription: "Port defines a custom gRPC port for the service.Default values are:7233 for Frontend service7234 for History service7235 for Matching service7239 for Worker service",
+										Description:         "Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service",
+										MarkdownDescription: "Port defines a custom gRPC port for the service. Default values are: 7233 for Frontend service 7234 for History service 7235 for Matching service 7239 for Worker service",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5851,17 +5851,17 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Compute Resources required by this service.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Compute Resources required by this service. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										Attributes: map[string]schema.Attribute{
 											"claims": schema.ListNestedAttribute{
-												Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -5874,8 +5874,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"limits": schema.MapAttribute{
-												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5883,8 +5883,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5927,8 +5927,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"ingress": schema.SingleNestedAttribute{
-								Description:         "Ingress is an optional ingress configuration for the UI.If lived empty, no ingress configuration will be created and the UI will only by available trough ClusterIP service.",
-								MarkdownDescription: "Ingress is an optional ingress configuration for the UI.If lived empty, no ingress configuration will be created and the UI will only by available trough ClusterIP service.",
+								Description:         "Ingress is an optional ingress configuration for the UI. If lived empty, no ingress configuration will be created and the UI will only by available trough ClusterIP service.",
+								MarkdownDescription: "Ingress is an optional ingress configuration for the UI. If lived empty, no ingress configuration will be created and the UI will only by available trough ClusterIP service.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
 										Description:         "Annotations allows custom annotations on the ingress resource.",
@@ -5962,8 +5962,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"hosts": schema.ListAttribute{
-													Description:         "hosts is a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.",
-													MarkdownDescription: "hosts is a list of hosts included in the TLS certificate. The values inthis list must match the name/s used in the tlsSecret. Defaults to thewildcard host setting for the loadbalancer controller fulfilling thisIngress, if left unspecified.",
+													Description:         "hosts is a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.",
+													MarkdownDescription: "hosts is a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5971,8 +5971,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"secret_name": schema.StringAttribute{
-													Description:         "secretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the 'Host' header is used for routing.",
-													MarkdownDescription: "secretName is the name of the secret used to terminate TLS traffic onport 443. Field is left optional to allow TLS routing based on SNIhostname alone. If the SNI host in a listener conflicts with the 'Host'header field used by an IngressRule, the SNI host is used for terminationand value of the 'Host' header is used for routing.",
+													Description:         "secretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the 'Host' header field used by an IngressRule, the SNI host is used for termination and value of the 'Host' header is used for routing.",
+													MarkdownDescription: "secretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the 'Host' header field used by an IngressRule, the SNI host is used for termination and value of the 'Host' header is used for routing.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5998,12 +5998,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "Override configuration for the temporal service Deployment.",
 										Attributes: map[string]schema.Attribute{
 											"metadata": schema.SingleNestedAttribute{
-												Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-												MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+												Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+												MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 												Attributes: map[string]schema.Attribute{
 													"annotations": schema.MapAttribute{
-														Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-														MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+														Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+														MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -6011,8 +6011,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"labels": schema.MapAttribute{
-														Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-														MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+														Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+														MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -6033,12 +6033,12 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "Template describes the pods that will be created.",
 														Attributes: map[string]schema.Attribute{
 															"metadata": schema.SingleNestedAttribute{
-																Description:         "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
-																MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata.It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																Description:         "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
+																MarkdownDescription: "ObjectMetaOverride provides the ability to override an object metadata. It's a subset of the fields included in k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta.",
 																Attributes: map[string]schema.Attribute{
 																	"annotations": schema.MapAttribute{
-																		Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-																		MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+																		Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+																		MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -6046,8 +6046,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 																	},
 
 																	"labels": schema.MapAttribute{
-																		Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-																		MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+																		Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+																		MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -6100,17 +6100,17 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"resources": schema.SingleNestedAttribute{
-								Description:         "Compute Resources required by the ui.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Compute Resources required by the ui.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Compute Resources required by the ui. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Compute Resources required by the ui. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -6123,8 +6123,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -6132,8 +6132,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -6150,8 +6150,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "Service is an optional service resource configuration for the UI.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
-										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata.",
+										Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
+										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -6159,8 +6159,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
-										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects.",
+										Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -6186,8 +6186,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"version": schema.StringAttribute{
-						Description:         "Version defines the temporal version the cluster to be deployed.This version impacts the underlying persistence schemas versions.",
-						MarkdownDescription: "Version defines the temporal version the cluster to be deployed.This version impacts the underlying persistence schemas versions.",
+						Description:         "Version defines the temporal version the cluster to be deployed. This version impacts the underlying persistence schemas versions.",
+						MarkdownDescription: "Version defines the temporal version the cluster to be deployed. This version impacts the underlying persistence schemas versions.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

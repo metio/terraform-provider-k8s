@@ -161,16 +161,16 @@ func (r *SagemakerServicesK8SAwsEndpointV1Alpha1Manifest) Schema(_ context.Conte
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "EndpointSpec defines the desired state of Endpoint.A hosted endpoint for real-time inference.",
-				MarkdownDescription: "EndpointSpec defines the desired state of Endpoint.A hosted endpoint for real-time inference.",
+				Description:         "EndpointSpec defines the desired state of Endpoint. A hosted endpoint for real-time inference.",
+				MarkdownDescription: "EndpointSpec defines the desired state of Endpoint. A hosted endpoint for real-time inference.",
 				Attributes: map[string]schema.Attribute{
 					"deployment_config": schema.SingleNestedAttribute{
-						Description:         "The deployment configuration for an endpoint, which contains the desireddeployment strategy and rollback configurations.",
-						MarkdownDescription: "The deployment configuration for an endpoint, which contains the desireddeployment strategy and rollback configurations.",
+						Description:         "The deployment configuration for an endpoint, which contains the desired deployment strategy and rollback configurations.",
+						MarkdownDescription: "The deployment configuration for an endpoint, which contains the desired deployment strategy and rollback configurations.",
 						Attributes: map[string]schema.Attribute{
 							"auto_rollback_configuration": schema.SingleNestedAttribute{
-								Description:         "Automatic rollback configuration for handling endpoint deployment failuresand recovery.",
-								MarkdownDescription: "Automatic rollback configuration for handling endpoint deployment failuresand recovery.",
+								Description:         "Automatic rollback configuration for handling endpoint deployment failures and recovery.",
+								MarkdownDescription: "Automatic rollback configuration for handling endpoint deployment failures and recovery.",
 								Attributes: map[string]schema.Attribute{
 									"alarms": schema.ListNestedAttribute{
 										Description:         "",
@@ -197,8 +197,8 @@ func (r *SagemakerServicesK8SAwsEndpointV1Alpha1Manifest) Schema(_ context.Conte
 							},
 
 							"blue_green_update_policy": schema.SingleNestedAttribute{
-								Description:         "Update policy for a blue/green deployment. If this update policy is specified,SageMaker creates a new fleet during the deployment while maintaining theold fleet. SageMaker flips traffic to the new fleet according to the specifiedtraffic routing configuration. Only one update policy should be used in thedeployment configuration. If no update policy is specified, SageMaker usesa blue/green deployment strategy with all at once traffic shifting by default.",
-								MarkdownDescription: "Update policy for a blue/green deployment. If this update policy is specified,SageMaker creates a new fleet during the deployment while maintaining theold fleet. SageMaker flips traffic to the new fleet according to the specifiedtraffic routing configuration. Only one update policy should be used in thedeployment configuration. If no update policy is specified, SageMaker usesa blue/green deployment strategy with all at once traffic shifting by default.",
+								Description:         "Update policy for a blue/green deployment. If this update policy is specified, SageMaker creates a new fleet during the deployment while maintaining the old fleet. SageMaker flips traffic to the new fleet according to the specified traffic routing configuration. Only one update policy should be used in the deployment configuration. If no update policy is specified, SageMaker uses a blue/green deployment strategy with all at once traffic shifting by default.",
+								MarkdownDescription: "Update policy for a blue/green deployment. If this update policy is specified, SageMaker creates a new fleet during the deployment while maintaining the old fleet. SageMaker flips traffic to the new fleet according to the specified traffic routing configuration. Only one update policy should be used in the deployment configuration. If no update policy is specified, SageMaker uses a blue/green deployment strategy with all at once traffic shifting by default.",
 								Attributes: map[string]schema.Attribute{
 									"maximum_execution_timeout_in_seconds": schema.Int64Attribute{
 										Description:         "",
@@ -217,12 +217,12 @@ func (r *SagemakerServicesK8SAwsEndpointV1Alpha1Manifest) Schema(_ context.Conte
 									},
 
 									"traffic_routing_configuration": schema.SingleNestedAttribute{
-										Description:         "Defines the traffic routing strategy during an endpoint deployment to shifttraffic from the old fleet to the new fleet.",
-										MarkdownDescription: "Defines the traffic routing strategy during an endpoint deployment to shifttraffic from the old fleet to the new fleet.",
+										Description:         "Defines the traffic routing strategy during an endpoint deployment to shift traffic from the old fleet to the new fleet.",
+										MarkdownDescription: "Defines the traffic routing strategy during an endpoint deployment to shift traffic from the old fleet to the new fleet.",
 										Attributes: map[string]schema.Attribute{
 											"canary_size": schema.SingleNestedAttribute{
-												Description:         "Specifies the type and size of the endpoint capacity to activate for a blue/greendeployment, a rolling deployment, or a rollback strategy. You can specifyyour batches as either instance count or the overall percentage or your fleet.For a rollback strategy, if you don't specify the fields in this object,or if you set the Value to 100%, then SageMaker uses a blue/green rollbackstrategy and rolls all traffic back to the blue fleet.",
-												MarkdownDescription: "Specifies the type and size of the endpoint capacity to activate for a blue/greendeployment, a rolling deployment, or a rollback strategy. You can specifyyour batches as either instance count or the overall percentage or your fleet.For a rollback strategy, if you don't specify the fields in this object,or if you set the Value to 100%, then SageMaker uses a blue/green rollbackstrategy and rolls all traffic back to the blue fleet.",
+												Description:         "Specifies the type and size of the endpoint capacity to activate for a blue/green deployment, a rolling deployment, or a rollback strategy. You can specify your batches as either instance count or the overall percentage or your fleet. For a rollback strategy, if you don't specify the fields in this object, or if you set the Value to 100%, then SageMaker uses a blue/green rollback strategy and rolls all traffic back to the blue fleet.",
+												MarkdownDescription: "Specifies the type and size of the endpoint capacity to activate for a blue/green deployment, a rolling deployment, or a rollback strategy. You can specify your batches as either instance count or the overall percentage or your fleet. For a rollback strategy, if you don't specify the fields in this object, or if you set the Value to 100%, then SageMaker uses a blue/green rollback strategy and rolls all traffic back to the blue fleet.",
 												Attributes: map[string]schema.Attribute{
 													"type_": schema.StringAttribute{
 														Description:         "",
@@ -246,8 +246,8 @@ func (r *SagemakerServicesK8SAwsEndpointV1Alpha1Manifest) Schema(_ context.Conte
 											},
 
 											"linear_step_size": schema.SingleNestedAttribute{
-												Description:         "Specifies the type and size of the endpoint capacity to activate for a blue/greendeployment, a rolling deployment, or a rollback strategy. You can specifyyour batches as either instance count or the overall percentage or your fleet.For a rollback strategy, if you don't specify the fields in this object,or if you set the Value to 100%, then SageMaker uses a blue/green rollbackstrategy and rolls all traffic back to the blue fleet.",
-												MarkdownDescription: "Specifies the type and size of the endpoint capacity to activate for a blue/greendeployment, a rolling deployment, or a rollback strategy. You can specifyyour batches as either instance count or the overall percentage or your fleet.For a rollback strategy, if you don't specify the fields in this object,or if you set the Value to 100%, then SageMaker uses a blue/green rollbackstrategy and rolls all traffic back to the blue fleet.",
+												Description:         "Specifies the type and size of the endpoint capacity to activate for a blue/green deployment, a rolling deployment, or a rollback strategy. You can specify your batches as either instance count or the overall percentage or your fleet. For a rollback strategy, if you don't specify the fields in this object, or if you set the Value to 100%, then SageMaker uses a blue/green rollback strategy and rolls all traffic back to the blue fleet.",
+												MarkdownDescription: "Specifies the type and size of the endpoint capacity to activate for a blue/green deployment, a rolling deployment, or a rollback strategy. You can specify your batches as either instance count or the overall percentage or your fleet. For a rollback strategy, if you don't specify the fields in this object, or if you set the Value to 100%, then SageMaker uses a blue/green rollback strategy and rolls all traffic back to the blue fleet.",
 												Attributes: map[string]schema.Attribute{
 													"type_": schema.StringAttribute{
 														Description:         "",
@@ -301,8 +301,8 @@ func (r *SagemakerServicesK8SAwsEndpointV1Alpha1Manifest) Schema(_ context.Conte
 								MarkdownDescription: "Specifies a rolling deployment strategy for updating a SageMaker endpoint.",
 								Attributes: map[string]schema.Attribute{
 									"maximum_batch_size": schema.SingleNestedAttribute{
-										Description:         "Specifies the type and size of the endpoint capacity to activate for a blue/greendeployment, a rolling deployment, or a rollback strategy. You can specifyyour batches as either instance count or the overall percentage or your fleet.For a rollback strategy, if you don't specify the fields in this object,or if you set the Value to 100%, then SageMaker uses a blue/green rollbackstrategy and rolls all traffic back to the blue fleet.",
-										MarkdownDescription: "Specifies the type and size of the endpoint capacity to activate for a blue/greendeployment, a rolling deployment, or a rollback strategy. You can specifyyour batches as either instance count or the overall percentage or your fleet.For a rollback strategy, if you don't specify the fields in this object,or if you set the Value to 100%, then SageMaker uses a blue/green rollbackstrategy and rolls all traffic back to the blue fleet.",
+										Description:         "Specifies the type and size of the endpoint capacity to activate for a blue/green deployment, a rolling deployment, or a rollback strategy. You can specify your batches as either instance count or the overall percentage or your fleet. For a rollback strategy, if you don't specify the fields in this object, or if you set the Value to 100%, then SageMaker uses a blue/green rollback strategy and rolls all traffic back to the blue fleet.",
+										MarkdownDescription: "Specifies the type and size of the endpoint capacity to activate for a blue/green deployment, a rolling deployment, or a rollback strategy. You can specify your batches as either instance count or the overall percentage or your fleet. For a rollback strategy, if you don't specify the fields in this object, or if you set the Value to 100%, then SageMaker uses a blue/green rollback strategy and rolls all traffic back to the blue fleet.",
 										Attributes: map[string]schema.Attribute{
 											"type_": schema.StringAttribute{
 												Description:         "",
@@ -334,8 +334,8 @@ func (r *SagemakerServicesK8SAwsEndpointV1Alpha1Manifest) Schema(_ context.Conte
 									},
 
 									"rollback_maximum_batch_size": schema.SingleNestedAttribute{
-										Description:         "Specifies the type and size of the endpoint capacity to activate for a blue/greendeployment, a rolling deployment, or a rollback strategy. You can specifyyour batches as either instance count or the overall percentage or your fleet.For a rollback strategy, if you don't specify the fields in this object,or if you set the Value to 100%, then SageMaker uses a blue/green rollbackstrategy and rolls all traffic back to the blue fleet.",
-										MarkdownDescription: "Specifies the type and size of the endpoint capacity to activate for a blue/greendeployment, a rolling deployment, or a rollback strategy. You can specifyyour batches as either instance count or the overall percentage or your fleet.For a rollback strategy, if you don't specify the fields in this object,or if you set the Value to 100%, then SageMaker uses a blue/green rollbackstrategy and rolls all traffic back to the blue fleet.",
+										Description:         "Specifies the type and size of the endpoint capacity to activate for a blue/green deployment, a rolling deployment, or a rollback strategy. You can specify your batches as either instance count or the overall percentage or your fleet. For a rollback strategy, if you don't specify the fields in this object, or if you set the Value to 100%, then SageMaker uses a blue/green rollback strategy and rolls all traffic back to the blue fleet.",
+										MarkdownDescription: "Specifies the type and size of the endpoint capacity to activate for a blue/green deployment, a rolling deployment, or a rollback strategy. You can specify your batches as either instance count or the overall percentage or your fleet. For a rollback strategy, if you don't specify the fields in this object, or if you set the Value to 100%, then SageMaker uses a blue/green rollback strategy and rolls all traffic back to the blue fleet.",
 										Attributes: map[string]schema.Attribute{
 											"type_": schema.StringAttribute{
 												Description:         "",
@@ -377,24 +377,24 @@ func (r *SagemakerServicesK8SAwsEndpointV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"endpoint_config_name": schema.StringAttribute{
-						Description:         "The name of an endpoint configuration. For more information, see CreateEndpointConfig(https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html).",
-						MarkdownDescription: "The name of an endpoint configuration. For more information, see CreateEndpointConfig(https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html).",
+						Description:         "The name of an endpoint configuration. For more information, see CreateEndpointConfig (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html).",
+						MarkdownDescription: "The name of an endpoint configuration. For more information, see CreateEndpointConfig (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html).",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"endpoint_name": schema.StringAttribute{
-						Description:         "The name of the endpoint.The name must be unique within an Amazon Web ServicesRegion in your Amazon Web Services account. The name is case-insensitivein CreateEndpoint, but the case is preserved and must be matched in InvokeEndpoint(https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html).",
-						MarkdownDescription: "The name of the endpoint.The name must be unique within an Amazon Web ServicesRegion in your Amazon Web Services account. The name is case-insensitivein CreateEndpoint, but the case is preserved and must be matched in InvokeEndpoint(https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html).",
+						Description:         "The name of the endpoint.The name must be unique within an Amazon Web Services Region in your Amazon Web Services account. The name is case-insensitive in CreateEndpoint, but the case is preserved and must be matched in InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html).",
+						MarkdownDescription: "The name of the endpoint.The name must be unique within an Amazon Web Services Region in your Amazon Web Services account. The name is case-insensitive in CreateEndpoint, but the case is preserved and must be matched in InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html).",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "An array of key-value pairs. You can use tags to categorize your Amazon WebServices resources in different ways, for example, by purpose, owner, orenvironment. For more information, see Tagging Amazon Web Services Resources(https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
-						MarkdownDescription: "An array of key-value pairs. You can use tags to categorize your Amazon WebServices resources in different ways, for example, by purpose, owner, orenvironment. For more information, see Tagging Amazon Web Services Resources(https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
+						Description:         "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
+						MarkdownDescription: "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

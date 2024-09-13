@@ -183,8 +183,8 @@ func (r *AppmeshK8SAwsMeshV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"namespace_selector": schema.SingleNestedAttribute{
-						Description:         "NamespaceSelector selects Namespaces using labels to designate mesh membership. This field follows standard label selector semantics: 	if present but empty, it selects all namespaces. 	if absent, it selects no namespace.",
-						MarkdownDescription: "NamespaceSelector selects Namespaces using labels to designate mesh membership. This field follows standard label selector semantics: 	if present but empty, it selects all namespaces. 	if absent, it selects no namespace.",
+						Description:         "NamespaceSelector selects Namespaces using labels to designate mesh membership. This field follows standard label selector semantics: if present but empty, it selects all namespaces. if absent, it selects no namespace.",
+						MarkdownDescription: "NamespaceSelector selects Namespaces using labels to designate mesh membership. This field follows standard label selector semantics: if present but empty, it selects all namespaces. if absent, it selects no namespace.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",

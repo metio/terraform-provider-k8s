@@ -3,12 +3,12 @@
 page_title: "k8s_monitoring_coreos_com_service_monitor_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "monitoring.coreos.com"
 description: |-
-  The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services.Among other things, it allows to specify:* The services to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.
+  The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services. Among other things, it allows to specify: * The services to scrape via label selectors. * The container ports to scrape. * Authentication credentials to use. * Target and metric relabeling. 'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.
 ---
 
 # k8s_monitoring_coreos_com_service_monitor_v1_manifest (Data Source)
 
-The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services.Among other things, it allows to specify:* The services to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.
+The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services. Among other things, it allows to specify: * The services to scrape via label selectors. * The container ports to scrape. * Authentication credentials to use. * Target and metric relabeling. 'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.
 
 ## Example Usage
 
@@ -40,7 +40,7 @@ data "k8s_monitoring_coreos_com_service_monitor_v1_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) Specification of desired Service selection for target discovery byPrometheus. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Specification of desired Service selection for target discovery by Prometheus. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -65,53 +65,53 @@ Optional:
 
 Required:
 
-- `endpoints` (Attributes List) List of endpoints part of this ServiceMonitor.Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects.In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels. (see [below for nested schema](#nestedatt--spec--endpoints))
+- `endpoints` (Attributes List) List of endpoints part of this ServiceMonitor. Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects. In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels. (see [below for nested schema](#nestedatt--spec--endpoints))
 - `selector` (Attributes) Label selector to select the Kubernetes 'Endpoints' objects to scrape metrics from. (see [below for nested schema](#nestedatt--spec--selector))
 
 Optional:
 
-- `attach_metadata` (Attributes) 'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.37.0. (see [below for nested schema](#nestedatt--spec--attach_metadata))
-- `body_size_limit` (String) When defined, bodySizeLimit specifies a job level limit on the sizeof uncompressed response body that will be accepted by Prometheus.It requires Prometheus >= v2.28.0.
-- `job_label` (String) 'jobLabel' selects the label from the associated Kubernetes 'Service'object which will be used as the 'job' label for all metrics.For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service'object is labeled with 'foo: bar', then Prometheus adds the 'job='bar''label to all ingested metrics.If the value of this field is empty or if the label doesn't exist forthe given Service, the 'job' label of the metrics defaults to the nameof the associated Kubernetes 'Service'.
-- `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.
-- `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample.It requires Prometheus >= v2.27.0.
-- `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample.It requires Prometheus >= v2.27.0.
-- `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample.It requires Prometheus >= v2.27.0.
-- `namespace_selector` (Attributes) 'namespaceSelector' defines in which namespace(s) Prometheus should discover the services.By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces. (see [below for nested schema](#nestedatt--spec--namespace_selector))
-- `pod_target_labels` (List of String) 'podTargetLabels' defines the labels which are transferred from theassociated Kubernetes 'Pod' object onto the ingested metrics.
-- `sample_limit` (Number) 'sampleLimit' defines a per-scrape limit on the number of scraped samplesthat will be accepted.
+- `attach_metadata` (Attributes) 'attachMetadata' defines additional metadata which is added to the discovered targets. It requires Prometheus >= v2.37.0. (see [below for nested schema](#nestedatt--spec--attach_metadata))
+- `body_size_limit` (String) When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus. It requires Prometheus >= v2.28.0.
+- `job_label` (String) 'jobLabel' selects the label from the associated Kubernetes 'Service' object which will be used as the 'job' label for all metrics. For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics. If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the associated Kubernetes 'Service'.
+- `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit. It requires Prometheus >= v2.47.0.
+- `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample. It requires Prometheus >= v2.27.0.
+- `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample. It requires Prometheus >= v2.27.0.
+- `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample. It requires Prometheus >= v2.27.0.
+- `namespace_selector` (Attributes) 'namespaceSelector' defines in which namespace(s) Prometheus should discover the services. By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces. (see [below for nested schema](#nestedatt--spec--namespace_selector))
+- `pod_target_labels` (List of String) 'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.
+- `sample_limit` (Number) 'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.
 - `scrape_class` (String) The scrape class to apply.
-- `scrape_protocols` (List of String) 'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients theprotocols supported by Prometheus in order of preference (from most to least preferred).If unset, Prometheus uses its default value.It requires Prometheus >= v2.49.0.
-- `target_labels` (List of String) 'targetLabels' defines the labels which are transferred from theassociated Kubernetes 'Service' object onto the ingested metrics.
-- `target_limit` (Number) 'targetLimit' defines a limit on the number of scraped targets that willbe accepted.
+- `scrape_protocols` (List of String) 'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0.
+- `target_labels` (List of String) 'targetLabels' defines the labels which are transferred from the associated Kubernetes 'Service' object onto the ingested metrics.
+- `target_limit` (Number) 'targetLimit' defines a limit on the number of scraped targets that will be accepted.
 
 <a id="nestedatt--spec--endpoints"></a>
 ### Nested Schema for `spec.endpoints`
 
 Optional:
 
-- `authorization` (Attributes) 'authorization' configures the Authorization header credentials to use whenscraping the target.Cannot be set at the same time as 'basicAuth', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--endpoints--authorization))
-- `basic_auth` (Attributes) 'basicAuth' configures the Basic Authentication credentials to use whenscraping the target.Cannot be set at the same time as 'authorization', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth))
-- `bearer_token_file` (String) File to read bearer token for scraping the target.Deprecated: use 'authorization' instead.
-- `bearer_token_secret` (Attributes) 'bearerTokenSecret' specifies a key of a Secret containing the bearertoken for scraping targets. The secret needs to be in the same namespaceas the ServiceMonitor object and readable by the Prometheus Operator.Deprecated: use 'authorization' instead. (see [below for nested schema](#nestedatt--spec--endpoints--bearer_token_secret))
+- `authorization` (Attributes) 'authorization' configures the Authorization header credentials to use when scraping the target. Cannot be set at the same time as 'basicAuth', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--endpoints--authorization))
+- `basic_auth` (Attributes) 'basicAuth' configures the Basic Authentication credentials to use when scraping the target. Cannot be set at the same time as 'authorization', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth))
+- `bearer_token_file` (String) File to read bearer token for scraping the target. Deprecated: use 'authorization' instead.
+- `bearer_token_secret` (Attributes) 'bearerTokenSecret' specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator. Deprecated: use 'authorization' instead. (see [below for nested schema](#nestedatt--spec--endpoints--bearer_token_secret))
 - `enable_http2` (Boolean) 'enableHttp2' can be used to disable HTTP2 when scraping the target.
-- `filter_running` (Boolean) When true, the pods which are not running (e.g. either in Failed orSucceeded state) are dropped during the target discovery.If unset, the filtering is enabled.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase
-- `follow_redirects` (Boolean) 'followRedirects' defines whether the scrape requests should follow HTTP3xx redirects.
-- `honor_labels` (Boolean) When true, 'honorLabels' preserves the metric's labels when they collidewith the target's labels.
-- `honor_timestamps` (Boolean) 'honorTimestamps' controls whether Prometheus preserves the timestampswhen exposed by the target.
-- `interval` (String) Interval at which Prometheus scrapes the metrics from the target.If empty, Prometheus uses the global scrape interval.
-- `metric_relabelings` (Attributes List) 'metricRelabelings' configures the relabeling rules to apply to thesamples before ingestion. (see [below for nested schema](#nestedatt--spec--endpoints--metric_relabelings))
-- `oauth2` (Attributes) 'oauth2' configures the OAuth2 settings to use when scraping the target.It requires Prometheus >= 2.27.0.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2))
+- `filter_running` (Boolean) When true, the pods which are not running (e.g. either in Failed or Succeeded state) are dropped during the target discovery. If unset, the filtering is enabled. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase
+- `follow_redirects` (Boolean) 'followRedirects' defines whether the scrape requests should follow HTTP 3xx redirects.
+- `honor_labels` (Boolean) When true, 'honorLabels' preserves the metric's labels when they collide with the target's labels.
+- `honor_timestamps` (Boolean) 'honorTimestamps' controls whether Prometheus preserves the timestamps when exposed by the target.
+- `interval` (String) Interval at which Prometheus scrapes the metrics from the target. If empty, Prometheus uses the global scrape interval.
+- `metric_relabelings` (Attributes List) 'metricRelabelings' configures the relabeling rules to apply to the samples before ingestion. (see [below for nested schema](#nestedatt--spec--endpoints--metric_relabelings))
+- `oauth2` (Attributes) 'oauth2' configures the OAuth2 settings to use when scraping the target. It requires Prometheus >= 2.27.0. Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2))
 - `params` (Map of List of String) params define optional HTTP URL parameters.
-- `path` (String) HTTP path from which to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').
-- `port` (String) Name of the Service port which this endpoint refers to.It takes precedence over 'targetPort'.
-- `proxy_url` (String) 'proxyURL' configures the HTTP Proxy URL (e.g.'http://proxyserver:2195') to go through when scraping the target.
-- `relabelings` (Attributes List) 'relabelings' configures the relabeling rules to apply the target'smetadata labels.The Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--endpoints--relabelings))
-- `scheme` (String) HTTP scheme to use for scraping.'http' and 'https' are the expected values unless you rewrite the'__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.
-- `scrape_timeout` (String) Timeout after which Prometheus considers the scrape to be failed.If empty, Prometheus uses the global scrape timeout unless it is lessthan the target's scrape interval value in which the latter is used.
-- `target_port` (String) Name or number of the target port of the 'Pod' object behind theService. The port must be specified with the container's port property.
+- `path` (String) HTTP path from which to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').
+- `port` (String) Name of the Service port which this endpoint refers to. It takes precedence over 'targetPort'.
+- `proxy_url` (String) 'proxyURL' configures the HTTP Proxy URL (e.g. 'http://proxyserver:2195') to go through when scraping the target.
+- `relabelings` (Attributes List) 'relabelings' configures the relabeling rules to apply the target's metadata labels. The Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--endpoints--relabelings))
+- `scheme` (String) HTTP scheme to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.
+- `scrape_timeout` (String) Timeout after which Prometheus considers the scrape to be failed. If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.
+- `target_port` (String) Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.
 - `tls_config` (Attributes) TLS configuration to use when scraping the target. (see [below for nested schema](#nestedatt--spec--endpoints--tls_config))
-- `track_timestamps_staleness` (Boolean) 'trackTimestampsStaleness' defines whether Prometheus tracks staleness ofthe metrics that have an explicit timestamp present in scraped data.Has no effect if 'honorTimestamps' is false.It requires Prometheus >= v2.48.0.
+- `track_timestamps_staleness` (Boolean) 'trackTimestampsStaleness' defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false. It requires Prometheus >= v2.48.0.
 
 <a id="nestedatt--spec--endpoints--authorization"></a>
 ### Nested Schema for `spec.endpoints.authorization`
@@ -119,18 +119,18 @@ Optional:
 Optional:
 
 - `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--endpoints--authorization--credentials))
-- `type` (String) Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'
+- `type` (String) Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'
 
 <a id="nestedatt--spec--endpoints--authorization--credentials"></a>
 ### Nested Schema for `spec.endpoints.authorization.credentials`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -140,19 +140,19 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) 'password' specifies a key of a Secret containing the password forauthentication. (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth--password))
-- `username` (Attributes) 'username' specifies a key of a Secret containing the username forauthentication. (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth--username))
 
 <a id="nestedatt--spec--endpoints--basic_auth--password"></a>
 ### Nested Schema for `spec.endpoints.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -161,11 +161,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -175,11 +175,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -188,13 +188,13 @@ Optional:
 
 Optional:
 
-- `action` (String) Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'
-- `modulus` (Number) Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.
+- `action` (String) Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.
 - `regex` (String) Regular expression against which the extracted value is matched.
-- `replacement` (String) Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.
+- `replacement` (String) Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.
 - `separator` (String) Separator is the string between concatenated SourceLabels.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
-- `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--endpoints--oauth2"></a>
@@ -202,19 +202,19 @@ Optional:
 
 Required:
 
-- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--client_id))
-- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2client's secret. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--client_secret))
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--client_secret))
 - `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
-- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
-- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
-- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
-- `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--tls_config))
+- `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--tls_config))
 
 <a id="nestedatt--spec--endpoints--oauth2--client_id"></a>
 ### Nested Schema for `spec.endpoints.oauth2.client_id`
@@ -233,7 +233,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -242,11 +242,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -256,11 +256,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -273,8 +273,8 @@ Optional:
 - `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--oauth2--tls_config--key_secret))
-- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
-- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
+- `max_version` (String) Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--endpoints--oauth2--tls_config--ca"></a>
@@ -294,7 +294,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -303,11 +303,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -329,7 +329,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -338,11 +338,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -352,11 +352,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -367,13 +367,13 @@ Optional:
 
 Optional:
 
-- `action` (String) Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'
-- `modulus` (Number) Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.
+- `action` (String) Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.
 - `regex` (String) Regular expression against which the extracted value is matched.
-- `replacement` (String) Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.
+- `replacement` (String) Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.
 - `separator` (String) Separator is the string between concatenated SourceLabels.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
-- `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--endpoints--tls_config"></a>
@@ -388,8 +388,8 @@ Optional:
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
 - `key_file` (String) Path to the client key file in the Prometheus container for the targets.
 - `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--endpoints--tls_config--key_secret))
-- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
-- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
+- `max_version` (String) Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.
 - `server_name` (String) Used to verify the hostname for the targets.
 
 <a id="nestedatt--spec--endpoints--tls_config--ca"></a>
@@ -409,7 +409,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -418,11 +418,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -444,7 +444,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -453,11 +453,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -467,11 +467,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -483,7 +483,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--selector--match_expressions"></a>
 ### Nested Schema for `spec.selector.match_expressions`
@@ -491,11 +491,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -504,7 +504,7 @@ Optional:
 
 Optional:
 
-- `node` (Boolean) When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.
+- `node` (Boolean) When set to true, Prometheus attaches node metadata to the discovered targets. The Prometheus service account must have the 'list' and 'watch' permissions on the 'Nodes' objects.
 
 
 <a id="nestedatt--spec--namespace_selector"></a>
@@ -512,5 +512,5 @@ Optional:
 
 Optional:
 
-- `any` (Boolean) Boolean describing whether all namespaces are selected in contrast to alist restricting them.
+- `any` (Boolean) Boolean describing whether all namespaces are selected in contrast to a list restricting them.
 - `match_names` (List of String) List of namespace names to select from.

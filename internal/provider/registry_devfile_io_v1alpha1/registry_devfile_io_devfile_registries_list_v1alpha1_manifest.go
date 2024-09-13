@@ -57,8 +57,8 @@ func (r *RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest) Metadata(_ cont
 
 func (r *RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "DevfileRegistriesList is a custom resource where namespace users can add a list of Devfile Registries to allow devfiles to be visible at the namespace level.  In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.",
-		MarkdownDescription: "DevfileRegistriesList is a custom resource where namespace users can add a list of Devfile Registries to allow devfiles to be visible at the namespace level.  In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.",
+		Description:         "DevfileRegistriesList is a custom resource where namespace users can add a list of Devfile Registries to allow devfiles to be visible at the namespace level. In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.",
+		MarkdownDescription: "DevfileRegistriesList is a custom resource where namespace users can add a list of Devfile Registries to allow devfiles to be visible at the namespace level. In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -142,8 +142,8 @@ func (r *RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest) Schema(_ contex
 								},
 
 								"skip_tls_verify": schema.BoolAttribute{
-									Description:         "SkipTLSVerify defaults to false.  Set to true in a non-production environment to bypass certificate checking",
-									MarkdownDescription: "SkipTLSVerify defaults to false.  Set to true in a non-production environment to bypass certificate checking",
+									Description:         "SkipTLSVerify defaults to false. Set to true in a non-production environment to bypass certificate checking",
+									MarkdownDescription: "SkipTLSVerify defaults to false. Set to true in a non-production environment to bypass certificate checking",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

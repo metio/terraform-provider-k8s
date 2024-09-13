@@ -141,8 +141,8 @@ func (r *KeyspacesServicesK8SAwsKeyspaceV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"replication_specification": schema.SingleNestedAttribute{
-						Description:         "The replication specification of the keyspace includes:   * replicationStrategy - the required value is SINGLE_REGION or MULTI_REGION.   * regionList - if the replicationStrategy is MULTI_REGION, the regionList   requires the current Region and at least one additional Amazon Web Services   Region where the keyspace is going to be replicated in. The maximum number   of supported replication Regions including the current Region is six.",
-						MarkdownDescription: "The replication specification of the keyspace includes:   * replicationStrategy - the required value is SINGLE_REGION or MULTI_REGION.   * regionList - if the replicationStrategy is MULTI_REGION, the regionList   requires the current Region and at least one additional Amazon Web Services   Region where the keyspace is going to be replicated in. The maximum number   of supported replication Regions including the current Region is six.",
+						Description:         "The replication specification of the keyspace includes: * replicationStrategy - the required value is SINGLE_REGION or MULTI_REGION. * regionList - if the replicationStrategy is MULTI_REGION, the regionList requires the current Region and at least one additional Amazon Web Services Region where the keyspace is going to be replicated in. The maximum number of supported replication Regions including the current Region is six.",
+						MarkdownDescription: "The replication specification of the keyspace includes: * replicationStrategy - the required value is SINGLE_REGION or MULTI_REGION. * regionList - if the replicationStrategy is MULTI_REGION, the regionList requires the current Region and at least one additional Amazon Web Services Region where the keyspace is going to be replicated in. The maximum number of supported replication Regions including the current Region is six.",
 						Attributes: map[string]schema.Attribute{
 							"region_list": schema.ListAttribute{
 								Description:         "",
@@ -167,8 +167,8 @@ func (r *KeyspacesServicesK8SAwsKeyspaceV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of key-value pair tags to be attached to the keyspace.For more information, see Adding tags and labels to Amazon Keyspaces resources(https://docs.aws.amazon.com/keyspaces/latest/devguide/tagging-keyspaces.html)in the Amazon Keyspaces Developer Guide.",
-						MarkdownDescription: "A list of key-value pair tags to be attached to the keyspace.For more information, see Adding tags and labels to Amazon Keyspaces resources(https://docs.aws.amazon.com/keyspaces/latest/devguide/tagging-keyspaces.html)in the Amazon Keyspaces Developer Guide.",
+						Description:         "A list of key-value pair tags to be attached to the keyspace. For more information, see Adding tags and labels to Amazon Keyspaces resources (https://docs.aws.amazon.com/keyspaces/latest/devguide/tagging-keyspaces.html) in the Amazon Keyspaces Developer Guide.",
+						MarkdownDescription: "A list of key-value pair tags to be attached to the keyspace. For more information, see Adding tags and labels to Amazon Keyspaces resources (https://docs.aws.amazon.com/keyspaces/latest/devguide/tagging-keyspaces.html) in the Amazon Keyspaces Developer Guide.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

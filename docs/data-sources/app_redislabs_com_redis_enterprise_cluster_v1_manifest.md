@@ -62,7 +62,7 @@ Optional:
 - `bootstrapper_resources` (Attributes) Compute resource requirements for bootstrapper containers (see [below for nested schema](#nestedatt--spec--bootstrapper_resources))
 - `certificates` (Attributes) RS Cluster Certificates. Used to modify the certificates used by the cluster. See the 'RSClusterCertificates' struct described above to see the supported certificates. (see [below for nested schema](#nestedatt--spec--certificates))
 - `cluster_credential_secret_name` (String) Secret Name/Path to use for Cluster Credentials. To be used only if ClusterCredentialSecretType is vault. If left blank, will use cluster name.
-- `cluster_credential_secret_role` (String) Used only if ClusterCredentialSecretType is vault, to define vault role to be used.  If blank, defaults to 'redis-enterprise-operator'
+- `cluster_credential_secret_role` (String) Used only if ClusterCredentialSecretType is vault, to define vault role to be used. If blank, defaults to 'redis-enterprise-operator'
 - `cluster_credential_secret_type` (String) Type of Secret to use for ClusterCredential, Vault, Kuberetes,... If left blank, will default ot kubernetes secrets
 - `cluster_recovery` (Boolean) ClusterRecovery initiates cluster recovery when set to true. Note that this field is cleared automatically after the cluster is recovered
 - `container_timezone` (Attributes) Container timezone configuration. While the default timezone on all containers is UTC, this setting can be used to set the timezone on services rigger/bootstrapper/RS containers. You can either propagate the hosts timezone to RS pods or set it manually via timezoneName. (see [below for nested schema](#nestedatt--spec--container_timezone))
@@ -83,7 +83,7 @@ Optional:
 - `persistent_spec` (Attributes) Specification for Redis Enterprise Cluster persistence (see [below for nested schema](#nestedatt--spec--persistent_spec))
 - `pod_annotations` (Map of String) annotations for the service rigger and redis enterprise pods
 - `pod_anti_affinity` (Attributes) Override for the default anti-affinity rules of the Redis Enterprise pods. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#an-example-of-a-pod-that-uses-pod-affinity (see [below for nested schema](#nestedatt--spec--pod_anti_affinity))
-- `pod_security_policy_name` (String) DEPRECATED PodSecurityPolicy support is removed in Kubernetes v1.25 and the use of this field is invalid for use when running on Kubernetes v1.25+. Future versions of the RedisEnterpriseCluster API will remove support for this field altogether. For migration instructions, see https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/  Name of pod security policy to use on pods
+- `pod_security_policy_name` (String) DEPRECATED PodSecurityPolicy support is removed in Kubernetes v1.25 and the use of this field is invalid for use when running on Kubernetes v1.25+. Future versions of the RedisEnterpriseCluster API will remove support for this field altogether. For migration instructions, see https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/ Name of pod security policy to use on pods
 - `pod_starting_policy` (Attributes) Mitigation setting for STS pods stuck in 'ContainerCreating' (see [below for nested schema](#nestedatt--spec--pod_starting_policy))
 - `pod_tolerations` (Attributes List) Tolerations that are added to all managed pods. More information: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ (see [below for nested schema](#nestedatt--spec--pod_tolerations))
 - `priority_class_name` (String) Adds the priority class to pods managed by the operator
@@ -3358,7 +3358,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 

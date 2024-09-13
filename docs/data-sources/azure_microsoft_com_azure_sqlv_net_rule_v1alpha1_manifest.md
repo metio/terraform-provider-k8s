@@ -30,7 +30,7 @@ data "k8s_azure_microsoft_com_azure_sqlv_net_rule_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized. AzureSQLVNetRuleSpec defines the desired state of AzureSQLVNetRule (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) NOTE: json tags are required. Any new fields you add must have json tags for the fields to be serialized. AzureSQLVNetRuleSpec defines the desired state of AzureSQLVNetRule (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

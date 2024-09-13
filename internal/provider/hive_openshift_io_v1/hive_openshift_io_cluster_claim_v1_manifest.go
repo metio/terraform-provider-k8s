@@ -190,8 +190,8 @@ func (r *HiveOpenshiftIoClusterClaimV1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
-									MarkdownDescription: "Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
+									Description:         "Namespace of the referenced object. If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
+									MarkdownDescription: "Namespace of the referenced object. If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

@@ -53,12 +53,12 @@ Optional:
 
 Optional:
 
-- `allow_users_in_namespaces` (List of String) The list of allowed namespaces in addition to the object store namespacewhere ceph object store users may be created. Specify '*' to allow allnamespaces, otherwise list individual namespaces that are to be allowed.This is useful for applications that need object store credentialsto be created in their own namespace, where neither OBCs nor COSIis being used to create buckets. The default is empty.
+- `allow_users_in_namespaces` (List of String) The list of allowed namespaces in addition to the object store namespace where ceph object store users may be created. Specify '*' to allow all namespaces, otherwise list individual namespaces that are to be allowed. This is useful for applications that need object store credentials to be created in their own namespace, where neither OBCs nor COSI is being used to create buckets. The default is empty.
 - `auth` (Attributes) The authentication configuration (see [below for nested schema](#nestedatt--spec--auth))
 - `data_pool` (Attributes) The data pool settings (see [below for nested schema](#nestedatt--spec--data_pool))
 - `gateway` (Attributes) The rgw pod info (see [below for nested schema](#nestedatt--spec--gateway))
 - `health_check` (Attributes) The RGW health probes (see [below for nested schema](#nestedatt--spec--health_check))
-- `hosting` (Attributes) Hosting settings for the object store.A common use case for hosting configuration is to inform Rook of endpoints that support DNSwildcards, which in turn allows virtual host-style bucket addressing. (see [below for nested schema](#nestedatt--spec--hosting))
+- `hosting` (Attributes) Hosting settings for the object store. A common use case for hosting configuration is to inform Rook of endpoints that support DNS wildcards, which in turn allows virtual host-style bucket addressing. (see [below for nested schema](#nestedatt--spec--hosting))
 - `metadata_pool` (Attributes) The metadata pool settings (see [below for nested schema](#nestedatt--spec--metadata_pool))
 - `preserve_pools_on_delete` (Boolean) Preserve pools on object store deletion
 - `protocols` (Attributes) The protocol specification (see [below for nested schema](#nestedatt--spec--protocols))
@@ -96,7 +96,7 @@ Optional:
 Optional:
 
 - `application` (String) The application name to set on the pool. Only expected to be set for rgw pools.
-- `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters
+- `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters
 - `crush_root` (String) The root of the crush hierarchy utilized by the pool
 - `device_class` (String) The device class the OSD should set to for use in the pool
 - `enable_crush_updates` (Boolean) Allow rook operator to change the pool CRUSH tunables once the pool is created
@@ -114,8 +114,8 @@ Optional:
 
 Required:
 
-- `coding_chunks` (Number) Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.
-- `data_chunks` (Number) Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.
+- `coding_chunks` (Number) Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.
+- `data_chunks` (Number) Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.
 
 Optional:
 
@@ -156,7 +156,7 @@ Optional:
 
 Optional:
 
-- `max_bytes` (Number) MaxBytes represents the quota in bytesDeprecated in favor of MaxSize
+- `max_bytes` (Number) MaxBytes represents the quota in bytes Deprecated in favor of MaxSize
 - `max_objects` (Number) MaxObjects represents the quota in objects
 - `max_size` (String) MaxSize represents the quota in bytes as a string
 
@@ -210,12 +210,12 @@ Optional:
 
 Optional:
 
-- `additional_volume_mounts` (Attributes List) AdditionalVolumeMounts allows additional volumes to be mounted to the RGW pod.The root directory for each additional volume mount is '/var/rgw'.Example: for an additional mount at subPath 'ldap', mounted from a secret that has key'bindpass.secret', the file would reside at '/var/rgw/ldap/bindpass.secret'. (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts))
+- `additional_volume_mounts` (Attributes List) AdditionalVolumeMounts allows additional volumes to be mounted to the RGW pod. The root directory for each additional volume mount is '/var/rgw'. Example: for an additional mount at subPath 'ldap', mounted from a secret that has key 'bindpass.secret', the file would reside at '/var/rgw/ldap/bindpass.secret'. (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts))
 - `annotations` (Map of String) The annotations-related configuration to add/set on each Pod related object.
 - `ca_bundle_ref` (String) The name of the secret that stores custom ca-bundle with root and intermediate certificates.
 - `dashboard_enabled` (Boolean) Whether rgw dashboard is enabled for the rgw daemon. If not set, the rgw dashboard will be enabled.
-- `disable_multisite_sync_traffic` (Boolean) DisableMultisiteSyncTraffic, when true, prevents this object store's gateways fromtransmitting multisite replication data. Note that this value does not affect whethergateways receive multisite replication traffic: see ObjectZone.spec.customEndpoints for that.If false or unset, this object store's gateways will be able to transmit multisitereplication data.
-- `external_rgw_endpoints` (Attributes List) ExternalRgwEndpoints points to external RGW endpoint(s). Multiple endpoints can be given, butfor stability of ObjectBucketClaims, we highly recommend that users give only a singleexternal RGW endpoint that is a load balancer that sends requests to the multiple RGWs. (see [below for nested schema](#nestedatt--spec--gateway--external_rgw_endpoints))
+- `disable_multisite_sync_traffic` (Boolean) DisableMultisiteSyncTraffic, when true, prevents this object store's gateways from transmitting multisite replication data. Note that this value does not affect whether gateways receive multisite replication traffic: see ObjectZone.spec.customEndpoints for that. If false or unset, this object store's gateways will be able to transmit multisite replication data.
+- `external_rgw_endpoints` (Attributes List) ExternalRgwEndpoints points to external RGW endpoint(s). Multiple endpoints can be given, but for stability of ObjectBucketClaims, we highly recommend that users give only a single external RGW endpoint that is a load balancer that sends requests to the multiple RGWs. (see [below for nested schema](#nestedatt--spec--gateway--external_rgw_endpoints))
 - `host_network` (Boolean) Whether host networking is enabled for the rgw daemon. If not set, the network settings from the cluster CR will be applied.
 - `instances` (Number) The number of pods in the rgw replicaset.
 - `labels` (Map of String) The labels-related configuration to add/set on each Pod related object.
@@ -232,7 +232,7 @@ Optional:
 
 Required:
 
-- `sub_path` (String) SubPath defines the sub-path (subdirectory) of the directory root where the volumeSource willbe mounted. All files/keys in the volume source's volume will be mounted to the subdirectory.This is not the same as the Kubernetes 'subPath' volume mount option.Each subPath definition must be unique and must not contain ':'.
+- `sub_path` (String) SubPath defines the sub-path (subdirectory) of the directory root where the volumeSource will be mounted. All files/keys in the volume source's volume will be mounted to the subdirectory. This is not the same as the Kubernetes 'subPath' volume mount option. Each subPath definition must be unique and must not contain ':'.
 - `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source))
 
 <a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source"></a>
@@ -944,20 +944,20 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--gateway--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--gateway--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--gateway--resources--claims"></a>
 ### Nested Schema for `spec.gateway.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 Optional:
 
-- `request` (String) Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.
+- `request` (String) Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
 
 
 
@@ -966,7 +966,7 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) The annotations-related configuration to add/set on each rgw service.nullableoptional
+- `annotations` (Map of String) The annotations-related configuration to add/set on each rgw service. nullable optional
 
 
 
@@ -984,7 +984,7 @@ Optional:
 Optional:
 
 - `disabled` (Boolean) Disabled determines whether probe is disable or not
-- `probe` (Attributes) Probe describes a health check to be performed against a container to determine whether it isalive or ready to receive traffic. (see [below for nested schema](#nestedatt--spec--health_check--readiness_probe--probe))
+- `probe` (Attributes) Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. (see [below for nested schema](#nestedatt--spec--health_check--readiness_probe--probe))
 
 <a id="nestedatt--spec--health_check--readiness_probe--probe"></a>
 ### Nested Schema for `spec.health_check.readiness_probe.probe`
@@ -992,22 +992,22 @@ Optional:
 Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--health_check--readiness_probe--probe--exec))
-- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
 - `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--health_check--readiness_probe--probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--health_check--readiness_probe--probe--http_get))
-- `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
-- `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
-- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
+- `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
 - `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--health_check--readiness_probe--probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
-- `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+- `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--health_check--readiness_probe--probe--exec"></a>
 ### Nested Schema for `spec.health_check.readiness_probe.probe.exec`
 
 Optional:
 
-- `command` (List of String) Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
 <a id="nestedatt--spec--health_check--readiness_probe--probe--grpc"></a>
@@ -1019,7 +1019,7 @@ Required:
 
 Optional:
 
-- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.
+- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
 
 
 <a id="nestedatt--spec--health_check--readiness_probe--probe--http_get"></a>
@@ -1027,21 +1027,21 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.
+- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
-- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.
+- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
 - `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--health_check--readiness_probe--probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
-- `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
+- `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--health_check--readiness_probe--probe--http_get--http_headers"></a>
 ### Nested Schema for `spec.health_check.readiness_probe.probe.http_get.http_headers`
 
 Required:
 
-- `name` (String) The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.
+- `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
 
@@ -1051,7 +1051,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.
+- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1066,7 +1066,7 @@ Optional:
 Optional:
 
 - `disabled` (Boolean) Disabled determines whether probe is disable or not
-- `probe` (Attributes) Probe describes a health check to be performed against a container to determine whether it isalive or ready to receive traffic. (see [below for nested schema](#nestedatt--spec--health_check--startup_probe--probe))
+- `probe` (Attributes) Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. (see [below for nested schema](#nestedatt--spec--health_check--startup_probe--probe))
 
 <a id="nestedatt--spec--health_check--startup_probe--probe"></a>
 ### Nested Schema for `spec.health_check.startup_probe.probe`
@@ -1074,22 +1074,22 @@ Optional:
 Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--health_check--startup_probe--probe--exec))
-- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
 - `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--health_check--startup_probe--probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--health_check--startup_probe--probe--http_get))
-- `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
-- `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
-- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
+- `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
 - `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--health_check--startup_probe--probe--tcp_socket))
 - `termination_grace_period_seconds` (Number)
-- `timeout_seconds` (Number) Number of seconds after which the probe times out.Defaults to 1 second. Minimum value is 1.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+- `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--health_check--startup_probe--probe--exec"></a>
 ### Nested Schema for `spec.health_check.startup_probe.probe.exec`
 
 Optional:
 
-- `command` (List of String) Command is the command line to execute inside the container, the working directory for thecommand  is root ('/') in the container's filesystem. The command is simply exec'd, it isnot run inside a shell, so traditional shell instructions ('|', etc) won't work. To usea shell, you need to explicitly call out to that shell.Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 
 
 <a id="nestedatt--spec--health_check--startup_probe--probe--grpc"></a>
@@ -1101,7 +1101,7 @@ Required:
 
 Optional:
 
-- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest(see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).If this is not specified, the default behavior is defined by gRPC.
+- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
 
 
 <a id="nestedatt--spec--health_check--startup_probe--probe--http_get"></a>
@@ -1109,21 +1109,21 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.
+- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
-- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set'Host' in httpHeaders instead.
+- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
 - `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--health_check--startup_probe--probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
-- `scheme` (String) Scheme to use for connecting to the host.Defaults to HTTP.
+- `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
 
 <a id="nestedatt--spec--health_check--startup_probe--probe--http_get--http_headers"></a>
 ### Nested Schema for `spec.health_check.startup_probe.probe.http_get.http_headers`
 
 Required:
 
-- `name` (String) The header field name.This will be canonicalized upon output, so case-variant names will be understood as the same header.
+- `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
 
@@ -1133,7 +1133,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.Number must be in the range 1 to 65535.Name must be an IANA_SVC_NAME.
+- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1148,15 +1148,15 @@ Optional:
 
 Optional:
 
-- `advertise_endpoint` (Attributes) AdvertiseEndpoint is the default endpoint Rook will return for resources dependent on thisobject store. This endpoint will be returned to CephObjectStoreUsers, Object Bucket Claims,and COSI Buckets/Accesses.By default, Rook returns the endpoint for the object store's Kubernetes service using HTTPSwith 'gateway.securePort' if it is defined (otherwise, HTTP with 'gateway.port'). (see [below for nested schema](#nestedatt--spec--hosting--advertise_endpoint))
-- `dns_names` (List of String) A list of DNS host names on which object store gateways will accept client S3 connections.When specified, object store gateways will reject client S3 connections to hostnames that arenot present in this list, so include all endpoints.The object store's advertiseEndpoint and Kubernetes service endpoint, plus CephObjectZone'customEndpoints' are automatically added to the list but may be set here again if desired.Each DNS name must be valid according RFC-1123.If the DNS name corresponds to an endpoint with DNS wildcard support, do not include thewildcard itself in the list of hostnames.E.g., use 'mystore.example.com' instead of '*.mystore.example.com'.The feature is supported only for Ceph v18 and later versions.
+- `advertise_endpoint` (Attributes) AdvertiseEndpoint is the default endpoint Rook will return for resources dependent on this object store. This endpoint will be returned to CephObjectStoreUsers, Object Bucket Claims, and COSI Buckets/Accesses. By default, Rook returns the endpoint for the object store's Kubernetes service using HTTPS with 'gateway.securePort' if it is defined (otherwise, HTTP with 'gateway.port'). (see [below for nested schema](#nestedatt--spec--hosting--advertise_endpoint))
+- `dns_names` (List of String) A list of DNS host names on which object store gateways will accept client S3 connections. When specified, object store gateways will reject client S3 connections to hostnames that are not present in this list, so include all endpoints. The object store's advertiseEndpoint and Kubernetes service endpoint, plus CephObjectZone 'customEndpoints' are automatically added to the list but may be set here again if desired. Each DNS name must be valid according RFC-1123. If the DNS name corresponds to an endpoint with DNS wildcard support, do not include the wildcard itself in the list of hostnames. E.g., use 'mystore.example.com' instead of '*.mystore.example.com'. The feature is supported only for Ceph v18 and later versions.
 
 <a id="nestedatt--spec--hosting--advertise_endpoint"></a>
 ### Nested Schema for `spec.hosting.advertise_endpoint`
 
 Required:
 
-- `dns_name` (String) DnsName is the DNS name (in RFC-1123 format) of the endpoint.If the DNS name corresponds to an endpoint with DNS wildcard support, do not include thewildcard itself in the list of hostnames.E.g., use 'mystore.example.com' instead of '*.mystore.example.com'.
+- `dns_name` (String) DnsName is the DNS name (in RFC-1123 format) of the endpoint. If the DNS name corresponds to an endpoint with DNS wildcard support, do not include the wildcard itself in the list of hostnames. E.g., use 'mystore.example.com' instead of '*.mystore.example.com'.
 - `port` (Number) Port is the port on which S3 connections can be made for this endpoint.
 - `use_tls` (Boolean) UseTls defines whether the endpoint uses TLS (HTTPS) or not (HTTP).
 
@@ -1168,7 +1168,7 @@ Required:
 Optional:
 
 - `application` (String) The application name to set on the pool. Only expected to be set for rgw pools.
-- `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters
+- `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters
 - `crush_root` (String) The root of the crush hierarchy utilized by the pool
 - `device_class` (String) The device class the OSD should set to for use in the pool
 - `enable_crush_updates` (Boolean) Allow rook operator to change the pool CRUSH tunables once the pool is created
@@ -1186,8 +1186,8 @@ Optional:
 
 Required:
 
-- `coding_chunks` (Number) Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.
-- `data_chunks` (Number) Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.
+- `coding_chunks` (Number) Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.
+- `data_chunks` (Number) Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.
 
 Optional:
 
@@ -1228,7 +1228,7 @@ Optional:
 
 Optional:
 
-- `max_bytes` (Number) MaxBytes represents the quota in bytesDeprecated in favor of MaxSize
+- `max_bytes` (Number) MaxBytes represents the quota in bytes Deprecated in favor of MaxSize
 - `max_objects` (Number) MaxObjects represents the quota in objects
 - `max_size` (String) MaxSize represents the quota in bytes as a string
 
@@ -1345,14 +1345,36 @@ Optional:
 <a id="nestedatt--spec--shared_pools"></a>
 ### Nested Schema for `spec.shared_pools`
 
-Required:
+Optional:
 
 - `data_pool_name` (String) The data pool used for creating RADOS namespaces in the object store
 - `metadata_pool_name` (String) The metadata pool used for creating RADOS namespaces in the object store
+- `pool_placements` (Attributes List) PoolPlacements control which Pools are associated with a particular RGW bucket. Once PoolPlacements are defined, RGW client will be able to associate pool with ObjectStore bucket by providing '<LocationConstraint>' during s3 bucket creation or 'X-Storage-Policy' header during swift container creation. See: https://docs.ceph.com/en/latest/radosgw/placement/#placement-targets PoolPlacement with name: 'default' will be used as a default pool if no option is provided during bucket creation. If default placement is not provided, spec.sharedPools.dataPoolName and spec.sharedPools.MetadataPoolName will be used as default pools. If spec.sharedPools are also empty, then RGW pools (spec.dataPool and spec.metadataPool) will be used as defaults. (see [below for nested schema](#nestedatt--spec--shared_pools--pool_placements))
+- `preserve_rados_namespace_data_on_delete` (Boolean) Whether the RADOS namespaces should be preserved on deletion of the object store
+
+<a id="nestedatt--spec--shared_pools--pool_placements"></a>
+### Nested Schema for `spec.shared_pools.pool_placements`
+
+Required:
+
+- `data_pool_name` (String) The data pool used to store ObjectStore objects data.
+- `metadata_pool_name` (String) The metadata pool used to store ObjectStore bucket index.
+- `name` (String) Pool placement name. Name can be arbitrary. Placement with name 'default' will be used as default.
 
 Optional:
 
-- `preserve_rados_namespace_data_on_delete` (Boolean) Whether the RADOS namespaces should be preserved on deletion of the object store
+- `data_non_ec_pool_name` (String) The data pool used to store ObjectStore data that cannot use erasure coding (ex: multi-part uploads). If dataPoolName is not erasure coded, then there is no need for dataNonECPoolName.
+- `storage_classes` (Attributes List) StorageClasses can be selected by user to override dataPoolName during object creation. Each placement has default STANDARD StorageClass pointing to dataPoolName. This list allows defining additional StorageClasses on top of default STANDARD storage class. (see [below for nested schema](#nestedatt--spec--shared_pools--pool_placements--storage_classes))
+
+<a id="nestedatt--spec--shared_pools--pool_placements--storage_classes"></a>
+### Nested Schema for `spec.shared_pools.pool_placements.storage_classes`
+
+Required:
+
+- `data_pool_name` (String) DataPoolName is the data pool used to store ObjectStore objects data.
+- `name` (String) Name is the StorageClass name. Ceph allows arbitrary name for StorageClasses, however most clients/libs insist on AWS names so it is recommended to use one of the valid x-amz-storage-class values for better compatibility: REDUCED_REDUNDANCY | STANDARD_IA | ONEZONE_IA | INTELLIGENT_TIERING | GLACIER | DEEP_ARCHIVE | OUTPOSTS | GLACIER_IR | SNOW | EXPRESS_ONEZONE See AWS docs: https://aws.amazon.com/de/s3/storage-classes/
+
+
 
 
 <a id="nestedatt--spec--zone"></a>

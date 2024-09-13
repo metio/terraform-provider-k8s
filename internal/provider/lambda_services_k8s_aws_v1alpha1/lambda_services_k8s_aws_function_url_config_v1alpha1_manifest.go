@@ -55,7 +55,8 @@ type LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1ManifestData struct {
 		FunctionName *string `tfsdk:"function_name" json:"functionName,omitempty"`
 		FunctionRef  *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"function_ref" json:"functionRef,omitempty"`
 		Qualifier *string `tfsdk:"qualifier" json:"qualifier,omitempty"`
@@ -136,20 +137,20 @@ func (r *LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest) Schema(_ context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "FunctionUrlConfigSpec defines the desired state of FunctionUrlConfig.Details about a Lambda function URL.",
-				MarkdownDescription: "FunctionUrlConfigSpec defines the desired state of FunctionUrlConfig.Details about a Lambda function URL.",
+				Description:         "FunctionUrlConfigSpec defines the desired state of FunctionUrlConfig. Details about a Lambda function URL.",
+				MarkdownDescription: "FunctionUrlConfigSpec defines the desired state of FunctionUrlConfig. Details about a Lambda function URL.",
 				Attributes: map[string]schema.Attribute{
 					"auth_type": schema.StringAttribute{
-						Description:         "The type of authentication that your function URL uses. Set to AWS_IAM ifyou want to restrict access to authenticated IAM users only. Set to NONEif you want to bypass IAM authentication to create a public endpoint. Formore information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).",
-						MarkdownDescription: "The type of authentication that your function URL uses. Set to AWS_IAM ifyou want to restrict access to authenticated IAM users only. Set to NONEif you want to bypass IAM authentication to create a public endpoint. Formore information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).",
+						Description:         "The type of authentication that your function URL uses. Set to AWS_IAM if you want to restrict access to authenticated IAM users only. Set to NONE if you want to bypass IAM authentication to create a public endpoint. For more information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).",
+						MarkdownDescription: "The type of authentication that your function URL uses. Set to AWS_IAM if you want to restrict access to authenticated IAM users only. Set to NONE if you want to bypass IAM authentication to create a public endpoint. For more information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"cors": schema.SingleNestedAttribute{
-						Description:         "The cross-origin resource sharing (CORS) (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)settings for your function URL.",
-						MarkdownDescription: "The cross-origin resource sharing (CORS) (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)settings for your function URL.",
+						Description:         "The cross-origin resource sharing (CORS) (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) settings for your function URL.",
+						MarkdownDescription: "The cross-origin resource sharing (CORS) (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) settings for your function URL.",
 						Attributes: map[string]schema.Attribute{
 							"allow_credentials": schema.BoolAttribute{
 								Description:         "",
@@ -209,22 +210,30 @@ func (r *LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest) Schema(_ context
 					},
 
 					"function_name": schema.StringAttribute{
-						Description:         "The name of the Lambda function.Name formats   * Function name – my-function.   * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function.   * Partial ARN – 123456789012:function:my-function.The length constraint applies only to the full ARN. If you specify only thefunction name, it is limited to 64 characters in length.",
-						MarkdownDescription: "The name of the Lambda function.Name formats   * Function name – my-function.   * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function.   * Partial ARN – 123456789012:function:my-function.The length constraint applies only to the full ARN. If you specify only thefunction name, it is limited to 64 characters in length.",
+						Description:         "The name of the Lambda function. Name formats * Function name – my-function. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function. * Partial ARN – 123456789012:function:my-function. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+						MarkdownDescription: "The name of the Lambda function. Name formats * Function name – my-function. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function. * Partial ARN – 123456789012:function:my-function. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"function_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

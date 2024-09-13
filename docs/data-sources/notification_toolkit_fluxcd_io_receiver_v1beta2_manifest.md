@@ -63,14 +63,14 @@ Optional:
 Required:
 
 - `resources` (Attributes List) A list of resources to be notified about changes. (see [below for nested schema](#nestedatt--spec--resources))
-- `type` (String) Type of webhook sender, used to determinethe validation procedure and payload deserialization.
+- `secret_ref` (Attributes) SecretRef specifies the Secret containing the token used to validate the payload authenticity. (see [below for nested schema](#nestedatt--spec--secret_ref))
+- `type` (String) Type of webhook sender, used to determine the validation procedure and payload deserialization.
 
 Optional:
 
-- `events` (List of String) Events specifies the list of event types to handle,e.g. 'push' for GitHub or 'Push Hook' for GitLab.
+- `events` (List of String) Events specifies the list of event types to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.
 - `interval` (String) Interval at which to reconcile the Receiver with its Secret references.
-- `secret_ref` (Attributes) SecretRef specifies the Secret containing the token usedto validate the payload authenticity. (see [below for nested schema](#nestedatt--spec--secret_ref))
-- `suspend` (Boolean) Suspend tells the controller to suspend subsequentevents handling for this receiver.
+- `suspend` (Boolean) Suspend tells the controller to suspend subsequent events handling for this receiver.
 
 <a id="nestedatt--spec--resources"></a>
 ### Nested Schema for `spec.resources`
@@ -78,12 +78,12 @@ Optional:
 Required:
 
 - `kind` (String) Kind of the referent
-- `name` (String) Name of the referentIf multiple resources are targeted '*' may be set.
+- `name` (String) Name of the referent If multiple resources are targeted '*' may be set.
 
 Optional:
 
 - `api_version` (String) API version of the referent
-- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.MatchLabels requires the name to be set to '*'.
+- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed. MatchLabels requires the name to be set to '*'.
 - `namespace` (String) Namespace of the referent
 
 

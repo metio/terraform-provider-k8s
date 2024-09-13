@@ -155,21 +155,21 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "BucketSpec specifies the required configuration to produce an Artifact foran object storage bucket.",
-				MarkdownDescription: "BucketSpec specifies the required configuration to produce an Artifact foran object storage bucket.",
+				Description:         "BucketSpec specifies the required configuration to produce an Artifact for an object storage bucket.",
+				MarkdownDescription: "BucketSpec specifies the required configuration to produce an Artifact for an object storage bucket.",
 				Attributes: map[string]schema.Attribute{
 					"access_from": schema.SingleNestedAttribute{
-						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespacereferences to this object.NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
-						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespacereferences to this object.NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
+						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
+						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
 						Attributes: map[string]schema.Attribute{
 							"namespace_selectors": schema.ListNestedAttribute{
-								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
-								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
+								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
+								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"match_labels": schema.MapAttribute{
-											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -196,8 +196,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"cert_secret_ref": schema.SingleNestedAttribute{
-						Description:         "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to thebucket. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'generic' provider.",
-						MarkdownDescription: "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to thebucket. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'generic' provider.",
+						Description:         "CertSecretRef can be given the name of a Secret containing either or both of - a PEM-encoded client certificate ('tls.crt') and private key ('tls.key'); - a PEM-encoded CA certificate ('ca.crt') and whichever are supplied, will be used for connecting to the bucket. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type 'Opaque' or 'kubernetes.io/tls'. This field is only supported for the 'generic' provider.",
+						MarkdownDescription: "CertSecretRef can be given the name of a Secret containing either or both of - a PEM-encoded client certificate ('tls.crt') and private key ('tls.key'); - a PEM-encoded CA certificate ('ca.crt') and whichever are supplied, will be used for connecting to the bucket. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type 'Opaque' or 'kubernetes.io/tls'. This field is only supported for the 'generic' provider.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -221,8 +221,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"ignore": schema.StringAttribute{
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -237,8 +237,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"interval": schema.StringAttribute{
-						Description:         "Interval at which the Bucket Endpoint is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.",
-						MarkdownDescription: "Interval at which the Bucket Endpoint is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.",
+						Description:         "Interval at which the Bucket Endpoint is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
+						MarkdownDescription: "Interval at which the Bucket Endpoint is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -256,8 +256,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"provider": schema.StringAttribute{
-						Description:         "Provider of the object storage bucket.Defaults to 'generic', which expects an S3 (API) compatible objectstorage.",
-						MarkdownDescription: "Provider of the object storage bucket.Defaults to 'generic', which expects an S3 (API) compatible objectstorage.",
+						Description:         "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
+						MarkdownDescription: "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -267,8 +267,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"proxy_secret_ref": schema.SingleNestedAttribute{
-						Description:         "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server.",
-						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server.",
+						Description:         "ProxySecretRef specifies the Secret containing the proxy configuration to use while communicating with the Bucket server.",
+						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configuration to use while communicating with the Bucket server.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -292,8 +292,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "SecretRef specifies the Secret containing authentication credentialsfor the Bucket.",
-						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentialsfor the Bucket.",
+						Description:         "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
+						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -309,12 +309,12 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"sts": schema.SingleNestedAttribute{
-						Description:         "STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' and 'generic' providers.",
-						MarkdownDescription: "STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' and 'generic' providers.",
+						Description:         "STS specifies the required configuration to use a Security Token Service for fetching temporary credentials to authenticate in a Bucket provider. This field is only supported for the 'aws' and 'generic' providers.",
+						MarkdownDescription: "STS specifies the required configuration to use a Security Token Service for fetching temporary credentials to authenticate in a Bucket provider. This field is only supported for the 'aws' and 'generic' providers.",
 						Attributes: map[string]schema.Attribute{
 							"cert_secret_ref": schema.SingleNestedAttribute{
-								Description:         "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theSTS endpoint. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'ldap' provider.",
-								MarkdownDescription: "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theSTS endpoint. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'ldap' provider.",
+								Description:         "CertSecretRef can be given the name of a Secret containing either or both of - a PEM-encoded client certificate ('tls.crt') and private key ('tls.key'); - a PEM-encoded CA certificate ('ca.crt') and whichever are supplied, will be used for connecting to the STS endpoint. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type 'Opaque' or 'kubernetes.io/tls'. This field is only supported for the 'ldap' provider.",
+								MarkdownDescription: "CertSecretRef can be given the name of a Secret containing either or both of - a PEM-encoded client certificate ('tls.crt') and private key ('tls.key'); - a PEM-encoded CA certificate ('ca.crt') and whichever are supplied, will be used for connecting to the STS endpoint. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type 'Opaque' or 'kubernetes.io/tls'. This field is only supported for the 'ldap' provider.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name of the referent.",
@@ -330,8 +330,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 							},
 
 							"endpoint": schema.StringAttribute{
-								Description:         "Endpoint is the HTTP/S endpoint of the Security Token Service fromwhere temporary credentials will be fetched.",
-								MarkdownDescription: "Endpoint is the HTTP/S endpoint of the Security Token Service fromwhere temporary credentials will be fetched.",
+								Description:         "Endpoint is the HTTP/S endpoint of the Security Token Service from where temporary credentials will be fetched.",
+								MarkdownDescription: "Endpoint is the HTTP/S endpoint of the Security Token Service from where temporary credentials will be fetched.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -352,8 +352,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 							},
 
 							"secret_ref": schema.SingleNestedAttribute{
-								Description:         "SecretRef specifies the Secret containing authentication credentialsfor the STS endpoint. This Secret must contain the fields 'username'and 'password' and is supported only for the 'ldap' provider.",
-								MarkdownDescription: "SecretRef specifies the Secret containing authentication credentialsfor the STS endpoint. This Secret must contain the fields 'username'and 'password' and is supported only for the 'ldap' provider.",
+								Description:         "SecretRef specifies the Secret containing authentication credentials for the STS endpoint. This Secret must contain the fields 'username' and 'password' and is supported only for the 'ldap' provider.",
+								MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the STS endpoint. This Secret must contain the fields 'username' and 'password' and is supported only for the 'ldap' provider.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name of the referent.",
@@ -374,8 +374,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "Suspend tells the controller to suspend the reconciliation of thisBucket.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of thisBucket.",
+						Description:         "Suspend tells the controller to suspend the reconciliation of this Bucket.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this Bucket.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

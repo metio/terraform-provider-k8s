@@ -98,8 +98,8 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Manifest) Metadata(_ context.Context, r
 
 func (r *AppKiegroupOrgKogitoInfraV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service.  It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index).  Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.",
-		MarkdownDescription: "KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service.  It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index).  Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.",
+		Description:         "KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service. It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index). Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.",
+		MarkdownDescription: "KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service. It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index). Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -192,8 +192,8 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"mount_path": schema.StringAttribute{
-									Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'. Default mount path is /home/kogito/config",
-									MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'. Default mount path is /home/kogito/config",
+									Description:         "Path within the container at which the volume should be mounted. Must not contain ':'. Default mount path is /home/kogito/config",
+									MarkdownDescription: "Path within the container at which the volume should be mounted. Must not contain ':'. Default mount path is /home/kogito/config",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -342,8 +342,8 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Manifest) Schema(_ context.Context, _ d
 											MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -382,8 +382,8 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"infra_properties": schema.MapAttribute{
-						Description:         "Optional properties which would be needed to setup correct runtime/service configuration, based on the resource type.  For example, MongoDB will require 'username' and 'database' as properties for a correct setup, else it will fail",
-						MarkdownDescription: "Optional properties which would be needed to setup correct runtime/service configuration, based on the resource type.  For example, MongoDB will require 'username' and 'database' as properties for a correct setup, else it will fail",
+						Description:         "Optional properties which would be needed to setup correct runtime/service configuration, based on the resource type. For example, MongoDB will require 'username' and 'database' as properties for a correct setup, else it will fail",
+						MarkdownDescription: "Optional properties which would be needed to setup correct runtime/service configuration, based on the resource type. For example, MongoDB will require 'username' and 'database' as properties for a correct setup, else it will fail",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -454,8 +454,8 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"mount_path": schema.StringAttribute{
-									Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'. Default mount path is /home/kogito/config",
-									MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'. Default mount path is /home/kogito/config",
+									Description:         "Path within the container at which the volume should be mounted. Must not contain ':'. Default mount path is /home/kogito/config",
+									MarkdownDescription: "Path within the container at which the volume should be mounted. Must not contain ':'. Default mount path is /home/kogito/config",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

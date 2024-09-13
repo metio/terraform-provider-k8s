@@ -3,12 +3,12 @@
 page_title: "k8s_operator_tigera_io_management_cluster_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.tigera.io"
 description: |-
-  The presence of ManagementCluster in your cluster, will configure it to be the management plane to which managedclusters can connect. At most one instance of this resource is supported. It must be named 'tigera-secure'.
+  The presence of ManagementCluster in your cluster, will configure it to be the management plane to which managed clusters can connect. At most one instance of this resource is supported. It must be named 'tigera-secure'.
 ---
 
 # k8s_operator_tigera_io_management_cluster_v1_manifest (Data Source)
 
-The presence of ManagementCluster in your cluster, will configure it to be the management plane to which managedclusters can connect. At most one instance of this resource is supported. It must be named 'tigera-secure'.
+The presence of ManagementCluster in your cluster, will configure it to be the management plane to which managed clusters can connect. At most one instance of this resource is supported. It must be named 'tigera-secure'.
 
 ## Example Usage
 
@@ -54,7 +54,7 @@ Optional:
 
 Optional:
 
-- `address` (String) This field specifies the externally reachable address to which your managed cluster will connect. When a managedcluster is added, this field is used to populate an easy-to-apply manifest that will connect both clusters.Valid examples are: '0.0.0.0:31000', 'example.com:32000', '[::1]:32500'
+- `address` (String) This field specifies the externally reachable address to which your managed cluster will connect. When a managed cluster is added, this field is used to populate an easy-to-apply manifest that will connect both clusters. Valid examples are: '0.0.0.0:31000', 'example.com:32000', '[::1]:32500'
 - `tls` (Attributes) TLS provides options for configuring how Managed Clusters can establish an mTLS connection with the Management Cluster. (see [below for nested schema](#nestedatt--spec--tls))
 
 <a id="nestedatt--spec--tls"></a>
@@ -62,4 +62,4 @@ Optional:
 
 Optional:
 
-- `secret_name` (String) SecretName indicates the name of the secret in the tigera-operator namespace that contains the private key and certificate that the management cluster uses when it listens for incoming connections.When set to tigera-management-cluster-connection voltron will use the same cert bundle which Guardian client certs are signed with.When set to manager-tls, voltron will use the same cert bundle which Manager UI is served with.This cert bundle must be a publicly signed cert created by the user.Note that Tigera Operator will generate a self-signed manager-tls cert if one does not exist,and use of that cert will result in Guardian being unable to verify Voltron's identity.If changed on a running cluster with connected managed clusters, all managed clusters will disconnect as they will no longer be able to verify Voltron's identity.To reconnect existing managed clusters, change the tls.ca of the  managed clusters' ManagementClusterConnection resource.One of: tigera-management-cluster-connection, manager-tlsDefault: tigera-management-cluster-connection
+- `secret_name` (String) SecretName indicates the name of the secret in the tigera-operator namespace that contains the private key and certificate that the management cluster uses when it listens for incoming connections. When set to tigera-management-cluster-connection voltron will use the same cert bundle which Guardian client certs are signed with. When set to manager-tls, voltron will use the same cert bundle which Manager UI is served with. This cert bundle must be a publicly signed cert created by the user. Note that Tigera Operator will generate a self-signed manager-tls cert if one does not exist, and use of that cert will result in Guardian being unable to verify Voltron's identity. If changed on a running cluster with connected managed clusters, all managed clusters will disconnect as they will no longer be able to verify Voltron's identity. To reconnect existing managed clusters, change the tls.ca of the managed clusters' ManagementClusterConnection resource. One of: tigera-management-cluster-connection, manager-tls Default: tigera-management-cluster-connection

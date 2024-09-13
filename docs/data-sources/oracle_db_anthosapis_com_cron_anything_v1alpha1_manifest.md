@@ -110,7 +110,7 @@ Required:
 Optional:
 
 - `history_count_limit` (Number) The number of completed resources to keep before deleting them. This only affects finishable resources and the default value is 3. This field is mutable and if it is changed to a number lower than the current number of finished resources, the oldest ones will eventually be deleted until the number of finished resources matches the limit.
-- `history_time_limit_seconds` (Number) The time since completion that a resource is kept before deletion. This only affects finishable resources. This does not have any default value and if it is not provided, HistoryCountLimit will be used to prune completed resources. If both HistoryCountLimit and  HistoryTimeLimitSeconds are set, it is treated as an OR operation.
+- `history_time_limit_seconds` (Number) The time since completion that a resource is kept before deletion. This only affects finishable resources. This does not have any default value and if it is not provided, HistoryCountLimit will be used to prune completed resources. If both HistoryCountLimit and HistoryTimeLimitSeconds are set, it is treated as an OR operation.
 
 <a id="nestedatt--spec--retention--resource_timestamp_strategy"></a>
 ### Nested Schema for `spec.retention.resource_timestamp_strategy`

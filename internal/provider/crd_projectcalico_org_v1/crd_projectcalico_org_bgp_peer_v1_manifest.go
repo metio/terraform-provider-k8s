@@ -155,8 +155,8 @@ func (r *CrdProjectcalicoOrgBgppeerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"max_restart_time": schema.StringAttribute{
-						Description:         "Time to allow for software restart.  When specified, this is configured as the graceful restart timeout.  When not specified, the BIRD default of 120s is used.",
-						MarkdownDescription: "Time to allow for software restart.  When specified, this is configured as the graceful restart timeout.  When not specified, the BIRD default of 120s is used.",
+						Description:         "Time to allow for software restart. When specified, this is configured as the graceful restart timeout. When not specified, the BIRD default of 120s is used.",
+						MarkdownDescription: "Time to allow for software restart. When specified, this is configured as the graceful restart timeout. When not specified, the BIRD default of 120s is used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -171,8 +171,8 @@ func (r *CrdProjectcalicoOrgBgppeerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"node_selector": schema.StringAttribute{
-						Description:         "Selector for the nodes that should have this peering.  When this is set, the Node field must be empty.",
-						MarkdownDescription: "Selector for the nodes that should have this peering.  When this is set, the Node field must be empty.",
+						Description:         "Selector for the nodes that should have this peering. When this is set, the Node field must be empty.",
+						MarkdownDescription: "Selector for the nodes that should have this peering. When this is set, the Node field must be empty.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -195,8 +195,8 @@ func (r *CrdProjectcalicoOrgBgppeerV1Manifest) Schema(_ context.Context, _ datas
 								MarkdownDescription: "Selects a key of a secret in the node pod's namespace.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Description:         "The key of the secret to select from. Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -237,8 +237,8 @@ func (r *CrdProjectcalicoOrgBgppeerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"peer_selector": schema.StringAttribute{
-						Description:         "Selector for the remote nodes to peer with.  When this is set, the PeerIP and ASNumber fields must be empty.  For each peering between the local node and selected remote nodes, we configure an IPv4 peering if both ends have NodeBGPSpec.IPv4Address specified, and an IPv6 peering if both ends have NodeBGPSpec.IPv6Address specified.  The remote AS number comes from the remote node's NodeBGPSpec.ASNumber, or the global default if that is not set.",
-						MarkdownDescription: "Selector for the remote nodes to peer with.  When this is set, the PeerIP and ASNumber fields must be empty.  For each peering between the local node and selected remote nodes, we configure an IPv4 peering if both ends have NodeBGPSpec.IPv4Address specified, and an IPv6 peering if both ends have NodeBGPSpec.IPv6Address specified.  The remote AS number comes from the remote node's NodeBGPSpec.ASNumber, or the global default if that is not set.",
+						Description:         "Selector for the remote nodes to peer with. When this is set, the PeerIP and ASNumber fields must be empty. For each peering between the local node and selected remote nodes, we configure an IPv4 peering if both ends have NodeBGPSpec.IPv4Address specified, and an IPv6 peering if both ends have NodeBGPSpec.IPv6Address specified. The remote AS number comes from the remote node's NodeBGPSpec.ASNumber, or the global default if that is not set.",
+						MarkdownDescription: "Selector for the remote nodes to peer with. When this is set, the PeerIP and ASNumber fields must be empty. For each peering between the local node and selected remote nodes, we configure an IPv4 peering if both ends have NodeBGPSpec.IPv4Address specified, and an IPv6 peering if both ends have NodeBGPSpec.IPv6Address specified. The remote AS number comes from the remote node's NodeBGPSpec.ASNumber, or the global default if that is not set.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -253,8 +253,8 @@ func (r *CrdProjectcalicoOrgBgppeerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"source_address": schema.StringAttribute{
-						Description:         "Specifies whether and how to configure a source address for the peerings generated by this BGPPeer resource.  Default value 'UseNodeIP' means to configure the node IP as the source address.  'None' means not to configure a source address.",
-						MarkdownDescription: "Specifies whether and how to configure a source address for the peerings generated by this BGPPeer resource.  Default value 'UseNodeIP' means to configure the node IP as the source address.  'None' means not to configure a source address.",
+						Description:         "Specifies whether and how to configure a source address for the peerings generated by this BGPPeer resource. Default value 'UseNodeIP' means to configure the node IP as the source address. 'None' means not to configure a source address.",
+						MarkdownDescription: "Specifies whether and how to configure a source address for the peerings generated by this BGPPeer resource. Default value 'UseNodeIP' means to configure the node IP as the source address. 'None' means not to configure a source address.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -121,10 +121,10 @@ Optional:
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `ignore` (List of String)
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--alertmanager--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--alertmanager--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--password))
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--alertmanager--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--alertmanager--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--alertmanager--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -481,10 +481,10 @@ Optional:
 - `endpoint` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--aws_config--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--aws_config--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `region` (String)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--aws_config--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--aws_config--relationships))
 - `secret_key` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config--secret_key))
 - `session_token` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config--session_token))
 - `skip_tls_verify` (Boolean) Skip TLS verify when connecting to aws
@@ -899,10 +899,10 @@ Optional:
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `ignore_rules` (List of String) List of rules which would be omitted from the fetch result
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--aws_config_rule--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--aws_config_rule--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `region` (String)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--aws_config_rule--relationships))
 - `rules` (List of String) Specify one or more Config rule names to filter the results by rule.
 - `secret_key` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config_rule--secret_key))
 - `session_token` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config_rule--session_token))
@@ -1320,9 +1320,9 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_devops--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--azure_devops--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--azure_devops--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--azure_devops--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--azure_devops--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_devops--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_devops--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -1615,9 +1615,9 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--catalog--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--catalog--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--catalog--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--catalog--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--catalog--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--catalog--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--catalog--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -1879,10 +1879,10 @@ Optional:
 - `endpoint` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--cloudwatch--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--cloudwatch--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `region` (String)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--cloudwatch--relationships))
 - `secret_key` (Attributes) (see [below for nested schema](#nestedatt--spec--cloudwatch--secret_key))
 - `session_token` (Attributes) (see [below for nested schema](#nestedatt--spec--cloudwatch--session_token))
 - `skip_tls_verify` (Boolean) Skip TLS verify when connecting to aws
@@ -2295,9 +2295,9 @@ Optional:
 - `expected_size` (Number)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--containerd--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--containerd--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--containerd--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--containerd--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
 <a id="nestedatt--spec--containerd--auth"></a>
@@ -2620,10 +2620,10 @@ Optional:
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--containerd_push--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--containerd_push--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `password` (String)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--containerd_push--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--containerd_push--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `username` (String)
 
@@ -2826,9 +2826,9 @@ Optional:
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
 - `max_age` (String)
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--database_backup--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--database_backup--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--database_backup--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--database_backup--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--database_backup--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--database_backup--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -3143,13 +3143,13 @@ Optional:
 - `exactreply` (List of String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--dns--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--dns--metrics))
 - `minrecords` (Number)
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `port` (Number)
 - `query` (String)
 - `querytype` (String)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--dns--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--dns--relationships))
 - `server` (String)
 - `threshold_millis` (Number)
 - `timeout` (Number)
@@ -3355,9 +3355,9 @@ Optional:
 - `expected_size` (Number)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--docker--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--docker--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--docker--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--docker--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
 <a id="nestedatt--spec--docker--auth"></a>
@@ -3681,9 +3681,9 @@ Optional:
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--docker_push--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--docker_push--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--docker_push--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--docker_push--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
 <a id="nestedatt--spec--docker_push--auth"></a>
@@ -4009,9 +4009,9 @@ Optional:
 - `host` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--dynatrace--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--dynatrace--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--dynatrace--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--dynatrace--relationships))
 - `scheme` (String)
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--dynatrace--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--dynatrace--transform))
@@ -4306,11 +4306,11 @@ Optional:
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `index` (String)
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--elasticsearch--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--elasticsearch--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--password))
 - `query` (String)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--elasticsearch--relationships))
 - `results` (Number)
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--transform))
@@ -4655,7 +4655,7 @@ Optional:
 Optional:
 
 - `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--env--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations,spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--env--field_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--env--field_ref))
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--env--secret_key_ref))
 - `value` (String)
 
@@ -4668,7 +4668,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4689,11 +4689,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4704,7 +4704,7 @@ Optional:
 Required:
 
 - `name` (String) Name of the check
-- `script` (String) Script can be a inline script or a path to a script that needs to be executedOn windows executed via powershell and in darwin and linux executed using bash
+- `script` (String) Script can be a inline script or a path to a script that needs to be executed On windows executed via powershell and in darwin and linux executed using bash
 
 Optional:
 
@@ -4716,9 +4716,9 @@ Optional:
 - `env` (Attributes List) EnvVars are the environment variables that are accessible to exec processes (see [below for nested schema](#nestedatt--spec--exec--env))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--exec--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--exec--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--exec--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--exec--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -4728,7 +4728,7 @@ Optional:
 
 Required:
 
-- `path` (String) Path to the artifact on the check runner.Special paths: /dev/stdout & /dev/stdin
+- `path` (String) Path to the artifact on the check runner. Special paths: /dev/stdout & /dev/stdin
 
 
 <a id="nestedatt--spec--exec--checkout"></a>
@@ -4738,7 +4738,7 @@ Optional:
 
 - `certificate` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--checkout--certificate))
 - `connection` (String)
-- `destination` (String) Destination is the full path to where the contents of the URL should be downloaded to.If left empty, the sha256 hash of the URL will be used as the dir name.
+- `destination` (String) Destination is the full path to where the contents of the URL should be downloaded to. If left empty, the sha256 hash of the URL will be used as the dir name.
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--checkout--password))
 - `url` (String)
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--checkout--username))
@@ -5583,7 +5583,7 @@ Optional:
 Required:
 
 - `name` (String) Name of the check
-- `path` (String) Path  to folder or object storage, e.g. 's3://<bucket-name>',  'gcs://<bucket-name>', '/path/tp/folder'
+- `path` (String) Path to folder or object storage, e.g. 's3://<bucket-name>', 'gcs://<bucket-name>', '/path/tp/folder'
 
 Optional:
 
@@ -5598,13 +5598,13 @@ Optional:
 - `max_age` (String) MaxAge the latest object should be younger than defined age
 - `max_count` (Number) MinCount the minimum number of files inside the searchPath
 - `max_size` (String) MaxSize of the files inside the searchPath
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--folder--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--folder--metrics))
 - `min_age` (String) MinAge the latest object should be older than defined age
 - `min_count` (Number) MinCount the minimum number of files inside the searchPath
 - `min_size` (String) MinSize of the files inside the searchPath
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `recursive` (Boolean) Recursive when set to true will recursively scan the folder to list the files in it.However, symlinks are simply listed but not traversed.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--folder--relationships))
+- `recursive` (Boolean) Recursive when set to true will recursively scan the folder to list the files in it. However, symlinks are simply listed but not traversed.
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--folder--relationships))
 - `sftp_connection` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection))
 - `smb_connection` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--test))
@@ -6369,9 +6369,9 @@ Optional:
 - `filename` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--git_protocol--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--git_protocol--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--git_protocol--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--git_protocol--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--git_protocol--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--git_protocol--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -6723,9 +6723,9 @@ Optional:
 - `github_token` (Attributes) (see [below for nested schema](#nestedatt--spec--github--github_token))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--github--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--github--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--github--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--github--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--github--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--github--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -7019,10 +7019,10 @@ Optional:
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--helm--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--helm--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `project` (String)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--helm--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--helm--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
 <a id="nestedatt--spec--helm--auth"></a>
@@ -7352,13 +7352,13 @@ Optional:
 - `labels` (Map of String) Labels for the check
 - `max_ssl_expiry` (Number) Maximum number of days until the SSL Certificate expires.
 - `method` (String) Method to use - defaults to GET
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--http--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--http--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `ntlm` (Boolean) NTLM when set to true will do authentication using NTLM v1 protocol
 - `ntlmv2` (Boolean) NTLM when set to true will do authentication using NTLM v2 protocol
 - `oauth2` (Attributes) Oauth2 Configuration. The client ID & Client secret should go to username & password respectively. (see [below for nested schema](#nestedatt--spec--http--oauth2))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--http--password))
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--http--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--http--relationships))
 - `response_codes` (List of String) Expected response codes for the HTTP Request.
 - `response_content` (String) Exact response content expected to be returned by the endpoint.
 - `response_json_content` (Attributes) Deprecated, use expr and jsonpath function (see [below for nested schema](#nestedatt--spec--http--response_json_content))
@@ -7774,7 +7774,7 @@ Optional:
 - `ca` (Attributes) PEM encoded certificate of the CA to verify the server certificate (see [below for nested schema](#nestedatt--spec--http--tls_config--ca))
 - `cert` (Attributes) PEM encoded client certificate (see [below for nested schema](#nestedatt--spec--http--tls_config--cert))
 - `handshake_timeout` (Number) HandshakeTimeout defaults to 10 seconds
-- `insecure_skip_verify` (Boolean) InsecureSkipVerify controls whether a client verifies the server'scertificate chain and host name
+- `insecure_skip_verify` (Boolean) InsecureSkipVerify controls whether a client verifies the server's certificate chain and host name
 - `key` (Attributes) PEM encoded client private key (see [below for nested schema](#nestedatt--spec--http--tls_config--key))
 
 <a id="nestedatt--spec--http--tls_config--ca"></a>
@@ -8031,11 +8031,11 @@ Optional:
 - `endpoint` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--icmp--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--icmp--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `packet_count` (Number)
 - `packet_loss_threshold` (Number)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--icmp--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--icmp--relationships))
 - `threshold_millis` (Number)
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
@@ -8237,11 +8237,11 @@ Optional:
 - `host` (String) Host is the server against which test plan needs to be executed
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--jmeter--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--jmeter--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `port` (Number) Port on which the server is running
 - `properties` (List of String) Properties defines the local Jmeter properties
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--jmeter--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--jmeter--relationships))
 - `response_duration` (String) ResponseDuration under which the all the test should pass
 - `system_properties` (List of String) SystemProperties defines the java system property
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -8503,9 +8503,9 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--junit--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--junit--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--junit--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--junit--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--junit--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--junit--test))
 - `timeout` (Number) Timeout in minutes to wait for specified container to finish its job. Defaults to 5 minutes
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--junit--transform))
@@ -8516,7 +8516,7 @@ Optional:
 
 Required:
 
-- `path` (String) Path to the artifact on the check runner.Special paths: /dev/stdout & /dev/stdin
+- `path` (String) Path to the artifact on the check runner. Special paths: /dev/stdout & /dev/stdin
 
 
 <a id="nestedatt--spec--junit--display"></a>
@@ -8753,11 +8753,11 @@ Optional:
 - `ignore` (List of String) Ignore the specified resources from the fetched resources. Can be a glob pattern.
 - `kubeconfig` (Attributes) KubeConfig is the kubeconfig or the path to the kubeconfig file. (see [below for nested schema](#nestedatt--spec--kubernetes--kubeconfig))
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--kubernetes--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--kubernetes--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--namespace_selector))
 - `ready` (Boolean) Fail the check if any resources are not ready
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--kubernetes--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--kubernetes--relationships))
 - `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--resource))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes--transform))
@@ -9063,7 +9063,7 @@ Optional:
 Required:
 
 - `name` (String) Name of the check
-- `resources` (Map of String) Resources are kubernetes resources that are created & clearedafter every check run.
+- `resources` (Map of String) Resources are kubernetes resources that are created & cleared after every check run.
 
 Optional:
 
@@ -9075,10 +9075,10 @@ Optional:
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `kubeconfig` (Attributes) Kubeconfig is the kubeconfig or the path to the kubeconfig file. (see [below for nested schema](#nestedatt--spec--kubernetes_resource--kubeconfig))
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--kubernetes_resource--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--kubernetes_resource--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships))
-- `static_resources` (Map of String) StaticResources are kubernetes resources that are created & onlycleared when the canary is deleted
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--kubernetes_resource--relationships))
+- `static_resources` (Map of String) StaticResources are kubernetes resources that are created & only cleared when the canary is deleted
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--kubernetes_resource--transform))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -9374,9 +9374,9 @@ Optional:
 
 - `delete` (Boolean) Whether to wait for deletion or not
 - `disable` (Boolean) Disable waiting for resources to get to their desired state.
-- `expr` (String) Expr is a cel expression that determines whether all the resourcesare in their desired state before running checks on them.	Default: 'dyn(resources).all(r, k8s.isHealthy(r))'
-- `interval` (String) Interval to check if all static & non-static resources are ready.	Default: 5s
-- `timeout` (String) Timeout to wait for all static & non-static resources to be ready.	Default: 10m
+- `expr` (String) Expr is a cel expression that determines whether all the resources are in their desired state before running checks on them. Default: 'dyn(resources).all(r, k8s.isHealthy(r))'
+- `interval` (String) Interval to check if all static & non-static resources are ready. Default: 5s
+- `timeout` (String) Timeout to wait for all static & non-static resources to be ready. Default: 10m
 
 
 
@@ -9394,10 +9394,10 @@ Optional:
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--ldap--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--ldap--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--ldap--password))
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--ldap--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--ldap--relationships))
 - `skip_tls_verify` (Boolean)
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
@@ -9715,7 +9715,7 @@ Optional:
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--mongodb--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--mongodb--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--password))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
@@ -9855,11 +9855,11 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--mssql--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--mssql--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--password))
 - `query` (String)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--mssql--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--mssql--relationships))
 - `results` (Number) Number rows to check for
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--mssql--transform))
@@ -10212,11 +10212,11 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--mysql--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--mysql--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--password))
 - `query` (String)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--mysql--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--mysql--relationships))
 - `results` (Number) Number rows to check for
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--transform))
@@ -10577,7 +10577,7 @@ Optional:
 - `ingress_name` (String)
 - `ingress_timeout` (Number)
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--namespace--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--namespace--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `namespace_annotations` (Map of String)
 - `namespace_labels` (Map of String)
@@ -10586,7 +10586,7 @@ Optional:
 - `port` (Number)
 - `priority_class` (String)
 - `ready_timeout` (Number)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--namespace--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--namespace--relationships))
 - `schedule_timeout` (Number)
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
@@ -10790,10 +10790,10 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--opensearch--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--opensearch--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--password))
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--opensearch--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--opensearch--relationships))
 - `results` (Number)
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--transform))
@@ -11154,13 +11154,13 @@ Optional:
 - `ingress_name` (String)
 - `ingress_timeout` (Number)
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--pod--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--pod--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `path` (String)
 - `port` (Number)
 - `priority_class` (String)
 - `ready_timeout` (Number)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--pod--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--pod--relationships))
 - `round_robin_nodes` (Boolean)
 - `schedule_timeout` (Number)
 - `spec` (String)
@@ -11364,11 +11364,11 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--postgres--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--postgres--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--password))
 - `query` (String)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--postgres--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--postgres--relationships))
 - `results` (Number) Number rows to check for
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--test))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--postgres--transform))
@@ -11725,13 +11725,13 @@ Optional:
 - `host` (String) Deprecated: use 'url' instead
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--prometheus--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--prometheus--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `ntlm` (Boolean)
 - `ntlmv2` (Boolean)
 - `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--password))
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--prometheus--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--prometheus--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--test))
 - `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--tls))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--transform))
@@ -12192,7 +12192,7 @@ Optional:
 - `ca` (Attributes) PEM encoded certificate of the CA to verify the server certificate (see [below for nested schema](#nestedatt--spec--prometheus--tls--ca))
 - `cert` (Attributes) PEM encoded client certificate (see [below for nested schema](#nestedatt--spec--prometheus--tls--cert))
 - `handshake_timeout` (Number) HandshakeTimeout defaults to 10 seconds
-- `insecure_skip_verify` (Boolean) InsecureSkipVerify controls whether a client verifies the server'scertificate chain and host name
+- `insecure_skip_verify` (Boolean) InsecureSkipVerify controls whether a client verifies the server's certificate chain and host name
 - `key` (Attributes) PEM encoded client private key (see [below for nested schema](#nestedatt--spec--prometheus--tls--key))
 
 <a id="nestedatt--spec--prometheus--tls--ca"></a>
@@ -12451,10 +12451,10 @@ Optional:
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--redis--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--redis--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--password))
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--redis--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--redis--relationships))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 - `url` (String) Connection url, interpolated with username,password
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--username))
@@ -12777,9 +12777,9 @@ Optional:
 - `description` (String) Description for the check
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--restic--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--restic--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--restic--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--restic--relationships))
 - `secret_key` (Attributes) SecretKey secret access key for connection with aws s3, minio, wasabi, alibaba oss (see [below for nested schema](#nestedatt--spec--restic--secret_key))
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
@@ -13156,11 +13156,11 @@ Optional:
 - `endpoint` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--s3--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--s3--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
 - `object_path` (String) glob path to restrict matches to a subset
 - `region` (String)
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--s3--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--s3--relationships))
 - `secret_key` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--secret_key))
 - `session_token` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--session_token))
 - `skip_tls_verify` (Boolean) Skip TLS verify when connecting to aws
@@ -13535,9 +13535,9 @@ Optional:
 - `endpoint` (String)
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--tcp--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--tcp--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--tcp--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--tcp--relationships))
 - `threshold_millis` (Number)
 - `transform_delete_strategy` (String) Transformed checks have a delete strategy on deletion they can either be marked healthy, unhealthy or left as is
 
@@ -13738,9 +13738,9 @@ Optional:
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--webhook--display))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
-- `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--webhook--metrics))
+- `metrics` (Attributes List) Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--webhook--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
-- `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--webhook--relationships))
+- `relationships` (Attributes) Relationships defines a way to link the check results to components and configs using lookup expressions. (see [below for nested schema](#nestedatt--spec--webhook--relationships))
 - `test` (Attributes) (see [below for nested schema](#nestedatt--spec--webhook--test))
 - `token` (Attributes) Token is an optional authorization token to run this check (see [below for nested schema](#nestedatt--spec--webhook--token))
 - `transform` (Attributes) (see [below for nested schema](#nestedatt--spec--webhook--transform))

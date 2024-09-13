@@ -3,12 +3,12 @@
 page_title: "k8s_operator_victoriametrics_com_vm_service_scrape_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.victoriametrics.com"
 description: |-
-  VMServiceScrape is scrape configuration for endpoints associated withkubernetes service,it generates scrape configuration for vmagent based on selectors.result config will scrape service endpoints
+  VMServiceScrape is scrape configuration for endpoints associated with kubernetes service, it generates scrape configuration for vmagent based on selectors. result config will scrape service endpoints
 ---
 
 # k8s_operator_victoriametrics_com_vm_service_scrape_v1beta1_manifest (Data Source)
 
-VMServiceScrape is scrape configuration for endpoints associated withkubernetes service,it generates scrape configuration for vmagent based on selectors.result config will scrape service endpoints
+VMServiceScrape is scrape configuration for endpoints associated with kubernetes service, it generates scrape configuration for vmagent based on selectors. result config will scrape service endpoints
 
 ## Example Usage
 
@@ -57,13 +57,13 @@ Required:
 Optional:
 
 - `attach_metadata` (Attributes) AttachMetadata configures metadata attaching from service discovery (see [below for nested schema](#nestedatt--spec--attach_metadata))
-- `discovery_role` (String) DiscoveryRole - defines kubernetes_sd role for objects discovery.by default, its endpoints.can be changed to service or endpointslices.note, that with service setting, you have to use port: 'name'and cannot use targetPort for endpoints.
+- `discovery_role` (String) DiscoveryRole - defines kubernetes_sd role for objects discovery. by default, its endpoints. can be changed to service or endpointslices. note, that with service setting, you have to use port: 'name' and cannot use targetPort for endpoints.
 - `job_label` (String) The label to use to retrieve the job name from.
 - `namespace_selector` (Attributes) Selector to select which namespaces the Endpoints objects are discovered from. (see [below for nested schema](#nestedatt--spec--namespace_selector))
 - `pod_target_labels` (List of String) PodTargetLabels transfers labels on the Kubernetes Pod onto the target.
 - `sample_limit` (Number) SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.
 - `selector` (Attributes) Selector to select Endpoints objects by corresponding Service labels. (see [below for nested schema](#nestedatt--spec--selector))
-- `series_limit` (Number) SeriesLimit defines per-scrape limit on number of unique time seriesa single target can expose during all the scrapes on the time window of 24h.
+- `series_limit` (Number) SeriesLimit defines per-scrape limit on number of unique time series a single target can expose during all the scrapes on the time window of 24h.
 - `target_labels` (List of String) TargetLabels transfers labels on the Kubernetes Service onto the target.
 
 <a id="nestedatt--spec--endpoints"></a>
@@ -73,9 +73,9 @@ Optional:
 
 - `attach_metadata` (Attributes) AttachMetadata configures metadata attaching from service discovery (see [below for nested schema](#nestedatt--spec--endpoints--attach_metadata))
 - `authorization` (Attributes) Authorization with http header Authorization (see [below for nested schema](#nestedatt--spec--endpoints--authorization))
-- `basic_auth` (Attributes) BasicAuth allow an endpoint to authenticate over basic authenticationMore info: https://prometheus.io/docs/operating/configuration/#endpoints (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth))
+- `basic_auth` (Attributes) BasicAuth allow an endpoint to authenticate over basic authentication More info: https://prometheus.io/docs/operating/configuration/#endpoints (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth))
 - `bearer_token_file` (String) File to read bearer token for scraping targets.
-- `bearer_token_secret` (Attributes) Secret to mount to read bearer token for scraping targets. The secretneeds to be in the same namespace as the service scrape and accessible bythe victoria-metrics operator. (see [below for nested schema](#nestedatt--spec--endpoints--bearer_token_secret))
+- `bearer_token_secret` (Attributes) Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the service scrape and accessible by the victoria-metrics operator. (see [below for nested schema](#nestedatt--spec--endpoints--bearer_token_secret))
 - `follow_redirects` (Boolean) FollowRedirects controls redirects for scraping.
 - `honor_labels` (Boolean) HonorLabels chooses the metric's labels on collisions with target labels.
 - `honor_timestamps` (Boolean) HonorTimestamps controls whether vmagent respects the timestamps present in scraped data.
@@ -86,12 +86,12 @@ Optional:
 - `path` (String) HTTP path to scrape for metrics.
 - `port` (String) Name of the service port this endpoint refers to. Mutually exclusive with targetPort.
 - `proxy_url` (String) ProxyURL eg http://proxyserver:2195 Directs scrapes to proxy through this endpoint.
-- `relabel_configs` (Attributes List) RelabelConfigs to apply to samples before scraping.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--endpoints--relabel_configs))
+- `relabel_configs` (Attributes List) RelabelConfigs to apply to samples before scraping. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--endpoints--relabel_configs))
 - `sample_limit` (Number) SampleLimit defines per-endpoint limit on number of scraped samples that will be accepted.
 - `scheme` (String) HTTP scheme to use for scraping.
-- `scrape_interval` (String) ScrapeInterval is the same as Interval and has priority over it.one of scrape_interval or interval can be used
+- `scrape_interval` (String) ScrapeInterval is the same as Interval and has priority over it. one of scrape_interval or interval can be used
 - `scrape_timeout` (String) Timeout after which the scrape is ended
-- `series_limit` (Number) SeriesLimit defines per-scrape limit on number of unique time seriesa single target can expose during all the scrapes on the time window of 24h.
+- `series_limit` (Number) SeriesLimit defines per-scrape limit on number of unique time series a single target can expose during all the scrapes on the time window of 24h.
 - `target_port` (String) Name or number of the pod port this endpoint refers to. Mutually exclusive with port.
 - `tls_config` (Attributes) TLSConfig configuration to use when scraping the endpoint (see [below for nested schema](#nestedatt--spec--endpoints--tls_config))
 - `vm_scrape_params` (Attributes) VMScrapeParams defines VictoriaMetrics specific scrape parameters (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params))
@@ -101,7 +101,7 @@ Optional:
 
 Optional:
 
-- `node` (Boolean) Node instructs vmagent to add node specific metadata from service discoveryValid for roles: pod, endpoints, endpointslice.
+- `node` (Boolean) Node instructs vmagent to add node specific metadata from service discovery Valid for roles: pod, endpoints, endpointslice.
 
 
 <a id="nestedatt--spec--endpoints--authorization"></a>
@@ -118,11 +118,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -132,20 +132,20 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--basic_auth--username))
 
 <a id="nestedatt--spec--endpoints--basic_auth--password"></a>
 ### Nested Schema for `spec.endpoints.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -154,11 +154,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -168,11 +168,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -186,11 +186,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--endpoints--oauth2"></a>
@@ -225,7 +225,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -234,11 +234,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -248,11 +248,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -267,11 +267,11 @@ Optional:
 - `labels` (Map of String) Labels is used together with Match for 'action: graphite'
 - `match` (String) Match is used together with Labels for 'action: graphite'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)'victoriaMetrics supports multiline regex joined with |https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `regex` (Map of String) Regular expression against which the extracted value is matched. Default is '(.*)' victoriaMetrics supports multiline regex joined with | https://docs.victoriametrics.com/vmagent/#relabeling-enhancements
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--endpoints--tls_config"></a>
@@ -305,7 +305,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -314,11 +314,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -340,7 +340,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -349,11 +349,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -363,11 +363,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -378,11 +378,11 @@ Optional:
 Optional:
 
 - `disable_compression` (Boolean)
-- `disable_keep_alive` (Boolean) disable_keepalive allows disabling HTTP keep-alive when scraping targets.By default, HTTP keep-alive is enabled, so TCP connections to scrape targetscould be re-used.See https://docs.victoriametrics.com/vmagent.html#scrape_config-enhancements
-- `headers` (List of String) Headers allows sending custom headers to scrape targetsmust be in of semicolon separated header with it's valueeg:headerName: headerValuevmagent supports since 1.79.0 version
+- `disable_keep_alive` (Boolean) disable_keepalive allows disabling HTTP keep-alive when scraping targets. By default, HTTP keep-alive is enabled, so TCP connections to scrape targets could be re-used. See https://docs.victoriametrics.com/vmagent.html#scrape_config-enhancements
+- `headers` (List of String) Headers allows sending custom headers to scrape targets must be in of semicolon separated header with it's value eg: headerName: headerValue vmagent supports since 1.79.0 version
 - `metric_relabel_debug` (Boolean) deprecated since [v1.85](https://github.com/VictoriaMetrics/VictoriaMetrics/releases/tag/v1.85.0), will be removed in next release
 - `no_stale_markers` (Boolean)
-- `proxy_client_config` (Attributes) ProxyClientConfig configures proxy auth settings for scrapingSee feature description https://docs.victoriametrics.com/vmagent.html#scraping-targets-via-a-proxy (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config))
+- `proxy_client_config` (Attributes) ProxyClientConfig configures proxy auth settings for scraping See feature description https://docs.victoriametrics.com/vmagent.html#scraping-targets-via-a-proxy (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config))
 - `relabel_debug` (Boolean) deprecated since [v1.85](https://github.com/VictoriaMetrics/VictoriaMetrics/releases/tag/v1.85.0), will be removed in next release
 - `scrape_align_interval` (String)
 - `scrape_offset` (String)
@@ -403,20 +403,20 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--basic_auth--password))
+- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--basic_auth--password))
 - `password_file` (String) PasswordFile defines path to password file at disk
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--basic_auth--username))
+- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--basic_auth--username))
 
 <a id="nestedatt--spec--endpoints--vm_scrape_params--proxy_client_config--basic_auth--password"></a>
 ### Nested Schema for `spec.endpoints.vm_scrape_params.proxy_client_config.basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -425,11 +425,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -439,11 +439,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -478,7 +478,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -487,11 +487,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -513,7 +513,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -522,11 +522,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -536,11 +536,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -553,7 +553,7 @@ Optional:
 
 Optional:
 
-- `node` (Boolean) Node instructs vmagent to add node specific metadata from service discoveryValid for roles: pod, endpoints, endpointslice.
+- `node` (Boolean) Node instructs vmagent to add node specific metadata from service discovery Valid for roles: pod, endpoints, endpointslice.
 
 
 <a id="nestedatt--spec--namespace_selector"></a>
@@ -561,7 +561,7 @@ Optional:
 
 Optional:
 
-- `any` (Boolean) Boolean describing whether all namespaces are selected in contrast to alist restricting them.
+- `any` (Boolean) Boolean describing whether all namespaces are selected in contrast to a list restricting them.
 - `match_names` (List of String) List of namespace names.
 
 
@@ -571,7 +571,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--selector--match_expressions"></a>
 ### Nested Schema for `spec.selector.match_expressions`
@@ -579,8 +579,8 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.

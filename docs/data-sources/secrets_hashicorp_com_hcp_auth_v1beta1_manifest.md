@@ -60,13 +60,13 @@ Required:
 
 Optional:
 
-- `allowed_namespaces` (List of String) AllowedNamespaces Kubernetes Namespaces which are allow-listed for use with this AuthMethod.This field allows administrators to customize which Kubernetes namespaces are authorized touse with this AuthMethod. While Vault will still enforce its own rules, this has the addedconfigurability of restricting which HCPAuthMethods can be used by which namespaces.Accepted values:[]{'*'} - wildcard, all namespaces.[]{'a', 'b'} - list of namespaces.unset - disallow all namespaces except the Operator's the HCPAuthMethod's namespace, thisis the default behavior.
+- `allowed_namespaces` (List of String) AllowedNamespaces Kubernetes Namespaces which are allow-listed for use with this AuthMethod. This field allows administrators to customize which Kubernetes namespaces are authorized to use with this AuthMethod. While Vault will still enforce its own rules, this has the added configurability of restricting which HCPAuthMethods can be used by which namespaces. Accepted values: []{'*'} - wildcard, all namespaces. []{'a', 'b'} - list of namespaces. unset - disallow all namespaces except the Operator's the HCPAuthMethod's namespace, this is the default behavior.
 - `method` (String) Method to use when authenticating to Vault.
-- `service_principal` (Attributes) ServicePrincipal provides the necessary configuration for authenticating toHCP using a service principal. For security reasons, only project-levelservice principals should ever be used. (see [below for nested schema](#nestedatt--spec--service_principal))
+- `service_principal` (Attributes) ServicePrincipal provides the necessary configuration for authenticating to HCP using a service principal. For security reasons, only project-level service principals should ever be used. (see [below for nested schema](#nestedatt--spec--service_principal))
 
 <a id="nestedatt--spec--service_principal"></a>
 ### Nested Schema for `spec.service_principal`
 
 Required:
 
-- `secret_ref` (String) SecretRef is the name of a Kubernetes secret in the consumer's(VDS/VSS/PKI/HCP) namespace which provides the HCP ServicePrincipal clientID,and clientSecret.The secret data must have the following structure {  'clientID': 'clientID',  'clientSecret': 'clientSecret',}
+- `secret_ref` (String) SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI/HCP) namespace which provides the HCP ServicePrincipal clientID, and clientSecret. The secret data must have the following structure { 'clientID': 'clientID', 'clientSecret': 'clientSecret', }

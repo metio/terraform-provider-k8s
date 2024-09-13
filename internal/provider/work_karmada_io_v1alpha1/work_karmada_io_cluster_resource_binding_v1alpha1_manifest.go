@@ -179,8 +179,8 @@ func (r *WorkKarmadaIoClusterResourceBindingV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace represents the namespace for the referent.For non-namespace scoped resources(e.g. 'ClusterRole')，do not need specify Namespace,and for namespace scoped resources, Namespace is required.If Namespace is not specified, means the resource is non-namespace scoped.",
-								MarkdownDescription: "Namespace represents the namespace for the referent.For non-namespace scoped resources(e.g. 'ClusterRole')，do not need specify Namespace,and for namespace scoped resources, Namespace is required.If Namespace is not specified, means the resource is non-namespace scoped.",
+								Description:         "Namespace represents the namespace for the referent. For non-namespace scoped resources(e.g. 'ClusterRole')，do not need specify Namespace, and for namespace scoped resources, Namespace is required. If Namespace is not specified, means the resource is non-namespace scoped.",
+								MarkdownDescription: "Namespace represents the namespace for the referent. For non-namespace scoped resources(e.g. 'ClusterRole')，do not need specify Namespace, and for namespace scoped resources, Namespace is required. If Namespace is not specified, means the resource is non-namespace scoped.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -204,8 +204,8 @@ func (r *WorkKarmadaIoClusterResourceBindingV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"resource_version": schema.StringAttribute{
-								Description:         "ResourceVersion represents the internal version of the referenced object, that can be used by clients todetermine when object has changed.",
-								MarkdownDescription: "ResourceVersion represents the internal version of the referenced object, that can be used by clients todetermine when object has changed.",
+								Description:         "ResourceVersion represents the internal version of the referenced object, that can be used by clients to determine when object has changed.",
+								MarkdownDescription: "ResourceVersion represents the internal version of the referenced object, that can be used by clients to determine when object has changed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

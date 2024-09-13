@@ -30,7 +30,7 @@ data "k8s_lambda_services_k8s_aws_function_url_config_v1alpha1_manifest" "exampl
 
 ### Optional
 
-- `spec` (Attributes) FunctionUrlConfigSpec defines the desired state of FunctionUrlConfig.Details about a Lambda function URL. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) FunctionUrlConfigSpec defines the desired state of FunctionUrlConfig. Details about a Lambda function URL. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,13 +55,13 @@ Optional:
 
 Required:
 
-- `auth_type` (String) The type of authentication that your function URL uses. Set to AWS_IAM ifyou want to restrict access to authenticated IAM users only. Set to NONEif you want to bypass IAM authentication to create a public endpoint. Formore information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
+- `auth_type` (String) The type of authentication that your function URL uses. Set to AWS_IAM if you want to restrict access to authenticated IAM users only. Set to NONE if you want to bypass IAM authentication to create a public endpoint. For more information, see Security and auth model for Lambda function URLs (https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
 
 Optional:
 
-- `cors` (Attributes) The cross-origin resource sharing (CORS) (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)settings for your function URL. (see [below for nested schema](#nestedatt--spec--cors))
-- `function_name` (String) The name of the Lambda function.Name formats   * Function name – my-function.   * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function.   * Partial ARN – 123456789012:function:my-function.The length constraint applies only to the full ARN. If you specify only thefunction name, it is limited to 64 characters in length.
-- `function_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--function_ref))
+- `cors` (Attributes) The cross-origin resource sharing (CORS) (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) settings for your function URL. (see [below for nested schema](#nestedatt--spec--cors))
+- `function_name` (String) The name of the Lambda function. Name formats * Function name – my-function. * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function. * Partial ARN – 123456789012:function:my-function. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+- `function_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--function_ref))
 - `qualifier` (String) The alias name.
 
 <a id="nestedatt--spec--cors"></a>
@@ -82,7 +82,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--function_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--function_ref--from))
 
 <a id="nestedatt--spec--function_ref--from"></a>
 ### Nested Schema for `spec.function_ref.from`
@@ -90,3 +90,4 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)

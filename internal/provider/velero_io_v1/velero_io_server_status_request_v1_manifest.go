@@ -51,8 +51,8 @@ func (r *VeleroIoServerStatusRequestV1Manifest) Metadata(_ context.Context, requ
 
 func (r *VeleroIoServerStatusRequestV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ServerStatusRequest is a request to access current status information aboutthe Velero server.",
-		MarkdownDescription: "ServerStatusRequest is a request to access current status information aboutthe Velero server.",
+		Description:         "ServerStatusRequest is a request to access current status information about the Velero server.",
+		MarkdownDescription: "ServerStatusRequest is a request to access current status information about the Velero server.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

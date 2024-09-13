@@ -194,8 +194,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"apply_to": schema.StringAttribute{
-									Description:         "Specifies where in the Envoy configuration, the patch should be applied.Valid Options: LISTENER, FILTER_CHAIN, NETWORK_FILTER, HTTP_FILTER, ROUTE_CONFIGURATION, VIRTUAL_HOST, HTTP_ROUTE, CLUSTER, EXTENSION_CONFIG, BOOTSTRAP, LISTENER_FILTER",
-									MarkdownDescription: "Specifies where in the Envoy configuration, the patch should be applied.Valid Options: LISTENER, FILTER_CHAIN, NETWORK_FILTER, HTTP_FILTER, ROUTE_CONFIGURATION, VIRTUAL_HOST, HTTP_ROUTE, CLUSTER, EXTENSION_CONFIG, BOOTSTRAP, LISTENER_FILTER",
+									Description:         "Specifies where in the Envoy configuration, the patch should be applied. Valid Options: LISTENER, FILTER_CHAIN, NETWORK_FILTER, HTTP_FILTER, ROUTE_CONFIGURATION, VIRTUAL_HOST, HTTP_ROUTE, CLUSTER, EXTENSION_CONFIG, BOOTSTRAP, LISTENER_FILTER",
+									MarkdownDescription: "Specifies where in the Envoy configuration, the patch should be applied. Valid Options: LISTENER, FILTER_CHAIN, NETWORK_FILTER, HTTP_FILTER, ROUTE_CONFIGURATION, VIRTUAL_HOST, HTTP_ROUTE, CLUSTER, EXTENSION_CONFIG, BOOTSTRAP, LISTENER_FILTER",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -254,8 +254,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 										},
 
 										"context": schema.StringAttribute{
-											Description:         "The specific config generation context to match on.Valid Options: ANY, SIDECAR_INBOUND, SIDECAR_OUTBOUND, GATEWAY",
-											MarkdownDescription: "The specific config generation context to match on.Valid Options: ANY, SIDECAR_INBOUND, SIDECAR_OUTBOUND, GATEWAY",
+											Description:         "The specific config generation context to match on. Valid Options: ANY, SIDECAR_INBOUND, SIDECAR_OUTBOUND, GATEWAY",
+											MarkdownDescription: "The specific config generation context to match on. Valid Options: ANY, SIDECAR_INBOUND, SIDECAR_OUTBOUND, GATEWAY",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -479,8 +479,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 															MarkdownDescription: "Match a specific route within the virtual host.",
 															Attributes: map[string]schema.Attribute{
 																"action": schema.StringAttribute{
-																	Description:         "Match a route with specific action type.Valid Options: ANY, ROUTE, REDIRECT, DIRECT_RESPONSE",
-																	MarkdownDescription: "Match a route with specific action type.Valid Options: ANY, ROUTE, REDIRECT, DIRECT_RESPONSE",
+																	Description:         "Match a route with specific action type. Valid Options: ANY, ROUTE, REDIRECT, DIRECT_RESPONSE",
+																	MarkdownDescription: "Match a route with specific action type. Valid Options: ANY, ROUTE, REDIRECT, DIRECT_RESPONSE",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -522,8 +522,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 									MarkdownDescription: "The patch to apply along with the operation.",
 									Attributes: map[string]schema.Attribute{
 										"filter_class": schema.StringAttribute{
-											Description:         "Determines the filter insertion order.Valid Options: AUTHN, AUTHZ, STATS",
-											MarkdownDescription: "Determines the filter insertion order.Valid Options: AUTHN, AUTHZ, STATS",
+											Description:         "Determines the filter insertion order. Valid Options: AUTHN, AUTHZ, STATS",
+											MarkdownDescription: "Determines the filter insertion order. Valid Options: AUTHN, AUTHZ, STATS",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -533,8 +533,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 										},
 
 										"operation": schema.StringAttribute{
-											Description:         "Determines how the patch should be applied.Valid Options: MERGE, ADD, REMOVE, INSERT_BEFORE, INSERT_AFTER, INSERT_FIRST, REPLACE",
-											MarkdownDescription: "Determines how the patch should be applied.Valid Options: MERGE, ADD, REMOVE, INSERT_BEFORE, INSERT_AFTER, INSERT_FIRST, REPLACE",
+											Description:         "Determines how the patch should be applied. Valid Options: MERGE, ADD, REMOVE, INSERT_BEFORE, INSERT_AFTER, INSERT_FIRST, REPLACE",
+											MarkdownDescription: "Determines how the patch should be applied. Valid Options: MERGE, ADD, REMOVE, INSERT_BEFORE, INSERT_AFTER, INSERT_FIRST, REPLACE",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

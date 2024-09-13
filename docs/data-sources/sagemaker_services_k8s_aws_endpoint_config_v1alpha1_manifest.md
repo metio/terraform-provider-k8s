@@ -55,18 +55,18 @@ Optional:
 
 Required:
 
-- `endpoint_config_name` (String) The name of the endpoint configuration. You specify this name in a CreateEndpoint(https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html)request.
-- `production_variants` (Attributes List) An array of ProductionVariant objects, one for each model that you want tohost at this endpoint. (see [below for nested schema](#nestedatt--spec--production_variants))
+- `endpoint_config_name` (String) The name of the endpoint configuration. You specify this name in a CreateEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html) request.
+- `production_variants` (Attributes List) An array of ProductionVariant objects, one for each model that you want to host at this endpoint. (see [below for nested schema](#nestedatt--spec--production_variants))
 
 Optional:
 
-- `async_inference_config` (Attributes) Specifies configuration for how an endpoint performs asynchronous inference.This is a required field in order for your Endpoint to be invoked using InvokeEndpointAsync(https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpointAsync.html). (see [below for nested schema](#nestedatt--spec--async_inference_config))
+- `async_inference_config` (Attributes) Specifies configuration for how an endpoint performs asynchronous inference. This is a required field in order for your Endpoint to be invoked using InvokeEndpointAsync (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpointAsync.html). (see [below for nested schema](#nestedatt--spec--async_inference_config))
 - `data_capture_config` (Attributes) Configuration to control how SageMaker captures inference data. (see [below for nested schema](#nestedatt--spec--data_capture_config))
-- `enable_network_isolation` (Boolean) Sets whether all model containers deployed to the endpoint are isolated.If they are, no inbound or outbound network calls can be made to or fromthe model containers.
-- `execution_role_arn` (String) The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assumeto perform actions on your behalf. For more information, see SageMaker Roles(https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).To be able to pass this role to Amazon SageMaker, the caller of this actionmust have the iam:PassRole permission.
-- `kms_key_id` (String) The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Servicekey that SageMaker uses to encrypt data on the storage volume attached tothe ML compute instance that hosts the endpoint.The KmsKeyId can be any of the following formats:   * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab   * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab   * Alias name: alias/ExampleAlias   * Alias name ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAliasThe KMS key policy must grant permission to the IAM role that you specifyin your CreateEndpoint, UpdateEndpoint requests. For more information, referto the Amazon Web Services Key Management Service section Using Key Policiesin Amazon Web Services KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)Certain Nitro-based instances include local storage, dependent on the instancetype. Local storage volumes are encrypted using a hardware module on theinstance. You can't request a KmsKeyId when using an instance type with localstorage. If any of the models that you specify in the ProductionVariantsparameter use nitro-based instances with local storage, do not specify avalue for the KmsKeyId parameter. If you specify a value for KmsKeyId whenusing any nitro-based instances with local storage, the call to CreateEndpointConfigfails.For a list of instance types that support local instance storage, see InstanceStore Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).For more information about local instance storage encryption, see SSD InstanceStore Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html).
-- `tags` (Attributes List) An array of key-value pairs. You can use tags to categorize your Amazon WebServices resources in different ways, for example, by purpose, owner, orenvironment. For more information, see Tagging Amazon Web Services Resources(https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html). (see [below for nested schema](#nestedatt--spec--tags))
-- `vpc_config` (Attributes) Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html). (see [below for nested schema](#nestedatt--spec--vpc_config))
+- `enable_network_isolation` (Boolean) Sets whether all model containers deployed to the endpoint are isolated. If they are, no inbound or outbound network calls can be made to or from the model containers.
+- `execution_role_arn` (String) The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform actions on your behalf. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to Amazon SageMaker, the caller of this action must have the iam:PassRole permission.
+- `kms_key_id` (String) The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint. The KmsKeyId can be any of the following formats: * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab * Alias name: alias/ExampleAlias * Alias name ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias The KMS key policy must grant permission to the IAM role that you specify in your CreateEndpoint, UpdateEndpoint requests. For more information, refer to the Amazon Web Services Key Management Service section Using Key Policies in Amazon Web Services KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a KmsKeyId when using an instance type with local storage. If any of the models that you specify in the ProductionVariants parameter use nitro-based instances with local storage, do not specify a value for the KmsKeyId parameter. If you specify a value for KmsKeyId when using any nitro-based instances with local storage, the call to CreateEndpointConfig fails. For a list of instance types that support local instance storage, see Instance Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes). For more information about local instance storage encryption, see SSD Instance Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html).
+- `tags` (Attributes List) An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html). (see [below for nested schema](#nestedatt--spec--tags))
+- `vpc_config` (Attributes) Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models, and compute resources have access to. You can control access to and from your resources by configuring a VPC. For more information, see Give SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html). (see [below for nested schema](#nestedatt--spec--vpc_config))
 
 <a id="nestedatt--spec--production_variants"></a>
 ### Nested Schema for `spec.production_variants`
@@ -75,15 +75,15 @@ Optional:
 
 - `accelerator_type` (String)
 - `container_startup_health_check_timeout_in_seconds` (Number)
-- `core_dump_config` (Attributes) Specifies configuration for a core dump from the model container when theprocess crashes. (see [below for nested schema](#nestedatt--spec--production_variants--core_dump_config))
+- `core_dump_config` (Attributes) Specifies configuration for a core dump from the model container when the process crashes. (see [below for nested schema](#nestedatt--spec--production_variants--core_dump_config))
 - `enable_ssm_access` (Boolean)
 - `initial_instance_count` (Number)
 - `initial_variant_weight` (Number)
 - `instance_type` (String)
-- `managed_instance_scaling` (Attributes) Settings that control the range in the number of instances that the endpointprovisions as it scales up or down to accommodate traffic. (see [below for nested schema](#nestedatt--spec--production_variants--managed_instance_scaling))
+- `managed_instance_scaling` (Attributes) Settings that control the range in the number of instances that the endpoint provisions as it scales up or down to accommodate traffic. (see [below for nested schema](#nestedatt--spec--production_variants--managed_instance_scaling))
 - `model_data_download_timeout_in_seconds` (Number)
 - `model_name` (String)
-- `routing_config` (Attributes) Settings that control how the endpoint routes incoming traffic to the instancesthat the endpoint hosts. (see [below for nested schema](#nestedatt--spec--production_variants--routing_config))
+- `routing_config` (Attributes) Settings that control how the endpoint routes incoming traffic to the instances that the endpoint hosts. (see [below for nested schema](#nestedatt--spec--production_variants--routing_config))
 - `serverless_config` (Attributes) Specifies the serverless configuration for an endpoint variant. (see [below for nested schema](#nestedatt--spec--production_variants--serverless_config))
 - `variant_name` (String)
 - `volume_size_in_gb` (Number)
@@ -131,7 +131,7 @@ Optional:
 
 Optional:
 
-- `client_config` (Attributes) Configures the behavior of the client used by SageMaker to interact withthe model container during asynchronous inference. (see [below for nested schema](#nestedatt--spec--async_inference_config--client_config))
+- `client_config` (Attributes) Configures the behavior of the client used by SageMaker to interact with the model container during asynchronous inference. (see [below for nested schema](#nestedatt--spec--async_inference_config--client_config))
 - `output_config` (Attributes) Specifies the configuration for asynchronous inference invocation outputs. (see [below for nested schema](#nestedatt--spec--async_inference_config--output_config))
 
 <a id="nestedatt--spec--async_inference_config--client_config"></a>
@@ -148,7 +148,7 @@ Optional:
 Optional:
 
 - `kms_key_id` (String)
-- `notification_config` (Attributes) Specifies the configuration for notifications of inference results for asynchronousinference. (see [below for nested schema](#nestedatt--spec--async_inference_config--output_config--notification_config))
+- `notification_config` (Attributes) Specifies the configuration for notifications of inference results for asynchronous inference. (see [below for nested schema](#nestedatt--spec--async_inference_config--output_config--notification_config))
 - `s3_failure_path` (String)
 - `s3_output_path` (String)
 
@@ -169,7 +169,7 @@ Optional:
 
 Optional:
 
-- `capture_content_type_header` (Attributes) Configuration specifying how to treat different headers. If no headers arespecified Amazon SageMaker will by default base64 encode when capturing thedata. (see [below for nested schema](#nestedatt--spec--data_capture_config--capture_content_type_header))
+- `capture_content_type_header` (Attributes) Configuration specifying how to treat different headers. If no headers are specified Amazon SageMaker will by default base64 encode when capturing the data. (see [below for nested schema](#nestedatt--spec--data_capture_config--capture_content_type_header))
 - `capture_options` (Attributes List) (see [below for nested schema](#nestedatt--spec--data_capture_config--capture_options))
 - `destination_s3_uri` (String)
 - `enable_capture` (Boolean)

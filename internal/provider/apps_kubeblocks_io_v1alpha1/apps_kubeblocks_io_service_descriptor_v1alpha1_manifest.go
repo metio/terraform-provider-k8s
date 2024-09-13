@@ -176,8 +176,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Metadata(_ context.C
 
 func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ServiceDescriptor describes a service provided by external sources.It contains the necessary details such as the service's address and connection credentials.To enable a Cluster to access this service, the ServiceDescriptor's name should be specifiedin the Cluster configuration under 'clusterComponent.serviceRefs[*].serviceDescriptor'.",
-		MarkdownDescription: "ServiceDescriptor describes a service provided by external sources.It contains the necessary details such as the service's address and connection credentials.To enable a Cluster to access this service, the ServiceDescriptor's name should be specifiedin the Cluster configuration under 'clusterComponent.serviceRefs[*].serviceDescriptor'.",
+		Description:         "ServiceDescriptor describes a service provided by external sources. It contains the necessary details such as the service's address and connection credentials. To enable a Cluster to access this service, the ServiceDescriptor's name should be specified in the Cluster configuration under 'clusterComponent.serviceRefs[*].serviceDescriptor'.",
+		MarkdownDescription: "ServiceDescriptor describes a service provided by external sources. It contains the necessary details such as the service's address and connection credentials. To enable a Cluster to access this service, the ServiceDescriptor's name should be specified in the Cluster configuration under 'clusterComponent.serviceRefs[*].serviceDescriptor'.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -256,8 +256,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 								MarkdownDescription: "Specifies the password for the external service.",
 								Attributes: map[string]schema.Attribute{
 									"value": schema.StringAttribute{
-										Description:         "Holds a direct string or an expression that can be evaluated to a string.It can include variables denoted by $(VAR_NAME).These variables are expanded to the value of the environment variables defined in the container.If a variable cannot be resolved, it remains unchanged in the output.To escape variable expansion and retain the literal value, use double $ characters.For example:- '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME.- '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.Default value is an empty string.",
-										MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string.It can include variables denoted by $(VAR_NAME).These variables are expanded to the value of the environment variables defined in the container.If a variable cannot be resolved, it remains unchanged in the output.To escape variable expansion and retain the literal value, use double $ characters.For example:- '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME.- '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.Default value is an empty string.",
+										Description:         "Holds a direct string or an expression that can be evaluated to a string. It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output. To escape variable expansion and retain the literal value, use double $ characters. For example: - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion. Default value is an empty string.",
+										MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string. It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output. To escape variable expansion and retain the literal value, use double $ characters. For example: - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion. Default value is an empty string.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -280,8 +280,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -301,8 +301,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"field_ref": schema.SingleNestedAttribute{
-												Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-												MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+												Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+												MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 												Attributes: map[string]schema.Attribute{
 													"api_version": schema.StringAttribute{
 														Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -326,8 +326,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"resource_field_ref": schema.SingleNestedAttribute{
-												Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-												MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+												Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+												MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 												Attributes: map[string]schema.Attribute{
 													"container_name": schema.StringAttribute{
 														Description:         "Container name: required for volumes, optional for env vars",
@@ -363,16 +363,16 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 												MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -406,8 +406,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 								MarkdownDescription: "Specifies the username for the external service.",
 								Attributes: map[string]schema.Attribute{
 									"value": schema.StringAttribute{
-										Description:         "Holds a direct string or an expression that can be evaluated to a string.It can include variables denoted by $(VAR_NAME).These variables are expanded to the value of the environment variables defined in the container.If a variable cannot be resolved, it remains unchanged in the output.To escape variable expansion and retain the literal value, use double $ characters.For example:- '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME.- '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.Default value is an empty string.",
-										MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string.It can include variables denoted by $(VAR_NAME).These variables are expanded to the value of the environment variables defined in the container.If a variable cannot be resolved, it remains unchanged in the output.To escape variable expansion and retain the literal value, use double $ characters.For example:- '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME.- '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.Default value is an empty string.",
+										Description:         "Holds a direct string or an expression that can be evaluated to a string. It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output. To escape variable expansion and retain the literal value, use double $ characters. For example: - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion. Default value is an empty string.",
+										MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string. It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output. To escape variable expansion and retain the literal value, use double $ characters. For example: - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion. Default value is an empty string.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -430,8 +430,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -451,8 +451,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"field_ref": schema.SingleNestedAttribute{
-												Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-												MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+												Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+												MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 												Attributes: map[string]schema.Attribute{
 													"api_version": schema.StringAttribute{
 														Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -476,8 +476,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"resource_field_ref": schema.SingleNestedAttribute{
-												Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-												MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+												Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+												MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 												Attributes: map[string]schema.Attribute{
 													"container_name": schema.StringAttribute{
 														Description:         "Container name: required for volumes, optional for env vars",
@@ -513,16 +513,16 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 												MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -557,12 +557,12 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"endpoint": schema.SingleNestedAttribute{
-						Description:         "Specifies the endpoint of the external service.If the service is exposed via a cluster, the endpoint will be provided in the format of 'host:port'.",
-						MarkdownDescription: "Specifies the endpoint of the external service.If the service is exposed via a cluster, the endpoint will be provided in the format of 'host:port'.",
+						Description:         "Specifies the endpoint of the external service. If the service is exposed via a cluster, the endpoint will be provided in the format of 'host:port'.",
+						MarkdownDescription: "Specifies the endpoint of the external service. If the service is exposed via a cluster, the endpoint will be provided in the format of 'host:port'.",
 						Attributes: map[string]schema.Attribute{
 							"value": schema.StringAttribute{
-								Description:         "Holds a direct string or an expression that can be evaluated to a string.It can include variables denoted by $(VAR_NAME).These variables are expanded to the value of the environment variables defined in the container.If a variable cannot be resolved, it remains unchanged in the output.To escape variable expansion and retain the literal value, use double $ characters.For example:- '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME.- '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.Default value is an empty string.",
-								MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string.It can include variables denoted by $(VAR_NAME).These variables are expanded to the value of the environment variables defined in the container.If a variable cannot be resolved, it remains unchanged in the output.To escape variable expansion and retain the literal value, use double $ characters.For example:- '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME.- '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.Default value is an empty string.",
+								Description:         "Holds a direct string or an expression that can be evaluated to a string. It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output. To escape variable expansion and retain the literal value, use double $ characters. For example: - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion. Default value is an empty string.",
+								MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string. It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output. To escape variable expansion and retain the literal value, use double $ characters. For example: - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion. Default value is an empty string.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -585,8 +585,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -606,8 +606,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 									},
 
 									"field_ref": schema.SingleNestedAttribute{
-										Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-										MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+										Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+										MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 										Attributes: map[string]schema.Attribute{
 											"api_version": schema.StringAttribute{
 												Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -631,8 +631,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 									},
 
 									"resource_field_ref": schema.SingleNestedAttribute{
-										Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-										MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+										Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+										MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 										Attributes: map[string]schema.Attribute{
 											"container_name": schema.StringAttribute{
 												Description:         "Container name: required for volumes, optional for env vars",
@@ -668,16 +668,16 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 										MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -711,8 +711,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 						MarkdownDescription: "Specifies the service or IP address of the external service.",
 						Attributes: map[string]schema.Attribute{
 							"value": schema.StringAttribute{
-								Description:         "Holds a direct string or an expression that can be evaluated to a string.It can include variables denoted by $(VAR_NAME).These variables are expanded to the value of the environment variables defined in the container.If a variable cannot be resolved, it remains unchanged in the output.To escape variable expansion and retain the literal value, use double $ characters.For example:- '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME.- '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.Default value is an empty string.",
-								MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string.It can include variables denoted by $(VAR_NAME).These variables are expanded to the value of the environment variables defined in the container.If a variable cannot be resolved, it remains unchanged in the output.To escape variable expansion and retain the literal value, use double $ characters.For example:- '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME.- '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.Default value is an empty string.",
+								Description:         "Holds a direct string or an expression that can be evaluated to a string. It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output. To escape variable expansion and retain the literal value, use double $ characters. For example: - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion. Default value is an empty string.",
+								MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string. It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output. To escape variable expansion and retain the literal value, use double $ characters. For example: - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion. Default value is an empty string.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -735,8 +735,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -756,8 +756,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 									},
 
 									"field_ref": schema.SingleNestedAttribute{
-										Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-										MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+										Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+										MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 										Attributes: map[string]schema.Attribute{
 											"api_version": schema.StringAttribute{
 												Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -781,8 +781,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 									},
 
 									"resource_field_ref": schema.SingleNestedAttribute{
-										Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-										MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+										Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+										MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 										Attributes: map[string]schema.Attribute{
 											"container_name": schema.StringAttribute{
 												Description:         "Container name: required for volumes, optional for env vars",
@@ -818,16 +818,16 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 										MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -861,8 +861,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 						MarkdownDescription: "Specifies the port of the external service.",
 						Attributes: map[string]schema.Attribute{
 							"value": schema.StringAttribute{
-								Description:         "Holds a direct string or an expression that can be evaluated to a string.It can include variables denoted by $(VAR_NAME).These variables are expanded to the value of the environment variables defined in the container.If a variable cannot be resolved, it remains unchanged in the output.To escape variable expansion and retain the literal value, use double $ characters.For example:- '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME.- '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.Default value is an empty string.",
-								MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string.It can include variables denoted by $(VAR_NAME).These variables are expanded to the value of the environment variables defined in the container.If a variable cannot be resolved, it remains unchanged in the output.To escape variable expansion and retain the literal value, use double $ characters.For example:- '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME.- '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion.Default value is an empty string.",
+								Description:         "Holds a direct string or an expression that can be evaluated to a string. It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output. To escape variable expansion and retain the literal value, use double $ characters. For example: - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion. Default value is an empty string.",
+								MarkdownDescription: "Holds a direct string or an expression that can be evaluated to a string. It can include variables denoted by $(VAR_NAME). These variables are expanded to the value of the environment variables defined in the container. If a variable cannot be resolved, it remains unchanged in the output. To escape variable expansion and retain the literal value, use double $ characters. For example: - '$(VAR_NAME)' will be expanded to the value of the environment variable VAR_NAME. - '$$(VAR_NAME)' will result in '$(VAR_NAME)' in the output, without any variable expansion. Default value is an empty string.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -885,8 +885,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -906,8 +906,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 									},
 
 									"field_ref": schema.SingleNestedAttribute{
-										Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-										MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+										Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+										MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 										Attributes: map[string]schema.Attribute{
 											"api_version": schema.StringAttribute{
 												Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -931,8 +931,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 									},
 
 									"resource_field_ref": schema.SingleNestedAttribute{
-										Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-										MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+										Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+										MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 										Attributes: map[string]schema.Attribute{
 											"container_name": schema.StringAttribute{
 												Description:         "Container name: required for volumes, optional for env vars",
@@ -968,16 +968,16 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 										MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1007,16 +1007,16 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"service_kind": schema.StringAttribute{
-						Description:         "Describes the type of database service provided by the external service.For example, 'mysql', 'redis', 'mongodb'.This field categorizes databases by their functionality, protocol and compatibility, facilitating appropriateservice integration based on their unique capabilities.This field is case-insensitive.It also supports abbreviations for some well-known databases:- 'pg', 'pgsql', 'postgres', 'postgresql': PostgreSQL service- 'zk', 'zookeeper': ZooKeeper service- 'es', 'elasticsearch': Elasticsearch service- 'mongo', 'mongodb': MongoDB service- 'ch', 'clickhouse': ClickHouse service",
-						MarkdownDescription: "Describes the type of database service provided by the external service.For example, 'mysql', 'redis', 'mongodb'.This field categorizes databases by their functionality, protocol and compatibility, facilitating appropriateservice integration based on their unique capabilities.This field is case-insensitive.It also supports abbreviations for some well-known databases:- 'pg', 'pgsql', 'postgres', 'postgresql': PostgreSQL service- 'zk', 'zookeeper': ZooKeeper service- 'es', 'elasticsearch': Elasticsearch service- 'mongo', 'mongodb': MongoDB service- 'ch', 'clickhouse': ClickHouse service",
+						Description:         "Describes the type of database service provided by the external service. For example, 'mysql', 'redis', 'mongodb'. This field categorizes databases by their functionality, protocol and compatibility, facilitating appropriate service integration based on their unique capabilities. This field is case-insensitive. It also supports abbreviations for some well-known databases: - 'pg', 'pgsql', 'postgres', 'postgresql': PostgreSQL service - 'zk', 'zookeeper': ZooKeeper service - 'es', 'elasticsearch': Elasticsearch service - 'mongo', 'mongodb': MongoDB service - 'ch', 'clickhouse': ClickHouse service",
+						MarkdownDescription: "Describes the type of database service provided by the external service. For example, 'mysql', 'redis', 'mongodb'. This field categorizes databases by their functionality, protocol and compatibility, facilitating appropriate service integration based on their unique capabilities. This field is case-insensitive. It also supports abbreviations for some well-known databases: - 'pg', 'pgsql', 'postgres', 'postgresql': PostgreSQL service - 'zk', 'zookeeper': ZooKeeper service - 'es', 'elasticsearch': Elasticsearch service - 'mongo', 'mongodb': MongoDB service - 'ch', 'clickhouse': ClickHouse service",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"service_version": schema.StringAttribute{
-						Description:         "Describes the version of the service provided by the external service.This is crucial for ensuring compatibility between different components of the system,as different versions of a service may have varying features.",
-						MarkdownDescription: "Describes the version of the service provided by the external service.This is crucial for ensuring compatibility between different components of the system,as different versions of a service may have varying features.",
+						Description:         "Describes the version of the service provided by the external service. This is crucial for ensuring compatibility between different components of the system, as different versions of a service may have varying features.",
+						MarkdownDescription: "Describes the version of the service provided by the external service. This is crucial for ensuring compatibility between different components of the system, as different versions of a service may have varying features.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

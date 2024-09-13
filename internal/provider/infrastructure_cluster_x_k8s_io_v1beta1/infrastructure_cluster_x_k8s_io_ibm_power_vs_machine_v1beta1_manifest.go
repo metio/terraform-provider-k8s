@@ -171,8 +171,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsmachineV1Beta1Manifest) Schema(_ c
 							},
 
 							"regex": schema.StringAttribute{
-								Description:         "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
-								MarkdownDescription: "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+								Description:         "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+								MarkdownDescription: "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -187,12 +187,12 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsmachineV1Beta1Manifest) Schema(_ c
 					},
 
 					"image_ref": schema.SingleNestedAttribute{
-						Description:         "ImageRef is an optional reference to a provider-specific resource that holdsthe details for provisioning the Image for a Cluster.",
-						MarkdownDescription: "ImageRef is an optional reference to a provider-specific resource that holdsthe details for provisioning the Image for a Cluster.",
+						Description:         "ImageRef is an optional reference to a provider-specific resource that holds the details for provisioning the Image for a Cluster.",
+						MarkdownDescription: "ImageRef is an optional reference to a provider-specific resource that holds the details for provisioning the Image for a Cluster.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -238,8 +238,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsmachineV1Beta1Manifest) Schema(_ c
 							},
 
 							"regex": schema.StringAttribute{
-								Description:         "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
-								MarkdownDescription: "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+								Description:         "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+								MarkdownDescription: "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

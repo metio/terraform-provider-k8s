@@ -129,8 +129,8 @@ func (r *SecurityProfilesOperatorXK8SIoProfileBindingV1Alpha1Manifest) Schema(_ 
 				MarkdownDescription: "ProfileBindingSpec defines the desired state of ProfileBinding.",
 				Attributes: map[string]schema.Attribute{
 					"image": schema.StringAttribute{
-						Description:         "Image name within pod containers to match to the profile.Use the '*' string to bind the profile to all pods.",
-						MarkdownDescription: "Image name within pod containers to match to the profile.Use the '*' string to bind the profile to all pods.",
+						Description:         "Image name within pod containers to match to the profile. Use the '*' string to bind the profile to all pods.",
+						MarkdownDescription: "Image name within pod containers to match to the profile. Use the '*' string to bind the profile to all pods.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

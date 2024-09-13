@@ -53,7 +53,7 @@ Optional:
 Required:
 
 - `destination` (String) Destination is the destination url to proxy the request to.
-- `sni_match` (Attributes) SNIMatch is used to match requests based on the server name for the intended destination server. Matching requestswill be proxied to the Destination. (see [below for nested schema](#nestedatt--spec--sni_match))
+- `sni_match` (Attributes) SNIMatch is used to match requests based on the server name for the intended destination server. Matching requests will be proxied to the Destination. (see [below for nested schema](#nestedatt--spec--sni_match))
 - `target` (String)
 
 <a id="nestedatt--spec--sni_match"></a>

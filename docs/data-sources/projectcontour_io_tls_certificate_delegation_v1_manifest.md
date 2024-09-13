@@ -3,12 +3,12 @@
 page_title: "k8s_projectcontour_io_tls_certificate_delegation_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "projectcontour.io"
 description: |-
-  TLSCertificateDelegation is an TLS Certificate Delegation CRD specification.See design/tls-certificate-delegation.md for details.
+  TLSCertificateDelegation is an TLS Certificate Delegation CRD specification. See design/tls-certificate-delegation.md for details.
 ---
 
 # k8s_projectcontour_io_tls_certificate_delegation_v1_manifest (Data Source)
 
-TLSCertificateDelegation is an TLS Certificate Delegation CRD specification.See design/tls-certificate-delegation.md for details.
+TLSCertificateDelegation is an TLS Certificate Delegation CRD specification. See design/tls-certificate-delegation.md for details.
 
 ## Example Usage
 
@@ -60,4 +60,4 @@ Required:
 Required:
 
 - `secret_name` (String) required, the name of a secret in the current namespace.
-- `target_namespaces` (List of String) required, the namespaces the authority to reference thesecret will be delegated to.If TargetNamespaces is nil or empty, the CertificateDelegation'is ignored. If the TargetNamespace list contains the character, '*'the secret will be delegated to all namespaces.
+- `target_namespaces` (List of String) required, the namespaces the authority to reference the secret will be delegated to. If TargetNamespaces is nil or empty, the CertificateDelegation' is ignored. If the TargetNamespace list contains the character, '*' the secret will be delegated to all namespaces.

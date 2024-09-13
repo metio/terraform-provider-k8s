@@ -385,8 +385,8 @@ func (r *OracleDbAnthosapisComInstanceV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"cdb_name": schema.StringAttribute{
-						Description:         "CDBName is the intended name of the CDB attribute. If the CDBName is different from the original name (with which the CDB was created) the CDB will be renamed.  The CDBName should meet Oracle SID requirements: uppercase, alphanumeric, max 8 characters, and not start with a number.",
-						MarkdownDescription: "CDBName is the intended name of the CDB attribute. If the CDBName is different from the original name (with which the CDB was created) the CDB will be renamed.  The CDBName should meet Oracle SID requirements: uppercase, alphanumeric, max 8 characters, and not start with a number.",
+						Description:         "CDBName is the intended name of the CDB attribute. If the CDBName is different from the original name (with which the CDB was created) the CDB will be renamed. The CDBName should meet Oracle SID requirements: uppercase, alphanumeric, max 8 characters, and not start with a number.",
+						MarkdownDescription: "CDBName is the intended name of the CDB attribute. If the CDBName is different from the original name (with which the CDB was created) the CDB will be renamed. The CDBName should meet Oracle SID requirements: uppercase, alphanumeric, max 8 characters, and not start with a number.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

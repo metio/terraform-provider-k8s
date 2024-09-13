@@ -166,8 +166,8 @@ func (r *NetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1Manifest) Schema(_ c
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "FirewallPolicySpec defines the desired state of FirewallPolicy.The firewall policy defines the behavior of a firewall using a collectionof stateless and stateful rule groups and other settings. You can use onefirewall policy for multiple firewalls.This, along with FirewallPolicyResponse, define the policy. You can retrieveall objects for a firewall policy by calling DescribeFirewallPolicy.",
-				MarkdownDescription: "FirewallPolicySpec defines the desired state of FirewallPolicy.The firewall policy defines the behavior of a firewall using a collectionof stateless and stateful rule groups and other settings. You can use onefirewall policy for multiple firewalls.This, along with FirewallPolicyResponse, define the policy. You can retrieveall objects for a firewall policy by calling DescribeFirewallPolicy.",
+				Description:         "FirewallPolicySpec defines the desired state of FirewallPolicy. The firewall policy defines the behavior of a firewall using a collection of stateless and stateful rule groups and other settings. You can use one firewall policy for multiple firewalls. This, along with FirewallPolicyResponse, define the policy. You can retrieve all objects for a firewall policy by calling DescribeFirewallPolicy.",
+				MarkdownDescription: "FirewallPolicySpec defines the desired state of FirewallPolicy. The firewall policy defines the behavior of a firewall using a collection of stateless and stateful rule groups and other settings. You can use one firewall policy for multiple firewalls. This, along with FirewallPolicyResponse, define the policy. You can retrieve all objects for a firewall policy by calling DescribeFirewallPolicy.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
 						Description:         "A description of the firewall policy.",
@@ -178,8 +178,8 @@ func (r *NetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1Manifest) Schema(_ c
 					},
 
 					"encryption_configuration": schema.SingleNestedAttribute{
-						Description:         "A complex type that contains settings for encryption of your firewall policyresources.",
-						MarkdownDescription: "A complex type that contains settings for encryption of your firewall policyresources.",
+						Description:         "A complex type that contains settings for encryption of your firewall policy resources.",
+						MarkdownDescription: "A complex type that contains settings for encryption of your firewall policy resources.",
 						Attributes: map[string]schema.Attribute{
 							"key_id": schema.StringAttribute{
 								Description:         "",
@@ -207,8 +207,8 @@ func (r *NetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1Manifest) Schema(_ c
 						MarkdownDescription: "The rule groups and policy actions to use in the firewall policy.",
 						Attributes: map[string]schema.Attribute{
 							"policy_variables": schema.SingleNestedAttribute{
-								Description:         "Contains variables that you can use to override default Suricata settingsin your firewall policy.",
-								MarkdownDescription: "Contains variables that you can use to override default Suricata settingsin your firewall policy.",
+								Description:         "Contains variables that you can use to override default Suricata settings in your firewall policy.",
+								MarkdownDescription: "Contains variables that you can use to override default Suricata settings in your firewall policy.",
 								Attributes: map[string]schema.Attribute{
 									"rule_variables": schema.SingleNestedAttribute{
 										Description:         "",
@@ -243,8 +243,8 @@ func (r *NetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1Manifest) Schema(_ c
 							},
 
 							"stateful_engine_options": schema.SingleNestedAttribute{
-								Description:         "Configuration settings for the handling of the stateful rule groups in afirewall policy.",
-								MarkdownDescription: "Configuration settings for the handling of the stateful rule groups in afirewall policy.",
+								Description:         "Configuration settings for the handling of the stateful rule groups in a firewall policy.",
+								MarkdownDescription: "Configuration settings for the handling of the stateful rule groups in a firewall policy.",
 								Attributes: map[string]schema.Attribute{
 									"rule_order": schema.StringAttribute{
 										Description:         "",
@@ -273,8 +273,8 @@ func (r *NetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1Manifest) Schema(_ c
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"override": schema.SingleNestedAttribute{
-											Description:         "The setting that allows the policy owner to change the behavior of the rulegroup within a policy.",
-											MarkdownDescription: "The setting that allows the policy owner to change the behavior of the rulegroup within a policy.",
+											Description:         "The setting that allows the policy owner to change the behavior of the rule group within a policy.",
+											MarkdownDescription: "The setting that allows the policy owner to change the behavior of the rule group within a policy.",
 											Attributes: map[string]schema.Attribute{
 												"action": schema.StringAttribute{
 													Description:         "",
@@ -317,12 +317,12 @@ func (r *NetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1Manifest) Schema(_ c
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"action_definition": schema.SingleNestedAttribute{
-											Description:         "A custom action to use in stateless rule actions settings. This is used inCustomAction.",
-											MarkdownDescription: "A custom action to use in stateless rule actions settings. This is used inCustomAction.",
+											Description:         "A custom action to use in stateless rule actions settings. This is used in CustomAction.",
+											MarkdownDescription: "A custom action to use in stateless rule actions settings. This is used in CustomAction.",
 											Attributes: map[string]schema.Attribute{
 												"publish_metric_action": schema.SingleNestedAttribute{
-													Description:         "Stateless inspection criteria that publishes the specified metrics to AmazonCloudWatch for the matching packet. This setting defines a CloudWatch dimensionvalue to be published.",
-													MarkdownDescription: "Stateless inspection criteria that publishes the specified metrics to AmazonCloudWatch for the matching packet. This setting defines a CloudWatch dimensionvalue to be published.",
+													Description:         "Stateless inspection criteria that publishes the specified metrics to Amazon CloudWatch for the matching packet. This setting defines a CloudWatch dimension value to be published.",
+													MarkdownDescription: "Stateless inspection criteria that publishes the specified metrics to Amazon CloudWatch for the matching packet. This setting defines a CloudWatch dimension value to be published.",
 													Attributes: map[string]schema.Attribute{
 														"dimensions": schema.ListNestedAttribute{
 															Description:         "",
@@ -426,8 +426,8 @@ func (r *NetworkfirewallServicesK8SAwsFirewallPolicyV1Alpha1Manifest) Schema(_ c
 					},
 
 					"firewall_policy_name": schema.StringAttribute{
-						Description:         "The descriptive name of the firewall policy. You can't change the name ofa firewall policy after you create it.",
-						MarkdownDescription: "The descriptive name of the firewall policy. You can't change the name ofa firewall policy after you create it.",
+						Description:         "The descriptive name of the firewall policy. You can't change the name of a firewall policy after you create it.",
+						MarkdownDescription: "The descriptive name of the firewall policy. You can't change the name of a firewall policy after you create it.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

@@ -127,16 +127,16 @@ func (r *SchedulingSigsK8SIoPodGroupV1Alpha1Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "Specification of the desired behavior of the pod group.",
 				Attributes: map[string]schema.Attribute{
 					"min_member": schema.Int64Attribute{
-						Description:         "MinMember defines the minimal number of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.",
-						MarkdownDescription: "MinMember defines the minimal number of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.",
+						Description:         "MinMember defines the minimal number of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.",
+						MarkdownDescription: "MinMember defines the minimal number of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"min_resources": schema.MapAttribute{
-						Description:         "MinResources defines the minimal resource of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.",
-						MarkdownDescription: "MinResources defines the minimal resource of members/tasks to run the pod group;if there's not enough resources to start all tasks, the schedulerwill not start anyone.",
+						Description:         "MinResources defines the minimal resource of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.",
+						MarkdownDescription: "MinResources defines the minimal resource of members/tasks to run the pod group; if there's not enough resources to start all tasks, the scheduler will not start anyone.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

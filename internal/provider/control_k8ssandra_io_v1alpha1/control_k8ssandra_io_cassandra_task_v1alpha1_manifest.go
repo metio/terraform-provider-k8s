@@ -156,16 +156,16 @@ func (r *ControlK8SsandraIoCassandraTaskV1Alpha1Manifest) Schema(_ context.Conte
 				MarkdownDescription: "CassandraTaskSpec defines the desired state of CassandraTask",
 				Attributes: map[string]schema.Attribute{
 					"concurrency_policy": schema.StringAttribute{
-						Description:         "Specifics if this task can be run concurrently with other active tasks. Valid values are:- 'Allow': allows multiple Tasks to run concurrently on Cassandra cluster- 'Forbid' (default): only a single task is executed at onceThe 'Allow' property is only valid if all the other active Tasks have 'Allow' as well.",
-						MarkdownDescription: "Specifics if this task can be run concurrently with other active tasks. Valid values are:- 'Allow': allows multiple Tasks to run concurrently on Cassandra cluster- 'Forbid' (default): only a single task is executed at onceThe 'Allow' property is only valid if all the other active Tasks have 'Allow' as well.",
+						Description:         "Specifics if this task can be run concurrently with other active tasks. Valid values are: - 'Allow': allows multiple Tasks to run concurrently on Cassandra cluster - 'Forbid' (default): only a single task is executed at once The 'Allow' property is only valid if all the other active Tasks have 'Allow' as well.",
+						MarkdownDescription: "Specifics if this task can be run concurrently with other active tasks. Valid values are: - 'Allow': allows multiple Tasks to run concurrently on Cassandra cluster - 'Forbid' (default): only a single task is executed at once The 'Allow' property is only valid if all the other active Tasks have 'Allow' as well.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"datacenter": schema.SingleNestedAttribute{
-						Description:         "Which datacenter this task is targetting. Note, this must be a datacenter which the current cass-operatorcan access",
-						MarkdownDescription: "Which datacenter this task is targetting. Note, this must be a datacenter which the current cass-operatorcan access",
+						Description:         "Which datacenter this task is targetting. Note, this must be a datacenter which the current cass-operator can access",
+						MarkdownDescription: "Which datacenter this task is targetting. Note, this must be a datacenter which the current cass-operator can access",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -176,48 +176,48 @@ func (r *ControlK8SsandraIoCassandraTaskV1Alpha1Manifest) Schema(_ context.Conte
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_version": schema.StringAttribute{
-								Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"uid": schema.StringAttribute{
-								Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-								MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -262,8 +262,8 @@ func (r *ControlK8SsandraIoCassandraTaskV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"new_tokens": schema.MapAttribute{
-											Description:         "NewTokens is a map of pod names to their newly-assigned tokens. Required for the movecommand, ignored otherwise. Pods referenced in this map must exist; any existing pod notreferenced in this map will not be moved.",
-											MarkdownDescription: "NewTokens is a map of pod names to their newly-assigned tokens. Required for the movecommand, ignored otherwise. Pods referenced in this map must exist; any existing pod notreferenced in this map will not be moved.",
+											Description:         "NewTokens is a map of pod names to their newly-assigned tokens. Required for the move command, ignored otherwise. Pods referenced in this map must exist; any existing pod not referenced in this map will not be moved.",
+											MarkdownDescription: "NewTokens is a map of pod names to their newly-assigned tokens. Required for the move command, ignored otherwise. Pods referenced in this map must exist; any existing pod not referenced in this map will not be moved.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -379,8 +379,8 @@ func (r *ControlK8SsandraIoCassandraTaskV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"scheduled_time": schema.StringAttribute{
-						Description:         "ScheduledTime indicates the earliest possible time this task is executed. This does not necessarilyequal to the time it is actually executed (if other tasks are blocking for example). If not set,the task will be executed immediately.",
-						MarkdownDescription: "ScheduledTime indicates the earliest possible time this task is executed. This does not necessarilyequal to the time it is actually executed (if other tasks are blocking for example). If not set,the task will be executed immediately.",
+						Description:         "ScheduledTime indicates the earliest possible time this task is executed. This does not necessarily equal to the time it is actually executed (if other tasks are blocking for example). If not set, the task will be executed immediately.",
+						MarkdownDescription: "ScheduledTime indicates the earliest possible time this task is executed. This does not necessarily equal to the time it is actually executed (if other tasks are blocking for example). If not set, the task will be executed immediately.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -390,8 +390,8 @@ func (r *ControlK8SsandraIoCassandraTaskV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"ttl_seconds_after_finished": schema.Int64Attribute{
-						Description:         "TTLSecondsAfterFinished defines how long the completed job will kept before being cleaned up. If set to 0the task will not be cleaned up by the cass-operator. If unset, the default time (86400s) is used.",
-						MarkdownDescription: "TTLSecondsAfterFinished defines how long the completed job will kept before being cleaned up. If set to 0the task will not be cleaned up by the cass-operator. If unset, the default time (86400s) is used.",
+						Description:         "TTLSecondsAfterFinished defines how long the completed job will kept before being cleaned up. If set to 0 the task will not be cleaned up by the cass-operator. If unset, the default time (86400s) is used.",
+						MarkdownDescription: "TTLSecondsAfterFinished defines how long the completed job will kept before being cleaned up. If set to 0 the task will not be cleaned up by the cass-operator. If unset, the default time (86400s) is used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

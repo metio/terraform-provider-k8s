@@ -754,8 +754,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"chunk_limit_size": schema.StringAttribute{
-											Description:         "Buffer parametersThe max size of each chunks: events will be written into chunks until the size of chunks become this sizeDefault: 8MB (memory) / 256MB (file)",
-											MarkdownDescription: "Buffer parametersThe max size of each chunks: events will be written into chunks until the size of chunks become this sizeDefault: 8MB (memory) / 256MB (file)",
+											Description:         "Buffer parameters The max size of each chunks: events will be written into chunks until the size of chunks become this size Default: 8MB (memory) / 256MB (file)",
+											MarkdownDescription: "Buffer parameters The max size of each chunks: events will be written into chunks until the size of chunks become this size Default: 8MB (memory) / 256MB (file)",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -765,8 +765,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"compress": schema.StringAttribute{
-											Description:         "Fluentd will decompress these compressed chunks automatically before passing them to the output pluginIf gzip is set, Fluentd compresses data records before writing to buffer chunks.Default:text.",
-											MarkdownDescription: "Fluentd will decompress these compressed chunks automatically before passing them to the output pluginIf gzip is set, Fluentd compresses data records before writing to buffer chunks.Default:text.",
+											Description:         "Fluentd will decompress these compressed chunks automatically before passing them to the output plugin If gzip is set, Fluentd compresses data records before writing to buffer chunks. Default:text.",
+											MarkdownDescription: "Fluentd will decompress these compressed chunks automatically before passing them to the output plugin If gzip is set, Fluentd compresses data records before writing to buffer chunks. Default:text.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -795,8 +795,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"flush_at_shutdown": schema.BoolAttribute{
-											Description:         "Flush parametersThis specifies whether to flush/write all buffer chunks on shutdown or not.",
-											MarkdownDescription: "Flush parametersThis specifies whether to flush/write all buffer chunks on shutdown or not.",
+											Description:         "Flush parameters This specifies whether to flush/write all buffer chunks on shutdown or not.",
+											MarkdownDescription: "Flush parameters This specifies whether to flush/write all buffer chunks on shutdown or not.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -814,8 +814,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"flush_mode": schema.StringAttribute{
-											Description:         "FlushMode defines the flush mode:lazy: flushes/writes chunks once per timekeyinterval: flushes/writes chunks per specified time via flush_intervalimmediate: flushes/writes chunks immediately after events are appended into chunksdefault: equals to lazy if time is specified as chunk key, interval otherwise",
-											MarkdownDescription: "FlushMode defines the flush mode:lazy: flushes/writes chunks once per timekeyinterval: flushes/writes chunks per specified time via flush_intervalimmediate: flushes/writes chunks immediately after events are appended into chunksdefault: equals to lazy if time is specified as chunk key, interval otherwise",
+											Description:         "FlushMode defines the flush mode: lazy: flushes/writes chunks once per timekey interval: flushes/writes chunks per specified time via flush_interval immediate: flushes/writes chunks immediately after events are appended into chunks default: equals to lazy if time is specified as chunk key, interval otherwise",
+											MarkdownDescription: "FlushMode defines the flush mode: lazy: flushes/writes chunks once per timekey interval: flushes/writes chunks per specified time via flush_interval immediate: flushes/writes chunks immediately after events are appended into chunks default: equals to lazy if time is specified as chunk key, interval otherwise",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -860,8 +860,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"overflow_action": schema.StringAttribute{
-											Description:         "OverflowAtction defines the output plugin behave when its buffer queue is full.Default: throw_exception",
-											MarkdownDescription: "OverflowAtction defines the output plugin behave when its buffer queue is full.Default: throw_exception",
+											Description:         "OverflowAtction defines the output plugin behave when its buffer queue is full. Default: throw_exception",
+											MarkdownDescription: "OverflowAtction defines the output plugin behave when its buffer queue is full. Default: throw_exception",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -895,8 +895,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"queued_chunks_limit_size": schema.Int64Attribute{
-											Description:         "Limit the number of queued chunks. Default: 1If a smaller flush_interval is set, e.g. 1s,there are lots of small queued chunks in the buffer.With file buffer, it may consume a lot of fd resources when output destination has a problem.This parameter mitigates such situations.",
-											MarkdownDescription: "Limit the number of queued chunks. Default: 1If a smaller flush_interval is set, e.g. 1s,there are lots of small queued chunks in the buffer.With file buffer, it may consume a lot of fd resources when output destination has a problem.This parameter mitigates such situations.",
+											Description:         "Limit the number of queued chunks. Default: 1 If a smaller flush_interval is set, e.g. 1s, there are lots of small queued chunks in the buffer. With file buffer, it may consume a lot of fd resources when output destination has a problem. This parameter mitigates such situations.",
+											MarkdownDescription: "Limit the number of queued chunks. Default: 1 If a smaller flush_interval is set, e.g. 1s, there are lots of small queued chunks in the buffer. With file buffer, it may consume a lot of fd resources when output destination has a problem. This parameter mitigates such situations.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -963,8 +963,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"retry_timeout": schema.StringAttribute{
-											Description:         "Retry parametersThe maximum time (seconds) to retry to flush again the failed chunks, until the plugin discards the buffer chunks",
-											MarkdownDescription: "Retry parametersThe maximum time (seconds) to retry to flush again the failed chunks, until the plugin discards the buffer chunks",
+											Description:         "Retry parameters The maximum time (seconds) to retry to flush again the failed chunks, until the plugin discards the buffer chunks",
+											MarkdownDescription: "Retry parameters The maximum time (seconds) to retry to flush again the failed chunks, until the plugin discards the buffer chunks",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -993,8 +993,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"tag": schema.StringAttribute{
-											Description:         "The output plugins group events into chunks.Chunk keys, specified as the argument of <buffer> section, control how to group events into chunks.If tag is empty, which means blank Chunk Keys.Tag also supports Nested Field, combination of Chunk Keys, placeholders, etc.See https://docs.fluentd.org/configuration/buffer-section.",
-											MarkdownDescription: "The output plugins group events into chunks.Chunk keys, specified as the argument of <buffer> section, control how to group events into chunks.If tag is empty, which means blank Chunk Keys.Tag also supports Nested Field, combination of Chunk Keys, placeholders, etc.See https://docs.fluentd.org/configuration/buffer-section.",
+											Description:         "The output plugins group events into chunks. Chunk keys, specified as the argument of <buffer> section, control how to group events into chunks. If tag is empty, which means blank Chunk Keys. Tag also supports Nested Field, combination of Chunk Keys, placeholders, etc. See https://docs.fluentd.org/configuration/buffer-section.",
+											MarkdownDescription: "The output plugins group events into chunks. Chunk keys, specified as the argument of <buffer> section, control how to group events into chunks. If tag is empty, which means blank Chunk Keys. Tag also supports Nested Field, combination of Chunk Keys, placeholders, etc. See https://docs.fluentd.org/configuration/buffer-section.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1052,8 +1052,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"total_limit_size": schema.StringAttribute{
-											Description:         "The size limitation of this buffer plugin instanceDefault: 512MB (memory) / 64GB (file)",
-											MarkdownDescription: "The size limitation of this buffer plugin instanceDefault: 512MB (memory) / 64GB (file)",
+											Description:         "The size limitation of this buffer plugin instance Default: 512MB (memory) / 64GB (file)",
+											MarkdownDescription: "The size limitation of this buffer plugin instance Default: 512MB (memory) / 64GB (file)",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1119,16 +1119,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1170,16 +1170,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1595,16 +1595,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1847,16 +1847,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1898,16 +1898,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1937,8 +1937,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"cloud_id": schema.SingleNestedAttribute{
-											Description:         "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth mustbe set as well and host, port, user and password are ignored.",
-											MarkdownDescription: "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth mustbe set as well and host, port, user and password are ignored.",
+											Description:         "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
+											MarkdownDescription: "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
 											Attributes: map[string]schema.Attribute{
 												"value_from": schema.SingleNestedAttribute{
 													Description:         "ValueSource defines how to find a value's key.",
@@ -1949,16 +1949,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2096,16 +2096,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2234,16 +2234,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2318,16 +2318,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2369,16 +2369,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2408,8 +2408,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"cloud_id": schema.SingleNestedAttribute{
-											Description:         "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth mustbe set as well and host, port, user and password are ignored.",
-											MarkdownDescription: "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth mustbe set as well and host, port, user and password are ignored.",
+											Description:         "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
+											MarkdownDescription: "Authenticate towards Elastic Cloud using CloudId. If set, cloudAuth must be set as well and host, port, user and password are ignored.",
 											Attributes: map[string]schema.Attribute{
 												"value_from": schema.SingleNestedAttribute{
 													Description:         "ValueSource defines how to find a value's key.",
@@ -2420,16 +2420,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2591,16 +2591,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2729,16 +2729,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2921,8 +2921,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"dns_round_robin": schema.BoolAttribute{
-											Description:         "Enable client-side DNS round robin. Uniform randomly pick an IP address to send data when a hostname has several IP addresses.heartbeat_type udp is not available with dns_round_robintrue. Use heartbeat_type tcp or heartbeat_type none.",
-											MarkdownDescription: "Enable client-side DNS round robin. Uniform randomly pick an IP address to send data when a hostname has several IP addresses.heartbeat_type udp is not available with dns_round_robintrue. Use heartbeat_type tcp or heartbeat_type none.",
+											Description:         "Enable client-side DNS round robin. Uniform randomly pick an IP address to send data when a hostname has several IP addresses. heartbeat_type udp is not available with dns_round_robintrue. Use heartbeat_type tcp or heartbeat_type none.",
+											MarkdownDescription: "Enable client-side DNS round robin. Uniform randomly pick an IP address to send data when a hostname has several IP addresses. heartbeat_type udp is not available with dns_round_robintrue. Use heartbeat_type tcp or heartbeat_type none.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3079,16 +3079,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.StringAttribute{
-																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Description:         "The key of the secret to select from. Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3130,16 +3130,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.StringAttribute{
-																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Description:         "The key of the secret to select from. Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3247,16 +3247,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																		MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																				MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3330,16 +3330,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																		MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																				MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3507,16 +3507,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.StringAttribute{
-																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Description:         "The key of the secret to select from. Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3590,16 +3590,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.StringAttribute{
-																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Description:         "The key of the secret to select from. Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																					MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																					MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3806,16 +3806,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																			Description:         "The key of the secret to select from. Must be a valid secret key.",
+																			MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																			MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -3857,16 +3857,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																			MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																			Description:         "The key of the secret to select from. Must be a valid secret key.",
+																			MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																			MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -4248,8 +4248,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 									MarkdownDescription: "out_loki plugin",
 									Attributes: map[string]schema.Attribute{
 										"bearer_token_file": schema.StringAttribute{
-											Description:         "Set path to file with bearer authentication tokenCan be used as alterntative to HTTP basic authentication",
-											MarkdownDescription: "Set path to file with bearer authentication tokenCan be used as alterntative to HTTP basic authentication",
+											Description:         "Set path to file with bearer authentication token Can be used as alterntative to HTTP basic authentication",
+											MarkdownDescription: "Set path to file with bearer authentication token Can be used as alterntative to HTTP basic authentication",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4272,8 +4272,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"http_password": schema.SingleNestedAttribute{
-											Description:         "Password for user defined in HTTP_UserSet HTTP basic authentication password",
-											MarkdownDescription: "Password for user defined in HTTP_UserSet HTTP basic authentication password",
+											Description:         "Password for user defined in HTTP_User Set HTTP basic authentication password",
+											MarkdownDescription: "Password for user defined in HTTP_User Set HTTP basic authentication password",
 											Attributes: map[string]schema.Attribute{
 												"value_from": schema.SingleNestedAttribute{
 													Description:         "ValueSource defines how to find a value's key.",
@@ -4284,16 +4284,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4335,16 +4335,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4390,8 +4390,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"label_keys": schema.ListAttribute{
-											Description:         "Optional list of record keys that will be placed as stream labels.This configuration property is for records key only.",
-											MarkdownDescription: "Optional list of record keys that will be placed as stream labels.This configuration property is for records key only.",
+											Description:         "Optional list of record keys that will be placed as stream labels. This configuration property is for records key only.",
+											MarkdownDescription: "Optional list of record keys that will be placed as stream labels. This configuration property is for records key only.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -4399,8 +4399,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"labels": schema.ListAttribute{
-											Description:         "Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs.In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
-											MarkdownDescription: "Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs.In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
+											Description:         "Stream labels for API request. It can be multiple comma separated of strings specifying key=value pairs. In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
+											MarkdownDescription: "Stream labels for API request. It can be multiple comma separated of strings specifying key=value pairs. In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -4408,8 +4408,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"line_format": schema.StringAttribute{
-											Description:         "Format to use when flattening the record to a log line. Valid values are json or key_value.If set to json,  the log line sent to Loki will be the Fluentd record dumped as JSON.If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
-											MarkdownDescription: "Format to use when flattening the record to a log line. Valid values are json or key_value.If set to json,  the log line sent to Loki will be the Fluentd record dumped as JSON.If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
+											Description:         "Format to use when flattening the record to a log line. Valid values are json or key_value. If set to json, the log line sent to Loki will be the Fluentd record dumped as JSON. If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
+											MarkdownDescription: "Format to use when flattening the record to a log line. Valid values are json or key_value. If set to json, the log line sent to Loki will be the Fluentd record dumped as JSON. If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4419,8 +4419,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"remove_keys": schema.ListAttribute{
-											Description:         "Optional list of record keys that will be removed from stream labels.This configuration property is for records key only.",
-											MarkdownDescription: "Optional list of record keys that will be removed from stream labels.This configuration property is for records key only.",
+											Description:         "Optional list of record keys that will be removed from stream labels. This configuration property is for records key only.",
+											MarkdownDescription: "Optional list of record keys that will be removed from stream labels. This configuration property is for records key only.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -4428,8 +4428,8 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"tenant_id": schema.SingleNestedAttribute{
-											Description:         "Tenant ID used by default to push logs to Loki.If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
-											MarkdownDescription: "Tenant ID used by default to push logs to Loki.If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
+											Description:         "Tenant ID used by default to push logs to Loki. If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
+											MarkdownDescription: "Tenant ID used by default to push logs to Loki. If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
 											Attributes: map[string]schema.Attribute{
 												"value_from": schema.SingleNestedAttribute{
 													Description:         "ValueSource defines how to find a value's key.",
@@ -4440,16 +4440,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4572,16 +4572,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4659,16 +4659,16 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,

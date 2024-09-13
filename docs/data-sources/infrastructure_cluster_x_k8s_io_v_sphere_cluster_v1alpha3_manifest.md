@@ -3,12 +3,12 @@
 page_title: "k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_v1alpha3_manifest Data Source - terraform-provider-k8s"
 subcategory: "infrastructure.cluster.x-k8s.io"
 description: |-
-  VSphereCluster is the Schema for the vsphereclusters APIDeprecated: This type will be removed in one of the next releases.
+  VSphereCluster is the Schema for the vsphereclusters API Deprecated: This type will be removed in one of the next releases.
 ---
 
 # k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_v1alpha3_manifest (Data Source)
 
-VSphereCluster is the Schema for the vsphereclusters APIDeprecated: This type will be removed in one of the next releases.
+VSphereCluster is the Schema for the vsphereclusters API Deprecated: This type will be removed in one of the next releases.
 
 ## Example Usage
 
@@ -55,13 +55,13 @@ Optional:
 
 Optional:
 
-- `cloud_provider_configuration` (Attributes) CloudProviderConfiguration holds the cluster-wide configuration for the vSphere cloud provider.Deprecated: will be removed in v1alpha4. (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration))
+- `cloud_provider_configuration` (Attributes) CloudProviderConfiguration holds the cluster-wide configuration for the vSphere cloud provider. Deprecated: will be removed in v1alpha4. (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration))
 - `control_plane_endpoint` (Attributes) ControlPlaneEndpoint represents the endpoint used to communicate with the control plane. (see [below for nested schema](#nestedatt--spec--control_plane_endpoint))
-- `identity_ref` (Attributes) IdentityRef is a reference to either a Secret or VSphereClusterIdentity that containsthe identity to use when reconciling the cluster. (see [below for nested schema](#nestedatt--spec--identity_ref))
-- `insecure` (Boolean) Insecure is a flag that controls whether to validate thevSphere server's certificate.Deprecated: will be removed in v1alpha4.
-- `load_balancer_ref` (Attributes) LoadBalancerRef may be used to enable a control plane load balancerfor this cluster.When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready fieldwill not be true until the referenced resource is Status.Ready and has anon-empty Status.Address value.Deprecated: will be removed in v1alpha4. (see [below for nested schema](#nestedatt--spec--load_balancer_ref))
+- `identity_ref` (Attributes) IdentityRef is a reference to either a Secret or VSphereClusterIdentity that contains the identity to use when reconciling the cluster. (see [below for nested schema](#nestedatt--spec--identity_ref))
+- `insecure` (Boolean) Insecure is a flag that controls whether to validate the vSphere server's certificate. Deprecated: will be removed in v1alpha4.
+- `load_balancer_ref` (Attributes) LoadBalancerRef may be used to enable a control plane load balancer for this cluster. When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready field will not be true until the referenced resource is Status.Ready and has a non-empty Status.Address value. Deprecated: will be removed in v1alpha4. (see [below for nested schema](#nestedatt--spec--load_balancer_ref))
 - `server` (String) Server is the address of the vSphere endpoint.
-- `thumbprint` (String) Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificateWhen provided, Insecure should not be set to true
+- `thumbprint` (String) Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate When provided, Insecure should not be set to true
 
 <a id="nestedatt--spec--cloud_provider_configuration"></a>
 ### Nested Schema for `spec.cloud_provider_configuration`
@@ -72,7 +72,7 @@ Optional:
 - `global` (Attributes) Global is the vSphere cloud provider's global configuration. (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration--global))
 - `labels` (Attributes) Labels is the vSphere cloud provider's zone and region configuration. (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration--labels))
 - `network` (Attributes) Network is the vSphere cloud provider's network configuration. (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration--network))
-- `provider_config` (Attributes) CPIProviderConfig contains extra information used to configure thevSphere cloud provider. (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration--provider_config))
+- `provider_config` (Attributes) CPIProviderConfig contains extra information used to configure the vSphere cloud provider. (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration--provider_config))
 - `virtual_center` (Attributes) VCenter is a list of vCenter configurations. (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration--virtual_center))
 - `workspace` (Attributes) Workspace is the vSphere cloud provider's workspace configuration. (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration--workspace))
 
@@ -89,19 +89,19 @@ Optional:
 
 Optional:
 
-- `api_bind_port` (String) APIBindPort configures the vSphere cloud controller manager API port.Defaults to 43001.
-- `api_disable` (Boolean) APIDisable disables the vSphere cloud controller manager API.Defaults to true.
-- `ca_file` (String) CAFile Specifies the path to a CA certificate in PEM format.If not configured, the system's CA certificates will be used.
+- `api_bind_port` (String) APIBindPort configures the vSphere cloud controller manager API port. Defaults to 43001.
+- `api_disable` (Boolean) APIDisable disables the vSphere cloud controller manager API. Defaults to true.
+- `ca_file` (String) CAFile Specifies the path to a CA certificate in PEM format. If not configured, the system's CA certificates will be used.
 - `datacenters` (String) Datacenters is a CSV string of the datacenters in which VMs are located.
 - `insecure` (Boolean) Insecure is a flag that disables TLS peer verification.
 - `password` (String) Password is the password used to access a vSphere endpoint.
-- `port` (String) Port is the port on which the vSphere endpoint is listening.Defaults to 443.
-- `round_tripper_count` (Number) RoundTripperCount specifies the SOAP round tripper count(retries = RoundTripper - 1)
-- `secret_name` (String) SecretName is the name of the Kubernetes secret in which the vSpherecredentials are located.
+- `port` (String) Port is the port on which the vSphere endpoint is listening. Defaults to 443.
+- `round_tripper_count` (Number) RoundTripperCount specifies the SOAP round tripper count (retries = RoundTripper - 1)
+- `secret_name` (String) SecretName is the name of the Kubernetes secret in which the vSphere credentials are located.
 - `secret_namespace` (String) SecretNamespace is the namespace for SecretName.
-- `secrets_directory` (String) SecretsDirectory is a directory in which secrets may be found. Thismay used in the event that:1. It is not desirable to use the K8s API to watch changes to secrets2. The cloud controller manager is not running in a K8s environment,   such as DC/OS. For example, the container storage interface (CSI) is   container orcehstrator (CO) agnostic, and should support non-K8s COs.Defaults to /etc/cloud/credentials.
-- `service_account` (String) ServiceAccount is the Kubernetes service account used to launch the cloudcontroller manager.Defaults to cloud-controller-manager.
-- `thumbprint` (String) Thumbprint is the cryptographic thumbprint of the vSphere endpoint'scertificate.
+- `secrets_directory` (String) SecretsDirectory is a directory in which secrets may be found. This may used in the event that: 1. It is not desirable to use the K8s API to watch changes to secrets 2. The cloud controller manager is not running in a K8s environment, such as DC/OS. For example, the container storage interface (CSI) is container orcehstrator (CO) agnostic, and should support non-K8s COs. Defaults to /etc/cloud/credentials.
+- `service_account` (String) ServiceAccount is the Kubernetes service account used to launch the cloud controller manager. Defaults to cloud-controller-manager.
+- `thumbprint` (String) Thumbprint is the cryptographic thumbprint of the vSphere endpoint's certificate.
 - `username` (String) Username is the username used to access a vSphere endpoint.
 
 
@@ -136,7 +136,7 @@ Optional:
 Optional:
 
 - `controller_image` (String)
-- `extra_args` (Map of String) ExtraArgs passes through extra arguments to the cloud provider.The arguments here are passed to the cloud provider daemonset specification
+- `extra_args` (Map of String) ExtraArgs passes through extra arguments to the cloud provider. The arguments here are passed to the cloud provider daemonset specification
 
 
 <a id="nestedatt--spec--cloud_provider_configuration--provider_config--storage"></a>
@@ -161,9 +161,9 @@ Optional:
 
 - `datacenters` (String) Datacenters is a CSV string of the datacenters in which VMs are located.
 - `password` (String) Password is the password used to access a vSphere endpoint.
-- `port` (String) Port is the port on which the vSphere endpoint is listening.Defaults to 443.
-- `round_tripper_count` (Number) RoundTripperCount specifies the SOAP round tripper count(retries = RoundTripper - 1)
-- `thumbprint` (String) Thumbprint is the cryptographic thumbprint of the vSphere endpoint'scertificate.
+- `port` (String) Port is the port on which the vSphere endpoint is listening. Defaults to 443.
+- `round_tripper_count` (Number) RoundTripperCount specifies the SOAP round tripper count (retries = RoundTripper - 1)
+- `thumbprint` (String) Thumbprint is the cryptographic thumbprint of the vSphere endpoint's certificate.
 - `username` (String) Username is the username used to access a vSphere endpoint.
 
 
@@ -204,9 +204,9 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids

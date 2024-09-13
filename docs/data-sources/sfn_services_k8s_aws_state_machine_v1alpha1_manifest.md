@@ -55,16 +55,16 @@ Optional:
 
 Required:
 
-- `definition` (String) The Amazon States Language definition of the state machine. See Amazon StatesLanguage (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html).
-- `name` (String) The name of the state machine.A name must not contain:   * white space   * brackets < > { } [ ]   * wildcard characters ? *   * special characters ' # %  ^ | ~ ' $ & , ; : /   * control characters (U+0000-001F, U+007F-009F)To enable logging with CloudWatch Logs, the name should only contain 0-9,A-Z, a-z, - and _.
+- `definition` (String) The Amazon States Language definition of the state machine. See Amazon States Language (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html).
+- `name` (String) The name of the state machine. A name must not contain: * white space * brackets < > { } [ ] * wildcard characters ? * * special characters ' # % ^ | ~ ' $ & , ; : / * control characters (U+0000-001F, U+007F-009F) To enable logging with CloudWatch Logs, the name should only contain 0-9, A-Z, a-z, - and _.
 - `role_arn` (String) The Amazon Resource Name (ARN) of the IAM role to use for this state machine.
 
 Optional:
 
-- `logging_configuration` (Attributes) Defines what execution history events are logged and where they are logged.By default, the level is set to OFF. For more information see Log Levels(https://docs.aws.amazon.com/step-functions/latest/dg/cloudwatch-log-level.html)in the AWS Step Functions User Guide. (see [below for nested schema](#nestedatt--spec--logging_configuration))
-- `tags` (Attributes List) Tags to be added when creating a state machine.An array of key-value pairs. For more information, see Using Cost AllocationTags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)in the AWS Billing and Cost Management User Guide, and Controlling AccessUsing IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).Tags may only contain Unicode letters, digits, white space, or these symbols:_ . : / = + - @. (see [below for nested schema](#nestedatt--spec--tags))
+- `logging_configuration` (Attributes) Defines what execution history events are logged and where they are logged. By default, the level is set to OFF. For more information see Log Levels (https://docs.aws.amazon.com/step-functions/latest/dg/cloudwatch-log-level.html) in the AWS Step Functions User Guide. (see [below for nested schema](#nestedatt--spec--logging_configuration))
+- `tags` (Attributes List) Tags to be added when creating a state machine. An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the AWS Billing and Cost Management User Guide, and Controlling Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html). Tags may only contain Unicode letters, digits, white space, or these symbols: _ . : / = + - @. (see [below for nested schema](#nestedatt--spec--tags))
 - `tracing_configuration` (Attributes) Selects whether AWS X-Ray tracing is enabled. (see [below for nested schema](#nestedatt--spec--tracing_configuration))
-- `type_` (String) Determines whether a Standard or Express state machine is created. The defaultis STANDARD. You cannot update the type of a state machine once it has beencreated.
+- `type_` (String) Determines whether a Standard or Express state machine is created. The default is STANDARD. You cannot update the type of a state machine once it has been created.
 
 <a id="nestedatt--spec--logging_configuration"></a>
 ### Nested Schema for `spec.logging_configuration`

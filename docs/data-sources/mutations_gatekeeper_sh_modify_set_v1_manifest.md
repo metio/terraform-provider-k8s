@@ -3,12 +3,12 @@
 page_title: "k8s_mutations_gatekeeper_sh_modify_set_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "mutations.gatekeeper.sh"
 description: |-
-  ModifySet allows the user to modify non-keyed lists, such asthe list of arguments to a container.
+  ModifySet allows the user to modify non-keyed lists, such as the list of arguments to a container.
 ---
 
 # k8s_mutations_gatekeeper_sh_modify_set_v1_manifest (Data Source)
 
-ModifySet allows the user to modify non-keyed lists, such asthe list of arguments to a container.
+ModifySet allows the user to modify non-keyed lists, such as the list of arguments to a container.
 
 ## Example Usage
 
@@ -54,9 +54,9 @@ Optional:
 
 Optional:
 
-- `apply_to` (Attributes List) ApplyTo lists the specific groups, versions and kinds a mutation will be applied to.This is necessary because every mutation implies part of an object schema and objectschemas are associated with specific GVKs. (see [below for nested schema](#nestedatt--spec--apply_to))
+- `apply_to` (Attributes List) ApplyTo lists the specific groups, versions and kinds a mutation will be applied to. This is necessary because every mutation implies part of an object schema and object schemas are associated with specific GVKs. (see [below for nested schema](#nestedatt--spec--apply_to))
 - `location` (String) Location describes the path to be mutated, for example: 'spec.containers[name: main].args'.
-- `match` (Attributes) Match allows the user to limit which resources get mutated.Individual match criteria are AND-ed together. An undefinedmatch criteria matches everything. (see [below for nested schema](#nestedatt--spec--match))
+- `match` (Attributes) Match allows the user to limit which resources get mutated. Individual match criteria are AND-ed together. An undefined match criteria matches everything. (see [below for nested schema](#nestedatt--spec--match))
 - `parameters` (Attributes) Parameters define the behavior of the mutator. (see [below for nested schema](#nestedatt--spec--parameters))
 
 <a id="nestedatt--spec--apply_to"></a>
@@ -74,21 +74,21 @@ Optional:
 
 Optional:
 
-- `excluded_namespaces` (List of String) ExcludedNamespaces is a list of namespace names. If defined, aconstraint only applies to resources not in a listed namespace.ExcludedNamespaces also supports a prefix or suffix based glob.  For example,'excludedNamespaces: [kube-*]' matches both 'kube-system' and'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and'gatekeeper-system'.
+- `excluded_namespaces` (List of String) ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob. For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.
 - `kinds` (Attributes List) (see [below for nested schema](#nestedatt--spec--match--kinds))
-- `label_selector` (Attributes) LabelSelector is the combination of two optional fields: 'matchLabels'and 'matchExpressions'.  These two fields provide different methods ofselecting or excluding k8s objects based on the label keys and valuesincluded in object metadata.  All selection expressions from bothsections are ANDed to determine if an object meets the cumulativerequirements of the selector. (see [below for nested schema](#nestedatt--spec--match--label_selector))
-- `name` (String) Name is the name of an object.  If defined, it will match against objects with the specifiedname.  Name also supports a prefix or suffix glob.  For example, 'name: pod-*' would matchboth 'pod-a' and 'pod-b', and 'name: *-pod' would match both 'a-pod' and 'b-pod'.
-- `namespace_selector` (Attributes) NamespaceSelector is a label selector against an object's containingnamespace or the object itself, if the object is a namespace. (see [below for nested schema](#nestedatt--spec--match--namespace_selector))
-- `namespaces` (List of String) Namespaces is a list of namespace names. If defined, a constraint onlyapplies to resources in a listed namespace.  Namespaces also supports aprefix or suffix based glob.  For example, 'namespaces: [kube-*]' matches both'kube-system' and 'kube-public', and 'namespaces: [*-system]' matches both'kube-system' and 'gatekeeper-system'.
-- `scope` (String) Scope determines if cluster-scoped and/or namespaced-scoped resourcesare matched.  Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')
-- `source` (String) Source determines whether generated or original resources are matched.Accepts 'Generated'|'Original'|'All' (defaults to 'All'). A value of'Generated' will only match generated resources, while 'Original' will onlymatch regular resources.
+- `label_selector` (Attributes) LabelSelector is the combination of two optional fields: 'matchLabels' and 'matchExpressions'. These two fields provide different methods of selecting or excluding k8s objects based on the label keys and values included in object metadata. All selection expressions from both sections are ANDed to determine if an object meets the cumulative requirements of the selector. (see [below for nested schema](#nestedatt--spec--match--label_selector))
+- `name` (String) Name is the name of an object. If defined, it will match against objects with the specified name. Name also supports a prefix or suffix glob. For example, 'name: pod-*' would match both 'pod-a' and 'pod-b', and 'name: *-pod' would match both 'a-pod' and 'b-pod'.
+- `namespace_selector` (Attributes) NamespaceSelector is a label selector against an object's containing namespace or the object itself, if the object is a namespace. (see [below for nested schema](#nestedatt--spec--match--namespace_selector))
+- `namespaces` (List of String) Namespaces is a list of namespace names. If defined, a constraint only applies to resources in a listed namespace. Namespaces also supports a prefix or suffix based glob. For example, 'namespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'namespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.
+- `scope` (String) Scope determines if cluster-scoped and/or namespaced-scoped resources are matched. Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')
+- `source` (String) Source determines whether generated or original resources are matched. Accepts 'Generated'|'Original'|'All' (defaults to 'All'). A value of 'Generated' will only match generated resources, while 'Original' will only match regular resources.
 
 <a id="nestedatt--spec--match--kinds"></a>
 ### Nested Schema for `spec.match.kinds`
 
 Optional:
 
-- `api_groups` (List of String) APIGroups is the API groups the resources belong to. '*' is all groups.If '*' is present, the length of the slice must be one.Required.
+- `api_groups` (List of String) APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.
 - `kinds` (List of String)
 
 
@@ -98,7 +98,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--match--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--match--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.match.label_selector.match_expressions`
@@ -106,11 +106,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -120,7 +120,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--match--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--match--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.match.namespace_selector.match_expressions`
@@ -128,11 +128,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -143,7 +143,7 @@ Optional:
 Optional:
 
 - `operation` (String) Operation describes whether values should be merged in ('merge'), or pruned ('prune'). Default value is 'merge'
-- `path_tests` (Attributes List) PathTests are a series of existence tests that can be checkedbefore a mutation is applied (see [below for nested schema](#nestedatt--spec--parameters--path_tests))
+- `path_tests` (Attributes List) PathTests are a series of existence tests that can be checked before a mutation is applied (see [below for nested schema](#nestedatt--spec--parameters--path_tests))
 - `values` (Map of String) Values describes the values provided to the operation as 'values.fromList'.
 
 <a id="nestedatt--spec--parameters--path_tests"></a>

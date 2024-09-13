@@ -30,7 +30,7 @@ data "k8s_apigatewayv2_services_k8s_aws_vpc_link_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) VpcLinkSpec defines the desired state of VpcLink.Represents a VPC link. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) VpcLinkSpec defines the desired state of VpcLink. Represents a VPC link. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

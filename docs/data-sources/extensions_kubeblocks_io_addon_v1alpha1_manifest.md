@@ -61,9 +61,9 @@ Optional:
 
 - `cli_plugins` (Attributes List) Specifies the CLI plugin installation specifications. (see [below for nested schema](#nestedatt--spec--cli_plugins))
 - `description` (String) Specifies the description of the add-on.
-- `helm` (Attributes) Represents the Helm installation specifications. This is only processedwhen the type is set to 'helm'. (see [below for nested schema](#nestedatt--spec--helm))
+- `helm` (Attributes) Represents the Helm installation specifications. This is only processed when the type is set to 'helm'. (see [below for nested schema](#nestedatt--spec--helm))
 - `install` (Attributes) Defines the installation parameters. (see [below for nested schema](#nestedatt--spec--install))
-- `installable` (Attributes) Represents the installable specifications of the add-on. This includesthe selector and auto-install settings. (see [below for nested schema](#nestedatt--spec--installable))
+- `installable` (Attributes) Represents the installable specifications of the add-on. This includes the selector and auto-install settings. (see [below for nested schema](#nestedatt--spec--installable))
 - `provider` (String) Specifies the provider of the add-on.
 - `version` (String) Indicates the version of the add-on.
 
@@ -77,7 +77,7 @@ Optional:
 - `persistent_volume_enabled` (Boolean) Indicates whether the Persistent Volume is enabled or not.
 - `replicas` (Number) Specifies the number of replicas.
 - `resources` (Attributes) Specifies the resource requirements. (see [below for nested schema](#nestedatt--spec--default_install_values--resources))
-- `selectors` (Attributes List) Indicates the default selectors for add-on installations. If multiple selectors are provided,all selectors must evaluate to true. (see [below for nested schema](#nestedatt--spec--default_install_values--selectors))
+- `selectors` (Attributes List) Indicates the default selectors for add-on installations. If multiple selectors are provided, all selectors must evaluate to true. (see [below for nested schema](#nestedatt--spec--default_install_values--selectors))
 - `storage_class` (String) Specifies the name of the storage class.
 - `tolerations` (String) Specifies the tolerations in a JSON array string format.
 
@@ -101,8 +101,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
 
 
 
@@ -111,8 +111,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
 
 
 <a id="nestedatt--spec--default_install_values--selectors"></a>
@@ -120,8 +120,8 @@ Optional:
 
 Required:
 
-- `key` (String) The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider.- 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24.- 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks.- 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex.Possible enum values:- 'Contains' line contains a string.- 'DoesNotContain' line does not contain a string.- 'MatchRegex' line contains a match to the regular expression.- 'DoesNotMatchRegex' line does not contain a match to the regular expression.
+- `key` (String) The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider. - 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24. - 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks. - 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex. Possible enum values: - 'Contains' line contains a string. - 'DoesNotContain' line does not contain a string. - 'MatchRegex' line contains a match to the regular expression. - 'DoesNotMatchRegex' line does not contain a match to the regular expression.
 
 Optional:
 
@@ -152,7 +152,7 @@ Required:
 Optional:
 
 - `charts_image` (String) Defines the image of Helm charts.
-- `charts_path_in_image` (String) Defines the path of Helm charts in the image. This path is used to copyHelm charts from the image to the shared volume. The default path is '/charts'.
+- `charts_path_in_image` (String) Defines the path of Helm charts in the image. This path is used to copy Helm charts from the image to the shared volume. The default path is '/charts'.
 - `install_options` (Map of String) Defines the options for Helm release installation.
 - `install_values` (Attributes) Defines the set values for Helm release installation. (see [below for nested schema](#nestedatt--spec--helm--install_values))
 - `values_mapping` (Attributes) Defines the mapping of add-on normalized resources parameters to Helm values' keys. (see [below for nested schema](#nestedatt--spec--helm--values_mapping))
@@ -162,8 +162,8 @@ Optional:
 
 Optional:
 
-- `config_map_refs` (Attributes List) Selects a key from a ConfigMap item list. The value can bea JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml'extension to specify a content type. (see [below for nested schema](#nestedatt--spec--helm--install_values--config_map_refs))
-- `secret_refs` (Attributes List) Selects a key from a Secrets item list. The value can bea JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml'extension to specify a content type. (see [below for nested schema](#nestedatt--spec--helm--install_values--secret_refs))
+- `config_map_refs` (Attributes List) Selects a key from a ConfigMap item list. The value can be a JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml' extension to specify a content type. (see [below for nested schema](#nestedatt--spec--helm--install_values--config_map_refs))
+- `secret_refs` (Attributes List) Selects a key from a Secrets item list. The value can be a JSON or YAML string content. Use a key name with '.json', '.yaml', or '.yml' extension to specify a content type. (see [below for nested schema](#nestedatt--spec--helm--install_values--secret_refs))
 - `set_json_values` (List of String) JSON values set during Helm installation. Multiple or separate values can be specified with commas (key1=jsonval1,key2=jsonval2).
 - `set_values` (List of String) Values set during Helm installation. Multiple or separate values can be specified with commas (key1=val1,key2=val2).
 - `urls` (List of String) Specifies the URL location of the values file.
@@ -193,9 +193,9 @@ Required:
 Optional:
 
 - `extras` (Attributes List) Helm value mapping items for extra items. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--extras))
-- `json_map` (Attributes) Defines the 'key' mapping values. The valid key is tolerations.Enum values explained:- 'tolerations' sets the toleration mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--json_map))
+- `json_map` (Attributes) Defines the 'key' mapping values. The valid key is tolerations. Enum values explained: - 'tolerations' sets the toleration mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--json_map))
 - `resources` (Attributes) Sets resources related mapping keys. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--resources))
-- `value_map` (Attributes) Defines the 'key' mapping values. Valid keys include 'replicaCount','persistentVolumeEnabled', and 'storageClass'.Enum values explained:- 'replicaCount' sets the replicaCount value mapping key.- 'persistentVolumeEnabled' sets the persistent volume enabled mapping key.- 'storageClass' sets the storageClass mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--value_map))
+- `value_map` (Attributes) Defines the 'key' mapping values. Valid keys include 'replicaCount', 'persistentVolumeEnabled', and 'storageClass'. Enum values explained: - 'replicaCount' sets the replicaCount value mapping key. - 'persistentVolumeEnabled' sets the persistent volume enabled mapping key. - 'storageClass' sets the storageClass mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--value_map))
 
 <a id="nestedatt--spec--helm--values_mapping--extras"></a>
 ### Nested Schema for `spec.helm.values_mapping.extras`
@@ -206,9 +206,9 @@ Required:
 
 Optional:
 
-- `json_map` (Attributes) Defines the 'key' mapping values. The valid key is tolerations.Enum values explained:- 'tolerations' sets the toleration mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--extras--json_map))
+- `json_map` (Attributes) Defines the 'key' mapping values. The valid key is tolerations. Enum values explained: - 'tolerations' sets the toleration mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--extras--json_map))
 - `resources` (Attributes) Sets resources related mapping keys. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--extras--resources))
-- `value_map` (Attributes) Defines the 'key' mapping values. Valid keys include 'replicaCount','persistentVolumeEnabled', and 'storageClass'.Enum values explained:- 'replicaCount' sets the replicaCount value mapping key.- 'persistentVolumeEnabled' sets the persistent volume enabled mapping key.- 'storageClass' sets the storageClass mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--extras--value_map))
+- `value_map` (Attributes) Defines the 'key' mapping values. Valid keys include 'replicaCount', 'persistentVolumeEnabled', and 'storageClass'. Enum values explained: - 'replicaCount' sets the replicaCount value mapping key. - 'persistentVolumeEnabled' sets the persistent volume enabled mapping key. - 'storageClass' sets the storageClass mapping key. (see [below for nested schema](#nestedatt--spec--helm--values_mapping--extras--value_map))
 
 <a id="nestedatt--spec--helm--values_mapping--extras--json_map"></a>
 ### Nested Schema for `spec.helm.values_mapping.extras.json_map`
@@ -338,8 +338,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
 
 
 
@@ -348,8 +348,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified;otherwise, it defaults to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified; otherwise, it defaults to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/.
 
 
 
@@ -362,15 +362,15 @@ Required:
 
 Optional:
 
-- `selectors` (Attributes List) Specifies the selectors for add-on installation. If multiple selectors are provided,they must all evaluate to true for the add-on to be installed. (see [below for nested schema](#nestedatt--spec--installable--selectors))
+- `selectors` (Attributes List) Specifies the selectors for add-on installation. If multiple selectors are provided, they must all evaluate to true for the add-on to be installed. (see [below for nested schema](#nestedatt--spec--installable--selectors))
 
 <a id="nestedatt--spec--installable--selectors"></a>
 ### Nested Schema for `spec.installable.selectors`
 
 Required:
 
-- `key` (String) The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider.- 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24.- 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks.- 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex.Possible enum values:- 'Contains' line contains a string.- 'DoesNotContain' line does not contain a string.- 'MatchRegex' line contains a match to the regular expression.- 'DoesNotMatchRegex' line does not contain a match to the regular expression.
+- `key` (String) The selector key. Valid values are KubeVersion, KubeGitVersion and KubeProvider. - 'KubeVersion' the semver expression of Kubernetes versions, i.e., v1.24. - 'KubeGitVersion' may contain distro. info., i.e., v1.24.4+eks. - 'KubeProvider' the Kubernetes provider, i.e., aws, gcp, azure, huaweiCloud, tencentCloud etc.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are Contains, NotIn, DoesNotContain, MatchRegex, and DoesNoteMatchRegex. Possible enum values: - 'Contains' line contains a string. - 'DoesNotContain' line does not contain a string. - 'MatchRegex' line contains a match to the regular expression. - 'DoesNotMatchRegex' line does not contain a match to the regular expression.
 
 Optional:
 

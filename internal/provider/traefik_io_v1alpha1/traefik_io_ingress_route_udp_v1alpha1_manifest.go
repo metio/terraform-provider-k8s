@@ -135,8 +135,8 @@ func (r *TraefikIoIngressRouteUdpV1Alpha1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "IngressRouteUDPSpec defines the desired state of a IngressRouteUDP.",
 				Attributes: map[string]schema.Attribute{
 					"entry_points": schema.ListAttribute{
-						Description:         "EntryPoints defines the list of entry point names to bind to.Entry points have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/Default: all.",
-						MarkdownDescription: "EntryPoints defines the list of entry point names to bind to.Entry points have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/Default: all.",
+						Description:         "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/ Default: all.",
+						MarkdownDescription: "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/entrypoints/ Default: all.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -170,24 +170,24 @@ func (r *TraefikIoIngressRouteUdpV1Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"native_lb": schema.BoolAttribute{
-												Description:         "NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.",
-												MarkdownDescription: "NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.",
+												Description:         "NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.",
+												MarkdownDescription: "NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"node_port_lb": schema.BoolAttribute{
-												Description:         "NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.",
-												MarkdownDescription: "NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.",
+												Description:         "NodePortLB controls, when creating the load-balancer, whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort. It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes. By default, NodePortLB is false.",
+												MarkdownDescription: "NodePortLB controls, when creating the load-balancer, whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort. It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes. By default, NodePortLB is false.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"port": schema.StringAttribute{
-												Description:         "Port defines the port of a Kubernetes Service.This can be a reference to a named port.",
-												MarkdownDescription: "Port defines the port of a Kubernetes Service.This can be a reference to a named port.",
+												Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+												MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,

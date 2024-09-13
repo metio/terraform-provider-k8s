@@ -61,7 +61,7 @@ Required:
 Optional:
 
 - `description` (String) Description can be used by the creator of the policy to describe the purpose of this policy.
-- `skip_redirect_from_backend` (Boolean) SkipRedirectFromBackend indicates whether traffic matching RedirectFrontend from RedirectBackend should skip redirection, and hence the traffic will be forwarded as-is.  The default is false which means traffic matching RedirectFrontend will get redirected from all pods, including the RedirectBackend(s).  Example: If RedirectFrontend is configured to '169.254.169.254:80' as the traffic that needs to be redirected to backends selected by RedirectBackend, if SkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80' from such backends will not be redirected back to the backends. Instead, the matched traffic from the backends will be forwarded to the original destination '169.254.169.254:80'.
+- `skip_redirect_from_backend` (Boolean) SkipRedirectFromBackend indicates whether traffic matching RedirectFrontend from RedirectBackend should skip redirection, and hence the traffic will be forwarded as-is. The default is false which means traffic matching RedirectFrontend will get redirected from all pods, including the RedirectBackend(s). Example: If RedirectFrontend is configured to '169.254.169.254:80' as the traffic that needs to be redirected to backends selected by RedirectBackend, if SkipRedirectFromBackend is set to true, traffic going to '169.254.169.254:80' from such backends will not be redirected back to the backends. Instead, the matched traffic from the backends will be forwarded to the original destination '169.254.169.254:80'.
 
 <a id="nestedatt--spec--redirect_backend"></a>
 ### Nested Schema for `spec.redirect_backend`
@@ -120,8 +120,8 @@ Optional:
 
 Required:
 
-- `ip` (String) IP is a destination ip address for traffic to be redirected.  Example: When it is set to '169.254.169.254', traffic destined to '169.254.169.254' is redirected.
-- `to_ports` (Attributes List) ToPorts is a list of destination L4 ports with protocol for traffic to be redirected. When multiple ports are specified, the ports must be named.  Example: When set to Port: '53' and Protocol: UDP, traffic destined to port '53' with UDP protocol is redirected. (see [below for nested schema](#nestedatt--spec--redirect_frontend--address_matcher--to_ports))
+- `ip` (String) IP is a destination ip address for traffic to be redirected. Example: When it is set to '169.254.169.254', traffic destined to '169.254.169.254' is redirected.
+- `to_ports` (Attributes List) ToPorts is a list of destination L4 ports with protocol for traffic to be redirected. When multiple ports are specified, the ports must be named. Example: When set to Port: '53' and Protocol: UDP, traffic destined to port '53' with UDP protocol is redirected. (see [below for nested schema](#nestedatt--spec--redirect_frontend--address_matcher--to_ports))
 
 <a id="nestedatt--spec--redirect_frontend--address_matcher--to_ports"></a>
 ### Nested Schema for `spec.redirect_frontend.address_matcher.to_ports`
@@ -142,8 +142,8 @@ Optional:
 
 Required:
 
-- `namespace` (String) Namespace is the Kubernetes service namespace. The service namespace must match the namespace of the parent Local Redirect Policy.  For Cluster-wide Local Redirect Policy, this can be any namespace.
-- `service_name` (String) Name is the name of a destination Kubernetes service that identifies traffic to be redirected. The service type needs to be ClusterIP.  Example: When this field is populated with 'serviceName:myService', all the traffic destined to the cluster IP of this service at the (specified) service port(s) will be redirected.
+- `namespace` (String) Namespace is the Kubernetes service namespace. The service namespace must match the namespace of the parent Local Redirect Policy. For Cluster-wide Local Redirect Policy, this can be any namespace.
+- `service_name` (String) Name is the name of a destination Kubernetes service that identifies traffic to be redirected. The service type needs to be ClusterIP. Example: When this field is populated with 'serviceName:myService', all the traffic destined to the cluster IP of this service at the (specified) service port(s) will be redirected.
 
 Optional:
 

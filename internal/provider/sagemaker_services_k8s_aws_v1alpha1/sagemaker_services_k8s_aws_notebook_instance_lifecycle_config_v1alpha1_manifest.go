@@ -139,8 +139,8 @@ func (r *SagemakerServicesK8SAwsNotebookInstanceLifecycleConfigV1Alpha1Manifest)
 					},
 
 					"on_create": schema.ListNestedAttribute{
-						Description:         "A shell script that runs only once, when you create a notebook instance.The shell script must be a base64-encoded string.",
-						MarkdownDescription: "A shell script that runs only once, when you create a notebook instance.The shell script must be a base64-encoded string.",
+						Description:         "A shell script that runs only once, when you create a notebook instance. The shell script must be a base64-encoded string.",
+						MarkdownDescription: "A shell script that runs only once, when you create a notebook instance. The shell script must be a base64-encoded string.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"content": schema.StringAttribute{
@@ -158,8 +158,8 @@ func (r *SagemakerServicesK8SAwsNotebookInstanceLifecycleConfigV1Alpha1Manifest)
 					},
 
 					"on_start": schema.ListNestedAttribute{
-						Description:         "A shell script that runs every time you start a notebook instance, includingwhen you create the notebook instance. The shell script must be a base64-encodedstring.",
-						MarkdownDescription: "A shell script that runs every time you start a notebook instance, includingwhen you create the notebook instance. The shell script must be a base64-encodedstring.",
+						Description:         "A shell script that runs every time you start a notebook instance, including when you create the notebook instance. The shell script must be a base64-encoded string.",
+						MarkdownDescription: "A shell script that runs every time you start a notebook instance, including when you create the notebook instance. The shell script must be a base64-encoded string.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"content": schema.StringAttribute{

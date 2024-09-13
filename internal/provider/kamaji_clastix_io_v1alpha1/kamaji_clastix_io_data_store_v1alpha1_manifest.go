@@ -169,16 +169,16 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "DataStoreSpec defines the desired state of DataStore.",
 				Attributes: map[string]schema.Attribute{
 					"basic_auth": schema.SingleNestedAttribute{
-						Description:         "In case of authentication enabled for the given data store, specifies the username and password pair.This value is optional.",
-						MarkdownDescription: "In case of authentication enabled for the given data store, specifies the username and password pair.This value is optional.",
+						Description:         "In case of authentication enabled for the given data store, specifies the username and password pair. This value is optional.",
+						MarkdownDescription: "In case of authentication enabled for the given data store, specifies the username and password pair. This value is optional.",
 						Attributes: map[string]schema.Attribute{
 							"password": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"content": schema.StringAttribute{
-										Description:         "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
-										MarkdownDescription: "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
+										Description:         "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
+										MarkdownDescription: "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -192,8 +192,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"key_path": schema.StringAttribute{
-												Description:         "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
-												MarkdownDescription: "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
+												Description:         "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
+												MarkdownDescription: "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -233,8 +233,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"content": schema.StringAttribute{
-										Description:         "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
-										MarkdownDescription: "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
+										Description:         "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
+										MarkdownDescription: "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -248,8 +248,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"key_path": schema.StringAttribute{
-												Description:         "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
-												MarkdownDescription: "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
+												Description:         "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
+												MarkdownDescription: "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -301,8 +301,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"endpoints": schema.ListAttribute{
-						Description:         "List of the endpoints to connect to the shared datastore.No need for protocol, just bare IP/FQDN and port.",
-						MarkdownDescription: "List of the endpoints to connect to the shared datastore.No need for protocol, just bare IP/FQDN and port.",
+						Description:         "List of the endpoints to connect to the shared datastore. No need for protocol, just bare IP/FQDN and port.",
+						MarkdownDescription: "List of the endpoints to connect to the shared datastore. No need for protocol, just bare IP/FQDN and port.",
 						ElementType:         types.StringType,
 						Required:            true,
 						Optional:            false,
@@ -310,20 +310,20 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"tls_config": schema.SingleNestedAttribute{
-						Description:         "Defines the TLS/SSL configuration required to connect to the data store in a secure way.This value is optional.",
-						MarkdownDescription: "Defines the TLS/SSL configuration required to connect to the data store in a secure way.This value is optional.",
+						Description:         "Defines the TLS/SSL configuration required to connect to the data store in a secure way. This value is optional.",
+						MarkdownDescription: "Defines the TLS/SSL configuration required to connect to the data store in a secure way. This value is optional.",
 						Attributes: map[string]schema.Attribute{
 							"certificate_authority": schema.SingleNestedAttribute{
-								Description:         "Retrieve the Certificate Authority certificate and private key, such as bare content of the file, or a SecretReference.The key reference is required since etcd authentication is based on certificates, and Kamaji is responsible in creating this.",
-								MarkdownDescription: "Retrieve the Certificate Authority certificate and private key, such as bare content of the file, or a SecretReference.The key reference is required since etcd authentication is based on certificates, and Kamaji is responsible in creating this.",
+								Description:         "Retrieve the Certificate Authority certificate and private key, such as bare content of the file, or a SecretReference. The key reference is required since etcd authentication is based on certificates, and Kamaji is responsible in creating this.",
+								MarkdownDescription: "Retrieve the Certificate Authority certificate and private key, such as bare content of the file, or a SecretReference. The key reference is required since etcd authentication is based on certificates, and Kamaji is responsible in creating this.",
 								Attributes: map[string]schema.Attribute{
 									"certificate": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"content": schema.StringAttribute{
-												Description:         "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
-												MarkdownDescription: "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
+												Description:         "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
+												MarkdownDescription: "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -337,8 +337,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"key_path": schema.StringAttribute{
-														Description:         "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
-														MarkdownDescription: "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
+														Description:         "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
+														MarkdownDescription: "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -378,8 +378,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"content": schema.StringAttribute{
-												Description:         "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
-												MarkdownDescription: "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
+												Description:         "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
+												MarkdownDescription: "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -393,8 +393,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"key_path": schema.StringAttribute{
-														Description:         "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
-														MarkdownDescription: "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
+														Description:         "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
+														MarkdownDescription: "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -443,8 +443,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"content": schema.StringAttribute{
-												Description:         "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
-												MarkdownDescription: "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
+												Description:         "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
+												MarkdownDescription: "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -458,8 +458,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"key_path": schema.StringAttribute{
-														Description:         "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
-														MarkdownDescription: "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
+														Description:         "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
+														MarkdownDescription: "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -499,8 +499,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"content": schema.StringAttribute{
-												Description:         "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
-												MarkdownDescription: "Bare content of the file, base64 encoded.It has precedence over the SecretReference value.",
+												Description:         "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
+												MarkdownDescription: "Bare content of the file, base64 encoded. It has precedence over the SecretReference value.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -514,8 +514,8 @@ func (r *KamajiClastixIoDataStoreV1Alpha1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"key_path": schema.StringAttribute{
-														Description:         "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
-														MarkdownDescription: "Name of the key for the given Secret reference where the content is stored.This value is mandatory.",
+														Description:         "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
+														MarkdownDescription: "Name of the key for the given Secret reference where the content is stored. This value is mandatory.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,

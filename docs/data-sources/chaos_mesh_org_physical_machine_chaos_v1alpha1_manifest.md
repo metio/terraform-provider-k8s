@@ -108,7 +108,7 @@ Optional:
 - `stress_mem` (Attributes) (see [below for nested schema](#nestedatt--spec--stress_mem))
 - `uid` (String) the experiment ID
 - `user_defined` (Attributes) (see [below for nested schema](#nestedatt--spec--user_defined))
-- `value` (String) Value is required when the mode is set to 'FixedMode' / 'FixedPercentMode' / 'RandomMaxPercentMode'. If 'FixedMode', provide an integer of physical machines to do chaos action. If 'FixedPercentMode', provide a number from 0-100 to specify the percent of physical machines the server can do chaos action. IF 'RandomMaxPercentMode',  provide a number from 0-100 to specify the max percent of pods to do chaos action
+- `value` (String) Value is required when the mode is set to 'FixedMode' / 'FixedPercentMode' / 'RandomMaxPercentMode'. If 'FixedMode', provide an integer of physical machines to do chaos action. If 'FixedPercentMode', provide a number from 0-100 to specify the percent of physical machines the server can do chaos action. IF 'RandomMaxPercentMode', provide a number from 0-100 to specify the max percent of pods to do chaos action
 - `vm` (Attributes) (see [below for nested schema](#nestedatt--spec--vm))
 
 <a id="nestedatt--spec--clock"></a>

@@ -62,13 +62,13 @@ Required:
 
 Optional:
 
-- `address` (String) Address specifies the endpoint, in a generic sense, to where alerts are sent.What kind of endpoint depends on the specific Provider type being used.For the generic Provider, for example, this is an HTTP/S address.For other Provider types this could be a project ID or a namespace.
-- `cert_secret_ref` (Attributes) CertSecretRef specifies the Secret containinga PEM-encoded CA certificate (in the 'ca.crt' key).Note: Support for the 'caFile' key hasbeen deprecated. (see [below for nested schema](#nestedatt--spec--cert_secret_ref))
+- `address` (String) Address specifies the endpoint, in a generic sense, to where alerts are sent. What kind of endpoint depends on the specific Provider type being used. For the generic Provider, for example, this is an HTTP/S address. For other Provider types this could be a project ID or a namespace.
+- `cert_secret_ref` (Attributes) CertSecretRef specifies the Secret containing a PEM-encoded CA certificate (in the 'ca.crt' key). Note: Support for the 'caFile' key has been deprecated. (see [below for nested schema](#nestedatt--spec--cert_secret_ref))
 - `channel` (String) Channel specifies the destination channel where events should be posted.
-- `interval` (String) Interval at which to reconcile the Provider with its Secret references.Deprecated and not used in v1beta3.
+- `interval` (String) Interval at which to reconcile the Provider with its Secret references. Deprecated and not used in v1beta3.
 - `proxy` (String) Proxy the HTTP/S address of the proxy server.
-- `secret_ref` (Attributes) SecretRef specifies the Secret containing the authenticationcredentials for this Provider. (see [below for nested schema](#nestedatt--spec--secret_ref))
-- `suspend` (Boolean) Suspend tells the controller to suspend subsequentevents handling for this Provider.
+- `secret_ref` (Attributes) SecretRef specifies the Secret containing the authentication credentials for this Provider. (see [below for nested schema](#nestedatt--spec--secret_ref))
+- `suspend` (Boolean) Suspend tells the controller to suspend subsequent events handling for this Provider.
 - `timeout` (String) Timeout for sending alerts to the Provider.
 - `username` (String) Username specifies the name under which events are posted.
 

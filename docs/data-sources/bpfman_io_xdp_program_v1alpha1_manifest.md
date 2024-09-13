@@ -54,7 +54,7 @@ Required:
 - `bpffunctionname` (String) BpfFunctionName is the name of the function that is the entry point for the BPF program
 - `bytecode` (Attributes) Bytecode configures where the bpf program's bytecode should be loaded from. (see [below for nested schema](#nestedatt--spec--bytecode))
 - `interfaceselector` (Attributes) Selector to determine the network interface (or interfaces) (see [below for nested schema](#nestedatt--spec--interfaceselector))
-- `nodeselector` (Attributes) NodeSelector allows the user to specify which nodes to deploy the bpf program to.  This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty. (see [below for nested schema](#nestedatt--spec--nodeselector))
+- `nodeselector` (Attributes) NodeSelector allows the user to specify which nodes to deploy the bpf program to. This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty. (see [below for nested schema](#nestedatt--spec--nodeselector))
 - `priority` (Number) Priority specifies the priority of the bpf program in relation to other programs of the same type with the same attach point. It is a value from 0 to 1000 where lower values have higher precedence.
 
 Optional:

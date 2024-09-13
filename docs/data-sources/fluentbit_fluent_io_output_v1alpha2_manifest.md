@@ -55,7 +55,7 @@ Optional:
 
 Optional:
 
-- `alias` (String) A user friendly alias name for this output plugin.Used in metrics for distinction of each configured output.
+- `alias` (String) A user friendly alias name for this output plugin. Used in metrics for distinction of each configured output.
 - `azure_blob` (Attributes) AzureBlob defines AzureBlob Output Configuration (see [below for nested schema](#nestedatt--spec--azure_blob))
 - `azure_log_analytics` (Attributes) AzureLogAnalytics defines AzureLogAnalytics Output Configuration (see [below for nested schema](#nestedatt--spec--azure_log_analytics))
 - `cloud_watch` (Attributes) CloudWatch defines CloudWatch Output Configuration (see [below for nested schema](#nestedatt--spec--cloud_watch))
@@ -72,15 +72,15 @@ Optional:
 - `kinesis` (Attributes) Kinesis defines Kinesis Output configuration. (see [below for nested schema](#nestedatt--spec--kinesis))
 - `log_level` (String) Set the plugin's logging verbosity level. Allowed values are: off, error, warn, info, debug and trace, Defaults to the SERVICE section's Log_Level
 - `loki` (Attributes) Loki defines Loki Output configuration. (see [below for nested schema](#nestedatt--spec--loki))
-- `match` (String) A pattern to match against the tags of incoming records.It's case sensitive and support the star (*) character as a wildcard.
-- `match_regex` (String) A regular expression to match against the tags of incoming records.Use this option if you want to use the full regex syntax.
+- `match` (String) A pattern to match against the tags of incoming records. It's case sensitive and support the star (*) character as a wildcard.
+- `match_regex` (String) A regular expression to match against the tags of incoming records. Use this option if you want to use the full regex syntax.
 - `null` (Map of String) Null defines Null Output configuration.
 - `opensearch` (Attributes) OpenSearch defines OpenSearch Output configuration. (see [below for nested schema](#nestedatt--spec--opensearch))
 - `opentelemetry` (Attributes) OpenTelemetry defines OpenTelemetry Output configuration. (see [below for nested schema](#nestedatt--spec--opentelemetry))
 - `processors` (Map of String) Processors defines the processors configuration
 - `prometheus_exporter` (Attributes) PrometheusExporter_types defines Prometheus exporter configuration to expose metrics from Fluent Bit. (see [below for nested schema](#nestedatt--spec--prometheus_exporter))
 - `prometheus_remote_write` (Attributes) PrometheusRemoteWrite_types defines Prometheus Remote Write configuration. (see [below for nested schema](#nestedatt--spec--prometheus_remote_write))
-- `retry_limit` (String) RetryLimit represents configuration for the scheduler which can be set independently on each output section.This option allows to disable retries or impose a limit to try N times and then discard the data after reaching that limit.
+- `retry_limit` (String) RetryLimit represents configuration for the scheduler which can be set independently on each output section. This option allows to disable retries or impose a limit to try N times and then discard the data after reaching that limit.
 - `s3` (Attributes) S3 defines S3 Output configuration. (see [below for nested schema](#nestedatt--spec--s3))
 - `splunk` (Attributes) Splunk defines Splunk Output Configuration (see [below for nested schema](#nestedatt--spec--splunk))
 - `stackdriver` (Attributes) Stackdriver defines Stackdriver Output Configuration (see [below for nested schema](#nestedatt--spec--stackdriver))
@@ -126,11 +126,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -161,7 +161,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--azure_blob--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -186,11 +186,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -231,11 +231,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -260,11 +260,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -292,7 +292,7 @@ Optional:
 - `log_stream_name` (String) The name of the CloudWatch Log Stream to send log records to
 - `log_stream_prefix` (String) Prefix for the Log Stream name. Not compatible with LogStreamName setting
 - `log_stream_template` (String) Template for Log Stream name. Overrides LogStreamPrefix and LogStreamName if set.
-- `metric_dimensions` (String) Optional lists of lists for dimension keys to be added to all metrics. Use comma separated stringsfor one list of dimensions and semicolon separated strings for list of lists dimensions.
+- `metric_dimensions` (String) Optional lists of lists for dimension keys to be added to all metrics. Use comma separated strings for one list of dimensions and semicolon separated strings for list of lists dimensions.
 - `metric_namespace` (String) Optional string to represent the CloudWatch namespace.
 - `role_arn` (String) Role ARN to use for cross-account access
 - `sts_endpoint` (String) Specify a custom STS endpoint for the AWS STS API
@@ -303,7 +303,7 @@ Optional:
 
 Optional:
 
-- `config` (String) Config holds any unsupported plugins classic configurations,if ConfigFileFormat is set to yaml, this filed will be ignored
+- `config` (String) Config holds any unsupported plugins classic configurations, if ConfigFileFormat is set to yaml, this filed will be ignored
 - `yaml_config` (Map of String) YamlConfig holds the unsupported plugins yaml configurations, it only works when the ConfigFileFormat is yaml
 
 
@@ -313,7 +313,7 @@ Optional:
 Optional:
 
 - `apikey` (Attributes) Your Datadog API key. (see [below for nested schema](#nestedatt--spec--datadog--apikey))
-- `compress` (String) Compress  the payload in GZIP format.Datadog supports and recommends setting this to gzip.
+- `compress` (String) Compress the payload in GZIP format. Datadog supports and recommends setting this to gzip.
 - `dd_message_key` (String) By default, the plugin searches for the key 'log' and remap the value to the key 'message'. If the property is set, the plugin will search the property name key.
 - `dd_service` (String) The human readable name for your service generating the logs.
 - `dd_source` (String) A human readable name for the underlying technology of your service.
@@ -324,7 +324,7 @@ Optional:
 - `provider` (String) To activate the remapping, specify configuration flag provider.
 - `proxy` (String) Specify an HTTP Proxy.
 - `tag_key` (String) The key name of tag. If include_tag_key is false, This property is ignored.
-- `tls` (Boolean) TLS controls whether to use end-to-end security communications security protocol.Datadog recommends setting this to on.
+- `tls` (Boolean) TLS controls whether to use end-to-end security communications security protocol. Datadog recommends setting this to on.
 
 <a id="nestedatt--spec--datadog--apikey"></a>
 ### Nested Schema for `spec.datadog.apikey`
@@ -345,11 +345,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -362,16 +362,18 @@ Optional:
 Optional:
 
 - `aws_auth` (String) Enable AWS Sigv4 Authentication for Amazon ElasticSearch Service.
+- `aws_auth_secret` (Attributes) AWSAuthSecret Enable AWS Sigv4 Authentication for Amazon ElasticSearch Service. (see [below for nested schema](#nestedatt--spec--es--aws_auth_secret))
 - `aws_external_id` (String) External ID for the AWS IAM Role specified with aws_role_arn.
 - `aws_region` (String) Specify the AWS region for Amazon ElasticSearch Service.
 - `aws_role_arn` (String) AWS IAM Role to assume to put records to your Amazon ES cluster.
 - `aws_sts_endpoint` (String) Specify the custom sts endpoint to be used with STS API for Amazon ElasticSearch Service.
-- `buffer_size` (String) Specify the buffer size used to read the response from the Elasticsearch HTTP service.This option is useful for debugging purposes where is required to read full responses,note that response size grows depending of the number of records inserted.To set an unlimited amount of memory set this value to False,otherwise the value must be according to the Unit Size specification.
+- `buffer_size` (String) Specify the buffer size used to read the response from the Elasticsearch HTTP service. This option is useful for debugging purposes where is required to read full responses, note that response size grows depending of the number of records inserted. To set an unlimited amount of memory set this value to False, otherwise the value must be according to the Unit Size specification.
 - `cloud_auth` (String) Specify the credentials to use to connect to Elastic's Elasticsearch Service running on Elastic Cloud.
+- `cloud_auth_secret` (Attributes) CloudAuthSecret Specify the credentials to use to connect to Elastic's Elasticsearch Service running on Elastic Cloud. (see [below for nested schema](#nestedatt--spec--es--cloud_auth_secret))
 - `cloud_id` (String) If you are using Elastic's Elasticsearch Service you can specify the cloud_id of the cluster running.
 - `compress` (String) Set payload compression mechanism. Option available is 'gzip'
 - `current_time_index` (Boolean) Use current time for index generation instead of message record
-- `generate_id` (Boolean) When enabled, generate _id for outgoing records.This prevents duplicate records when retrying ES.
+- `generate_id` (Boolean) When enabled, generate _id for outgoing records. This prevents duplicate records when retrying ES.
 - `host` (String) IP address or hostname of the target Elasticsearch instance
 - `http_password` (Attributes) Password for user defined in HTTP_User (see [below for nested schema](#nestedatt--spec--es--http_password))
 - `http_user` (Attributes) Optional username credential for Elastic X-Pack access (see [below for nested schema](#nestedatt--spec--es--http_user))
@@ -379,17 +381,17 @@ Optional:
 - `include_tag_key` (Boolean) When enabled, it append the Tag name to the record.
 - `index` (String) Index name
 - `logstash_date_format` (String) Time format (based on strftime) to generate the second part of the Index name.
-- `logstash_format` (Boolean) Enable Logstash format compatibility.This option takes a boolean value: True/False, On/Off
-- `logstash_prefix` (String) When Logstash_Format is enabled, the Index name is composed using a prefix and the date,e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'.The last string appended belongs to the date when the data is being generated.
+- `logstash_format` (Boolean) Enable Logstash format compatibility. This option takes a boolean value: True/False, On/Off
+- `logstash_prefix` (String) When Logstash_Format is enabled, the Index name is composed using a prefix and the date, e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'. The last string appended belongs to the date when the data is being generated.
 - `logstash_prefix_key` (String) Prefix keys with this string
 - `networking` (Attributes) Include fluentbit networking options for this output-plugin (see [below for nested schema](#nestedatt--spec--es--networking))
-- `path` (String) Elasticsearch accepts new data on HTTP query path '/_bulk'.But it is also possible to serve Elasticsearch behind a reverse proxy on a subpath.This option defines such path on the fluent-bit side.It simply adds a path prefix in the indexing HTTP POST URI.
-- `pipeline` (String) Newer versions of Elasticsearch allows setting up filters called pipelines.This option allows defining which pipeline the database should use.For performance reasons is strongly suggested parsingand filtering on Fluent Bit side, avoid pipelines.
+- `path` (String) Elasticsearch accepts new data on HTTP query path '/_bulk'. But it is also possible to serve Elasticsearch behind a reverse proxy on a subpath. This option defines such path on the fluent-bit side. It simply adds a path prefix in the indexing HTTP POST URI.
+- `pipeline` (String) Newer versions of Elasticsearch allows setting up filters called pipelines. This option allows defining which pipeline the database should use. For performance reasons is strongly suggested parsing and filtering on Fluent Bit side, avoid pipelines.
 - `port` (Number) TCP port of the target Elasticsearch instance
 - `replace_dots` (Boolean) When enabled, replace field name dots with underscore, required by Elasticsearch 2.0-2.3.
 - `suppress_type_name` (String) When enabled, mapping types is removed and Type option is ignored. Types are deprecated in APIs in v7.0. This options is for v7.0 or later.
 - `tag_key` (String) When Include_Tag_Key is enabled, this property defines the key name for the tag.
-- `time_key` (String) When Logstash_Format is enabled, each record will get a new timestamp field.The Time_Key property defines the name of that field.
+- `time_key` (String) When Logstash_Format is enabled, each record will get a new timestamp field. The Time_Key property defines the name of that field.
 - `time_key_format` (String) When Logstash_Format is enabled, this property defines the format of the timestamp.
 - `time_key_nanos` (Boolean) When Logstash_Format is enabled, enabling this property sends nanosecond precision timestamps.
 - `tls` (Attributes) Fluent Bit provides integrated support for Transport Layer Security (TLS) and it predecessor Secure Sockets Layer (SSL) respectively. (see [below for nested schema](#nestedatt--spec--es--tls))
@@ -398,6 +400,64 @@ Optional:
 - `trace_output` (Boolean) When enabled print the elasticsearch API calls to stdout (for diag only)
 - `type` (String) Type name
 - `write_operation` (String) Operation to use to write in bulk requests.
+
+<a id="nestedatt--spec--es--aws_auth_secret"></a>
+### Nested Schema for `spec.es.aws_auth_secret`
+
+Optional:
+
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--es--aws_auth_secret--value_from))
+
+<a id="nestedatt--spec--es--aws_auth_secret--value_from"></a>
+### Nested Schema for `spec.es.aws_auth_secret.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--es--aws_auth_secret--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--es--aws_auth_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.es.aws_auth_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--es--cloud_auth_secret"></a>
+### Nested Schema for `spec.es.cloud_auth_secret`
+
+Optional:
+
+- `value_from` (Attributes) ValueSource defines how to find a value's key. (see [below for nested schema](#nestedatt--spec--es--cloud_auth_secret--value_from))
+
+<a id="nestedatt--spec--es--cloud_auth_secret--value_from"></a>
+### Nested Schema for `spec.es.cloud_auth_secret.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--es--cloud_auth_secret--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--es--cloud_auth_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.es.cloud_auth_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
 
 <a id="nestedatt--spec--es--http_password"></a>
 ### Nested Schema for `spec.es.http_password`
@@ -418,11 +478,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -447,11 +507,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -482,7 +542,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--es--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -507,11 +567,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -562,11 +622,11 @@ Optional:
 - `networking` (Attributes) Include fluentbit networking options for this output-plugin (see [below for nested schema](#nestedatt--spec--forward--networking))
 - `password` (Attributes) Specify the password corresponding to the username. (see [below for nested schema](#nestedatt--spec--forward--password))
 - `port` (Number) TCP Port of the target service.
-- `require_ack_response` (Boolean) Send 'chunk'-option and wait for 'ack' response from server.Enables at-least-once and receiving server can control rate of traffic.(Requires Fluentd v0.14.0+ server)
+- `require_ack_response` (Boolean) Send 'chunk'-option and wait for 'ack' response from server. Enables at-least-once and receiving server can control rate of traffic. (Requires Fluentd v0.14.0+ server)
 - `self_hostname` (String) Default value of the auto-generated certificate common name (CN).
 - `send_options` (Boolean) Always send options (with 'size'=count of messages)
 - `shared_key` (String) A key string known by the remote Fluentd used for authorization.
-- `tag` (String) Overwrite the tag as we transmit. This allows the receiving pipeline startfresh, or to attribute source.
+- `tag` (String) Overwrite the tag as we transmit. This allows the receiving pipeline start fresh, or to attribute source.
 - `time_as_integer` (Boolean) Set timestamps in integer format, it enable compatibility mode for Fluentd v0.12 series.
 - `tls` (Attributes) Fluent Bit provides integrated support for Transport Layer Security (TLS) and it predecessor Secure Sockets Layer (SSL) respectively. (see [below for nested schema](#nestedatt--spec--forward--tls))
 - `username` (Attributes) Specify the username to present to a Fluentd server that enables user_auth. (see [below for nested schema](#nestedatt--spec--forward--username))
@@ -607,11 +667,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -625,7 +685,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--forward--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -650,11 +710,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -680,11 +740,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -734,7 +794,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--gelf--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -759,11 +819,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -776,9 +836,9 @@ Optional:
 
 Optional:
 
-- `allow_duplicated_headers` (Boolean) Specify if duplicated headers are allowed.If a duplicated header is found, the latest key/value set is preserved.
+- `allow_duplicated_headers` (Boolean) Specify if duplicated headers are allowed. If a duplicated header is found, the latest key/value set is preserved.
 - `compress` (String) Set payload compression mechanism. Option available is 'gzip'
-- `format` (String) Specify the data format to be used in the HTTP request body, by default it uses msgpack.Other supported formats are json, json_stream and json_lines and gelf.
+- `format` (String) Specify the data format to be used in the HTTP request body, by default it uses msgpack. Other supported formats are json, json_stream and json_lines and gelf.
 - `gelf_full_message_key` (String) Specify the key to use for the full message in gelf format
 - `gelf_host_key` (String) Specify the key to use for the host in gelf format
 - `gelf_level_key` (String) Specify the key to use for the level in gelf format
@@ -789,12 +849,12 @@ Optional:
 - `host` (String) IP address or hostname of the target HTTP Server
 - `http_password` (Attributes) Basic Auth Password. Requires HTTP_User to be set (see [below for nested schema](#nestedatt--spec--http--http_password))
 - `http_user` (Attributes) Basic Auth Username (see [below for nested schema](#nestedatt--spec--http--http_user))
-- `json_date_format` (String) Specify the format of the date. Supported formats are double, epochand iso8601 (eg: 2018-05-30T09:39:52.000681Z)
-- `json_date_key` (String) Specify the name of the time key in the output record.To disable the time key just set the value to false.
+- `json_date_format` (String) Specify the format of the date. Supported formats are double, epoch and iso8601 (eg: 2018-05-30T09:39:52.000681Z)
+- `json_date_key` (String) Specify the name of the time key in the output record. To disable the time key just set the value to false.
 - `networking` (Attributes) Include fluentbit networking options for this output-plugin (see [below for nested schema](#nestedatt--spec--http--networking))
 - `port` (Number) TCP port of the target HTTP Server
-- `proxy` (String) Specify an HTTP Proxy. The expected format of this value is http://host:port.Note that https is not supported yet.
-- `tls` (Attributes) HTTP output plugin supports TTL/SSL, for more details about the properties availableand general configuration, please refer to the TLS/SSL section. (see [below for nested schema](#nestedatt--spec--http--tls))
+- `proxy` (String) Specify an HTTP Proxy. The expected format of this value is http://host:port. Note that https is not supported yet.
+- `tls` (Attributes) HTTP output plugin supports TTL/SSL, for more details about the properties available and general configuration, please refer to the TLS/SSL section. (see [below for nested schema](#nestedatt--spec--http--tls))
 - `uri` (String) Specify an optional HTTP URI for the target web server, e.g: /something
 
 <a id="nestedatt--spec--http--http_password"></a>
@@ -816,11 +876,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -845,11 +905,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -880,7 +940,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--http--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -905,11 +965,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -960,11 +1020,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -989,11 +1049,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1018,11 +1078,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1053,7 +1113,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--influx_db--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -1078,11 +1138,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1099,13 +1159,13 @@ Optional:
 - `dynamic_topic` (Boolean) adds unknown topics (found in Topic_Key) to Topics. So in Topics only a default topic needs to be configured
 - `format` (String) Specify data format, options available: json, msgpack.
 - `message_key` (String) Optional key to store the message
-- `message_key_field` (String) If set, the value of Message_Key_Field in the record will indicate the message key.If not set nor found in the record, Message_Key will be used (if set).
-- `queue_full_retries` (Number) Fluent Bit queues data into rdkafka library,if for some reason the underlying library cannot flush the records the queue might fills up blocking new addition of records.The queue_full_retries option set the number of local retries to enqueue the data.The default value is 10 times, the interval between each retry is 1 second.Setting the queue_full_retries value to 0 set's an unlimited number of retries.
+- `message_key_field` (String) If set, the value of Message_Key_Field in the record will indicate the message key. If not set nor found in the record, Message_Key will be used (if set).
+- `queue_full_retries` (Number) Fluent Bit queues data into rdkafka library, if for some reason the underlying library cannot flush the records the queue might fills up blocking new addition of records. The queue_full_retries option set the number of local retries to enqueue the data. The default value is 10 times, the interval between each retry is 1 second. Setting the queue_full_retries value to 0 set's an unlimited number of retries.
 - `rdkafka` (Map of String) {property} can be any librdkafka properties
 - `timestamp_format` (String) iso8601 or double
 - `timestamp_key` (String) Set the key to store the record timestamp
-- `topic_key` (String) If multiple Topics exists, the value of Topic_Key in the record will indicate the topic to use.E.g: if Topic_Key is router and the record is {'key1': 123, 'router': 'route_2'},Fluent Bit will use topic route_2. Note that if the value of Topic_Key is not present in Topics,then by default the first topic in the Topics list will indicate the topic to be used.
-- `topics` (String) Single entry or list of topics separated by comma (,) that Fluent Bit will use to send messages to Kafka.If only one topic is set, that one will be used for all records.Instead if multiple topics exists, the one set in the record by Topic_Key will be used.
+- `topic_key` (String) If multiple Topics exists, the value of Topic_Key in the record will indicate the topic to use. E.g: if Topic_Key is router and the record is {'key1': 123, 'router': 'route_2'}, Fluent Bit will use topic route_2. Note that if the value of Topic_Key is not present in Topics, then by default the first topic in the Topics list will indicate the topic to be used.
+- `topics` (String) Single entry or list of topics separated by comma (,) that Fluent Bit will use to send messages to Kafka. If only one topic is set, that one will be used for all records. Instead if multiple topics exists, the one set in the record by Topic_Key will be used.
 
 
 <a id="nestedatt--spec--kinesis"></a>
@@ -1138,19 +1198,19 @@ Required:
 Optional:
 
 - `auto_kubernetes_labels` (String) If set to true, it will add all Kubernetes labels to the Stream labels.
-- `bearer_token` (Attributes) Set bearer token authentication token value.Can be used as alterntative to HTTP basic authentication (see [below for nested schema](#nestedatt--spec--loki--bearer_token))
+- `bearer_token` (Attributes) Set bearer token authentication token value. Can be used as alterntative to HTTP basic authentication (see [below for nested schema](#nestedatt--spec--loki--bearer_token))
 - `drop_single_key` (String) If set to true and after extracting labels only a single key remains, the log line sent to Loki will be the value of that key in line_format.
-- `http_password` (Attributes) Password for user defined in HTTP_UserSet HTTP basic authentication password (see [below for nested schema](#nestedatt--spec--loki--http_password))
+- `http_password` (Attributes) Password for user defined in HTTP_User Set HTTP basic authentication password (see [below for nested schema](#nestedatt--spec--loki--http_password))
 - `http_user` (Attributes) Set HTTP basic authentication user name. (see [below for nested schema](#nestedatt--spec--loki--http_user))
-- `label_keys` (List of String) Optional list of record keys that will be placed as stream labels.This configuration property is for records key only.
+- `label_keys` (List of String) Optional list of record keys that will be placed as stream labels. This configuration property is for records key only.
 - `label_map_path` (String) Specify the label map file path. The file defines how to extract labels from each record.
-- `labels` (List of String) Stream labels for API request. It can be multiple comma separated of strings specifying  key=value pairs.In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).
-- `line_format` (String) Format to use when flattening the record to a log line. Valid values are json or key_value.If set to json,  the log line sent to Loki will be the Fluent Bit record dumped as JSON.If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.
+- `labels` (List of String) Stream labels for API request. It can be multiple comma separated of strings specifying key=value pairs. In addition to fixed parameters, it also allows to add custom record keys (similar to label_keys property).
+- `line_format` (String) Format to use when flattening the record to a log line. Valid values are json or key_value. If set to json, the log line sent to Loki will be the Fluent Bit record dumped as JSON. If set to key_value, the log line will be each item in the record concatenated together (separated by a single space) in the format.
 - `networking` (Attributes) Include fluentbit networking options for this output-plugin (see [below for nested schema](#nestedatt--spec--loki--networking))
 - `port` (Number) Loki TCP port
 - `remove_keys` (List of String) Optional list of keys to remove.
-- `tenant_id` (Attributes) Tenant ID used by default to push logs to Loki.If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent. (see [below for nested schema](#nestedatt--spec--loki--tenant_id))
-- `tenant_id_key` (String) Specify the name of the key from the original record that contains the Tenant ID.The value of the key is set as X-Scope-OrgID of HTTP header. It is useful to set Tenant ID dynamically.
+- `tenant_id` (Attributes) Tenant ID used by default to push logs to Loki. If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent. (see [below for nested schema](#nestedatt--spec--loki--tenant_id))
+- `tenant_id_key` (String) Specify the name of the key from the original record that contains the Tenant ID. The value of the key is set as X-Scope-OrgID of HTTP header. It is useful to set Tenant ID dynamically.
 - `tls` (Attributes) Fluent Bit provides integrated support for Transport Layer Security (TLS) and it predecessor Secure Sockets Layer (SSL) respectively. (see [below for nested schema](#nestedatt--spec--loki--tls))
 - `uri` (String) Specify a custom HTTP URI. It must start with forward slash.
 
@@ -1173,11 +1233,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1202,11 +1262,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1231,11 +1291,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1277,11 +1337,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1295,7 +1355,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--loki--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -1320,11 +1380,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1342,10 +1402,10 @@ Optional:
 - `aws_region` (String) Specify the AWS region for Amazon OpenSearch Service.
 - `aws_role_arn` (String) AWS IAM Role to assume to put records to your Amazon cluster.
 - `aws_sts_endpoint` (String) Specify the custom sts endpoint to be used with STS API for Amazon OpenSearch Service.
-- `buffer_size` (String) Specify the buffer size used to read the response from the OpenSearch HTTP service.This option is useful for debugging purposes where is required to read full responses,note that response size grows depending of the number of records inserted.To set an unlimited amount of memory set this value to False,otherwise the value must be according to the Unit Size specification.
+- `buffer_size` (String) Specify the buffer size used to read the response from the OpenSearch HTTP service. This option is useful for debugging purposes where is required to read full responses, note that response size grows depending of the number of records inserted. To set an unlimited amount of memory set this value to False, otherwise the value must be according to the Unit Size specification.
 - `compress` (String)
 - `current_time_index` (Boolean) Use current time for index generation instead of message record
-- `generate_id` (Boolean) When enabled, generate _id for outgoing records.This prevents duplicate records when retrying OpenSearch.
+- `generate_id` (Boolean) When enabled, generate _id for outgoing records. This prevents duplicate records when retrying OpenSearch.
 - `host` (String) IP address or hostname of the target OpenSearch instance, default '127.0.0.1'
 - `http_password` (Attributes) Password for user defined in HTTP_User (see [below for nested schema](#nestedatt--spec--opensearch--http_password))
 - `http_user` (Attributes) Optional username credential for access (see [below for nested schema](#nestedatt--spec--opensearch--http_user))
@@ -1353,17 +1413,17 @@ Optional:
 - `include_tag_key` (Boolean) When enabled, it append the Tag name to the record.
 - `index` (String) Index name
 - `logstash_date_format` (String) Time format (based on strftime) to generate the second part of the Index name.
-- `logstash_format` (Boolean) Enable Logstash format compatibility.This option takes a boolean value: True/False, On/Off
-- `logstash_prefix` (String) When Logstash_Format is enabled, the Index name is composed using a prefix and the date,e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'.The last string appended belongs to the date when the data is being generated.
+- `logstash_format` (Boolean) Enable Logstash format compatibility. This option takes a boolean value: True/False, On/Off
+- `logstash_prefix` (String) When Logstash_Format is enabled, the Index name is composed using a prefix and the date, e.g: If Logstash_Prefix is equals to 'mydata' your index will become 'mydata-YYYY.MM.DD'. The last string appended belongs to the date when the data is being generated.
 - `logstash_prefix_key` (String) Prefix keys with this string
 - `networking` (Attributes) Include fluentbit networking options for this output-plugin (see [below for nested schema](#nestedatt--spec--opensearch--networking))
-- `path` (String) OpenSearch accepts new data on HTTP query path '/_bulk'.But it is also possible to serve OpenSearch behind a reverse proxy on a subpath.This option defines such path on the fluent-bit side.It simply adds a path prefix in the indexing HTTP POST URI.
-- `pipeline` (String) OpenSearch allows to setup filters called pipelines.This option allows to define which pipeline the database should use.For performance reasons is strongly suggested to do parsingand filtering on Fluent Bit side, avoid pipelines.
+- `path` (String) OpenSearch accepts new data on HTTP query path '/_bulk'. But it is also possible to serve OpenSearch behind a reverse proxy on a subpath. This option defines such path on the fluent-bit side. It simply adds a path prefix in the indexing HTTP POST URI.
+- `pipeline` (String) OpenSearch allows to setup filters called pipelines. This option allows to define which pipeline the database should use. For performance reasons is strongly suggested to do parsing and filtering on Fluent Bit side, avoid pipelines.
 - `port` (Number) TCP port of the target OpenSearch instance, default '9200'
 - `replace_dots` (Boolean) When enabled, replace field name dots with underscore, required by Elasticsearch 2.0-2.3.
 - `suppress_type_name` (Boolean) When enabled, mapping types is removed and Type option is ignored. Types are deprecated in APIs in v7.0. This options is for v7.0 or later.
 - `tag_key` (String) When Include_Tag_Key is enabled, this property defines the key name for the tag.
-- `time_key` (String) When Logstash_Format is enabled, each record will get a new timestamp field.The Time_Key property defines the name of that field.
+- `time_key` (String) When Logstash_Format is enabled, each record will get a new timestamp field. The Time_Key property defines the name of that field.
 - `time_key_format` (String) When Logstash_Format is enabled, this property defines the format of the timestamp.
 - `time_key_nanos` (Boolean) When Logstash_Format is enabled, enabling this property sends nanosecond precision timestamps.
 - `tls` (Attributes) Fluent Bit provides integrated support for Transport Layer Security (TLS) and it predecessor Secure Sockets Layer (SSL) respectively. (see [below for nested schema](#nestedatt--spec--opensearch--tls))
@@ -1393,11 +1453,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1422,11 +1482,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1457,7 +1517,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--opensearch--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -1482,11 +1542,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1510,7 +1570,7 @@ Optional:
 - `metrics_uri` (String) Specify an optional HTTP URI for the target web server listening for metrics, e.g: /v1/metrics
 - `networking` (Attributes) Include fluentbit networking options for this output-plugin (see [below for nested schema](#nestedatt--spec--opentelemetry--networking))
 - `port` (Number) TCP port of the target OpenSearch instance, default '80'
-- `proxy` (String) Specify an HTTP Proxy. The expected format of this value is http://HOST:PORT. Note that HTTPS is not currently supported.It is recommended not to set this and to configure the HTTP proxy environment variables instead as they support both HTTP and HTTPS.
+- `proxy` (String) Specify an HTTP Proxy. The expected format of this value is http://HOST:PORT. Note that HTTPS is not currently supported. It is recommended not to set this and to configure the HTTP proxy environment variables instead as they support both HTTP and HTTPS.
 - `tls` (Attributes) Fluent Bit provides integrated support for Transport Layer Security (TLS) and it predecessor Secure Sockets Layer (SSL) respectively. (see [below for nested schema](#nestedatt--spec--opentelemetry--tls))
 - `traces_uri` (String) Specify an optional HTTP URI for the target web server listening for traces, e.g: /v1/traces
 
@@ -1533,11 +1593,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1562,11 +1622,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1597,7 +1657,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--opentelemetry--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -1622,11 +1682,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1658,7 +1718,7 @@ Optional:
 
 - `add_labels` (Map of String) This allows you to add custom labels to all metrics exposed through the prometheus exporter. You may have multiple of these fields
 - `headers` (Map of String) Add a HTTP header key/value pair. Multiple headers can be set.
-- `http_passwd` (Attributes) Basic Auth Password.Requires HTTP_user to be se (see [below for nested schema](#nestedatt--spec--prometheus_remote_write--http_passwd))
+- `http_passwd` (Attributes) Basic Auth Password. Requires HTTP_user to be se (see [below for nested schema](#nestedatt--spec--prometheus_remote_write--http_passwd))
 - `http_user` (Attributes) Basic Auth Username (see [below for nested schema](#nestedatt--spec--prometheus_remote_write--http_user))
 - `log_response_payload` (Boolean) Log the response payload within the Fluent Bit log,default: false
 - `networking` (Attributes) Include fluentbit networking options for this output-plugin (see [below for nested schema](#nestedatt--spec--prometheus_remote_write--networking))
@@ -1687,11 +1747,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1716,11 +1776,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1751,7 +1811,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--prometheus_remote_write--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -1776,11 +1836,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1833,7 +1893,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--s3--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -1858,11 +1918,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1877,22 +1937,22 @@ Optional:
 
 - `channel` (String) Specify X-Splunk-Request-Channel Header for the HTTP Event Collector interface.
 - `compress` (String) Set payload compression mechanism. The only available option is gzip.
-- `event_fields` (List of String) Set event fields for the record. This option is an array and the format is 'key_namerecord_accessor_pattern'.
+- `event_fields` (List of String) Set event fields for the record. This option is an array and the format is 'key_name record_accessor_pattern'.
 - `event_host` (String) Specify the key name that contains the host value. This option allows a record accessors pattern.
 - `event_index` (String) The name of the index by which the event data is to be indexed.
-- `event_index_key` (String) Set a record key that will populate the index field. If the key is found, it will have precedenceover the value set in event_index.
+- `event_index_key` (String) Set a record key that will populate the index field. If the key is found, it will have precedence over the value set in event_index.
 - `event_key` (String) Specify the key name that will be used to send a single value as part of the record.
 - `event_source` (String) Set the source value to assign to the event data.
 - `event_sourcetype` (String) Set the sourcetype value to assign to the event data.
-- `event_sourcetype_key` (String) Set a record key that will populate 'sourcetype'. If the key is found, it will have precedenceover the value set in event_sourcetype.
+- `event_sourcetype_key` (String) Set a record key that will populate 'sourcetype'. If the key is found, it will have precedence over the value set in event_sourcetype.
 - `host` (String) IP address or hostname of the target OpenSearch instance, default '127.0.0.1'
 - `http_buffer_size` (String) Buffer size used to receive Splunk HTTP responses: Default '2M'
-- `http_debug_bad_request` (Boolean) If the HTTP server response code is 400 (bad request) and this flag is enabled, it will print the full HTTP requestand response to the stdout interface. This feature is available for debugging purposes.
+- `http_debug_bad_request` (Boolean) If the HTTP server response code is 400 (bad request) and this flag is enabled, it will print the full HTTP request and response to the stdout interface. This feature is available for debugging purposes.
 - `http_password` (Attributes) Password for user defined in HTTP_User (see [below for nested schema](#nestedatt--spec--splunk--http_password))
 - `http_user` (Attributes) Optional username credential for access (see [below for nested schema](#nestedatt--spec--splunk--http_user))
 - `networking` (Attributes) Include fluentbit networking options for this output-plugin (see [below for nested schema](#nestedatt--spec--splunk--networking))
 - `port` (Number) TCP port of the target Splunk instance, default '8088'
-- `splunk_send_raw` (Boolean) When enabled, the record keys and values are set in the top level of the map instead of under the event key. Refer tothe Sending Raw Events section from the docs more details to make this option work properly.
+- `splunk_send_raw` (Boolean) When enabled, the record keys and values are set in the top level of the map instead of under the event key. Refer to the Sending Raw Events section from the docs more details to make this option work properly.
 - `splunk_token` (Attributes) Specify the Authentication Token for the HTTP Event Collector interface. (see [below for nested schema](#nestedatt--spec--splunk--splunk_token))
 - `tls` (Attributes) Fluent Bit provides integrated support for Transport Layer Security (TLS) and it predecessor Secure Sockets Layer (SSL) respectively. (see [below for nested schema](#nestedatt--spec--splunk--tls))
 - `workers` (Number) Enables dedicated thread(s) for this output. Default value '2' is set since version 1.8.13. For previous versions is 0.
@@ -1916,11 +1976,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1945,11 +2005,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1991,11 +2051,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2009,7 +2069,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--splunk--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -2034,11 +2094,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2093,11 +2153,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2122,11 +2182,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2139,7 +2199,7 @@ Optional:
 Optional:
 
 - `format` (String) Specify the data format to be printed. Supported formats are msgpack json, json_lines and json_stream.
-- `json_date_format` (String) Specify the format of the date. Supported formats are double,  iso8601 (eg: 2018-05-30T09:39:52.000681Z) and epoch.
+- `json_date_format` (String) Specify the format of the date. Supported formats are double, iso8601 (eg: 2018-05-30T09:39:52.000681Z) and epoch.
 - `json_date_key` (String) Specify the name of the date field in output.
 
 
@@ -2162,7 +2222,7 @@ Optional:
 - `syslog_process_id_key` (String) Key name from the original record that contains the Process ID that generated the message.
 - `syslog_sd_key` (String) Key name from the original record that contains the Structured Data (SD) content.
 - `syslog_severity_key` (String) Key from the original record that contains the Syslog severity number.
-- `tls` (Attributes) Syslog output plugin supports TTL/SSL, for more details about the properties availableand general configuration, please refer to the TLS/SSL section. (see [below for nested schema](#nestedatt--spec--syslog--tls))
+- `tls` (Attributes) Syslog output plugin supports TTL/SSL, for more details about the properties available and general configuration, please refer to the TLS/SSL section. (see [below for nested schema](#nestedatt--spec--syslog--tls))
 - `total_limit_size` (String) Limit the maximum number of Chunks in the filesystem for the current output logical destination.
 
 <a id="nestedatt--spec--syslog--networking"></a>
@@ -2190,7 +2250,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--syslog--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -2215,11 +2275,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2234,8 +2294,8 @@ Optional:
 
 - `format` (String) Specify the data format to be printed. Supported formats are msgpack json, json_lines and json_stream.
 - `host` (String) Target host where Fluent-Bit or Fluentd are listening for Forward messages.
-- `json_date_format` (String) Specify the format of the date. Supported formats are double, epochand iso8601 (eg: 2018-05-30T09:39:52.000681Z)
-- `json_date_key` (String) TSpecify the name of the time key in the output record.To disable the time key just set the value to false.
+- `json_date_format` (String) Specify the format of the date. Supported formats are double, epoch and iso8601 (eg: 2018-05-30T09:39:52.000681Z)
+- `json_date_key` (String) TSpecify the name of the time key in the output record. To disable the time key just set the value to false.
 - `networking` (Attributes) Include fluentbit networking options for this output-plugin (see [below for nested schema](#nestedatt--spec--tcp--networking))
 - `port` (Number) TCP Port of the target service.
 - `tls` (Attributes) Fluent Bit provides integrated support for Transport Layer Security (TLS) and it predecessor Secure Sockets Layer (SSL) respectively. (see [below for nested schema](#nestedatt--spec--tcp--tls))
@@ -2265,7 +2325,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--tcp--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -2290,9 +2350,9 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined

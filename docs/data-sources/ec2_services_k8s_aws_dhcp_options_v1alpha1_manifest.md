@@ -30,7 +30,7 @@ data "k8s_ec2_services_k8s_aws_dhcp_options_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) DhcpOptionsSpec defines the desired state of DhcpOptions.Describes a set of DHCP options. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) DhcpOptionsSpec defines the desired state of DhcpOptions. Describes a set of DHCP options. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -59,7 +59,7 @@ Required:
 
 Optional:
 
-- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string. (see [below for nested schema](#nestedatt--spec--tags))
 - `vpc` (List of String)
 - `vpc_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--vpc_refs))
 
@@ -86,7 +86,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_refs--from))
 
 <a id="nestedatt--spec--vpc_refs--from"></a>
 ### Nested Schema for `spec.vpc_refs.from`

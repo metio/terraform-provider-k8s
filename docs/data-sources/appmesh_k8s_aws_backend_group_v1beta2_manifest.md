@@ -55,7 +55,7 @@ Optional:
 
 Optional:
 
-- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this BackendGroup belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
+- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this BackendGroup belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
 - `virtualservices` (Attributes List) VirtualServices defines the set of virtual services in this BackendGroup. (see [below for nested schema](#nestedatt--spec--virtualservices))
 
 <a id="nestedatt--spec--mesh_ref"></a>

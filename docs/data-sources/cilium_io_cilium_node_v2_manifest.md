@@ -113,12 +113,12 @@ Optional:
 - `disable_prefix_delegation` (Boolean) DisablePrefixDelegation determines whether ENI prefix delegation should be disabled on this node.
 - `exclude_interface_tags` (Map of String) ExcludeInterfaceTags is the list of tags to use when excluding ENIs for Cilium IP allocation. Any interface matching this set of tags will not be managed by Cilium.
 - `first_interface_index` (Number) FirstInterfaceIndex is the index of the first ENI to use for IP allocation, e.g. if the node has eth0, eth1, eth2 and FirstInterfaceIndex is set to 1, then only eth1 and eth2 will be used for IP allocation, eth0 will be ignored for PodIP allocation.
-- `instance_id` (String) InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node.  OBSOLETE: This field is obsolete, please use Spec.InstanceID
+- `instance_id` (String) InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node. OBSOLETE: This field is obsolete, please use Spec.InstanceID
 - `instance_type` (String) InstanceType is the AWS EC2 instance type, e.g. 'm5.large'
-- `max_above_watermark` (Number) MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark
-- `min_allocate` (Number) MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate
+- `max_above_watermark` (Number) MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs. OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark
+- `min_allocate` (Number) MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs. OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate
 - `node_subnet_id` (String) NodeSubnetID is the subnet of the primary ENI the instance was brought up with. It is used as a sensible default subnet to create ENIs in.
-- `pre_allocate` (Number) PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.  OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate
+- `pre_allocate` (Number) PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved. OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate
 - `security_group_tags` (Map of String) SecurityGroupTags is the list of tags to use when evaliating what AWS security groups to use for the ENI.
 - `security_groups` (List of String) SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.
 - `subnet_ids` (List of String) SubnetIDs is the list of subnet ids to use when evaluating what AWS subnets to use for ENI and IP allocation.
@@ -164,7 +164,7 @@ Optional:
 
 Optional:
 
-- `owner` (String) Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.
+- `owner` (String) Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.
 - `resource` (String) Resource is set for both available and allocated IPs, it represents what resource the IP is associated with, e.g. in combination with AWS ENI, this will refer to the ID of the ENI
 
 
@@ -173,7 +173,7 @@ Optional:
 
 Optional:
 
-- `owner` (String) Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP  The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.
+- `owner` (String) Owner is the owner of the IP. This field is set if the IP has been allocated. It will be set to the pod name or another identifier representing the usage of the IP The owner field is left blank for an entry in Spec.IPAM.Pool and filled out as the IP is used and also added to Status.IPAM.Used.
 - `resource` (String) Resource is set for both available and allocated IPs, it represents what resource the IP is associated with, e.g. in combination with AWS ENI, this will refer to the ID of the ENI
 
 

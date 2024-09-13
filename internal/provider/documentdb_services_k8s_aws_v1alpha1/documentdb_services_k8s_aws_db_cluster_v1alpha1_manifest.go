@@ -169,12 +169,12 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "DBClusterSpec defines the desired state of DBCluster.Detailed information about a cluster.",
-				MarkdownDescription: "DBClusterSpec defines the desired state of DBCluster.Detailed information about a cluster.",
+				Description:         "DBClusterSpec defines the desired state of DBCluster. Detailed information about a cluster.",
+				MarkdownDescription: "DBClusterSpec defines the desired state of DBCluster. Detailed information about a cluster.",
 				Attributes: map[string]schema.Attribute{
 					"availability_zones": schema.ListAttribute{
-						Description:         "A list of Amazon EC2 Availability Zones that instances in the cluster canbe created in.",
-						MarkdownDescription: "A list of Amazon EC2 Availability Zones that instances in the cluster canbe created in.",
+						Description:         "A list of Amazon EC2 Availability Zones that instances in the cluster can be created in.",
+						MarkdownDescription: "A list of Amazon EC2 Availability Zones that instances in the cluster can be created in.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -182,16 +182,16 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"backup_retention_period": schema.Int64Attribute{
-						Description:         "The number of days for which automated backups are retained. You must specifya minimum value of 1.Default: 1Constraints:   * Must be a value from 1 to 35.",
-						MarkdownDescription: "The number of days for which automated backups are retained. You must specifya minimum value of 1.Default: 1Constraints:   * Must be a value from 1 to 35.",
+						Description:         "The number of days for which automated backups are retained. You must specify a minimum value of 1. Default: 1 Constraints: * Must be a value from 1 to 35.",
+						MarkdownDescription: "The number of days for which automated backups are retained. You must specify a minimum value of 1. Default: 1 Constraints: * Must be a value from 1 to 35.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"db_cluster_identifier": schema.StringAttribute{
-						Description:         "The cluster identifier. This parameter is stored as a lowercase string.Constraints:   * Must contain from 1 to 63 letters, numbers, or hyphens.   * The first character must be a letter.   * Cannot end with a hyphen or contain two consecutive hyphens.Example: my-cluster",
-						MarkdownDescription: "The cluster identifier. This parameter is stored as a lowercase string.Constraints:   * Must contain from 1 to 63 letters, numbers, or hyphens.   * The first character must be a letter.   * Cannot end with a hyphen or contain two consecutive hyphens.Example: my-cluster",
+						Description:         "The cluster identifier. This parameter is stored as a lowercase string. Constraints: * Must contain from 1 to 63 letters, numbers, or hyphens. * The first character must be a letter. * Cannot end with a hyphen or contain two consecutive hyphens. Example: my-cluster",
+						MarkdownDescription: "The cluster identifier. This parameter is stored as a lowercase string. Constraints: * Must contain from 1 to 63 letters, numbers, or hyphens. * The first character must be a letter. * Cannot end with a hyphen or contain two consecutive hyphens. Example: my-cluster",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -206,20 +206,20 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"db_subnet_group_name": schema.StringAttribute{
-						Description:         "A subnet group to associate with this cluster.Constraints: Must match the name of an existing DBSubnetGroup. Must not bedefault.Example: mySubnetgroup",
-						MarkdownDescription: "A subnet group to associate with this cluster.Constraints: Must match the name of an existing DBSubnetGroup. Must not bedefault.Example: mySubnetgroup",
+						Description:         "A subnet group to associate with this cluster. Constraints: Must match the name of an existing DBSubnetGroup. Must not be default. Example: mySubnetgroup",
+						MarkdownDescription: "A subnet group to associate with this cluster. Constraints: Must match the name of an existing DBSubnetGroup. Must not be default. Example: mySubnetgroup",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"db_subnet_group_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -248,8 +248,8 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"deletion_protection": schema.BoolAttribute{
-						Description:         "Specifies whether this cluster can be deleted. If DeletionProtection is enabled,the cluster cannot be deleted unless it is modified and DeletionProtectionis disabled. DeletionProtection protects clusters from being accidentallydeleted.",
-						MarkdownDescription: "Specifies whether this cluster can be deleted. If DeletionProtection is enabled,the cluster cannot be deleted unless it is modified and DeletionProtectionis disabled. DeletionProtection protects clusters from being accidentallydeleted.",
+						Description:         "Specifies whether this cluster can be deleted. If DeletionProtection is enabled, the cluster cannot be deleted unless it is modified and DeletionProtection is disabled. DeletionProtection protects clusters from being accidentally deleted.",
+						MarkdownDescription: "Specifies whether this cluster can be deleted. If DeletionProtection is enabled, the cluster cannot be deleted unless it is modified and DeletionProtection is disabled. DeletionProtection protects clusters from being accidentally deleted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -264,8 +264,8 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"enable_cloudwatch_logs_exports": schema.ListAttribute{
-						Description:         "A list of log types that need to be enabled for exporting to Amazon CloudWatchLogs. You can enable audit logs or profiler logs. For more information, seeAuditing Amazon DocumentDB Events (https://docs.aws.amazon.com/documentdb/latest/developerguide/event-auditing.html)and Profiling Amazon DocumentDB Operations (https://docs.aws.amazon.com/documentdb/latest/developerguide/profiling.html).",
-						MarkdownDescription: "A list of log types that need to be enabled for exporting to Amazon CloudWatchLogs. You can enable audit logs or profiler logs. For more information, seeAuditing Amazon DocumentDB Events (https://docs.aws.amazon.com/documentdb/latest/developerguide/event-auditing.html)and Profiling Amazon DocumentDB Operations (https://docs.aws.amazon.com/documentdb/latest/developerguide/profiling.html).",
+						Description:         "A list of log types that need to be enabled for exporting to Amazon CloudWatch Logs. You can enable audit logs or profiler logs. For more information, see Auditing Amazon DocumentDB Events (https://docs.aws.amazon.com/documentdb/latest/developerguide/event-auditing.html) and Profiling Amazon DocumentDB Operations (https://docs.aws.amazon.com/documentdb/latest/developerguide/profiling.html).",
+						MarkdownDescription: "A list of log types that need to be enabled for exporting to Amazon CloudWatch Logs. You can enable audit logs or profiler logs. For more information, see Auditing Amazon DocumentDB Events (https://docs.aws.amazon.com/documentdb/latest/developerguide/event-auditing.html) and Profiling Amazon DocumentDB Operations (https://docs.aws.amazon.com/documentdb/latest/developerguide/profiling.html).",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -273,16 +273,16 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"engine": schema.StringAttribute{
-						Description:         "The name of the database engine to be used for this cluster.Valid values: docdb",
-						MarkdownDescription: "The name of the database engine to be used for this cluster.Valid values: docdb",
+						Description:         "The name of the database engine to be used for this cluster. Valid values: docdb",
+						MarkdownDescription: "The name of the database engine to be used for this cluster. Valid values: docdb",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"engine_version": schema.StringAttribute{
-						Description:         "The version number of the database engine to use. The --engine-version willdefault to the latest major engine version. For production workloads, werecommend explicitly declaring this parameter with the intended major engineversion.",
-						MarkdownDescription: "The version number of the database engine to use. The --engine-version willdefault to the latest major engine version. For production workloads, werecommend explicitly declaring this parameter with the intended major engineversion.",
+						Description:         "The version number of the database engine to use. The --engine-version will default to the latest major engine version. For production workloads, we recommend explicitly declaring this parameter with the intended major engine version.",
+						MarkdownDescription: "The version number of the database engine to use. The --engine-version will default to the latest major engine version. For production workloads, we recommend explicitly declaring this parameter with the intended major engine version.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -297,20 +297,20 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"kms_key_id": schema.StringAttribute{
-						Description:         "The KMS key identifier for an encrypted cluster.The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryptionkey. If you are creating a cluster using the same Amazon Web Services accountthat owns the KMS encryption key that is used to encrypt the new cluster,you can use the KMS key alias instead of the ARN for the KMS encryption key.If an encryption key is not specified in KmsKeyId:   * If the StorageEncrypted parameter is true, Amazon DocumentDB uses your   default encryption key.KMS creates the default encryption key for your Amazon Web Services account.Your Amazon Web Services account has a different default encryption key foreach Amazon Web Services Regions.",
-						MarkdownDescription: "The KMS key identifier for an encrypted cluster.The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryptionkey. If you are creating a cluster using the same Amazon Web Services accountthat owns the KMS encryption key that is used to encrypt the new cluster,you can use the KMS key alias instead of the ARN for the KMS encryption key.If an encryption key is not specified in KmsKeyId:   * If the StorageEncrypted parameter is true, Amazon DocumentDB uses your   default encryption key.KMS creates the default encryption key for your Amazon Web Services account.Your Amazon Web Services account has a different default encryption key foreach Amazon Web Services Regions.",
+						Description:         "The KMS key identifier for an encrypted cluster. The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a cluster using the same Amazon Web Services account that owns the KMS encryption key that is used to encrypt the new cluster, you can use the KMS key alias instead of the ARN for the KMS encryption key. If an encryption key is not specified in KmsKeyId: * If the StorageEncrypted parameter is true, Amazon DocumentDB uses your default encryption key. KMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Regions.",
+						MarkdownDescription: "The KMS key identifier for an encrypted cluster. The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a cluster using the same Amazon Web Services account that owns the KMS encryption key that is used to encrypt the new cluster, you can use the KMS key alias instead of the ARN for the KMS encryption key. If an encryption key is not specified in KmsKeyId: * If the StorageEncrypted parameter is true, Amazon DocumentDB uses your default encryption key. KMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Regions.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"kms_key_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -339,8 +339,8 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"master_user_password": schema.SingleNestedAttribute{
-						Description:         "The password for the master database user. This password can contain anyprintable ASCII character except forward slash (/), double quote ('), orthe 'at' symbol (@).Constraints: Must contain from 8 to 100 characters.",
-						MarkdownDescription: "The password for the master database user. This password can contain anyprintable ASCII character except forward slash (/), double quote ('), orthe 'at' symbol (@).Constraints: Must contain from 8 to 100 characters.",
+						Description:         "The password for the master database user. This password can contain any printable ASCII character except forward slash (/), double quote ('), or the 'at' symbol (@). Constraints: Must contain from 8 to 100 characters.",
+						MarkdownDescription: "The password for the master database user. This password can contain any printable ASCII character except forward slash (/), double quote ('), or the 'at' symbol (@). Constraints: Must contain from 8 to 100 characters.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "Key is the key within the secret",
@@ -372,8 +372,8 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"master_username": schema.StringAttribute{
-						Description:         "The name of the master user for the cluster.Constraints:   * Must be from 1 to 63 letters or numbers.   * The first character must be a letter.   * Cannot be a reserved word for the chosen database engine.",
-						MarkdownDescription: "The name of the master user for the cluster.Constraints:   * Must be from 1 to 63 letters or numbers.   * The first character must be a letter.   * Cannot be a reserved word for the chosen database engine.",
+						Description:         "The name of the master user for the cluster. Constraints: * Must be from 1 to 63 letters or numbers. * The first character must be a letter. * Cannot be a reserved word for the chosen database engine.",
+						MarkdownDescription: "The name of the master user for the cluster. Constraints: * Must be from 1 to 63 letters or numbers. * The first character must be a letter. * Cannot be a reserved word for the chosen database engine.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -396,32 +396,32 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"preferred_backup_window": schema.StringAttribute{
-						Description:         "The daily time range during which automated backups are created if automatedbackups are enabled using the BackupRetentionPeriod parameter.The default is a 30-minute window selected at random from an 8-hour blockof time for each Amazon Web Services Region.Constraints:   * Must be in the format hh24:mi-hh24:mi.   * Must be in Universal Coordinated Time (UTC).   * Must not conflict with the preferred maintenance window.   * Must be at least 30 minutes.",
-						MarkdownDescription: "The daily time range during which automated backups are created if automatedbackups are enabled using the BackupRetentionPeriod parameter.The default is a 30-minute window selected at random from an 8-hour blockof time for each Amazon Web Services Region.Constraints:   * Must be in the format hh24:mi-hh24:mi.   * Must be in Universal Coordinated Time (UTC).   * Must not conflict with the preferred maintenance window.   * Must be at least 30 minutes.",
+						Description:         "The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter. The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region. Constraints: * Must be in the format hh24:mi-hh24:mi. * Must be in Universal Coordinated Time (UTC). * Must not conflict with the preferred maintenance window. * Must be at least 30 minutes.",
+						MarkdownDescription: "The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter. The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region. Constraints: * Must be in the format hh24:mi-hh24:mi. * Must be in Universal Coordinated Time (UTC). * Must not conflict with the preferred maintenance window. * Must be at least 30 minutes.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"preferred_maintenance_window": schema.StringAttribute{
-						Description:         "The weekly time range during which system maintenance can occur, in UniversalCoordinated Time (UTC).Format: ddd:hh24:mi-ddd:hh24:miThe default is a 30-minute window selected at random from an 8-hour blockof time for each Amazon Web Services Region, occurring on a random day ofthe week.Valid days: Mon, Tue, Wed, Thu, Fri, Sat, SunConstraints: Minimum 30-minute window.",
-						MarkdownDescription: "The weekly time range during which system maintenance can occur, in UniversalCoordinated Time (UTC).Format: ddd:hh24:mi-ddd:hh24:miThe default is a 30-minute window selected at random from an 8-hour blockof time for each Amazon Web Services Region, occurring on a random day ofthe week.Valid days: Mon, Tue, Wed, Thu, Fri, Sat, SunConstraints: Minimum 30-minute window.",
+						Description:         "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC). Format: ddd:hh24:mi-ddd:hh24:mi The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region, occurring on a random day of the week. Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun Constraints: Minimum 30-minute window.",
+						MarkdownDescription: "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC). Format: ddd:hh24:mi-ddd:hh24:mi The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region, occurring on a random day of the week. Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun Constraints: Minimum 30-minute window.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"snapshot_identifier": schema.StringAttribute{
-						Description:         "The identifier for the snapshot or cluster snapshot to restore from.You can use either the name or the Amazon Resource Name (ARN) to specifya cluster snapshot. However, you can use only the ARN to specify a snapshot.Constraints:   * Must match the identifier of an existing snapshot.",
-						MarkdownDescription: "The identifier for the snapshot or cluster snapshot to restore from.You can use either the name or the Amazon Resource Name (ARN) to specifya cluster snapshot. However, you can use only the ARN to specify a snapshot.Constraints:   * Must match the identifier of an existing snapshot.",
+						Description:         "The identifier for the snapshot or cluster snapshot to restore from. You can use either the name or the Amazon Resource Name (ARN) to specify a cluster snapshot. However, you can use only the ARN to specify a snapshot. Constraints: * Must match the identifier of an existing snapshot.",
+						MarkdownDescription: "The identifier for the snapshot or cluster snapshot to restore from. You can use either the name or the Amazon Resource Name (ARN) to specify a cluster snapshot. However, you can use only the ARN to specify a snapshot. Constraints: * Must match the identifier of an existing snapshot.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"source_region": schema.StringAttribute{
-						Description:         "SourceRegion is the source region where the resource exists. This is notsent over the wire and is only used for presigning. This value should alwayshave the same region as the source ARN.",
-						MarkdownDescription: "SourceRegion is the source region where the resource exists. This is notsent over the wire and is only used for presigning. This value should alwayshave the same region as the source ARN.",
+						Description:         "SourceRegion is the source region where the resource exists. This is not sent over the wire and is only used for presigning. This value should always have the same region as the source ARN.",
+						MarkdownDescription: "SourceRegion is the source region where the resource exists. This is not sent over the wire and is only used for presigning. This value should always have the same region as the source ARN.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -436,8 +436,8 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"storage_type": schema.StringAttribute{
-						Description:         "The storage type to associate with the DB cluster.For information on storage types for Amazon DocumentDB clusters, see Clusterstorage configurations in the Amazon DocumentDB Developer Guide.Valid values for storage type - standard | iopt1Default value is standardWhen you create a DocumentDB DB cluster with the storage type set to iopt1,the storage type is returned in the response. The storage type isn't returnedwhen you set it to standard.",
-						MarkdownDescription: "The storage type to associate with the DB cluster.For information on storage types for Amazon DocumentDB clusters, see Clusterstorage configurations in the Amazon DocumentDB Developer Guide.Valid values for storage type - standard | iopt1Default value is standardWhen you create a DocumentDB DB cluster with the storage type set to iopt1,the storage type is returned in the response. The storage type isn't returnedwhen you set it to standard.",
+						Description:         "The storage type to associate with the DB cluster. For information on storage types for Amazon DocumentDB clusters, see Cluster storage configurations in the Amazon DocumentDB Developer Guide. Valid values for storage type - standard | iopt1 Default value is standard When you create a DocumentDB DB cluster with the storage type set to iopt1, the storage type is returned in the response. The storage type isn't returned when you set it to standard.",
+						MarkdownDescription: "The storage type to associate with the DB cluster. For information on storage types for Amazon DocumentDB clusters, see Cluster storage configurations in the Amazon DocumentDB Developer Guide. Valid values for storage type - standard | iopt1 Default value is standard When you create a DocumentDB DB cluster with the storage type set to iopt1, the storage type is returned in the response. The storage type isn't returned when you set it to standard.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -485,8 +485,8 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",

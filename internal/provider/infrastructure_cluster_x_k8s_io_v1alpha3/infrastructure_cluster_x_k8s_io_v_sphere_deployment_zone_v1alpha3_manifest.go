@@ -58,8 +58,8 @@ func (r *InfrastructureClusterXK8SIoVsphereDeploymentZoneV1Alpha3Manifest) Metad
 
 func (r *InfrastructureClusterXK8SIoVsphereDeploymentZoneV1Alpha3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereDeploymentZone is the Schema for the vspheredeploymentzones APIDeprecated: This type will be removed in one of the next releases.",
-		MarkdownDescription: "VSphereDeploymentZone is the Schema for the vspheredeploymentzones APIDeprecated: This type will be removed in one of the next releases.",
+		Description:         "VSphereDeploymentZone is the Schema for the vspheredeploymentzones API Deprecated: This type will be removed in one of the next releases.",
+		MarkdownDescription: "VSphereDeploymentZone is the Schema for the vspheredeploymentzones API Deprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -134,20 +134,20 @@ func (r *InfrastructureClusterXK8SIoVsphereDeploymentZoneV1Alpha3Manifest) Schem
 					},
 
 					"placement_constraint": schema.SingleNestedAttribute{
-						Description:         "PlacementConstraint encapsulates the placement constraintsused within this deployment zone.",
-						MarkdownDescription: "PlacementConstraint encapsulates the placement constraintsused within this deployment zone.",
+						Description:         "PlacementConstraint encapsulates the placement constraints used within this deployment zone.",
+						MarkdownDescription: "PlacementConstraint encapsulates the placement constraints used within this deployment zone.",
 						Attributes: map[string]schema.Attribute{
 							"folder": schema.StringAttribute{
-								Description:         "Folder is the name or inventory path of the folder in which thevirtual machine is created/located.",
-								MarkdownDescription: "Folder is the name or inventory path of the folder in which thevirtual machine is created/located.",
+								Description:         "Folder is the name or inventory path of the folder in which the virtual machine is created/located.",
+								MarkdownDescription: "Folder is the name or inventory path of the folder in which the virtual machine is created/located.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_pool": schema.StringAttribute{
-								Description:         "ResourcePool is the name or inventory path of the resource pool in whichthe virtual machine is created/located.",
-								MarkdownDescription: "ResourcePool is the name or inventory path of the resource pool in whichthe virtual machine is created/located.",
+								Description:         "ResourcePool is the name or inventory path of the resource pool in which the virtual machine is created/located.",
+								MarkdownDescription: "ResourcePool is the name or inventory path of the resource pool in which the virtual machine is created/located.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

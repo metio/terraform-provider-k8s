@@ -30,7 +30,7 @@ data "k8s_cloudtrail_services_k8s_aws_event_data_store_v1alpha1_manifest" "examp
 
 ### Optional
 
-- `spec` (Attributes) EventDataStoreSpec defines the desired state of EventDataStore.A storage lake of event data against which you can run complex SQL-basedqueries. An event data store can include events that you have logged on youraccount from the last 90 to 2555 days (about three months to up to sevenyears). To select events for an event data store, use advanced event selectors(https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced). (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) EventDataStoreSpec defines the desired state of EventDataStore. A storage lake of event data against which you can run complex SQL-based queries. An event data store can include events that you have logged on your account from the last 90 to 2555 days (about three months to up to seven years). To select events for an event data store, use advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced). (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -59,12 +59,12 @@ Required:
 
 Optional:
 
-- `advanced_event_selectors` (Attributes List) The advanced event selectors to use to select the events for the data store.For more information about how to use advanced event selectors, see Log eventsby using advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced)in the CloudTrail User Guide. (see [below for nested schema](#nestedatt--spec--advanced_event_selectors))
-- `multi_region_enabled` (Boolean) Specifies whether the event data store includes events from all regions,or only from the region in which the event data store is created.
-- `organization_enabled` (Boolean) Specifies whether an event data store collects events logged for an organizationin Organizations.
-- `retention_period` (Number) The retention period of the event data store, in days. You can set a retentionperiod of up to 2555 days, the equivalent of seven years.
+- `advanced_event_selectors` (Attributes List) The advanced event selectors to use to select the events for the data store. For more information about how to use advanced event selectors, see Log events by using advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced) in the CloudTrail User Guide. (see [below for nested schema](#nestedatt--spec--advanced_event_selectors))
+- `multi_region_enabled` (Boolean) Specifies whether the event data store includes events from all regions, or only from the region in which the event data store is created.
+- `organization_enabled` (Boolean) Specifies whether an event data store collects events logged for an organization in Organizations.
+- `retention_period` (Number) The retention period of the event data store, in days. You can set a retention period of up to 2555 days, the equivalent of seven years.
 - `tags` (Attributes List) (see [below for nested schema](#nestedatt--spec--tags))
-- `termination_protection_enabled` (Boolean) Specifies whether termination protection is enabled for the event data store.If termination protection is enabled, you cannot delete the event data storeuntil termination protection is disabled.
+- `termination_protection_enabled` (Boolean) Specifies whether termination protection is enabled for the event data store. If termination protection is enabled, you cannot delete the event data store until termination protection is disabled.
 
 <a id="nestedatt--spec--advanced_event_selectors"></a>
 ### Nested Schema for `spec.advanced_event_selectors`

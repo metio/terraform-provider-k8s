@@ -137,8 +137,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 				MarkdownDescription: "ClusterColocationProfileSpec is a description of a ClusterColocationProfile.",
 				Attributes: map[string]schema.Attribute{
 					"annotation_keys_mapping": schema.MapAttribute{
-						Description:         "AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values.It sets the Pod.Annotations[AnnotationsToAnnotations[k]] = Pod.Annotations[k] for each key k.",
-						MarkdownDescription: "AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values.It sets the Pod.Annotations[AnnotationsToAnnotations[k]] = Pod.Annotations[k] for each key k.",
+						Description:         "AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values. It sets the Pod.Annotations[AnnotationsToAnnotations[k]] = Pod.Annotations[k] for each key k.",
+						MarkdownDescription: "AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values. It sets the Pod.Annotations[AnnotationsToAnnotations[k]] = Pod.Annotations[k] for each key k.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -155,16 +155,16 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 					},
 
 					"koordinator_priority": schema.Int64Attribute{
-						Description:         "KoordinatorPriority defines the Pod sub-priority in Koordinator.The priority value will be injected into Pod as label koordinator.sh/priority.Various Koordinator components determine the priority of the Podin the Koordinator through KoordinatorPriority and the priority value in PriorityClassName.The higher the value, the higher the priority.",
-						MarkdownDescription: "KoordinatorPriority defines the Pod sub-priority in Koordinator.The priority value will be injected into Pod as label koordinator.sh/priority.Various Koordinator components determine the priority of the Podin the Koordinator through KoordinatorPriority and the priority value in PriorityClassName.The higher the value, the higher the priority.",
+						Description:         "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority.",
+						MarkdownDescription: "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_keys_mapping": schema.MapAttribute{
-						Description:         "LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values.It sets the Pod.Labels[LabelsToLabels[k]] = Pod.Labels[k] for each key k.",
-						MarkdownDescription: "LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values.It sets the Pod.Labels[LabelsToLabels[k]] = Pod.Labels[k] for each key k.",
+						Description:         "LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values. It sets the Pod.Labels[LabelsToLabels[k]] = Pod.Labels[k] for each key k.",
+						MarkdownDescription: "LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values. It sets the Pod.Labels[LabelsToLabels[k]] = Pod.Labels[k] for each key k.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -181,8 +181,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 					},
 
 					"namespace_selector": schema.SingleNestedAttribute{
-						Description:         "NamespaceSelector decides whether to mutate/validate Pods if thenamespace matches the selector.Default to the empty LabelSelector, which matches everything.",
-						MarkdownDescription: "NamespaceSelector decides whether to mutate/validate Pods if thenamespace matches the selector.Default to the empty LabelSelector, which matches everything.",
+						Description:         "NamespaceSelector decides whether to mutate/validate Pods if the namespace matches the selector. Default to the empty LabelSelector, which matches everything.",
+						MarkdownDescription: "NamespaceSelector decides whether to mutate/validate Pods if the namespace matches the selector. Default to the empty LabelSelector, which matches everything.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -198,16 +198,16 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -221,8 +221,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -244,8 +244,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 					},
 
 					"priority_class_name": schema.StringAttribute{
-						Description:         "If specified, the priorityClassName and the priority value defined in PriorityClasswill be injected into the Pod.The PriorityClassName, priority value in PriorityClassName andKoordinatorPriority will affect the scheduling, preemption andother behaviors of Koordinator system.",
-						MarkdownDescription: "If specified, the priorityClassName and the priority value defined in PriorityClasswill be injected into the Pod.The PriorityClassName, priority value in PriorityClassName andKoordinatorPriority will affect the scheduling, preemption andother behaviors of Koordinator system.",
+						Description:         "If specified, the priorityClassName and the priority value defined in PriorityClass will be injected into the Pod. The PriorityClassName, priority value in PriorityClassName and KoordinatorPriority will affect the scheduling, preemption and other behaviors of Koordinator system.",
+						MarkdownDescription: "If specified, the priorityClassName and the priority value defined in PriorityClass will be injected into the Pod. The PriorityClassName, priority value in PriorityClassName and KoordinatorPriority will affect the scheduling, preemption and other behaviors of Koordinator system.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -260,8 +260,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 					},
 
 					"qos_class": schema.StringAttribute{
-						Description:         "QoSClass describes the type of Koordinator QoS that the Pod is running.The value will be injected into Pod as label koordinator.sh/qosClass.Options are LSE/LSR/LS/BE/SYSTEM.",
-						MarkdownDescription: "QoSClass describes the type of Koordinator QoS that the Pod is running.The value will be injected into Pod as label koordinator.sh/qosClass.Options are LSE/LSR/LS/BE/SYSTEM.",
+						Description:         "QoSClass describes the type of Koordinator QoS that the Pod is running. The value will be injected into Pod as label koordinator.sh/qosClass. Options are LSE/LSR/LS/BE/SYSTEM.",
+						MarkdownDescription: "QoSClass describes the type of Koordinator QoS that the Pod is running. The value will be injected into Pod as label koordinator.sh/qosClass. Options are LSE/LSR/LS/BE/SYSTEM.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -279,8 +279,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 					},
 
 					"selector": schema.SingleNestedAttribute{
-						Description:         "Selector decides whether to mutate/validate Pods if thePod matches the selector.Default to the empty LabelSelector, which matches everything.",
-						MarkdownDescription: "Selector decides whether to mutate/validate Pods if thePod matches the selector.Default to the empty LabelSelector, which matches everything.",
+						Description:         "Selector decides whether to mutate/validate Pods if the Pod matches the selector. Default to the empty LabelSelector, which matches everything.",
+						MarkdownDescription: "Selector decides whether to mutate/validate Pods if the Pod matches the selector. Default to the empty LabelSelector, which matches everything.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -296,16 +296,16 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -319,8 +319,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

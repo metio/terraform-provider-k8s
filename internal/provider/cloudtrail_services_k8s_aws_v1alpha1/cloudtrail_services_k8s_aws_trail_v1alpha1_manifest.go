@@ -135,92 +135,92 @@ func (r *CloudtrailServicesK8SAwsTrailV1Alpha1Manifest) Schema(_ context.Context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "TrailSpec defines the desired state of Trail.The settings for a trail.",
-				MarkdownDescription: "TrailSpec defines the desired state of Trail.The settings for a trail.",
+				Description:         "TrailSpec defines the desired state of Trail. The settings for a trail.",
+				MarkdownDescription: "TrailSpec defines the desired state of Trail. The settings for a trail.",
 				Attributes: map[string]schema.Attribute{
 					"cloud_watch_logs_log_group_arn": schema.StringAttribute{
-						Description:         "Specifies a log group name using an Amazon Resource Name (ARN), a uniqueidentifier that represents the log group to which CloudTrail logs will bedelivered. Not required unless you specify CloudWatchLogsRoleArn.",
-						MarkdownDescription: "Specifies a log group name using an Amazon Resource Name (ARN), a uniqueidentifier that represents the log group to which CloudTrail logs will bedelivered. Not required unless you specify CloudWatchLogsRoleArn.",
+						Description:         "Specifies a log group name using an Amazon Resource Name (ARN), a unique identifier that represents the log group to which CloudTrail logs will be delivered. Not required unless you specify CloudWatchLogsRoleArn.",
+						MarkdownDescription: "Specifies a log group name using an Amazon Resource Name (ARN), a unique identifier that represents the log group to which CloudTrail logs will be delivered. Not required unless you specify CloudWatchLogsRoleArn.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"cloud_watch_logs_role_arn": schema.StringAttribute{
-						Description:         "Specifies the role for the CloudWatch Logs endpoint to assume to write toa user's log group.",
-						MarkdownDescription: "Specifies the role for the CloudWatch Logs endpoint to assume to write toa user's log group.",
+						Description:         "Specifies the role for the CloudWatch Logs endpoint to assume to write to a user's log group.",
+						MarkdownDescription: "Specifies the role for the CloudWatch Logs endpoint to assume to write to a user's log group.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"enable_log_file_validation": schema.BoolAttribute{
-						Description:         "Specifies whether log file integrity validation is enabled. The default isfalse.When you disable log file integrity validation, the chain of digest filesis broken after one hour. CloudTrail does not create digest files for logfiles that were delivered during a period in which log file integrity validationwas disabled. For example, if you enable log file integrity validation atnoon on January 1, disable it at noon on January 2, and re-enable it at noonon January 10, digest files will not be created for the log files deliveredfrom noon on January 2 to noon on January 10. The same applies whenever youstop CloudTrail logging or delete a trail.",
-						MarkdownDescription: "Specifies whether log file integrity validation is enabled. The default isfalse.When you disable log file integrity validation, the chain of digest filesis broken after one hour. CloudTrail does not create digest files for logfiles that were delivered during a period in which log file integrity validationwas disabled. For example, if you enable log file integrity validation atnoon on January 1, disable it at noon on January 2, and re-enable it at noonon January 10, digest files will not be created for the log files deliveredfrom noon on January 2 to noon on January 10. The same applies whenever youstop CloudTrail logging or delete a trail.",
+						Description:         "Specifies whether log file integrity validation is enabled. The default is false. When you disable log file integrity validation, the chain of digest files is broken after one hour. CloudTrail does not create digest files for log files that were delivered during a period in which log file integrity validation was disabled. For example, if you enable log file integrity validation at noon on January 1, disable it at noon on January 2, and re-enable it at noon on January 10, digest files will not be created for the log files delivered from noon on January 2 to noon on January 10. The same applies whenever you stop CloudTrail logging or delete a trail.",
+						MarkdownDescription: "Specifies whether log file integrity validation is enabled. The default is false. When you disable log file integrity validation, the chain of digest files is broken after one hour. CloudTrail does not create digest files for log files that were delivered during a period in which log file integrity validation was disabled. For example, if you enable log file integrity validation at noon on January 1, disable it at noon on January 2, and re-enable it at noon on January 10, digest files will not be created for the log files delivered from noon on January 2 to noon on January 10. The same applies whenever you stop CloudTrail logging or delete a trail.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"include_global_service_events": schema.BoolAttribute{
-						Description:         "Specifies whether the trail is publishing events from global services suchas IAM to the log files.",
-						MarkdownDescription: "Specifies whether the trail is publishing events from global services suchas IAM to the log files.",
+						Description:         "Specifies whether the trail is publishing events from global services such as IAM to the log files.",
+						MarkdownDescription: "Specifies whether the trail is publishing events from global services such as IAM to the log files.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"is_multi_region_trail": schema.BoolAttribute{
-						Description:         "Specifies whether the trail is created in the current region or in all regions.The default is false, which creates a trail only in the region where youare signed in. As a best practice, consider creating trails that log eventsin all regions.",
-						MarkdownDescription: "Specifies whether the trail is created in the current region or in all regions.The default is false, which creates a trail only in the region where youare signed in. As a best practice, consider creating trails that log eventsin all regions.",
+						Description:         "Specifies whether the trail is created in the current region or in all regions. The default is false, which creates a trail only in the region where you are signed in. As a best practice, consider creating trails that log events in all regions.",
+						MarkdownDescription: "Specifies whether the trail is created in the current region or in all regions. The default is false, which creates a trail only in the region where you are signed in. As a best practice, consider creating trails that log events in all regions.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"is_organization_trail": schema.BoolAttribute{
-						Description:         "Specifies whether the trail is created for all accounts in an organizationin Organizations, or only for the current Amazon Web Services account. Thedefault is false, and cannot be true unless the call is made on behalf ofan Amazon Web Services account that is the management account for an organizationin Organizations.",
-						MarkdownDescription: "Specifies whether the trail is created for all accounts in an organizationin Organizations, or only for the current Amazon Web Services account. Thedefault is false, and cannot be true unless the call is made on behalf ofan Amazon Web Services account that is the management account for an organizationin Organizations.",
+						Description:         "Specifies whether the trail is created for all accounts in an organization in Organizations, or only for the current Amazon Web Services account. The default is false, and cannot be true unless the call is made on behalf of an Amazon Web Services account that is the management account for an organization in Organizations.",
+						MarkdownDescription: "Specifies whether the trail is created for all accounts in an organization in Organizations, or only for the current Amazon Web Services account. The default is false, and cannot be true unless the call is made on behalf of an Amazon Web Services account that is the management account for an organization in Organizations.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"kms_key_id": schema.StringAttribute{
-						Description:         "Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail.The value can be an alias name prefixed by 'alias/', a fully specified ARNto an alias, a fully specified ARN to a key, or a globally unique identifier.CloudTrail also supports KMS multi-Region keys. For more information aboutmulti-Region keys, see Using multi-Region keys (https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html)in the Key Management Service Developer Guide.Examples:   * alias/MyAliasName   * arn:aws:kms:us-east-2:123456789012:alias/MyAliasName   * arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012   * 12345678-1234-1234-1234-123456789012",
-						MarkdownDescription: "Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail.The value can be an alias name prefixed by 'alias/', a fully specified ARNto an alias, a fully specified ARN to a key, or a globally unique identifier.CloudTrail also supports KMS multi-Region keys. For more information aboutmulti-Region keys, see Using multi-Region keys (https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html)in the Key Management Service Developer Guide.Examples:   * alias/MyAliasName   * arn:aws:kms:us-east-2:123456789012:alias/MyAliasName   * arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012   * 12345678-1234-1234-1234-123456789012",
+						Description:         "Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail. The value can be an alias name prefixed by 'alias/', a fully specified ARN to an alias, a fully specified ARN to a key, or a globally unique identifier. CloudTrail also supports KMS multi-Region keys. For more information about multi-Region keys, see Using multi-Region keys (https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in the Key Management Service Developer Guide. Examples: * alias/MyAliasName * arn:aws:kms:us-east-2:123456789012:alias/MyAliasName * arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012 * 12345678-1234-1234-1234-123456789012",
+						MarkdownDescription: "Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail. The value can be an alias name prefixed by 'alias/', a fully specified ARN to an alias, a fully specified ARN to a key, or a globally unique identifier. CloudTrail also supports KMS multi-Region keys. For more information about multi-Region keys, see Using multi-Region keys (https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in the Key Management Service Developer Guide. Examples: * alias/MyAliasName * arn:aws:kms:us-east-2:123456789012:alias/MyAliasName * arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012 * 12345678-1234-1234-1234-123456789012",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "Specifies the name of the trail. The name must meet the following requirements:   * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores   (_), or dashes (-)   * Start with a letter or number, and end with a letter or number   * Be between 3 and 128 characters   * Have no adjacent periods, underscores or dashes. Names like my-_namespace   and my--namespace are not valid.   * Not be in IP address format (for example, 192.168.5.4)",
-						MarkdownDescription: "Specifies the name of the trail. The name must meet the following requirements:   * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores   (_), or dashes (-)   * Start with a letter or number, and end with a letter or number   * Be between 3 and 128 characters   * Have no adjacent periods, underscores or dashes. Names like my-_namespace   and my--namespace are not valid.   * Not be in IP address format (for example, 192.168.5.4)",
+						Description:         "Specifies the name of the trail. The name must meet the following requirements: * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-) * Start with a letter or number, and end with a letter or number * Be between 3 and 128 characters * Have no adjacent periods, underscores or dashes. Names like my-_namespace and my--namespace are not valid. * Not be in IP address format (for example, 192.168.5.4)",
+						MarkdownDescription: "Specifies the name of the trail. The name must meet the following requirements: * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-) * Start with a letter or number, and end with a letter or number * Be between 3 and 128 characters * Have no adjacent periods, underscores or dashes. Names like my-_namespace and my--namespace are not valid. * Not be in IP address format (for example, 192.168.5.4)",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"s3_bucket_name": schema.StringAttribute{
-						Description:         "Specifies the name of the Amazon S3 bucket designated for publishing logfiles. See Amazon S3 Bucket Naming Requirements (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html).",
-						MarkdownDescription: "Specifies the name of the Amazon S3 bucket designated for publishing logfiles. See Amazon S3 Bucket Naming Requirements (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html).",
+						Description:         "Specifies the name of the Amazon S3 bucket designated for publishing log files. See Amazon S3 Bucket Naming Requirements (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html).",
+						MarkdownDescription: "Specifies the name of the Amazon S3 bucket designated for publishing log files. See Amazon S3 Bucket Naming Requirements (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html).",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"s3_key_prefix": schema.StringAttribute{
-						Description:         "Specifies the Amazon S3 key prefix that comes after the name of the bucketyou have designated for log file delivery. For more information, see FindingYour CloudTrail Log Files (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html).The maximum length is 200 characters.",
-						MarkdownDescription: "Specifies the Amazon S3 key prefix that comes after the name of the bucketyou have designated for log file delivery. For more information, see FindingYour CloudTrail Log Files (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html).The maximum length is 200 characters.",
+						Description:         "Specifies the Amazon S3 key prefix that comes after the name of the bucket you have designated for log file delivery. For more information, see Finding Your CloudTrail Log Files (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html). The maximum length is 200 characters.",
+						MarkdownDescription: "Specifies the Amazon S3 key prefix that comes after the name of the bucket you have designated for log file delivery. For more information, see Finding Your CloudTrail Log Files (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html). The maximum length is 200 characters.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"sns_topic_name": schema.StringAttribute{
-						Description:         "Specifies the name of the Amazon SNS topic defined for notification of logfile delivery. The maximum length is 256 characters.",
-						MarkdownDescription: "Specifies the name of the Amazon SNS topic defined for notification of logfile delivery. The maximum length is 256 characters.",
+						Description:         "Specifies the name of the Amazon SNS topic defined for notification of log file delivery. The maximum length is 256 characters.",
+						MarkdownDescription: "Specifies the name of the Amazon SNS topic defined for notification of log file delivery. The maximum length is 256 characters.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

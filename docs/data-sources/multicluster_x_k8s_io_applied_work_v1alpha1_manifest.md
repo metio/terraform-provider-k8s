@@ -3,12 +3,12 @@
 page_title: "k8s_multicluster_x_k8s_io_applied_work_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "multicluster.x-k8s.io"
 description: |-
-  AppliedWork represents an applied work on managed cluster that is placedon a managed cluster. An appliedwork links to a work on a hub recording resourcesdeployed in the managed cluster.When the agent is removed from managed cluster, cluster-admin on managed clustercan delete appliedwork to remove resources deployed by the agent.The name of the appliedwork must be the same as {work name}The namespace of the appliedwork should be the same as the resource applied onthe managed cluster.
+  AppliedWork represents an applied work on managed cluster that is placed on a managed cluster. An appliedwork links to a work on a hub recording resources deployed in the managed cluster. When the agent is removed from managed cluster, cluster-admin on managed cluster can delete appliedwork to remove resources deployed by the agent. The name of the appliedwork must be the same as {work name} The namespace of the appliedwork should be the same as the resource applied on the managed cluster.
 ---
 
 # k8s_multicluster_x_k8s_io_applied_work_v1alpha1_manifest (Data Source)
 
-AppliedWork represents an applied work on managed cluster that is placedon a managed cluster. An appliedwork links to a work on a hub recording resourcesdeployed in the managed cluster.When the agent is removed from managed cluster, cluster-admin on managed clustercan delete appliedwork to remove resources deployed by the agent.The name of the appliedwork must be the same as {work name}The namespace of the appliedwork should be the same as the resource applied onthe managed cluster.
+AppliedWork represents an applied work on managed cluster that is placed on a managed cluster. An appliedwork links to a work on a hub recording resources deployed in the managed cluster. When the agent is removed from managed cluster, cluster-admin on managed cluster can delete appliedwork to remove resources deployed by the agent. The name of the appliedwork must be the same as {work name} The namespace of the appliedwork should be the same as the resource applied on the managed cluster.
 
 ## Example Usage
 

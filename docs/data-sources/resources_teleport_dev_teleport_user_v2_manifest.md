@@ -60,7 +60,7 @@ Optional:
 - `roles` (List of String) Roles is a list of roles assigned to user
 - `saml_identities` (Attributes List) SAMLIdentities lists associated SAML identities that let user log in using externally verified identity (see [below for nested schema](#nestedatt--spec--saml_identities))
 - `traits` (Map of List of String) Traits are key/value pairs received from an identity provider (through OIDC claims or SAML assertions) or from a system administrator for local accounts. Traits are used to populate role variables.
-- `trusted_device_ids` (List of String) TrustedDeviceIDs contains the IDs of trusted devices enrolled by the user.  Note that SSO users are transient and thus may contain an empty TrustedDeviceIDs field, even though the user->device association exists under the Device Trust subsystem. Do not rely on this field to determine device associations or ownership, it exists for legacy/informative purposes only.  Managed by the Device Trust subsystem, avoid manual edits.
+- `trusted_device_ids` (List of String) TrustedDeviceIDs contains the IDs of trusted devices enrolled by the user. Note that SSO users are transient and thus may contain an empty TrustedDeviceIDs field, even though the user->device association exists under the Device Trust subsystem. Do not rely on this field to determine device associations or ownership, it exists for legacy/informative purposes only. Managed by the Device Trust subsystem, avoid manual edits.
 
 <a id="nestedatt--spec--github_identities"></a>
 ### Nested Schema for `spec.github_identities`

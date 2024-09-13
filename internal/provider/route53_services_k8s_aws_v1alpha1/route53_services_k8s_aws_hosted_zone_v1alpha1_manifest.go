@@ -134,20 +134,20 @@ func (r *Route53ServicesK8SAwsHostedZoneV1Alpha1Manifest) Schema(_ context.Conte
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "HostedZoneSpec defines the desired state of HostedZone.A complex type that contains general information about the hosted zone.",
-				MarkdownDescription: "HostedZoneSpec defines the desired state of HostedZone.A complex type that contains general information about the hosted zone.",
+				Description:         "HostedZoneSpec defines the desired state of HostedZone. A complex type that contains general information about the hosted zone.",
+				MarkdownDescription: "HostedZoneSpec defines the desired state of HostedZone. A complex type that contains general information about the hosted zone.",
 				Attributes: map[string]schema.Attribute{
 					"delegation_set_id": schema.StringAttribute{
-						Description:         "If you want to associate a reusable delegation set with this hosted zone,the ID that Amazon Route 53 assigned to the reusable delegation set whenyou created it. For more information about reusable delegation sets, seeCreateReusableDelegationSet (https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateReusableDelegationSet.html).If you are using a reusable delegation set to create a public hosted zonefor a subdomain, make sure that the parent hosted zone doesn't use one ormore of the same name servers. If you have overlapping nameservers, the operationwill cause a ConflictingDomainsExist error.",
-						MarkdownDescription: "If you want to associate a reusable delegation set with this hosted zone,the ID that Amazon Route 53 assigned to the reusable delegation set whenyou created it. For more information about reusable delegation sets, seeCreateReusableDelegationSet (https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateReusableDelegationSet.html).If you are using a reusable delegation set to create a public hosted zonefor a subdomain, make sure that the parent hosted zone doesn't use one ormore of the same name servers. If you have overlapping nameservers, the operationwill cause a ConflictingDomainsExist error.",
+						Description:         "If you want to associate a reusable delegation set with this hosted zone, the ID that Amazon Route 53 assigned to the reusable delegation set when you created it. For more information about reusable delegation sets, see CreateReusableDelegationSet (https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateReusableDelegationSet.html). If you are using a reusable delegation set to create a public hosted zone for a subdomain, make sure that the parent hosted zone doesn't use one or more of the same name servers. If you have overlapping nameservers, the operation will cause a ConflictingDomainsExist error.",
+						MarkdownDescription: "If you want to associate a reusable delegation set with this hosted zone, the ID that Amazon Route 53 assigned to the reusable delegation set when you created it. For more information about reusable delegation sets, see CreateReusableDelegationSet (https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateReusableDelegationSet.html). If you are using a reusable delegation set to create a public hosted zone for a subdomain, make sure that the parent hosted zone doesn't use one or more of the same name servers. If you have overlapping nameservers, the operation will cause a ConflictingDomainsExist error.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"hosted_zone_config": schema.SingleNestedAttribute{
-						Description:         "(Optional) A complex type that contains the following optional values:   * For public and private hosted zones, an optional comment   * For private hosted zones, an optional PrivateZone elementIf you don't specify a comment or the PrivateZone element, omit HostedZoneConfigand the other elements.",
-						MarkdownDescription: "(Optional) A complex type that contains the following optional values:   * For public and private hosted zones, an optional comment   * For private hosted zones, an optional PrivateZone elementIf you don't specify a comment or the PrivateZone element, omit HostedZoneConfigand the other elements.",
+						Description:         "(Optional) A complex type that contains the following optional values: * For public and private hosted zones, an optional comment * For private hosted zones, an optional PrivateZone element If you don't specify a comment or the PrivateZone element, omit HostedZoneConfig and the other elements.",
+						MarkdownDescription: "(Optional) A complex type that contains the following optional values: * For public and private hosted zones, an optional comment * For private hosted zones, an optional PrivateZone element If you don't specify a comment or the PrivateZone element, omit HostedZoneConfig and the other elements.",
 						Attributes: map[string]schema.Attribute{
 							"comment": schema.StringAttribute{
 								Description:         "",
@@ -171,16 +171,16 @@ func (r *Route53ServicesK8SAwsHostedZoneV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the domain. Specify a fully qualified domain name, for example,www.example.com. The trailing dot is optional; Amazon Route 53 assumes thatthe domain name is fully qualified. This means that Route 53 treats www.example.com(without a trailing dot) and www.example.com. (with a trailing dot) as identical.If you're creating a public hosted zone, this is the name you have registeredwith your DNS registrar. If your domain name is registered with a registrarother than Route 53, change the name servers for your domain to the set ofNameServers that CreateHostedZone returns in DelegationSet.",
-						MarkdownDescription: "The name of the domain. Specify a fully qualified domain name, for example,www.example.com. The trailing dot is optional; Amazon Route 53 assumes thatthe domain name is fully qualified. This means that Route 53 treats www.example.com(without a trailing dot) and www.example.com. (with a trailing dot) as identical.If you're creating a public hosted zone, this is the name you have registeredwith your DNS registrar. If your domain name is registered with a registrarother than Route 53, change the name servers for your domain to the set ofNameServers that CreateHostedZone returns in DelegationSet.",
+						Description:         "The name of the domain. Specify a fully qualified domain name, for example, www.example.com. The trailing dot is optional; Amazon Route 53 assumes that the domain name is fully qualified. This means that Route 53 treats www.example.com (without a trailing dot) and www.example.com. (with a trailing dot) as identical. If you're creating a public hosted zone, this is the name you have registered with your DNS registrar. If your domain name is registered with a registrar other than Route 53, change the name servers for your domain to the set of NameServers that CreateHostedZone returns in DelegationSet.",
+						MarkdownDescription: "The name of the domain. Specify a fully qualified domain name, for example, www.example.com. The trailing dot is optional; Amazon Route 53 assumes that the domain name is fully qualified. This means that Route 53 treats www.example.com (without a trailing dot) and www.example.com. (with a trailing dot) as identical. If you're creating a public hosted zone, this is the name you have registered with your DNS registrar. If your domain name is registered with a registrar other than Route 53, change the name servers for your domain to the set of NameServers that CreateHostedZone returns in DelegationSet.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A complex type that contains a list of the tags that you want to add to thespecified health check or hosted zone and/or the tags that you want to editValue for.You can add a maximum of 10 tags to a health check or a hosted zone.",
-						MarkdownDescription: "A complex type that contains a list of the tags that you want to add to thespecified health check or hosted zone and/or the tags that you want to editValue for.You can add a maximum of 10 tags to a health check or a hosted zone.",
+						Description:         "A complex type that contains a list of the tags that you want to add to the specified health check or hosted zone and/or the tags that you want to edit Value for. You can add a maximum of 10 tags to a health check or a hosted zone.",
+						MarkdownDescription: "A complex type that contains a list of the tags that you want to add to the specified health check or hosted zone and/or the tags that you want to edit Value for. You can add a maximum of 10 tags to a health check or a hosted zone.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -206,8 +206,8 @@ func (r *Route53ServicesK8SAwsHostedZoneV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"vpc": schema.SingleNestedAttribute{
-						Description:         "(Private hosted zones only) A complex type that contains information aboutthe Amazon VPC that you're associating with this hosted zone.You can specify only one Amazon VPC when you create a private hosted zone.If you are associating a VPC with a hosted zone with this request, the paramatersVPCId and VPCRegion are also required.To associate additional Amazon VPCs with the hosted zone, use AssociateVPCWithHostedZone(https://docs.aws.amazon.com/Route53/latest/APIReference/API_AssociateVPCWithHostedZone.html)after you create a hosted zone.",
-						MarkdownDescription: "(Private hosted zones only) A complex type that contains information aboutthe Amazon VPC that you're associating with this hosted zone.You can specify only one Amazon VPC when you create a private hosted zone.If you are associating a VPC with a hosted zone with this request, the paramatersVPCId and VPCRegion are also required.To associate additional Amazon VPCs with the hosted zone, use AssociateVPCWithHostedZone(https://docs.aws.amazon.com/Route53/latest/APIReference/API_AssociateVPCWithHostedZone.html)after you create a hosted zone.",
+						Description:         "(Private hosted zones only) A complex type that contains information about the Amazon VPC that you're associating with this hosted zone. You can specify only one Amazon VPC when you create a private hosted zone. If you are associating a VPC with a hosted zone with this request, the paramaters VPCId and VPCRegion are also required. To associate additional Amazon VPCs with the hosted zone, use AssociateVPCWithHostedZone (https://docs.aws.amazon.com/Route53/latest/APIReference/API_AssociateVPCWithHostedZone.html) after you create a hosted zone.",
+						MarkdownDescription: "(Private hosted zones only) A complex type that contains information about the Amazon VPC that you're associating with this hosted zone. You can specify only one Amazon VPC when you create a private hosted zone. If you are associating a VPC with a hosted zone with this request, the paramaters VPCId and VPCRegion are also required. To associate additional Amazon VPCs with the hosted zone, use AssociateVPCWithHostedZone (https://docs.aws.amazon.com/Route53/latest/APIReference/API_AssociateVPCWithHostedZone.html) after you create a hosted zone.",
 						Attributes: map[string]schema.Attribute{
 							"vpc_id": schema.StringAttribute{
 								Description:         "(Private hosted zones only) The ID of an Amazon VPC.",

@@ -55,18 +55,18 @@ Optional:
 
 Required:
 
-- `backup_storage_location` (String) BackupStorageLocation is the name of the backup storage locationwhere the backup repository is stored.
-- `operation_timeout` (String) OperationTimeout specifies the time used to wait internal operations,before returning error as timeout.
+- `backup_storage_location` (String) BackupStorageLocation is the name of the backup storage location where the backup repository is stored.
+- `operation_timeout` (String) OperationTimeout specifies the time used to wait internal operations, before returning error as timeout.
 - `snapshot_type` (String) SnapshotType is the type of the snapshot to be backed up.
-- `source_namespace` (String) SourceNamespace is the original namespace where the volume is backed up from.It is the same namespace for SourcePVC and CSI namespaced objects.
+- `source_namespace` (String) SourceNamespace is the original namespace where the volume is backed up from. It is the same namespace for SourcePVC and CSI namespaced objects.
 - `source_pvc` (String) SourcePVC is the name of the PVC which the snapshot is taken for.
 
 Optional:
 
-- `cancel` (Boolean) Cancel indicates request to cancel the ongoing DataUpload. It can be setwhen the DataUpload is in InProgress phase
+- `cancel` (Boolean) Cancel indicates request to cancel the ongoing DataUpload. It can be set when the DataUpload is in InProgress phase
 - `csi_snapshot` (Attributes) If SnapshotType is CSI, CSISnapshot provides the information of the CSI snapshot. (see [below for nested schema](#nestedatt--spec--csi_snapshot))
 - `data_mover_config` (Map of String) DataMoverConfig is for data-mover-specific configuration fields.
-- `datamover` (String) DataMover specifies the data mover to be used by the backup.If DataMover is '' or 'velero', the built-in data mover will be used.
+- `datamover` (String) DataMover specifies the data mover to be used by the backup. If DataMover is '' or 'velero', the built-in data mover will be used.
 
 <a id="nestedatt--spec--csi_snapshot"></a>
 ### Nested Schema for `spec.csi_snapshot`

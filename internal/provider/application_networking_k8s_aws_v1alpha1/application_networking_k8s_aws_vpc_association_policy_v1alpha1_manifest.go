@@ -133,16 +133,16 @@ func (r *ApplicationNetworkingK8SAwsVpcAssociationPolicyV1Alpha1Manifest) Schema
 				MarkdownDescription: "VpcAssociationPolicySpec defines the desired state of VpcAssociationPolicy.",
 				Attributes: map[string]schema.Attribute{
 					"associate_with_vpc": schema.BoolAttribute{
-						Description:         "AssociateWithVpc indicates whether the VpcServiceNetworkAssociation should be created for the current VPC of k8s cluster.  This value will be considered true by default.",
-						MarkdownDescription: "AssociateWithVpc indicates whether the VpcServiceNetworkAssociation should be created for the current VPC of k8s cluster.  This value will be considered true by default.",
+						Description:         "AssociateWithVpc indicates whether the VpcServiceNetworkAssociation should be created for the current VPC of k8s cluster. This value will be considered true by default.",
+						MarkdownDescription: "AssociateWithVpc indicates whether the VpcServiceNetworkAssociation should be created for the current VPC of k8s cluster. This value will be considered true by default.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"security_group_ids": schema.ListAttribute{
-						Description:         "SecurityGroupIds defines the security groups enforced on the VpcServiceNetworkAssociation. Security groups does not take effect if AssociateWithVpc is set to false.  For more details, please check the VPC Lattice documentation https://docs.aws.amazon.com/vpc-lattice/latest/ug/security-groups.html",
-						MarkdownDescription: "SecurityGroupIds defines the security groups enforced on the VpcServiceNetworkAssociation. Security groups does not take effect if AssociateWithVpc is set to false.  For more details, please check the VPC Lattice documentation https://docs.aws.amazon.com/vpc-lattice/latest/ug/security-groups.html",
+						Description:         "SecurityGroupIds defines the security groups enforced on the VpcServiceNetworkAssociation. Security groups does not take effect if AssociateWithVpc is set to false. For more details, please check the VPC Lattice documentation https://docs.aws.amazon.com/vpc-lattice/latest/ug/security-groups.html",
+						MarkdownDescription: "SecurityGroupIds defines the security groups enforced on the VpcServiceNetworkAssociation. Security groups does not take effect if AssociateWithVpc is set to false. For more details, please check the VPC Lattice documentation https://docs.aws.amazon.com/vpc-lattice/latest/ug/security-groups.html",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -150,8 +150,8 @@ func (r *ApplicationNetworkingK8SAwsVpcAssociationPolicyV1Alpha1Manifest) Schema
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef points to the kubernetes Gateway resource that will have this policy attached.  This field is following the guidelines of Kubernetes Gateway API policy attachment.",
-						MarkdownDescription: "TargetRef points to the kubernetes Gateway resource that will have this policy attached.  This field is following the guidelines of Kubernetes Gateway API policy attachment.",
+						Description:         "TargetRef points to the kubernetes Gateway resource that will have this policy attached. This field is following the guidelines of Kubernetes Gateway API policy attachment.",
+						MarkdownDescription: "TargetRef points to the kubernetes Gateway resource that will have this policy attached. This field is following the guidelines of Kubernetes Gateway API policy attachment.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "Group is the group of the target resource.",

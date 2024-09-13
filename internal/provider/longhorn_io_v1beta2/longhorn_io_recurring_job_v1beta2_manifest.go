@@ -174,8 +174,8 @@ func (r *LonghornIoRecurringJobV1Beta2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"parameters": schema.MapAttribute{
-						Description:         "The parameters of the snapshot/backup.Support parameters: 'full-backup-interval'.",
-						MarkdownDescription: "The parameters of the snapshot/backup.Support parameters: 'full-backup-interval'.",
+						Description:         "The parameters of the snapshot/backup. Support parameters: 'full-backup-interval'.",
+						MarkdownDescription: "The parameters of the snapshot/backup. Support parameters: 'full-backup-interval'.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -191,8 +191,8 @@ func (r *LonghornIoRecurringJobV1Beta2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"task": schema.StringAttribute{
-						Description:         "The recurring job task.Can be 'snapshot', 'snapshot-force-create', 'snapshot-cleanup', 'snapshot-delete', 'backup', 'backup-force-create' or 'filesystem-trim'",
-						MarkdownDescription: "The recurring job task.Can be 'snapshot', 'snapshot-force-create', 'snapshot-cleanup', 'snapshot-delete', 'backup', 'backup-force-create' or 'filesystem-trim'",
+						Description:         "The recurring job task. Can be 'snapshot', 'snapshot-force-create', 'snapshot-cleanup', 'snapshot-delete', 'backup', 'backup-force-create' or 'filesystem-trim'",
+						MarkdownDescription: "The recurring job task. Can be 'snapshot', 'snapshot-force-create', 'snapshot-cleanup', 'snapshot-delete', 'backup', 'backup-force-create' or 'filesystem-trim'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -138,8 +138,8 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta1Manifest) Schema(_ context.Conte
 				MarkdownDescription: "AlertSpec defines an alerting rule for events involving a list of objects",
 				Attributes: map[string]schema.Attribute{
 					"event_severity": schema.StringAttribute{
-						Description:         "Filter events based on severity, defaults to ('info').If set to 'info' no events will be filtered.",
-						MarkdownDescription: "Filter events based on severity, defaults to ('info').If set to 'info' no events will be filtered.",
+						Description:         "Filter events based on severity, defaults to ('info'). If set to 'info' no events will be filtered.",
+						MarkdownDescription: "Filter events based on severity, defaults to ('info'). If set to 'info' no events will be filtered.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -164,8 +164,8 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta1Manifest) Schema(_ context.Conte
 								"kind": schema.StringAttribute{
 									Description:         "Kind of the referent",
 									MarkdownDescription: "Kind of the referent",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.OneOf("Bucket", "GitRepository", "Kustomization", "HelmRelease", "HelmChart", "HelmRepository", "ImageRepository", "ImagePolicy", "ImageUpdateAutomation", "OCIRepository"),
@@ -173,8 +173,8 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"match_labels": schema.MapAttribute{
-									Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-									MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -246,8 +246,8 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "This flag tells the controller to suspend subsequent events dispatching.Defaults to false.",
-						MarkdownDescription: "This flag tells the controller to suspend subsequent events dispatching.Defaults to false.",
+						Description:         "This flag tells the controller to suspend subsequent events dispatching. Defaults to false.",
+						MarkdownDescription: "This flag tells the controller to suspend subsequent events dispatching. Defaults to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

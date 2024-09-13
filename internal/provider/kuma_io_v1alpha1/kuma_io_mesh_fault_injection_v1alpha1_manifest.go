@@ -195,8 +195,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.SingleNestedAttribute{
-									Description:         "Default is a configuration specific to the group of destinations referenced in'targetRef'",
-									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in'targetRef'",
+									Description:         "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
+									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
 									Attributes: map[string]schema.Attribute{
 										"http": schema.ListNestedAttribute{
 											Description:         "Http allows to define list of Http faults between dataplanes.",
@@ -204,8 +204,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"abort": schema.SingleNestedAttribute{
-														Description:         "Abort defines a configuration of not delivering requests to destinationservice and replacing the responses from destination dataplane bypredefined status code",
-														MarkdownDescription: "Abort defines a configuration of not delivering requests to destinationservice and replacing the responses from destination dataplane bypredefined status code",
+														Description:         "Abort defines a configuration of not delivering requests to destination service and replacing the responses from destination dataplane by predefined status code",
+														MarkdownDescription: "Abort defines a configuration of not delivering requests to destination service and replacing the responses from destination dataplane by predefined status code",
 														Attributes: map[string]schema.Attribute{
 															"http_status": schema.Int64Attribute{
 																Description:         "HTTP status code which will be returned to source side",
@@ -216,8 +216,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"percentage": schema.StringAttribute{
-																Description:         "Percentage of requests on which abort will be injected, has to beeither int or decimal represented as string.",
-																MarkdownDescription: "Percentage of requests on which abort will be injected, has to beeither int or decimal represented as string.",
+																Description:         "Percentage of requests on which abort will be injected, has to be either int or decimal represented as string.",
+																MarkdownDescription: "Percentage of requests on which abort will be injected, has to be either int or decimal represented as string.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -233,8 +233,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "Delay defines configuration of delaying a response from a destination",
 														Attributes: map[string]schema.Attribute{
 															"percentage": schema.StringAttribute{
-																Description:         "Percentage of requests on which delay will be injected, has to beeither int or decimal represented as string.",
-																MarkdownDescription: "Percentage of requests on which delay will be injected, has to beeither int or decimal represented as string.",
+																Description:         "Percentage of requests on which delay will be injected, has to be either int or decimal represented as string.",
+																MarkdownDescription: "Percentage of requests on which delay will be injected, has to be either int or decimal represented as string.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -254,20 +254,20 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"response_bandwidth": schema.SingleNestedAttribute{
-														Description:         "ResponseBandwidth defines a configuration to limit the speed ofresponding to the requests",
-														MarkdownDescription: "ResponseBandwidth defines a configuration to limit the speed ofresponding to the requests",
+														Description:         "ResponseBandwidth defines a configuration to limit the speed of responding to the requests",
+														MarkdownDescription: "ResponseBandwidth defines a configuration to limit the speed of responding to the requests",
 														Attributes: map[string]schema.Attribute{
 															"limit": schema.StringAttribute{
-																Description:         "Limit is represented by value measure in Gbps, Mbps, kbps, e.g.10kbps",
-																MarkdownDescription: "Limit is represented by value measure in Gbps, Mbps, kbps, e.g.10kbps",
+																Description:         "Limit is represented by value measure in Gbps, Mbps, kbps, e.g. 10kbps",
+																MarkdownDescription: "Limit is represented by value measure in Gbps, Mbps, kbps, e.g. 10kbps",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"percentage": schema.StringAttribute{
-																Description:         "Percentage of requests on which response bandwidth limit will beeither int or decimal represented as string.",
-																MarkdownDescription: "Percentage of requests on which response bandwidth limit will beeither int or decimal represented as string.",
+																Description:         "Percentage of requests on which response bandwidth limit will be either int or decimal represented as string.",
+																MarkdownDescription: "Percentage of requests on which response bandwidth limit will be either int or decimal represented as string.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -290,8 +290,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group ofdestinations.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofdestinations.",
+									Description:         "TargetRef is a reference to the resource that represents a group of destinations.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of destinations.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -305,8 +305,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -322,24 +322,24 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_types": schema.ListAttribute{
-											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -347,16 +347,16 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"section_name": schema.StringAttribute{
-											Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-											MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -375,8 +375,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
-						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
+						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
+						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
@@ -390,8 +390,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"labels": schema.MapAttribute{
-								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -407,24 +407,24 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"proxy_types": schema.ListAttribute{
-								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -432,16 +432,16 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"section_name": schema.StringAttribute{
-								Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-								MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tags": schema.MapAttribute{
-								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -459,8 +459,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.SingleNestedAttribute{
-									Description:         "Default is a configuration specific to the group of destinations referenced in'targetRef'",
-									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in'targetRef'",
+									Description:         "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
+									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
 									Attributes: map[string]schema.Attribute{
 										"http": schema.ListNestedAttribute{
 											Description:         "Http allows to define list of Http faults between dataplanes.",
@@ -468,8 +468,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"abort": schema.SingleNestedAttribute{
-														Description:         "Abort defines a configuration of not delivering requests to destinationservice and replacing the responses from destination dataplane bypredefined status code",
-														MarkdownDescription: "Abort defines a configuration of not delivering requests to destinationservice and replacing the responses from destination dataplane bypredefined status code",
+														Description:         "Abort defines a configuration of not delivering requests to destination service and replacing the responses from destination dataplane by predefined status code",
+														MarkdownDescription: "Abort defines a configuration of not delivering requests to destination service and replacing the responses from destination dataplane by predefined status code",
 														Attributes: map[string]schema.Attribute{
 															"http_status": schema.Int64Attribute{
 																Description:         "HTTP status code which will be returned to source side",
@@ -480,8 +480,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"percentage": schema.StringAttribute{
-																Description:         "Percentage of requests on which abort will be injected, has to beeither int or decimal represented as string.",
-																MarkdownDescription: "Percentage of requests on which abort will be injected, has to beeither int or decimal represented as string.",
+																Description:         "Percentage of requests on which abort will be injected, has to be either int or decimal represented as string.",
+																MarkdownDescription: "Percentage of requests on which abort will be injected, has to be either int or decimal represented as string.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -497,8 +497,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "Delay defines configuration of delaying a response from a destination",
 														Attributes: map[string]schema.Attribute{
 															"percentage": schema.StringAttribute{
-																Description:         "Percentage of requests on which delay will be injected, has to beeither int or decimal represented as string.",
-																MarkdownDescription: "Percentage of requests on which delay will be injected, has to beeither int or decimal represented as string.",
+																Description:         "Percentage of requests on which delay will be injected, has to be either int or decimal represented as string.",
+																MarkdownDescription: "Percentage of requests on which delay will be injected, has to be either int or decimal represented as string.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -518,20 +518,20 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"response_bandwidth": schema.SingleNestedAttribute{
-														Description:         "ResponseBandwidth defines a configuration to limit the speed ofresponding to the requests",
-														MarkdownDescription: "ResponseBandwidth defines a configuration to limit the speed ofresponding to the requests",
+														Description:         "ResponseBandwidth defines a configuration to limit the speed of responding to the requests",
+														MarkdownDescription: "ResponseBandwidth defines a configuration to limit the speed of responding to the requests",
 														Attributes: map[string]schema.Attribute{
 															"limit": schema.StringAttribute{
-																Description:         "Limit is represented by value measure in Gbps, Mbps, kbps, e.g.10kbps",
-																MarkdownDescription: "Limit is represented by value measure in Gbps, Mbps, kbps, e.g.10kbps",
+																Description:         "Limit is represented by value measure in Gbps, Mbps, kbps, e.g. 10kbps",
+																MarkdownDescription: "Limit is represented by value measure in Gbps, Mbps, kbps, e.g. 10kbps",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"percentage": schema.StringAttribute{
-																Description:         "Percentage of requests on which response bandwidth limit will beeither int or decimal represented as string.",
-																MarkdownDescription: "Percentage of requests on which response bandwidth limit will beeither int or decimal represented as string.",
+																Description:         "Percentage of requests on which response bandwidth limit will be either int or decimal represented as string.",
+																MarkdownDescription: "Percentage of requests on which response bandwidth limit will be either int or decimal represented as string.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -554,8 +554,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group ofdestinations.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofdestinations.",
+									Description:         "TargetRef is a reference to the resource that represents a group of destinations.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of destinations.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -569,8 +569,8 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -586,24 +586,24 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_types": schema.ListAttribute{
-											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -611,16 +611,16 @@ func (r *KumaIoMeshFaultInjectionV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"section_name": schema.StringAttribute{
-											Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-											MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

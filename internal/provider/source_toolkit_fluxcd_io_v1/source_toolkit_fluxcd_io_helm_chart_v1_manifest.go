@@ -147,24 +147,24 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "HelmChartSpec specifies the desired state of a Helm chart.",
 				Attributes: map[string]schema.Attribute{
 					"chart": schema.StringAttribute{
-						Description:         "Chart is the name or path the Helm chart is available at in theSourceRef.",
-						MarkdownDescription: "Chart is the name or path the Helm chart is available at in theSourceRef.",
+						Description:         "Chart is the name or path the Helm chart is available at in the SourceRef.",
+						MarkdownDescription: "Chart is the name or path the Helm chart is available at in the SourceRef.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"ignore_missing_values_files": schema.BoolAttribute{
-						Description:         "IgnoreMissingValuesFiles controls whether to silently ignore missing valuesfiles rather than failing.",
-						MarkdownDescription: "IgnoreMissingValuesFiles controls whether to silently ignore missing valuesfiles rather than failing.",
+						Description:         "IgnoreMissingValuesFiles controls whether to silently ignore missing values files rather than failing.",
+						MarkdownDescription: "IgnoreMissingValuesFiles controls whether to silently ignore missing values files rather than failing.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"interval": schema.StringAttribute{
-						Description:         "Interval at which the HelmChart SourceRef is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.",
-						MarkdownDescription: "Interval at which the HelmChart SourceRef is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.",
+						Description:         "Interval at which the HelmChart SourceRef is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
+						MarkdownDescription: "Interval at which the HelmChart SourceRef is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -174,8 +174,8 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"reconcile_strategy": schema.StringAttribute{
-						Description:         "ReconcileStrategy determines what enables the creation of a new artifact.Valid values are ('ChartVersion', 'Revision').See the documentation of the values for an explanation on their behavior.Defaults to ChartVersion when omitted.",
-						MarkdownDescription: "ReconcileStrategy determines what enables the creation of a new artifact.Valid values are ('ChartVersion', 'Revision').See the documentation of the values for an explanation on their behavior.Defaults to ChartVersion when omitted.",
+						Description:         "ReconcileStrategy determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
+						MarkdownDescription: "ReconcileStrategy determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -197,8 +197,8 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent, valid values are ('HelmRepository', 'GitRepository','Bucket').",
-								MarkdownDescription: "Kind of the referent, valid values are ('HelmRepository', 'GitRepository','Bucket').",
+								Description:         "Kind of the referent, valid values are ('HelmRepository', 'GitRepository', 'Bucket').",
+								MarkdownDescription: "Kind of the referent, valid values are ('HelmRepository', 'GitRepository', 'Bucket').",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -221,16 +221,16 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "Suspend tells the controller to suspend the reconciliation of thissource.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of thissource.",
+						Description:         "Suspend tells the controller to suspend the reconciliation of this source.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this source.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"values_files": schema.ListAttribute{
-						Description:         "ValuesFiles is an alternative list of values files to use as the chartvalues (values.yaml is not included by default), expected to be arelative path in the SourceRef.Values files are merged in the order of this list with the last fileoverriding the first. Ignored when omitted.",
-						MarkdownDescription: "ValuesFiles is an alternative list of values files to use as the chartvalues (values.yaml is not included by default), expected to be arelative path in the SourceRef.Values files are merged in the order of this list with the last fileoverriding the first. Ignored when omitted.",
+						Description:         "ValuesFiles is an alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
+						MarkdownDescription: "ValuesFiles is an alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -238,25 +238,25 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"verify": schema.SingleNestedAttribute{
-						Description:         "Verify contains the secret name containing the trusted public keysused to verify the signature and specifies which provider to use to checkwhether OCI image is authentic.This field is only supported when using HelmRepository source with spec.type 'oci'.Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.",
-						MarkdownDescription: "Verify contains the secret name containing the trusted public keysused to verify the signature and specifies which provider to use to checkwhether OCI image is authentic.This field is only supported when using HelmRepository source with spec.type 'oci'.Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.",
+						Description:         "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. This field is only supported when using HelmRepository source with spec.type 'oci'. Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.",
+						MarkdownDescription: "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. This field is only supported when using HelmRepository source with spec.type 'oci'. Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.",
 						Attributes: map[string]schema.Attribute{
 							"match_oidc_identity": schema.ListNestedAttribute{
-								Description:         "MatchOIDCIdentity specifies the identity matching criteria to usewhile verifying an OCI artifact which was signed using Cosign keylesssigning. The artifact's identity is deemed to be verified if any of thespecified matchers match against the identity.",
-								MarkdownDescription: "MatchOIDCIdentity specifies the identity matching criteria to usewhile verifying an OCI artifact which was signed using Cosign keylesssigning. The artifact's identity is deemed to be verified if any of thespecified matchers match against the identity.",
+								Description:         "MatchOIDCIdentity specifies the identity matching criteria to use while verifying an OCI artifact which was signed using Cosign keyless signing. The artifact's identity is deemed to be verified if any of the specified matchers match against the identity.",
+								MarkdownDescription: "MatchOIDCIdentity specifies the identity matching criteria to use while verifying an OCI artifact which was signed using Cosign keyless signing. The artifact's identity is deemed to be verified if any of the specified matchers match against the identity.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"issuer": schema.StringAttribute{
-											Description:         "Issuer specifies the regex pattern to match against to verifythe OIDC issuer in the Fulcio certificate. The pattern must be avalid Go regular expression.",
-											MarkdownDescription: "Issuer specifies the regex pattern to match against to verifythe OIDC issuer in the Fulcio certificate. The pattern must be avalid Go regular expression.",
+											Description:         "Issuer specifies the regex pattern to match against to verify the OIDC issuer in the Fulcio certificate. The pattern must be a valid Go regular expression.",
+											MarkdownDescription: "Issuer specifies the regex pattern to match against to verify the OIDC issuer in the Fulcio certificate. The pattern must be a valid Go regular expression.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"subject": schema.StringAttribute{
-											Description:         "Subject specifies the regex pattern to match against to verifythe identity subject in the Fulcio certificate. The pattern mustbe a valid Go regular expression.",
-											MarkdownDescription: "Subject specifies the regex pattern to match against to verifythe identity subject in the Fulcio certificate. The pattern mustbe a valid Go regular expression.",
+											Description:         "Subject specifies the regex pattern to match against to verify the identity subject in the Fulcio certificate. The pattern must be a valid Go regular expression.",
+											MarkdownDescription: "Subject specifies the regex pattern to match against to verify the identity subject in the Fulcio certificate. The pattern must be a valid Go regular expression.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -280,8 +280,8 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"secret_ref": schema.SingleNestedAttribute{
-								Description:         "SecretRef specifies the Kubernetes Secret containing thetrusted public keys.",
-								MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing thetrusted public keys.",
+								Description:         "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
+								MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name of the referent.",
@@ -302,8 +302,8 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"version": schema.StringAttribute{
-						Description:         "Version is the chart version semver expression, ignored for charts fromGitRepository and Bucket sources. Defaults to latest when omitted.",
-						MarkdownDescription: "Version is the chart version semver expression, ignored for charts fromGitRepository and Bucket sources. Defaults to latest when omitted.",
+						Description:         "Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
+						MarkdownDescription: "Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

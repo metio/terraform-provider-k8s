@@ -3,12 +3,12 @@
 page_title: "k8s_autoscaling_karmada_io_cron_federated_hpa_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "autoscaling.karmada.io"
 description: |-
-  CronFederatedHPA represents a collection of repeating schedule to scalereplica number of a specific workload. It can scale any resource implementingthe scale subresource as well as FederatedHPA.
+  CronFederatedHPA represents a collection of repeating schedule to scale replica number of a specific workload. It can scale any resource implementing the scale subresource as well as FederatedHPA.
 ---
 
 # k8s_autoscaling_karmada_io_cron_federated_hpa_v1alpha1_manifest (Data Source)
 
-CronFederatedHPA represents a collection of repeating schedule to scalereplica number of a specific workload. It can scale any resource implementingthe scale subresource as well as FederatedHPA.
+CronFederatedHPA represents a collection of repeating schedule to scale replica number of a specific workload. It can scale any resource implementing the scale subresource as well as FederatedHPA.
 
 ## Example Usage
 
@@ -59,26 +59,26 @@ Optional:
 
 Required:
 
-- `rules` (Attributes List) Rules contains a collection of schedules that declares when and howthe referencing target resource should be scaled. (see [below for nested schema](#nestedatt--spec--rules))
-- `scale_target_ref` (Attributes) ScaleTargetRef points to the target resource to scale.Target resource could be any resource that implementing the scalesubresource like Deployment, or FederatedHPA. (see [below for nested schema](#nestedatt--spec--scale_target_ref))
+- `rules` (Attributes List) Rules contains a collection of schedules that declares when and how the referencing target resource should be scaled. (see [below for nested schema](#nestedatt--spec--rules))
+- `scale_target_ref` (Attributes) ScaleTargetRef points to the target resource to scale. Target resource could be any resource that implementing the scale subresource like Deployment, or FederatedHPA. (see [below for nested schema](#nestedatt--spec--scale_target_ref))
 
 <a id="nestedatt--spec--rules"></a>
 ### Nested Schema for `spec.rules`
 
 Required:
 
-- `name` (String) Name of the rule.Each rule in a CronFederatedHPA must have a unique name.Note: the name will be used as an identifier to record its executionhistory. Changing the name will be considered as deleting the old ruleand adding a new rule, that means the original execution history will bediscarded.
-- `schedule` (String) Schedule is the cron expression that represents a periodical time.The syntax follows https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#schedule-syntax.
+- `name` (String) Name of the rule. Each rule in a CronFederatedHPA must have a unique name. Note: the name will be used as an identifier to record its execution history. Changing the name will be considered as deleting the old rule and adding a new rule, that means the original execution history will be discarded.
+- `schedule` (String) Schedule is the cron expression that represents a periodical time. The syntax follows https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#schedule-syntax.
 
 Optional:
 
-- `failed_history_limit` (Number) FailedHistoryLimit represents the count of failed execution items foreach rule.The value must be a positive integer. It defaults to 3.
-- `successful_history_limit` (Number) SuccessfulHistoryLimit represents the count of successful execution itemsfor each rule.The value must be a positive integer. It defaults to 3.
-- `suspend` (Boolean) Suspend tells the controller to suspend subsequent executions.Defaults to false.
-- `target_max_replicas` (Number) TargetMaxReplicas is the target MaxReplicas to be set for FederatedHPA.Only needed when referencing resource is FederatedHPA.TargetMinReplicas and TargetMaxReplicas can be specified together oreither one can be specified alone.nil means the MaxReplicas(.spec.maxReplicas) of the referencing FederatedHPAwill not be updated.
-- `target_min_replicas` (Number) TargetMinReplicas is the target MinReplicas to be set for FederatedHPA.Only needed when referencing resource is FederatedHPA.TargetMinReplicas and TargetMaxReplicas can be specified together oreither one can be specified alone.nil means the MinReplicas(.spec.minReplicas) of the referencing FederatedHPAwill not be updated.
-- `target_replicas` (Number) TargetReplicas is the target replicas to be scaled for resourcesreferencing by ScaleTargetRef of this CronFederatedHPA.Only needed when referencing resource is not FederatedHPA.
-- `time_zone` (String) TimeZone for the giving schedule.If not specified, this will default to the time zone of thekarmada-controller-manager process.Invalid TimeZone will be rejected when applying by karmada-webhook.see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for theall timezones.
+- `failed_history_limit` (Number) FailedHistoryLimit represents the count of failed execution items for each rule. The value must be a positive integer. It defaults to 3.
+- `successful_history_limit` (Number) SuccessfulHistoryLimit represents the count of successful execution items for each rule. The value must be a positive integer. It defaults to 3.
+- `suspend` (Boolean) Suspend tells the controller to suspend subsequent executions. Defaults to false.
+- `target_max_replicas` (Number) TargetMaxReplicas is the target MaxReplicas to be set for FederatedHPA. Only needed when referencing resource is FederatedHPA. TargetMinReplicas and TargetMaxReplicas can be specified together or either one can be specified alone. nil means the MaxReplicas(.spec.maxReplicas) of the referencing FederatedHPA will not be updated.
+- `target_min_replicas` (Number) TargetMinReplicas is the target MinReplicas to be set for FederatedHPA. Only needed when referencing resource is FederatedHPA. TargetMinReplicas and TargetMaxReplicas can be specified together or either one can be specified alone. nil means the MinReplicas(.spec.minReplicas) of the referencing FederatedHPA will not be updated.
+- `target_replicas` (Number) TargetReplicas is the target replicas to be scaled for resources referencing by ScaleTargetRef of this CronFederatedHPA. Only needed when referencing resource is not FederatedHPA.
+- `time_zone` (String) TimeZone for the giving schedule. If not specified, this will default to the time zone of the karmada-controller-manager process. Invalid TimeZone will be rejected when applying by karmada-webhook. see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the all timezones.
 
 
 <a id="nestedatt--spec--scale_target_ref"></a>

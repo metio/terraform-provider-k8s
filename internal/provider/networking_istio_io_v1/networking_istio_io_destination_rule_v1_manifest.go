@@ -527,8 +527,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 													MarkdownDescription: "HTTP connection pool settings.",
 													Attributes: map[string]schema.Attribute{
 														"h2_upgrade_policy": schema.StringAttribute{
-															Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
-															MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+															Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+															MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -884,8 +884,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 												},
 
 												"simple": schema.StringAttribute{
-													Description:         "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
-													MarkdownDescription: "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+													Description:         " Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+													MarkdownDescription: " Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1014,8 +1014,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 																MarkdownDescription: "HTTP connection pool settings.",
 																Attributes: map[string]schema.Attribute{
 																	"h2_upgrade_policy": schema.StringAttribute{
-																		Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
-																		MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+																		Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+																		MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1371,8 +1371,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 															},
 
 															"simple": schema.StringAttribute{
-																Description:         "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
-																MarkdownDescription: "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+																Description:         " Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+																MarkdownDescription: " Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1553,8 +1553,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 															},
 
 															"mode": schema.StringAttribute{
-																Description:         "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
-																MarkdownDescription: "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+																Description:         "Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+																MarkdownDescription: "Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1604,8 +1604,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "The upstream PROXY protocol settings.",
 											Attributes: map[string]schema.Attribute{
 												"version": schema.StringAttribute{
-													Description:         "The PROXY protocol version to use.Valid Options: V1, V2",
-													MarkdownDescription: "The PROXY protocol version to use.Valid Options: V1, V2",
+													Description:         "The PROXY protocol version to use. Valid Options: V1, V2",
+													MarkdownDescription: "The PROXY protocol version to use. Valid Options: V1, V2",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1664,8 +1664,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 												},
 
 												"mode": schema.StringAttribute{
-													Description:         "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
-													MarkdownDescription: "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+													Description:         "Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+													MarkdownDescription: "Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1765,8 +1765,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 										MarkdownDescription: "HTTP connection pool settings.",
 										Attributes: map[string]schema.Attribute{
 											"h2_upgrade_policy": schema.StringAttribute{
-												Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
-												MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+												Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+												MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2122,8 +2122,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 									},
 
 									"simple": schema.StringAttribute{
-										Description:         "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
-										MarkdownDescription: "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+										Description:         " Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+										MarkdownDescription: " Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2252,8 +2252,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 													MarkdownDescription: "HTTP connection pool settings.",
 													Attributes: map[string]schema.Attribute{
 														"h2_upgrade_policy": schema.StringAttribute{
-															Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
-															MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+															Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+															MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2609,8 +2609,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 												},
 
 												"simple": schema.StringAttribute{
-													Description:         "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
-													MarkdownDescription: "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+													Description:         " Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+													MarkdownDescription: " Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2791,8 +2791,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 												},
 
 												"mode": schema.StringAttribute{
-													Description:         "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
-													MarkdownDescription: "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+													Description:         "Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+													MarkdownDescription: "Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2842,8 +2842,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The upstream PROXY protocol settings.",
 								Attributes: map[string]schema.Attribute{
 									"version": schema.StringAttribute{
-										Description:         "The PROXY protocol version to use.Valid Options: V1, V2",
-										MarkdownDescription: "The PROXY protocol version to use.Valid Options: V1, V2",
+										Description:         "The PROXY protocol version to use. Valid Options: V1, V2",
+										MarkdownDescription: "The PROXY protocol version to use. Valid Options: V1, V2",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2902,8 +2902,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Manifest) Schema(_ context.Context, _
 									},
 
 									"mode": schema.StringAttribute{
-										Description:         "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
-										MarkdownDescription: "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+										Description:         "Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+										MarkdownDescription: "Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

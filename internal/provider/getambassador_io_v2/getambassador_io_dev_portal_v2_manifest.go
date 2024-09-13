@@ -74,8 +74,8 @@ func (r *GetambassadorIoDevPortalV2Manifest) Metadata(_ context.Context, request
 
 func (r *GetambassadorIoDevPortalV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "DevPortal is the Schema for the DevPortals API  DevPortal resources specify the 'what' and 'how' is shown in a DevPortal:  1. 'what' is in a DevPortal can be controlled with  - a 'selector', that can be used for filtering 'Mappings'.  - a 'docs' listing of (services, url)  2. 'how' is a pointer to some 'contents' (a checkout of a Git repository with go-templates/markdown/css).  Multiple 'DevPortal's can exist in the cluster, and the Dev Portal server will show them at different endpoints. A 'DevPortal' resource with a special name, 'ambassador', will be used for configuring the default Dev Portal (served at '/docs/' by default).",
-		MarkdownDescription: "DevPortal is the Schema for the DevPortals API  DevPortal resources specify the 'what' and 'how' is shown in a DevPortal:  1. 'what' is in a DevPortal can be controlled with  - a 'selector', that can be used for filtering 'Mappings'.  - a 'docs' listing of (services, url)  2. 'how' is a pointer to some 'contents' (a checkout of a Git repository with go-templates/markdown/css).  Multiple 'DevPortal's can exist in the cluster, and the Dev Portal server will show them at different endpoints. A 'DevPortal' resource with a special name, 'ambassador', will be used for configuring the default Dev Portal (served at '/docs/' by default).",
+		Description:         "DevPortal is the Schema for the DevPortals API DevPortal resources specify the 'what' and 'how' is shown in a DevPortal: 1. 'what' is in a DevPortal can be controlled with - a 'selector', that can be used for filtering 'Mappings'. - a 'docs' listing of (services, url) 2. 'how' is a pointer to some 'contents' (a checkout of a Git repository with go-templates/markdown/css). Multiple 'DevPortal's can exist in the cluster, and the Dev Portal server will show them at different endpoints. A 'DevPortal' resource with a special name, 'ambassador', will be used for configuring the default Dev Portal (served at '/docs/' by default).",
+		MarkdownDescription: "DevPortal is the Schema for the DevPortals API DevPortal resources specify the 'what' and 'how' is shown in a DevPortal: 1. 'what' is in a DevPortal can be controlled with - a 'selector', that can be used for filtering 'Mappings'. - a 'docs' listing of (services, url) 2. 'how' is a pointer to some 'contents' (a checkout of a Git repository with go-templates/markdown/css). Multiple 'DevPortal's can exist in the cluster, and the Dev Portal server will show them at different endpoints. A 'DevPortal' resource with a special name, 'ambassador', will be used for configuring the default Dev Portal (served at '/docs/' by default).",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -146,8 +146,8 @@ func (r *GetambassadorIoDevPortalV2Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "DevPortalSpec defines the desired state of DevPortal",
 				Attributes: map[string]schema.Attribute{
 					"ambassador_id": schema.ListAttribute{
-						Description:         "AmbassadorID declares which Ambassador instances should pay attention to this resource.  May either be a string or a list of strings.  If no value is provided, the default is:  ambassador_id: - 'default'",
-						MarkdownDescription: "AmbassadorID declares which Ambassador instances should pay attention to this resource.  May either be a string or a list of strings.  If no value is provided, the default is:  ambassador_id: - 'default'",
+						Description:         "AmbassadorID declares which Ambassador instances should pay attention to this resource. May either be a string or a list of strings. If no value is provided, the default is: ambassador_id: - 'default'",
+						MarkdownDescription: "AmbassadorID declares which Ambassador instances should pay attention to this resource. May either be a string or a list of strings. If no value is provided, the default is: ambassador_id: - 'default'",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -262,8 +262,8 @@ func (r *GetambassadorIoDevPortalV2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "Type of search. 'title-only' does a fuzzy search over openapi and page titles 'all-content' will fuzzy search over all openapi and page content. 'title-only' is the default. warning:  using all-content may incur a larger memory footprint",
-								MarkdownDescription: "Type of search. 'title-only' does a fuzzy search over openapi and page titles 'all-content' will fuzzy search over all openapi and page content. 'title-only' is the default. warning:  using all-content may incur a larger memory footprint",
+								Description:         "Type of search. 'title-only' does a fuzzy search over openapi and page titles 'all-content' will fuzzy search over all openapi and page content. 'title-only' is the default. warning: using all-content may incur a larger memory footprint",
+								MarkdownDescription: "Type of search. 'title-only' does a fuzzy search over openapi and page titles 'all-content' will fuzzy search over all openapi and page content. 'title-only' is the default. warning: using all-content may incur a larger memory footprint",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

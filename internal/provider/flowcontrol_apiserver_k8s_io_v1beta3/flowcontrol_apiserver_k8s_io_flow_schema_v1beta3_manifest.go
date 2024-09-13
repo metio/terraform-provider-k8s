@@ -161,8 +161,8 @@ func (r *FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest) Schema(_ context.Co
 					},
 
 					"matching_precedence": schema.Int64Attribute{
-						Description:         "'matchingPrecedence' is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.",
-						MarkdownDescription: "'matchingPrecedence' is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.",
+						Description:         "'matchingPrecedence' is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence. Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.",
+						MarkdownDescription: "'matchingPrecedence' is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence. Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -196,8 +196,8 @@ func (r *FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest) Schema(_ context.Co
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"non_resource_urls": schema.ListAttribute{
-												Description:         "'nonResourceURLs' is a set of url prefixes that a user should have access to and may not be empty. For example:  - '/healthz' is legal  - '/hea*' is illegal  - '/hea' is legal but matches nothing  - '/hea/*' also matches nothing  - '/healthz/*' matches all per-component health checks.'*' matches all non-resource urls. if it is present, it must be the only entry. Required.",
-												MarkdownDescription: "'nonResourceURLs' is a set of url prefixes that a user should have access to and may not be empty. For example:  - '/healthz' is legal  - '/hea*' is illegal  - '/hea' is legal but matches nothing  - '/hea/*' also matches nothing  - '/healthz/*' matches all per-component health checks.'*' matches all non-resource urls. if it is present, it must be the only entry. Required.",
+												Description:         "'nonResourceURLs' is a set of url prefixes that a user should have access to and may not be empty. For example: - '/healthz' is legal - '/hea*' is illegal - '/hea' is legal but matches nothing - '/hea/*' also matches nothing - '/healthz/*' matches all per-component health checks. '*' matches all non-resource urls. if it is present, it must be the only entry. Required.",
+												MarkdownDescription: "'nonResourceURLs' is a set of url prefixes that a user should have access to and may not be empty. For example: - '/healthz' is legal - '/hea*' is illegal - '/hea' is legal but matches nothing - '/hea/*' also matches nothing - '/healthz/*' matches all per-component health checks. '*' matches all non-resource urls. if it is present, it must be the only entry. Required.",
 												ElementType:         types.StringType,
 												Required:            true,
 												Optional:            false,
@@ -242,8 +242,8 @@ func (r *FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest) Schema(_ context.Co
 											},
 
 											"namespaces": schema.ListAttribute{
-												Description:         "'namespaces' is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains '*'.  Note that '*' matches any specified namespace but does not match a request that _does not specify_ a namespace (see the 'clusterScope' field for that). This list may be empty, but only if 'clusterScope' is true.",
-												MarkdownDescription: "'namespaces' is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains '*'.  Note that '*' matches any specified namespace but does not match a request that _does not specify_ a namespace (see the 'clusterScope' field for that). This list may be empty, but only if 'clusterScope' is true.",
+												Description:         "'namespaces' is a list of target namespaces that restricts matches. A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains '*'. Note that '*' matches any specified namespace but does not match a request that _does not specify_ a namespace (see the 'clusterScope' field for that). This list may be empty, but only if 'clusterScope' is true.",
+												MarkdownDescription: "'namespaces' is a list of target namespaces that restricts matches. A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains '*'. Note that '*' matches any specified namespace but does not match a request that _does not specify_ a namespace (see the 'clusterScope' field for that). This list may be empty, but only if 'clusterScope' is true.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -251,8 +251,8 @@ func (r *FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest) Schema(_ context.Co
 											},
 
 											"resources": schema.ListAttribute{
-												Description:         "'resources' is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, [ 'services', 'nodes/status' ].  This list may not be empty. '*' matches all resources and, if present, must be the only entry. Required.",
-												MarkdownDescription: "'resources' is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, [ 'services', 'nodes/status' ].  This list may not be empty. '*' matches all resources and, if present, must be the only entry. Required.",
+												Description:         "'resources' is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource. For example, [ 'services', 'nodes/status' ]. This list may not be empty. '*' matches all resources and, if present, must be the only entry. Required.",
+												MarkdownDescription: "'resources' is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource. For example, [ 'services', 'nodes/status' ]. This list may not be empty. '*' matches all resources and, if present, must be the only entry. Required.",
 												ElementType:         types.StringType,
 												Required:            true,
 												Optional:            false,

@@ -55,28 +55,28 @@ Optional:
 
 Optional:
 
-- `control_plane` (Attributes) ControlPlane is a reference to a local struct that holds the detailsfor provisioning the Control Plane for the Cluster. (see [below for nested schema](#nestedatt--spec--control_plane))
-- `infrastructure` (Attributes) Infrastructure is a reference to a provider-specific template that holdsthe details for provisioning infrastructure specific clusterfor the underlying provider.The underlying provider is responsible for the implementationof the template to an infrastructure cluster. (see [below for nested schema](#nestedatt--spec--infrastructure))
-- `patches` (Attributes List) Patches defines the patches which are applied to customizereferenced templates of a ClusterClass.Note: Patches will be applied in the order of the array. (see [below for nested schema](#nestedatt--spec--patches))
-- `variables` (Attributes List) Variables defines the variables which can be configuredin the Cluster topology and are then used in patches. (see [below for nested schema](#nestedatt--spec--variables))
-- `workers` (Attributes) Workers describes the worker nodes for the cluster.It is a collection of node types which can be used to createthe worker nodes of the cluster. (see [below for nested schema](#nestedatt--spec--workers))
+- `control_plane` (Attributes) ControlPlane is a reference to a local struct that holds the details for provisioning the Control Plane for the Cluster. (see [below for nested schema](#nestedatt--spec--control_plane))
+- `infrastructure` (Attributes) Infrastructure is a reference to a provider-specific template that holds the details for provisioning infrastructure specific cluster for the underlying provider. The underlying provider is responsible for the implementation of the template to an infrastructure cluster. (see [below for nested schema](#nestedatt--spec--infrastructure))
+- `patches` (Attributes List) Patches defines the patches which are applied to customize referenced templates of a ClusterClass. Note: Patches will be applied in the order of the array. (see [below for nested schema](#nestedatt--spec--patches))
+- `variables` (Attributes List) Variables defines the variables which can be configured in the Cluster topology and are then used in patches. (see [below for nested schema](#nestedatt--spec--variables))
+- `workers` (Attributes) Workers describes the worker nodes for the cluster. It is a collection of node types which can be used to create the worker nodes of the cluster. (see [below for nested schema](#nestedatt--spec--workers))
 
 <a id="nestedatt--spec--control_plane"></a>
 ### Nested Schema for `spec.control_plane`
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--control_plane--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--control_plane--ref))
 
 Optional:
 
-- `machine_health_check` (Attributes) MachineHealthCheck defines a MachineHealthCheck for this ControlPlaneClass.This field is supported if and only if the ControlPlane provider templatereferenced above is Machine based and supports setting replicas. (see [below for nested schema](#nestedatt--spec--control_plane--machine_health_check))
-- `machine_infrastructure` (Attributes) MachineInfrastructure defines the metadata and infrastructure informationfor control plane machines.This field is supported if and only if the control plane provider templatereferenced above is Machine based and supports setting replicas. (see [below for nested schema](#nestedatt--spec--control_plane--machine_infrastructure))
-- `metadata` (Attributes) Metadata is the metadata applied to the ControlPlane and the Machines of the ControlPlaneif the ControlPlaneTemplate referenced is machine based. If not, it is applied only to theControlPlane.At runtime this metadata is merged with the corresponding metadata from the topology.This field is supported if and only if the control plane provider templatereferenced is Machine based. (see [below for nested schema](#nestedatt--spec--control_plane--metadata))
+- `machine_health_check` (Attributes) MachineHealthCheck defines a MachineHealthCheck for this ControlPlaneClass. This field is supported if and only if the ControlPlane provider template referenced above is Machine based and supports setting replicas. (see [below for nested schema](#nestedatt--spec--control_plane--machine_health_check))
+- `machine_infrastructure` (Attributes) MachineInfrastructure defines the metadata and infrastructure information for control plane machines. This field is supported if and only if the control plane provider template referenced above is Machine based and supports setting replicas. (see [below for nested schema](#nestedatt--spec--control_plane--machine_infrastructure))
+- `metadata` (Attributes) Metadata is the metadata applied to the ControlPlane and the Machines of the ControlPlane if the ControlPlaneTemplate referenced is machine based. If not, it is applied only to the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the topology. This field is supported if and only if the control plane provider template referenced is Machine based. (see [below for nested schema](#nestedatt--spec--control_plane--metadata))
 - `naming_strategy` (Attributes) NamingStrategy allows changing the naming pattern used when creating the control plane provider object. (see [below for nested schema](#nestedatt--spec--control_plane--naming_strategy))
-- `node_deletion_timeout` (String) NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machinehosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely.Defaults to 10 seconds.NOTE: This value can be overridden while defining a Cluster.Topology.
-- `node_drain_timeout` (String) NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'NOTE: This value can be overridden while defining a Cluster.Topology.
-- `node_volume_detach_timeout` (String) NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.NOTE: This value can be overridden while defining a Cluster.Topology.
+- `node_deletion_timeout` (String) NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology.
+- `node_drain_timeout` (String) NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology.
+- `node_volume_detach_timeout` (String) NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology.
 
 <a id="nestedatt--spec--control_plane--ref"></a>
 ### Nested Schema for `spec.control_plane.ref`
@@ -84,12 +84,12 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 <a id="nestedatt--spec--control_plane--machine_health_check"></a>
@@ -97,11 +97,11 @@ Optional:
 
 Optional:
 
-- `max_unhealthy` (String) Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.
-- `node_startup_timeout` (String) NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure ready condition timestamp (if and when available)- Control Plane's initialized condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.
-- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--control_plane--machine_health_check--remediation_template))
-- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--control_plane--machine_health_check--unhealthy_conditions))
-- `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines
+- `max_unhealthy` (String) Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.
+- `node_startup_timeout` (String) NodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.
+- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--control_plane--machine_health_check--remediation_template))
+- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--control_plane--machine_health_check--unhealthy_conditions))
+- `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines
 
 <a id="nestedatt--spec--control_plane--machine_health_check--remediation_template"></a>
 ### Nested Schema for `spec.control_plane.machine_health_check.remediation_template`
@@ -109,12 +109,12 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 <a id="nestedatt--spec--control_plane--machine_health_check--unhealthy_conditions"></a>
@@ -133,7 +133,7 @@ Required:
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--control_plane--machine_infrastructure--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--control_plane--machine_infrastructure--ref))
 
 <a id="nestedatt--spec--control_plane--machine_infrastructure--ref"></a>
 ### Nested Schema for `spec.control_plane.machine_infrastructure.ref`
@@ -141,12 +141,12 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -155,8 +155,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
 
 
 <a id="nestedatt--spec--control_plane--naming_strategy"></a>
@@ -164,7 +164,7 @@ Optional:
 
 Optional:
 
-- `template` (String) Template defines the template to use for generating the name of the ControlPlane object.If not defined, it will fallback to '{{ .cluster.name }}-{{ .random }}'.If the templated string exceeds 63 characters, it will be trimmed to 58 characters and willget concatenated with a random suffix of length 5.The templating mechanism provides the following arguments:* '.cluster.name': The name of the cluster object.* '.random': A random alphanumeric string, without vowels, of length 5.
+- `template` (String) Template defines the template to use for generating the name of the ControlPlane object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5.
 
 
 
@@ -173,7 +173,7 @@ Optional:
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--infrastructure--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--infrastructure--ref))
 
 <a id="nestedatt--spec--infrastructure--ref"></a>
 ### Nested Schema for `spec.infrastructure.ref`
@@ -181,12 +181,12 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -199,17 +199,17 @@ Required:
 
 Optional:
 
-- `definitions` (Attributes List) Definitions define inline patches.Note: Patches will be applied in the order of the array.Note: Exactly one of Definitions or External must be set. (see [below for nested schema](#nestedatt--spec--patches--definitions))
+- `definitions` (Attributes List) Definitions define inline patches. Note: Patches will be applied in the order of the array. Note: Exactly one of Definitions or External must be set. (see [below for nested schema](#nestedatt--spec--patches--definitions))
 - `description` (String) Description is a human-readable description of this patch.
-- `enabled_if` (String) EnabledIf is a Go template to be used to calculate if a patch should be enabled.It can reference variables defined in .spec.variables and builtin variables.The patch will be enabled if the template evaluates to 'true', otherwise it willbe disabled.If EnabledIf is not set, the patch will be enabled per default.
-- `external` (Attributes) External defines an external patch.Note: Exactly one of Definitions or External must be set. (see [below for nested schema](#nestedatt--spec--patches--external))
+- `enabled_if` (String) EnabledIf is a Go template to be used to calculate if a patch should be enabled. It can reference variables defined in .spec.variables and builtin variables. The patch will be enabled if the template evaluates to 'true', otherwise it will be disabled. If EnabledIf is not set, the patch will be enabled per default.
+- `external` (Attributes) External defines an external patch. Note: Exactly one of Definitions or External must be set. (see [below for nested schema](#nestedatt--spec--patches--external))
 
 <a id="nestedatt--spec--patches--definitions"></a>
 ### Nested Schema for `spec.patches.definitions`
 
 Required:
 
-- `json_patches` (Attributes List) JSONPatches defines the patches which should be applied on the templatesmatching the selector.Note: Patches will be applied in the order of the array. (see [below for nested schema](#nestedatt--spec--patches--definitions--json_patches))
+- `json_patches` (Attributes List) JSONPatches defines the patches which should be applied on the templates matching the selector. Note: Patches will be applied in the order of the array. (see [below for nested schema](#nestedatt--spec--patches--definitions--json_patches))
 - `selector` (Attributes) Selector defines on which templates the patch should be applied. (see [below for nested schema](#nestedatt--spec--patches--definitions--selector))
 
 <a id="nestedatt--spec--patches--definitions--json_patches"></a>
@@ -217,21 +217,21 @@ Required:
 
 Required:
 
-- `op` (String) Op defines the operation of the patch.Note: Only 'add', 'replace' and 'remove' are supported.
-- `path` (String) Path defines the path of the patch.Note: Only the spec of a template can be patched, thus the path has to start with /spec/.Note: For now the only allowed array modifications are 'append' and 'prepend', i.e.:* for op: 'add': only index 0 (prepend) and - (append) are allowed* for op: 'replace' or 'remove': no indexes are allowed
+- `op` (String) Op defines the operation of the patch. Note: Only 'add', 'replace' and 'remove' are supported.
+- `path` (String) Path defines the path of the patch. Note: Only the spec of a template can be patched, thus the path has to start with /spec/. Note: For now the only allowed array modifications are 'append' and 'prepend', i.e.: * for op: 'add': only index 0 (prepend) and - (append) are allowed * for op: 'replace' or 'remove': no indexes are allowed
 
 Optional:
 
-- `value` (Map of String) Value defines the value of the patch.Note: Either Value or ValueFrom is required for add and replaceoperations. Only one of them is allowed to be set at the same time.Note: We have to use apiextensionsv1.JSON instead of our JSON type,because controller-tools has a hard-coded schema for apiextensionsv1.JSONwhich cannot be produced by another type (unset type field).Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111
-- `value_from` (Attributes) ValueFrom defines the value of the patch.Note: Either Value or ValueFrom is required for add and replaceoperations. Only one of them is allowed to be set at the same time. (see [below for nested schema](#nestedatt--spec--patches--definitions--json_patches--value_from))
+- `value` (Map of String) Value defines the value of the patch. Note: Either Value or ValueFrom is required for add and replace operations. Only one of them is allowed to be set at the same time. Note: We have to use apiextensionsv1.JSON instead of our JSON type, because controller-tools has a hard-coded schema for apiextensionsv1.JSON which cannot be produced by another type (unset type field). Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111
+- `value_from` (Attributes) ValueFrom defines the value of the patch. Note: Either Value or ValueFrom is required for add and replace operations. Only one of them is allowed to be set at the same time. (see [below for nested schema](#nestedatt--spec--patches--definitions--json_patches--value_from))
 
 <a id="nestedatt--spec--patches--definitions--json_patches--value_from"></a>
 ### Nested Schema for `spec.patches.definitions.json_patches.value_from`
 
 Optional:
 
-- `template` (String) Template is the Go template to be used to calculate the value.A template can reference variables defined in .spec.variables and builtin variables.Note: The template must evaluate to a valid YAML or JSON value.
-- `variable` (String) Variable is the variable to be used as value.Variable can be one of the variables defined in .spec.variables or a builtin variable.
+- `template` (String) Template is the Go template to be used to calculate the value. A template can reference variables defined in .spec.variables and builtin variables. Note: The template must evaluate to a valid YAML or JSON value.
+- `variable` (String) Variable is the variable to be used as value. Variable can be one of the variables defined in .spec.variables or a builtin variable.
 
 
 
@@ -249,10 +249,10 @@ Required:
 
 Optional:
 
-- `control_plane` (Boolean) ControlPlane selects templates referenced in .spec.ControlPlane.Note: this will match the controlPlane and also the controlPlanemachineInfrastructure (depending on the kind and apiVersion).
+- `control_plane` (Boolean) ControlPlane selects templates referenced in .spec.ControlPlane. Note: this will match the controlPlane and also the controlPlane machineInfrastructure (depending on the kind and apiVersion).
 - `infrastructure_cluster` (Boolean) InfrastructureCluster selects templates referenced in .spec.infrastructure.
-- `machine_deployment_class` (Attributes) MachineDeploymentClass selects templates referenced in specific MachineDeploymentClasses in.spec.workers.machineDeployments. (see [below for nested schema](#nestedatt--spec--patches--definitions--selector--match_resources--machine_deployment_class))
-- `machine_pool_class` (Attributes) MachinePoolClass selects templates referenced in specific MachinePoolClasses in.spec.workers.machinePools. (see [below for nested schema](#nestedatt--spec--patches--definitions--selector--match_resources--machine_pool_class))
+- `machine_deployment_class` (Attributes) MachineDeploymentClass selects templates referenced in specific MachineDeploymentClasses in .spec.workers.machineDeployments. (see [below for nested schema](#nestedatt--spec--patches--definitions--selector--match_resources--machine_deployment_class))
+- `machine_pool_class` (Attributes) MachinePoolClass selects templates referenced in specific MachinePoolClasses in .spec.workers.machinePools. (see [below for nested schema](#nestedatt--spec--patches--definitions--selector--match_resources--machine_pool_class))
 
 <a id="nestedatt--spec--patches--definitions--selector--match_resources--machine_deployment_class"></a>
 ### Nested Schema for `spec.patches.definitions.selector.match_resources.machine_deployment_class`
@@ -280,7 +280,7 @@ Optional:
 
 - `discover_variables_extension` (String) DiscoverVariablesExtension references an extension which is called to discover variables.
 - `generate_extension` (String) GenerateExtension references an extension which is called to generate patches.
-- `settings` (Map of String) Settings defines key value pairs to be passed to the extensions.Values defined here take precedence over the values defined in thecorresponding ExtensionConfig.
+- `settings` (Map of String) Settings defines key value pairs to be passed to the extensions. Values defined here take precedence over the values defined in the corresponding ExtensionConfig.
 - `validate_extension` (String) ValidateExtension references an extension which is called to validate the topology.
 
 
@@ -291,67 +291,67 @@ Optional:
 Required:
 
 - `name` (String) Name of the variable.
-- `required` (Boolean) Required specifies if the variable is required.Note: this applies to the variable as a whole and thus thetop-level object defined in the schema. If nested fields arerequired, this will be specified inside the schema.
+- `required` (Boolean) Required specifies if the variable is required. Note: this applies to the variable as a whole and thus the top-level object defined in the schema. If nested fields are required, this will be specified inside the schema.
 - `schema` (Attributes) Schema defines the schema of the variable. (see [below for nested schema](#nestedatt--spec--variables--schema))
 
 Optional:
 
-- `metadata` (Attributes) Metadata is the metadata of a variable.It can be used to add additional data for higher level tools toa ClusterClassVariable.Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please use XMetadata in JSONSchemaProps instead. (see [below for nested schema](#nestedatt--spec--variables--metadata))
+- `metadata` (Attributes) Metadata is the metadata of a variable. It can be used to add additional data for higher level tools to a ClusterClassVariable. Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please use XMetadata in JSONSchemaProps instead. (see [below for nested schema](#nestedatt--spec--variables--metadata))
 
 <a id="nestedatt--spec--variables--schema"></a>
 ### Nested Schema for `spec.variables.schema`
 
 Required:
 
-- `open_apiv3_schema` (Attributes) OpenAPIV3Schema defines the schema of a variable via OpenAPI v3schema. The schema is a subset of the schema used inKubernetes CRDs. (see [below for nested schema](#nestedatt--spec--variables--schema--open_apiv3_schema))
+- `open_apiv3_schema` (Attributes) OpenAPIV3Schema defines the schema of a variable via OpenAPI v3 schema. The schema is a subset of the schema used in Kubernetes CRDs. (see [below for nested schema](#nestedatt--spec--variables--schema--open_apiv3_schema))
 
 <a id="nestedatt--spec--variables--schema--open_apiv3_schema"></a>
 ### Nested Schema for `spec.variables.schema.open_apiv3_schema`
 
 Required:
 
-- `type` (String) Type is the type of the variable.Valid values are: object, array, string, integer, number or boolean.
+- `type` (String) Type is the type of the variable. Valid values are: object, array, string, integer, number or boolean.
 
 Optional:
 
-- `additional_properties` (Map of String) AdditionalProperties specifies the schema of values in a map (keys are always strings).NOTE: Can only be set if type is object.NOTE: AdditionalProperties is mutually exclusive with Properties.NOTE: This field uses PreserveUnknownFields and Schemaless,because recursive validation is not possible.
-- `default` (Map of String) Default is the default value of the variable.NOTE: Can be set for all types.
+- `additional_properties` (Map of String) AdditionalProperties specifies the schema of values in a map (keys are always strings). NOTE: Can only be set if type is object. NOTE: AdditionalProperties is mutually exclusive with Properties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.
+- `default` (Map of String) Default is the default value of the variable. NOTE: Can be set for all types.
 - `description` (String) Description is a human-readable description of this variable.
-- `enum` (List of String) Enum is the list of valid values of the variable.NOTE: Can be set for all types.
+- `enum` (List of String) Enum is the list of valid values of the variable. NOTE: Can be set for all types.
 - `example` (Map of String) Example is an example for this variable.
-- `exclusive_maximum` (Boolean) ExclusiveMaximum specifies if the Maximum is exclusive.NOTE: Can only be set if type is integer or number.
-- `exclusive_minimum` (Boolean) ExclusiveMinimum specifies if the Minimum is exclusive.NOTE: Can only be set if type is integer or number.
-- `format` (String) Format is an OpenAPI v3 format string. Unknown formats are ignored.For a list of supported formats please see: (of the k8s.io/apiextensions-apiserver version we're currently using)https://github.com/kubernetes/apiextensions-apiserver/blob/master/pkg/apiserver/validation/formats.goNOTE: Can only be set if type is string.
-- `items` (Map of String) Items specifies fields of an array.NOTE: Can only be set if type is array.NOTE: This field uses PreserveUnknownFields and Schemaless,because recursive validation is not possible.
-- `max_items` (Number) MaxItems is the max length of an array variable.NOTE: Can only be set if type is array.
-- `max_length` (Number) MaxLength is the max length of a string variable.NOTE: Can only be set if type is string.
-- `max_properties` (Number) MaxProperties is the maximum amount of entries in a map or properties in an object.NOTE: Can only be set if type is object.
-- `maximum` (Number) Maximum is the maximum of an integer or number variable.If ExclusiveMaximum is false, the variable is valid if it is lower than, or equal to, the value of Maximum.If ExclusiveMaximum is true, the variable is valid if it is strictly lower than the value of Maximum.NOTE: Can only be set if type is integer or number.
-- `min_items` (Number) MinItems is the min length of an array variable.NOTE: Can only be set if type is array.
-- `min_length` (Number) MinLength is the min length of a string variable.NOTE: Can only be set if type is string.
-- `min_properties` (Number) MinProperties is the minimum amount of entries in a map or properties in an object.NOTE: Can only be set if type is object.
-- `minimum` (Number) Minimum is the minimum of an integer or number variable.If ExclusiveMinimum is false, the variable is valid if it is greater than, or equal to, the value of Minimum.If ExclusiveMinimum is true, the variable is valid if it is strictly greater than the value of Minimum.NOTE: Can only be set if type is integer or number.
-- `pattern` (String) Pattern is the regex which a string variable must match.NOTE: Can only be set if type is string.
-- `properties` (Map of String) Properties specifies fields of an object.NOTE: Can only be set if type is object.NOTE: Properties is mutually exclusive with AdditionalProperties.NOTE: This field uses PreserveUnknownFields and Schemaless,because recursive validation is not possible.
-- `required` (List of String) Required specifies which fields of an object are required.NOTE: Can only be set if type is object.
-- `unique_items` (Boolean) UniqueItems specifies if items in an array must be unique.NOTE: Can only be set if type is array.
-- `x_kubernetes_preserve_unknown_fields` (Boolean) XPreserveUnknownFields allows setting fields in a variable objectwhich are not defined in the variable schema. This affects fields recursively,except if nested properties or additionalProperties are specified in the schema.
+- `exclusive_maximum` (Boolean) ExclusiveMaximum specifies if the Maximum is exclusive. NOTE: Can only be set if type is integer or number.
+- `exclusive_minimum` (Boolean) ExclusiveMinimum specifies if the Minimum is exclusive. NOTE: Can only be set if type is integer or number.
+- `format` (String) Format is an OpenAPI v3 format string. Unknown formats are ignored. For a list of supported formats please see: (of the k8s.io/apiextensions-apiserver version we're currently using) https://github.com/kubernetes/apiextensions-apiserver/blob/master/pkg/apiserver/validation/formats.go NOTE: Can only be set if type is string.
+- `items` (Map of String) Items specifies fields of an array. NOTE: Can only be set if type is array. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.
+- `max_items` (Number) MaxItems is the max length of an array variable. NOTE: Can only be set if type is array.
+- `max_length` (Number) MaxLength is the max length of a string variable. NOTE: Can only be set if type is string.
+- `max_properties` (Number) MaxProperties is the maximum amount of entries in a map or properties in an object. NOTE: Can only be set if type is object.
+- `maximum` (Number) Maximum is the maximum of an integer or number variable. If ExclusiveMaximum is false, the variable is valid if it is lower than, or equal to, the value of Maximum. If ExclusiveMaximum is true, the variable is valid if it is strictly lower than the value of Maximum. NOTE: Can only be set if type is integer or number.
+- `min_items` (Number) MinItems is the min length of an array variable. NOTE: Can only be set if type is array.
+- `min_length` (Number) MinLength is the min length of a string variable. NOTE: Can only be set if type is string.
+- `min_properties` (Number) MinProperties is the minimum amount of entries in a map or properties in an object. NOTE: Can only be set if type is object.
+- `minimum` (Number) Minimum is the minimum of an integer or number variable. If ExclusiveMinimum is false, the variable is valid if it is greater than, or equal to, the value of Minimum. If ExclusiveMinimum is true, the variable is valid if it is strictly greater than the value of Minimum. NOTE: Can only be set if type is integer or number.
+- `pattern` (String) Pattern is the regex which a string variable must match. NOTE: Can only be set if type is string.
+- `properties` (Map of String) Properties specifies fields of an object. NOTE: Can only be set if type is object. NOTE: Properties is mutually exclusive with AdditionalProperties. NOTE: This field uses PreserveUnknownFields and Schemaless, because recursive validation is not possible.
+- `required` (List of String) Required specifies which fields of an object are required. NOTE: Can only be set if type is object.
+- `unique_items` (Boolean) UniqueItems specifies if items in an array must be unique. NOTE: Can only be set if type is array.
+- `x_kubernetes_preserve_unknown_fields` (Boolean) XPreserveUnknownFields allows setting fields in a variable object which are not defined in the variable schema. This affects fields recursively, except if nested properties or additionalProperties are specified in the schema.
 - `x_kubernetes_validations` (Attributes List) XValidations describes a list of validation rules written in the CEL expression language. (see [below for nested schema](#nestedatt--spec--variables--schema--open_apiv3_schema--x_kubernetes_validations))
-- `x_metadata` (Attributes) XMetadata is the metadata of a variable or a nested field within a variable.It can be used to add additional data for higher level tools. (see [below for nested schema](#nestedatt--spec--variables--schema--open_apiv3_schema--x_metadata))
+- `x_metadata` (Attributes) XMetadata is the metadata of a variable or a nested field within a variable. It can be used to add additional data for higher level tools. (see [below for nested schema](#nestedatt--spec--variables--schema--open_apiv3_schema--x_metadata))
 
 <a id="nestedatt--spec--variables--schema--open_apiv3_schema--x_kubernetes_validations"></a>
 ### Nested Schema for `spec.variables.schema.open_apiv3_schema.x_kubernetes_validations`
 
 Required:
 
-- `rule` (String) Rule represents the expression which will be evaluated by CEL.ref: https://github.com/google/cel-specThe Rule is scoped to the location of the x-kubernetes-validations extension in the schema.The 'self' variable in the CEL expression is bound to the scoped value.If the Rule is scoped to an object with properties, the accessible properties of the object are field selectablevia 'self.field' and field presence can be checked via 'has(self.field)'.If the Rule is scoped to an object with additionalProperties (i.e. a map) the value of the mapare accessible via 'self[mapKey]', map containment can be checked via 'mapKey in self' and all entries of the mapare accessible via CEL macros and functions such as 'self.all(...)'.If the Rule is scoped to an array, the elements of the array are accessible via 'self[i]' and also by macros andfunctions.If the Rule is scoped to a scalar, 'self' is bound to the scalar value.Examples:- Rule scoped to a map of objects: {'rule': 'self.components['Widget'].priority < 10'}- Rule scoped to a list of integers: {'rule': 'self.values.all(value, value >= 0 && value < 100)'}- Rule scoped to a string value: {'rule': 'self.startsWith('kube')'}Unknown data preserved in custom resources via x-kubernetes-preserve-unknown-fields is not accessible in CELexpressions. This includes:- Unknown field values that are preserved by object schemas with x-kubernetes-preserve-unknown-fields.- Object properties where the property schema is of an 'unknown type'. An 'unknown type' is recursively defined as:  - A schema with no type and x-kubernetes-preserve-unknown-fields set to true  - An array where the items schema is of an 'unknown type'  - An object where the additionalProperties schema is of an 'unknown type'Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible.Accessible property names are escaped according to the following rules when accessed in the expression:- '__' escapes to '__underscores__'- '.' escapes to '__dot__'- '-' escapes to '__dash__'- '/' escapes to '__slash__'- Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are:	  'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if',	  'import', 'let', 'loop', 'package', 'namespace', 'return'.Examples:  - Rule accessing a property named 'namespace': {'rule': 'self.__namespace__ > 0'}  - Rule accessing a property named 'x-prop': {'rule': 'self.x__dash__prop > 0'}  - Rule accessing a property named 'redact__d': {'rule': 'self.redact__underscores__d > 0'}If 'rule' makes use of the 'oldSelf' variable it is implicitly a'transition rule'.By default, the 'oldSelf' variable is the same type as 'self'.Transition rules by default are applied only on UPDATE requests and areskipped if an old value could not be found.
+- `rule` (String) Rule represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec The Rule is scoped to the location of the x-kubernetes-validations extension in the schema. The 'self' variable in the CEL expression is bound to the scoped value. If the Rule is scoped to an object with properties, the accessible properties of the object are field selectable via 'self.field' and field presence can be checked via 'has(self.field)'. If the Rule is scoped to an object with additionalProperties (i.e. a map) the value of the map are accessible via 'self[mapKey]', map containment can be checked via 'mapKey in self' and all entries of the map are accessible via CEL macros and functions such as 'self.all(...)'. If the Rule is scoped to an array, the elements of the array are accessible via 'self[i]' and also by macros and functions. If the Rule is scoped to a scalar, 'self' is bound to the scalar value. Examples: - Rule scoped to a map of objects: {'rule': 'self.components['Widget'].priority < 10'} - Rule scoped to a list of integers: {'rule': 'self.values.all(value, value >= 0 && value < 100)'} - Rule scoped to a string value: {'rule': 'self.startsWith('kube')'} Unknown data preserved in custom resources via x-kubernetes-preserve-unknown-fields is not accessible in CEL expressions. This includes: - Unknown field values that are preserved by object schemas with x-kubernetes-preserve-unknown-fields. - Object properties where the property schema is of an 'unknown type'. An 'unknown type' is recursively defined as: - A schema with no type and x-kubernetes-preserve-unknown-fields set to true - An array where the items schema is of an 'unknown type' - An object where the additionalProperties schema is of an 'unknown type' Only property names of the form '[a-zA-Z_.-/][a-zA-Z0-9_.-/]*' are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '__' escapes to '__underscores__' - '.' escapes to '__dot__' - '-' escapes to '__dash__' - '/' escapes to '__slash__' - Property names that exactly match a CEL RESERVED keyword escape to '__{keyword}__'. The keywords are: 'true', 'false', 'null', 'in', 'as', 'break', 'const', 'continue', 'else', 'for', 'function', 'if', 'import', 'let', 'loop', 'package', 'namespace', 'return'. Examples: - Rule accessing a property named 'namespace': {'rule': 'self.__namespace__ > 0'} - Rule accessing a property named 'x-prop': {'rule': 'self.x__dash__prop > 0'} - Rule accessing a property named 'redact__d': {'rule': 'self.redact__underscores__d > 0'} If 'rule' makes use of the 'oldSelf' variable it is implicitly a 'transition rule'. By default, the 'oldSelf' variable is the same type as 'self'. Transition rules by default are applied only on UPDATE requests and are skipped if an old value could not be found.
 
 Optional:
 
-- `field_path` (String) FieldPath represents the field path returned when the validation fails.It must be a relative JSON path (i.e. with array notation) scoped to the location of this x-kubernetes-validations extension in the schema and refer to an existing field.e.g. when validation checks if a specific attribute 'foo' under a map 'testMap', the fieldPath could be set to '.testMap.foo'If the validation checks two lists must have unique attributes, the fieldPath could be set to either of the list: e.g. '.testList'It does not support list numeric index.It supports child operation to refer to an existing field currently. Refer to [JSONPath support in Kubernetes](https://kubernetes.io/docs/reference/kubectl/jsonpath/) for more info.Numeric index of array is not supported.For field name which contains special characters, use '['specialName']' to refer the field name.e.g. for attribute 'foo.34$' appears in a list 'testList', the fieldPath could be set to '.testList['foo.34$']'
-- `message` (String) Message represents the message displayed when validation fails. The message is required if the Rule containsline breaks. The message must not contain line breaks.If unset, the message is 'failed rule: {Rule}'.e.g. 'must be a URL with the host matching spec.host'
-- `message_expression` (String) MessageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails.Since messageExpression is used as a failure message, it must evaluate to a string.If both message and messageExpression are present on a rule, then messageExpression will be used if validationfails. If messageExpression results in a runtime error, the validation failure message is producedas if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a stringthat contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset.messageExpression has access to all the same variables as the rule; the only difference is the return type.Example:'x must be less than max ('+string(self.max)+')'
-- `reason` (String) Reason provides a machine-readable validation failure reason that is returned to the caller when a request fails this validation rule.The currently supported reasons are: 'FieldValueInvalid', 'FieldValueForbidden', 'FieldValueRequired', 'FieldValueDuplicate'.If not set, default to use 'FieldValueInvalid'.All future added reasons must be accepted by clients when reading this value and unknown reasons should be treated as FieldValueInvalid.
+- `field_path` (String) FieldPath represents the field path returned when the validation fails. It must be a relative JSON path (i.e. with array notation) scoped to the location of this x-kubernetes-validations extension in the schema and refer to an existing field. e.g. when validation checks if a specific attribute 'foo' under a map 'testMap', the fieldPath could be set to '.testMap.foo' If the validation checks two lists must have unique attributes, the fieldPath could be set to either of the list: e.g. '.testList' It does not support list numeric index. It supports child operation to refer to an existing field currently. Refer to [JSONPath support in Kubernetes](https://kubernetes.io/docs/reference/kubectl/jsonpath/) for more info. Numeric index of array is not supported. For field name which contains special characters, use '['specialName']' to refer the field name. e.g. for attribute 'foo.34$' appears in a list 'testList', the fieldPath could be set to '.testList['foo.34$']'
+- `message` (String) Message represents the message displayed when validation fails. The message is required if the Rule contains line breaks. The message must not contain line breaks. If unset, the message is 'failed rule: {Rule}'. e.g. 'must be a URL with the host matching spec.host'
+- `message_expression` (String) MessageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a rule, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset. messageExpression has access to all the same variables as the rule; the only difference is the return type. Example: 'x must be less than max ('+string(self.max)+')'
+- `reason` (String) Reason provides a machine-readable validation failure reason that is returned to the caller when a request fails this validation rule. The currently supported reasons are: 'FieldValueInvalid', 'FieldValueForbidden', 'FieldValueRequired', 'FieldValueDuplicate'. If not set, default to use 'FieldValueInvalid'. All future added reasons must be accepted by clients when reading this value and unknown reasons should be treated as FieldValueInvalid.
 
 
 <a id="nestedatt--spec--variables--schema--open_apiv3_schema--x_metadata"></a>
@@ -359,8 +359,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map that can be used to store andretrieve arbitrary metadata.They are not queryable.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) variables.
+- `annotations` (Map of String) Annotations is an unstructured key value map that can be used to store and retrieve arbitrary metadata. They are not queryable.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) variables.
 
 
 
@@ -370,8 +370,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map that can be used to store andretrieve arbitrary metadata.They are not queryable.
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) variables.
+- `annotations` (Map of String) Annotations is an unstructured key value map that can be used to store and retrieve arbitrary metadata. They are not queryable.
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) variables.
 
 
 
@@ -380,46 +380,46 @@ Optional:
 
 Optional:
 
-- `machine_deployments` (Attributes List) MachineDeployments is a list of machine deployment classes that can be used to createa set of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments))
-- `machine_pools` (Attributes List) MachinePools is a list of machine pool classes that can be used to createa set of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_pools))
+- `machine_deployments` (Attributes List) MachineDeployments is a list of machine deployment classes that can be used to create a set of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments))
+- `machine_pools` (Attributes List) MachinePools is a list of machine pool classes that can be used to create a set of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_pools))
 
 <a id="nestedatt--spec--workers--machine_deployments"></a>
 ### Nested Schema for `spec.workers.machine_deployments`
 
 Required:
 
-- `class` (String) Class denotes a type of worker node present in the cluster,this name MUST be unique within a ClusterClass and can be referencedin the Cluster to create a managed MachineDeployment.
-- `template` (Attributes) Template is a local struct containing a collection of templates for creation ofMachineDeployment objects representing a set of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template))
+- `class` (String) Class denotes a type of worker node present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachineDeployment.
+- `template` (Attributes) Template is a local struct containing a collection of templates for creation of MachineDeployment objects representing a set of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template))
 
 Optional:
 
-- `failure_domain` (String) FailureDomain is the failure domain the machines will be created in.Must match a key in the FailureDomains map stored on the cluster object.NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.
+- `failure_domain` (String) FailureDomain is the failure domain the machines will be created in. Must match a key in the FailureDomains map stored on the cluster object. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.
 - `machine_health_check` (Attributes) MachineHealthCheck defines a MachineHealthCheck for this MachineDeploymentClass. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--machine_health_check))
-- `min_ready_seconds` (Number) Minimum number of seconds for which a newly created machine shouldbe ready.Defaults to 0 (machine will be considered available as soon as itis ready)NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.
+- `min_ready_seconds` (Number) Minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready) NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.
 - `naming_strategy` (Attributes) NamingStrategy allows changing the naming pattern used when creating the MachineDeployment. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--naming_strategy))
-- `node_deletion_timeout` (String) NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machinehosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely.Defaults to 10 seconds.NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.
-- `node_drain_timeout` (String) NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.
-- `node_volume_detach_timeout` (String) NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.
-- `strategy` (Attributes) The deployment strategy to use to replace existing machines withnew ones.NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy))
+- `node_deletion_timeout` (String) NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.
+- `node_drain_timeout` (String) NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.
+- `node_volume_detach_timeout` (String) NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass.
+- `strategy` (Attributes) The deployment strategy to use to replace existing machines with new ones. NOTE: This value can be overridden while defining a Cluster.Topology using this MachineDeploymentClass. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy))
 
 <a id="nestedatt--spec--workers--machine_deployments--template"></a>
 ### Nested Schema for `spec.workers.machine_deployments.template`
 
 Required:
 
-- `bootstrap` (Attributes) Bootstrap contains the bootstrap template reference to be usedfor the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--bootstrap))
-- `infrastructure` (Attributes) Infrastructure contains the infrastructure template reference to be usedfor the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--infrastructure))
+- `bootstrap` (Attributes) Bootstrap contains the bootstrap template reference to be used for the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--bootstrap))
+- `infrastructure` (Attributes) Infrastructure contains the infrastructure template reference to be used for the creation of worker Machines. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--infrastructure))
 
 Optional:
 
-- `metadata` (Attributes) Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment.At runtime this metadata is merged with the corresponding metadata from the topology. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--metadata))
+- `metadata` (Attributes) Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment. At runtime this metadata is merged with the corresponding metadata from the topology. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--metadata))
 
 <a id="nestedatt--spec--workers--machine_deployments--template--bootstrap"></a>
 ### Nested Schema for `spec.workers.machine_deployments.template.bootstrap`
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--bootstrap--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--bootstrap--ref))
 
 <a id="nestedatt--spec--workers--machine_deployments--template--bootstrap--ref"></a>
 ### Nested Schema for `spec.workers.machine_deployments.template.bootstrap.ref`
@@ -427,12 +427,12 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -441,7 +441,7 @@ Optional:
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--infrastructure--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--template--infrastructure--ref))
 
 <a id="nestedatt--spec--workers--machine_deployments--template--infrastructure--ref"></a>
 ### Nested Schema for `spec.workers.machine_deployments.template.infrastructure.ref`
@@ -449,12 +449,12 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -463,8 +463,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
 
 
 
@@ -473,11 +473,11 @@ Optional:
 
 Optional:
 
-- `max_unhealthy` (String) Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.
-- `node_startup_timeout` (String) NodeStartupTimeout allows to set the maximum time for MachineHealthCheckto consider a Machine unhealthy if a corresponding Node isn't associatedthrough a 'Spec.ProviderID' field.The duration set in this field is compared to the greatest of:- Cluster's infrastructure ready condition timestamp (if and when available)- Control Plane's initialized condition timestamp (if and when available)- Machine's infrastructure ready condition timestamp (if and when available)- Machine's metadata creation timestampDefaults to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.
-- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--machine_health_check--remediation_template))
-- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--machine_health_check--unhealthy_conditions))
-- `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines
+- `max_unhealthy` (String) Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.
+- `node_startup_timeout` (String) NodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.
+- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--machine_health_check--remediation_template))
+- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--machine_health_check--unhealthy_conditions))
+- `unhealthy_range` (String) Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines
 
 <a id="nestedatt--spec--workers--machine_deployments--machine_health_check--remediation_template"></a>
 ### Nested Schema for `spec.workers.machine_deployments.machine_health_check.remediation_template`
@@ -485,12 +485,12 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 <a id="nestedatt--spec--workers--machine_deployments--machine_health_check--unhealthy_conditions"></a>
@@ -509,7 +509,7 @@ Required:
 
 Optional:
 
-- `template` (String) Template defines the template to use for generating the name of the MachineDeployment object.If not defined, it will fallback to '{{ .cluster.name }}-{{ .machineDeployment.topologyName }}-{{ .random }}'.If the templated string exceeds 63 characters, it will be trimmed to 58 characters and willget concatenated with a random suffix of length 5.The templating mechanism provides the following arguments:* '.cluster.name': The name of the cluster object.* '.random': A random alphanumeric string, without vowels, of length 5.* '.machineDeployment.topologyName': The name of the MachineDeployment topology (Cluster.spec.topology.workers.machineDeployments[].name).
+- `template` (String) Template defines the template to use for generating the name of the MachineDeployment object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .machineDeployment.topologyName }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5. * '.machineDeployment.topologyName': The name of the MachineDeployment topology (Cluster.spec.topology.workers.machineDeployments[].name).
 
 
 <a id="nestedatt--spec--workers--machine_deployments--strategy"></a>
@@ -517,16 +517,16 @@ Optional:
 
 Optional:
 
-- `remediation` (Attributes) Remediation controls the strategy of remediating unhealthy machinesand how remediating operations should occur during the lifecycle of the dependant MachineSets. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy--remediation))
-- `rolling_update` (Attributes) Rolling update config params. Present only ifMachineDeploymentStrategyType = RollingUpdate. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy--rolling_update))
-- `type` (String) Type of deployment. Allowed values are RollingUpdate and OnDelete.The default is RollingUpdate.
+- `remediation` (Attributes) Remediation controls the strategy of remediating unhealthy machines and how remediating operations should occur during the lifecycle of the dependant MachineSets. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy--remediation))
+- `rolling_update` (Attributes) Rolling update config params. Present only if MachineDeploymentStrategyType = RollingUpdate. (see [below for nested schema](#nestedatt--spec--workers--machine_deployments--strategy--rolling_update))
+- `type` (String) Type of deployment. Allowed values are RollingUpdate and OnDelete. The default is RollingUpdate.
 
 <a id="nestedatt--spec--workers--machine_deployments--strategy--remediation"></a>
 ### Nested Schema for `spec.workers.machine_deployments.strategy.remediation`
 
 Optional:
 
-- `max_in_flight` (String) MaxInFlight determines how many in flight remediations should happen at the same time.Remediation only happens on the MachineSet with the most current revision, whileolder MachineSets (usually present during rollout operations) aren't allowed to remediate.Note: In general (independent of remediations), unhealthy machines are alwaysprioritized during scale down operations over healthy ones.MaxInFlight can be set to a fixed number or a percentage.Example: when this is set to 20%, the MachineSet controller deletes at most 20% ofthe desired replicas.If not set, remediation is limited to all machines (bounded by replicas)under the active MachineSet's management.
+- `max_in_flight` (String) MaxInFlight determines how many in flight remediations should happen at the same time. Remediation only happens on the MachineSet with the most current revision, while older MachineSets (usually present during rollout operations) aren't allowed to remediate. Note: In general (independent of remediations), unhealthy machines are always prioritized during scale down operations over healthy ones. MaxInFlight can be set to a fixed number or a percentage. Example: when this is set to 20%, the MachineSet controller deletes at most 20% of the desired replicas. If not set, remediation is limited to all machines (bounded by replicas) under the active MachineSet's management.
 
 
 <a id="nestedatt--spec--workers--machine_deployments--strategy--rolling_update"></a>
@@ -534,9 +534,9 @@ Optional:
 
 Optional:
 
-- `delete_policy` (String) DeletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling.Valid values are 'Random, 'Newest', 'Oldest'When no value is supplied, the default DeletePolicy of MachineSet is used
-- `max_surge` (String) The maximum number of machines that can be scheduled above thedesired number of machines.Value can be an absolute number (ex: 5) or a percentage ofdesired machines (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up.Defaults to 1.Example: when this is set to 30%, the new MachineSet can be scaledup immediately when the rolling update starts, such that the totalnumber of old and new machines do not exceed 130% of desiredmachines. Once old machines have been killed, new MachineSet canbe scaled up further, ensuring that total number of machines runningat any time during the update is at most 130% of desired machines.
-- `max_unavailable` (String) The maximum number of machines that can be unavailable during the update.Value can be an absolute number (ex: 5) or a percentage of desiredmachines (ex: 10%).Absolute number is calculated from percentage by rounding down.This can not be 0 if MaxSurge is 0.Defaults to 0.Example: when this is set to 30%, the old MachineSet can be scaleddown to 70% of desired machines immediately when the rolling updatestarts. Once new machines are ready, old MachineSet can be scaleddown further, followed by scaling up the new MachineSet, ensuringthat the total number of machines available at all timesduring the update is at least 70% of desired machines.
+- `delete_policy` (String) DeletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling. Valid values are 'Random, 'Newest', 'Oldest' When no value is supplied, the default DeletePolicy of MachineSet is used
+- `max_surge` (String) The maximum number of machines that can be scheduled above the desired number of machines. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 1. Example: when this is set to 30%, the new MachineSet can be scaled up immediately when the rolling update starts, such that the total number of old and new machines do not exceed 130% of desired machines. Once old machines have been killed, new MachineSet can be scaled up further, ensuring that total number of machines running at any time during the update is at most 130% of desired machines.
+- `max_unavailable` (String) The maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.
 
 
 
@@ -546,36 +546,36 @@ Optional:
 
 Required:
 
-- `class` (String) Class denotes a type of machine pool present in the cluster,this name MUST be unique within a ClusterClass and can be referencedin the Cluster to create a managed MachinePool.
-- `template` (Attributes) Template is a local struct containing a collection of templates for creation ofMachinePools objects representing a pool of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template))
+- `class` (String) Class denotes a type of machine pool present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachinePool.
+- `template` (Attributes) Template is a local struct containing a collection of templates for creation of MachinePools objects representing a pool of worker nodes. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template))
 
 Optional:
 
-- `failure_domains` (List of String) FailureDomains is the list of failure domains the MachinePool should be attached to.Must match a key in the FailureDomains map stored on the cluster object.NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.
-- `min_ready_seconds` (Number) Minimum number of seconds for which a newly created machine pool shouldbe ready.Defaults to 0 (machine will be considered available as soon as itis ready)NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.
+- `failure_domains` (List of String) FailureDomains is the list of failure domains the MachinePool should be attached to. Must match a key in the FailureDomains map stored on the cluster object. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.
+- `min_ready_seconds` (Number) Minimum number of seconds for which a newly created machine pool should be ready. Defaults to 0 (machine will be considered available as soon as it is ready) NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.
 - `naming_strategy` (Attributes) NamingStrategy allows changing the naming pattern used when creating the MachinePool. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--naming_strategy))
-- `node_deletion_timeout` (String) NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machinehosts after the Machine Pool is marked for deletion. A duration of 0 will retry deletion indefinitely.Defaults to 10 seconds.NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.
-- `node_drain_timeout` (String) NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.
-- `node_volume_detach_timeout` (String) NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.
+- `node_deletion_timeout` (String) NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine Pool is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.
+- `node_drain_timeout` (String) NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout' NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.
+- `node_volume_detach_timeout` (String) NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations. NOTE: This value can be overridden while defining a Cluster.Topology using this MachinePoolClass.
 
 <a id="nestedatt--spec--workers--machine_pools--template"></a>
 ### Nested Schema for `spec.workers.machine_pools.template`
 
 Required:
 
-- `bootstrap` (Attributes) Bootstrap contains the bootstrap template reference to be usedfor the creation of the Machines in the MachinePool. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--bootstrap))
-- `infrastructure` (Attributes) Infrastructure contains the infrastructure template reference to be usedfor the creation of the MachinePool. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--infrastructure))
+- `bootstrap` (Attributes) Bootstrap contains the bootstrap template reference to be used for the creation of the Machines in the MachinePool. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--bootstrap))
+- `infrastructure` (Attributes) Infrastructure contains the infrastructure template reference to be used for the creation of the MachinePool. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--infrastructure))
 
 Optional:
 
-- `metadata` (Attributes) Metadata is the metadata applied to the MachinePool.At runtime this metadata is merged with the corresponding metadata from the topology. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--metadata))
+- `metadata` (Attributes) Metadata is the metadata applied to the MachinePool. At runtime this metadata is merged with the corresponding metadata from the topology. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--metadata))
 
 <a id="nestedatt--spec--workers--machine_pools--template--bootstrap"></a>
 ### Nested Schema for `spec.workers.machine_pools.template.bootstrap`
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--bootstrap--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--bootstrap--ref))
 
 <a id="nestedatt--spec--workers--machine_pools--template--bootstrap--ref"></a>
 ### Nested Schema for `spec.workers.machine_pools.template.bootstrap.ref`
@@ -583,12 +583,12 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -597,7 +597,7 @@ Optional:
 
 Required:
 
-- `ref` (Attributes) Ref is a required reference to a custom resourceoffered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--infrastructure--ref))
+- `ref` (Attributes) Ref is a required reference to a custom resource offered by a provider. (see [below for nested schema](#nestedatt--spec--workers--machine_pools--template--infrastructure--ref))
 
 <a id="nestedatt--spec--workers--machine_pools--template--infrastructure--ref"></a>
 ### Nested Schema for `spec.workers.machine_pools.template.infrastructure.ref`
@@ -605,12 +605,12 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -619,8 +619,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
 
 
 
@@ -629,4 +629,4 @@ Optional:
 
 Optional:
 
-- `template` (String) Template defines the template to use for generating the name of the MachinePool object.If not defined, it will fallback to '{{ .cluster.name }}-{{ .machinePool.topologyName }}-{{ .random }}'.If the templated string exceeds 63 characters, it will be trimmed to 58 characters and willget concatenated with a random suffix of length 5.The templating mechanism provides the following arguments:* '.cluster.name': The name of the cluster object.* '.random': A random alphanumeric string, without vowels, of length 5.* '.machinePool.topologyName': The name of the MachinePool topology (Cluster.spec.topology.workers.machinePools[].name).
+- `template` (String) Template defines the template to use for generating the name of the MachinePool object. If not defined, it will fallback to '{{ .cluster.name }}-{{ .machinePool.topologyName }}-{{ .random }}'. If the templated string exceeds 63 characters, it will be trimmed to 58 characters and will get concatenated with a random suffix of length 5. The templating mechanism provides the following arguments: * '.cluster.name': The name of the cluster object. * '.random': A random alphanumeric string, without vowels, of length 5. * '.machinePool.topologyName': The name of the MachinePool topology (Cluster.spec.topology.workers.machinePools[].name).

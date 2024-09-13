@@ -3127,8 +3127,8 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 					},
 
 					"cluster_credential_secret_role": schema.StringAttribute{
-						Description:         "Used only if ClusterCredentialSecretType is vault, to define vault role to be used.  If blank, defaults to 'redis-enterprise-operator'",
-						MarkdownDescription: "Used only if ClusterCredentialSecretType is vault, to define vault role to be used.  If blank, defaults to 'redis-enterprise-operator'",
+						Description:         "Used only if ClusterCredentialSecretType is vault, to define vault role to be used. If blank, defaults to 'redis-enterprise-operator'",
+						MarkdownDescription: "Used only if ClusterCredentialSecretType is vault, to define vault role to be used. If blank, defaults to 'redis-enterprise-operator'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -4077,8 +4077,8 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 					},
 
 					"pod_security_policy_name": schema.StringAttribute{
-						Description:         "DEPRECATED PodSecurityPolicy support is removed in Kubernetes v1.25 and the use of this field is invalid for use when running on Kubernetes v1.25+. Future versions of the RedisEnterpriseCluster API will remove support for this field altogether. For migration instructions, see https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/  Name of pod security policy to use on pods",
-						MarkdownDescription: "DEPRECATED PodSecurityPolicy support is removed in Kubernetes v1.25 and the use of this field is invalid for use when running on Kubernetes v1.25+. Future versions of the RedisEnterpriseCluster API will remove support for this field altogether. For migration instructions, see https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/  Name of pod security policy to use on pods",
+						Description:         "DEPRECATED PodSecurityPolicy support is removed in Kubernetes v1.25 and the use of this field is invalid for use when running on Kubernetes v1.25+. Future versions of the RedisEnterpriseCluster API will remove support for this field altogether. For migration instructions, see https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/ Name of pod security policy to use on pods",
+						MarkdownDescription: "DEPRECATED PodSecurityPolicy support is removed in Kubernetes v1.25 and the use of this field is invalid for use when running on Kubernetes v1.25+. Future versions of the RedisEnterpriseCluster API will remove support for this field altogether. For migration instructions, see https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/ Name of pod security policy to use on pods",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -11454,8 +11454,8 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,

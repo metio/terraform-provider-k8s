@@ -292,8 +292,8 @@ func (r *BpfmanIoKprobeProgramV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"nodeselector": schema.SingleNestedAttribute{
-						Description:         "NodeSelector allows the user to specify which nodes to deploy the bpf program to.  This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty.",
-						MarkdownDescription: "NodeSelector allows the user to specify which nodes to deploy the bpf program to.  This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty.",
+						Description:         "NodeSelector allows the user to specify which nodes to deploy the bpf program to. This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty.",
+						MarkdownDescription: "NodeSelector allows the user to specify which nodes to deploy the bpf program to. This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -354,8 +354,8 @@ func (r *BpfmanIoKprobeProgramV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"retprobe": schema.BoolAttribute{
-						Description:         "Whether the program is a kretprobe.  Default is false",
-						MarkdownDescription: "Whether the program is a kretprobe.  Default is false",
+						Description:         "Whether the program is a kretprobe. Default is false",
+						MarkdownDescription: "Whether the program is a kretprobe. Default is false",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

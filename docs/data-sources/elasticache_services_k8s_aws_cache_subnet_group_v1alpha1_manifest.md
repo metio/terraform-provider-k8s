@@ -30,7 +30,7 @@ data "k8s_elasticache_services_k8s_aws_cache_subnet_group_v1alpha1_manifest" "ex
 
 ### Optional
 
-- `spec` (Attributes) CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup.Represents the output of one of the following operations:   * CreateCacheSubnetGroup   * ModifyCacheSubnetGroup (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup. Represents the output of one of the following operations: * CreateCacheSubnetGroup * ModifyCacheSubnetGroup (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,20 +56,20 @@ Optional:
 Required:
 
 - `cache_subnet_group_description` (String) A description for the cache subnet group.
-- `cache_subnet_group_name` (String) A name for the cache subnet group. This value is stored as a lowercase string.Constraints: Must contain no more than 255 alphanumeric characters or hyphens.Example: mysubnetgroup
+- `cache_subnet_group_name` (String) A name for the cache subnet group. This value is stored as a lowercase string. Constraints: Must contain no more than 255 alphanumeric characters or hyphens. Example: mysubnetgroup
 
 Optional:
 
 - `subnet_i_ds` (List of String) A list of VPC subnet IDs for the cache subnet group.
 - `subnet_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--subnet_refs))
-- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--subnet_refs"></a>
 ### Nested Schema for `spec.subnet_refs`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_refs--from))
 
 <a id="nestedatt--spec--subnet_refs--from"></a>
 ### Nested Schema for `spec.subnet_refs.from`

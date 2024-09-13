@@ -67,6 +67,8 @@ Optional:
 - `broker_k8s_ca` (String)
 - `broker_k8s_insecure` (Boolean)
 - `broker_k8s_secret` (String)
+- `clusterset_ip_cidr` (String)
+- `clusterset_ip_enabled` (Boolean)
 - `core_dns_custom_config` (Attributes) (see [below for nested schema](#nestedatt--spec--core_dns_custom_config))
 - `custom_domains` (List of String)
 - `globalnet_enabled` (Boolean)

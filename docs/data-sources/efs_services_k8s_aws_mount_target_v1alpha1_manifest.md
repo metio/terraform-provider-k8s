@@ -56,19 +56,19 @@ Optional:
 Optional:
 
 - `file_system_id` (String) The ID of the file system for which to create the mount target.
-- `file_system_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--file_system_ref))
+- `file_system_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--file_system_ref))
 - `ip_address` (String) Valid IPv4 address within the address range of the specified subnet.
 - `security_group_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--security_group_refs))
-- `security_groups` (List of String) Up to five VPC security group IDs, of the form sg-xxxxxxxx. These must befor the same VPC as subnet specified.
-- `subnet_id` (String) The ID of the subnet to add the mount target in. For One Zone file systems,use the subnet that is associated with the file system's Availability Zone.
-- `subnet_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--subnet_ref))
+- `security_groups` (List of String) Up to five VPC security group IDs, of the form sg-xxxxxxxx. These must be for the same VPC as subnet specified.
+- `subnet_id` (String) The ID of the subnet to add the mount target in. For One Zone file systems, use the subnet that is associated with the file system's Availability Zone.
+- `subnet_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--subnet_ref))
 
 <a id="nestedatt--spec--file_system_ref"></a>
 ### Nested Schema for `spec.file_system_ref`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--file_system_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--file_system_ref--from))
 
 <a id="nestedatt--spec--file_system_ref--from"></a>
 ### Nested Schema for `spec.file_system_ref.from`
@@ -85,7 +85,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--security_group_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--security_group_refs--from))
 
 <a id="nestedatt--spec--security_group_refs--from"></a>
 ### Nested Schema for `spec.security_group_refs.from`
@@ -102,7 +102,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_ref--from))
 
 <a id="nestedatt--spec--subnet_ref--from"></a>
 ### Nested Schema for `spec.subnet_ref.from`

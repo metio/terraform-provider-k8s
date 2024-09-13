@@ -152,8 +152,8 @@ func (r *ExecutionFurikoIoJobV1Alpha1Manifest) Schema(_ context.Context, _ datas
 				MarkdownDescription: "JobSpec defines the desired state of a Job.",
 				Attributes: map[string]schema.Attribute{
 					"config_name": schema.StringAttribute{
-						Description:         "ConfigName allows specifying the name of the JobConfig to create the Job from. The JobConfig must be in the same namespace as the Job.  It is provided as a write-only input field for convenience, and will override the template, labels and annotations from the JobConfig's template.  This field will never be returned from the API. To look up the parent JobConfig, use ownerReferences.",
-						MarkdownDescription: "ConfigName allows specifying the name of the JobConfig to create the Job from. The JobConfig must be in the same namespace as the Job.  It is provided as a write-only input field for convenience, and will override the template, labels and annotations from the JobConfig's template.  This field will never be returned from the API. To look up the parent JobConfig, use ownerReferences.",
+						Description:         "ConfigName allows specifying the name of the JobConfig to create the Job from. The JobConfig must be in the same namespace as the Job. It is provided as a write-only input field for convenience, and will override the template, labels and annotations from the JobConfig's template. This field will never be returned from the API. To look up the parent JobConfig, use ownerReferences.",
+						MarkdownDescription: "ConfigName allows specifying the name of the JobConfig to create the Job from. The JobConfig must be in the same namespace as the Job. It is provided as a write-only input field for convenience, and will override the template, labels and annotations from the JobConfig's template. This field will never be returned from the API. To look up the parent JobConfig, use ownerReferences.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -171,8 +171,8 @@ func (r *ExecutionFurikoIoJobV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"option_values": schema.StringAttribute{
-						Description:         "Specifies key-values pairs of values for Options, in JSON or YAML format.  Example specification:  spec: optionValues: |- myStringOption: 'value' myBoolOption: true mySelectOption: - option1 - option3  Each entry in the optionValues struct should consist of the option's name, and the value could be an arbitrary type that corresponds to the option's type itself. Each option value specified will be evaluated to a string based on the JobConfig's OptionsSpec and added to Substitutions. If the key also exists in Substitutions, that one takes priority.  Cannot be updated after creation.",
-						MarkdownDescription: "Specifies key-values pairs of values for Options, in JSON or YAML format.  Example specification:  spec: optionValues: |- myStringOption: 'value' myBoolOption: true mySelectOption: - option1 - option3  Each entry in the optionValues struct should consist of the option's name, and the value could be an arbitrary type that corresponds to the option's type itself. Each option value specified will be evaluated to a string based on the JobConfig's OptionsSpec and added to Substitutions. If the key also exists in Substitutions, that one takes priority.  Cannot be updated after creation.",
+						Description:         "Specifies key-values pairs of values for Options, in JSON or YAML format. Example specification: spec: optionValues: |- myStringOption: 'value' myBoolOption: true mySelectOption: - option1 - option3 Each entry in the optionValues struct should consist of the option's name, and the value could be an arbitrary type that corresponds to the option's type itself. Each option value specified will be evaluated to a string based on the JobConfig's OptionsSpec and added to Substitutions. If the key also exists in Substitutions, that one takes priority. Cannot be updated after creation.",
+						MarkdownDescription: "Specifies key-values pairs of values for Options, in JSON or YAML format. Example specification: spec: optionValues: |- myStringOption: 'value' myBoolOption: true mySelectOption: - option1 - option3 Each entry in the optionValues struct should consist of the option's name, and the value could be an arbitrary type that corresponds to the option's type itself. Each option value specified will be evaluated to a string based on the JobConfig's OptionsSpec and added to Substitutions. If the key also exists in Substitutions, that one takes priority. Cannot be updated after creation.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -207,8 +207,8 @@ func (r *ExecutionFurikoIoJobV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"substitutions": schema.MapAttribute{
-						Description:         "Defines key-value pairs of context variables to be substituted into the TaskTemplate. Each entry should consist of the full context variable name (i.e. 'ctx.name'), and the values must be a string. Substitutions defined here take highest precedence over both predefined context variables and evaluated OptionValues.  Most users should be using OptionValues to specify custom Job Option values for running the Job instead of using Subsitutions directly.  Cannot be updated after creation.",
-						MarkdownDescription: "Defines key-value pairs of context variables to be substituted into the TaskTemplate. Each entry should consist of the full context variable name (i.e. 'ctx.name'), and the values must be a string. Substitutions defined here take highest precedence over both predefined context variables and evaluated OptionValues.  Most users should be using OptionValues to specify custom Job Option values for running the Job instead of using Subsitutions directly.  Cannot be updated after creation.",
+						Description:         "Defines key-value pairs of context variables to be substituted into the TaskTemplate. Each entry should consist of the full context variable name (i.e. 'ctx.name'), and the values must be a string. Substitutions defined here take highest precedence over both predefined context variables and evaluated OptionValues. Most users should be using OptionValues to specify custom Job Option values for running the Job instead of using Subsitutions directly. Cannot be updated after creation.",
+						MarkdownDescription: "Defines key-value pairs of context variables to be substituted into the TaskTemplate. Each entry should consist of the full context variable name (i.e. 'ctx.name'), and the values must be a string. Substitutions defined here take highest precedence over both predefined context variables and evaluated OptionValues. Most users should be using OptionValues to specify custom Job Option values for running the Job instead of using Subsitutions directly. Cannot be updated after creation.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -220,16 +220,16 @@ func (r *ExecutionFurikoIoJobV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						MarkdownDescription: "Template specifies how to create the Job.",
 						Attributes: map[string]schema.Attribute{
 							"forbid_task_force_deletion": schema.BoolAttribute{
-								Description:         "Defines whether tasks are allowed to be force deleted or not. If the node is unresponsive, it may be possible that the task cannot be killed by normal graceful deletion. The controller may choose to force delete the task, which would ignore the final state of the task since the node is unable to return whether the task is actually still alive.  If not set to true, there may be some cases when there may actually be two concurrently running tasks when even when ConcurrencyPolicyForbid. Setting this to true would prevent this from happening, but the Job may remain stuck indefinitely until the node recovers.",
-								MarkdownDescription: "Defines whether tasks are allowed to be force deleted or not. If the node is unresponsive, it may be possible that the task cannot be killed by normal graceful deletion. The controller may choose to force delete the task, which would ignore the final state of the task since the node is unable to return whether the task is actually still alive.  If not set to true, there may be some cases when there may actually be two concurrently running tasks when even when ConcurrencyPolicyForbid. Setting this to true would prevent this from happening, but the Job may remain stuck indefinitely until the node recovers.",
+								Description:         "Defines whether tasks are allowed to be force deleted or not. If the node is unresponsive, it may be possible that the task cannot be killed by normal graceful deletion. The controller may choose to force delete the task, which would ignore the final state of the task since the node is unable to return whether the task is actually still alive. If not set to true, there may be some cases when there may actually be two concurrently running tasks when even when ConcurrencyPolicyForbid. Setting this to true would prevent this from happening, but the Job may remain stuck indefinitely until the node recovers.",
+								MarkdownDescription: "Defines whether tasks are allowed to be force deleted or not. If the node is unresponsive, it may be possible that the task cannot be killed by normal graceful deletion. The controller may choose to force delete the task, which would ignore the final state of the task since the node is unable to return whether the task is actually still alive. If not set to true, there may be some cases when there may actually be two concurrently running tasks when even when ConcurrencyPolicyForbid. Setting this to true would prevent this from happening, but the Job may remain stuck indefinitely until the node recovers.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"max_attempts": schema.Int64Attribute{
-								Description:         "Specifies maximum number of attempts before the Job will terminate in failure. If defined, the controller will wait retryDelaySeconds before creating the next task. Once maxAttempts is reached, the Job terminates in RetryLimitExceeded.  If parallelism is also defined, this corresponds to the maximum attempts for each parallel task. That is, if there are 5 parallel task to be run at a time, with maxAttempts of 3, the Job may create up to a maximum of 15 tasks if each has failed.  Value must be a positive integer. Defaults to 1.",
-								MarkdownDescription: "Specifies maximum number of attempts before the Job will terminate in failure. If defined, the controller will wait retryDelaySeconds before creating the next task. Once maxAttempts is reached, the Job terminates in RetryLimitExceeded.  If parallelism is also defined, this corresponds to the maximum attempts for each parallel task. That is, if there are 5 parallel task to be run at a time, with maxAttempts of 3, the Job may create up to a maximum of 15 tasks if each has failed.  Value must be a positive integer. Defaults to 1.",
+								Description:         "Specifies maximum number of attempts before the Job will terminate in failure. If defined, the controller will wait retryDelaySeconds before creating the next task. Once maxAttempts is reached, the Job terminates in RetryLimitExceeded. If parallelism is also defined, this corresponds to the maximum attempts for each parallel task. That is, if there are 5 parallel task to be run at a time, with maxAttempts of 3, the Job may create up to a maximum of 15 tasks if each has failed. Value must be a positive integer. Defaults to 1.",
+								MarkdownDescription: "Specifies maximum number of attempts before the Job will terminate in failure. If defined, the controller will wait retryDelaySeconds before creating the next task. Once maxAttempts is reached, the Job terminates in RetryLimitExceeded. If parallelism is also defined, this corresponds to the maximum attempts for each parallel task. That is, if there are 5 parallel task to be run at a time, with maxAttempts of 3, the Job may create up to a maximum of 15 tasks if each has failed. Value must be a positive integer. Defaults to 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -279,8 +279,8 @@ func (r *ExecutionFurikoIoJobV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"retry_delay_seconds": schema.Int64Attribute{
-								Description:         "Optional duration in seconds to wait between retries. If left empty or zero, it means no delay (i.e. retry immediately).  If parallelism is also defined, the retry delay is from the time of the last failed task with the same index. That is, if there are two parallel tasks - index 0 and index 1 - which failed at t=0 and t=15, with retryDelaySeconds of 30, the controller will only create the next attempts at t=30 and t=45 respectively.  Value must be a non-negative integer.",
-								MarkdownDescription: "Optional duration in seconds to wait between retries. If left empty or zero, it means no delay (i.e. retry immediately).  If parallelism is also defined, the retry delay is from the time of the last failed task with the same index. That is, if there are two parallel tasks - index 0 and index 1 - which failed at t=0 and t=15, with retryDelaySeconds of 30, the controller will only create the next attempts at t=30 and t=45 respectively.  Value must be a non-negative integer.",
+								Description:         "Optional duration in seconds to wait between retries. If left empty or zero, it means no delay (i.e. retry immediately). If parallelism is also defined, the retry delay is from the time of the last failed task with the same index. That is, if there are two parallel tasks - index 0 and index 1 - which failed at t=0 and t=15, with retryDelaySeconds of 30, the controller will only create the next attempts at t=30 and t=45 respectively. Value must be a non-negative integer.",
+								MarkdownDescription: "Optional duration in seconds to wait between retries. If left empty or zero, it means no delay (i.e. retry immediately). If parallelism is also defined, the retry delay is from the time of the last failed task with the same index. That is, if there are two parallel tasks - index 0 and index 1 - which failed at t=0 and t=15, with retryDelaySeconds of 30, the controller will only create the next attempts at t=30 and t=45 respectively. Value must be a non-negative integer.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -312,8 +312,8 @@ func (r *ExecutionFurikoIoJobV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"spec": schema.MapAttribute{
-												Description:         "Specification of the desired behavior of the pod. API docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podspec-v1-core  Supports context variable substitution in the following fields for containers and initContainers: image, command, args, env.value",
-												MarkdownDescription: "Specification of the desired behavior of the pod. API docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podspec-v1-core  Supports context variable substitution in the following fields for containers and initContainers: image, command, args, env.value",
+												Description:         "Specification of the desired behavior of the pod. API docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podspec-v1-core Supports context variable substitution in the following fields for containers and initContainers: image, command, args, env.value",
+												MarkdownDescription: "Specification of the desired behavior of the pod. API docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podspec-v1-core Supports context variable substitution in the following fields for containers and initContainers: image, command, args, env.value",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -344,8 +344,8 @@ func (r *ExecutionFurikoIoJobV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "Specifies the type of Job. Can be one of: Adhoc, Scheduled  Default: Adhoc",
-						MarkdownDescription: "Specifies the type of Job. Can be one of: Adhoc, Scheduled  Default: Adhoc",
+						Description:         "Specifies the type of Job. Can be one of: Adhoc, Scheduled Default: Adhoc",
+						MarkdownDescription: "Specifies the type of Job. Can be one of: Adhoc, Scheduled Default: Adhoc",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

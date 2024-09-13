@@ -209,8 +209,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ProcessingJobSpec defines the desired state of ProcessingJob.An Amazon SageMaker processing job that is used to analyze data and evaluatemodels. For more information, see Process Data and Evaluate Models (https://docs.aws.amazon.com/sagemaker/latest/dg/processing-job.html).",
-				MarkdownDescription: "ProcessingJobSpec defines the desired state of ProcessingJob.An Amazon SageMaker processing job that is used to analyze data and evaluatemodels. For more information, see Process Data and Evaluate Models (https://docs.aws.amazon.com/sagemaker/latest/dg/processing-job.html).",
+				Description:         "ProcessingJobSpec defines the desired state of ProcessingJob. An Amazon SageMaker processing job that is used to analyze data and evaluate models. For more information, see Process Data and Evaluate Models (https://docs.aws.amazon.com/sagemaker/latest/dg/processing-job.html).",
+				MarkdownDescription: "ProcessingJobSpec defines the desired state of ProcessingJob. An Amazon SageMaker processing job that is used to analyze data and evaluate models. For more information, see Process Data and Evaluate Models (https://docs.aws.amazon.com/sagemaker/latest/dg/processing-job.html).",
 				Attributes: map[string]schema.Attribute{
 					"app_specification": schema.SingleNestedAttribute{
 						Description:         "Configures the processing job to run a specified Docker container image.",
@@ -248,8 +248,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"environment": schema.MapAttribute{
-						Description:         "The environment variables to set in the Docker container. Up to 100 key andvalues entries in the map are supported.",
-						MarkdownDescription: "The environment variables to set in the Docker container. Up to 100 key andvalues entries in the map are supported.",
+						Description:         "The environment variables to set in the Docker container. Up to 100 key and values entries in the map are supported.",
+						MarkdownDescription: "The environment variables to set in the Docker container. Up to 100 key and values entries in the map are supported.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -257,8 +257,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"experiment_config": schema.SingleNestedAttribute{
-						Description:         "Associates a SageMaker job as a trial component with an experiment and trial.Specified when you call the following APIs:   * CreateProcessingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateProcessingJob.html)   * CreateTrainingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)   * CreateTransformJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html)",
-						MarkdownDescription: "Associates a SageMaker job as a trial component with an experiment and trial.Specified when you call the following APIs:   * CreateProcessingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateProcessingJob.html)   * CreateTrainingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)   * CreateTransformJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html)",
+						Description:         "Associates a SageMaker job as a trial component with an experiment and trial. Specified when you call the following APIs: * CreateProcessingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateProcessingJob.html) * CreateTrainingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html) * CreateTransformJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html)",
+						MarkdownDescription: "Associates a SageMaker job as a trial component with an experiment and trial. Specified when you call the following APIs: * CreateProcessingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateProcessingJob.html) * CreateTrainingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html) * CreateTransformJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html)",
 						Attributes: map[string]schema.Attribute{
 							"experiment_name": schema.StringAttribute{
 								Description:         "",
@@ -290,8 +290,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"network_config": schema.SingleNestedAttribute{
-						Description:         "Networking options for a processing job, such as whether to allow inboundand outbound network calls to and from processing containers, and the VPCsubnets and security groups to use for VPC-enabled processing jobs.",
-						MarkdownDescription: "Networking options for a processing job, such as whether to allow inboundand outbound network calls to and from processing containers, and the VPCsubnets and security groups to use for VPC-enabled processing jobs.",
+						Description:         "Networking options for a processing job, such as whether to allow inbound and outbound network calls to and from processing containers, and the VPC subnets and security groups to use for VPC-enabled processing jobs.",
+						MarkdownDescription: "Networking options for a processing job, such as whether to allow inbound and outbound network calls to and from processing containers, and the VPC subnets and security groups to use for VPC-enabled processing jobs.",
 						Attributes: map[string]schema.Attribute{
 							"enable_inter_container_traffic_encryption": schema.BoolAttribute{
 								Description:         "",
@@ -310,8 +310,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"vpc_config": schema.SingleNestedAttribute{
-								Description:         "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
-								MarkdownDescription: "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
+								Description:         "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models, and compute resources have access to. You can control access to and from your resources by configuring a VPC. For more information, see Give SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
+								MarkdownDescription: "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models, and compute resources have access to. You can control access to and from your resources by configuring a VPC. For more information, see Give SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
 								Attributes: map[string]schema.Attribute{
 									"security_group_i_ds": schema.ListAttribute{
 										Description:         "",
@@ -355,8 +355,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"dataset_definition": schema.SingleNestedAttribute{
-									Description:         "Configuration for Dataset Definition inputs. The Dataset Definition inputmust specify exactly one of either AthenaDatasetDefinition or RedshiftDatasetDefinitiontypes.",
-									MarkdownDescription: "Configuration for Dataset Definition inputs. The Dataset Definition inputmust specify exactly one of either AthenaDatasetDefinition or RedshiftDatasetDefinitiontypes.",
+									Description:         "Configuration for Dataset Definition inputs. The Dataset Definition input must specify exactly one of either AthenaDatasetDefinition or RedshiftDatasetDefinition types.",
+									MarkdownDescription: "Configuration for Dataset Definition inputs. The Dataset Definition input must specify exactly one of either AthenaDatasetDefinition or RedshiftDatasetDefinition types.",
 									Attributes: map[string]schema.Attribute{
 										"athena_dataset_definition": schema.SingleNestedAttribute{
 											Description:         "Configuration for Athena Dataset Definition input.",
@@ -550,8 +550,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"s3_input": schema.SingleNestedAttribute{
-									Description:         "Configuration for downloading input data from Amazon S3 into the processingcontainer.",
-									MarkdownDescription: "Configuration for downloading input data from Amazon S3 into the processingcontainer.",
+									Description:         "Configuration for downloading input data from Amazon S3 into the processing container.",
+									MarkdownDescription: "Configuration for downloading input data from Amazon S3 into the processing container.",
 									Attributes: map[string]schema.Attribute{
 										"local_path": schema.StringAttribute{
 											Description:         "",
@@ -613,8 +613,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"processing_job_name": schema.StringAttribute{
-						Description:         "The name of the processing job. The name must be unique within an AmazonWeb Services Region in the Amazon Web Services account.",
-						MarkdownDescription: "The name of the processing job. The name must be unique within an AmazonWeb Services Region in the Amazon Web Services account.",
+						Description:         "The name of the processing job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.",
+						MarkdownDescription: "The name of the processing job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -671,8 +671,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 										},
 
 										"s3_output": schema.SingleNestedAttribute{
-											Description:         "Configuration for uploading output data to Amazon S3 from the processingcontainer.",
-											MarkdownDescription: "Configuration for uploading output data to Amazon S3 from the processingcontainer.",
+											Description:         "Configuration for uploading output data to Amazon S3 from the processing container.",
+											MarkdownDescription: "Configuration for uploading output data to Amazon S3 from the processing container.",
 											Attributes: map[string]schema.Attribute{
 												"local_path": schema.StringAttribute{
 													Description:         "",
@@ -715,8 +715,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"processing_resources": schema.SingleNestedAttribute{
-						Description:         "Identifies the resources, ML compute instances, and ML storage volumes todeploy for a processing job. In distributed training, you specify more thanone instance.",
-						MarkdownDescription: "Identifies the resources, ML compute instances, and ML storage volumes todeploy for a processing job. In distributed training, you specify more thanone instance.",
+						Description:         "Identifies the resources, ML compute instances, and ML storage volumes to deploy for a processing job. In distributed training, you specify more than one instance.",
+						MarkdownDescription: "Identifies the resources, ML compute instances, and ML storage volumes to deploy for a processing job. In distributed training, you specify more than one instance.",
 						Attributes: map[string]schema.Attribute{
 							"cluster_config": schema.SingleNestedAttribute{
 								Description:         "Configuration for the cluster used to run a processing job.",
@@ -765,8 +765,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assumeto perform tasks on your behalf.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assumeto perform tasks on your behalf.",
+						Description:         "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -790,8 +790,8 @@ func (r *SagemakerServicesK8SAwsProcessingJobV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "(Optional) An array of key-value pairs. For more information, see Using CostAllocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)in the Amazon Web Services Billing and Cost Management User Guide.",
-						MarkdownDescription: "(Optional) An array of key-value pairs. For more information, see Using CostAllocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)in the Amazon Web Services Billing and Cost Management User Guide.",
+						Description:         "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL) in the Amazon Web Services Billing and Cost Management User Guide.",
+						MarkdownDescription: "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL) in the Amazon Web Services Billing and Cost Management User Guide.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

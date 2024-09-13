@@ -241,8 +241,8 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 				MarkdownDescription: "CertificateSpec defines the desired state of Certificate.",
 				Attributes: map[string]schema.Attribute{
 					"api_passthrough": schema.SingleNestedAttribute{
-						Description:         "Specifies X.509 certificate information to be included in the issued certificate.An APIPassthrough or APICSRPassthrough template variant must be selected,or else this parameter is ignored. For more information about using thesetemplates, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html).If conflicting or duplicate certificate information is supplied during certificateissuance, Amazon Web Services Private CA applies order of operation rules(https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html#template-order-of-operations)to determine what information is used.",
-						MarkdownDescription: "Specifies X.509 certificate information to be included in the issued certificate.An APIPassthrough or APICSRPassthrough template variant must be selected,or else this parameter is ignored. For more information about using thesetemplates, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html).If conflicting or duplicate certificate information is supplied during certificateissuance, Amazon Web Services Private CA applies order of operation rules(https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html#template-order-of-operations)to determine what information is used.",
+						Description:         "Specifies X.509 certificate information to be included in the issued certificate. An APIPassthrough or APICSRPassthrough template variant must be selected, or else this parameter is ignored. For more information about using these templates, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html). If conflicting or duplicate certificate information is supplied during certificate issuance, Amazon Web Services Private CA applies order of operation rules (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html#template-order-of-operations) to determine what information is used.",
+						MarkdownDescription: "Specifies X.509 certificate information to be included in the issued certificate. An APIPassthrough or APICSRPassthrough template variant must be selected, or else this parameter is ignored. For more information about using these templates, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html). If conflicting or duplicate certificate information is supplied during certificate issuance, Amazon Web Services Private CA applies order of operation rules (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html#template-order-of-operations) to determine what information is used.",
 						Attributes: map[string]schema.Attribute{
 							"extensions": schema.SingleNestedAttribute{
 								Description:         "Contains X.509 extension information for a certificate.",
@@ -275,8 +275,8 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 															},
 
 															"qualifier": schema.SingleNestedAttribute{
-																Description:         "Defines a PolicyInformation qualifier. Amazon Web Services Private CA supportsthe certification practice statement (CPS) qualifier (https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.4)defined in RFC 5280.",
-																MarkdownDescription: "Defines a PolicyInformation qualifier. Amazon Web Services Private CA supportsthe certification practice statement (CPS) qualifier (https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.4)defined in RFC 5280.",
+																Description:         "Defines a PolicyInformation qualifier. Amazon Web Services Private CA supports the certification practice statement (CPS) qualifier (https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.4) defined in RFC 5280.",
+																MarkdownDescription: "Defines a PolicyInformation qualifier. Amazon Web Services Private CA supports the certification practice statement (CPS) qualifier (https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.4) defined in RFC 5280.",
 																Attributes: map[string]schema.Attribute{
 																	"cps_uri": schema.StringAttribute{
 																		Description:         "",
@@ -366,8 +366,8 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 									},
 
 									"key_usage": schema.SingleNestedAttribute{
-										Description:         "Defines one or more purposes for which the key contained in the certificatecan be used. Default value for each option is false.",
-										MarkdownDescription: "Defines one or more purposes for which the key contained in the certificatecan be used. Default value for each option is false.",
+										Description:         "Defines one or more purposes for which the key contained in the certificate can be used. Default value for each option is false.",
+										MarkdownDescription: "Defines one or more purposes for which the key contained in the certificate can be used. Default value for each option is false.",
 										Attributes: map[string]schema.Attribute{
 											"crl_sign": schema.BoolAttribute{
 												Description:         "",
@@ -452,8 +452,8 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"directory_name": schema.SingleNestedAttribute{
-													Description:         "Contains information about the certificate subject. The Subject field inthe certificate identifies the entity that owns or controls the public keyin the certificate. The entity can be a user, computer, device, or service.The Subject must contain an X.500 distinguished name (DN). A DN is a sequenceof relative distinguished names (RDNs). The RDNs are separated by commasin the certificate.",
-													MarkdownDescription: "Contains information about the certificate subject. The Subject field inthe certificate identifies the entity that owns or controls the public keyin the certificate. The entity can be a user, computer, device, or service.The Subject must contain an X.500 distinguished name (DN). A DN is a sequenceof relative distinguished names (RDNs). The RDNs are separated by commasin the certificate.",
+													Description:         "Contains information about the certificate subject. The Subject field in the certificate identifies the entity that owns or controls the public key in the certificate. The entity can be a user, computer, device, or service. The Subject must contain an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names (RDNs). The RDNs are separated by commas in the certificate.",
+													MarkdownDescription: "Contains information about the certificate subject. The Subject field in the certificate identifies the entity that owns or controls the public key in the certificate. The entity can be a user, computer, device, or service. The Subject must contain an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names (RDNs). The RDNs are separated by commas in the certificate.",
 													Attributes: map[string]schema.Attribute{
 														"common_name": schema.StringAttribute{
 															Description:         "",
@@ -608,8 +608,8 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"edi_party_name": schema.SingleNestedAttribute{
-													Description:         "Describes an Electronic Data Interchange (EDI) entity as described in asdefined in Subject Alternative Name (https://datatracker.ietf.org/doc/html/rfc5280)in RFC 5280.",
-													MarkdownDescription: "Describes an Electronic Data Interchange (EDI) entity as described in asdefined in Subject Alternative Name (https://datatracker.ietf.org/doc/html/rfc5280)in RFC 5280.",
+													Description:         "Describes an Electronic Data Interchange (EDI) entity as described in as defined in Subject Alternative Name (https://datatracker.ietf.org/doc/html/rfc5280) in RFC 5280.",
+													MarkdownDescription: "Describes an Electronic Data Interchange (EDI) entity as described in as defined in Subject Alternative Name (https://datatracker.ietf.org/doc/html/rfc5280) in RFC 5280.",
 													Attributes: map[string]schema.Attribute{
 														"name_assigner": schema.StringAttribute{
 															Description:         "",
@@ -641,8 +641,8 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"other_name": schema.SingleNestedAttribute{
-													Description:         "Defines a custom ASN.1 X.400 GeneralName using an object identifier (OID)and value. The OID must satisfy the regular expression shown below. For moreinformation, see NIST's definition of Object Identifier (OID) (https://csrc.nist.gov/glossary/term/Object_Identifier).",
-													MarkdownDescription: "Defines a custom ASN.1 X.400 GeneralName using an object identifier (OID)and value. The OID must satisfy the regular expression shown below. For moreinformation, see NIST's definition of Object Identifier (OID) (https://csrc.nist.gov/glossary/term/Object_Identifier).",
+													Description:         "Defines a custom ASN.1 X.400 GeneralName using an object identifier (OID) and value. The OID must satisfy the regular expression shown below. For more information, see NIST's definition of Object Identifier (OID) (https://csrc.nist.gov/glossary/term/Object_Identifier).",
+													MarkdownDescription: "Defines a custom ASN.1 X.400 GeneralName using an object identifier (OID) and value. The OID must satisfy the regular expression shown below. For more information, see NIST's definition of Object Identifier (OID) (https://csrc.nist.gov/glossary/term/Object_Identifier).",
 													Attributes: map[string]schema.Attribute{
 														"type_id": schema.StringAttribute{
 															Description:         "",
@@ -701,8 +701,8 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 							},
 
 							"subject": schema.SingleNestedAttribute{
-								Description:         "Contains information about the certificate subject. The Subject field inthe certificate identifies the entity that owns or controls the public keyin the certificate. The entity can be a user, computer, device, or service.The Subject must contain an X.500 distinguished name (DN). A DN is a sequenceof relative distinguished names (RDNs). The RDNs are separated by commasin the certificate.",
-								MarkdownDescription: "Contains information about the certificate subject. The Subject field inthe certificate identifies the entity that owns or controls the public keyin the certificate. The entity can be a user, computer, device, or service.The Subject must contain an X.500 distinguished name (DN). A DN is a sequenceof relative distinguished names (RDNs). The RDNs are separated by commasin the certificate.",
+								Description:         "Contains information about the certificate subject. The Subject field in the certificate identifies the entity that owns or controls the public key in the certificate. The entity can be a user, computer, device, or service. The Subject must contain an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names (RDNs). The RDNs are separated by commas in the certificate.",
+								MarkdownDescription: "Contains information about the certificate subject. The Subject field in the certificate identifies the entity that owns or controls the public key in the certificate. The entity can be a user, computer, device, or service. The Subject must contain an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names (RDNs). The RDNs are separated by commas in the certificate.",
 								Attributes: map[string]schema.Attribute{
 									"common_name": schema.StringAttribute{
 										Description:         "",
@@ -854,20 +854,20 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"certificate_authority_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority(https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html).This must be of the form:arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
-						MarkdownDescription: "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority(https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html).This must be of the form:arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
+						Description:         "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority (https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html). This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
+						MarkdownDescription: "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority (https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html). This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"certificate_authority_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -896,8 +896,8 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"certificate_output": schema.SingleNestedAttribute{
-						Description:         "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
-						MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
+						Description:         "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
+						MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "Key is the key within the secret",
@@ -937,12 +937,12 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"certificate_signing_request_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -971,24 +971,24 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"signing_algorithm": schema.StringAttribute{
-						Description:         "The name of the algorithm that will be used to sign the certificate to beissued.This parameter should not be confused with the SigningAlgorithm parameterused to sign a CSR in the CreateCertificateAuthority action.The specified signing algorithm family (RSA or ECDSA) must match the algorithmfamily of the CA's secret key.",
-						MarkdownDescription: "The name of the algorithm that will be used to sign the certificate to beissued.This parameter should not be confused with the SigningAlgorithm parameterused to sign a CSR in the CreateCertificateAuthority action.The specified signing algorithm family (RSA or ECDSA) must match the algorithmfamily of the CA's secret key.",
+						Description:         "The name of the algorithm that will be used to sign the certificate to be issued. This parameter should not be confused with the SigningAlgorithm parameter used to sign a CSR in the CreateCertificateAuthority action. The specified signing algorithm family (RSA or ECDSA) must match the algorithm family of the CA's secret key.",
+						MarkdownDescription: "The name of the algorithm that will be used to sign the certificate to be issued. This parameter should not be confused with the SigningAlgorithm parameter used to sign a CSR in the CreateCertificateAuthority action. The specified signing algorithm family (RSA or ECDSA) must match the algorithm family of the CA's secret key.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"template_arn": schema.StringAttribute{
-						Description:         "Specifies a custom configuration template to use when issuing a certificate.If this parameter is not provided, Amazon Web Services Private CA defaultsto the EndEntityCertificate/V1 template. For CA certificates, you shouldchoose the shortest path length that meets your needs. The path length isindicated by the PathLenN portion of the ARN, where N is the CA depth (https://docs.aws.amazon.com/privateca/latest/userguide/PcaTerms.html#terms-cadepth).Note: The CA depth configured on a subordinate CA certificate must not exceedthe limit set by its parents in the CA hierarchy.For a list of TemplateArn values supported by Amazon Web Services PrivateCA, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html).",
-						MarkdownDescription: "Specifies a custom configuration template to use when issuing a certificate.If this parameter is not provided, Amazon Web Services Private CA defaultsto the EndEntityCertificate/V1 template. For CA certificates, you shouldchoose the shortest path length that meets your needs. The path length isindicated by the PathLenN portion of the ARN, where N is the CA depth (https://docs.aws.amazon.com/privateca/latest/userguide/PcaTerms.html#terms-cadepth).Note: The CA depth configured on a subordinate CA certificate must not exceedthe limit set by its parents in the CA hierarchy.For a list of TemplateArn values supported by Amazon Web Services PrivateCA, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html).",
+						Description:         "Specifies a custom configuration template to use when issuing a certificate. If this parameter is not provided, Amazon Web Services Private CA defaults to the EndEntityCertificate/V1 template. For CA certificates, you should choose the shortest path length that meets your needs. The path length is indicated by the PathLenN portion of the ARN, where N is the CA depth (https://docs.aws.amazon.com/privateca/latest/userguide/PcaTerms.html#terms-cadepth). Note: The CA depth configured on a subordinate CA certificate must not exceed the limit set by its parents in the CA hierarchy. For a list of TemplateArn values supported by Amazon Web Services Private CA, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html).",
+						MarkdownDescription: "Specifies a custom configuration template to use when issuing a certificate. If this parameter is not provided, Amazon Web Services Private CA defaults to the EndEntityCertificate/V1 template. For CA certificates, you should choose the shortest path length that meets your needs. The path length is indicated by the PathLenN portion of the ARN, where N is the CA depth (https://docs.aws.amazon.com/privateca/latest/userguide/PcaTerms.html#terms-cadepth). Note: The CA depth configured on a subordinate CA certificate must not exceed the limit set by its parents in the CA hierarchy. For a list of TemplateArn values supported by Amazon Web Services Private CA, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"validity": schema.SingleNestedAttribute{
-						Description:         "Information describing the end of the validity period of the certificate.This parameter sets the “Not After” date for the certificate.Certificate validity is the period of time during which a certificate isvalid. Validity can be expressed as an explicit date and time when the certificateexpires, or as a span of time after issuance, stated in days, months, oryears. For more information, see Validity (https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.5)in RFC 5280.This value is unaffected when ValidityNotBefore is also specified. For example,if Validity is set to 20 days in the future, the certificate will expire20 days from issuance time regardless of the ValidityNotBefore value.The end of the validity period configured on a certificate must not exceedthe limit set on its parents in the CA hierarchy.",
-						MarkdownDescription: "Information describing the end of the validity period of the certificate.This parameter sets the “Not After” date for the certificate.Certificate validity is the period of time during which a certificate isvalid. Validity can be expressed as an explicit date and time when the certificateexpires, or as a span of time after issuance, stated in days, months, oryears. For more information, see Validity (https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.5)in RFC 5280.This value is unaffected when ValidityNotBefore is also specified. For example,if Validity is set to 20 days in the future, the certificate will expire20 days from issuance time regardless of the ValidityNotBefore value.The end of the validity period configured on a certificate must not exceedthe limit set on its parents in the CA hierarchy.",
+						Description:         "Information describing the end of the validity period of the certificate. This parameter sets the “Not After” date for the certificate. Certificate validity is the period of time during which a certificate is valid. Validity can be expressed as an explicit date and time when the certificate expires, or as a span of time after issuance, stated in days, months, or years. For more information, see Validity (https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.5) in RFC 5280. This value is unaffected when ValidityNotBefore is also specified. For example, if Validity is set to 20 days in the future, the certificate will expire 20 days from issuance time regardless of the ValidityNotBefore value. The end of the validity period configured on a certificate must not exceed the limit set on its parents in the CA hierarchy.",
+						MarkdownDescription: "Information describing the end of the validity period of the certificate. This parameter sets the “Not After” date for the certificate. Certificate validity is the period of time during which a certificate is valid. Validity can be expressed as an explicit date and time when the certificate expires, or as a span of time after issuance, stated in days, months, or years. For more information, see Validity (https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.5) in RFC 5280. This value is unaffected when ValidityNotBefore is also specified. For example, if Validity is set to 20 days in the future, the certificate will expire 20 days from issuance time regardless of the ValidityNotBefore value. The end of the validity period configured on a certificate must not exceed the limit set on its parents in the CA hierarchy.",
 						Attributes: map[string]schema.Attribute{
 							"type": schema.StringAttribute{
 								Description:         "",
@@ -1012,8 +1012,8 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"validity_not_before": schema.SingleNestedAttribute{
-						Description:         "Information describing the start of the validity period of the certificate.This parameter sets the “Not Before' date for the certificate.By default, when issuing a certificate, Amazon Web Services Private CA setsthe 'Not Before' date to the issuance time minus 60 minutes. This compensatesfor clock inconsistencies across computer systems. The ValidityNotBeforeparameter can be used to customize the “Not Before” value.Unlike the Validity parameter, the ValidityNotBefore parameter is optional.The ValidityNotBefore value is expressed as an explicit date and time, usingthe Validity type value ABSOLUTE. For more information, see Validity (https://docs.aws.amazon.com/privateca/latest/APIReference/API_Validity.html)in this API reference and Validity (https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.5)in RFC 5280.",
-						MarkdownDescription: "Information describing the start of the validity period of the certificate.This parameter sets the “Not Before' date for the certificate.By default, when issuing a certificate, Amazon Web Services Private CA setsthe 'Not Before' date to the issuance time minus 60 minutes. This compensatesfor clock inconsistencies across computer systems. The ValidityNotBeforeparameter can be used to customize the “Not Before” value.Unlike the Validity parameter, the ValidityNotBefore parameter is optional.The ValidityNotBefore value is expressed as an explicit date and time, usingthe Validity type value ABSOLUTE. For more information, see Validity (https://docs.aws.amazon.com/privateca/latest/APIReference/API_Validity.html)in this API reference and Validity (https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.5)in RFC 5280.",
+						Description:         "Information describing the start of the validity period of the certificate. This parameter sets the “Not Before' date for the certificate. By default, when issuing a certificate, Amazon Web Services Private CA sets the 'Not Before' date to the issuance time minus 60 minutes. This compensates for clock inconsistencies across computer systems. The ValidityNotBefore parameter can be used to customize the “Not Before” value. Unlike the Validity parameter, the ValidityNotBefore parameter is optional. The ValidityNotBefore value is expressed as an explicit date and time, using the Validity type value ABSOLUTE. For more information, see Validity (https://docs.aws.amazon.com/privateca/latest/APIReference/API_Validity.html) in this API reference and Validity (https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.5) in RFC 5280.",
+						MarkdownDescription: "Information describing the start of the validity period of the certificate. This parameter sets the “Not Before' date for the certificate. By default, when issuing a certificate, Amazon Web Services Private CA sets the 'Not Before' date to the issuance time minus 60 minutes. This compensates for clock inconsistencies across computer systems. The ValidityNotBefore parameter can be used to customize the “Not Before” value. Unlike the Validity parameter, the ValidityNotBefore parameter is optional. The ValidityNotBefore value is expressed as an explicit date and time, using the Validity type value ABSOLUTE. For more information, see Validity (https://docs.aws.amazon.com/privateca/latest/APIReference/API_Validity.html) in this API reference and Validity (https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.5) in RFC 5280.",
 						Attributes: map[string]schema.Attribute{
 							"type": schema.StringAttribute{
 								Description:         "",

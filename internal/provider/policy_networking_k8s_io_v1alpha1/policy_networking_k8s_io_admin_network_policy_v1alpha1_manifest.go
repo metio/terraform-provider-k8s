@@ -169,8 +169,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Metadata(_ con
 
 func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "AdminNetworkPolicy is  a cluster level resource that is part of theAdminNetworkPolicy API.",
-		MarkdownDescription: "AdminNetworkPolicy is  a cluster level resource that is part of theAdminNetworkPolicy API.",
+		Description:         "AdminNetworkPolicy is a cluster level resource that is part of the AdminNetworkPolicy API.",
+		MarkdownDescription: "AdminNetworkPolicy is a cluster level resource that is part of the AdminNetworkPolicy API.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -229,13 +229,13 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 				MarkdownDescription: "Specification of the desired behavior of AdminNetworkPolicy.",
 				Attributes: map[string]schema.Attribute{
 					"egress": schema.ListNestedAttribute{
-						Description:         "Egress is the list of Egress rules to be applied to the selected pods.A total of 100 rules will be allowed in each ANP instance.The relative precedence of egress rules within a single ANP object (all ofwhich share the priority) will be determined by the order in which the ruleis written. Thus, a rule that appears at the top of the egress ruleswould take the highest precedence.ANPs with no egress rules do not affect egress traffic.Support: Core",
-						MarkdownDescription: "Egress is the list of Egress rules to be applied to the selected pods.A total of 100 rules will be allowed in each ANP instance.The relative precedence of egress rules within a single ANP object (all ofwhich share the priority) will be determined by the order in which the ruleis written. Thus, a rule that appears at the top of the egress ruleswould take the highest precedence.ANPs with no egress rules do not affect egress traffic.Support: Core",
+						Description:         "Egress is the list of Egress rules to be applied to the selected pods. A total of 100 rules will be allowed in each ANP instance. The relative precedence of egress rules within a single ANP object (all of which share the priority) will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the egress rules would take the highest precedence. ANPs with no egress rules do not affect egress traffic. Support: Core",
+						MarkdownDescription: "Egress is the list of Egress rules to be applied to the selected pods. A total of 100 rules will be allowed in each ANP instance. The relative precedence of egress rules within a single ANP object (all of which share the priority) will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the egress rules would take the highest precedence. ANPs with no egress rules do not affect egress traffic. Support: Core",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
-									Description:         "Action specifies the effect this rule will have on matching traffic.Currently the following actions are supported:Allow: allows the selected traffic (even if it would otherwise have been denied by NetworkPolicy)Deny: denies the selected trafficPass: instructs the selected traffic to skip any remaining ANP rules, andthen pass execution to any NetworkPolicies that select the pod.If the pod is not selected by any NetworkPolicies then executionis passed to any BaselineAdminNetworkPolicies that select the pod.Support: Core",
-									MarkdownDescription: "Action specifies the effect this rule will have on matching traffic.Currently the following actions are supported:Allow: allows the selected traffic (even if it would otherwise have been denied by NetworkPolicy)Deny: denies the selected trafficPass: instructs the selected traffic to skip any remaining ANP rules, andthen pass execution to any NetworkPolicies that select the pod.If the pod is not selected by any NetworkPolicies then executionis passed to any BaselineAdminNetworkPolicies that select the pod.Support: Core",
+									Description:         "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic (even if it would otherwise have been denied by NetworkPolicy) Deny: denies the selected traffic Pass: instructs the selected traffic to skip any remaining ANP rules, and then pass execution to any NetworkPolicies that select the pod. If the pod is not selected by any NetworkPolicies then execution is passed to any BaselineAdminNetworkPolicies that select the pod. Support: Core",
+									MarkdownDescription: "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic (even if it would otherwise have been denied by NetworkPolicy) Deny: denies the selected traffic Pass: instructs the selected traffic to skip any remaining ANP rules, and then pass execution to any NetworkPolicies that select the pod. If the pod is not selected by any NetworkPolicies then execution is passed to any BaselineAdminNetworkPolicies that select the pod. Support: Core",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -245,8 +245,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name is an identifier for this rule, that may be no more than 100 charactersin length. This field should be used by the implementation to helpimprove observability, readability and error-reporting for any appliedAdminNetworkPolicies.Support: Core",
-									MarkdownDescription: "Name is an identifier for this rule, that may be no more than 100 charactersin length. This field should be used by the implementation to helpimprove observability, readability and error-reporting for any appliedAdminNetworkPolicies.Support: Core",
+									Description:         "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied AdminNetworkPolicies. Support: Core",
+									MarkdownDescription: "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied AdminNetworkPolicies. Support: Core",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -256,17 +256,17 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 								},
 
 								"ports": schema.ListNestedAttribute{
-									Description:         "Ports allows for matching traffic based on port and protocols.This field is a list of destination ports for the outgoing egress traffic.If Ports is not set then the rule does not filter traffic via port.Support: Core",
-									MarkdownDescription: "Ports allows for matching traffic based on port and protocols.This field is a list of destination ports for the outgoing egress traffic.If Ports is not set then the rule does not filter traffic via port.Support: Core",
+									Description:         "Ports allows for matching traffic based on port and protocols. This field is a list of destination ports for the outgoing egress traffic. If Ports is not set then the rule does not filter traffic via port. Support: Core",
+									MarkdownDescription: "Ports allows for matching traffic based on port and protocols. This field is a list of destination ports for the outgoing egress traffic. If Ports is not set then the rule does not filter traffic via port. Support: Core",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"port_number": schema.SingleNestedAttribute{
-												Description:         "Port selects a port on a pod(s) based on number.Support: Core",
-												MarkdownDescription: "Port selects a port on a pod(s) based on number.Support: Core",
+												Description:         "Port selects a port on a pod(s) based on number. Support: Core",
+												MarkdownDescription: "Port selects a port on a pod(s) based on number. Support: Core",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
-														Description:         "Number defines a network port value.Support: Core",
-														MarkdownDescription: "Number defines a network port value.Support: Core",
+														Description:         "Number defines a network port value. Support: Core",
+														MarkdownDescription: "Number defines a network port value. Support: Core",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -277,8 +277,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic mustmatch. If not specified, this field defaults to TCP.Support: Core",
-														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic mustmatch. If not specified, this field defaults to TCP.Support: Core",
+														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
+														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -293,12 +293,12 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 											},
 
 											"port_range": schema.SingleNestedAttribute{
-												Description:         "PortRange selects a port range on a pod(s) based on provided start and endvalues.Support: Core",
-												MarkdownDescription: "PortRange selects a port range on a pod(s) based on provided start and endvalues.Support: Core",
+												Description:         "PortRange selects a port range on a pod(s) based on provided start and end values. Support: Core",
+												MarkdownDescription: "PortRange selects a port range on a pod(s) based on provided start and end values. Support: Core",
 												Attributes: map[string]schema.Attribute{
 													"end": schema.Int64Attribute{
-														Description:         "End defines a network port that is the end of a port range, the End valuemust be greater than Start.Support: Core",
-														MarkdownDescription: "End defines a network port that is the end of a port range, the End valuemust be greater than Start.Support: Core",
+														Description:         "End defines a network port that is the end of a port range, the End value must be greater than Start. Support: Core",
+														MarkdownDescription: "End defines a network port that is the end of a port range, the End value must be greater than Start. Support: Core",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -309,16 +309,16 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic mustmatch. If not specified, this field defaults to TCP.Support: Core",
-														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic mustmatch. If not specified, this field defaults to TCP.Support: Core",
+														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
+														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"start": schema.Int64Attribute{
-														Description:         "Start defines a network port that is the start of a port range, the Startvalue must be less than End.Support: Core",
-														MarkdownDescription: "Start defines a network port that is the start of a port range, the Startvalue must be less than End.Support: Core",
+														Description:         "Start defines a network port that is the start of a port range, the Start value must be less than End. Support: Core",
+														MarkdownDescription: "Start defines a network port that is the start of a port range, the Start value must be less than End. Support: Core",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -343,13 +343,13 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 								},
 
 								"to": schema.ListNestedAttribute{
-									Description:         "To is the List of destinations whose traffic this rule applies to.If any AdminNetworkPolicyEgressPeer matches the destination of outgoingtraffic then the specified action is applied.This field must be defined and contain at least one item.Support: Core",
-									MarkdownDescription: "To is the List of destinations whose traffic this rule applies to.If any AdminNetworkPolicyEgressPeer matches the destination of outgoingtraffic then the specified action is applied.This field must be defined and contain at least one item.Support: Core",
+									Description:         "To is the List of destinations whose traffic this rule applies to. If any AdminNetworkPolicyEgressPeer matches the destination of outgoing traffic then the specified action is applied. This field must be defined and contain at least one item. Support: Core",
+									MarkdownDescription: "To is the List of destinations whose traffic this rule applies to. If any AdminNetworkPolicyEgressPeer matches the destination of outgoing traffic then the specified action is applied. This field must be defined and contain at least one item. Support: Core",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"namespaces": schema.SingleNestedAttribute{
-												Description:         "Namespaces defines a way to select all pods within a set of Namespaces.Note that host-networked pods are not included in this type of peer.Support: Core",
-												MarkdownDescription: "Namespaces defines a way to select all pods within a set of Namespaces.Note that host-networked pods are not included in this type of peer.Support: Core",
+												Description:         "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
+												MarkdownDescription: "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
 												Attributes: map[string]schema.Attribute{
 													"match_expressions": schema.ListNestedAttribute{
 														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -365,16 +365,16 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 																},
 
 																"operator": schema.StringAttribute{
-																	Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																	MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"values": schema.ListAttribute{
-																	Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -388,8 +388,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 													},
 
 													"match_labels": schema.MapAttribute{
-														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -405,12 +405,12 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 											},
 
 											"pods": schema.SingleNestedAttribute{
-												Description:         "Pods defines a way to select a set of pods ina set of namespaces. Note that host-networked podsare not included in this type of peer.Support: Core",
-												MarkdownDescription: "Pods defines a way to select a set of pods ina set of namespaces. Note that host-networked podsare not included in this type of peer.Support: Core",
+												Description:         "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
+												MarkdownDescription: "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
 												Attributes: map[string]schema.Attribute{
 													"namespace_selector": schema.SingleNestedAttribute{
-														Description:         "NamespaceSelector follows standard label selector semantics; if empty,it selects all Namespaces.",
-														MarkdownDescription: "NamespaceSelector follows standard label selector semantics; if empty,it selects all Namespaces.",
+														Description:         "NamespaceSelector follows standard label selector semantics; if empty, it selects all Namespaces.",
+														MarkdownDescription: "NamespaceSelector follows standard label selector semantics; if empty, it selects all Namespaces.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -426,16 +426,16 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -449,8 +449,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -463,8 +463,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 													},
 
 													"pod_selector": schema.SingleNestedAttribute{
-														Description:         "PodSelector is used to explicitly select pods within a namespace; if empty,it selects all Pods.",
-														MarkdownDescription: "PodSelector is used to explicitly select pods within a namespace; if empty,it selects all Pods.",
+														Description:         "PodSelector is used to explicitly select pods within a namespace; if empty, it selects all Pods.",
+														MarkdownDescription: "PodSelector is used to explicitly select pods within a namespace; if empty, it selects all Pods.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -480,16 +480,16 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -503,8 +503,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -537,13 +537,13 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 					},
 
 					"ingress": schema.ListNestedAttribute{
-						Description:         "Ingress is the list of Ingress rules to be applied to the selected pods.A total of 100 rules will be allowed in each ANP instance.The relative precedence of ingress rules within a single ANP object (all ofwhich share the priority) will be determined by the order in which the ruleis written. Thus, a rule that appears at the top of the ingress ruleswould take the highest precedence.ANPs with no ingress rules do not affect ingress traffic.Support: Core",
-						MarkdownDescription: "Ingress is the list of Ingress rules to be applied to the selected pods.A total of 100 rules will be allowed in each ANP instance.The relative precedence of ingress rules within a single ANP object (all ofwhich share the priority) will be determined by the order in which the ruleis written. Thus, a rule that appears at the top of the ingress ruleswould take the highest precedence.ANPs with no ingress rules do not affect ingress traffic.Support: Core",
+						Description:         "Ingress is the list of Ingress rules to be applied to the selected pods. A total of 100 rules will be allowed in each ANP instance. The relative precedence of ingress rules within a single ANP object (all of which share the priority) will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the ingress rules would take the highest precedence. ANPs with no ingress rules do not affect ingress traffic. Support: Core",
+						MarkdownDescription: "Ingress is the list of Ingress rules to be applied to the selected pods. A total of 100 rules will be allowed in each ANP instance. The relative precedence of ingress rules within a single ANP object (all of which share the priority) will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the ingress rules would take the highest precedence. ANPs with no ingress rules do not affect ingress traffic. Support: Core",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
-									Description:         "Action specifies the effect this rule will have on matching traffic.Currently the following actions are supported:Allow: allows the selected traffic (even if it would otherwise have been denied by NetworkPolicy)Deny: denies the selected trafficPass: instructs the selected traffic to skip any remaining ANP rules, andthen pass execution to any NetworkPolicies that select the pod.If the pod is not selected by any NetworkPolicies then executionis passed to any BaselineAdminNetworkPolicies that select the pod.Support: Core",
-									MarkdownDescription: "Action specifies the effect this rule will have on matching traffic.Currently the following actions are supported:Allow: allows the selected traffic (even if it would otherwise have been denied by NetworkPolicy)Deny: denies the selected trafficPass: instructs the selected traffic to skip any remaining ANP rules, andthen pass execution to any NetworkPolicies that select the pod.If the pod is not selected by any NetworkPolicies then executionis passed to any BaselineAdminNetworkPolicies that select the pod.Support: Core",
+									Description:         "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic (even if it would otherwise have been denied by NetworkPolicy) Deny: denies the selected traffic Pass: instructs the selected traffic to skip any remaining ANP rules, and then pass execution to any NetworkPolicies that select the pod. If the pod is not selected by any NetworkPolicies then execution is passed to any BaselineAdminNetworkPolicies that select the pod. Support: Core",
+									MarkdownDescription: "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic (even if it would otherwise have been denied by NetworkPolicy) Deny: denies the selected traffic Pass: instructs the selected traffic to skip any remaining ANP rules, and then pass execution to any NetworkPolicies that select the pod. If the pod is not selected by any NetworkPolicies then execution is passed to any BaselineAdminNetworkPolicies that select the pod. Support: Core",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -553,13 +553,13 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 								},
 
 								"from": schema.ListNestedAttribute{
-									Description:         "From is the list of sources whose traffic this rule applies to.If any AdminNetworkPolicyIngressPeer matches the source of incomingtraffic then the specified action is applied.This field must be defined and contain at least one item.Support: Core",
-									MarkdownDescription: "From is the list of sources whose traffic this rule applies to.If any AdminNetworkPolicyIngressPeer matches the source of incomingtraffic then the specified action is applied.This field must be defined and contain at least one item.Support: Core",
+									Description:         "From is the list of sources whose traffic this rule applies to. If any AdminNetworkPolicyIngressPeer matches the source of incoming traffic then the specified action is applied. This field must be defined and contain at least one item. Support: Core",
+									MarkdownDescription: "From is the list of sources whose traffic this rule applies to. If any AdminNetworkPolicyIngressPeer matches the source of incoming traffic then the specified action is applied. This field must be defined and contain at least one item. Support: Core",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"namespaces": schema.SingleNestedAttribute{
-												Description:         "Namespaces defines a way to select all pods within a set of Namespaces.Note that host-networked pods are not included in this type of peer.Support: Core",
-												MarkdownDescription: "Namespaces defines a way to select all pods within a set of Namespaces.Note that host-networked pods are not included in this type of peer.Support: Core",
+												Description:         "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
+												MarkdownDescription: "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
 												Attributes: map[string]schema.Attribute{
 													"match_expressions": schema.ListNestedAttribute{
 														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -575,16 +575,16 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 																},
 
 																"operator": schema.StringAttribute{
-																	Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																	MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"values": schema.ListAttribute{
-																	Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -598,8 +598,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 													},
 
 													"match_labels": schema.MapAttribute{
-														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -615,12 +615,12 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 											},
 
 											"pods": schema.SingleNestedAttribute{
-												Description:         "Pods defines a way to select a set of pods ina set of namespaces. Note that host-networked podsare not included in this type of peer.Support: Core",
-												MarkdownDescription: "Pods defines a way to select a set of pods ina set of namespaces. Note that host-networked podsare not included in this type of peer.Support: Core",
+												Description:         "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
+												MarkdownDescription: "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
 												Attributes: map[string]schema.Attribute{
 													"namespace_selector": schema.SingleNestedAttribute{
-														Description:         "NamespaceSelector follows standard label selector semantics; if empty,it selects all Namespaces.",
-														MarkdownDescription: "NamespaceSelector follows standard label selector semantics; if empty,it selects all Namespaces.",
+														Description:         "NamespaceSelector follows standard label selector semantics; if empty, it selects all Namespaces.",
+														MarkdownDescription: "NamespaceSelector follows standard label selector semantics; if empty, it selects all Namespaces.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -636,16 +636,16 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -659,8 +659,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -673,8 +673,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 													},
 
 													"pod_selector": schema.SingleNestedAttribute{
-														Description:         "PodSelector is used to explicitly select pods within a namespace; if empty,it selects all Pods.",
-														MarkdownDescription: "PodSelector is used to explicitly select pods within a namespace; if empty,it selects all Pods.",
+														Description:         "PodSelector is used to explicitly select pods within a namespace; if empty, it selects all Pods.",
+														MarkdownDescription: "PodSelector is used to explicitly select pods within a namespace; if empty, it selects all Pods.",
 														Attributes: map[string]schema.Attribute{
 															"match_expressions": schema.ListNestedAttribute{
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -690,16 +690,16 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 																		},
 
 																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -713,8 +713,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 															},
 
 															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -741,8 +741,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name is an identifier for this rule, that may be no more than 100 charactersin length. This field should be used by the implementation to helpimprove observability, readability and error-reporting for any appliedAdminNetworkPolicies.Support: Core",
-									MarkdownDescription: "Name is an identifier for this rule, that may be no more than 100 charactersin length. This field should be used by the implementation to helpimprove observability, readability and error-reporting for any appliedAdminNetworkPolicies.Support: Core",
+									Description:         "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied AdminNetworkPolicies. Support: Core",
+									MarkdownDescription: "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied AdminNetworkPolicies. Support: Core",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -752,17 +752,17 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 								},
 
 								"ports": schema.ListNestedAttribute{
-									Description:         "Ports allows for matching traffic based on port and protocols.This field is a list of ports which should be matched onthe pods selected for this policy i.e the subject of the policy.So it matches on the destination port for the ingress traffic.If Ports is not set then the rule does not filter traffic via port.Support: Core",
-									MarkdownDescription: "Ports allows for matching traffic based on port and protocols.This field is a list of ports which should be matched onthe pods selected for this policy i.e the subject of the policy.So it matches on the destination port for the ingress traffic.If Ports is not set then the rule does not filter traffic via port.Support: Core",
+									Description:         "Ports allows for matching traffic based on port and protocols. This field is a list of ports which should be matched on the pods selected for this policy i.e the subject of the policy. So it matches on the destination port for the ingress traffic. If Ports is not set then the rule does not filter traffic via port. Support: Core",
+									MarkdownDescription: "Ports allows for matching traffic based on port and protocols. This field is a list of ports which should be matched on the pods selected for this policy i.e the subject of the policy. So it matches on the destination port for the ingress traffic. If Ports is not set then the rule does not filter traffic via port. Support: Core",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"port_number": schema.SingleNestedAttribute{
-												Description:         "Port selects a port on a pod(s) based on number.Support: Core",
-												MarkdownDescription: "Port selects a port on a pod(s) based on number.Support: Core",
+												Description:         "Port selects a port on a pod(s) based on number. Support: Core",
+												MarkdownDescription: "Port selects a port on a pod(s) based on number. Support: Core",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
-														Description:         "Number defines a network port value.Support: Core",
-														MarkdownDescription: "Number defines a network port value.Support: Core",
+														Description:         "Number defines a network port value. Support: Core",
+														MarkdownDescription: "Number defines a network port value. Support: Core",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -773,8 +773,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic mustmatch. If not specified, this field defaults to TCP.Support: Core",
-														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic mustmatch. If not specified, this field defaults to TCP.Support: Core",
+														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
+														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -789,12 +789,12 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 											},
 
 											"port_range": schema.SingleNestedAttribute{
-												Description:         "PortRange selects a port range on a pod(s) based on provided start and endvalues.Support: Core",
-												MarkdownDescription: "PortRange selects a port range on a pod(s) based on provided start and endvalues.Support: Core",
+												Description:         "PortRange selects a port range on a pod(s) based on provided start and end values. Support: Core",
+												MarkdownDescription: "PortRange selects a port range on a pod(s) based on provided start and end values. Support: Core",
 												Attributes: map[string]schema.Attribute{
 													"end": schema.Int64Attribute{
-														Description:         "End defines a network port that is the end of a port range, the End valuemust be greater than Start.Support: Core",
-														MarkdownDescription: "End defines a network port that is the end of a port range, the End valuemust be greater than Start.Support: Core",
+														Description:         "End defines a network port that is the end of a port range, the End value must be greater than Start. Support: Core",
+														MarkdownDescription: "End defines a network port that is the end of a port range, the End value must be greater than Start. Support: Core",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -805,16 +805,16 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic mustmatch. If not specified, this field defaults to TCP.Support: Core",
-														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic mustmatch. If not specified, this field defaults to TCP.Support: Core",
+														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
+														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"start": schema.Int64Attribute{
-														Description:         "Start defines a network port that is the start of a port range, the Startvalue must be less than End.Support: Core",
-														MarkdownDescription: "Start defines a network port that is the start of a port range, the Startvalue must be less than End.Support: Core",
+														Description:         "Start defines a network port that is the start of a port range, the Start value must be less than End. Support: Core",
+														MarkdownDescription: "Start defines a network port that is the start of a port range, the Start value must be less than End. Support: Core",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -845,8 +845,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 					},
 
 					"priority": schema.Int64Attribute{
-						Description:         "Priority is a value from 0 to 1000. Policies with lower priority values havehigher precedence, and are checked before policies with higher priority values.All AdminNetworkPolicy rules have higher precedence than NetworkPolicy orBaselineAdminNetworkPolicy rulesEvery AdminNetworkPolicy should have a unique priority value; if two (or more)policies with the same priority could both match a connection, then theimplementation can apply any of the matching policies to the connection, andthere is no way for the user to reliably determine which one it will choose.Support: Core",
-						MarkdownDescription: "Priority is a value from 0 to 1000. Policies with lower priority values havehigher precedence, and are checked before policies with higher priority values.All AdminNetworkPolicy rules have higher precedence than NetworkPolicy orBaselineAdminNetworkPolicy rulesEvery AdminNetworkPolicy should have a unique priority value; if two (or more)policies with the same priority could both match a connection, then theimplementation can apply any of the matching policies to the connection, andthere is no way for the user to reliably determine which one it will choose.Support: Core",
+						Description:         "Priority is a value from 0 to 1000. Policies with lower priority values have higher precedence, and are checked before policies with higher priority values. All AdminNetworkPolicy rules have higher precedence than NetworkPolicy or BaselineAdminNetworkPolicy rules Every AdminNetworkPolicy should have a unique priority value; if two (or more) policies with the same priority could both match a connection, then the implementation can apply any of the matching policies to the connection, and there is no way for the user to reliably determine which one it will choose. Support: Core",
+						MarkdownDescription: "Priority is a value from 0 to 1000. Policies with lower priority values have higher precedence, and are checked before policies with higher priority values. All AdminNetworkPolicy rules have higher precedence than NetworkPolicy or BaselineAdminNetworkPolicy rules Every AdminNetworkPolicy should have a unique priority value; if two (or more) policies with the same priority could both match a connection, then the implementation can apply any of the matching policies to the connection, and there is no way for the user to reliably determine which one it will choose. Support: Core",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -857,8 +857,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 					},
 
 					"subject": schema.SingleNestedAttribute{
-						Description:         "Subject defines the pods to which this AdminNetworkPolicy applies.Note that host-networked pods are not included in subject selection.Support: Core",
-						MarkdownDescription: "Subject defines the pods to which this AdminNetworkPolicy applies.Note that host-networked pods are not included in subject selection.Support: Core",
+						Description:         "Subject defines the pods to which this AdminNetworkPolicy applies. Note that host-networked pods are not included in subject selection. Support: Core",
+						MarkdownDescription: "Subject defines the pods to which this AdminNetworkPolicy applies. Note that host-networked pods are not included in subject selection. Support: Core",
 						Attributes: map[string]schema.Attribute{
 							"namespaces": schema.SingleNestedAttribute{
 								Description:         "Namespaces is used to select pods via namespace selectors.",
@@ -878,16 +878,16 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -901,8 +901,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -922,8 +922,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 								MarkdownDescription: "Pods is used to select pods via namespace AND pod selectors.",
 								Attributes: map[string]schema.Attribute{
 									"namespace_selector": schema.SingleNestedAttribute{
-										Description:         "NamespaceSelector follows standard label selector semantics; if empty,it selects all Namespaces.",
-										MarkdownDescription: "NamespaceSelector follows standard label selector semantics; if empty,it selects all Namespaces.",
+										Description:         "NamespaceSelector follows standard label selector semantics; if empty, it selects all Namespaces.",
+										MarkdownDescription: "NamespaceSelector follows standard label selector semantics; if empty, it selects all Namespaces.",
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
 												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -939,16 +939,16 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -962,8 +962,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -976,8 +976,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 									},
 
 									"pod_selector": schema.SingleNestedAttribute{
-										Description:         "PodSelector is used to explicitly select pods within a namespace; if empty,it selects all Pods.",
-										MarkdownDescription: "PodSelector is used to explicitly select pods within a namespace; if empty,it selects all Pods.",
+										Description:         "PodSelector is used to explicitly select pods within a namespace; if empty, it selects all Pods.",
+										MarkdownDescription: "PodSelector is used to explicitly select pods within a namespace; if empty, it selects all Pods.",
 										Attributes: map[string]schema.Attribute{
 											"match_expressions": schema.ListNestedAttribute{
 												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -993,16 +993,16 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 														},
 
 														"operator": schema.StringAttribute{
-															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"values": schema.ListAttribute{
-															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1016,8 +1016,8 @@ func (r *PolicyNetworkingK8SIoAdminNetworkPolicyV1Alpha1Manifest) Schema(_ conte
 											},
 
 											"match_labels": schema.MapAttribute{
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,

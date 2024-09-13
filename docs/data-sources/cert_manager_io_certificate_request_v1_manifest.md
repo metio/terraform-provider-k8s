@@ -3,12 +3,12 @@
 page_title: "k8s_cert_manager_io_certificate_request_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "cert-manager.io"
 description: |-
-  A CertificateRequest is used to request a signed certificate from one of theconfigured issuers.All fields within the CertificateRequest's 'spec' are immutable after creation.A CertificateRequest will either succeed or fail, as denoted by its 'Ready' statuscondition and its 'status.failureTime' field.A CertificateRequest is a one-shot resource, meaning it represents a singlepoint in time request for a certificate and cannot be re-used.
+  A CertificateRequest is used to request a signed certificate from one of the configured issuers. All fields within the CertificateRequest's 'spec' are immutable after creation. A CertificateRequest will either succeed or fail, as denoted by its 'Ready' status condition and its 'status.failureTime' field. A CertificateRequest is a one-shot resource, meaning it represents a single point in time request for a certificate and cannot be re-used.
 ---
 
 # k8s_cert_manager_io_certificate_request_v1_manifest (Data Source)
 
-A CertificateRequest is used to request a signed certificate from one of theconfigured issuers.All fields within the CertificateRequest's 'spec' are immutable after creation.A CertificateRequest will either succeed or fail, as denoted by its 'Ready' statuscondition and its 'status.failureTime' field.A CertificateRequest is a one-shot resource, meaning it represents a singlepoint in time request for a certificate and cannot be re-used.
+A CertificateRequest is used to request a signed certificate from one of the configured issuers. All fields within the CertificateRequest's 'spec' are immutable after creation. A CertificateRequest will either succeed or fail, as denoted by its 'Ready' status condition and its 'status.failureTime' field. A CertificateRequest is a one-shot resource, meaning it represents a single point in time request for a certificate and cannot be re-used.
 
 ## Example Usage
 
@@ -38,7 +38,7 @@ data "k8s_cert_manager_io_certificate_request_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) Specification of the desired state of the CertificateRequest resource.https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Specification of the desired state of the CertificateRequest resource. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -63,18 +63,18 @@ Optional:
 
 Required:
 
-- `issuer_ref` (Attributes) Reference to the issuer responsible for issuing the certificate.If the issuer is namespace-scoped, it must be in the same namespaceas the Certificate. If the issuer is cluster-scoped, it can be usedfrom any namespace.The 'name' field of the reference must always be specified. (see [below for nested schema](#nestedatt--spec--issuer_ref))
-- `request` (String) The PEM-encoded X.509 certificate signing request to be submitted to theissuer for signing.If the CSR has a BasicConstraints extension, its isCA attribute mustmatch the 'isCA' value of this CertificateRequest.If the CSR has a KeyUsage extension, its key usages must match thekey usages in the 'usages' field of this CertificateRequest.If the CSR has a ExtKeyUsage extension, its extended key usagesmust match the extended key usages in the 'usages' field of thisCertificateRequest.
+- `issuer_ref` (Attributes) Reference to the issuer responsible for issuing the certificate. If the issuer is namespace-scoped, it must be in the same namespace as the Certificate. If the issuer is cluster-scoped, it can be used from any namespace. The 'name' field of the reference must always be specified. (see [below for nested schema](#nestedatt--spec--issuer_ref))
+- `request` (String) The PEM-encoded X.509 certificate signing request to be submitted to the issuer for signing. If the CSR has a BasicConstraints extension, its isCA attribute must match the 'isCA' value of this CertificateRequest. If the CSR has a KeyUsage extension, its key usages must match the key usages in the 'usages' field of this CertificateRequest. If the CSR has a ExtKeyUsage extension, its extended key usages must match the extended key usages in the 'usages' field of this CertificateRequest.
 
 Optional:
 
-- `duration` (String) Requested 'duration' (i.e. lifetime) of the Certificate. Note that theissuer may choose to ignore the requested duration, just like any otherrequested attribute.
-- `extra` (Map of List of String) Extra contains extra attributes of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.
-- `groups` (List of String) Groups contains group membership of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.
-- `is_ca` (Boolean) Requested basic constraints isCA value. Note that the issuer may chooseto ignore the requested isCA value, just like any other requested attribute.NOTE: If the CSR in the 'Request' field has a BasicConstraints extension,it must have the same isCA value as specified here.If true, this will automatically add the 'cert sign' usage to the listof requested 'usages'.
-- `uid` (String) UID contains the uid of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.
-- `usages` (List of String) Requested key usages and extended key usages.NOTE: If the CSR in the 'Request' field has uses the KeyUsage orExtKeyUsage extension, these extensions must have the same valuesas specified here without any additional values.If unset, defaults to 'digital signature' and 'key encipherment'.
-- `username` (String) Username contains the name of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.
+- `duration` (String) Requested 'duration' (i.e. lifetime) of the Certificate. Note that the issuer may choose to ignore the requested duration, just like any other requested attribute.
+- `extra` (Map of List of String) Extra contains extra attributes of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.
+- `groups` (List of String) Groups contains group membership of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.
+- `is_ca` (Boolean) Requested basic constraints isCA value. Note that the issuer may choose to ignore the requested isCA value, just like any other requested attribute. NOTE: If the CSR in the 'Request' field has a BasicConstraints extension, it must have the same isCA value as specified here. If true, this will automatically add the 'cert sign' usage to the list of requested 'usages'.
+- `uid` (String) UID contains the uid of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.
+- `usages` (List of String) Requested key usages and extended key usages. NOTE: If the CSR in the 'Request' field has uses the KeyUsage or ExtKeyUsage extension, these extensions must have the same values as specified here without any additional values. If unset, defaults to 'digital signature' and 'key encipherment'.
+- `username` (String) Username contains the name of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.
 
 <a id="nestedatt--spec--issuer_ref"></a>
 ### Nested Schema for `spec.issuer_ref`

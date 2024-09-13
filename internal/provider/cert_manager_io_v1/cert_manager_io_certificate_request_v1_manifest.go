@@ -65,8 +65,8 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Metadata(_ context.Context, 
 
 func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A CertificateRequest is used to request a signed certificate from one of theconfigured issuers.All fields within the CertificateRequest's 'spec' are immutable after creation.A CertificateRequest will either succeed or fail, as denoted by its 'Ready' statuscondition and its 'status.failureTime' field.A CertificateRequest is a one-shot resource, meaning it represents a singlepoint in time request for a certificate and cannot be re-used.",
-		MarkdownDescription: "A CertificateRequest is used to request a signed certificate from one of theconfigured issuers.All fields within the CertificateRequest's 'spec' are immutable after creation.A CertificateRequest will either succeed or fail, as denoted by its 'Ready' statuscondition and its 'status.failureTime' field.A CertificateRequest is a one-shot resource, meaning it represents a singlepoint in time request for a certificate and cannot be re-used.",
+		Description:         "A CertificateRequest is used to request a signed certificate from one of the configured issuers. All fields within the CertificateRequest's 'spec' are immutable after creation. A CertificateRequest will either succeed or fail, as denoted by its 'Ready' status condition and its 'status.failureTime' field. A CertificateRequest is a one-shot resource, meaning it represents a single point in time request for a certificate and cannot be re-used.",
+		MarkdownDescription: "A CertificateRequest is used to request a signed certificate from one of the configured issuers. All fields within the CertificateRequest's 'spec' are immutable after creation. A CertificateRequest will either succeed or fail, as denoted by its 'Ready' status condition and its 'status.failureTime' field. A CertificateRequest is a one-shot resource, meaning it represents a single point in time request for a certificate and cannot be re-used.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -133,20 +133,20 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Specification of the desired state of the CertificateRequest resource.https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
-				MarkdownDescription: "Specification of the desired state of the CertificateRequest resource.https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+				Description:         "Specification of the desired state of the CertificateRequest resource. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+				MarkdownDescription: "Specification of the desired state of the CertificateRequest resource. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
 				Attributes: map[string]schema.Attribute{
 					"duration": schema.StringAttribute{
-						Description:         "Requested 'duration' (i.e. lifetime) of the Certificate. Note that theissuer may choose to ignore the requested duration, just like any otherrequested attribute.",
-						MarkdownDescription: "Requested 'duration' (i.e. lifetime) of the Certificate. Note that theissuer may choose to ignore the requested duration, just like any otherrequested attribute.",
+						Description:         "Requested 'duration' (i.e. lifetime) of the Certificate. Note that the issuer may choose to ignore the requested duration, just like any other requested attribute.",
+						MarkdownDescription: "Requested 'duration' (i.e. lifetime) of the Certificate. Note that the issuer may choose to ignore the requested duration, just like any other requested attribute.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"extra": schema.MapAttribute{
-						Description:         "Extra contains extra attributes of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.",
-						MarkdownDescription: "Extra contains extra attributes of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.",
+						Description:         "Extra contains extra attributes of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+						MarkdownDescription: "Extra contains extra attributes of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
 						ElementType:         types.ListType{ElemType: types.StringType},
 						Required:            false,
 						Optional:            true,
@@ -154,8 +154,8 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"groups": schema.ListAttribute{
-						Description:         "Groups contains group membership of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.",
-						MarkdownDescription: "Groups contains group membership of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.",
+						Description:         "Groups contains group membership of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+						MarkdownDescription: "Groups contains group membership of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -163,16 +163,16 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"is_ca": schema.BoolAttribute{
-						Description:         "Requested basic constraints isCA value. Note that the issuer may chooseto ignore the requested isCA value, just like any other requested attribute.NOTE: If the CSR in the 'Request' field has a BasicConstraints extension,it must have the same isCA value as specified here.If true, this will automatically add the 'cert sign' usage to the listof requested 'usages'.",
-						MarkdownDescription: "Requested basic constraints isCA value. Note that the issuer may chooseto ignore the requested isCA value, just like any other requested attribute.NOTE: If the CSR in the 'Request' field has a BasicConstraints extension,it must have the same isCA value as specified here.If true, this will automatically add the 'cert sign' usage to the listof requested 'usages'.",
+						Description:         "Requested basic constraints isCA value. Note that the issuer may choose to ignore the requested isCA value, just like any other requested attribute. NOTE: If the CSR in the 'Request' field has a BasicConstraints extension, it must have the same isCA value as specified here. If true, this will automatically add the 'cert sign' usage to the list of requested 'usages'.",
+						MarkdownDescription: "Requested basic constraints isCA value. Note that the issuer may choose to ignore the requested isCA value, just like any other requested attribute. NOTE: If the CSR in the 'Request' field has a BasicConstraints extension, it must have the same isCA value as specified here. If true, this will automatically add the 'cert sign' usage to the list of requested 'usages'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"issuer_ref": schema.SingleNestedAttribute{
-						Description:         "Reference to the issuer responsible for issuing the certificate.If the issuer is namespace-scoped, it must be in the same namespaceas the Certificate. If the issuer is cluster-scoped, it can be usedfrom any namespace.The 'name' field of the reference must always be specified.",
-						MarkdownDescription: "Reference to the issuer responsible for issuing the certificate.If the issuer is namespace-scoped, it must be in the same namespaceas the Certificate. If the issuer is cluster-scoped, it can be usedfrom any namespace.The 'name' field of the reference must always be specified.",
+						Description:         "Reference to the issuer responsible for issuing the certificate. If the issuer is namespace-scoped, it must be in the same namespace as the Certificate. If the issuer is cluster-scoped, it can be used from any namespace. The 'name' field of the reference must always be specified.",
+						MarkdownDescription: "Reference to the issuer responsible for issuing the certificate. If the issuer is namespace-scoped, it must be in the same namespace as the Certificate. If the issuer is cluster-scoped, it can be used from any namespace. The 'name' field of the reference must always be specified.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "Group of the resource being referred to.",
@@ -204,8 +204,8 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"request": schema.StringAttribute{
-						Description:         "The PEM-encoded X.509 certificate signing request to be submitted to theissuer for signing.If the CSR has a BasicConstraints extension, its isCA attribute mustmatch the 'isCA' value of this CertificateRequest.If the CSR has a KeyUsage extension, its key usages must match thekey usages in the 'usages' field of this CertificateRequest.If the CSR has a ExtKeyUsage extension, its extended key usagesmust match the extended key usages in the 'usages' field of thisCertificateRequest.",
-						MarkdownDescription: "The PEM-encoded X.509 certificate signing request to be submitted to theissuer for signing.If the CSR has a BasicConstraints extension, its isCA attribute mustmatch the 'isCA' value of this CertificateRequest.If the CSR has a KeyUsage extension, its key usages must match thekey usages in the 'usages' field of this CertificateRequest.If the CSR has a ExtKeyUsage extension, its extended key usagesmust match the extended key usages in the 'usages' field of thisCertificateRequest.",
+						Description:         "The PEM-encoded X.509 certificate signing request to be submitted to the issuer for signing. If the CSR has a BasicConstraints extension, its isCA attribute must match the 'isCA' value of this CertificateRequest. If the CSR has a KeyUsage extension, its key usages must match the key usages in the 'usages' field of this CertificateRequest. If the CSR has a ExtKeyUsage extension, its extended key usages must match the extended key usages in the 'usages' field of this CertificateRequest.",
+						MarkdownDescription: "The PEM-encoded X.509 certificate signing request to be submitted to the issuer for signing. If the CSR has a BasicConstraints extension, its isCA attribute must match the 'isCA' value of this CertificateRequest. If the CSR has a KeyUsage extension, its key usages must match the key usages in the 'usages' field of this CertificateRequest. If the CSR has a ExtKeyUsage extension, its extended key usages must match the extended key usages in the 'usages' field of this CertificateRequest.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -215,16 +215,16 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"uid": schema.StringAttribute{
-						Description:         "UID contains the uid of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.",
-						MarkdownDescription: "UID contains the uid of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.",
+						Description:         "UID contains the uid of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+						MarkdownDescription: "UID contains the uid of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"usages": schema.ListAttribute{
-						Description:         "Requested key usages and extended key usages.NOTE: If the CSR in the 'Request' field has uses the KeyUsage orExtKeyUsage extension, these extensions must have the same valuesas specified here without any additional values.If unset, defaults to 'digital signature' and 'key encipherment'.",
-						MarkdownDescription: "Requested key usages and extended key usages.NOTE: If the CSR in the 'Request' field has uses the KeyUsage orExtKeyUsage extension, these extensions must have the same valuesas specified here without any additional values.If unset, defaults to 'digital signature' and 'key encipherment'.",
+						Description:         "Requested key usages and extended key usages. NOTE: If the CSR in the 'Request' field has uses the KeyUsage or ExtKeyUsage extension, these extensions must have the same values as specified here without any additional values. If unset, defaults to 'digital signature' and 'key encipherment'.",
+						MarkdownDescription: "Requested key usages and extended key usages. NOTE: If the CSR in the 'Request' field has uses the KeyUsage or ExtKeyUsage extension, these extensions must have the same values as specified here without any additional values. If unset, defaults to 'digital signature' and 'key encipherment'.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -232,8 +232,8 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"username": schema.StringAttribute{
-						Description:         "Username contains the name of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.",
-						MarkdownDescription: "Username contains the name of the user that created the CertificateRequest.Populated by the cert-manager webhook on creation and immutable.",
+						Description:         "Username contains the name of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+						MarkdownDescription: "Username contains the name of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

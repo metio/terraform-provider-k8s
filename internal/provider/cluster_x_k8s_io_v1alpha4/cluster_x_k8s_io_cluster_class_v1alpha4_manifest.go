@@ -122,8 +122,8 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Metadata(_ context.Context, 
 
 func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ClusterClass is a template which can be used to create managed topologies.Deprecated: This type will be removed in one of the next releases.",
-		MarkdownDescription: "ClusterClass is a template which can be used to create managed topologies.Deprecated: This type will be removed in one of the next releases.",
+		Description:         "ClusterClass is a template which can be used to create managed topologies. Deprecated: This type will be removed in one of the next releases.",
+		MarkdownDescription: "ClusterClass is a template which can be used to create managed topologies. Deprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -194,16 +194,16 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 				MarkdownDescription: "ClusterClassSpec describes the desired state of the ClusterClass.",
 				Attributes: map[string]schema.Attribute{
 					"control_plane": schema.SingleNestedAttribute{
-						Description:         "ControlPlane is a reference to a local struct that holds the detailsfor provisioning the Control Plane for the Cluster.",
-						MarkdownDescription: "ControlPlane is a reference to a local struct that holds the detailsfor provisioning the Control Plane for the Cluster.",
+						Description:         "ControlPlane is a reference to a local struct that holds the details for provisioning the Control Plane for the Cluster.",
+						MarkdownDescription: "ControlPlane is a reference to a local struct that holds the details for provisioning the Control Plane for the Cluster.",
 						Attributes: map[string]schema.Attribute{
 							"machine_infrastructure": schema.SingleNestedAttribute{
-								Description:         "MachineTemplate defines the metadata and infrastructure informationfor control plane machines.This field is supported if and only if the control plane provider templatereferenced above is Machine based and supports setting replicas.",
-								MarkdownDescription: "MachineTemplate defines the metadata and infrastructure informationfor control plane machines.This field is supported if and only if the control plane provider templatereferenced above is Machine based and supports setting replicas.",
+								Description:         "MachineTemplate defines the metadata and infrastructure information for control plane machines. This field is supported if and only if the control plane provider template referenced above is Machine based and supports setting replicas.",
+								MarkdownDescription: "MachineTemplate defines the metadata and infrastructure information for control plane machines. This field is supported if and only if the control plane provider template referenced above is Machine based and supports setting replicas.",
 								Attributes: map[string]schema.Attribute{
 									"ref": schema.SingleNestedAttribute{
-										Description:         "Ref is a required reference to a custom resourceoffered by a provider.",
-										MarkdownDescription: "Ref is a required reference to a custom resourceoffered by a provider.",
+										Description:         "Ref is a required reference to a custom resource offered by a provider.",
+										MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
 										Attributes: map[string]schema.Attribute{
 											"api_version": schema.StringAttribute{
 												Description:         "API version of the referent.",
@@ -214,48 +214,48 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 											},
 
 											"field_path": schema.StringAttribute{
-												Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
-												MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
+												Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+												MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"kind": schema.StringAttribute{
-												Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-												MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+												Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+												MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-												MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+												Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+												MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"resource_version": schema.StringAttribute{
-												Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-												MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+												Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+												MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"uid": schema.StringAttribute{
-												Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-												MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+												Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+												MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -272,12 +272,12 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 							},
 
 							"metadata": schema.SingleNestedAttribute{
-								Description:         "Metadata is the metadata applied to the machines of the ControlPlane.At runtime this metadata is merged with the corresponding metadata from the topology.This field is supported if and only if the control plane provider templatereferenced is Machine based.",
-								MarkdownDescription: "Metadata is the metadata applied to the machines of the ControlPlane.At runtime this metadata is merged with the corresponding metadata from the topology.This field is supported if and only if the control plane provider templatereferenced is Machine based.",
+								Description:         "Metadata is the metadata applied to the machines of the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the topology. This field is supported if and only if the control plane provider template referenced is Machine based.",
+								MarkdownDescription: "Metadata is the metadata applied to the machines of the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the topology. This field is supported if and only if the control plane provider template referenced is Machine based.",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
-										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
+										Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -285,8 +285,8 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
-										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
+										Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -299,8 +299,8 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 							},
 
 							"ref": schema.SingleNestedAttribute{
-								Description:         "Ref is a required reference to a custom resourceoffered by a provider.",
-								MarkdownDescription: "Ref is a required reference to a custom resourceoffered by a provider.",
+								Description:         "Ref is a required reference to a custom resource offered by a provider.",
+								MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
 								Attributes: map[string]schema.Attribute{
 									"api_version": schema.StringAttribute{
 										Description:         "API version of the referent.",
@@ -311,48 +311,48 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 									},
 
 									"field_path": schema.StringAttribute{
-										Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
-										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
+										Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"kind": schema.StringAttribute{
-										Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-										MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+										Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+										MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"namespace": schema.StringAttribute{
-										Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-										MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+										Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+										MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"resource_version": schema.StringAttribute{
-										Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-										MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+										Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+										MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"uid": schema.StringAttribute{
-										Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-										MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+										Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+										MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -369,12 +369,12 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 					},
 
 					"infrastructure": schema.SingleNestedAttribute{
-						Description:         "Infrastructure is a reference to a provider-specific template that holdsthe details for provisioning infrastructure specific clusterfor the underlying provider.The underlying provider is responsible for the implementationof the template to an infrastructure cluster.",
-						MarkdownDescription: "Infrastructure is a reference to a provider-specific template that holdsthe details for provisioning infrastructure specific clusterfor the underlying provider.The underlying provider is responsible for the implementationof the template to an infrastructure cluster.",
+						Description:         "Infrastructure is a reference to a provider-specific template that holds the details for provisioning infrastructure specific cluster for the underlying provider. The underlying provider is responsible for the implementation of the template to an infrastructure cluster.",
+						MarkdownDescription: "Infrastructure is a reference to a provider-specific template that holds the details for provisioning infrastructure specific cluster for the underlying provider. The underlying provider is responsible for the implementation of the template to an infrastructure cluster.",
 						Attributes: map[string]schema.Attribute{
 							"ref": schema.SingleNestedAttribute{
-								Description:         "Ref is a required reference to a custom resourceoffered by a provider.",
-								MarkdownDescription: "Ref is a required reference to a custom resourceoffered by a provider.",
+								Description:         "Ref is a required reference to a custom resource offered by a provider.",
+								MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
 								Attributes: map[string]schema.Attribute{
 									"api_version": schema.StringAttribute{
 										Description:         "API version of the referent.",
@@ -385,48 +385,48 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 									},
 
 									"field_path": schema.StringAttribute{
-										Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
-										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
+										Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+										MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"kind": schema.StringAttribute{
-										Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-										MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+										Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+										MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"namespace": schema.StringAttribute{
-										Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-										MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+										Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+										MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"resource_version": schema.StringAttribute{
-										Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-										MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+										Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+										MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"uid": schema.StringAttribute{
-										Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-										MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+										Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+										MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -443,33 +443,33 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 					},
 
 					"workers": schema.SingleNestedAttribute{
-						Description:         "Workers describes the worker nodes for the cluster.It is a collection of node types which can be used to createthe worker nodes of the cluster.",
-						MarkdownDescription: "Workers describes the worker nodes for the cluster.It is a collection of node types which can be used to createthe worker nodes of the cluster.",
+						Description:         "Workers describes the worker nodes for the cluster. It is a collection of node types which can be used to create the worker nodes of the cluster.",
+						MarkdownDescription: "Workers describes the worker nodes for the cluster. It is a collection of node types which can be used to create the worker nodes of the cluster.",
 						Attributes: map[string]schema.Attribute{
 							"machine_deployments": schema.ListNestedAttribute{
-								Description:         "MachineDeployments is a list of machine deployment classes that can be used to createa set of worker nodes.",
-								MarkdownDescription: "MachineDeployments is a list of machine deployment classes that can be used to createa set of worker nodes.",
+								Description:         "MachineDeployments is a list of machine deployment classes that can be used to create a set of worker nodes.",
+								MarkdownDescription: "MachineDeployments is a list of machine deployment classes that can be used to create a set of worker nodes.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"class": schema.StringAttribute{
-											Description:         "Class denotes a type of worker node present in the cluster,this name MUST be unique within a ClusterClass and can be referencedin the Cluster to create a managed MachineDeployment.",
-											MarkdownDescription: "Class denotes a type of worker node present in the cluster,this name MUST be unique within a ClusterClass and can be referencedin the Cluster to create a managed MachineDeployment.",
+											Description:         "Class denotes a type of worker node present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachineDeployment.",
+											MarkdownDescription: "Class denotes a type of worker node present in the cluster, this name MUST be unique within a ClusterClass and can be referenced in the Cluster to create a managed MachineDeployment.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"template": schema.SingleNestedAttribute{
-											Description:         "Template is a local struct containing a collection of templates for creation ofMachineDeployment objects representing a set of worker nodes.",
-											MarkdownDescription: "Template is a local struct containing a collection of templates for creation ofMachineDeployment objects representing a set of worker nodes.",
+											Description:         "Template is a local struct containing a collection of templates for creation of MachineDeployment objects representing a set of worker nodes.",
+											MarkdownDescription: "Template is a local struct containing a collection of templates for creation of MachineDeployment objects representing a set of worker nodes.",
 											Attributes: map[string]schema.Attribute{
 												"bootstrap": schema.SingleNestedAttribute{
-													Description:         "Bootstrap contains the bootstrap template reference to be usedfor the creation of worker Machines.",
-													MarkdownDescription: "Bootstrap contains the bootstrap template reference to be usedfor the creation of worker Machines.",
+													Description:         "Bootstrap contains the bootstrap template reference to be used for the creation of worker Machines.",
+													MarkdownDescription: "Bootstrap contains the bootstrap template reference to be used for the creation of worker Machines.",
 													Attributes: map[string]schema.Attribute{
 														"ref": schema.SingleNestedAttribute{
-															Description:         "Ref is a required reference to a custom resourceoffered by a provider.",
-															MarkdownDescription: "Ref is a required reference to a custom resourceoffered by a provider.",
+															Description:         "Ref is a required reference to a custom resource offered by a provider.",
+															MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
 																	Description:         "API version of the referent.",
@@ -480,48 +480,48 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 																},
 
 																"field_path": schema.StringAttribute{
-																	Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
-																	MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
+																	Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+																	MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-																	MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																	Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																	MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-																	MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+																	Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+																	MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"resource_version": schema.StringAttribute{
-																	Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-																	MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+																	Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+																	MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"uid": schema.StringAttribute{
-																	Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-																	MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+																	Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+																	MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -538,12 +538,12 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 												},
 
 												"infrastructure": schema.SingleNestedAttribute{
-													Description:         "Infrastructure contains the infrastructure template reference to be usedfor the creation of worker Machines.",
-													MarkdownDescription: "Infrastructure contains the infrastructure template reference to be usedfor the creation of worker Machines.",
+													Description:         "Infrastructure contains the infrastructure template reference to be used for the creation of worker Machines.",
+													MarkdownDescription: "Infrastructure contains the infrastructure template reference to be used for the creation of worker Machines.",
 													Attributes: map[string]schema.Attribute{
 														"ref": schema.SingleNestedAttribute{
-															Description:         "Ref is a required reference to a custom resourceoffered by a provider.",
-															MarkdownDescription: "Ref is a required reference to a custom resourceoffered by a provider.",
+															Description:         "Ref is a required reference to a custom resource offered by a provider.",
+															MarkdownDescription: "Ref is a required reference to a custom resource offered by a provider.",
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
 																	Description:         "API version of the referent.",
@@ -554,48 +554,48 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 																},
 
 																"field_path": schema.StringAttribute{
-																	Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
-																	MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
+																	Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+																	MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-																	MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																	Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																	MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-																	MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+																	Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+																	MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"resource_version": schema.StringAttribute{
-																	Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-																	MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+																	Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+																	MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"uid": schema.StringAttribute{
-																	Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-																	MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+																	Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+																	MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -612,12 +612,12 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 												},
 
 												"metadata": schema.SingleNestedAttribute{
-													Description:         "Metadata is the metadata applied to the machines of the MachineDeployment.At runtime this metadata is merged with the corresponding metadata from the topology.",
-													MarkdownDescription: "Metadata is the metadata applied to the machines of the MachineDeployment.At runtime this metadata is merged with the corresponding metadata from the topology.",
+													Description:         "Metadata is the metadata applied to the machines of the MachineDeployment. At runtime this metadata is merged with the corresponding metadata from the topology.",
+													MarkdownDescription: "Metadata is the metadata applied to the machines of the MachineDeployment. At runtime this metadata is merged with the corresponding metadata from the topology.",
 													Attributes: map[string]schema.Attribute{
 														"annotations": schema.MapAttribute{
-															Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
-															MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
+															Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+															MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -625,8 +625,8 @@ func (r *ClusterXK8SIoClusterClassV1Alpha4Manifest) Schema(_ context.Context, _ 
 														},
 
 														"labels": schema.MapAttribute{
-															Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
-															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
+															Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,

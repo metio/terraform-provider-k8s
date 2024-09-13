@@ -55,8 +55,8 @@ Optional:
 
 Required:
 
-- `function_code` (String) The function code. For more information about writing a CloudFront function,see Writing function code for CloudFront Functions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html)in the Amazon CloudFront Developer Guide.
-- `function_config` (Attributes) Configuration information about the function, including an optional commentand the function's runtime. (see [below for nested schema](#nestedatt--spec--function_config))
+- `function_code` (String) The function code. For more information about writing a CloudFront function, see Writing function code for CloudFront Functions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html) in the Amazon CloudFront Developer Guide.
+- `function_config` (Attributes) Configuration information about the function, including an optional comment and the function's runtime. (see [below for nested schema](#nestedatt--spec--function_config))
 - `name` (String) A name to identify the function.
 
 <a id="nestedatt--spec--function_config"></a>

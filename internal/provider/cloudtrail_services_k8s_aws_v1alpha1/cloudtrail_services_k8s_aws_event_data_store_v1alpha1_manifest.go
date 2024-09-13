@@ -141,12 +141,12 @@ func (r *CloudtrailServicesK8SAwsEventDataStoreV1Alpha1Manifest) Schema(_ contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "EventDataStoreSpec defines the desired state of EventDataStore.A storage lake of event data against which you can run complex SQL-basedqueries. An event data store can include events that you have logged on youraccount from the last 90 to 2555 days (about three months to up to sevenyears). To select events for an event data store, use advanced event selectors(https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced).",
-				MarkdownDescription: "EventDataStoreSpec defines the desired state of EventDataStore.A storage lake of event data against which you can run complex SQL-basedqueries. An event data store can include events that you have logged on youraccount from the last 90 to 2555 days (about three months to up to sevenyears). To select events for an event data store, use advanced event selectors(https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced).",
+				Description:         "EventDataStoreSpec defines the desired state of EventDataStore. A storage lake of event data against which you can run complex SQL-based queries. An event data store can include events that you have logged on your account from the last 90 to 2555 days (about three months to up to seven years). To select events for an event data store, use advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced).",
+				MarkdownDescription: "EventDataStoreSpec defines the desired state of EventDataStore. A storage lake of event data against which you can run complex SQL-based queries. An event data store can include events that you have logged on your account from the last 90 to 2555 days (about three months to up to seven years). To select events for an event data store, use advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced).",
 				Attributes: map[string]schema.Attribute{
 					"advanced_event_selectors": schema.ListNestedAttribute{
-						Description:         "The advanced event selectors to use to select the events for the data store.For more information about how to use advanced event selectors, see Log eventsby using advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced)in the CloudTrail User Guide.",
-						MarkdownDescription: "The advanced event selectors to use to select the events for the data store.For more information about how to use advanced event selectors, see Log eventsby using advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced)in the CloudTrail User Guide.",
+						Description:         "The advanced event selectors to use to select the events for the data store. For more information about how to use advanced event selectors, see Log events by using advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced) in the CloudTrail User Guide.",
+						MarkdownDescription: "The advanced event selectors to use to select the events for the data store. For more information about how to use advanced event selectors, see Log events by using advanced event selectors (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#creating-data-event-selectors-advanced) in the CloudTrail User Guide.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"field_selectors": schema.ListNestedAttribute{
@@ -237,8 +237,8 @@ func (r *CloudtrailServicesK8SAwsEventDataStoreV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"multi_region_enabled": schema.BoolAttribute{
-						Description:         "Specifies whether the event data store includes events from all regions,or only from the region in which the event data store is created.",
-						MarkdownDescription: "Specifies whether the event data store includes events from all regions,or only from the region in which the event data store is created.",
+						Description:         "Specifies whether the event data store includes events from all regions, or only from the region in which the event data store is created.",
+						MarkdownDescription: "Specifies whether the event data store includes events from all regions, or only from the region in which the event data store is created.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -253,16 +253,16 @@ func (r *CloudtrailServicesK8SAwsEventDataStoreV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"organization_enabled": schema.BoolAttribute{
-						Description:         "Specifies whether an event data store collects events logged for an organizationin Organizations.",
-						MarkdownDescription: "Specifies whether an event data store collects events logged for an organizationin Organizations.",
+						Description:         "Specifies whether an event data store collects events logged for an organization in Organizations.",
+						MarkdownDescription: "Specifies whether an event data store collects events logged for an organization in Organizations.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"retention_period": schema.Int64Attribute{
-						Description:         "The retention period of the event data store, in days. You can set a retentionperiod of up to 2555 days, the equivalent of seven years.",
-						MarkdownDescription: "The retention period of the event data store, in days. You can set a retentionperiod of up to 2555 days, the equivalent of seven years.",
+						Description:         "The retention period of the event data store, in days. You can set a retention period of up to 2555 days, the equivalent of seven years.",
+						MarkdownDescription: "The retention period of the event data store, in days. You can set a retention period of up to 2555 days, the equivalent of seven years.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -296,8 +296,8 @@ func (r *CloudtrailServicesK8SAwsEventDataStoreV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"termination_protection_enabled": schema.BoolAttribute{
-						Description:         "Specifies whether termination protection is enabled for the event data store.If termination protection is enabled, you cannot delete the event data storeuntil termination protection is disabled.",
-						MarkdownDescription: "Specifies whether termination protection is enabled for the event data store.If termination protection is enabled, you cannot delete the event data storeuntil termination protection is disabled.",
+						Description:         "Specifies whether termination protection is enabled for the event data store. If termination protection is enabled, you cannot delete the event data store until termination protection is disabled.",
+						MarkdownDescription: "Specifies whether termination protection is enabled for the event data store. If termination protection is enabled, you cannot delete the event data store until termination protection is disabled.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

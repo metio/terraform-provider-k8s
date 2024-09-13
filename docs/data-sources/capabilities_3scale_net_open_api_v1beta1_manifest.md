@@ -105,7 +105,7 @@ Optional:
 - `credentials` (String) Credentials Location available options: headers: As HTTP Headers query: As query parameters (GET) or body parameters (POST/PUT/DELETE) authorization: As HTTP Basic Authentication
 - `gateway_response` (Attributes) GatewayResponseSpec defines the desired gateway response configuration (see [below for nested schema](#nestedatt--spec--oidc--gateway_response))
 - `issuer_endpoint` (String) Issuer is the OIDC issuer
-- `issuer_endpoint_ref` (Attributes) IssuerEndpointRef  is the reference to OIDC issuer Secret that contains IssuerEndpoint (see [below for nested schema](#nestedatt--spec--oidc--issuer_endpoint_ref))
+- `issuer_endpoint_ref` (Attributes) IssuerEndpointRef is the reference to OIDC issuer Secret that contains IssuerEndpoint (see [below for nested schema](#nestedatt--spec--oidc--issuer_endpoint_ref))
 - `jwt_claim_with_client_id` (String) JwtClaimWithClientID is the JSON Web Token (JWT) Claim with ClientID that contains the clientID. Defaults to 'azp'.
 - `jwt_claim_with_client_id_type` (String) JwtClaimWithClientIDType sets to process the ClientID Token Claim value as a string or as a liquid template.
 - `security` (Attributes) SecuritySpec defines the desired state of Authentication Security (see [below for nested schema](#nestedatt--spec--oidc--security))

@@ -139,8 +139,8 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Manifest) Schema(_ context.Context
 				MarkdownDescription: "ReceiverSpec defines the desired state of the Receiver.",
 				Attributes: map[string]schema.Attribute{
 					"events": schema.ListAttribute{
-						Description:         "Events specifies the list of event types to handle,e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
-						MarkdownDescription: "Events specifies the list of event types to handle,e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
+						Description:         "Events specifies the list of event types to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
+						MarkdownDescription: "Events specifies the list of event types to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -183,8 +183,8 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Manifest) Schema(_ context.Context
 								},
 
 								"match_labels": schema.MapAttribute{
-									Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.MatchLabels requires the name to be set to '*'.",
-									MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.MatchLabels requires the name to be set to '*'.",
+									Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed. MatchLabels requires the name to be set to '*'.",
+									MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed. MatchLabels requires the name to be set to '*'.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -192,8 +192,8 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Manifest) Schema(_ context.Context
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name of the referentIf multiple resources are targeted '*' may be set.",
-									MarkdownDescription: "Name of the referentIf multiple resources are targeted '*' may be set.",
+									Description:         "Name of the referent If multiple resources are targeted '*' may be set.",
+									MarkdownDescription: "Name of the referent If multiple resources are targeted '*' may be set.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -222,8 +222,8 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Manifest) Schema(_ context.Context
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "SecretRef specifies the Secret containing the token usedto validate the payload authenticity.",
-						MarkdownDescription: "SecretRef specifies the Secret containing the token usedto validate the payload authenticity.",
+						Description:         "SecretRef specifies the Secret containing the token used to validate the payload authenticity.",
+						MarkdownDescription: "SecretRef specifies the Secret containing the token used to validate the payload authenticity.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -239,16 +239,16 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Manifest) Schema(_ context.Context
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "Suspend tells the controller to suspend subsequentevents handling for this receiver.",
-						MarkdownDescription: "Suspend tells the controller to suspend subsequentevents handling for this receiver.",
+						Description:         "Suspend tells the controller to suspend subsequent events handling for this receiver.",
+						MarkdownDescription: "Suspend tells the controller to suspend subsequent events handling for this receiver.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "Type of webhook sender, used to determinethe validation procedure and payload deserialization.",
-						MarkdownDescription: "Type of webhook sender, used to determinethe validation procedure and payload deserialization.",
+						Description:         "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
+						MarkdownDescription: "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

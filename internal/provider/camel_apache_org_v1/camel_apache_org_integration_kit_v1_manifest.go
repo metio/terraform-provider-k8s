@@ -122,8 +122,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Metadata(_ context.Context, req
 
 func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "IntegrationKit defines a container image and additional configuration needed to run an 'Integration'.An 'IntegrationKit' is a generic image generally built from the requirements of an 'Integration', but agnostic to it,in order to be reused by any other 'Integration' which has the same required set of capabilities. An 'IntegrationKit'may be used for other kits as a base container layer, when the 'incremental' build option is enabled.",
-		MarkdownDescription: "IntegrationKit defines a container image and additional configuration needed to run an 'Integration'.An 'IntegrationKit' is a generic image generally built from the requirements of an 'Integration', but agnostic to it,in order to be reused by any other 'Integration' which has the same required set of capabilities. An 'IntegrationKit'may be used for other kits as a base container layer, when the 'incremental' build option is enabled.",
+		Description:         "IntegrationKit defines a container image and additional configuration needed to run an 'Integration'. An 'IntegrationKit' is a generic image generally built from the requirements of an 'Integration', but agnostic to it, in order to be reused by any other 'Integration' which has the same required set of capabilities. An 'IntegrationKit' may be used for other kits as a base container layer, when the 'incremental' build option is enabled.",
+		MarkdownDescription: "IntegrationKit defines a container image and additional configuration needed to run an 'Integration'. An 'IntegrationKit' is a generic image generally built from the requirements of an 'Integration', but agnostic to it, in order to be reused by any other 'Integration' which has the same required set of capabilities. An 'IntegrationKit' may be used for other kits as a base container layer, when the 'incremental' build option is enabled.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -203,8 +203,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"configuration": schema.ListNestedAttribute{
-						Description:         "Deprecated:Use camel trait (camel.properties) to manage propertiesUse mount trait (mount.configs) to manage configsUse mount trait (mount.resources) to manage resourcesUse mount trait (mount.volumes) to manage volumesconfiguration used by the kit",
-						MarkdownDescription: "Deprecated:Use camel trait (camel.properties) to manage propertiesUse mount trait (mount.configs) to manage configsUse mount trait (mount.resources) to manage resourcesUse mount trait (mount.volumes) to manage volumesconfiguration used by the kit",
+						Description:         "Deprecated: Use camel trait (camel.properties) to manage properties Use mount trait (mount.configs) to manage configs Use mount trait (mount.resources) to manage resources Use mount trait (mount.volumes) to manage volumes configuration used by the kit",
+						MarkdownDescription: "Deprecated: Use camel trait (camel.properties) to manage properties Use mount trait (mount.configs) to manage configs Use mount trait (mount.resources) to manage resources Use mount trait (mount.volumes) to manage volumes configuration used by the kit",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"type": schema.StringAttribute{
@@ -317,8 +317,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"interceptors": schema.ListAttribute{
-									Description:         "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoaderuses to pre/post process sources",
-									MarkdownDescription: "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoaderuses to pre/post process sources",
+									Description:         "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources",
+									MarkdownDescription: "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -334,8 +334,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"loader": schema.StringAttribute{
-									Description:         "Loader is an optional id of the org.apache.camel.k.RoutesLoader that willinterpret this source at runtime",
-									MarkdownDescription: "Loader is an optional id of the org.apache.camel.k.RoutesLoader that willinterpret this source at runtime",
+									Description:         "Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime",
+									MarkdownDescription: "Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -418,16 +418,16 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"base_image": schema.StringAttribute{
-										Description:         "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDKinstalled and ready to use on path (ie '/usr/bin/java').",
-										MarkdownDescription: "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDKinstalled and ready to use on path (ie '/usr/bin/java').",
+										Description:         "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDK installed and ready to use on path (ie '/usr/bin/java').",
+										MarkdownDescription: "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDK installed and ready to use on path (ie '/usr/bin/java').",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -451,24 +451,24 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"limit_cpu": schema.StringAttribute{
-										Description:         "When using 'pod' strategy, the maximum amount of CPU required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
-										MarkdownDescription: "When using 'pod' strategy, the maximum amount of CPU required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										Description:         "When using 'pod' strategy, the maximum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										MarkdownDescription: "When using 'pod' strategy, the maximum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"limit_memory": schema.StringAttribute{
-										Description:         "When using 'pod' strategy, the maximum amount of memory required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
-										MarkdownDescription: "When using 'pod' strategy, the maximum amount of memory required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										Description:         "When using 'pod' strategy, the maximum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										MarkdownDescription: "When using 'pod' strategy, the maximum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"maven_profiles": schema.ListAttribute{
-										Description:         "A list of references pointing to configmaps/secrets that contains a maven profile.This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit.The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM.Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
-										MarkdownDescription: "A list of references pointing to configmaps/secrets that contains a maven profile.This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit.The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM.Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
+										Description:         "A list of references pointing to configmaps/secrets that contains a maven profile. This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
+										MarkdownDescription: "A list of references pointing to configmaps/secrets that contains a maven profile. This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -514,16 +514,16 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"request_cpu": schema.StringAttribute{
-										Description:         "When using 'pod' strategy, the minimum amount of CPU required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
-										MarkdownDescription: "When using 'pod' strategy, the minimum amount of CPU required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										Description:         "When using 'pod' strategy, the minimum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										MarkdownDescription: "When using 'pod' strategy, the minimum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"request_memory": schema.StringAttribute{
-										Description:         "When using 'pod' strategy, the minimum amount of memory required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
-										MarkdownDescription: "When using 'pod' strategy, the minimum amount of memory required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										Description:         "When using 'pod' strategy, the minimum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										MarkdownDescription: "When using 'pod' strategy, the minimum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -550,8 +550,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tasks_filter": schema.StringAttribute{
-										Description:         "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'.Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i')if you need to execute them. Useful only with 'pod' strategy.",
-										MarkdownDescription: "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'.Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i')if you need to execute them. Useful only with 'pod' strategy.",
+										Description:         "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
+										MarkdownDescription: "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -594,8 +594,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"verbose": schema.BoolAttribute{
-										Description:         "Enable verbose logging on build components that support it (e.g. Kaniko build pod).Deprecated no longer in use",
-										MarkdownDescription: "Enable verbose logging on build components that support it (e.g. Kaniko build pod).Deprecated no longer in use",
+										Description:         "Enable verbose logging on build components that support it (e.g. Kaniko build pod). Deprecated no longer in use",
+										MarkdownDescription: "Enable verbose logging on build components that support it (e.g. Kaniko build pod). Deprecated no longer in use",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -611,8 +611,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "The Camel trait sets up Camel configuration.",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -637,8 +637,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"runtime_version": schema.StringAttribute{
-										Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolveto the best matching Catalog existing on the cluster.",
-										MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolveto the best matching Catalog existing on the cluster.",
+										Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
+										MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -650,12 +650,12 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"quarkus": schema.SingleNestedAttribute{
-								Description:         "The Quarkus trait configures the Quarkus runtime.It's enabled by default.NOTE: Compiling to a native executable, requires at least 4GiB of memory, so the Pod running the native build must have enough memory available.",
-								MarkdownDescription: "The Quarkus trait configures the Quarkus runtime.It's enabled by default.NOTE: Compiling to a native executable, requires at least 4GiB of memory, so the Pod running the native build must have enough memory available.",
+								Description:         "The Quarkus trait configures the Quarkus runtime. It's enabled by default. NOTE: Compiling to a native executable, requires at least 4GiB of memory, so the Pod running the native build must have enough memory available.",
+								MarkdownDescription: "The Quarkus trait configures the Quarkus runtime. It's enabled by default. NOTE: Compiling to a native executable, requires at least 4GiB of memory, so the Pod running the native build must have enough memory available.",
 								Attributes: map[string]schema.Attribute{
 									"build_mode": schema.ListAttribute{
-										Description:         "The Quarkus mode to run: either 'jvm' or 'native' (default 'jvm').In case both 'jvm' and 'native' are specified, two 'IntegrationKit' resources are created,with the 'native' kit having precedence over the 'jvm' one once ready.",
-										MarkdownDescription: "The Quarkus mode to run: either 'jvm' or 'native' (default 'jvm').In case both 'jvm' and 'native' are specified, two 'IntegrationKit' resources are created,with the 'native' kit having precedence over the 'jvm' one once ready.",
+										Description:         "The Quarkus mode to run: either 'jvm' or 'native' (default 'jvm'). In case both 'jvm' and 'native' are specified, two 'IntegrationKit' resources are created, with the 'native' kit having precedence over the 'jvm' one once ready.",
+										MarkdownDescription: "The Quarkus mode to run: either 'jvm' or 'native' (default 'jvm'). In case both 'jvm' and 'native' are specified, two 'IntegrationKit' resources are created, with the 'native' kit having precedence over the 'jvm' one once ready.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -663,8 +663,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -696,8 +696,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"package_types": schema.ListAttribute{
-										Description:         "The Quarkus package types, 'fast-jar' or 'native' (default 'fast-jar').In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created,with the native kit having precedence over the 'fast-jar' one once ready.The order influences the resolution of the current kit for the integration.The kit corresponding to the first package type will be assigned to theintegration in case no existing kit that matches the integration exists.Deprecated: use 'build-mode' instead.",
-										MarkdownDescription: "The Quarkus package types, 'fast-jar' or 'native' (default 'fast-jar').In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created,with the native kit having precedence over the 'fast-jar' one once ready.The order influences the resolution of the current kit for the integration.The kit corresponding to the first package type will be assigned to theintegration in case no existing kit that matches the integration exists.Deprecated: use 'build-mode' instead.",
+										Description:         "The Quarkus package types, 'fast-jar' or 'native' (default 'fast-jar'). In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created, with the native kit having precedence over the 'fast-jar' one once ready. The order influences the resolution of the current kit for the integration. The kit corresponding to the first package type will be assigned to the integration in case no existing kit that matches the integration exists. Deprecated: use 'build-mode' instead.",
+										MarkdownDescription: "The Quarkus package types, 'fast-jar' or 'native' (default 'fast-jar'). In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created, with the native kit having precedence over the 'fast-jar' one once ready. The order influences the resolution of the current kit for the integration. The kit corresponding to the first package type will be assigned to the integration in case no existing kit that matches the integration exists. Deprecated: use 'build-mode' instead.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -710,12 +710,12 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"registry": schema.SingleNestedAttribute{
-								Description:         "The Registry trait sets up Maven to use the Image registry as a Maven repository (support removed since version 2.5.0).Deprecated: use jvm trait or read documentation.",
-								MarkdownDescription: "The Registry trait sets up Maven to use the Image registry as a Maven repository (support removed since version 2.5.0).Deprecated: use jvm trait or read documentation.",
+								Description:         "The Registry trait sets up Maven to use the Image registry as a Maven repository (support removed since version 2.5.0). Deprecated: use jvm trait or read documentation.",
+								MarkdownDescription: "The Registry trait sets up Maven to use the Image registry as a Maven repository (support removed since version 2.5.0). Deprecated: use jvm trait or read documentation.",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,

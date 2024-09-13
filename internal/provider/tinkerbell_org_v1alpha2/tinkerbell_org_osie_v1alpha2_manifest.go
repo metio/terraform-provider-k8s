@@ -54,8 +54,8 @@ func (r *TinkerbellOrgOsieV1Alpha2Manifest) Metadata(_ context.Context, request 
 
 func (r *TinkerbellOrgOsieV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "OSIE describes an Operating System Installation Environment. It is used by Tinkerbellto provision machines and should launch the Tink Worker component.",
-		MarkdownDescription: "OSIE describes an Operating System Installation Environment. It is used by Tinkerbellto provision machines and should launch the Tink Worker component.",
+		Description:         "OSIE describes an Operating System Installation Environment. It is used by Tinkerbell to provision machines and should launch the Tink Worker component.",
+		MarkdownDescription: "OSIE describes an Operating System Installation Environment. It is used by Tinkerbell to provision machines and should launch the Tink Worker component.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

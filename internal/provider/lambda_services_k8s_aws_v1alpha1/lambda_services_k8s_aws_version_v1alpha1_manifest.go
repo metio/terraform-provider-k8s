@@ -62,7 +62,8 @@ type LambdaServicesK8SAwsVersionV1Alpha1ManifestData struct {
 		FunctionName *string `tfsdk:"function_name" json:"functionName,omitempty"`
 		FunctionRef  *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"function_ref" json:"functionRef,omitempty"`
 		ProvisionedConcurrencyConfig *struct {
@@ -152,16 +153,16 @@ func (r *LambdaServicesK8SAwsVersionV1Alpha1Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"code_sha256": schema.StringAttribute{
-						Description:         "Only publish a version if the hash value matches the value that's specified.Use this option to avoid publishing a version if the function code has changedsince you last updated it. You can get the hash for the version that youuploaded from the output of UpdateFunctionCode.",
-						MarkdownDescription: "Only publish a version if the hash value matches the value that's specified.Use this option to avoid publishing a version if the function code has changedsince you last updated it. You can get the hash for the version that youuploaded from the output of UpdateFunctionCode.",
+						Description:         "Only publish a version if the hash value matches the value that's specified. Use this option to avoid publishing a version if the function code has changed since you last updated it. You can get the hash for the version that you uploaded from the output of UpdateFunctionCode.",
+						MarkdownDescription: "Only publish a version if the hash value matches the value that's specified. Use this option to avoid publishing a version if the function code has changed since you last updated it. You can get the hash for the version that you uploaded from the output of UpdateFunctionCode.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"description": schema.StringAttribute{
-						Description:         "A description for the version to override the description in the functionconfiguration.",
-						MarkdownDescription: "A description for the version to override the description in the functionconfiguration.",
+						Description:         "A description for the version to override the description in the function configuration.",
+						MarkdownDescription: "A description for the version to override the description in the function configuration.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -172,8 +173,8 @@ func (r *LambdaServicesK8SAwsVersionV1Alpha1Manifest) Schema(_ context.Context, 
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"destination_config": schema.SingleNestedAttribute{
-								Description:         "A configuration object that specifies the destination of an event after Lambdaprocesses it.",
-								MarkdownDescription: "A configuration object that specifies the destination of an event after Lambdaprocesses it.",
+								Description:         "A configuration object that specifies the destination of an event after Lambda processes it.",
+								MarkdownDescription: "A configuration object that specifies the destination of an event after Lambda processes it.",
 								Attributes: map[string]schema.Attribute{
 									"on_failure": schema.SingleNestedAttribute{
 										Description:         "A destination for events that failed processing.",
@@ -252,22 +253,30 @@ func (r *LambdaServicesK8SAwsVersionV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"function_name": schema.StringAttribute{
-						Description:         "The name of the Lambda function.Name formats   * Function name - MyFunction.   * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.   * Partial ARN - 123456789012:function:MyFunction.The length constraint applies only to the full ARN. If you specify only thefunction name, it is limited to 64 characters in length.",
-						MarkdownDescription: "The name of the Lambda function.Name formats   * Function name - MyFunction.   * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.   * Partial ARN - 123456789012:function:MyFunction.The length constraint applies only to the full ARN. If you specify only thefunction name, it is limited to 64 characters in length.",
+						Description:         "The name of the Lambda function. Name formats * Function name - MyFunction. * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Partial ARN - 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+						MarkdownDescription: "The name of the Lambda function. Name formats * Function name - MyFunction. * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Partial ARN - 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"function_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -319,8 +328,8 @@ func (r *LambdaServicesK8SAwsVersionV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"revision_id": schema.StringAttribute{
-						Description:         "Only update the function if the revision ID matches the ID that's specified.Use this option to avoid publishing a version if the function configurationhas changed since you last updated it.",
-						MarkdownDescription: "Only update the function if the revision ID matches the ID that's specified.Use this option to avoid publishing a version if the function configurationhas changed since you last updated it.",
+						Description:         "Only update the function if the revision ID matches the ID that's specified. Use this option to avoid publishing a version if the function configuration has changed since you last updated it.",
+						MarkdownDescription: "Only update the function if the revision ID matches the ID that's specified. Use this option to avoid publishing a version if the function configuration has changed since you last updated it.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

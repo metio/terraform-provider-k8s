@@ -3,12 +3,12 @@
 page_title: "k8s_storage_k8s_io_volume_attachment_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "storage.k8s.io"
 description: |-
-  VolumeAttachment captures the intent to attach or detach the specified volume to/from the specified node.VolumeAttachment objects are non-namespaced.
+  VolumeAttachment captures the intent to attach or detach the specified volume to/from the specified node. VolumeAttachment objects are non-namespaced.
 ---
 
 # k8s_storage_k8s_io_volume_attachment_v1_manifest (Data Source)
 
-VolumeAttachment captures the intent to attach or detach the specified volume to/from the specified node.VolumeAttachment objects are non-namespaced.
+VolumeAttachment captures the intent to attach or detach the specified volume to/from the specified node. VolumeAttachment objects are non-namespaced.
 
 ## Example Usage
 
@@ -75,7 +75,7 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains all ways the volume can be mounted. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
-- `aws_elastic_block_store` (Attributes) Represents a Persistent Disk resource in AWS.An AWS EBS disk must exist before mounting to a container. The disk must also be in the same AWS zone as the kubelet. An AWS EBS disk can only be mounted as read/write once. AWS EBS volumes support ownership management and SELinux relabeling. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--aws_elastic_block_store))
+- `aws_elastic_block_store` (Attributes) Represents a Persistent Disk resource in AWS. An AWS EBS disk must exist before mounting to a container. The disk must also be in the same AWS zone as the kubelet. An AWS EBS disk can only be mounted as read/write once. AWS EBS volumes support ownership management and SELinux relabeling. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--aws_elastic_block_store))
 - `azure_disk` (Attributes) AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--azure_disk))
 - `azure_file` (Attributes) AzureFile represents an Azure File Service mount on the host and bind mount to the pod. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--azure_file))
 - `capacity` (Map of String) capacity is the description of the persistent volume's resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity
@@ -86,7 +86,7 @@ Optional:
 - `fc` (Attributes) Represents a Fibre Channel volume. Fibre Channel volumes can only be mounted as read/write once. Fibre Channel volumes support ownership management and SELinux relabeling. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--fc))
 - `flex_volume` (Attributes) FlexPersistentVolumeSource represents a generic persistent volume resource that is provisioned/attached using an exec based plugin. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--flex_volume))
 - `flocker` (Attributes) Represents a Flocker volume mounted by the Flocker agent. One and only one of datasetName and datasetUUID should be set. Flocker volumes do not support ownership management or SELinux relabeling. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--flocker))
-- `gce_persistent_disk` (Attributes) Represents a Persistent Disk resource in Google Compute Engine.A GCE PD must exist before mounting to a container. The disk must also be in the same GCE project and zone as the kubelet. A GCE PD can only be mounted as read/write once or read-only many times. GCE PDs support ownership management and SELinux relabeling. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--gce_persistent_disk))
+- `gce_persistent_disk` (Attributes) Represents a Persistent Disk resource in Google Compute Engine. A GCE PD must exist before mounting to a container. The disk must also be in the same GCE project and zone as the kubelet. A GCE PD can only be mounted as read/write once or read-only many times. GCE PDs support ownership management and SELinux relabeling. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--gce_persistent_disk))
 - `glusterfs` (Attributes) Represents a Glusterfs mount that lasts the lifetime of a pod. Glusterfs volumes do not support ownership management or SELinux relabeling. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--glusterfs))
 - `host_path` (Attributes) Represents a host path mapped into a pod. Host path volumes do not support ownership management or SELinux relabeling. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--host_path))
 - `iscsi` (Attributes) ISCSIPersistentVolumeSource represents an ISCSI disk. ISCSI volumes can only be mounted as read/write once. ISCSI volumes support ownership management and SELinux relabeling. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--iscsi))
@@ -132,7 +132,7 @@ Optional:
 
 - `caching_mode` (String) cachingMode is the Host Caching mode: None, Read Only, Read Write.
 - `fs_type` (String) fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
-- `kind` (String) kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
+- `kind` (String) kind expected values are Shared: multiple blob disks per storage account Dedicated: single blob disk per storage account Managed: azure managed data disk (only in managed availability set). defaults to shared
 - `read_only` (Boolean) readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 
 
@@ -573,8 +573,8 @@ Optional:
 - `fs_type` (String) fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 - `read_only` (Boolean) readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 - `secret_ref` (Attributes) ObjectReference contains enough information to let you inspect or modify the referred object. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec--storageos--secret_ref))
-- `volume_name` (String) volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
-- `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
+- `volume_name` (String) volumeName is the human-readable name of the StorageOS volume. Volume names are only unique within a namespace.
+- `volume_namespace` (String) volumeNamespace specifies the scope of the volume within StorageOS. If no namespace is specified then the Pod's namespace will be used. This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 
 <a id="nestedatt--spec--source--inline_volume_spec--storageos--secret_ref"></a>
 ### Nested Schema for `spec.source.inline_volume_spec.storageos.secret_ref`

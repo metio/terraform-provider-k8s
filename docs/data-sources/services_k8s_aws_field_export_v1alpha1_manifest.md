@@ -55,8 +55,8 @@ Optional:
 
 Required:
 
-- `from` (Attributes) ResourceFieldSelector provides the values necessary to identify an individualfield on an individual K8s resource. (see [below for nested schema](#nestedatt--spec--from))
-- `to` (Attributes) FieldExportTarget provides the values necessary to identify theoutput path for a field export. (see [below for nested schema](#nestedatt--spec--to))
+- `from` (Attributes) ResourceFieldSelector provides the values necessary to identify an individual field on an individual K8s resource. (see [below for nested schema](#nestedatt--spec--from))
+- `to` (Attributes) FieldExportTarget provides the values necessary to identify the output path for a field export. (see [below for nested schema](#nestedatt--spec--to))
 
 <a id="nestedatt--spec--from"></a>
 ### Nested Schema for `spec.from`
@@ -64,7 +64,7 @@ Required:
 Required:
 
 - `path` (String)
-- `resource` (Attributes) NamespacedResource provides all the values necessary to identify an ACKresource of a given type (within the same namespace as the custom resourcecontaining this type). (see [below for nested schema](#nestedatt--spec--from--resource))
+- `resource` (Attributes) NamespacedResource provides all the values necessary to identify an ACK resource of a given type (within the same namespace as the custom resource containing this type). (see [below for nested schema](#nestedatt--spec--from--resource))
 
 <a id="nestedatt--spec--from--resource"></a>
 ### Nested Schema for `spec.from.resource`
@@ -82,7 +82,7 @@ Required:
 
 Required:
 
-- `kind` (String) FieldExportOutputType represents all types that can be produced by a fieldexport operation
+- `kind` (String) FieldExportOutputType represents all types that can be produced by a field export operation
 - `name` (String)
 
 Optional:

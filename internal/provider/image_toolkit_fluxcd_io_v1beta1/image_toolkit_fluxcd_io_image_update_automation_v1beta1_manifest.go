@@ -165,16 +165,16 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Manifest) Schema(_ cont
 				MarkdownDescription: "ImageUpdateAutomationSpec defines the desired state of ImageUpdateAutomation",
 				Attributes: map[string]schema.Attribute{
 					"git": schema.SingleNestedAttribute{
-						Description:         "GitSpec contains all the git-specific definitions. This istechnically optional, but in practice mandatory until there areother kinds of source allowed.",
-						MarkdownDescription: "GitSpec contains all the git-specific definitions. This istechnically optional, but in practice mandatory until there areother kinds of source allowed.",
+						Description:         "GitSpec contains all the git-specific definitions. This is technically optional, but in practice mandatory until there are other kinds of source allowed.",
+						MarkdownDescription: "GitSpec contains all the git-specific definitions. This is technically optional, but in practice mandatory until there are other kinds of source allowed.",
 						Attributes: map[string]schema.Attribute{
 							"checkout": schema.SingleNestedAttribute{
-								Description:         "Checkout gives the parameters for cloning the git repository,ready to make changes. If not present, the 'spec.ref' field from thereferenced 'GitRepository' or its default will be used.",
-								MarkdownDescription: "Checkout gives the parameters for cloning the git repository,ready to make changes. If not present, the 'spec.ref' field from thereferenced 'GitRepository' or its default will be used.",
+								Description:         "Checkout gives the parameters for cloning the git repository, ready to make changes. If not present, the 'spec.ref' field from the referenced 'GitRepository' or its default will be used.",
+								MarkdownDescription: "Checkout gives the parameters for cloning the git repository, ready to make changes. If not present, the 'spec.ref' field from the referenced 'GitRepository' or its default will be used.",
 								Attributes: map[string]schema.Attribute{
 									"ref": schema.SingleNestedAttribute{
-										Description:         "Reference gives a branch, tag or commit to clone from the Gitrepository.",
-										MarkdownDescription: "Reference gives a branch, tag or commit to clone from the Gitrepository.",
+										Description:         "Reference gives a branch, tag or commit to clone from the Git repository.",
+										MarkdownDescription: "Reference gives a branch, tag or commit to clone from the Git repository.",
 										Attributes: map[string]schema.Attribute{
 											"branch": schema.StringAttribute{
 												Description:         "Branch to check out, defaults to 'master' if no other field is defined.",
@@ -185,16 +185,16 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Manifest) Schema(_ cont
 											},
 
 											"commit": schema.StringAttribute{
-												Description:         "Commit SHA to check out, takes precedence over all reference fields.This can be combined with Branch to shallow clone the branch, in whichthe commit is expected to exist.",
-												MarkdownDescription: "Commit SHA to check out, takes precedence over all reference fields.This can be combined with Branch to shallow clone the branch, in whichthe commit is expected to exist.",
+												Description:         "Commit SHA to check out, takes precedence over all reference fields. This can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.",
+												MarkdownDescription: "Commit SHA to check out, takes precedence over all reference fields. This can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the reference to check out; takes precedence over Branch, Tag and SemVer.It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_descriptionExamples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
-												MarkdownDescription: "Name of the reference to check out; takes precedence over Branch, Tag and SemVer.It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_descriptionExamples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
+												Description:         "Name of the reference to check out; takes precedence over Branch, Tag and SemVer. It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description Examples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
+												MarkdownDescription: "Name of the reference to check out; takes precedence over Branch, Tag and SemVer. It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description Examples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -231,8 +231,8 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Manifest) Schema(_ cont
 								MarkdownDescription: "Commit specifies how to commit to the git repository.",
 								Attributes: map[string]schema.Attribute{
 									"author": schema.SingleNestedAttribute{
-										Description:         "Author gives the email and optionally the name to use as theauthor of commits.",
-										MarkdownDescription: "Author gives the email and optionally the name to use as theauthor of commits.",
+										Description:         "Author gives the email and optionally the name to use as the author of commits.",
+										MarkdownDescription: "Author gives the email and optionally the name to use as the author of commits.",
 										Attributes: map[string]schema.Attribute{
 											"email": schema.StringAttribute{
 												Description:         "Email gives the email to provide when making a commit.",
@@ -256,8 +256,8 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Manifest) Schema(_ cont
 									},
 
 									"message_template": schema.StringAttribute{
-										Description:         "MessageTemplate provides a template for the commit message,into which will be interpolated the details of the change made.",
-										MarkdownDescription: "MessageTemplate provides a template for the commit message,into which will be interpolated the details of the change made.",
+										Description:         "MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made.",
+										MarkdownDescription: "MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -268,8 +268,8 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Manifest) Schema(_ cont
 										MarkdownDescription: "SigningKey provides the option to sign commits with a GPG key",
 										Attributes: map[string]schema.Attribute{
 											"secret_ref": schema.SingleNestedAttribute{
-												Description:         "SecretRef holds the name to a secret that contains a 'git.asc' keycorresponding to the ASCII Armored file containing the GPG signingkeypair as the value. It must be in the same namespace as theImageUpdateAutomation.",
-												MarkdownDescription: "SecretRef holds the name to a secret that contains a 'git.asc' keycorresponding to the ASCII Armored file containing the GPG signingkeypair as the value. It must be in the same namespace as theImageUpdateAutomation.",
+												Description:         "SecretRef holds the name to a secret that contains a 'git.asc' key corresponding to the ASCII Armored file containing the GPG signing keypair as the value. It must be in the same namespace as the ImageUpdateAutomation.",
+												MarkdownDescription: "SecretRef holds the name to a secret that contains a 'git.asc' key corresponding to the ASCII Armored file containing the GPG signing keypair as the value. It must be in the same namespace as the ImageUpdateAutomation.",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
 														Description:         "Name of the referent.",
@@ -279,8 +279,8 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Manifest) Schema(_ cont
 														Computed:            false,
 													},
 												},
-												Required: false,
-												Optional: true,
+												Required: true,
+												Optional: false,
 												Computed: false,
 											},
 										},
@@ -295,20 +295,20 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Manifest) Schema(_ cont
 							},
 
 							"push": schema.SingleNestedAttribute{
-								Description:         "Push specifies how and where to push commits made by theautomation. If missing, commits are pushed (back) to'.spec.checkout.branch' or its default.",
-								MarkdownDescription: "Push specifies how and where to push commits made by theautomation. If missing, commits are pushed (back) to'.spec.checkout.branch' or its default.",
+								Description:         "Push specifies how and where to push commits made by the automation. If missing, commits are pushed (back) to '.spec.checkout.branch' or its default.",
+								MarkdownDescription: "Push specifies how and where to push commits made by the automation. If missing, commits are pushed (back) to '.spec.checkout.branch' or its default.",
 								Attributes: map[string]schema.Attribute{
 									"branch": schema.StringAttribute{
-										Description:         "Branch specifies that commits should be pushed to the branchnamed. The branch is created using '.spec.checkout.branch' as thestarting point, if it doesn't already exist.",
-										MarkdownDescription: "Branch specifies that commits should be pushed to the branchnamed. The branch is created using '.spec.checkout.branch' as thestarting point, if it doesn't already exist.",
+										Description:         "Branch specifies that commits should be pushed to the branch named. The branch is created using '.spec.checkout.branch' as the starting point, if it doesn't already exist.",
+										MarkdownDescription: "Branch specifies that commits should be pushed to the branch named. The branch is created using '.spec.checkout.branch' as the starting point, if it doesn't already exist.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"options": schema.MapAttribute{
-										Description:         "Options specifies the push options that are sent to the Gitserver when performing a push operation. For details, see:https://git-scm.com/docs/git-push#Documentation/git-push.txt---push-optionltoptiongt",
-										MarkdownDescription: "Options specifies the push options that are sent to the Gitserver when performing a push operation. For details, see:https://git-scm.com/docs/git-push#Documentation/git-push.txt---push-optionltoptiongt",
+										Description:         "Options specifies the push options that are sent to the Git server when performing a push operation. For details, see: https://git-scm.com/docs/git-push#Documentation/git-push.txt---push-optionltoptiongt",
+										MarkdownDescription: "Options specifies the push options that are sent to the Git server when performing a push operation. For details, see: https://git-scm.com/docs/git-push#Documentation/git-push.txt---push-optionltoptiongt",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -316,8 +316,8 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Manifest) Schema(_ cont
 									},
 
 									"refspec": schema.StringAttribute{
-										Description:         "Refspec specifies the Git Refspec to use for a push operation.If both Branch and Refspec are provided, then the commit is pushedto the branch and also using the specified refspec.For more details about Git Refspecs, see:https://git-scm.com/book/en/v2/Git-Internals-The-Refspec",
-										MarkdownDescription: "Refspec specifies the Git Refspec to use for a push operation.If both Branch and Refspec are provided, then the commit is pushedto the branch and also using the specified refspec.For more details about Git Refspecs, see:https://git-scm.com/book/en/v2/Git-Internals-The-Refspec",
+										Description:         "Refspec specifies the Git Refspec to use for a push operation. If both Branch and Refspec are provided, then the commit is pushed to the branch and also using the specified refspec. For more details about Git Refspecs, see: https://git-scm.com/book/en/v2/Git-Internals-The-Refspec",
+										MarkdownDescription: "Refspec specifies the Git Refspec to use for a push operation. If both Branch and Refspec are provided, then the commit is pushed to the branch and also using the specified refspec. For more details about Git Refspecs, see: https://git-scm.com/book/en/v2/Git-Internals-The-Refspec",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -334,8 +334,8 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Manifest) Schema(_ cont
 					},
 
 					"interval": schema.StringAttribute{
-						Description:         "Interval gives an lower bound for how often the automationrun should be attempted.",
-						MarkdownDescription: "Interval gives an lower bound for how often the automationrun should be attempted.",
+						Description:         "Interval gives an lower bound for how often the automation run should be attempted.",
+						MarkdownDescription: "Interval gives an lower bound for how often the automation run should be attempted.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -345,8 +345,8 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Manifest) Schema(_ cont
 					},
 
 					"source_ref": schema.SingleNestedAttribute{
-						Description:         "SourceRef refers to the resource giving access detailsto a git repository.",
-						MarkdownDescription: "SourceRef refers to the resource giving access detailsto a git repository.",
+						Description:         "SourceRef refers to the resource giving access details to a git repository.",
+						MarkdownDescription: "SourceRef refers to the resource giving access details to a git repository.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -389,20 +389,20 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Manifest) Schema(_ cont
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "Suspend tells the controller to not run this automation, untilit is unset (or set to false). Defaults to false.",
-						MarkdownDescription: "Suspend tells the controller to not run this automation, untilit is unset (or set to false). Defaults to false.",
+						Description:         "Suspend tells the controller to not run this automation, until it is unset (or set to false). Defaults to false.",
+						MarkdownDescription: "Suspend tells the controller to not run this automation, until it is unset (or set to false). Defaults to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"update": schema.SingleNestedAttribute{
-						Description:         "Update gives the specification for how to update the files inthe repository. This can be left empty, to use the defaultvalue.",
-						MarkdownDescription: "Update gives the specification for how to update the files inthe repository. This can be left empty, to use the defaultvalue.",
+						Description:         "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
+						MarkdownDescription: "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
 						Attributes: map[string]schema.Attribute{
 							"path": schema.StringAttribute{
-								Description:         "Path to the directory containing the manifests to be updated.Defaults to 'None', which translates to the root pathof the GitRepositoryRef.",
-								MarkdownDescription: "Path to the directory containing the manifests to be updated.Defaults to 'None', which translates to the root pathof the GitRepositoryRef.",
+								Description:         "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
+								MarkdownDescription: "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

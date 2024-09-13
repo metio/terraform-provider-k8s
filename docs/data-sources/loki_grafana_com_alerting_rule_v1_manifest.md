@@ -71,7 +71,7 @@ Required:
 
 Optional:
 
-- `interval` (String) Interval defines the time interval between evaluation of the givenalerting rule.
+- `interval` (String) Interval defines the time interval between evaluation of the given alerting rule.
 - `limit` (Number) Limit defines the number of alerts an alerting rule can produce. 0 is no limit.
 
 <a id="nestedatt--spec--groups--rules"></a>
@@ -79,11 +79,11 @@ Optional:
 
 Required:
 
-- `expr` (String) The LogQL expression to evaluate. Every evaluation cycle this isevaluated at the current time, and all resultant time series becomepending/firing alerts.
+- `expr` (String) The LogQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts.
 
 Optional:
 
 - `alert` (String) The name of the alert. Must be a valid label value.
 - `annotations` (Map of String) Annotations to add to each alert.
-- `for` (String) Alerts are considered firing once they have been returned for this long.Alerts which have not yet fired for long enough are considered pending.
+- `for` (String) Alerts are considered firing once they have been returned for this long. Alerts which have not yet fired for long enough are considered pending.
 - `labels` (Map of String) Labels to add to each alert.

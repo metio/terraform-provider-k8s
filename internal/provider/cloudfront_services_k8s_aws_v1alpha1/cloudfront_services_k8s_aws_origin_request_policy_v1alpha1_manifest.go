@@ -142,8 +142,8 @@ func (r *CloudfrontServicesK8SAwsOriginRequestPolicyV1Alpha1Manifest) Schema(_ c
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "OriginRequestPolicySpec defines the desired state of OriginRequestPolicy.An origin request policy.When it's attached to a cache behavior, the origin request policy determinesthe values that CloudFront includes in requests that it sends to the origin.Each request that CloudFront sends to the origin includes the following:   * The request body and the URL path (without the domain name) from the   viewer request.   * The headers that CloudFront automatically includes in every origin request,   including Host, User-Agent, and X-Amz-Cf-Id.   * All HTTP headers, cookies, and URL query strings that are specified   in the cache policy or the origin request policy. These can include items   from the viewer request and, in the case of headers, additional ones that   are added by CloudFront.CloudFront sends a request when it can't find an object in its cache thatmatches the request. If you want to send values to the origin and also includethem in the cache key, use CachePolicy.",
-				MarkdownDescription: "OriginRequestPolicySpec defines the desired state of OriginRequestPolicy.An origin request policy.When it's attached to a cache behavior, the origin request policy determinesthe values that CloudFront includes in requests that it sends to the origin.Each request that CloudFront sends to the origin includes the following:   * The request body and the URL path (without the domain name) from the   viewer request.   * The headers that CloudFront automatically includes in every origin request,   including Host, User-Agent, and X-Amz-Cf-Id.   * All HTTP headers, cookies, and URL query strings that are specified   in the cache policy or the origin request policy. These can include items   from the viewer request and, in the case of headers, additional ones that   are added by CloudFront.CloudFront sends a request when it can't find an object in its cache thatmatches the request. If you want to send values to the origin and also includethem in the cache key, use CachePolicy.",
+				Description:         "OriginRequestPolicySpec defines the desired state of OriginRequestPolicy. An origin request policy. When it's attached to a cache behavior, the origin request policy determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following: * The request body and the URL path (without the domain name) from the viewer request. * The headers that CloudFront automatically includes in every origin request, including Host, User-Agent, and X-Amz-Cf-Id. * All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront. CloudFront sends a request when it can't find an object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use CachePolicy.",
+				MarkdownDescription: "OriginRequestPolicySpec defines the desired state of OriginRequestPolicy. An origin request policy. When it's attached to a cache behavior, the origin request policy determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following: * The request body and the URL path (without the domain name) from the viewer request. * The headers that CloudFront automatically includes in every origin request, including Host, User-Agent, and X-Amz-Cf-Id. * All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront. CloudFront sends a request when it can't find an object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use CachePolicy.",
 				Attributes: map[string]schema.Attribute{
 					"origin_request_policy_config": schema.SingleNestedAttribute{
 						Description:         "An origin request policy configuration.",
@@ -158,8 +158,8 @@ func (r *CloudfrontServicesK8SAwsOriginRequestPolicyV1Alpha1Manifest) Schema(_ c
 							},
 
 							"cookies_config": schema.SingleNestedAttribute{
-								Description:         "An object that determines whether any cookies in viewer requests (and ifso, which cookies) are included in requests that CloudFront sends to theorigin.",
-								MarkdownDescription: "An object that determines whether any cookies in viewer requests (and ifso, which cookies) are included in requests that CloudFront sends to theorigin.",
+								Description:         "An object that determines whether any cookies in viewer requests (and if so, which cookies) are included in requests that CloudFront sends to the origin.",
+								MarkdownDescription: "An object that determines whether any cookies in viewer requests (and if so, which cookies) are included in requests that CloudFront sends to the origin.",
 								Attributes: map[string]schema.Attribute{
 									"cookie_behavior": schema.StringAttribute{
 										Description:         "",
@@ -193,8 +193,8 @@ func (r *CloudfrontServicesK8SAwsOriginRequestPolicyV1Alpha1Manifest) Schema(_ c
 							},
 
 							"headers_config": schema.SingleNestedAttribute{
-								Description:         "An object that determines whether any HTTP headers (and if so, which headers)are included in requests that CloudFront sends to the origin.",
-								MarkdownDescription: "An object that determines whether any HTTP headers (and if so, which headers)are included in requests that CloudFront sends to the origin.",
+								Description:         "An object that determines whether any HTTP headers (and if so, which headers) are included in requests that CloudFront sends to the origin.",
+								MarkdownDescription: "An object that determines whether any HTTP headers (and if so, which headers) are included in requests that CloudFront sends to the origin.",
 								Attributes: map[string]schema.Attribute{
 									"header_behavior": schema.StringAttribute{
 										Description:         "",
@@ -236,8 +236,8 @@ func (r *CloudfrontServicesK8SAwsOriginRequestPolicyV1Alpha1Manifest) Schema(_ c
 							},
 
 							"query_strings_config": schema.SingleNestedAttribute{
-								Description:         "An object that determines whether any URL query strings in viewer requests(and if so, which query strings) are included in requests that CloudFrontsends to the origin.",
-								MarkdownDescription: "An object that determines whether any URL query strings in viewer requests(and if so, which query strings) are included in requests that CloudFrontsends to the origin.",
+								Description:         "An object that determines whether any URL query strings in viewer requests (and if so, which query strings) are included in requests that CloudFront sends to the origin.",
+								MarkdownDescription: "An object that determines whether any URL query strings in viewer requests (and if so, which query strings) are included in requests that CloudFront sends to the origin.",
 								Attributes: map[string]schema.Attribute{
 									"query_string_behavior": schema.StringAttribute{
 										Description:         "",

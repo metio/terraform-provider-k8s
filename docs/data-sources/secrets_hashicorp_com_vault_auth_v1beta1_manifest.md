@@ -55,7 +55,7 @@ Optional:
 
 Optional:
 
-- `allowed_namespaces` (List of String) AllowedNamespaces Kubernetes Namespaces which are allow-listed for use with this AuthMethod.This field allows administrators to customize which Kubernetes namespaces are authorized touse with this AuthMethod. While Vault will still enforce its own rules, this has the addedconfigurability of restricting which VaultAuthMethods can be used by which namespaces.Accepted values:[]{'*'} - wildcard, all namespaces.[]{'a', 'b'} - list of namespaces.unset - disallow all namespaces except the Operator's the VaultAuthMethod's namespace, thisis the default behavior.
+- `allowed_namespaces` (List of String) AllowedNamespaces Kubernetes Namespaces which are allow-listed for use with this AuthMethod. This field allows administrators to customize which Kubernetes namespaces are authorized to use with this AuthMethod. While Vault will still enforce its own rules, this has the added configurability of restricting which VaultAuthMethods can be used by which namespaces. Accepted values: []{'*'} - wildcard, all namespaces. []{'a', 'b'} - list of namespaces. unset - disallow all namespaces except the Operator's the VaultAuthMethod's namespace, this is the default behavior.
 - `app_role` (Attributes) AppRole specific auth configuration, requires that the Method be set to 'appRole'. (see [below for nested schema](#nestedatt--spec--app_role))
 - `aws` (Attributes) AWS specific auth configuration, requires that Method be set to 'aws'. (see [below for nested schema](#nestedatt--spec--aws))
 - `gcp` (Attributes) GCP specific auth configuration, requires that Method be set to 'gcp'. (see [below for nested schema](#nestedatt--spec--gcp))
@@ -66,9 +66,9 @@ Optional:
 - `mount` (String) Mount to use when authenticating to auth method.
 - `namespace` (String) Namespace to auth to in Vault
 - `params` (Map of String) Params to use when authenticating to Vault
-- `storage_encryption` (Attributes) StorageEncryption provides the necessary configuration to encrypt the client storage cache.This should only be configured when client cache persistence with encryption is enabled.This is done by passing setting the manager's commandline argument--client-cache-persistence-model=direct-encrypted. Typically, there should only everbe one VaultAuth configured with StorageEncryption in the Cluster, and it should havethe label: cacheStorageEncryption=true (see [below for nested schema](#nestedatt--spec--storage_encryption))
+- `storage_encryption` (Attributes) StorageEncryption provides the necessary configuration to encrypt the client storage cache. This should only be configured when client cache persistence with encryption is enabled. This is done by passing setting the manager's commandline argument --client-cache-persistence-model=direct-encrypted. Typically, there should only ever be one VaultAuth configured with StorageEncryption in the Cluster, and it should have the label: cacheStorageEncryption=true (see [below for nested schema](#nestedatt--spec--storage_encryption))
 - `vault_auth_global_ref` (Attributes) VaultAuthGlobalRef. (see [below for nested schema](#nestedatt--spec--vault_auth_global_ref))
-- `vault_connection_ref` (String) VaultConnectionRef to the VaultConnection resource, can be prefixed with a namespace,eg: 'namespaceA/vaultConnectionRefB'. If no namespace prefix is provided it will default tonamespace of the VaultConnection CR. If no value is specified for VaultConnectionRef theOperator will default to the 'default' VaultConnection, configured in the operator's namespace.
+- `vault_connection_ref` (String) VaultConnectionRef to the VaultConnection resource, can be prefixed with a namespace, eg: 'namespaceA/vaultConnectionRefB'. If no namespace prefix is provided it will default to namespace of the VaultConnection CR. If no value is specified for VaultConnectionRef the Operator will default to the 'default' VaultConnection, configured in the operator's namespace.
 
 <a id="nestedatt--spec--app_role"></a>
 ### Nested Schema for `spec.app_role`
@@ -76,7 +76,7 @@ Optional:
 Optional:
 
 - `role_id` (String) RoleID of the AppRole Role to use for authenticating to Vault.
-- `secret_ref` (String) SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI) namespace whichprovides the AppRole Role's SecretID. The secret must have a key named 'id' which holds theAppRole Role's secretID.
+- `secret_ref` (String) SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI) namespace which provides the AppRole Role's SecretID. The secret must have a key named 'id' which holds the AppRole Role's secretID.
 
 
 <a id="nestedatt--spec--aws"></a>
@@ -86,10 +86,10 @@ Optional:
 
 - `header_value` (String) The Vault header value to include in the STS signing request
 - `iam_endpoint` (String) The IAM endpoint to use; if not set will use the default
-- `irsa_service_account` (String) IRSAServiceAccount name to use with IAM Roles for Service Accounts(IRSA), and should be annotated with 'eks.amazonaws.com/role-arn'. ThisServiceAccount will be checked for other EKS annotations:eks.amazonaws.com/audience and eks.amazonaws.com/token-expiration
+- `irsa_service_account` (String) IRSAServiceAccount name to use with IAM Roles for Service Accounts (IRSA), and should be annotated with 'eks.amazonaws.com/role-arn'. This ServiceAccount will be checked for other EKS annotations: eks.amazonaws.com/audience and eks.amazonaws.com/token-expiration
 - `region` (String) AWS Region to use for signing the authentication request
 - `role` (String) Vault role to use for authenticating
-- `secret_ref` (String) SecretRef is the name of a Kubernetes Secret in the consumer's (VDS/VSS/PKI) namespacewhich holds credentials for AWS. Expected keys include 'access_key_id', 'secret_access_key','session_token'
+- `secret_ref` (String) SecretRef is the name of a Kubernetes Secret in the consumer's (VDS/VSS/PKI) namespace which holds credentials for AWS. Expected keys include 'access_key_id', 'secret_access_key', 'session_token'
 - `session_name` (String) The role session name to use when creating a webidentity provider
 - `sts_endpoint` (String) The STS endpoint to use; if not set will use the default
 
@@ -99,11 +99,11 @@ Optional:
 
 Optional:
 
-- `cluster_name` (String) GKE cluster name. Defaults to the cluster-name returned from the operatorpod's local metadata server.
-- `project_id` (String) GCP project ID. Defaults to the project-id returned from the operatorpod's local metadata server.
-- `region` (String) GCP Region of the GKE cluster's identity provider. Defaults to the regionreturned from the operator pod's local metadata server.
+- `cluster_name` (String) GKE cluster name. Defaults to the cluster-name returned from the operator pod's local metadata server.
+- `project_id` (String) GCP project ID. Defaults to the project-id returned from the operator pod's local metadata server.
+- `region` (String) GCP Region of the GKE cluster's identity provider. Defaults to the region returned from the operator pod's local metadata server.
 - `role` (String) Vault role to use for authenticating
-- `workload_identity_service_account` (String) WorkloadIdentityServiceAccount is the name of a Kubernetes serviceaccount (in the same Kubernetes namespace as the Vault*Secret referencingthis resource) which has been configured for workload identity in GKE.Should be annotated with 'iam.gke.io/gcp-service-account'.
+- `workload_identity_service_account` (String) WorkloadIdentityServiceAccount is the name of a Kubernetes service account (in the same Kubernetes namespace as the Vault*Secret referencing this resource) which has been configured for workload identity in GKE. Should be annotated with 'iam.gke.io/gcp-service-account'.
 
 
 <a id="nestedatt--spec--jwt"></a>
@@ -113,8 +113,8 @@ Optional:
 
 - `audiences` (List of String) TokenAudiences to include in the ServiceAccount token.
 - `role` (String) Role to use for authenticating to Vault.
-- `secret_ref` (String) SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI) namespace whichprovides the JWT token to authenticate to Vault's JWT authentication backend. The secret musthave a key named 'jwt' which holds the JWT token.
-- `service_account` (String) ServiceAccount to use when creating a ServiceAccount token to authenticate to Vault'sJWT authentication backend.
+- `secret_ref` (String) SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI) namespace which provides the JWT token to authenticate to Vault's JWT authentication backend. The secret must have a key named 'jwt' which holds the JWT token.
+- `service_account` (String) ServiceAccount to use when creating a ServiceAccount token to authenticate to Vault's JWT authentication backend.
 - `token_expiration_seconds` (Number) TokenExpirationSeconds to set the ServiceAccount token.
 
 
@@ -125,7 +125,7 @@ Optional:
 
 - `audiences` (List of String) TokenAudiences to include in the ServiceAccount token.
 - `role` (String) Role to use for authenticating to Vault.
-- `service_account` (String) ServiceAccount to use when authenticating to Vault'sauthentication backend. This must reside in the consuming secret's (VDS/VSS/PKI) namespace.
+- `service_account` (String) ServiceAccount to use when authenticating to Vault's authentication backend. This must reside in the consuming secret's (VDS/VSS/PKI) namespace.
 - `token_expiration_seconds` (Number) TokenExpirationSeconds to set the ServiceAccount token.
 
 
@@ -143,15 +143,15 @@ Required:
 
 Optional:
 
-- `allow_default` (Boolean) AllowDefault when set to true will use the default VaultAuthGlobal resourceas the default if Name is not set. The 'allow-default-globals' option must beset on the operator's '-global-vault-auth-options' flagThe default VaultAuthGlobal search is conditional.When a ref Namespace is set, the search for the defaultVaultAuthGlobal resource is constrained to that namespace.Otherwise, the search order is:1. The default VaultAuthGlobal resource in the referring VaultAuth resource'snamespace.2. The default VaultAuthGlobal resource in the Operator's namespace.
-- `merge_strategy` (Attributes) MergeStrategy configures the merge strategy for HTTP headers and parametersthat are included in all Vault authentication requests. (see [below for nested schema](#nestedatt--spec--vault_auth_global_ref--merge_strategy))
+- `allow_default` (Boolean) AllowDefault when set to true will use the default VaultAuthGlobal resource as the default if Name is not set. The 'allow-default-globals' option must be set on the operator's '-global-vault-auth-options' flag The default VaultAuthGlobal search is conditional. When a ref Namespace is set, the search for the default VaultAuthGlobal resource is constrained to that namespace. Otherwise, the search order is: 1. The default VaultAuthGlobal resource in the referring VaultAuth resource's namespace. 2. The default VaultAuthGlobal resource in the Operator's namespace.
+- `merge_strategy` (Attributes) MergeStrategy configures the merge strategy for HTTP headers and parameters that are included in all Vault authentication requests. (see [below for nested schema](#nestedatt--spec--vault_auth_global_ref--merge_strategy))
 - `name` (String) Name of the VaultAuthGlobal resource.
-- `namespace` (String) Namespace of the VaultAuthGlobal resource. If not provided, the namespace ofthe referring VaultAuth resource is used.
+- `namespace` (String) Namespace of the VaultAuthGlobal resource. If not provided, the namespace of the referring VaultAuth resource is used.
 
 <a id="nestedatt--spec--vault_auth_global_ref--merge_strategy"></a>
 ### Nested Schema for `spec.vault_auth_global_ref.merge_strategy`
 
 Optional:
 
-- `headers` (String) Headers configures the merge strategy for HTTP headers that are included inall Vault requests. Choices are 'union', 'replace', or 'none'.If 'union' is set, the headers from the VaultAuthGlobal and VaultAuthresources are merged. The headers from the VaultAuth always take precedence.If 'replace' is set, the first set of non-empty headers taken in order from:VaultAuth, VaultAuthGlobal auth method, VaultGlobal default headers.If 'none' is set, the headers from theVaultAuthGlobal resource are ignored and only the headers from the VaultAuthresource are used. The default is 'none'.
-- `params` (String) Params configures the merge strategy for HTTP parameters that are included inall Vault requests. Choices are 'union', 'replace', or 'none'.If 'union' is set, the parameters from the VaultAuthGlobal and VaultAuthresources are merged. The parameters from the VaultAuth always takeprecedence.If 'replace' is set, the first set of non-empty parameters taken in order from:VaultAuth, VaultAuthGlobal auth method, VaultGlobal default parameters.If 'none' is set, the parameters from the VaultAuthGlobal resource are ignoredand only the parameters from the VaultAuth resource are used. The default is'none'.
+- `headers` (String) Headers configures the merge strategy for HTTP headers that are included in all Vault requests. Choices are 'union', 'replace', or 'none'. If 'union' is set, the headers from the VaultAuthGlobal and VaultAuth resources are merged. The headers from the VaultAuth always take precedence. If 'replace' is set, the first set of non-empty headers taken in order from: VaultAuth, VaultAuthGlobal auth method, VaultGlobal default headers. If 'none' is set, the headers from the VaultAuthGlobal resource are ignored and only the headers from the VaultAuth resource are used. The default is 'none'.
+- `params` (String) Params configures the merge strategy for HTTP parameters that are included in all Vault requests. Choices are 'union', 'replace', or 'none'. If 'union' is set, the parameters from the VaultAuthGlobal and VaultAuth resources are merged. The parameters from the VaultAuth always take precedence. If 'replace' is set, the first set of non-empty parameters taken in order from: VaultAuth, VaultAuthGlobal auth method, VaultGlobal default parameters. If 'none' is set, the parameters from the VaultAuthGlobal resource are ignored and only the parameters from the VaultAuth resource are used. The default is 'none'.

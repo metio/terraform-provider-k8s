@@ -130,8 +130,8 @@ func (r *CloudfrontServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Cont
 				MarkdownDescription: "FunctionSpec defines the desired state of Function.",
 				Attributes: map[string]schema.Attribute{
 					"function_code": schema.StringAttribute{
-						Description:         "The function code. For more information about writing a CloudFront function,see Writing function code for CloudFront Functions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html)in the Amazon CloudFront Developer Guide.",
-						MarkdownDescription: "The function code. For more information about writing a CloudFront function,see Writing function code for CloudFront Functions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html)in the Amazon CloudFront Developer Guide.",
+						Description:         "The function code. For more information about writing a CloudFront function, see Writing function code for CloudFront Functions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html) in the Amazon CloudFront Developer Guide.",
+						MarkdownDescription: "The function code. For more information about writing a CloudFront function, see Writing function code for CloudFront Functions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html) in the Amazon CloudFront Developer Guide.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -141,8 +141,8 @@ func (r *CloudfrontServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"function_config": schema.SingleNestedAttribute{
-						Description:         "Configuration information about the function, including an optional commentand the function's runtime.",
-						MarkdownDescription: "Configuration information about the function, including an optional commentand the function's runtime.",
+						Description:         "Configuration information about the function, including an optional comment and the function's runtime.",
+						MarkdownDescription: "Configuration information about the function, including an optional comment and the function's runtime.",
 						Attributes: map[string]schema.Attribute{
 							"comment": schema.StringAttribute{
 								Description:         "",

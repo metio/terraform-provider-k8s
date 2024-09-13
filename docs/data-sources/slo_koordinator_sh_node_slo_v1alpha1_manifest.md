@@ -140,7 +140,7 @@ Optional:
 
 Optional:
 
-- `enable_user_model` (Boolean) configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false
+- `enable_user_model` (Boolean) configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false
 - `io_weight_percent` (Number) This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.
 - `model_read_bps` (Number) the read BPS of user model
 - `model_read_rand_iops` (Number) the random read iops of user model
@@ -148,9 +148,9 @@ Optional:
 - `model_write_bps` (Number) the write BPS of user model
 - `model_write_rand_iops` (Number) the random write iops of user model
 - `model_write_seq_iops` (Number) the sequential write iops of user model
-- `read_bps` (Number) Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.
-- `read_iops` (Number) Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.
-- `read_latency` (Number) Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.
+- `read_bps` (Number) Throttling of throughput The value is set to 0, which indicates that the feature is disabled.
+- `read_iops` (Number) Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.
+- `read_latency` (Number) Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.
 - `read_latency_percent` (Number) the read latency percentile
 - `write_bps` (Number)
 - `write_iops` (Number)
@@ -165,10 +165,10 @@ Optional:
 
 Optional:
 
-- `core_expeller` (Boolean) whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.
+- `core_expeller` (Boolean) whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.
 - `enable` (Boolean) Enable indicates whether the cpu qos is enabled.
-- `group_identity` (Number) group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.
-- `sched_idle` (Number) cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.
+- `group_identity` (Number) group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.
+- `sched_idle` (Number) cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--be_class--memory_qos"></a>
@@ -176,16 +176,16 @@ Optional:
 
 Optional:
 
-- `enable` (Boolean) Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.
-- `low_limit_percent` (Number) LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.
-- `min_limit_percent` (Number) memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.
+- `enable` (Boolean) Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.
+- `low_limit_percent` (Number) LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.
+- `min_limit_percent` (Number) memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.
 - `oom_kill_group` (Number)
 - `priority` (Number)
 - `priority_enable` (Number) TODO: enhance the usages of oom priority and oom kill group
-- `throttling_percent` (Number) ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.
-- `wmark_min_adj` (Number) wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].
-- `wmark_ratio` (Number) wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.
-- `wmark_scale_permill` (Number) WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.
+- `throttling_percent` (Number) ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.
+- `wmark_min_adj` (Number) wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].
+- `wmark_ratio` (Number) wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.
+- `wmark_scale_permill` (Number) WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--be_class--network_qos"></a>
@@ -193,11 +193,11 @@ Optional:
 
 Optional:
 
-- `egress_limit` (String) EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
-- `egress_request` (String) EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
+- `egress_limit` (String) EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
+- `egress_request` (String) EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
 - `enable` (Boolean)
-- `ingress_limit` (String) IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
-- `ingress_request` (String) IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
+- `ingress_limit` (String) IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
+- `ingress_request` (String) IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--be_class--resctrl_qos"></a>
@@ -245,7 +245,7 @@ Optional:
 
 Optional:
 
-- `enable_user_model` (Boolean) configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false
+- `enable_user_model` (Boolean) configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false
 - `io_weight_percent` (Number) This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.
 - `model_read_bps` (Number) the read BPS of user model
 - `model_read_rand_iops` (Number) the random read iops of user model
@@ -253,9 +253,9 @@ Optional:
 - `model_write_bps` (Number) the write BPS of user model
 - `model_write_rand_iops` (Number) the random write iops of user model
 - `model_write_seq_iops` (Number) the sequential write iops of user model
-- `read_bps` (Number) Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.
-- `read_iops` (Number) Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.
-- `read_latency` (Number) Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.
+- `read_bps` (Number) Throttling of throughput The value is set to 0, which indicates that the feature is disabled.
+- `read_iops` (Number) Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.
+- `read_latency` (Number) Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.
 - `read_latency_percent` (Number) the read latency percentile
 - `write_bps` (Number)
 - `write_iops` (Number)
@@ -270,10 +270,10 @@ Optional:
 
 Optional:
 
-- `core_expeller` (Boolean) whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.
+- `core_expeller` (Boolean) whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.
 - `enable` (Boolean) Enable indicates whether the cpu qos is enabled.
-- `group_identity` (Number) group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.
-- `sched_idle` (Number) cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.
+- `group_identity` (Number) group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.
+- `sched_idle` (Number) cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--cgroup_root--memory_qos"></a>
@@ -281,16 +281,16 @@ Optional:
 
 Optional:
 
-- `enable` (Boolean) Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.
-- `low_limit_percent` (Number) LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.
-- `min_limit_percent` (Number) memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.
+- `enable` (Boolean) Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.
+- `low_limit_percent` (Number) LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.
+- `min_limit_percent` (Number) memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.
 - `oom_kill_group` (Number)
 - `priority` (Number)
 - `priority_enable` (Number) TODO: enhance the usages of oom priority and oom kill group
-- `throttling_percent` (Number) ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.
-- `wmark_min_adj` (Number) wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].
-- `wmark_ratio` (Number) wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.
-- `wmark_scale_permill` (Number) WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.
+- `throttling_percent` (Number) ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.
+- `wmark_min_adj` (Number) wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].
+- `wmark_ratio` (Number) wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.
+- `wmark_scale_permill` (Number) WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--cgroup_root--network_qos"></a>
@@ -298,11 +298,11 @@ Optional:
 
 Optional:
 
-- `egress_limit` (String) EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
-- `egress_request` (String) EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
+- `egress_limit` (String) EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
+- `egress_request` (String) EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
 - `enable` (Boolean)
-- `ingress_limit` (String) IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
-- `ingress_request` (String) IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
+- `ingress_limit` (String) IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
+- `ingress_request` (String) IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--cgroup_root--resctrl_qos"></a>
@@ -350,7 +350,7 @@ Optional:
 
 Optional:
 
-- `enable_user_model` (Boolean) configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false
+- `enable_user_model` (Boolean) configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false
 - `io_weight_percent` (Number) This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.
 - `model_read_bps` (Number) the read BPS of user model
 - `model_read_rand_iops` (Number) the random read iops of user model
@@ -358,9 +358,9 @@ Optional:
 - `model_write_bps` (Number) the write BPS of user model
 - `model_write_rand_iops` (Number) the random write iops of user model
 - `model_write_seq_iops` (Number) the sequential write iops of user model
-- `read_bps` (Number) Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.
-- `read_iops` (Number) Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.
-- `read_latency` (Number) Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.
+- `read_bps` (Number) Throttling of throughput The value is set to 0, which indicates that the feature is disabled.
+- `read_iops` (Number) Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.
+- `read_latency` (Number) Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.
 - `read_latency_percent` (Number) the read latency percentile
 - `write_bps` (Number)
 - `write_iops` (Number)
@@ -375,10 +375,10 @@ Optional:
 
 Optional:
 
-- `core_expeller` (Boolean) whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.
+- `core_expeller` (Boolean) whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.
 - `enable` (Boolean) Enable indicates whether the cpu qos is enabled.
-- `group_identity` (Number) group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.
-- `sched_idle` (Number) cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.
+- `group_identity` (Number) group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.
+- `sched_idle` (Number) cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--ls_class--memory_qos"></a>
@@ -386,16 +386,16 @@ Optional:
 
 Optional:
 
-- `enable` (Boolean) Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.
-- `low_limit_percent` (Number) LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.
-- `min_limit_percent` (Number) memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.
+- `enable` (Boolean) Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.
+- `low_limit_percent` (Number) LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.
+- `min_limit_percent` (Number) memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.
 - `oom_kill_group` (Number)
 - `priority` (Number)
 - `priority_enable` (Number) TODO: enhance the usages of oom priority and oom kill group
-- `throttling_percent` (Number) ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.
-- `wmark_min_adj` (Number) wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].
-- `wmark_ratio` (Number) wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.
-- `wmark_scale_permill` (Number) WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.
+- `throttling_percent` (Number) ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.
+- `wmark_min_adj` (Number) wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].
+- `wmark_ratio` (Number) wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.
+- `wmark_scale_permill` (Number) WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--ls_class--network_qos"></a>
@@ -403,11 +403,11 @@ Optional:
 
 Optional:
 
-- `egress_limit` (String) EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
-- `egress_request` (String) EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
+- `egress_limit` (String) EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
+- `egress_request` (String) EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
 - `enable` (Boolean)
-- `ingress_limit` (String) IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
-- `ingress_request` (String) IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
+- `ingress_limit` (String) IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
+- `ingress_request` (String) IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--ls_class--resctrl_qos"></a>
@@ -455,7 +455,7 @@ Optional:
 
 Optional:
 
-- `enable_user_model` (Boolean) configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false
+- `enable_user_model` (Boolean) configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false
 - `io_weight_percent` (Number) This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.
 - `model_read_bps` (Number) the read BPS of user model
 - `model_read_rand_iops` (Number) the random read iops of user model
@@ -463,9 +463,9 @@ Optional:
 - `model_write_bps` (Number) the write BPS of user model
 - `model_write_rand_iops` (Number) the random write iops of user model
 - `model_write_seq_iops` (Number) the sequential write iops of user model
-- `read_bps` (Number) Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.
-- `read_iops` (Number) Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.
-- `read_latency` (Number) Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.
+- `read_bps` (Number) Throttling of throughput The value is set to 0, which indicates that the feature is disabled.
+- `read_iops` (Number) Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.
+- `read_latency` (Number) Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.
 - `read_latency_percent` (Number) the read latency percentile
 - `write_bps` (Number)
 - `write_iops` (Number)
@@ -480,10 +480,10 @@ Optional:
 
 Optional:
 
-- `core_expeller` (Boolean) whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.
+- `core_expeller` (Boolean) whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.
 - `enable` (Boolean) Enable indicates whether the cpu qos is enabled.
-- `group_identity` (Number) group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.
-- `sched_idle` (Number) cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.
+- `group_identity` (Number) group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.
+- `sched_idle` (Number) cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--lsr_class--memory_qos"></a>
@@ -491,16 +491,16 @@ Optional:
 
 Optional:
 
-- `enable` (Boolean) Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.
-- `low_limit_percent` (Number) LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.
-- `min_limit_percent` (Number) memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.
+- `enable` (Boolean) Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.
+- `low_limit_percent` (Number) LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.
+- `min_limit_percent` (Number) memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.
 - `oom_kill_group` (Number)
 - `priority` (Number)
 - `priority_enable` (Number) TODO: enhance the usages of oom priority and oom kill group
-- `throttling_percent` (Number) ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.
-- `wmark_min_adj` (Number) wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].
-- `wmark_ratio` (Number) wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.
-- `wmark_scale_permill` (Number) WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.
+- `throttling_percent` (Number) ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.
+- `wmark_min_adj` (Number) wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].
+- `wmark_ratio` (Number) wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.
+- `wmark_scale_permill` (Number) WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--lsr_class--network_qos"></a>
@@ -508,11 +508,11 @@ Optional:
 
 Optional:
 
-- `egress_limit` (String) EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
-- `egress_request` (String) EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
+- `egress_limit` (String) EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
+- `egress_request` (String) EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
 - `enable` (Boolean)
-- `ingress_limit` (String) IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
-- `ingress_request` (String) IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
+- `ingress_limit` (String) IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
+- `ingress_request` (String) IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--lsr_class--resctrl_qos"></a>
@@ -569,7 +569,7 @@ Optional:
 
 Optional:
 
-- `enable_user_model` (Boolean) configure the cost model of blkio-cost manuallywhether the user model is enabled. Default value: false
+- `enable_user_model` (Boolean) configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false
 - `io_weight_percent` (Number) This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.
 - `model_read_bps` (Number) the read BPS of user model
 - `model_read_rand_iops` (Number) the random read iops of user model
@@ -577,9 +577,9 @@ Optional:
 - `model_write_bps` (Number) the write BPS of user model
 - `model_write_rand_iops` (Number) the random write iops of user model
 - `model_write_seq_iops` (Number) the sequential write iops of user model
-- `read_bps` (Number) Throttling of throughputThe value is set to 0, which indicates that the feature is disabled.
-- `read_iops` (Number) Throttling of IOPSThe value is set to 0, which indicates that the feature is disabled.
-- `read_latency` (Number) Configure the weight-based throttling feature of blk-iocostOnly used for RootClassAfter blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk.the read latency threshold. Unit: microseconds.
+- `read_bps` (Number) Throttling of throughput The value is set to 0, which indicates that the feature is disabled.
+- `read_iops` (Number) Throttling of IOPS The value is set to 0, which indicates that the feature is disabled.
+- `read_latency` (Number) Configure the weight-based throttling feature of blk-iocost Only used for RootClass After blk-iocost is enabled, the kernel calculates the proportion of requests that exceed the read or write latency threshold out of all requests. When the proportion is greater than the read or write latency percentile (95%), the kernel considers the disk to be saturated and reduces the rate at which requests are sent to the disk. the read latency threshold. Unit: microseconds.
 - `read_latency_percent` (Number) the read latency percentile
 - `write_bps` (Number)
 - `write_iops` (Number)
@@ -594,10 +594,10 @@ Optional:
 
 Optional:
 
-- `core_expeller` (Boolean) whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = falseIf set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods.NOTE: It takes effect if cpuPolicy = 'coreSched'.
+- `core_expeller` (Boolean) whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.
 - `enable` (Boolean) Enable indicates whether the cpu qos is enabled.
-- `group_identity` (Number) group identity value for pods, default = 0NOTE: It takes effect if cpuPolicy = 'groupIdentity'.
-- `sched_idle` (Number) cpu.idle value for pods, default = 0.'1' means using SCHED_IDLE.CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#rNOTE: It takes effect if cpuPolicy = 'coreSched'.
+- `group_identity` (Number) group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.
+- `sched_idle` (Number) cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--system_class--memory_qos"></a>
@@ -605,16 +605,16 @@ Optional:
 
 Optional:
 
-- `enable` (Boolean) Enable indicates whether the memory qos is enabled (default: false).This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy'instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.
-- `low_limit_percent` (Number) LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BESTprotecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotectedmemcg can be reclaimed.NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory,pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect.Close: 0.
-- `min_limit_percent` (Number) memcg qosIf enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec.1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set)2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set)3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set)4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSizeMinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memoryfrom global reclamation when memory usage does not exceed the min limit.Close: 0.
+- `enable` (Boolean) Enable indicates whether the memory qos is enabled (default: false). This field is used for node-level control, while pod-level configuration is done with MemoryQOS and 'Policy' instead of an 'Enable' option. Please view the differences between MemoryQOSCfg and PodMemoryQOSConfig structs.
+- `low_limit_percent` (Number) LowLimitPercent specifies the lowLimitFactor percentage to calculate 'memory.low', which TRIES BEST protecting memory from global reclamation when memory usage does not exceed the low limit unless no unprotected memcg can be reclaimed. NOTE: 'memory.low' should be larger than 'memory.min'. If spec.requests.memory == spec.limits.memory, pod 'memory.low' and 'memory.high' become invalid, while 'memory.wmark_ratio' is still in effect. Close: 0.
+- `min_limit_percent` (Number) memcg qos If enabled, memcg qos will be set by the agent, where some fields are implicitly calculated from pod spec. 1. 'memory.min' := spec.requests.memory * minLimitFactor / 100 (use 0 if requests.memory is not set) 2. 'memory.low' := spec.requests.memory * lowLimitFactor / 100 (use 0 if requests.memory is not set) 3. 'memory.limit_in_bytes' := spec.limits.memory (set $node.allocatable.memory if limits.memory is not set) 4. 'memory.high' := floor[(spec.requests.memory + throttlingFactor / 100 * (memory.limit_in_bytes or node allocatable memory - spec.requests.memory))/pageSize] * pageSize MinLimitPercent specifies the minLimitFactor percentage to calculate 'memory.min', which protects memory from global reclamation when memory usage does not exceed the min limit. Close: 0.
 - `oom_kill_group` (Number)
 - `priority` (Number)
 - `priority_enable` (Number) TODO: enhance the usages of oom priority and oom kill group
-- `throttling_percent` (Number) ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with podmemory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds.Lower the factor brings more heavier reclaim pressure.Close: 0.
-- `wmark_min_adj` (Number) wmark_min_adj (Anolis OS required)WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memoryreclamation. Lower the factor brings later reclamation.The adjustment uses different formula for different value range.[-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj(0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdjClose: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].
-- `wmark_ratio` (Number) wmark_ratio (Anolis OS required)Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamationstops when usage is below 'memory.wmark_low'. Basically,'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor)WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers asyncmemory reclamation when memory usage exceeds.Close: 0. Recommended: 95.
-- `wmark_scale_permill` (Number) WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', whichstops async memory reclamation when memory usage belows.Close: 50. Recommended: 20.
+- `throttling_percent` (Number) ThrottlingPercent specifies the throttlingFactor percentage to calculate 'memory.high' with pod memory.limits or node allocatable memory, which triggers memcg direct reclamation when memory usage exceeds. Lower the factor brings more heavier reclaim pressure. Close: 0.
+- `wmark_min_adj` (Number) wmark_min_adj (Anolis OS required) WmarkMinAdj specifies 'memory.wmark_min_adj' which adjusts per-memcg threshold for global memory reclamation. Lower the factor brings later reclamation. The adjustment uses different formula for different value range. [-25, 0)：global_wmark_min' = global_wmark_min + (global_wmark_min - 0) * wmarkMinAdj (0, 50]：global_wmark_min' = global_wmark_min + (global_wmark_low - global_wmark_min) * wmarkMinAdj Close: [LSR:0, LS:0, BE:0]. Recommended: [LSR:-25, LS:-25, BE:50].
+- `wmark_ratio` (Number) wmark_ratio (Anolis OS required) Async memory reclamation is triggered when cgroup memory usage exceeds 'memory.wmark_high' and the reclamation stops when usage is below 'memory.wmark_low'. Basically, 'memory.wmark_high' := min(memory.high, memory.limit_in_bytes) * memory.memory.wmark_ratio 'memory.wmark_low' := min(memory.high, memory.limit_in_bytes) * (memory.wmark_ratio - memory.wmark_scale_factor) WmarkRatio specifies 'memory.wmark_ratio' that help calculate 'memory.wmark_high', which triggers async memory reclamation when memory usage exceeds. Close: 0. Recommended: 95.
+- `wmark_scale_permill` (Number) WmarkScalePermill specifies 'memory.wmark_scale_factor' that helps calculate 'memory.wmark_low', which stops async memory reclamation when memory usage belows. Close: 50. Recommended: 20.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--system_class--network_qos"></a>
@@ -622,11 +622,11 @@ Optional:
 
 Optional:
 
-- `egress_limit` (String) EgressLimit describes the maximum network bandwidth can be used in the egress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
-- `egress_request` (String) EgressRequest describes the minimum network bandwidth guaranteed in the egress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
+- `egress_limit` (String) EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
+- `egress_request` (String) EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
 - `enable` (Boolean)
-- `ingress_limit` (String) IngressLimit describes the maximum network bandwidth can be used in the ingress direction,unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
-- `ingress_request` (String) IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction.unit: bps(bytes per second), two expressions are supported，int and string,int: percentage based on total bandwidth，valid in 0-100string: a specific network bandwidth value, eg: 50M.
+- `ingress_limit` (String) IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
+- `ingress_request` (String) IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.
 
 
 <a id="nestedatt--spec--resource_qos_strategy--system_class--resctrl_qos"></a>
@@ -647,11 +647,11 @@ Optional:
 
 Optional:
 
-- `cpu_evict_be_satisfaction_lower_percent` (Number) be.satisfactionRate = be.CPURealLimit/be.CPURequest; be.cpuUsage = be.CPUUsed/be.CPURealLimitif be.satisfactionRate < CPUEvictBESatisfactionLowerPercent/100 && be.usage >= CPUEvictBEUsageThresholdPercent/100,then start to evict pod, and will evict to ${CPUEvictBESatisfactionUpperPercent}
-- `cpu_evict_be_satisfaction_upper_percent` (Number) be.satisfactionRate = be.CPURealLimit/be.CPURequestif be.satisfactionRate > CPUEvictBESatisfactionUpperPercent/100, then stop to evict.
+- `cpu_evict_be_satisfaction_lower_percent` (Number) be.satisfactionRate = be.CPURealLimit/be.CPURequest; be.cpuUsage = be.CPUUsed/be.CPURealLimit if be.satisfactionRate < CPUEvictBESatisfactionLowerPercent/100 && be.usage >= CPUEvictBEUsageThresholdPercent/100, then start to evict pod, and will evict to ${CPUEvictBESatisfactionUpperPercent}
+- `cpu_evict_be_satisfaction_upper_percent` (Number) be.satisfactionRate = be.CPURealLimit/be.CPURequest if be.satisfactionRate > CPUEvictBESatisfactionUpperPercent/100, then stop to evict.
 - `cpu_evict_be_usage_threshold_percent` (Number) if be.cpuUsage >= CPUEvictBEUsageThresholdPercent/100, then start to calculate the resources need to be released.
-- `cpu_evict_policy` (String) CPUEvictPolicy defines the policy for the BECPUEvict feature.Default: 'evictByRealLimit'.
-- `cpu_evict_time_window_seconds` (Number) when avg(cpuusage) > CPUEvictThresholdPercent, will start to evict pod by cpu,and avg(cpuusage) is calculated based on the most recent CPUEvictTimeWindowSeconds data
+- `cpu_evict_policy` (String) CPUEvictPolicy defines the policy for the BECPUEvict feature. Default: 'evictByRealLimit'.
+- `cpu_evict_time_window_seconds` (Number) when avg(cpuusage) > CPUEvictThresholdPercent, will start to evict pod by cpu, and avg(cpuusage) is calculated based on the most recent CPUEvictTimeWindowSeconds data
 - `cpu_suppress_policy` (String) CPUSuppressPolicy
 - `cpu_suppress_threshold_percent` (Number) cpu suppress threshold percentage (0,100), default = 65
 - `enable` (Boolean) whether the strategy is enabled, default = false

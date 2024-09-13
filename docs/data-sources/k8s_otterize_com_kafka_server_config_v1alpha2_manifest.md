@@ -56,7 +56,7 @@ Optional:
 Optional:
 
 - `addr` (String)
-- `no_auto_create_intents_for_operator` (Boolean) If Intents for network policies are enabled, and there are other Intents to this Kafka server,will automatically create an Intent so that the Intents Operator can connect. Set to true to disable.
+- `no_auto_create_intents_for_operator` (Boolean) If Intents for network policies are enabled, and there are other Intents to this Kafka server, will automatically create an Intent so that the Intents Operator can connect. Set to true to disable.
 - `service` (Attributes) (see [below for nested schema](#nestedatt--spec--service))
 - `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--tls))
 - `topics` (Attributes List) (see [below for nested schema](#nestedatt--spec--topics))

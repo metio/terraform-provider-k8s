@@ -57,7 +57,7 @@ Optional:
 
 - `aws_name` (String) AWSName is the AppMesh VirtualRouter object's name. If unspecified or empty, it defaults to be '${name}_${namespace}' of k8s VirtualRouter
 - `listeners` (Attributes List) The listeners that the virtual router is expected to receive inbound traffic from (see [below for nested schema](#nestedatt--spec--listeners))
-- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this VirtualRouter belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
+- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this VirtualRouter belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
 - `routes` (Attributes List) The routes associated with VirtualRouter (see [below for nested schema](#nestedatt--spec--routes))
 
 <a id="nestedatt--spec--listeners"></a>

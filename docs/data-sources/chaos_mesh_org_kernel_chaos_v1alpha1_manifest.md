@@ -68,7 +68,7 @@ Optional:
 - `container_names` (List of String) ContainerNames indicates list of the name of affected container. If not set, the first container will be injected
 - `duration` (String) Duration represents the duration of the chaos action
 - `remote_cluster` (String) RemoteCluster represents the remote cluster where the chaos will be deployed
-- `value` (String) Value is required when the mode is set to 'FixedMode' / 'FixedPercentMode' / 'RandomMaxPercentMode'. If 'FixedMode', provide an integer of pods to do chaos action. If 'FixedPercentMode', provide a number from 0-100 to specify the percent of pods the server can do chaos action. IF 'RandomMaxPercentMode',  provide a number from 0-100 to specify the max percent of pods to do chaos action
+- `value` (String) Value is required when the mode is set to 'FixedMode' / 'FixedPercentMode' / 'RandomMaxPercentMode'. If 'FixedMode', provide an integer of pods to do chaos action. If 'FixedPercentMode', provide a number from 0-100 to specify the percent of pods the server can do chaos action. IF 'RandomMaxPercentMode', provide a number from 0-100 to specify the max percent of pods to do chaos action
 
 <a id="nestedatt--spec--fail_kern_request"></a>
 ### Nested Schema for `spec.fail_kern_request`

@@ -59,5 +59,5 @@ Required:
 
 Optional:
 
-- `delete_cr` (Boolean) deleteCR  deletes this CR when it has successfully completed the promotion
+- `delete_cr` (Boolean) deleteCR deletes this CR when it has successfully completed the promotion
 - `production` (Boolean) Environment you wish to promote to, if not present defaults to staging and if set to true promotes to production

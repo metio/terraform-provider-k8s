@@ -71,7 +71,7 @@ Required:
 
 Optional:
 
-- `interval` (String) Interval defines the time interval between evaluation of the givenrecoding rule.
+- `interval` (String) Interval defines the time interval between evaluation of the given recoding rule.
 - `limit` (Number) Limit defines the number of series a recording rule can produce. 0 is no limit.
 
 <a id="nestedatt--spec--groups--rules"></a>
@@ -79,7 +79,7 @@ Optional:
 
 Required:
 
-- `expr` (String) The LogQL expression to evaluate. Every evaluation cycle this isevaluated at the current time, and all resultant time series becomepending/firing alerts.
+- `expr` (String) The LogQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts.
 
 Optional:
 

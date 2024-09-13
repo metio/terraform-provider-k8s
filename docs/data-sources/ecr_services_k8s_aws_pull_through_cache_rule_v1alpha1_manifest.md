@@ -30,7 +30,7 @@ data "k8s_ecr_services_k8s_aws_pull_through_cache_rule_v1alpha1_manifest" "examp
 
 ### Optional
 
-- `spec` (Attributes) PullThroughCacheRuleSpec defines the desired state of PullThroughCacheRule.The details of a pull through cache rule. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) PullThroughCacheRuleSpec defines the desired state of PullThroughCacheRule. The details of a pull through cache rule. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,8 +56,8 @@ Optional:
 Required:
 
 - `ecr_repository_prefix` (String) The repository name prefix to use when caching images from the source registry.
-- `upstream_registry_url` (String) The registry URL of the upstream public registry to use as the source forthe pull through cache rule.
+- `upstream_registry_url` (String) The registry URL of the upstream public registry to use as the source for the pull through cache rule.
 
 Optional:
 
-- `registry_id` (String) The Amazon Web Services account ID associated with the registry to createthe pull through cache rule for. If you do not specify a registry, the defaultregistry is assumed.
+- `registry_id` (String) The Amazon Web Services account ID associated with the registry to create the pull through cache rule for. If you do not specify a registry, the default registry is assumed.

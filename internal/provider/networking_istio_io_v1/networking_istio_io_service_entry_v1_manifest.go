@@ -261,8 +261,8 @@ func (r *NetworkingIstioIoServiceEntryV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"location": schema.StringAttribute{
-						Description:         "Specify whether the service should be considered external to the mesh or part of the mesh.Valid Options: MESH_EXTERNAL, MESH_INTERNAL",
-						MarkdownDescription: "Specify whether the service should be considered external to the mesh or part of the mesh.Valid Options: MESH_EXTERNAL, MESH_INTERNAL",
+						Description:         "Specify whether the service should be considered external to the mesh or part of the mesh. Valid Options: MESH_EXTERNAL, MESH_INTERNAL",
+						MarkdownDescription: "Specify whether the service should be considered external to the mesh or part of the mesh. Valid Options: MESH_EXTERNAL, MESH_INTERNAL",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -323,8 +323,8 @@ func (r *NetworkingIstioIoServiceEntryV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"resolution": schema.StringAttribute{
-						Description:         "Service resolution mode for the hosts.Valid Options: NONE, STATIC, DNS, DNS_ROUND_ROBIN",
-						MarkdownDescription: "Service resolution mode for the hosts.Valid Options: NONE, STATIC, DNS, DNS_ROUND_ROBIN",
+						Description:         "Service resolution mode for the hosts. Valid Options: NONE, STATIC, DNS, DNS_ROUND_ROBIN",
+						MarkdownDescription: "Service resolution mode for the hosts. Valid Options: NONE, STATIC, DNS, DNS_ROUND_ROBIN",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

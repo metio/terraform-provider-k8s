@@ -185,8 +185,8 @@ func (r *BmcTinkerbellOrgTaskV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						MarkdownDescription: "Connection represents the Machine connectivity information.",
 						Attributes: map[string]schema.Attribute{
 							"auth_secret_ref": schema.SingleNestedAttribute{
-								Description:         "AuthSecretRef is the SecretReference that contains authentication information of the Machine.The Secret must contain username and password keys. This is optional as it is not required when usingthe RPC provider.",
-								MarkdownDescription: "AuthSecretRef is the SecretReference that contains authentication information of the Machine.The Secret must contain username and password keys. This is optional as it is not required when usingthe RPC provider.",
+								Description:         "AuthSecretRef is the SecretReference that contains authentication information of the Machine. The Secret must contain username and password keys. This is optional as it is not required when using the RPC provider.",
+								MarkdownDescription: "AuthSecretRef is the SecretReference that contains authentication information of the Machine. The Secret must contain username and password keys. This is optional as it is not required when using the RPC provider.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "name is unique within a namespace to reference a secret resource.",
@@ -315,8 +315,8 @@ func (r *BmcTinkerbellOrgTaskV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										MarkdownDescription: "RPC contains the options to customize the RPC provider.",
 										Attributes: map[string]schema.Attribute{
 											"consumer_url": schema.StringAttribute{
-												Description:         "ConsumerURL is the URL where an rpc consumer/listener is runningand to which we will send and receive all notifications.",
-												MarkdownDescription: "ConsumerURL is the URL where an rpc consumer/listener is runningand to which we will send and receive all notifications.",
+												Description:         "ConsumerURL is the URL where an rpc consumer/listener is running and to which we will send and receive all notifications.",
+												MarkdownDescription: "ConsumerURL is the URL where an rpc consumer/listener is running and to which we will send and receive all notifications.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -436,8 +436,8 @@ func (r *BmcTinkerbellOrgTaskV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												MarkdownDescription: "Signature is the options used for adding an HMAC signature to an HTTP request.",
 												Attributes: map[string]schema.Attribute{
 													"append_algo_to_header_disabled": schema.BoolAttribute{
-														Description:         "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not.Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
-														MarkdownDescription: "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not.Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
+														Description:         "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not. Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256 When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
+														MarkdownDescription: "AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not. Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256 When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -452,8 +452,8 @@ func (r *BmcTinkerbellOrgTaskV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													},
 
 													"included_payload_headers": schema.ListAttribute{
-														Description:         "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-HeaderAll headers will be deduplicated.",
-														MarkdownDescription: "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-HeaderAll headers will be deduplicated.",
+														Description:         "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-Header All headers will be deduplicated.",
+														MarkdownDescription: "IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-Header All headers will be deduplicated.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -489,8 +489,8 @@ func (r *BmcTinkerbellOrgTaskV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								MarkdownDescription: "OneTimeBootDeviceAction represents a baseboard management one time set boot device operation.",
 								Attributes: map[string]schema.Attribute{
 									"device": schema.ListAttribute{
-										Description:         "Devices represents the boot devices, in order for setting one time boot.Currently only the first device in the slice is used to set one time boot.",
-										MarkdownDescription: "Devices represents the boot devices, in order for setting one time boot.Currently only the first device in the slice is used to set one time boot.",
+										Description:         "Devices represents the boot devices, in order for setting one time boot. Currently only the first device in the slice is used to set one time boot.",
+										MarkdownDescription: "Devices represents the boot devices, in order for setting one time boot. Currently only the first device in the slice is used to set one time boot.",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -534,8 +534,8 @@ func (r *BmcTinkerbellOrgTaskV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"media_url": schema.StringAttribute{
-										Description:         "mediaURL represents the URL of the image to be inserted into the virtual media, or empty toeject media.",
-										MarkdownDescription: "mediaURL represents the URL of the image to be inserted into the virtual media, or empty toeject media.",
+										Description:         "mediaURL represents the URL of the image to be inserted into the virtual media, or empty to eject media.",
+										MarkdownDescription: "mediaURL represents the URL of the image to be inserted into the virtual media, or empty to eject media.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

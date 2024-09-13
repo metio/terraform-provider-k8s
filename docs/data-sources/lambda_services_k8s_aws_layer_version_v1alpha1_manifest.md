@@ -61,9 +61,9 @@ Required:
 Optional:
 
 - `compatible_architectures` (List of String) A list of compatible instruction set architectures (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
-- `compatible_runtimes` (List of String) A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).Used for filtering with ListLayers and ListLayerVersions.
+- `compatible_runtimes` (List of String) A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Used for filtering with ListLayers and ListLayerVersions.
 - `description` (String) The description of the version.
-- `license_info` (String) The layer's software license. It can be any of the following:   * An SPDX license identifier (https://spdx.org/licenses/). For example,   MIT.   * The URL of a license hosted on the internet. For example, https://opensource.org/licenses/MIT.   * The full text of the license.
+- `license_info` (String) The layer's software license. It can be any of the following: * An SPDX license identifier (https://spdx.org/licenses/). For example, MIT. * The URL of a license hosted on the internet. For example, https://opensource.org/licenses/MIT. * The full text of the license.
 
 <a id="nestedatt--spec--content"></a>
 ### Nested Schema for `spec.content`

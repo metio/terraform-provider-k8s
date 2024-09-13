@@ -1644,8 +1644,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "Apicurio Registry application configuration",
 						Attributes: map[string]schema.Attribute{
 							"env": schema.ListNestedAttribute{
-								Description:         "Environment variables:  List of additional environment variables that will be provided to the Apicurio Registry application.",
-								MarkdownDescription: "Environment variables:  List of additional environment variables that will be provided to the Apicurio Registry application.",
+								Description:         "Environment variables: List of additional environment variables that will be provided to the Apicurio Registry application.",
+								MarkdownDescription: "Environment variables: List of additional environment variables that will be provided to the Apicurio Registry application.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
@@ -1764,8 +1764,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1808,40 +1808,40 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "Configuration of Apicurio Registry KafkaSQL storage",
 								Attributes: map[string]schema.Attribute{
 									"bootstrap_servers": schema.StringAttribute{
-										Description:         "Kafka bootstrap servers URL:  URL of one of the Kafka brokers, which provide initial metadata about the Kafka cluster, for example: '<service name>.<namespace>.svc:9092'.",
-										MarkdownDescription: "Kafka bootstrap servers URL:  URL of one of the Kafka brokers, which provide initial metadata about the Kafka cluster, for example: '<service name>.<namespace>.svc:9092'.",
+										Description:         "Kafka bootstrap servers URL: URL of one of the Kafka brokers, which provide initial metadata about the Kafka cluster, for example: '<service name>.<namespace>.svc:9092'.",
+										MarkdownDescription: "Kafka bootstrap servers URL: URL of one of the Kafka brokers, which provide initial metadata about the Kafka cluster, for example: '<service name>.<namespace>.svc:9092'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"security": schema.SingleNestedAttribute{
-										Description:         "Kafka security configuration:  Provide the following configuration options if your Kafka cluster is secured using TLS or SCRAM.",
-										MarkdownDescription: "Kafka security configuration:  Provide the following configuration options if your Kafka cluster is secured using TLS or SCRAM.",
+										Description:         "Kafka security configuration: Provide the following configuration options if your Kafka cluster is secured using TLS or SCRAM.",
+										MarkdownDescription: "Kafka security configuration: Provide the following configuration options if your Kafka cluster is secured using TLS or SCRAM.",
 										Attributes: map[string]schema.Attribute{
 											"scram": schema.SingleNestedAttribute{
-												Description:         "SCRAM:  Kafka is secured using SCRAM.",
-												MarkdownDescription: "SCRAM:  Kafka is secured using SCRAM.",
+												Description:         "SCRAM: Kafka is secured using SCRAM.",
+												MarkdownDescription: "SCRAM: Kafka is secured using SCRAM.",
 												Attributes: map[string]schema.Attribute{
 													"mechanism": schema.StringAttribute{
-														Description:         "Mechanism:  Name of the SCRAM mechanism, default value is SCRAM-SHA-512.",
-														MarkdownDescription: "Mechanism:  Name of the SCRAM mechanism, default value is SCRAM-SHA-512.",
+														Description:         "Mechanism: Name of the SCRAM mechanism, default value is SCRAM-SHA-512.",
+														MarkdownDescription: "Mechanism: Name of the SCRAM mechanism, default value is SCRAM-SHA-512.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"password_secret_name": schema.StringAttribute{
-														Description:         "User password Secret name:  Name of a Secret that contains password of the SCRAM user under the 'password' key.",
-														MarkdownDescription: "User password Secret name:  Name of a Secret that contains password of the SCRAM user under the 'password' key.",
+														Description:         "User password Secret name: Name of a Secret that contains password of the SCRAM user under the 'password' key.",
+														MarkdownDescription: "User password Secret name: Name of a Secret that contains password of the SCRAM user under the 'password' key.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"truststore_secret_name": schema.StringAttribute{
-														Description:         "Truststore Secret name:  Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.",
-														MarkdownDescription: "Truststore Secret name:  Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.",
+														Description:         "Truststore Secret name: Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.",
+														MarkdownDescription: "Truststore Secret name: Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1861,20 +1861,20 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 											},
 
 											"tls": schema.SingleNestedAttribute{
-												Description:         "TLS:  Kafka is secured using TLS.",
-												MarkdownDescription: "TLS:  Kafka is secured using TLS.",
+												Description:         "TLS: Kafka is secured using TLS.",
+												MarkdownDescription: "TLS: Kafka is secured using TLS.",
 												Attributes: map[string]schema.Attribute{
 													"keystore_secret_name": schema.StringAttribute{
-														Description:         "Keystore Secret name:  Name of a Secret that contains TLS keystore (in PKCS12 format) under the 'user.p12' key, and keystore password under the 'user.password' key.",
-														MarkdownDescription: "Keystore Secret name:  Name of a Secret that contains TLS keystore (in PKCS12 format) under the 'user.p12' key, and keystore password under the 'user.password' key.",
+														Description:         "Keystore Secret name: Name of a Secret that contains TLS keystore (in PKCS12 format) under the 'user.p12' key, and keystore password under the 'user.password' key.",
+														MarkdownDescription: "Keystore Secret name: Name of a Secret that contains TLS keystore (in PKCS12 format) under the 'user.p12' key, and keystore password under the 'user.password' key.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"truststore_secret_name": schema.StringAttribute{
-														Description:         "Truststore Secret name:  Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.",
-														MarkdownDescription: "Truststore Secret name:  Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.",
+														Description:         "Truststore Secret name: Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.",
+														MarkdownDescription: "Truststore Secret name: Name of a Secret that contains TLS truststore (in PKCS12 format) under the 'ca.p12' key, and truststore password under the 'ca.password' key.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1904,8 +1904,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 							},
 
 							"persistence": schema.StringAttribute{
-								Description:         "Storage:  Type of storage used by Apicurio Registry, one of: mem, sql, kafkasql. Default value is 'mem'.",
-								MarkdownDescription: "Storage:  Type of storage used by Apicurio Registry, one of: mem, sql, kafkasql. Default value is 'mem'.",
+								Description:         "Storage: Type of storage used by Apicurio Registry, one of: mem, sql, kafkasql. Default value is 'mem'.",
+								MarkdownDescription: "Storage: Type of storage used by Apicurio Registry, one of: mem, sql, kafkasql. Default value is 'mem'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1924,20 +1924,20 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "Security configuration",
 								Attributes: map[string]schema.Attribute{
 									"https": schema.SingleNestedAttribute{
-										Description:         "HTTPS:  Configure Apicurio Registry to be accessible using HTTPS.",
-										MarkdownDescription: "HTTPS:  Configure Apicurio Registry to be accessible using HTTPS.",
+										Description:         "HTTPS: Configure Apicurio Registry to be accessible using HTTPS.",
+										MarkdownDescription: "HTTPS: Configure Apicurio Registry to be accessible using HTTPS.",
 										Attributes: map[string]schema.Attribute{
 											"disable_http": schema.BoolAttribute{
-												Description:         "Disable HTTP:  Disable HTTP if HTTPS is enabled.",
-												MarkdownDescription: "Disable HTTP:  Disable HTTP if HTTPS is enabled.",
+												Description:         "Disable HTTP: Disable HTTP if HTTPS is enabled.",
+												MarkdownDescription: "Disable HTTP: Disable HTTP if HTTPS is enabled.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"secret_name": schema.StringAttribute{
-												Description:         "HTTPS certificate and private key Secret name:  Name of a Secret that contains HTTPS certificate under the 'tls.crt' key, and the private key under the 'tls.key' key.",
-												MarkdownDescription: "HTTPS certificate and private key Secret name:  Name of a Secret that contains HTTPS certificate under the 'tls.crt' key, and the private key under the 'tls.key' key.",
+												Description:         "HTTPS certificate and private key Secret name: Name of a Secret that contains HTTPS certificate under the 'tls.crt' key, and the private key under the 'tls.key' key.",
+												MarkdownDescription: "HTTPS certificate and private key Secret name: Name of a Secret that contains HTTPS certificate under the 'tls.crt' key, and the private key under the 'tls.key' key.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1949,8 +1949,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 									},
 
 									"keycloak": schema.SingleNestedAttribute{
-										Description:         "Keycloak:  Configure Apicurio Registry to use Keycloak for Identity and Access Management (IAM).",
-										MarkdownDescription: "Keycloak:  Configure Apicurio Registry to use Keycloak for Identity and Access Management (IAM).",
+										Description:         "Keycloak: Configure Apicurio Registry to use Keycloak for Identity and Access Management (IAM).",
+										MarkdownDescription: "Keycloak: Configure Apicurio Registry to use Keycloak for Identity and Access Management (IAM).",
 										Attributes: map[string]schema.Attribute{
 											"api_client_id": schema.StringAttribute{
 												Description:         "Client ID for the REST API",
@@ -1977,8 +1977,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 											},
 
 											"url": schema.StringAttribute{
-												Description:         "Keycloak auth URL:  URL of the Keycloak auth endpoint, must end with '/auth'.",
-												MarkdownDescription: "Keycloak auth URL:  URL of the Keycloak auth endpoint, must end with '/auth'.",
+												Description:         "Keycloak auth URL: URL of the Keycloak auth endpoint, must end with '/auth'.",
+												MarkdownDescription: "Keycloak auth URL: URL of the Keycloak auth endpoint, must end with '/auth'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2011,8 +2011,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 											},
 
 											"url": schema.StringAttribute{
-												Description:         "Data source URL:  URL of the PostgreSQL database, for example: 'jdbc:postgresql://<service name>.<namespace>.svc:5432/<database name>'.",
-												MarkdownDescription: "Data source URL:  URL of the PostgreSQL database, for example: 'jdbc:postgresql://<service name>.<namespace>.svc:5432/<database name>'.",
+												Description:         "Data source URL: URL of the PostgreSQL database, for example: 'jdbc:postgresql://<service name>.<namespace>.svc:5432/<database name>'.",
+												MarkdownDescription: "Data source URL: URL of the PostgreSQL database, for example: 'jdbc:postgresql://<service name>.<namespace>.svc:5432/<database name>'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2041,8 +2041,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "Configuration of Apicurio Registry web console",
 								Attributes: map[string]schema.Attribute{
 									"read_only": schema.BoolAttribute{
-										Description:         "Read-only:  Set the web console to read-only mode. WARNING: This does not affect access to the Apicurio REST API.",
-										MarkdownDescription: "Read-only:  Set the web console to read-only mode. WARNING: This does not affect access to the Apicurio REST API.",
+										Description:         "Read-only: Set the web console to read-only mode. WARNING: This does not affect access to the Apicurio REST API.",
+										MarkdownDescription: "Read-only: Set the web console to read-only mode. WARNING: This does not affect access to the Apicurio REST API.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2941,24 +2941,24 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 							},
 
 							"host": schema.StringAttribute{
-								Description:         "Hostname:  Apicurio Registry application hostname (part of the URL without the protocol and path).",
-								MarkdownDescription: "Hostname:  Apicurio Registry application hostname (part of the URL without the protocol and path).",
+								Description:         "Hostname: Apicurio Registry application hostname (part of the URL without the protocol and path).",
+								MarkdownDescription: "Hostname: Apicurio Registry application hostname (part of the URL without the protocol and path).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "Apicurio Registry image:  Replaces the default Apicurio Registry application image. Overrides the values in the REGISTRY_IMAGE_MEM, REGISTRY_IMAGE_KAFKASQL and REGISTRY_IMAGE_SQL Operator environment variables.",
-								MarkdownDescription: "Apicurio Registry image:  Replaces the default Apicurio Registry application image. Overrides the values in the REGISTRY_IMAGE_MEM, REGISTRY_IMAGE_KAFKASQL and REGISTRY_IMAGE_SQL Operator environment variables.",
+								Description:         "Apicurio Registry image: Replaces the default Apicurio Registry application image. Overrides the values in the REGISTRY_IMAGE_MEM, REGISTRY_IMAGE_KAFKASQL and REGISTRY_IMAGE_SQL Operator environment variables.",
+								MarkdownDescription: "Apicurio Registry image: Replaces the default Apicurio Registry application image. Overrides the values in the REGISTRY_IMAGE_MEM, REGISTRY_IMAGE_KAFKASQL and REGISTRY_IMAGE_SQL Operator environment variables.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"image_pull_secrets": schema.ListNestedAttribute{
-								Description:         "Apicurio Registry image pull secrets:  List of Secrets to use when pulling the Apicurio Registry image.",
-								MarkdownDescription: "Apicurio Registry image pull secrets:  List of Secrets to use when pulling the Apicurio Registry image.",
+								Description:         "Apicurio Registry image pull secrets: List of Secrets to use when pulling the Apicurio Registry image.",
+								MarkdownDescription: "Apicurio Registry image pull secrets: List of Secrets to use when pulling the Apicurio Registry image.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
@@ -2976,28 +2976,28 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 							},
 
 							"managed_resources": schema.SingleNestedAttribute{
-								Description:         "Apicurio Registry managed resources:  Configure how the Operator manages Kubernetes resources.",
-								MarkdownDescription: "Apicurio Registry managed resources:  Configure how the Operator manages Kubernetes resources.",
+								Description:         "Apicurio Registry managed resources: Configure how the Operator manages Kubernetes resources.",
+								MarkdownDescription: "Apicurio Registry managed resources: Configure how the Operator manages Kubernetes resources.",
 								Attributes: map[string]schema.Attribute{
 									"disable_ingress": schema.BoolAttribute{
-										Description:         "Disable Ingress:  Operator will not create or manage an Ingress for Apicurio Registry, so it can be done manually.",
-										MarkdownDescription: "Disable Ingress:  Operator will not create or manage an Ingress for Apicurio Registry, so it can be done manually.",
+										Description:         "Disable Ingress: Operator will not create or manage an Ingress for Apicurio Registry, so it can be done manually.",
+										MarkdownDescription: "Disable Ingress: Operator will not create or manage an Ingress for Apicurio Registry, so it can be done manually.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"disable_network_policy": schema.BoolAttribute{
-										Description:         "Disable NetworkPolicy:  Operator will not create or manage a NetworkPolicy for Apicurio Registry, so it can be done manually.",
-										MarkdownDescription: "Disable NetworkPolicy:  Operator will not create or manage a NetworkPolicy for Apicurio Registry, so it can be done manually.",
+										Description:         "Disable NetworkPolicy: Operator will not create or manage a NetworkPolicy for Apicurio Registry, so it can be done manually.",
+										MarkdownDescription: "Disable NetworkPolicy: Operator will not create or manage a NetworkPolicy for Apicurio Registry, so it can be done manually.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"disable_pod_disruption_budget": schema.BoolAttribute{
-										Description:         "Disable PodDisruptionBudget:  Operator will not create or manage a PodDisruptionBudget for Apicurio Registry, so it can be done manually.",
-										MarkdownDescription: "Disable PodDisruptionBudget:  Operator will not create or manage a PodDisruptionBudget for Apicurio Registry, so it can be done manually.",
+										Description:         "Disable PodDisruptionBudget: Operator will not create or manage a PodDisruptionBudget for Apicurio Registry, so it can be done manually.",
+										MarkdownDescription: "Disable PodDisruptionBudget: Operator will not create or manage a PodDisruptionBudget for Apicurio Registry, so it can be done manually.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3013,8 +3013,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "Metadata of the Apicurio Registry pod",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations:  Additional Apicurio Registry Pod annotations.",
-										MarkdownDescription: "Annotations:  Additional Apicurio Registry Pod annotations.",
+										Description:         "Annotations: Additional Apicurio Registry Pod annotations.",
+										MarkdownDescription: "Annotations: Additional Apicurio Registry Pod annotations.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3022,8 +3022,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Labels:  Additional Apicurio Registry Pod labels.",
-										MarkdownDescription: "Labels:  Additional Apicurio Registry Pod labels.",
+										Description:         "Labels: Additional Apicurio Registry Pod labels.",
+										MarkdownDescription: "Labels: Additional Apicurio Registry Pod labels.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -11733,8 +11733,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 							},
 
 							"replicas": schema.Int64Attribute{
-								Description:         "Replicas:  The required number of Apicurio Registry pods. Default value is 1.",
-								MarkdownDescription: "Replicas:  The required number of Apicurio Registry pods. Default value is 1.",
+								Description:         "Replicas: The required number of Apicurio Registry pods. Default value is 1.",
+								MarkdownDescription: "Replicas: The required number of Apicurio Registry pods. Default value is 1.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

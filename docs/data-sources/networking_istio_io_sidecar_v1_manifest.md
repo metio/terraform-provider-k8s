@@ -71,7 +71,7 @@ Required:
 Optional:
 
 - `bind` (String) The IP(IPv4 or IPv6) or the Unix domain socket to which the listener should be bound to.
-- `capture_mode` (String) When the bind address is an IP, the captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE
+- `capture_mode` (String) When the bind address is an IP, the captureMode option dictates how traffic to the listener is expected to be captured (or not). Valid Options: DEFAULT, IPTABLES, NONE
 - `port` (Attributes) The port associated with the listener. (see [below for nested schema](#nestedatt--spec--egress--port))
 
 <a id="nestedatt--spec--egress--port"></a>
@@ -99,7 +99,7 @@ Optional:
 
 Optional:
 
-- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
 - `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
 - `http2_max_requests` (Number) Maximum number of active requests to a destination.
 - `idle_timeout` (String) The idle timeout for upstream connection pool connections.
@@ -142,7 +142,7 @@ Required:
 Optional:
 
 - `bind` (String) The IP(IPv4 or IPv6) to which the listener should be bound.
-- `capture_mode` (String) The captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE
+- `capture_mode` (String) The captureMode option dictates how traffic to the listener is expected to be captured (or not). Valid Options: DEFAULT, IPTABLES, NONE
 - `connection_pool` (Attributes) Settings controlling the volume of connections Envoy will accept from the network. (see [below for nested schema](#nestedatt--spec--ingress--connection_pool))
 - `default_endpoint` (String) The IP endpoint or Unix domain socket to which traffic should be forwarded to.
 - `tls` (Attributes) Set of TLS related options that will enable TLS termination on the sidecar for requests originating from outside the mesh. (see [below for nested schema](#nestedatt--spec--ingress--tls))
@@ -171,7 +171,7 @@ Optional:
 
 Optional:
 
-- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
 - `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
 - `http2_max_requests` (Number) Maximum number of active requests to a destination.
 - `idle_timeout` (String) The idle timeout for upstream connection pool connections.
@@ -214,9 +214,9 @@ Optional:
 - `cipher_suites` (List of String) Optional: If specified, only support the specified cipher list.
 - `credential_name` (String) For gateways running on Kubernetes, the name of the secret that holds the TLS certs including the CA certificates.
 - `https_redirect` (Boolean) If set to true, the load balancer will send a 301 redirect for all http connections, asking the clients to use HTTPS.
-- `max_protocol_version` (String) Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
-- `min_protocol_version` (String) Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
-- `mode` (String) Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL
+- `max_protocol_version` (String) Optional: Maximum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
+- `min_protocol_version` (String) Optional: Minimum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
+- `mode` (String) Optional: Indicates whether connections to this port should be secured using TLS. Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.
 - `server_certificate` (String) REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.
 - `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate presented by the client.

@@ -160,6 +160,7 @@ var matchBackticks = regexp.MustCompile(`\x60`)
 var matchDoubleQuotes = regexp.MustCompile("\"")
 var matchNewlines = regexp.MustCompile("\n")
 var matchBackslashes = regexp.MustCompile(`\\`)
+var matchMultipleWhitespace = regexp.MustCompile(`\s+`)
 var matchDashes = regexp.MustCompile("-")
 var matchDots = regexp.MustCompile(`\.`)
 var matchSlashes = regexp.MustCompile("/")
@@ -340,8 +341,9 @@ func goName(s string) string {
 func description(description string) string {
 	clean := matchBackticks.ReplaceAllString(description, "'")
 	clean = matchDoubleQuotes.ReplaceAllString(clean, "'")
-	clean = matchNewlines.ReplaceAllString(clean, "")
+	clean = matchNewlines.ReplaceAllString(clean, " ")
 	clean = matchBackslashes.ReplaceAllString(clean, "")
+	clean = matchMultipleWhitespace.ReplaceAllString(clean, " ")
 	return clean
 }
 

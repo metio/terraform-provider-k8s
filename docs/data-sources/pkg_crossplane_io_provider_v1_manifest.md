@@ -3,12 +3,12 @@
 page_title: "k8s_pkg_crossplane_io_provider_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "pkg.crossplane.io"
 description: |-
-  A Provider installs an OCI compatible Crossplane package, extendingCrossplane with support for new kinds of managed resources.Read the Crossplane documentation formore information about Providers https://docs.crossplane.io/latest/concepts/providers.
+  A Provider installs an OCI compatible Crossplane package, extending Crossplane with support for new kinds of managed resources. Read the Crossplane documentation for more information about Providers https://docs.crossplane.io/latest/concepts/providers.
 ---
 
 # k8s_pkg_crossplane_io_provider_v1_manifest (Data Source)
 
-A Provider installs an OCI compatible Crossplane package, extendingCrossplane with support for new kinds of managed resources.Read the Crossplane documentation for[more information about Providers](https://docs.crossplane.io/latest/concepts/providers).
+A Provider installs an OCI compatible Crossplane package, extending Crossplane with support for new kinds of managed resources. Read the Crossplane documentation for [more information about Providers](https://docs.crossplane.io/latest/concepts/providers).
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_pkg_crossplane_io_provider_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) ProviderSpec specifies details about a request to install a provider toCrossplane. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ProviderSpec specifies details about a request to install a provider to Crossplane. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -58,15 +58,15 @@ Required:
 
 Optional:
 
-- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
-- `controller_config_ref` (Attributes) ControllerConfigRef references a ControllerConfig resource that will beused to configure the packaged controller Deployment.Deprecated: Use RuntimeConfigReference instead. (see [below for nested schema](#nestedatt--spec--controller_config_ref))
-- `ignore_crossplane_constraints` (Boolean) IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.
-- `package_pull_policy` (String) PackagePullPolicy defines the pull policy for the package.Default is IfNotPresent.
-- `package_pull_secrets` (Attributes List) PackagePullSecrets are named secrets in the same namespace that can be usedto fetch packages from private registries. (see [below for nested schema](#nestedatt--spec--package_pull_secrets))
-- `revision_activation_policy` (String) RevisionActivationPolicy specifies how the package controller shouldupdate from one revision to the next. Options are Automatic or Manual.Default is Automatic.
-- `revision_history_limit` (Number) RevisionHistoryLimit dictates how the package controller cleans up oldinactive package revisions.Defaults to 1. Can be disabled by explicitly setting to 0.
-- `runtime_config_ref` (Attributes) RuntimeConfigRef references a RuntimeConfig resource that will be usedto configure the package runtime. (see [below for nested schema](#nestedatt--spec--runtime_config_ref))
-- `skip_dependency_resolution` (Boolean) SkipDependencyResolution indicates to the package manager whether to skipresolving dependencies for a package. Setting this value to true may haveunintended consequences.Default is false.
+- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+- `controller_config_ref` (Attributes) ControllerConfigRef references a ControllerConfig resource that will be used to configure the packaged controller Deployment. Deprecated: Use RuntimeConfigReference instead. (see [below for nested schema](#nestedatt--spec--controller_config_ref))
+- `ignore_crossplane_constraints` (Boolean) IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.
+- `package_pull_policy` (String) PackagePullPolicy defines the pull policy for the package. Default is IfNotPresent.
+- `package_pull_secrets` (Attributes List) PackagePullSecrets are named secrets in the same namespace that can be used to fetch packages from private registries. (see [below for nested schema](#nestedatt--spec--package_pull_secrets))
+- `revision_activation_policy` (String) RevisionActivationPolicy specifies how the package controller should update from one revision to the next. Options are Automatic or Manual. Default is Automatic.
+- `revision_history_limit` (Number) RevisionHistoryLimit dictates how the package controller cleans up old inactive package revisions. Defaults to 1. Can be disabled by explicitly setting to 0.
+- `runtime_config_ref` (Attributes) RuntimeConfigRef references a RuntimeConfig resource that will be used to configure the package runtime. (see [below for nested schema](#nestedatt--spec--runtime_config_ref))
+- `skip_dependency_resolution` (Boolean) SkipDependencyResolution indicates to the package manager whether to skip resolving dependencies for a package. Setting this value to true may have unintended consequences. Default is false.
 
 <a id="nestedatt--spec--controller_config_ref"></a>
 ### Nested Schema for `spec.controller_config_ref`
@@ -81,7 +81,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--runtime_config_ref"></a>

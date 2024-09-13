@@ -64,7 +64,7 @@ Optional:
 - `allow_request_body` (Boolean)
 - `allowed_authorization_headers` (List of String)
 - `allowed_request_headers` (List of String)
-- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource.  May either be a string or a list of strings.  If no value is provided, the default is:  ambassador_id: - 'default'
+- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource. May either be a string or a list of strings. If no value is provided, the default is: ambassador_id: - 'default'
 - `failure_mode_allow` (Boolean)
 - `include_body` (Attributes) (see [below for nested schema](#nestedatt--spec--include_body))
 - `path_prefix` (String)

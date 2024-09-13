@@ -239,12 +239,12 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 				MarkdownDescription: "WorkspaceSpec defines the desired state of Workspace.",
 				Attributes: map[string]schema.Attribute{
 					"agent_pool": schema.SingleNestedAttribute{
-						Description:         "HCP Terraform Agents allow HCP Terraform to communicate with isolated, private, or on-premises infrastructure.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/agents",
-						MarkdownDescription: "HCP Terraform Agents allow HCP Terraform to communicate with isolated, private, or on-premises infrastructure.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/agents",
+						Description:         "HCP Terraform Agents allow HCP Terraform to communicate with isolated, private, or on-premises infrastructure. More information: - https://developer.hashicorp.com/terraform/cloud-docs/agents",
+						MarkdownDescription: "HCP Terraform Agents allow HCP Terraform to communicate with isolated, private, or on-premises infrastructure. More information: - https://developer.hashicorp.com/terraform/cloud-docs/agents",
 						Attributes: map[string]schema.Attribute{
 							"id": schema.StringAttribute{
-								Description:         "Agent Pool ID.Must match pattern: '^apool-[a-zA-Z0-9]+$'",
-								MarkdownDescription: "Agent Pool ID.Must match pattern: '^apool-[a-zA-Z0-9]+$'",
+								Description:         "Agent Pool ID. Must match pattern: '^apool-[a-zA-Z0-9]+$'",
+								MarkdownDescription: "Agent Pool ID. Must match pattern: '^apool-[a-zA-Z0-9]+$'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -270,16 +270,16 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"allow_destroy_plan": schema.BoolAttribute{
-						Description:         "Allows a destroy plan to be created and applied.Default: 'true'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#destruction-and-deletion",
-						MarkdownDescription: "Allows a destroy plan to be created and applied.Default: 'true'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#destruction-and-deletion",
+						Description:         "Allows a destroy plan to be created and applied. Default: 'true'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#destruction-and-deletion",
+						MarkdownDescription: "Allows a destroy plan to be created and applied. Default: 'true'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#destruction-and-deletion",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"apply_method": schema.StringAttribute{
-						Description:         "Define either change will be applied automatically(auto) or require an operator to confirm(manual).Must be one of the following values: 'auto', 'manual'.Default: 'manual'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#auto-apply-and-manual-apply",
-						MarkdownDescription: "Define either change will be applied automatically(auto) or require an operator to confirm(manual).Must be one of the following values: 'auto', 'manual'.Default: 'manual'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#auto-apply-and-manual-apply",
+						Description:         "Define either change will be applied automatically(auto) or require an operator to confirm(manual). Must be one of the following values: 'auto', 'manual'. Default: 'manual'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#auto-apply-and-manual-apply",
+						MarkdownDescription: "Define either change will be applied automatically(auto) or require an operator to confirm(manual). Must be one of the following values: 'auto', 'manual'. Default: 'manual'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#auto-apply-and-manual-apply",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -300,8 +300,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"environment_variables": schema.ListNestedAttribute{
-						Description:         "Terraform Environment variables for all plans and applies in this workspace.Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#environment-variables",
-						MarkdownDescription: "Terraform Environment variables for all plans and applies in this workspace.Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#environment-variables",
+						Description:         "Terraform Environment variables for all plans and applies in this workspace. Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#environment-variables",
+						MarkdownDescription: "Terraform Environment variables for all plans and applies in this workspace. Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#environment-variables",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"description": schema.StringAttribute{
@@ -316,8 +316,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"hcl": schema.BoolAttribute{
-									Description:         "Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime.Default: 'false'.",
-									MarkdownDescription: "Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime.Default: 'false'.",
+									Description:         "Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime. Default: 'false'.",
+									MarkdownDescription: "Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime. Default: 'false'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -335,8 +335,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"sensitive": schema.BoolAttribute{
-									Description:         "Sensitive variables are never shown in the UI or API.They may appear in Terraform logs if your configuration is designed to output them.Default: 'false'.",
-									MarkdownDescription: "Sensitive variables are never shown in the UI or API.They may appear in Terraform logs if your configuration is designed to output them.Default: 'false'.",
+									Description:         "Sensitive variables are never shown in the UI or API. They may appear in Terraform logs if your configuration is designed to output them. Default: 'false'.",
+									MarkdownDescription: "Sensitive variables are never shown in the UI or API. They may appear in Terraform logs if your configuration is designed to output them. Default: 'false'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -370,8 +370,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -395,16 +395,16 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 											MarkdownDescription: "Selects a key of a Secret.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -435,8 +435,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"execution_mode": schema.StringAttribute{
-						Description:         "Define where the Terraform code will be executed.Must be one of the following values: 'agent', 'local', 'remote'.Default: 'remote'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#execution-mode",
-						MarkdownDescription: "Define where the Terraform code will be executed.Must be one of the following values: 'agent', 'local', 'remote'.Default: 'remote'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#execution-mode",
+						Description:         "Define where the Terraform code will be executed. Must be one of the following values: 'agent', 'local', 'remote'. Default: 'remote'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#execution-mode",
+						MarkdownDescription: "Define where the Terraform code will be executed. Must be one of the following values: 'agent', 'local', 'remote'. Default: 'remote'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings#execution-mode",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -457,13 +457,13 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"notifications": schema.ListNestedAttribute{
-						Description:         "Notifications allow you to send messages to other applications based on run and workspace events.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/notifications",
-						MarkdownDescription: "Notifications allow you to send messages to other applications based on run and workspace events.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/notifications",
+						Description:         "Notifications allow you to send messages to other applications based on run and workspace events. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/notifications",
+						MarkdownDescription: "Notifications allow you to send messages to other applications based on run and workspace events. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/notifications",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"email_addresses": schema.ListAttribute{
-									Description:         "The list of email addresses that will receive notification emails.It is only available for Terraform Enterprise users. It is not available in HCP Terraform.",
-									MarkdownDescription: "The list of email addresses that will receive notification emails.It is only available for Terraform Enterprise users. It is not available in HCP Terraform.",
+									Description:         "The list of email addresses that will receive notification emails. It is only available for Terraform Enterprise users. It is not available in HCP Terraform.",
+									MarkdownDescription: "The list of email addresses that will receive notification emails. It is only available for Terraform Enterprise users. It is not available in HCP Terraform.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -480,8 +480,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"enabled": schema.BoolAttribute{
-									Description:         "Whether the notification configuration should be enabled or not.Default: 'true'.",
-									MarkdownDescription: "Whether the notification configuration should be enabled or not.Default: 'true'.",
+									Description:         "Whether the notification configuration should be enabled or not. Default: 'true'.",
+									MarkdownDescription: "Whether the notification configuration should be enabled or not. Default: 'true'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -510,8 +510,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"triggers": schema.ListAttribute{
-									Description:         "The list of run events that will trigger notifications.Trigger represents the different TFC notifications that can be sent as a run's progress transitions between different states.There are two categories of triggers:  - Health Events: 'assessment:check_failure', 'assessment:drifted', 'assessment:failed'.  - Run Events: 'run:applying', 'run:completed', 'run:created', 'run:errored', 'run:needs_attention', 'run:planning'.",
-									MarkdownDescription: "The list of run events that will trigger notifications.Trigger represents the different TFC notifications that can be sent as a run's progress transitions between different states.There are two categories of triggers:  - Health Events: 'assessment:check_failure', 'assessment:drifted', 'assessment:failed'.  - Run Events: 'run:applying', 'run:completed', 'run:created', 'run:errored', 'run:needs_attention', 'run:planning'.",
+									Description:         "The list of run events that will trigger notifications. Trigger represents the different TFC notifications that can be sent as a run's progress transitions between different states. There are two categories of triggers: - Health Events: 'assessment:check_failure', 'assessment:drifted', 'assessment:failed'. - Run Events: 'run:applying', 'run:completed', 'run:created', 'run:errored', 'run:needs_attention', 'run:planning'.",
+									MarkdownDescription: "The list of run events that will trigger notifications. Trigger represents the different TFC notifications that can be sent as a run's progress transitions between different states. There are two categories of triggers: - Health Events: 'assessment:check_failure', 'assessment:drifted', 'assessment:failed'. - Run Events: 'run:applying', 'run:completed', 'run:created', 'run:errored', 'run:needs_attention', 'run:planning'.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -519,8 +519,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "The type of the notification.Must be one of the following values: 'email', 'generic', 'microsoft-teams', 'slack'.",
-									MarkdownDescription: "The type of the notification.Must be one of the following values: 'email', 'generic', 'microsoft-teams', 'slack'.",
+									Description:         "The type of the notification. Must be one of the following values: 'email', 'generic', 'microsoft-teams', 'slack'.",
+									MarkdownDescription: "The type of the notification. Must be one of the following values: 'email', 'generic', 'microsoft-teams', 'slack'.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -530,8 +530,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"url": schema.StringAttribute{
-									Description:         "The URL of the notification.Must match pattern: '^https?://.*'",
-									MarkdownDescription: "The URL of the notification.Must match pattern: '^https?://.*'",
+									Description:         "The URL of the notification. Must match pattern: '^https?://.*'",
+									MarkdownDescription: "The URL of the notification. Must match pattern: '^https?://.*'",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -547,8 +547,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"organization": schema.StringAttribute{
-						Description:         "Organization name where the Workspace will be created.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations",
-						MarkdownDescription: "Organization name where the Workspace will be created.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations",
+						Description:         "Organization name where the Workspace will be created. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations",
+						MarkdownDescription: "Organization name where the Workspace will be created. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -558,12 +558,12 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"project": schema.SingleNestedAttribute{
-						Description:         "Projects let you organize your workspaces into groups.Default: default organization project.More information:  - https://developer.hashicorp.com/terraform/tutorials/cloud/projects",
-						MarkdownDescription: "Projects let you organize your workspaces into groups.Default: default organization project.More information:  - https://developer.hashicorp.com/terraform/tutorials/cloud/projects",
+						Description:         "Projects let you organize your workspaces into groups. Default: default organization project. More information: - https://developer.hashicorp.com/terraform/tutorials/cloud/projects",
+						MarkdownDescription: "Projects let you organize your workspaces into groups. Default: default organization project. More information: - https://developer.hashicorp.com/terraform/tutorials/cloud/projects",
 						Attributes: map[string]schema.Attribute{
 							"id": schema.StringAttribute{
-								Description:         "Project ID.Must match pattern: '^prj-[a-zA-Z0-9]+$'",
-								MarkdownDescription: "Project ID.Must match pattern: '^prj-[a-zA-Z0-9]+$'",
+								Description:         "Project ID. Must match pattern: '^prj-[a-zA-Z0-9]+$'",
+								MarkdownDescription: "Project ID. Must match pattern: '^prj-[a-zA-Z0-9]+$'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -589,12 +589,12 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"remote_state_sharing": schema.SingleNestedAttribute{
-						Description:         "Remote state access between workspaces.By default, new workspaces in HCP Terraform do not allow other workspaces to access their state.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/state#accessing-state-from-other-workspaces",
-						MarkdownDescription: "Remote state access between workspaces.By default, new workspaces in HCP Terraform do not allow other workspaces to access their state.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/state#accessing-state-from-other-workspaces",
+						Description:         "Remote state access between workspaces. By default, new workspaces in HCP Terraform do not allow other workspaces to access their state. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/state#accessing-state-from-other-workspaces",
+						MarkdownDescription: "Remote state access between workspaces. By default, new workspaces in HCP Terraform do not allow other workspaces to access their state. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/state#accessing-state-from-other-workspaces",
 						Attributes: map[string]schema.Attribute{
 							"all_workspaces": schema.BoolAttribute{
-								Description:         "Allow access to the state for all workspaces within the same organization.Default: 'false'.",
-								MarkdownDescription: "Allow access to the state for all workspaces within the same organization.Default: 'false'.",
+								Description:         "Allow access to the state for all workspaces within the same organization. Default: 'false'.",
+								MarkdownDescription: "Allow access to the state for all workspaces within the same organization. Default: 'false'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -606,8 +606,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"id": schema.StringAttribute{
-											Description:         "Consumer Workspace ID.Must match pattern: '^ws-[a-zA-Z0-9]+$'",
-											MarkdownDescription: "Consumer Workspace ID.Must match pattern: '^ws-[a-zA-Z0-9]+$'",
+											Description:         "Consumer Workspace ID. Must match pattern: '^ws-[a-zA-Z0-9]+$'",
+											MarkdownDescription: "Consumer Workspace ID. Must match pattern: '^ws-[a-zA-Z0-9]+$'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -639,13 +639,13 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"run_tasks": schema.ListNestedAttribute{
-						Description:         "Run tasks allow HCP Terraform to interact with external systems at specific points in the HCP Terraform run lifecycle.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks",
-						MarkdownDescription: "Run tasks allow HCP Terraform to interact with external systems at specific points in the HCP Terraform run lifecycle.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks",
+						Description:         "Run tasks allow HCP Terraform to interact with external systems at specific points in the HCP Terraform run lifecycle. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks",
+						MarkdownDescription: "Run tasks allow HCP Terraform to interact with external systems at specific points in the HCP Terraform run lifecycle. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"enforcement_level": schema.StringAttribute{
-									Description:         "Run Task Enforcement Level. Can be one of 'advisory' or 'mandatory'. Default: 'advisory'.Must be one of the following values: 'advisory', 'mandatory'Default: 'advisory'.",
-									MarkdownDescription: "Run Task Enforcement Level. Can be one of 'advisory' or 'mandatory'. Default: 'advisory'.Must be one of the following values: 'advisory', 'mandatory'Default: 'advisory'.",
+									Description:         "Run Task Enforcement Level. Can be one of 'advisory' or 'mandatory'. Default: 'advisory'. Must be one of the following values: 'advisory', 'mandatory' Default: 'advisory'.",
+									MarkdownDescription: "Run Task Enforcement Level. Can be one of 'advisory' or 'mandatory'. Default: 'advisory'. Must be one of the following values: 'advisory', 'mandatory' Default: 'advisory'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -655,8 +655,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"id": schema.StringAttribute{
-									Description:         "Run Task ID.Must match pattern: '^task-[a-zA-Z0-9]+$'",
-									MarkdownDescription: "Run Task ID.Must match pattern: '^task-[a-zA-Z0-9]+$'",
+									Description:         "Run Task ID. Must match pattern: '^task-[a-zA-Z0-9]+$'",
+									MarkdownDescription: "Run Task ID. Must match pattern: '^task-[a-zA-Z0-9]+$'",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -677,8 +677,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"stage": schema.StringAttribute{
-									Description:         "Run Task Stage.Must be one of the following values: 'pre_apply', 'pre_plan', 'post_plan'.Default: 'post_plan'.",
-									MarkdownDescription: "Run Task Stage.Must be one of the following values: 'pre_apply', 'pre_plan', 'post_plan'.Default: 'post_plan'.",
+									Description:         "Run Task Stage. Must be one of the following values: 'pre_apply', 'pre_plan', 'post_plan'. Default: 'post_plan'.",
+									MarkdownDescription: "Run Task Stage. Must be one of the following values: 'pre_apply', 'pre_plan', 'post_plan'. Default: 'post_plan'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -694,13 +694,13 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"run_triggers": schema.ListNestedAttribute{
-						Description:         "Run triggers allow you to connect this workspace to one or more source workspaces.These connections allow runs to queue automatically in this workspace on successful apply of runs in any of the source workspaces.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-triggers",
-						MarkdownDescription: "Run triggers allow you to connect this workspace to one or more source workspaces.These connections allow runs to queue automatically in this workspace on successful apply of runs in any of the source workspaces.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-triggers",
+						Description:         "Run triggers allow you to connect this workspace to one or more source workspaces. These connections allow runs to queue automatically in this workspace on successful apply of runs in any of the source workspaces. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-triggers",
+						MarkdownDescription: "Run triggers allow you to connect this workspace to one or more source workspaces. These connections allow runs to queue automatically in this workspace on successful apply of runs in any of the source workspaces. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-triggers",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"id": schema.StringAttribute{
-									Description:         "Source Workspace ID.Must match pattern: '^ws-[a-zA-Z0-9]+$'",
-									MarkdownDescription: "Source Workspace ID.Must match pattern: '^ws-[a-zA-Z0-9]+$'",
+									Description:         "Source Workspace ID. Must match pattern: '^ws-[a-zA-Z0-9]+$'",
+									MarkdownDescription: "Source Workspace ID. Must match pattern: '^ws-[a-zA-Z0-9]+$'",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -727,12 +727,12 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"ssh_key": schema.SingleNestedAttribute{
-						Description:         "SSH key used to clone Terraform modules.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/ssh-keys",
-						MarkdownDescription: "SSH key used to clone Terraform modules.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/ssh-keys",
+						Description:         "SSH key used to clone Terraform modules. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/ssh-keys",
+						MarkdownDescription: "SSH key used to clone Terraform modules. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/ssh-keys",
 						Attributes: map[string]schema.Attribute{
 							"id": schema.StringAttribute{
-								Description:         "SSH key ID.Must match pattern: '^sshkey-[a-zA-Z0-9]+$'",
-								MarkdownDescription: "SSH key ID.Must match pattern: '^sshkey-[a-zA-Z0-9]+$'",
+								Description:         "SSH key ID. Must match pattern: '^sshkey-[a-zA-Z0-9]+$'",
+								MarkdownDescription: "SSH key ID. Must match pattern: '^sshkey-[a-zA-Z0-9]+$'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -758,8 +758,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"tags": schema.ListAttribute{
-						Description:         "Workspace tags are used to help identify and group together workspaces.Tags must be one or more characters; can include letters, numbers, colons, hyphens, and underscores; and must begin and end with a letter or number.",
-						MarkdownDescription: "Workspace tags are used to help identify and group together workspaces.Tags must be one or more characters; can include letters, numbers, colons, hyphens, and underscores; and must begin and end with a letter or number.",
+						Description:         "Workspace tags are used to help identify and group together workspaces. Tags must be one or more characters; can include letters, numbers, colons, hyphens, and underscores; and must begin and end with a letter or number.",
+						MarkdownDescription: "Workspace tags are used to help identify and group together workspaces. Tags must be one or more characters; can include letters, numbers, colons, hyphens, and underscores; and must begin and end with a letter or number.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -767,13 +767,13 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"team_access": schema.ListNestedAttribute{
-						Description:         "HCP Terraform workspaces can only be accessed by users with the correct permissions.You can manage permissions for a workspace on a per-team basis.When a workspace is created, only the owners team and teams with the 'manage workspaces' permission can access it,with full admin permissions. These teams' access can't be removed from a workspace.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/access",
-						MarkdownDescription: "HCP Terraform workspaces can only be accessed by users with the correct permissions.You can manage permissions for a workspace on a per-team basis.When a workspace is created, only the owners team and teams with the 'manage workspaces' permission can access it,with full admin permissions. These teams' access can't be removed from a workspace.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/access",
+						Description:         "HCP Terraform workspaces can only be accessed by users with the correct permissions. You can manage permissions for a workspace on a per-team basis. When a workspace is created, only the owners team and teams with the 'manage workspaces' permission can access it, with full admin permissions. These teams' access can't be removed from a workspace. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/access",
+						MarkdownDescription: "HCP Terraform workspaces can only be accessed by users with the correct permissions. You can manage permissions for a workspace on a per-team basis. When a workspace is created, only the owners team and teams with the 'manage workspaces' permission can access it, with full admin permissions. These teams' access can't be removed from a workspace. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/access",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"access": schema.StringAttribute{
-									Description:         "There are two ways to choose which permissions a given team has on a workspace: fixed permission sets, and custom permissions.Must be one of the following values: 'admin', 'custom', 'plan', 'read', 'write'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#workspace-permissions",
-									MarkdownDescription: "There are two ways to choose which permissions a given team has on a workspace: fixed permission sets, and custom permissions.Must be one of the following values: 'admin', 'custom', 'plan', 'read', 'write'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#workspace-permissions",
+									Description:         "There are two ways to choose which permissions a given team has on a workspace: fixed permission sets, and custom permissions. Must be one of the following values: 'admin', 'custom', 'plan', 'read', 'write'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#workspace-permissions",
+									MarkdownDescription: "There are two ways to choose which permissions a given team has on a workspace: fixed permission sets, and custom permissions. Must be one of the following values: 'admin', 'custom', 'plan', 'read', 'write'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#workspace-permissions",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -783,20 +783,20 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"custom": schema.SingleNestedAttribute{
-									Description:         "Custom permissions let you assign specific, finer-grained permissions to a team than the broader fixed permission sets provide.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#custom-workspace-permissions",
-									MarkdownDescription: "Custom permissions let you assign specific, finer-grained permissions to a team than the broader fixed permission sets provide.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#custom-workspace-permissions",
+									Description:         "Custom permissions let you assign specific, finer-grained permissions to a team than the broader fixed permission sets provide. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#custom-workspace-permissions",
+									MarkdownDescription: "Custom permissions let you assign specific, finer-grained permissions to a team than the broader fixed permission sets provide. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions#custom-workspace-permissions",
 									Attributes: map[string]schema.Attribute{
 										"run_tasks": schema.BoolAttribute{
-											Description:         "Manage Workspace Run Tasks.Default: 'false'.",
-											MarkdownDescription: "Manage Workspace Run Tasks.Default: 'false'.",
+											Description:         "Manage Workspace Run Tasks. Default: 'false'.",
+											MarkdownDescription: "Manage Workspace Run Tasks. Default: 'false'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"runs": schema.StringAttribute{
-											Description:         "Run access.Must be one of the following values: 'apply', 'plan', 'read'.Default: 'read'.",
-											MarkdownDescription: "Run access.Must be one of the following values: 'apply', 'plan', 'read'.Default: 'read'.",
+											Description:         "Run access. Must be one of the following values: 'apply', 'plan', 'read'. Default: 'read'.",
+											MarkdownDescription: "Run access. Must be one of the following values: 'apply', 'plan', 'read'. Default: 'read'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -806,8 +806,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 										},
 
 										"sentinel": schema.StringAttribute{
-											Description:         "Download Sentinel mocks.Must be one of the following values: 'none', 'read'.Default: 'none'.",
-											MarkdownDescription: "Download Sentinel mocks.Must be one of the following values: 'none', 'read'.Default: 'none'.",
+											Description:         "Download Sentinel mocks. Must be one of the following values: 'none', 'read'. Default: 'none'.",
+											MarkdownDescription: "Download Sentinel mocks. Must be one of the following values: 'none', 'read'. Default: 'none'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -817,8 +817,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 										},
 
 										"state_versions": schema.StringAttribute{
-											Description:         "State access.Must be one of the following values: 'none', 'read', 'read-outputs', 'write'.Default: 'none'.",
-											MarkdownDescription: "State access.Must be one of the following values: 'none', 'read', 'read-outputs', 'write'.Default: 'none'.",
+											Description:         "State access. Must be one of the following values: 'none', 'read', 'read-outputs', 'write'. Default: 'none'.",
+											MarkdownDescription: "State access. Must be one of the following values: 'none', 'read', 'read-outputs', 'write'. Default: 'none'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -828,8 +828,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 										},
 
 										"variables": schema.StringAttribute{
-											Description:         "Variable access.Must be one of the following values: 'none', 'read', 'write'.Default: 'none'.",
-											MarkdownDescription: "Variable access.Must be one of the following values: 'none', 'read', 'write'.Default: 'none'.",
+											Description:         "Variable access. Must be one of the following values: 'none', 'read', 'write'. Default: 'none'.",
+											MarkdownDescription: "Variable access. Must be one of the following values: 'none', 'read', 'write'. Default: 'none'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -839,8 +839,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 										},
 
 										"workspace_locking": schema.BoolAttribute{
-											Description:         "Lock/unlock workspace.Default: 'false'.",
-											MarkdownDescription: "Lock/unlock workspace.Default: 'false'.",
+											Description:         "Lock/unlock workspace. Default: 'false'.",
+											MarkdownDescription: "Lock/unlock workspace. Default: 'false'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -852,12 +852,12 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"team": schema.SingleNestedAttribute{
-									Description:         "Team to grant access.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/teams",
-									MarkdownDescription: "Team to grant access.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/teams",
+									Description:         "Team to grant access. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/teams",
+									MarkdownDescription: "Team to grant access. More information: - https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/teams",
 									Attributes: map[string]schema.Attribute{
 										"id": schema.StringAttribute{
-											Description:         "Team ID.Must match pattern: '^team-[a-zA-Z0-9]+$'",
-											MarkdownDescription: "Team ID.Must match pattern: '^team-[a-zA-Z0-9]+$'",
+											Description:         "Team ID. Must match pattern: '^team-[a-zA-Z0-9]+$'",
+											MarkdownDescription: "Team ID. Must match pattern: '^team-[a-zA-Z0-9]+$'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -889,8 +889,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"terraform_variables": schema.ListNestedAttribute{
-						Description:         "Terraform variables for all plans and applies in this workspace.Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#terraform-variables",
-						MarkdownDescription: "Terraform variables for all plans and applies in this workspace.Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables  - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#terraform-variables",
+						Description:         "Terraform variables for all plans and applies in this workspace. Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#terraform-variables",
+						MarkdownDescription: "Terraform variables for all plans and applies in this workspace. Variables defined within a workspace always overwrite variables from variable sets that have the same type and the same key. More information: - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables - https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#terraform-variables",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"description": schema.StringAttribute{
@@ -905,8 +905,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"hcl": schema.BoolAttribute{
-									Description:         "Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime.Default: 'false'.",
-									MarkdownDescription: "Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime.Default: 'false'.",
+									Description:         "Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime. Default: 'false'.",
+									MarkdownDescription: "Parse this field as HashiCorp Configuration Language (HCL). This allows you to interpolate values at runtime. Default: 'false'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -924,8 +924,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								},
 
 								"sensitive": schema.BoolAttribute{
-									Description:         "Sensitive variables are never shown in the UI or API.They may appear in Terraform logs if your configuration is designed to output them.Default: 'false'.",
-									MarkdownDescription: "Sensitive variables are never shown in the UI or API.They may appear in Terraform logs if your configuration is designed to output them.Default: 'false'.",
+									Description:         "Sensitive variables are never shown in the UI or API. They may appear in Terraform logs if your configuration is designed to output them. Default: 'false'.",
+									MarkdownDescription: "Sensitive variables are never shown in the UI or API. They may appear in Terraform logs if your configuration is designed to output them. Default: 'false'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -959,8 +959,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -984,16 +984,16 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 											MarkdownDescription: "Selects a key of a Secret.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1024,8 +1024,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"terraform_version": schema.StringAttribute{
-						Description:         "The version of Terraform to use for this workspace.If not specified, the latest available version will be used.Must match pattern: '^d{1}.d{1,2}.d{1,2}$'More information:  - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-version",
-						MarkdownDescription: "The version of Terraform to use for this workspace.If not specified, the latest available version will be used.Must match pattern: '^d{1}.d{1,2}.d{1,2}$'More information:  - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-version",
+						Description:         "The version of Terraform to use for this workspace. If not specified, the latest available version will be used. Must match pattern: '^d{1}.d{1,2}.d{1,2}$' More information: - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-version",
+						MarkdownDescription: "The version of Terraform to use for this workspace. If not specified, the latest available version will be used. Must match pattern: '^d{1}.d{1,2}.d{1,2}$' More information: - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-version",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1043,16 +1043,16 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 								MarkdownDescription: "Selects a key of a secret in the workspace's namespace",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Description:         "The key of the secret to select from. Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-										MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1077,8 +1077,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"version_control": schema.SingleNestedAttribute{
-						Description:         "Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow.Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider.More information:  - https://www.terraform.io/cloud-docs/run/ui  - https://www.terraform.io/cloud-docs/vcs",
-						MarkdownDescription: "Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow.Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider.More information:  - https://www.terraform.io/cloud-docs/run/ui  - https://www.terraform.io/cloud-docs/vcs",
+						Description:         "Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider. More information: - https://www.terraform.io/cloud-docs/run/ui - https://www.terraform.io/cloud-docs/vcs",
+						MarkdownDescription: "Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider. More information: - https://www.terraform.io/cloud-docs/run/ui - https://www.terraform.io/cloud-docs/vcs",
 						Attributes: map[string]schema.Attribute{
 							"branch": schema.StringAttribute{
 								Description:         "The repository branch that Run will execute from. This defaults to the repository's default branch (e.g. main).",
@@ -1092,8 +1092,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 							},
 
 							"o_auth_token_id": schema.StringAttribute{
-								Description:         "The VCS Connection (OAuth Connection + Token) to use.Must match pattern: '^ot-[a-zA-Z0-9]+$'",
-								MarkdownDescription: "The VCS Connection (OAuth Connection + Token) to use.Must match pattern: '^ot-[a-zA-Z0-9]+$'",
+								Description:         "The VCS Connection (OAuth Connection + Token) to use. Must match pattern: '^ot-[a-zA-Z0-9]+$'",
+								MarkdownDescription: "The VCS Connection (OAuth Connection + Token) to use. Must match pattern: '^ot-[a-zA-Z0-9]+$'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1114,8 +1114,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 							},
 
 							"speculative_plans": schema.BoolAttribute{
-								Description:         "Whether this workspace allows automatic speculative plans on PR.Default: 'true'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/run/ui#speculative-plans-on-pull-requests  - https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations#speculative-plans",
-								MarkdownDescription: "Whether this workspace allows automatic speculative plans on PR.Default: 'true'.More information:  - https://developer.hashicorp.com/terraform/cloud-docs/run/ui#speculative-plans-on-pull-requests  - https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations#speculative-plans",
+								Description:         "Whether this workspace allows automatic speculative plans on PR. Default: 'true'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/ui#speculative-plans-on-pull-requests - https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations#speculative-plans",
+								MarkdownDescription: "Whether this workspace allows automatic speculative plans on PR. Default: 'true'. More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/ui#speculative-plans-on-pull-requests - https://developer.hashicorp.com/terraform/cloud-docs/run/remote-operations#speculative-plans",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1127,8 +1127,8 @@ func (r *AppTerraformIoWorkspaceV1Alpha2Manifest) Schema(_ context.Context, _ da
 					},
 
 					"working_directory": schema.StringAttribute{
-						Description:         "The directory where Terraform will execute, specified as a relative path from the root of the configuration directory.More information:  - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-working-directory",
-						MarkdownDescription: "The directory where Terraform will execute, specified as a relative path from the root of the configuration directory.More information:  - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-working-directory",
+						Description:         "The directory where Terraform will execute, specified as a relative path from the root of the configuration directory. More information: - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-working-directory",
+						MarkdownDescription: "The directory where Terraform will execute, specified as a relative path from the root of the configuration directory. More information: - https://www.terraform.io/cloud-docs/workspaces/settings#terraform-working-directory",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

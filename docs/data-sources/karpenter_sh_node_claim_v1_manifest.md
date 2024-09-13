@@ -63,11 +63,11 @@ Required:
 
 Optional:
 
-- `expire_after` (String) ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.
+- `expire_after` (String) ExpireAfter is the duration the controller will wait before terminating a node, measured from when the node is created. This is useful to implement features like eventually consistent node upgrade, memory leak protection, and disruption testing.
 - `resources` (Attributes) Resources models the resource requirements for the NodeClaim to launch (see [below for nested schema](#nestedatt--spec--resources))
-- `startup_taints` (Attributes List) StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automaticallywithin a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used bydaemonsets to allow initialization and enforce startup ordering.  StartupTaints are ignored for provisioningpurposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them. (see [below for nested schema](#nestedatt--spec--startup_taints))
+- `startup_taints` (Attributes List) StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automatically within a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used by daemonsets to allow initialization and enforce startup ordering. StartupTaints are ignored for provisioning purposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them. (see [below for nested schema](#nestedatt--spec--startup_taints))
 - `taints` (Attributes List) Taints will be applied to the NodeClaim's node. (see [below for nested schema](#nestedatt--spec--taints))
-- `termination_grace_period` (String) TerminationGracePeriod is the maximum duration the controller will wait before forcefully deleting the pods on a node, measured from when deletion is first initiated.Warning: this feature takes precedence over a Pod's terminationGracePeriodSeconds value, and bypasses any blocked PDBs or the karpenter.sh/do-not-disrupt annotation.This field is intended to be used by cluster administrators to enforce that nodes can be cycled within a given time period.When set, drifted nodes will begin draining even if there are pods blocking eviction. Draining will respect PDBs and the do-not-disrupt annotation until the TGP is reached.Karpenter will preemptively delete pods so their terminationGracePeriodSeconds align with the node's terminationGracePeriod.If a pod would be terminated without being granted its full terminationGracePeriodSeconds prior to the node timeout,that pod will be deleted at T = node timeout - pod terminationGracePeriodSeconds.The feature can also be used to allow maximum time limits for long-running jobs which can delay node termination with preStop hooks.If left undefined, the controller will wait indefinitely for pods to be drained.
+- `termination_grace_period` (String) TerminationGracePeriod is the maximum duration the controller will wait before forcefully deleting the pods on a node, measured from when deletion is first initiated. Warning: this feature takes precedence over a Pod's terminationGracePeriodSeconds value, and bypasses any blocked PDBs or the karpenter.sh/do-not-disrupt annotation. This field is intended to be used by cluster administrators to enforce that nodes can be cycled within a given time period. When set, drifted nodes will begin draining even if there are pods blocking eviction. Draining will respect PDBs and the do-not-disrupt annotation until the TGP is reached. Karpenter will preemptively delete pods so their terminationGracePeriodSeconds align with the node's terminationGracePeriod. If a pod would be terminated without being granted its full terminationGracePeriodSeconds prior to the node timeout, that pod will be deleted at T = node timeout - pod terminationGracePeriodSeconds. The feature can also be used to allow maximum time limits for long-running jobs which can delay node termination with preStop hooks. If left undefined, the controller will wait indefinitely for pods to be drained.
 
 <a id="nestedatt--spec--node_class_ref"></a>
 ### Nested Schema for `spec.node_class_ref`
@@ -85,12 +85,12 @@ Required:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `min_values` (Number) This field is ALPHA and can be dropped or replaced at any timeMinValues is the minimum number of unique values required to define the flexibility of the specific requirement.
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `min_values` (Number) This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--resources"></a>
@@ -106,12 +106,12 @@ Optional:
 
 Required:
 
-- `effect` (String) Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
+- `effect` (String) Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
 - `key` (String) Required. The taint key to be applied to a node.
 
 Optional:
 
-- `time_added` (String) TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.
+- `time_added` (String) TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
 - `value` (String) The taint value corresponding to the taint key.
 
 
@@ -120,10 +120,10 @@ Optional:
 
 Required:
 
-- `effect` (String) Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
+- `effect` (String) Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
 - `key` (String) Required. The taint key to be applied to a node.
 
 Optional:
 
-- `time_added` (String) TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.
+- `time_added` (String) TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
 - `value` (String) The taint value corresponding to the taint key.

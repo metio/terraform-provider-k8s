@@ -63,8 +63,8 @@ Optional:
 - `add_linkerd_headers` (Boolean)
 - `add_request_headers` (Map of String)
 - `add_response_headers` (Map of String)
-- `allow_upgrade` (List of String) A case-insensitive list of the non-HTTP protocols to allow 'upgrading' to from HTTP via the 'Connection: upgrade' mechanism[1].  After the upgrade, Ambassador does not interpret the traffic, and behaves similarly to how it does for TCPMappings.  [1]: https://tools.ietf.org/html/rfc7230#section-6.7  For example, if your upstream service supports WebSockets, you would write  allow_upgrade: - websocket  Or if your upstream service supports upgrading from HTTP to SPDY (as the Kubernetes apiserver does for 'kubectl exec' functionality), you would write  allow_upgrade: - spdy/3.1
-- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource.  May either be a string or a list of strings.  If no value is provided, the default is:  ambassador_id: - 'default'
+- `allow_upgrade` (List of String) A case-insensitive list of the non-HTTP protocols to allow 'upgrading' to from HTTP via the 'Connection: upgrade' mechanism[1]. After the upgrade, Ambassador does not interpret the traffic, and behaves similarly to how it does for TCPMappings. [1]: https://tools.ietf.org/html/rfc7230#section-6.7 For example, if your upstream service supports WebSockets, you would write allow_upgrade: - websocket Or if your upstream service supports upgrading from HTTP to SPDY (as the Kubernetes apiserver does for 'kubectl exec' functionality), you would write allow_upgrade: - spdy/3.1
+- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource. May either be a string or a list of strings. If no value is provided, the default is: ambassador_id: - 'default'
 - `auth_context_extensions` (Map of String)
 - `auto_host_rewrite` (Boolean)
 - `bypass_auth` (Boolean)

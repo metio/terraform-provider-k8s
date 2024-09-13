@@ -148,12 +148,12 @@ func (r *EksServicesK8SAwsFargateProfileV1Alpha1Manifest) Schema(_ context.Conte
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "FargateProfileSpec defines the desired state of FargateProfile.An object representing an Fargate profile.",
-				MarkdownDescription: "FargateProfileSpec defines the desired state of FargateProfile.An object representing an Fargate profile.",
+				Description:         "FargateProfileSpec defines the desired state of FargateProfile. An object representing an Fargate profile.",
+				MarkdownDescription: "FargateProfileSpec defines the desired state of FargateProfile. An object representing an Fargate profile.",
 				Attributes: map[string]schema.Attribute{
 					"client_request_token": schema.StringAttribute{
-						Description:         "A unique, case-sensitive identifier that you provide to ensure the idempotencyof the request.",
-						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensure the idempotencyof the request.",
+						Description:         "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -168,12 +168,12 @@ func (r *EksServicesK8SAwsFargateProfileV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"cluster_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -210,20 +210,20 @@ func (r *EksServicesK8SAwsFargateProfileV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"pod_execution_role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the Pod execution role to use for a Podthat matches the selectors in the Fargate profile. The Pod execution roleallows Fargate infrastructure to register with your cluster as a node, andit provides read access to Amazon ECR image repositories. For more information,see Pod execution role (https://docs.aws.amazon.com/eks/latest/userguide/pod-execution-role.html)in the Amazon EKS User Guide.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the Pod execution role to use for a Podthat matches the selectors in the Fargate profile. The Pod execution roleallows Fargate infrastructure to register with your cluster as a node, andit provides read access to Amazon ECR image repositories. For more information,see Pod execution role (https://docs.aws.amazon.com/eks/latest/userguide/pod-execution-role.html)in the Amazon EKS User Guide.",
+						Description:         "The Amazon Resource Name (ARN) of the Pod execution role to use for a Pod that matches the selectors in the Fargate profile. The Pod execution role allows Fargate infrastructure to register with your cluster as a node, and it provides read access to Amazon ECR image repositories. For more information, see Pod execution role (https://docs.aws.amazon.com/eks/latest/userguide/pod-execution-role.html) in the Amazon EKS User Guide.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the Pod execution role to use for a Pod that matches the selectors in the Fargate profile. The Pod execution role allows Fargate infrastructure to register with your cluster as a node, and it provides read access to Amazon ECR image repositories. For more information, see Pod execution role (https://docs.aws.amazon.com/eks/latest/userguide/pod-execution-role.html) in the Amazon EKS User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"pod_execution_role_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -252,8 +252,8 @@ func (r *EksServicesK8SAwsFargateProfileV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"selectors": schema.ListNestedAttribute{
-						Description:         "The selectors to match for a Pod to use this Fargate profile. Each selectormust have an associated Kubernetes namespace. Optionally, you can also specifylabels for a namespace. You may specify up to five selectors in a Fargateprofile.",
-						MarkdownDescription: "The selectors to match for a Pod to use this Fargate profile. Each selectormust have an associated Kubernetes namespace. Optionally, you can also specifylabels for a namespace. You may specify up to five selectors in a Fargateprofile.",
+						Description:         "The selectors to match for a Pod to use this Fargate profile. Each selector must have an associated Kubernetes namespace. Optionally, you can also specify labels for a namespace. You may specify up to five selectors in a Fargate profile.",
+						MarkdownDescription: "The selectors to match for a Pod to use this Fargate profile. Each selector must have an associated Kubernetes namespace. Optionally, you can also specify labels for a namespace. You may specify up to five selectors in a Fargate profile.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"labels": schema.MapAttribute{
@@ -285,8 +285,8 @@ func (r *EksServicesK8SAwsFargateProfileV1Alpha1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -316,8 +316,8 @@ func (r *EksServicesK8SAwsFargateProfileV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"subnets": schema.ListAttribute{
-						Description:         "The IDs of subnets to launch a Pod into. A Pod running on Fargate isn't assigneda public IP address, so only private subnets (with no direct route to anInternet Gateway) are accepted for this parameter.",
-						MarkdownDescription: "The IDs of subnets to launch a Pod into. A Pod running on Fargate isn't assigneda public IP address, so only private subnets (with no direct route to anInternet Gateway) are accepted for this parameter.",
+						Description:         "The IDs of subnets to launch a Pod into. A Pod running on Fargate isn't assigned a public IP address, so only private subnets (with no direct route to an Internet Gateway) are accepted for this parameter.",
+						MarkdownDescription: "The IDs of subnets to launch a Pod into. A Pod running on Fargate isn't assigned a public IP address, so only private subnets (with no direct route to an Internet Gateway) are accepted for this parameter.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -325,8 +325,8 @@ func (r *EksServicesK8SAwsFargateProfileV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "Metadata that assists with categorization and organization. Each tag consistsof a key and an optional value. You define both. Tags don't propagate toany other cluster or Amazon Web Services resources.",
-						MarkdownDescription: "Metadata that assists with categorization and organization. Each tag consistsof a key and an optional value. You define both. Tags don't propagate toany other cluster or Amazon Web Services resources.",
+						Description:         "Metadata that assists with categorization and organization. Each tag consists of a key and an optional value. You define both. Tags don't propagate to any other cluster or Amazon Web Services resources.",
+						MarkdownDescription: "Metadata that assists with categorization and organization. Each tag consists of a key and an optional value. You define both. Tags don't propagate to any other cluster or Amazon Web Services resources.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

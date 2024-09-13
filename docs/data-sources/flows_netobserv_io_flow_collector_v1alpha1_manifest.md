@@ -3,12 +3,12 @@
 page_title: "k8s_flows_netobserv_io_flow_collector_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "flows.netobserv.io"
 description: |-
-  FlowCollector is the Schema for the flowcollectors API, which pilots and configures netflow collection.  Deprecated: This package will be removed in one of the next releases.
+  FlowCollector is the Schema for the flowcollectors API, which pilots and configures netflow collection. Deprecated: This package will be removed in one of the next releases.
 ---
 
 # k8s_flows_netobserv_io_flow_collector_v1alpha1_manifest (Data Source)
 
-FlowCollector is the Schema for the flowcollectors API, which pilots and configures netflow collection.  Deprecated: This package will be removed in one of the next releases.
+FlowCollector is the Schema for the flowcollectors API, which pilots and configures netflow collection. Deprecated: This package will be removed in one of the next releases.
 
 ## Example Usage
 
@@ -108,7 +108,7 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--agent--ebpf--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--agent--ebpf--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
@@ -139,7 +139,7 @@ Optional:
 
 Optional:
 
-- `namespace` (String) namespace  where the config map is going to be deployed.
+- `namespace` (String) namespace where the config map is going to be deployed.
 
 
 <a id="nestedatt--spec--agent--ipfix--ovn_kubernetes"></a>
@@ -179,7 +179,7 @@ Optional:
 
 - `max_replicas` (Number) maxReplicas is the upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.
 - `metrics` (Attributes List) metrics used by the pod autoscaler (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics))
-- `min_replicas` (Number) minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
+- `min_replicas` (Number) minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.
 - `status` (String) Status describe the desired status regarding deploying an horizontal pod autoscaler DISABLED will not deploy an horizontal pod autoscaler ENABLED will deploy an horizontal pod autoscaler
 
 <a id="nestedatt--spec--console_plugin--autoscaler--metrics"></a>
@@ -187,14 +187,14 @@ Optional:
 
 Required:
 
-- `type` (String) type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled
+- `type` (String) type is the type of metric source. It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled
 
 Optional:
 
 - `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--container_resource))
 - `external` (Attributes) external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--external))
 - `object` (Attributes) object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--object))
-- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods))
+- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--pods))
 - `resource` (Attributes) resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--console_plugin--autoscaler--metrics--resource))
 
 <a id="nestedatt--spec--console_plugin--autoscaler--metrics--container_resource"></a>
@@ -458,7 +458,7 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--console_plugin--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--console_plugin--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
@@ -750,7 +750,7 @@ Optional:
 
 - `max_replicas` (Number) maxReplicas is the upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.
 - `metrics` (Attributes List) metrics used by the pod autoscaler (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics))
-- `min_replicas` (Number) minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
+- `min_replicas` (Number) minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.
 - `status` (String) Status describe the desired status regarding deploying an horizontal pod autoscaler DISABLED will not deploy an horizontal pod autoscaler ENABLED will deploy an horizontal pod autoscaler
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics"></a>
@@ -758,14 +758,14 @@ Optional:
 
 Required:
 
-- `type` (String) type is the type of metric source.  It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled
+- `type` (String) type is the type of metric source. It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled
 
 Optional:
 
 - `container_resource` (Attributes) containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource))
 - `external` (Attributes) external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--external))
 - `object` (Attributes) object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object). (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--object))
-- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods))
+- `pods` (Attributes) pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--pods))
 - `resource` (Attributes) resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. (see [below for nested schema](#nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--resource))
 
 <a id="nestedatt--spec--processor--kafka_consumer_autoscaler--metrics--container_resource"></a>
@@ -1046,7 +1046,7 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--processor--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--processor--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 

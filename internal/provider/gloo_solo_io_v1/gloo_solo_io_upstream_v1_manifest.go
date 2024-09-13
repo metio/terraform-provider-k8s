@@ -59,6 +59,16 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 				} `tfsdk:"custom_host" json:"customHost,omitempty"`
 				Version *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"anthropic" json:"anthropic,omitempty"`
+			AzureOpenai *struct {
+				AuthToken *struct {
+					Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
+					SecretRef *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+				} `tfsdk:"auth_token" json:"authToken,omitempty"`
+				Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			} `tfsdk:"azure_openai" json:"azureOpenai,omitempty"`
 			Mistral *struct {
 				AuthToken *struct {
 					Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
@@ -1021,6 +1031,65 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"version": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"azure_openai": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"auth_token": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"inline": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"secret_ref": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"endpoint": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

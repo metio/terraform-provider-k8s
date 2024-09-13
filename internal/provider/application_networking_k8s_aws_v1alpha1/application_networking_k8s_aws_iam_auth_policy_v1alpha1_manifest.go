@@ -140,8 +140,8 @@ func (r *ApplicationNetworkingK8SAwsIamauthPolicyV1Alpha1Manifest) Schema(_ cont
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef points to the Kubernetes Gateway, HTTPRoute, or GRPCRoute resource that will have this policy attached.  This field is following the guidelines of Kubernetes Gateway API policy attachment.",
-						MarkdownDescription: "TargetRef points to the Kubernetes Gateway, HTTPRoute, or GRPCRoute resource that will have this policy attached.  This field is following the guidelines of Kubernetes Gateway API policy attachment.",
+						Description:         "TargetRef points to the Kubernetes Gateway, HTTPRoute, or GRPCRoute resource that will have this policy attached. This field is following the guidelines of Kubernetes Gateway API policy attachment.",
+						MarkdownDescription: "TargetRef points to the Kubernetes Gateway, HTTPRoute, or GRPCRoute resource that will have this policy attached. This field is following the guidelines of Kubernetes Gateway API policy attachment.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "Group is the group of the target resource.",

@@ -67,7 +67,7 @@ Required:
 
 Optional:
 
-- `auth_secret_ref` (Attributes) AuthSecretRef is the SecretReference that contains authentication information of the Machine.The Secret must contain username and password keys. This is optional as it is not required when usingthe RPC provider. (see [below for nested schema](#nestedatt--spec--connection--auth_secret_ref))
+- `auth_secret_ref` (Attributes) AuthSecretRef is the SecretReference that contains authentication information of the Machine. The Secret must contain username and password keys. This is optional as it is not required when using the RPC provider. (see [below for nested schema](#nestedatt--spec--connection--auth_secret_ref))
 - `port` (Number) Port is the port number for connecting with the Machine.
 - `provider_options` (Attributes) ProviderOptions contains provider specific options. (see [below for nested schema](#nestedatt--spec--connection--provider_options))
 
@@ -124,7 +124,7 @@ Required:
 
 Required:
 
-- `consumer_url` (String) ConsumerURL is the URL where an rpc consumer/listener is runningand to which we will send and receive all notifications.
+- `consumer_url` (String) ConsumerURL is the URL where an rpc consumer/listener is running and to which we will send and receive all notifications.
 
 Optional:
 
@@ -169,6 +169,6 @@ Optional:
 
 Optional:
 
-- `append_algo_to_header_disabled` (Boolean) AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not.Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512
+- `append_algo_to_header_disabled` (Boolean) AppendAlgoToHeaderDisabled decides whether to append the algorithm to the signature header or not. Example: X-BMCLIB-Signature becomes X-BMCLIB-Signature-256 When set to true, a header will be added for each algorithm. Example: X-BMCLIB-Signature-256 and X-BMCLIB-Signature-512
 - `header_name` (String) HeaderName is the header name that should contain the signature(s). Example: X-BMCLIB-Signature
-- `included_payload_headers` (List of String) IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-HeaderAll headers will be deduplicated.
+- `included_payload_headers` (List of String) IncludedPayloadHeaders are headers whose values will be included in the signature payload. Example: X-BMCLIB-My-Custom-Header All headers will be deduplicated.

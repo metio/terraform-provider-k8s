@@ -219,20 +219,20 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "RuleGroupSpec defines the desired state of RuleGroup.The object that defines the rules in a rule group. This, along with RuleGroupResponse,define the rule group. You can retrieve all objects for a rule group by callingDescribeRuleGroup.Network Firewall uses a rule group to inspect and control network traffic.You define stateless rule groups to inspect individual packets and you definestateful rule groups to inspect packets in the context of their traffic flow.To use a rule group, you include it by reference in an Network Firewall firewallpolicy, then you use the policy in a firewall. You can reference a rule groupfrom more than one firewall policy, and you can use a firewall policy inmore than one firewall.",
-				MarkdownDescription: "RuleGroupSpec defines the desired state of RuleGroup.The object that defines the rules in a rule group. This, along with RuleGroupResponse,define the rule group. You can retrieve all objects for a rule group by callingDescribeRuleGroup.Network Firewall uses a rule group to inspect and control network traffic.You define stateless rule groups to inspect individual packets and you definestateful rule groups to inspect packets in the context of their traffic flow.To use a rule group, you include it by reference in an Network Firewall firewallpolicy, then you use the policy in a firewall. You can reference a rule groupfrom more than one firewall policy, and you can use a firewall policy inmore than one firewall.",
+				Description:         "RuleGroupSpec defines the desired state of RuleGroup. The object that defines the rules in a rule group. This, along with RuleGroupResponse, define the rule group. You can retrieve all objects for a rule group by calling DescribeRuleGroup. Network Firewall uses a rule group to inspect and control network traffic. You define stateless rule groups to inspect individual packets and you define stateful rule groups to inspect packets in the context of their traffic flow. To use a rule group, you include it by reference in an Network Firewall firewall policy, then you use the policy in a firewall. You can reference a rule group from more than one firewall policy, and you can use a firewall policy in more than one firewall.",
+				MarkdownDescription: "RuleGroupSpec defines the desired state of RuleGroup. The object that defines the rules in a rule group. This, along with RuleGroupResponse, define the rule group. You can retrieve all objects for a rule group by calling DescribeRuleGroup. Network Firewall uses a rule group to inspect and control network traffic. You define stateless rule groups to inspect individual packets and you define stateful rule groups to inspect packets in the context of their traffic flow. To use a rule group, you include it by reference in an Network Firewall firewall policy, then you use the policy in a firewall. You can reference a rule group from more than one firewall policy, and you can use a firewall policy in more than one firewall.",
 				Attributes: map[string]schema.Attribute{
 					"analyze_rule_group": schema.BoolAttribute{
-						Description:         "Indicates whether you want Network Firewall to analyze the stateless rulesin the rule group for rule behavior such as asymmetric routing. If set toTRUE, Network Firewall runs the analysis and then creates the rule groupfor you. To run the stateless rule group analyzer without creating the rulegroup, set DryRun to TRUE.",
-						MarkdownDescription: "Indicates whether you want Network Firewall to analyze the stateless rulesin the rule group for rule behavior such as asymmetric routing. If set toTRUE, Network Firewall runs the analysis and then creates the rule groupfor you. To run the stateless rule group analyzer without creating the rulegroup, set DryRun to TRUE.",
+						Description:         "Indicates whether you want Network Firewall to analyze the stateless rules in the rule group for rule behavior such as asymmetric routing. If set to TRUE, Network Firewall runs the analysis and then creates the rule group for you. To run the stateless rule group analyzer without creating the rule group, set DryRun to TRUE.",
+						MarkdownDescription: "Indicates whether you want Network Firewall to analyze the stateless rules in the rule group for rule behavior such as asymmetric routing. If set to TRUE, Network Firewall runs the analysis and then creates the rule group for you. To run the stateless rule group analyzer without creating the rule group, set DryRun to TRUE.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"capacity": schema.Int64Attribute{
-						Description:         "The maximum operating resources that this rule group can use. Rule groupcapacity is fixed at creation. When you update a rule group, you are limitedto this capacity. When you reference a rule group from a firewall policy,Network Firewall reserves this capacity for the rule group.You can retrieve the capacity that would be required for a rule group beforeyou create the rule group by calling CreateRuleGroup with DryRun set to TRUE.You can't change or exceed this capacity when you update the rule group,so leave room for your rule group to grow.Capacity for a stateless rule groupFor a stateless rule group, the capacity required is the sum of the capacityrequirements of the individual rules that you expect to have in the rulegroup.To calculate the capacity requirement of a single rule, multiply the capacityrequirement values of each of the rule's match settings:   * A match setting with no criteria specified has a value of 1.   * A match setting with Any specified has a value of 1.   * All other match settings have a value equal to the number of elements   provided in the setting. For example, a protocol setting ['UDP'] and a   source setting ['10.0.0.0/24'] each have a value of 1. A protocol setting   ['UDP','TCP'] has a value of 2. A source setting ['10.0.0.0/24','10.0.0.1/24','10.0.0.2/24']   has a value of 3.A rule with no criteria specified in any of its match settings has a capacityrequirement of 1. A rule with protocol setting ['UDP','TCP'], source setting['10.0.0.0/24','10.0.0.1/24','10.0.0.2/24'], and a single specification orno specification for each of the other match settings has a capacity requirementof 6.Capacity for a stateful rule groupFor a stateful rule group, the minimum capacity required is the number ofindividual rules that you expect to have in the rule group.",
-						MarkdownDescription: "The maximum operating resources that this rule group can use. Rule groupcapacity is fixed at creation. When you update a rule group, you are limitedto this capacity. When you reference a rule group from a firewall policy,Network Firewall reserves this capacity for the rule group.You can retrieve the capacity that would be required for a rule group beforeyou create the rule group by calling CreateRuleGroup with DryRun set to TRUE.You can't change or exceed this capacity when you update the rule group,so leave room for your rule group to grow.Capacity for a stateless rule groupFor a stateless rule group, the capacity required is the sum of the capacityrequirements of the individual rules that you expect to have in the rulegroup.To calculate the capacity requirement of a single rule, multiply the capacityrequirement values of each of the rule's match settings:   * A match setting with no criteria specified has a value of 1.   * A match setting with Any specified has a value of 1.   * All other match settings have a value equal to the number of elements   provided in the setting. For example, a protocol setting ['UDP'] and a   source setting ['10.0.0.0/24'] each have a value of 1. A protocol setting   ['UDP','TCP'] has a value of 2. A source setting ['10.0.0.0/24','10.0.0.1/24','10.0.0.2/24']   has a value of 3.A rule with no criteria specified in any of its match settings has a capacityrequirement of 1. A rule with protocol setting ['UDP','TCP'], source setting['10.0.0.0/24','10.0.0.1/24','10.0.0.2/24'], and a single specification orno specification for each of the other match settings has a capacity requirementof 6.Capacity for a stateful rule groupFor a stateful rule group, the minimum capacity required is the number ofindividual rules that you expect to have in the rule group.",
+						Description:         "The maximum operating resources that this rule group can use. Rule group capacity is fixed at creation. When you update a rule group, you are limited to this capacity. When you reference a rule group from a firewall policy, Network Firewall reserves this capacity for the rule group. You can retrieve the capacity that would be required for a rule group before you create the rule group by calling CreateRuleGroup with DryRun set to TRUE. You can't change or exceed this capacity when you update the rule group, so leave room for your rule group to grow. Capacity for a stateless rule group For a stateless rule group, the capacity required is the sum of the capacity requirements of the individual rules that you expect to have in the rule group. To calculate the capacity requirement of a single rule, multiply the capacity requirement values of each of the rule's match settings: * A match setting with no criteria specified has a value of 1. * A match setting with Any specified has a value of 1. * All other match settings have a value equal to the number of elements provided in the setting. For example, a protocol setting ['UDP'] and a source setting ['10.0.0.0/24'] each have a value of 1. A protocol setting ['UDP','TCP'] has a value of 2. A source setting ['10.0.0.0/24','10.0.0.1/24','10.0.0.2/24'] has a value of 3. A rule with no criteria specified in any of its match settings has a capacity requirement of 1. A rule with protocol setting ['UDP','TCP'], source setting ['10.0.0.0/24','10.0.0.1/24','10.0.0.2/24'], and a single specification or no specification for each of the other match settings has a capacity requirement of 6. Capacity for a stateful rule group For a stateful rule group, the minimum capacity required is the number of individual rules that you expect to have in the rule group.",
+						MarkdownDescription: "The maximum operating resources that this rule group can use. Rule group capacity is fixed at creation. When you update a rule group, you are limited to this capacity. When you reference a rule group from a firewall policy, Network Firewall reserves this capacity for the rule group. You can retrieve the capacity that would be required for a rule group before you create the rule group by calling CreateRuleGroup with DryRun set to TRUE. You can't change or exceed this capacity when you update the rule group, so leave room for your rule group to grow. Capacity for a stateless rule group For a stateless rule group, the capacity required is the sum of the capacity requirements of the individual rules that you expect to have in the rule group. To calculate the capacity requirement of a single rule, multiply the capacity requirement values of each of the rule's match settings: * A match setting with no criteria specified has a value of 1. * A match setting with Any specified has a value of 1. * All other match settings have a value equal to the number of elements provided in the setting. For example, a protocol setting ['UDP'] and a source setting ['10.0.0.0/24'] each have a value of 1. A protocol setting ['UDP','TCP'] has a value of 2. A source setting ['10.0.0.0/24','10.0.0.1/24','10.0.0.2/24'] has a value of 3. A rule with no criteria specified in any of its match settings has a capacity requirement of 1. A rule with protocol setting ['UDP','TCP'], source setting ['10.0.0.0/24','10.0.0.1/24','10.0.0.2/24'], and a single specification or no specification for each of the other match settings has a capacity requirement of 6. Capacity for a stateful rule group For a stateful rule group, the minimum capacity required is the number of individual rules that you expect to have in the rule group.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -247,8 +247,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"dry_run": schema.BoolAttribute{
-						Description:         "Indicates whether you want Network Firewall to just check the validity ofthe request, rather than run the request.If set to TRUE, Network Firewall checks whether the request can run successfully,but doesn't actually make the requested changes. The call returns the valuethat the request would return if you ran it with dry run set to FALSE, butdoesn't make additions or changes to your resources. This option allows youto make sure that you have the required permissions to run the request andthat your request parameters are valid.If set to FALSE, Network Firewall makes the requested changes to your resources.",
-						MarkdownDescription: "Indicates whether you want Network Firewall to just check the validity ofthe request, rather than run the request.If set to TRUE, Network Firewall checks whether the request can run successfully,but doesn't actually make the requested changes. The call returns the valuethat the request would return if you ran it with dry run set to FALSE, butdoesn't make additions or changes to your resources. This option allows youto make sure that you have the required permissions to run the request andthat your request parameters are valid.If set to FALSE, Network Firewall makes the requested changes to your resources.",
+						Description:         "Indicates whether you want Network Firewall to just check the validity of the request, rather than run the request. If set to TRUE, Network Firewall checks whether the request can run successfully, but doesn't actually make the requested changes. The call returns the value that the request would return if you ran it with dry run set to FALSE, but doesn't make additions or changes to your resources. This option allows you to make sure that you have the required permissions to run the request and that your request parameters are valid. If set to FALSE, Network Firewall makes the requested changes to your resources.",
+						MarkdownDescription: "Indicates whether you want Network Firewall to just check the validity of the request, rather than run the request. If set to TRUE, Network Firewall checks whether the request can run successfully, but doesn't actually make the requested changes. The call returns the value that the request would return if you ran it with dry run set to FALSE, but doesn't make additions or changes to your resources. This option allows you to make sure that you have the required permissions to run the request and that your request parameters are valid. If set to FALSE, Network Firewall makes the requested changes to your resources.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -280,8 +280,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"rule_group": schema.SingleNestedAttribute{
-						Description:         "An object that defines the rule group rules.You must provide either this rule group setting or a Rules setting, but notboth.",
-						MarkdownDescription: "An object that defines the rule group rules.You must provide either this rule group setting or a Rules setting, but notboth.",
+						Description:         "An object that defines the rule group rules. You must provide either this rule group setting or a Rules setting, but not both.",
+						MarkdownDescription: "An object that defines the rule group rules. You must provide either this rule group setting or a Rules setting, but not both.",
 						Attributes: map[string]schema.Attribute{
 							"reference_sets": schema.SingleNestedAttribute{
 								Description:         "Contains a set of IP set references.",
@@ -310,8 +310,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"rule_variables": schema.SingleNestedAttribute{
-								Description:         "Settings that are available for use in the rules in the RuleGroup where thisis defined.",
-								MarkdownDescription: "Settings that are available for use in the rules in the RuleGroup where thisis defined.",
+								Description:         "Settings that are available for use in the rules in the RuleGroup where this is defined.",
+								MarkdownDescription: "Settings that are available for use in the rules in the RuleGroup where this is defined.",
 								Attributes: map[string]schema.Attribute{
 									"ip_sets": schema.SingleNestedAttribute{
 										Description:         "",
@@ -355,12 +355,12 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"rules_source": schema.SingleNestedAttribute{
-								Description:         "The stateless or stateful rules definitions for use in a single rule group.Each rule group requires a single RulesSource. You can use an instance ofthis for either stateless rules or stateful rules.",
-								MarkdownDescription: "The stateless or stateful rules definitions for use in a single rule group.Each rule group requires a single RulesSource. You can use an instance ofthis for either stateless rules or stateful rules.",
+								Description:         "The stateless or stateful rules definitions for use in a single rule group. Each rule group requires a single RulesSource. You can use an instance of this for either stateless rules or stateful rules.",
+								MarkdownDescription: "The stateless or stateful rules definitions for use in a single rule group. Each rule group requires a single RulesSource. You can use an instance of this for either stateless rules or stateful rules.",
 								Attributes: map[string]schema.Attribute{
 									"rules_source_list": schema.SingleNestedAttribute{
-										Description:         "Stateful inspection criteria for a domain list rule group.For HTTPS traffic, domain filtering is SNI-based. It uses the server nameindicator extension of the TLS handshake.By default, Network Firewall domain list inspection only includes trafficcoming from the VPC where you deploy the firewall. To inspect traffic fromIP addresses outside of the deployment VPC, you set the HOME_NET rule variableto include the CIDR range of the deployment VPC plus the other CIDR ranges.For more information, see RuleVariables in this guide and Stateful domainlist rule groups in Network Firewall (https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html)in the Network Firewall Developer Guide.",
-										MarkdownDescription: "Stateful inspection criteria for a domain list rule group.For HTTPS traffic, domain filtering is SNI-based. It uses the server nameindicator extension of the TLS handshake.By default, Network Firewall domain list inspection only includes trafficcoming from the VPC where you deploy the firewall. To inspect traffic fromIP addresses outside of the deployment VPC, you set the HOME_NET rule variableto include the CIDR range of the deployment VPC plus the other CIDR ranges.For more information, see RuleVariables in this guide and Stateful domainlist rule groups in Network Firewall (https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html)in the Network Firewall Developer Guide.",
+										Description:         "Stateful inspection criteria for a domain list rule group. For HTTPS traffic, domain filtering is SNI-based. It uses the server name indicator extension of the TLS handshake. By default, Network Firewall domain list inspection only includes traffic coming from the VPC where you deploy the firewall. To inspect traffic from IP addresses outside of the deployment VPC, you set the HOME_NET rule variable to include the CIDR range of the deployment VPC plus the other CIDR ranges. For more information, see RuleVariables in this guide and Stateful domain list rule groups in Network Firewall (https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html) in the Network Firewall Developer Guide.",
+										MarkdownDescription: "Stateful inspection criteria for a domain list rule group. For HTTPS traffic, domain filtering is SNI-based. It uses the server name indicator extension of the TLS handshake. By default, Network Firewall domain list inspection only includes traffic coming from the VPC where you deploy the firewall. To inspect traffic from IP addresses outside of the deployment VPC, you set the HOME_NET rule variable to include the CIDR range of the deployment VPC plus the other CIDR ranges. For more information, see RuleVariables in this guide and Stateful domain list rule groups in Network Firewall (https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html) in the Network Firewall Developer Guide.",
 										Attributes: map[string]schema.Attribute{
 											"generated_rules_type": schema.StringAttribute{
 												Description:         "",
@@ -415,8 +415,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 												},
 
 												"header": schema.SingleNestedAttribute{
-													Description:         "The basic rule criteria for Network Firewall to use to inspect packet headersin stateful traffic flow inspection. Traffic flows that match the criteriaare a match for the corresponding StatefulRule.",
-													MarkdownDescription: "The basic rule criteria for Network Firewall to use to inspect packet headersin stateful traffic flow inspection. Traffic flows that match the criteriaare a match for the corresponding StatefulRule.",
+													Description:         "The basic rule criteria for Network Firewall to use to inspect packet headers in stateful traffic flow inspection. Traffic flows that match the criteria are a match for the corresponding StatefulRule.",
+													MarkdownDescription: "The basic rule criteria for Network Firewall to use to inspect packet headers in stateful traffic flow inspection. Traffic flows that match the criteria are a match for the corresponding StatefulRule.",
 													Attributes: map[string]schema.Attribute{
 														"destination": schema.StringAttribute{
 															Description:         "",
@@ -506,8 +506,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 									},
 
 									"stateless_rules_and_custom_actions": schema.SingleNestedAttribute{
-										Description:         "Stateless inspection criteria. Each stateless rule group uses exactly oneof these data types to define its stateless rules.",
-										MarkdownDescription: "Stateless inspection criteria. Each stateless rule group uses exactly oneof these data types to define its stateless rules.",
+										Description:         "Stateless inspection criteria. Each stateless rule group uses exactly one of these data types to define its stateless rules.",
+										MarkdownDescription: "Stateless inspection criteria. Each stateless rule group uses exactly one of these data types to define its stateless rules.",
 										Attributes: map[string]schema.Attribute{
 											"custom_actions": schema.ListNestedAttribute{
 												Description:         "",
@@ -515,12 +515,12 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"action_definition": schema.SingleNestedAttribute{
-															Description:         "A custom action to use in stateless rule actions settings. This is used inCustomAction.",
-															MarkdownDescription: "A custom action to use in stateless rule actions settings. This is used inCustomAction.",
+															Description:         "A custom action to use in stateless rule actions settings. This is used in CustomAction.",
+															MarkdownDescription: "A custom action to use in stateless rule actions settings. This is used in CustomAction.",
 															Attributes: map[string]schema.Attribute{
 																"publish_metric_action": schema.SingleNestedAttribute{
-																	Description:         "Stateless inspection criteria that publishes the specified metrics to AmazonCloudWatch for the matching packet. This setting defines a CloudWatch dimensionvalue to be published.",
-																	MarkdownDescription: "Stateless inspection criteria that publishes the specified metrics to AmazonCloudWatch for the matching packet. This setting defines a CloudWatch dimensionvalue to be published.",
+																	Description:         "Stateless inspection criteria that publishes the specified metrics to Amazon CloudWatch for the matching packet. This setting defines a CloudWatch dimension value to be published.",
+																	MarkdownDescription: "Stateless inspection criteria that publishes the specified metrics to Amazon CloudWatch for the matching packet. This setting defines a CloudWatch dimension value to be published.",
 																	Attributes: map[string]schema.Attribute{
 																		"dimensions": schema.ListNestedAttribute{
 																			Description:         "",
@@ -579,8 +579,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 														},
 
 														"rule_definition": schema.SingleNestedAttribute{
-															Description:         "The inspection criteria and action for a single stateless rule. Network Firewallinspects each packet for the specified matching criteria. When a packet matchesthe criteria, Network Firewall performs the rule's actions on the packet.",
-															MarkdownDescription: "The inspection criteria and action for a single stateless rule. Network Firewallinspects each packet for the specified matching criteria. When a packet matchesthe criteria, Network Firewall performs the rule's actions on the packet.",
+															Description:         "The inspection criteria and action for a single stateless rule. Network Firewall inspects each packet for the specified matching criteria. When a packet matches the criteria, Network Firewall performs the rule's actions on the packet.",
+															MarkdownDescription: "The inspection criteria and action for a single stateless rule. Network Firewall inspects each packet for the specified matching criteria. When a packet matches the criteria, Network Firewall performs the rule's actions on the packet.",
 															Attributes: map[string]schema.Attribute{
 																"actions": schema.ListAttribute{
 																	Description:         "",
@@ -592,8 +592,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 																},
 
 																"match_attributes": schema.SingleNestedAttribute{
-																	Description:         "Criteria for Network Firewall to use to inspect an individual packet in statelessrule inspection. Each match attributes set can include one or more itemssuch as IP address, CIDR range, port number, protocol, and TCP flags.",
-																	MarkdownDescription: "Criteria for Network Firewall to use to inspect an individual packet in statelessrule inspection. Each match attributes set can include one or more itemssuch as IP address, CIDR range, port number, protocol, and TCP flags.",
+																	Description:         "Criteria for Network Firewall to use to inspect an individual packet in stateless rule inspection. Each match attributes set can include one or more items such as IP address, CIDR range, port number, protocol, and TCP flags.",
+																	MarkdownDescription: "Criteria for Network Firewall to use to inspect an individual packet in stateless rule inspection. Each match attributes set can include one or more items such as IP address, CIDR range, port number, protocol, and TCP flags.",
 																	Attributes: map[string]schema.Attribute{
 																		"destination_ports": schema.ListNestedAttribute{
 																			Description:         "",
@@ -752,8 +752,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"stateful_rule_options": schema.SingleNestedAttribute{
-								Description:         "Additional options governing how Network Firewall handles the rule group.You can only use these for stateful rule groups.",
-								MarkdownDescription: "Additional options governing how Network Firewall handles the rule group.You can only use these for stateful rule groups.",
+								Description:         "Additional options governing how Network Firewall handles the rule group. You can only use these for stateful rule groups.",
+								MarkdownDescription: "Additional options governing how Network Firewall handles the rule group. You can only use these for stateful rule groups.",
 								Attributes: map[string]schema.Attribute{
 									"rule_order": schema.StringAttribute{
 										Description:         "",
@@ -774,24 +774,24 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"rule_group_name": schema.StringAttribute{
-						Description:         "The descriptive name of the rule group. You can't change the name of a rulegroup after you create it.",
-						MarkdownDescription: "The descriptive name of the rule group. You can't change the name of a rulegroup after you create it.",
+						Description:         "The descriptive name of the rule group. You can't change the name of a rule group after you create it.",
+						MarkdownDescription: "The descriptive name of the rule group. You can't change the name of a rule group after you create it.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"rules": schema.StringAttribute{
-						Description:         "A string containing stateful rule group rules specifications in Suricataflat format, with one rule per line. Use this to import your existing Suricatacompatible rule groups.You must provide either this rules setting or a populated RuleGroup setting,but not both.You can provide your rule group specification in Suricata flat format throughthis setting when you create or update your rule group. The call responsereturns a RuleGroup object that Network Firewall has populated from yourstring.",
-						MarkdownDescription: "A string containing stateful rule group rules specifications in Suricataflat format, with one rule per line. Use this to import your existing Suricatacompatible rule groups.You must provide either this rules setting or a populated RuleGroup setting,but not both.You can provide your rule group specification in Suricata flat format throughthis setting when you create or update your rule group. The call responsereturns a RuleGroup object that Network Firewall has populated from yourstring.",
+						Description:         "A string containing stateful rule group rules specifications in Suricata flat format, with one rule per line. Use this to import your existing Suricata compatible rule groups. You must provide either this rules setting or a populated RuleGroup setting, but not both. You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The call response returns a RuleGroup object that Network Firewall has populated from your string.",
+						MarkdownDescription: "A string containing stateful rule group rules specifications in Suricata flat format, with one rule per line. Use this to import your existing Suricata compatible rule groups. You must provide either this rules setting or a populated RuleGroup setting, but not both. You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The call response returns a RuleGroup object that Network Firewall has populated from your string.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"source_metadata": schema.SingleNestedAttribute{
-						Description:         "A complex type that contains metadata about the rule group that your ownrule group is copied from. You can use the metadata to keep track of updatesmade to the originating rule group.",
-						MarkdownDescription: "A complex type that contains metadata about the rule group that your ownrule group is copied from. You can use the metadata to keep track of updatesmade to the originating rule group.",
+						Description:         "A complex type that contains metadata about the rule group that your own rule group is copied from. You can use the metadata to keep track of updates made to the originating rule group.",
+						MarkdownDescription: "A complex type that contains metadata about the rule group that your own rule group is copied from. You can use the metadata to keep track of updates made to the originating rule group.",
 						Attributes: map[string]schema.Attribute{
 							"source_arn": schema.StringAttribute{
 								Description:         "",
@@ -842,8 +842,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"type_": schema.StringAttribute{
-						Description:         "Indicates whether the rule group is stateless or stateful. If the rule groupis stateless, it contains stateless rules. If it is stateful, it containsstateful rules.",
-						MarkdownDescription: "Indicates whether the rule group is stateless or stateful. If the rule groupis stateless, it contains stateless rules. If it is stateful, it containsstateful rules.",
+						Description:         "Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules.",
+						MarkdownDescription: "Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

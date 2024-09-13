@@ -132,8 +132,8 @@ func (r *MemorydbServicesK8SAwsAclV1Alpha1Manifest) Schema(_ context.Context, _ 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ACLSpec defines the desired state of ACL.An Access Control List. You can authenticate users with Access Contol Lists.ACLs enable you to control cluster access by grouping users. These Accesscontrol lists are designed as a way to organize access to clusters.",
-				MarkdownDescription: "ACLSpec defines the desired state of ACL.An Access Control List. You can authenticate users with Access Contol Lists.ACLs enable you to control cluster access by grouping users. These Accesscontrol lists are designed as a way to organize access to clusters.",
+				Description:         "ACLSpec defines the desired state of ACL. An Access Control List. You can authenticate users with Access Contol Lists. ACLs enable you to control cluster access by grouping users. These Access control lists are designed as a way to organize access to clusters.",
+				MarkdownDescription: "ACLSpec defines the desired state of ACL. An Access Control List. You can authenticate users with Access Contol Lists. ACLs enable you to control cluster access by grouping users. These Access control lists are designed as a way to organize access to clusters.",
 				Attributes: map[string]schema.Attribute{
 					"name": schema.StringAttribute{
 						Description:         "The name of the Access Control List.",
@@ -144,8 +144,8 @@ func (r *MemorydbServicesK8SAwsAclV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
-						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
+						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -185,8 +185,8 @@ func (r *MemorydbServicesK8SAwsAclV1Alpha1Manifest) Schema(_ context.Context, _ 
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",

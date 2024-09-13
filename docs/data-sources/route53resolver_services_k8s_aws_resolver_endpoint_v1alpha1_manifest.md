@@ -30,7 +30,7 @@ data "k8s_route53resolver_services_k8s_aws_resolver_endpoint_v1alpha1_manifest" 
 
 ### Optional
 
-- `spec` (Attributes) ResolverEndpointSpec defines the desired state of ResolverEndpoint.In the response to a CreateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html),DeleteResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html),GetResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html),Updates the name, or ResolverEndpointType for an endpoint, or UpdateResolverEndpoint(https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html)request, a complex type that contains settings for an existing inbound oroutbound Resolver endpoint. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ResolverEndpointSpec defines the desired state of ResolverEndpoint. In the response to a CreateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html), DeleteResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html), GetResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html), Updates the name, or ResolverEndpointType for an endpoint, or UpdateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html) request, a complex type that contains settings for an existing inbound or outbound Resolver endpoint. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,14 +55,14 @@ Optional:
 
 Required:
 
-- `direction` (String) Specify the applicable value:   * INBOUND: Resolver forwards DNS queries to the DNS service for a VPC   from your network   * OUTBOUND: Resolver forwards DNS queries from the DNS service for a VPC   to your network
-- `ip_addresses` (Attributes List) The subnets and IP addresses in your VPC that DNS queries originate from(for outbound endpoints) or that you forward DNS queries to (for inboundendpoints). The subnet ID uniquely identifies a VPC. (see [below for nested schema](#nestedatt--spec--ip_addresses))
+- `direction` (String) Specify the applicable value: * INBOUND: Resolver forwards DNS queries to the DNS service for a VPC from your network * OUTBOUND: Resolver forwards DNS queries from the DNS service for a VPC to your network
+- `ip_addresses` (Attributes List) The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC. (see [below for nested schema](#nestedatt--spec--ip_addresses))
 
 Optional:
 
-- `name` (String) A friendly name that lets you easily find a configuration in the Resolverdashboard in the Route 53 console.
-- `resolver_endpoint_type` (String) For the endpoint type you can choose either IPv4, IPv6. or dual-stack. Adual-stack endpoint means that it will resolve via both IPv4 and IPv6. Thisendpoint type is applied to all IP addresses.
-- `security_group_i_ds` (List of String) The ID of one or more security groups that you want to use to control accessto this VPC. The security group that you specify must include one or moreinbound rules (for inbound Resolver endpoints) or outbound rules (for outboundResolver endpoints). Inbound and outbound rules must allow TCP and UDP access.For inbound access, open port 53. For outbound access, open the port thatyou're using for DNS queries on your network.
+- `name` (String) A friendly name that lets you easily find a configuration in the Resolver dashboard in the Route 53 console.
+- `resolver_endpoint_type` (String) For the endpoint type you can choose either IPv4, IPv6. or dual-stack. A dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This endpoint type is applied to all IP addresses.
+- `security_group_i_ds` (List of String) The ID of one or more security groups that you want to use to control access to this VPC. The security group that you specify must include one or more inbound rules (for inbound Resolver endpoints) or outbound rules (for outbound Resolver endpoints). Inbound and outbound rules must allow TCP and UDP access. For inbound access, open port 53. For outbound access, open the port that you're using for DNS queries on your network.
 - `security_group_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--security_group_refs))
 - `tags` (Attributes List) A list of the tag keys and values that you want to associate with the endpoint. (see [below for nested schema](#nestedatt--spec--tags))
 
@@ -81,7 +81,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--ip_addresses--subnet_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--ip_addresses--subnet_ref--from))
 
 <a id="nestedatt--spec--ip_addresses--subnet_ref--from"></a>
 ### Nested Schema for `spec.ip_addresses.subnet_ref.from`
@@ -99,7 +99,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--security_group_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--security_group_refs--from))
 
 <a id="nestedatt--spec--security_group_refs--from"></a>
 ### Nested Schema for `spec.security_group_refs.from`

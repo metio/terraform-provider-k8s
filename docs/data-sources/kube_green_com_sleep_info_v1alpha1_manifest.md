@@ -55,8 +55,8 @@ Optional:
 
 Required:
 
-- `sleep_at` (String) Hours:MinutesAccept cron schedule for both hour and minute.For example, *:*/2 is set to configure a run every even minute.
-- `weekdays` (String) Weekdays are in cron notation.For example, to configure a schedule from monday to friday, set it to '1-5'
+- `sleep_at` (String) Hours:Minutes Accept cron schedule for both hour and minute. For example, *:*/2 is set to configure a run every even minute.
+- `weekdays` (String) Weekdays are in cron notation. For example, to configure a schedule from monday to friday, set it to '1-5'
 
 Optional:
 
@@ -66,8 +66,8 @@ Optional:
 - `suspend_cron_jobs` (Boolean) If SuspendCronjobs is set to true, on sleep the cronjobs of the namespace will be suspended.
 - `suspend_deployments` (Boolean) If SuspendDeployments is set to false, on sleep the deployment of the namespace will not be suspended. By default Deployment will be suspended.
 - `suspend_statefulsets` (Boolean) If SuspendStatefulSets is set to false, on sleep the statefulset of the namespace will not be suspended. By default StatefulSet will be suspended.
-- `time_zone` (String) Time zone to set the schedule, in IANA time zone identifier.It is not required, default to UTC.For example, for the Italy time zone set Europe/Rome.
-- `wake_up_at` (String) Hours:MinutesAccept cron schedule for both hour and minute.For example, *:*/2 is set to configure a run every even minute.It is not required.
+- `time_zone` (String) Time zone to set the schedule, in IANA time zone identifier. It is not required, default to UTC. For example, for the Italy time zone set Europe/Rome.
+- `wake_up_at` (String) Hours:Minutes Accept cron schedule for both hour and minute. For example, *:*/2 is set to configure a run every even minute. It is not required.
 
 <a id="nestedatt--spec--exclude_ref"></a>
 ### Nested Schema for `spec.exclude_ref`

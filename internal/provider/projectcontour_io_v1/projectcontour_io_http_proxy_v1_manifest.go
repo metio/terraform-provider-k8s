@@ -570,18 +570,18 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 				MarkdownDescription: "HTTPProxySpec defines the spec of the CRD.",
 				Attributes: map[string]schema.Attribute{
 					"includes": schema.ListNestedAttribute{
-						Description:         "Includes allow for specific routing configuration to be included from another HTTPProxy,possibly in another namespace.",
-						MarkdownDescription: "Includes allow for specific routing configuration to be included from another HTTPProxy,possibly in another namespace.",
+						Description:         "Includes allow for specific routing configuration to be included from another HTTPProxy, possibly in another namespace.",
+						MarkdownDescription: "Includes allow for specific routing configuration to be included from another HTTPProxy, possibly in another namespace.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"conditions": schema.ListNestedAttribute{
-									Description:         "Conditions are a set of rules that are applied to included HTTPProxies.In effect, they are added onto the Conditions of included HTTPProxy Routestructs.When applied, they are merged using AND, with one exception:There can be only one Prefix MatchCondition per Conditions slice.More than one Prefix, or contradictory Conditions, will make theinclude invalid. Exact and Regex match conditions are not allowedon includes.",
-									MarkdownDescription: "Conditions are a set of rules that are applied to included HTTPProxies.In effect, they are added onto the Conditions of included HTTPProxy Routestructs.When applied, they are merged using AND, with one exception:There can be only one Prefix MatchCondition per Conditions slice.More than one Prefix, or contradictory Conditions, will make theinclude invalid. Exact and Regex match conditions are not allowedon includes.",
+									Description:         "Conditions are a set of rules that are applied to included HTTPProxies. In effect, they are added onto the Conditions of included HTTPProxy Route structs. When applied, they are merged using AND, with one exception: There can be only one Prefix MatchCondition per Conditions slice. More than one Prefix, or contradictory Conditions, will make the include invalid. Exact and Regex match conditions are not allowed on includes.",
+									MarkdownDescription: "Conditions are a set of rules that are applied to included HTTPProxies. In effect, they are added onto the Conditions of included HTTPProxy Route structs. When applied, they are merged using AND, with one exception: There can be only one Prefix MatchCondition per Conditions slice. More than one Prefix, or contradictory Conditions, will make the include invalid. Exact and Regex match conditions are not allowed on includes.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"exact": schema.StringAttribute{
-												Description:         "Exact defines a exact match for a request.This field is not allowed in include match conditions.",
-												MarkdownDescription: "Exact defines a exact match for a request.This field is not allowed in include match conditions.",
+												Description:         "Exact defines a exact match for a request. This field is not allowed in include match conditions.",
+												MarkdownDescription: "Exact defines a exact match for a request. This field is not allowed in include match conditions.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -592,8 +592,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												MarkdownDescription: "Header specifies the header condition to match.",
 												Attributes: map[string]schema.Attribute{
 													"contains": schema.StringAttribute{
-														Description:         "Contains specifies a substring that must be present inthe header value.",
-														MarkdownDescription: "Contains specifies a substring that must be present inthe header value.",
+														Description:         "Contains specifies a substring that must be present in the header value.",
+														MarkdownDescription: "Contains specifies a substring that must be present in the header value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -608,64 +608,64 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"ignore_case": schema.BoolAttribute{
-														Description:         "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
-														MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
+														Description:         "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
+														MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name is the name of the header to match against. Name is required.Header names are case insensitive.",
-														MarkdownDescription: "Name is the name of the header to match against. Name is required.Header names are case insensitive.",
+														Description:         "Name is the name of the header to match against. Name is required. Header names are case insensitive.",
+														MarkdownDescription: "Name is the name of the header to match against. Name is required. Header names are case insensitive.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"notcontains": schema.StringAttribute{
-														Description:         "NotContains specifies a substring that must not be presentin the header value.",
-														MarkdownDescription: "NotContains specifies a substring that must not be presentin the header value.",
+														Description:         "NotContains specifies a substring that must not be present in the header value.",
+														MarkdownDescription: "NotContains specifies a substring that must not be present in the header value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"notexact": schema.StringAttribute{
-														Description:         "NoExact specifies a string that the header value must not beequal to. The condition is true if the header has any other value.",
-														MarkdownDescription: "NoExact specifies a string that the header value must not beequal to. The condition is true if the header has any other value.",
+														Description:         "NoExact specifies a string that the header value must not be equal to. The condition is true if the header has any other value.",
+														MarkdownDescription: "NoExact specifies a string that the header value must not be equal to. The condition is true if the header has any other value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"notpresent": schema.BoolAttribute{
-														Description:         "NotPresent specifies that condition is true when the named headeris not present. Note that setting NotPresent to false does notmake the condition true if the named header is present.",
-														MarkdownDescription: "NotPresent specifies that condition is true when the named headeris not present. Note that setting NotPresent to false does notmake the condition true if the named header is present.",
+														Description:         "NotPresent specifies that condition is true when the named header is not present. Note that setting NotPresent to false does not make the condition true if the named header is present.",
+														MarkdownDescription: "NotPresent specifies that condition is true when the named header is not present. Note that setting NotPresent to false does not make the condition true if the named header is present.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"present": schema.BoolAttribute{
-														Description:         "Present specifies that condition is true when the named headeris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named headeris absent.",
-														MarkdownDescription: "Present specifies that condition is true when the named headeris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named headeris absent.",
+														Description:         "Present specifies that condition is true when the named header is present, regardless of its value. Note that setting Present to false does not make the condition true if the named header is absent.",
+														MarkdownDescription: "Present specifies that condition is true when the named header is present, regardless of its value. Note that setting Present to false does not make the condition true if the named header is absent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "Regex specifies a regular expression pattern that must match the headervalue.",
-														MarkdownDescription: "Regex specifies a regular expression pattern that must match the headervalue.",
+														Description:         "Regex specifies a regular expression pattern that must match the header value.",
+														MarkdownDescription: "Regex specifies a regular expression pattern that must match the header value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"treat_missing_as_empty": schema.BoolAttribute{
-														Description:         "TreatMissingAsEmpty specifies if the header match rule specified headerdoes not exist, this header value will be treated as empty. Defaults to false.Unlike the underlying Envoy implementation this is **only** supported fornegative matches (e.g. NotContains, NotExact).",
-														MarkdownDescription: "TreatMissingAsEmpty specifies if the header match rule specified headerdoes not exist, this header value will be treated as empty. Defaults to false.Unlike the underlying Envoy implementation this is **only** supported fornegative matches (e.g. NotContains, NotExact).",
+														Description:         "TreatMissingAsEmpty specifies if the header match rule specified header does not exist, this header value will be treated as empty. Defaults to false. Unlike the underlying Envoy implementation this is **only** supported for negative matches (e.g. NotContains, NotExact).",
+														MarkdownDescription: "TreatMissingAsEmpty specifies if the header match rule specified header does not exist, this header value will be treated as empty. Defaults to false. Unlike the underlying Envoy implementation this is **only** supported for negative matches (e.g. NotContains, NotExact).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -689,8 +689,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												MarkdownDescription: "QueryParameter specifies the query parameter condition to match.",
 												Attributes: map[string]schema.Attribute{
 													"contains": schema.StringAttribute{
-														Description:         "Contains specifies a substring that must be present inthe query parameter value.",
-														MarkdownDescription: "Contains specifies a substring that must be present inthe query parameter value.",
+														Description:         "Contains specifies a substring that must be present in the query parameter value.",
+														MarkdownDescription: "Contains specifies a substring that must be present in the query parameter value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -705,16 +705,16 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"ignore_case": schema.BoolAttribute{
-														Description:         "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
-														MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
+														Description:         "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
+														MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name is the name of the query parameter to match against. Name is required.Query parameter names are case insensitive.",
-														MarkdownDescription: "Name is the name of the query parameter to match against. Name is required.Query parameter names are case insensitive.",
+														Description:         "Name is the name of the query parameter to match against. Name is required. Query parameter names are case insensitive.",
+														MarkdownDescription: "Name is the name of the query parameter to match against. Name is required. Query parameter names are case insensitive.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -729,16 +729,16 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"present": schema.BoolAttribute{
-														Description:         "Present specifies that condition is true when the named query parameteris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named query parameteris absent.",
-														MarkdownDescription: "Present specifies that condition is true when the named query parameteris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named query parameteris absent.",
+														Description:         "Present specifies that condition is true when the named query parameter is present, regardless of its value. Note that setting Present to false does not make the condition true if the named query parameter is absent.",
+														MarkdownDescription: "Present specifies that condition is true when the named query parameter is present, regardless of its value. Note that setting Present to false does not make the condition true if the named query parameter is absent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "Regex specifies a regular expression pattern that must match the queryparameter value.",
-														MarkdownDescription: "Regex specifies a regular expression pattern that must match the queryparameter value.",
+														Description:         "Regex specifies a regular expression pattern that must match the query parameter value.",
+														MarkdownDescription: "Regex specifies a regular expression pattern that must match the query parameter value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -758,8 +758,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"regex": schema.StringAttribute{
-												Description:         "Regex defines a regex match for a request.This field is not allowed in include match conditions.",
-												MarkdownDescription: "Regex defines a regex match for a request.This field is not allowed in include match conditions.",
+												Description:         "Regex defines a regex match for a request. This field is not allowed in include match conditions.",
+												MarkdownDescription: "Regex defines a regex match for a request. This field is not allowed in include match conditions.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -794,8 +794,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"ingress_class_name": schema.StringAttribute{
-						Description:         "IngressClassName optionally specifies the ingress class to use for thisHTTPProxy. This replaces the deprecated 'kubernetes.io/ingress.class'annotation. For backwards compatibility, when that annotation is set, itis given precedence over this field.",
-						MarkdownDescription: "IngressClassName optionally specifies the ingress class to use for thisHTTPProxy. This replaces the deprecated 'kubernetes.io/ingress.class'annotation. For backwards compatibility, when that annotation is set, itis given precedence over this field.",
+						Description:         "IngressClassName optionally specifies the ingress class to use for this HTTPProxy. This replaces the deprecated 'kubernetes.io/ingress.class' annotation. For backwards compatibility, when that annotation is set, it is given precedence over this field.",
+						MarkdownDescription: "IngressClassName optionally specifies the ingress class to use for this HTTPProxy. This replaces the deprecated 'kubernetes.io/ingress.class' annotation. For backwards compatibility, when that annotation is set, it is given precedence over this field.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -807,12 +807,12 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"auth_policy": schema.SingleNestedAttribute{
-									Description:         "AuthPolicy updates the authorization policy that was seton the root HTTPProxy object for client requests thatmatch this route.",
-									MarkdownDescription: "AuthPolicy updates the authorization policy that was seton the root HTTPProxy object for client requests thatmatch this route.",
+									Description:         "AuthPolicy updates the authorization policy that was set on the root HTTPProxy object for client requests that match this route.",
+									MarkdownDescription: "AuthPolicy updates the authorization policy that was set on the root HTTPProxy object for client requests that match this route.",
 									Attributes: map[string]schema.Attribute{
 										"context": schema.MapAttribute{
-											Description:         "Context is a set of key/value pairs that are sent to theauthentication server in the check request. If a contextis provided at an enclosing scope, the entries are mergedsuch that the inner scope overrides matching keys from theouter scope.",
-											MarkdownDescription: "Context is a set of key/value pairs that are sent to theauthentication server in the check request. If a contextis provided at an enclosing scope, the entries are mergedsuch that the inner scope overrides matching keys from theouter scope.",
+											Description:         "Context is a set of key/value pairs that are sent to the authentication server in the check request. If a context is provided at an enclosing scope, the entries are merged such that the inner scope overrides matching keys from the outer scope.",
+											MarkdownDescription: "Context is a set of key/value pairs that are sent to the authentication server in the check request. If a context is provided at an enclosing scope, the entries are merged such that the inner scope overrides matching keys from the outer scope.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -820,8 +820,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"disabled": schema.BoolAttribute{
-											Description:         "When true, this field disables client request authenticationfor the scope of the policy.",
-											MarkdownDescription: "When true, this field disables client request authenticationfor the scope of the policy.",
+											Description:         "When true, this field disables client request authentication for the scope of the policy.",
+											MarkdownDescription: "When true, this field disables client request authentication for the scope of the policy.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -833,13 +833,13 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"conditions": schema.ListNestedAttribute{
-									Description:         "Conditions are a set of rules that are applied to a Route.When applied, they are merged using AND, with one exception:There can be only one Prefix, Exact or Regex MatchConditionper Conditions slice. More than one of these condition types,or contradictory Conditions, will make the route invalid.",
-									MarkdownDescription: "Conditions are a set of rules that are applied to a Route.When applied, they are merged using AND, with one exception:There can be only one Prefix, Exact or Regex MatchConditionper Conditions slice. More than one of these condition types,or contradictory Conditions, will make the route invalid.",
+									Description:         "Conditions are a set of rules that are applied to a Route. When applied, they are merged using AND, with one exception: There can be only one Prefix, Exact or Regex MatchCondition per Conditions slice. More than one of these condition types, or contradictory Conditions, will make the route invalid.",
+									MarkdownDescription: "Conditions are a set of rules that are applied to a Route. When applied, they are merged using AND, with one exception: There can be only one Prefix, Exact or Regex MatchCondition per Conditions slice. More than one of these condition types, or contradictory Conditions, will make the route invalid.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"exact": schema.StringAttribute{
-												Description:         "Exact defines a exact match for a request.This field is not allowed in include match conditions.",
-												MarkdownDescription: "Exact defines a exact match for a request.This field is not allowed in include match conditions.",
+												Description:         "Exact defines a exact match for a request. This field is not allowed in include match conditions.",
+												MarkdownDescription: "Exact defines a exact match for a request. This field is not allowed in include match conditions.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -850,8 +850,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												MarkdownDescription: "Header specifies the header condition to match.",
 												Attributes: map[string]schema.Attribute{
 													"contains": schema.StringAttribute{
-														Description:         "Contains specifies a substring that must be present inthe header value.",
-														MarkdownDescription: "Contains specifies a substring that must be present inthe header value.",
+														Description:         "Contains specifies a substring that must be present in the header value.",
+														MarkdownDescription: "Contains specifies a substring that must be present in the header value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -866,64 +866,64 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"ignore_case": schema.BoolAttribute{
-														Description:         "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
-														MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
+														Description:         "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
+														MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name is the name of the header to match against. Name is required.Header names are case insensitive.",
-														MarkdownDescription: "Name is the name of the header to match against. Name is required.Header names are case insensitive.",
+														Description:         "Name is the name of the header to match against. Name is required. Header names are case insensitive.",
+														MarkdownDescription: "Name is the name of the header to match against. Name is required. Header names are case insensitive.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"notcontains": schema.StringAttribute{
-														Description:         "NotContains specifies a substring that must not be presentin the header value.",
-														MarkdownDescription: "NotContains specifies a substring that must not be presentin the header value.",
+														Description:         "NotContains specifies a substring that must not be present in the header value.",
+														MarkdownDescription: "NotContains specifies a substring that must not be present in the header value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"notexact": schema.StringAttribute{
-														Description:         "NoExact specifies a string that the header value must not beequal to. The condition is true if the header has any other value.",
-														MarkdownDescription: "NoExact specifies a string that the header value must not beequal to. The condition is true if the header has any other value.",
+														Description:         "NoExact specifies a string that the header value must not be equal to. The condition is true if the header has any other value.",
+														MarkdownDescription: "NoExact specifies a string that the header value must not be equal to. The condition is true if the header has any other value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"notpresent": schema.BoolAttribute{
-														Description:         "NotPresent specifies that condition is true when the named headeris not present. Note that setting NotPresent to false does notmake the condition true if the named header is present.",
-														MarkdownDescription: "NotPresent specifies that condition is true when the named headeris not present. Note that setting NotPresent to false does notmake the condition true if the named header is present.",
+														Description:         "NotPresent specifies that condition is true when the named header is not present. Note that setting NotPresent to false does not make the condition true if the named header is present.",
+														MarkdownDescription: "NotPresent specifies that condition is true when the named header is not present. Note that setting NotPresent to false does not make the condition true if the named header is present.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"present": schema.BoolAttribute{
-														Description:         "Present specifies that condition is true when the named headeris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named headeris absent.",
-														MarkdownDescription: "Present specifies that condition is true when the named headeris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named headeris absent.",
+														Description:         "Present specifies that condition is true when the named header is present, regardless of its value. Note that setting Present to false does not make the condition true if the named header is absent.",
+														MarkdownDescription: "Present specifies that condition is true when the named header is present, regardless of its value. Note that setting Present to false does not make the condition true if the named header is absent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "Regex specifies a regular expression pattern that must match the headervalue.",
-														MarkdownDescription: "Regex specifies a regular expression pattern that must match the headervalue.",
+														Description:         "Regex specifies a regular expression pattern that must match the header value.",
+														MarkdownDescription: "Regex specifies a regular expression pattern that must match the header value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"treat_missing_as_empty": schema.BoolAttribute{
-														Description:         "TreatMissingAsEmpty specifies if the header match rule specified headerdoes not exist, this header value will be treated as empty. Defaults to false.Unlike the underlying Envoy implementation this is **only** supported fornegative matches (e.g. NotContains, NotExact).",
-														MarkdownDescription: "TreatMissingAsEmpty specifies if the header match rule specified headerdoes not exist, this header value will be treated as empty. Defaults to false.Unlike the underlying Envoy implementation this is **only** supported fornegative matches (e.g. NotContains, NotExact).",
+														Description:         "TreatMissingAsEmpty specifies if the header match rule specified header does not exist, this header value will be treated as empty. Defaults to false. Unlike the underlying Envoy implementation this is **only** supported for negative matches (e.g. NotContains, NotExact).",
+														MarkdownDescription: "TreatMissingAsEmpty specifies if the header match rule specified header does not exist, this header value will be treated as empty. Defaults to false. Unlike the underlying Envoy implementation this is **only** supported for negative matches (e.g. NotContains, NotExact).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -947,8 +947,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												MarkdownDescription: "QueryParameter specifies the query parameter condition to match.",
 												Attributes: map[string]schema.Attribute{
 													"contains": schema.StringAttribute{
-														Description:         "Contains specifies a substring that must be present inthe query parameter value.",
-														MarkdownDescription: "Contains specifies a substring that must be present inthe query parameter value.",
+														Description:         "Contains specifies a substring that must be present in the query parameter value.",
+														MarkdownDescription: "Contains specifies a substring that must be present in the query parameter value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -963,16 +963,16 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"ignore_case": schema.BoolAttribute{
-														Description:         "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
-														MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
+														Description:         "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
+														MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name is the name of the query parameter to match against. Name is required.Query parameter names are case insensitive.",
-														MarkdownDescription: "Name is the name of the query parameter to match against. Name is required.Query parameter names are case insensitive.",
+														Description:         "Name is the name of the query parameter to match against. Name is required. Query parameter names are case insensitive.",
+														MarkdownDescription: "Name is the name of the query parameter to match against. Name is required. Query parameter names are case insensitive.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -987,16 +987,16 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"present": schema.BoolAttribute{
-														Description:         "Present specifies that condition is true when the named query parameteris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named query parameteris absent.",
-														MarkdownDescription: "Present specifies that condition is true when the named query parameteris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named query parameteris absent.",
+														Description:         "Present specifies that condition is true when the named query parameter is present, regardless of its value. Note that setting Present to false does not make the condition true if the named query parameter is absent.",
+														MarkdownDescription: "Present specifies that condition is true when the named query parameter is present, regardless of its value. Note that setting Present to false does not make the condition true if the named query parameter is absent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "Regex specifies a regular expression pattern that must match the queryparameter value.",
-														MarkdownDescription: "Regex specifies a regular expression pattern that must match the queryparameter value.",
+														Description:         "Regex specifies a regular expression pattern that must match the query parameter value.",
+														MarkdownDescription: "Regex specifies a regular expression pattern that must match the query parameter value.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1016,8 +1016,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"regex": schema.StringAttribute{
-												Description:         "Regex defines a regex match for a request.This field is not allowed in include match conditions.",
-												MarkdownDescription: "Regex defines a regex match for a request.This field is not allowed in include match conditions.",
+												Description:         "Regex defines a regex match for a request. This field is not allowed in include match conditions.",
+												MarkdownDescription: "Regex defines a regex match for a request. This field is not allowed in include match conditions.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1030,17 +1030,17 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"cookie_rewrite_policies": schema.ListNestedAttribute{
-									Description:         "The policies for rewriting Set-Cookie header attributes. Note thatrewritten cookie names must be unique in this list. Order rewritepolicies are specified in does not matter.",
-									MarkdownDescription: "The policies for rewriting Set-Cookie header attributes. Note thatrewritten cookie names must be unique in this list. Order rewritepolicies are specified in does not matter.",
+									Description:         "The policies for rewriting Set-Cookie header attributes. Note that rewritten cookie names must be unique in this list. Order rewrite policies are specified in does not matter.",
+									MarkdownDescription: "The policies for rewriting Set-Cookie header attributes. Note that rewritten cookie names must be unique in this list. Order rewrite policies are specified in does not matter.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"domain_rewrite": schema.SingleNestedAttribute{
-												Description:         "DomainRewrite enables rewriting the Set-Cookie Domain element.If not set, Domain will not be rewritten.",
-												MarkdownDescription: "DomainRewrite enables rewriting the Set-Cookie Domain element.If not set, Domain will not be rewritten.",
+												Description:         "DomainRewrite enables rewriting the Set-Cookie Domain element. If not set, Domain will not be rewritten.",
+												MarkdownDescription: "DomainRewrite enables rewriting the Set-Cookie Domain element. If not set, Domain will not be rewritten.",
 												Attributes: map[string]schema.Attribute{
 													"value": schema.StringAttribute{
-														Description:         "Value is the value to rewrite the Domain attribute to.For now this is required.",
-														MarkdownDescription: "Value is the value to rewrite the Domain attribute to.For now this is required.",
+														Description:         "Value is the value to rewrite the Domain attribute to. For now this is required.",
+														MarkdownDescription: "Value is the value to rewrite the Domain attribute to. For now this is required.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -1070,12 +1070,12 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"path_rewrite": schema.SingleNestedAttribute{
-												Description:         "PathRewrite enables rewriting the Set-Cookie Path element.If not set, Path will not be rewritten.",
-												MarkdownDescription: "PathRewrite enables rewriting the Set-Cookie Path element.If not set, Path will not be rewritten.",
+												Description:         "PathRewrite enables rewriting the Set-Cookie Path element. If not set, Path will not be rewritten.",
+												MarkdownDescription: "PathRewrite enables rewriting the Set-Cookie Path element. If not set, Path will not be rewritten.",
 												Attributes: map[string]schema.Attribute{
 													"value": schema.StringAttribute{
-														Description:         "Value is the value to rewrite the Path attribute to.For now this is required.",
-														MarkdownDescription: "Value is the value to rewrite the Path attribute to.For now this is required.",
+														Description:         "Value is the value to rewrite the Path attribute to. For now this is required.",
+														MarkdownDescription: "Value is the value to rewrite the Path attribute to. For now this is required.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -1092,8 +1092,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"same_site": schema.StringAttribute{
-												Description:         "SameSite enables rewriting the Set-Cookie SameSite element.If not set, SameSite attribute will not be rewritten.",
-												MarkdownDescription: "SameSite enables rewriting the Set-Cookie SameSite element.If not set, SameSite attribute will not be rewritten.",
+												Description:         "SameSite enables rewriting the Set-Cookie SameSite element. If not set, SameSite attribute will not be rewritten.",
+												MarkdownDescription: "SameSite enables rewriting the Set-Cookie SameSite element. If not set, SameSite attribute will not be rewritten.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1103,8 +1103,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"secure": schema.BoolAttribute{
-												Description:         "Secure enables rewriting the Set-Cookie Secure element.If not set, Secure attribute will not be rewritten.",
-												MarkdownDescription: "Secure enables rewriting the Set-Cookie Secure element.If not set, Secure attribute will not be rewritten.",
+												Description:         "Secure enables rewriting the Set-Cookie Secure element. If not set, Secure attribute will not be rewritten.",
+												MarkdownDescription: "Secure enables rewriting the Set-Cookie Secure element. If not set, Secure attribute will not be rewritten.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1121,8 +1121,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "DirectResponsePolicy returns an arbitrary HTTP response directly.",
 									Attributes: map[string]schema.Attribute{
 										"body": schema.StringAttribute{
-											Description:         "Body is the content of the response body.If this setting is omitted, no body is included in the generated response.Note: Body is not recommended to set too longotherwise it can have significant resource usage impacts.",
-											MarkdownDescription: "Body is the content of the response body.If this setting is omitted, no body is included in the generated response.Note: Body is not recommended to set too longotherwise it can have significant resource usage impacts.",
+											Description:         "Body is the content of the response body. If this setting is omitted, no body is included in the generated response. Note: Body is not recommended to set too long otherwise it can have significant resource usage impacts.",
+											MarkdownDescription: "Body is the content of the response body. If this setting is omitted, no body is included in the generated response. Note: Body is not recommended to set too long otherwise it can have significant resource usage impacts.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1158,8 +1158,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "The health check policy for this route.",
 									Attributes: map[string]schema.Attribute{
 										"expected_statuses": schema.ListNestedAttribute{
-											Description:         "The ranges of HTTP response statuses considered healthy. Follow half-opensemantics, i.e. for each range the start is inclusive and the end is exclusive.Must be within the range [100,600). If not specified, only a 200 response statusis considered healthy.",
-											MarkdownDescription: "The ranges of HTTP response statuses considered healthy. Follow half-opensemantics, i.e. for each range the start is inclusive and the end is exclusive.Must be within the range [100,600). If not specified, only a 200 response statusis considered healthy.",
+											Description:         "The ranges of HTTP response statuses considered healthy. Follow half-open semantics, i.e. for each range the start is inclusive and the end is exclusive. Must be within the range [100,600). If not specified, only a 200 response status is considered healthy.",
+											MarkdownDescription: "The ranges of HTTP response statuses considered healthy. Follow half-open semantics, i.e. for each range the start is inclusive and the end is exclusive. Must be within the range [100,600). If not specified, only a 200 response status is considered healthy.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"end": schema.Int64Attribute{
@@ -1204,8 +1204,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"host": schema.StringAttribute{
-											Description:         "The value of the host header in the HTTP health check request.If left empty (default value), the name 'contour-envoy-healthcheck'will be used.",
-											MarkdownDescription: "The value of the host header in the HTTP health check request.If left empty (default value), the name 'contour-envoy-healthcheck'will be used.",
+											Description:         "The value of the host header in the HTTP health check request. If left empty (default value), the name 'contour-envoy-healthcheck' will be used.",
+											MarkdownDescription: "The value of the host header in the HTTP health check request. If left empty (default value), the name 'contour-envoy-healthcheck' will be used.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1256,8 +1256,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "The policy to define when to handle redirects responses internally.",
 									Attributes: map[string]schema.Attribute{
 										"allow_cross_scheme_redirect": schema.StringAttribute{
-											Description:         "AllowCrossSchemeRedirect Allow internal redirect to follow a target URI with a different schemethan the value of x-forwarded-proto.SafeOnly allows same scheme redirect and safe cross scheme redirect, which means if the downstreamscheme is HTTPS, both HTTPS and HTTP redirect targets are allowed, but if the downstream schemeis HTTP, only HTTP redirect targets are allowed.",
-											MarkdownDescription: "AllowCrossSchemeRedirect Allow internal redirect to follow a target URI with a different schemethan the value of x-forwarded-proto.SafeOnly allows same scheme redirect and safe cross scheme redirect, which means if the downstreamscheme is HTTPS, both HTTPS and HTTP redirect targets are allowed, but if the downstream schemeis HTTP, only HTTP redirect targets are allowed.",
+											Description:         "AllowCrossSchemeRedirect Allow internal redirect to follow a target URI with a different scheme than the value of x-forwarded-proto. SafeOnly allows same scheme redirect and safe cross scheme redirect, which means if the downstream scheme is HTTPS, both HTTPS and HTTP redirect targets are allowed, but if the downstream scheme is HTTP, only HTTP redirect targets are allowed.",
+											MarkdownDescription: "AllowCrossSchemeRedirect Allow internal redirect to follow a target URI with a different scheme than the value of x-forwarded-proto. SafeOnly allows same scheme redirect and safe cross scheme redirect, which means if the downstream scheme is HTTPS, both HTTPS and HTTP redirect targets are allowed, but if the downstream scheme is HTTP, only HTTP redirect targets are allowed.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1267,24 +1267,24 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"deny_repeated_route_redirect": schema.BoolAttribute{
-											Description:         "If DenyRepeatedRouteRedirect is true, rejects redirect targets that are pointing to a route that hasbeen followed by a previous redirect from the current route.",
-											MarkdownDescription: "If DenyRepeatedRouteRedirect is true, rejects redirect targets that are pointing to a route that hasbeen followed by a previous redirect from the current route.",
+											Description:         "If DenyRepeatedRouteRedirect is true, rejects redirect targets that are pointing to a route that has been followed by a previous redirect from the current route.",
+											MarkdownDescription: "If DenyRepeatedRouteRedirect is true, rejects redirect targets that are pointing to a route that has been followed by a previous redirect from the current route.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"max_internal_redirects": schema.Int64Attribute{
-											Description:         "MaxInternalRedirects An internal redirect is not handled, unless the number of previous internalredirects that a downstream request has encountered is lower than this value.",
-											MarkdownDescription: "MaxInternalRedirects An internal redirect is not handled, unless the number of previous internalredirects that a downstream request has encountered is lower than this value.",
+											Description:         "MaxInternalRedirects An internal redirect is not handled, unless the number of previous internal redirects that a downstream request has encountered is lower than this value.",
+											MarkdownDescription: "MaxInternalRedirects An internal redirect is not handled, unless the number of previous internal redirects that a downstream request has encountered is lower than this value.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"redirect_response_codes": schema.ListAttribute{
-											Description:         "RedirectResponseCodes If unspecified, only 302 will be treated as internal redirect.Only 301, 302, 303, 307 and 308 are valid values.",
-											MarkdownDescription: "RedirectResponseCodes If unspecified, only 302 will be treated as internal redirect.Only 301, 302, 303, 307 and 308 are valid values.",
+											Description:         "RedirectResponseCodes If unspecified, only 302 will be treated as internal redirect. Only 301, 302, 303, 307 and 308 are valid values.",
+											MarkdownDescription: "RedirectResponseCodes If unspecified, only 302 will be treated as internal redirect. Only 301, 302, 303, 307 and 308 are valid values.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1297,21 +1297,21 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"ip_allow_policy": schema.ListNestedAttribute{
-									Description:         "IPAllowFilterPolicy is a list of ipv4/6 filter rules for which matchingrequests should be allowed. All other requests will be denied.Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined.The rules defined here override any rules set on the root HTTPProxy.",
-									MarkdownDescription: "IPAllowFilterPolicy is a list of ipv4/6 filter rules for which matchingrequests should be allowed. All other requests will be denied.Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined.The rules defined here override any rules set on the root HTTPProxy.",
+									Description:         "IPAllowFilterPolicy is a list of ipv4/6 filter rules for which matching requests should be allowed. All other requests will be denied. Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined. The rules defined here override any rules set on the root HTTPProxy.",
+									MarkdownDescription: "IPAllowFilterPolicy is a list of ipv4/6 filter rules for which matching requests should be allowed. All other requests will be denied. Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined. The rules defined here override any rules set on the root HTTPProxy.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"cidr": schema.StringAttribute{
-												Description:         "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also bea bare IP address (without a mask) to filter on exactly one address.",
-												MarkdownDescription: "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also bea bare IP address (without a mask) to filter on exactly one address.",
+												Description:         "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also be a bare IP address (without a mask) to filter on exactly one address.",
+												MarkdownDescription: "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also be a bare IP address (without a mask) to filter on exactly one address.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"source": schema.StringAttribute{
-												Description:         "Source indicates how to determine the ip address to filter on, and can beone of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and   X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and   X-Forwarded-For.",
-												MarkdownDescription: "Source indicates how to determine the ip address to filter on, and can beone of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and   X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and   X-Forwarded-For.",
+												Description:         "Source indicates how to determine the ip address to filter on, and can be one of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and X-Forwarded-For.",
+												MarkdownDescription: "Source indicates how to determine the ip address to filter on, and can be one of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and X-Forwarded-For.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -1327,21 +1327,21 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"ip_deny_policy": schema.ListNestedAttribute{
-									Description:         "IPDenyFilterPolicy is a list of ipv4/6 filter rules for which matchingrequests should be denied. All other requests will be allowed.Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined.The rules defined here override any rules set on the root HTTPProxy.",
-									MarkdownDescription: "IPDenyFilterPolicy is a list of ipv4/6 filter rules for which matchingrequests should be denied. All other requests will be allowed.Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined.The rules defined here override any rules set on the root HTTPProxy.",
+									Description:         "IPDenyFilterPolicy is a list of ipv4/6 filter rules for which matching requests should be denied. All other requests will be allowed. Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined. The rules defined here override any rules set on the root HTTPProxy.",
+									MarkdownDescription: "IPDenyFilterPolicy is a list of ipv4/6 filter rules for which matching requests should be denied. All other requests will be allowed. Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined. The rules defined here override any rules set on the root HTTPProxy.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"cidr": schema.StringAttribute{
-												Description:         "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also bea bare IP address (without a mask) to filter on exactly one address.",
-												MarkdownDescription: "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also bea bare IP address (without a mask) to filter on exactly one address.",
+												Description:         "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also be a bare IP address (without a mask) to filter on exactly one address.",
+												MarkdownDescription: "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also be a bare IP address (without a mask) to filter on exactly one address.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"source": schema.StringAttribute{
-												Description:         "Source indicates how to determine the ip address to filter on, and can beone of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and   X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and   X-Forwarded-For.",
-												MarkdownDescription: "Source indicates how to determine the ip address to filter on, and can beone of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and   X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and   X-Forwarded-For.",
+												Description:         "Source indicates how to determine the ip address to filter on, and can be one of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and X-Forwarded-For.",
+												MarkdownDescription: "Source indicates how to determine the ip address to filter on, and can be one of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and X-Forwarded-For.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -1361,16 +1361,16 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "The policy for verifying JWTs for requests to this route.",
 									Attributes: map[string]schema.Attribute{
 										"disabled": schema.BoolAttribute{
-											Description:         "Disabled defines whether to disable all JWT verification for thisroute. This can be used to opt specific routes out of the defaultJWT provider for the HTTPProxy. At most one of this field or the'require' field can be specified.",
-											MarkdownDescription: "Disabled defines whether to disable all JWT verification for thisroute. This can be used to opt specific routes out of the defaultJWT provider for the HTTPProxy. At most one of this field or the'require' field can be specified.",
+											Description:         "Disabled defines whether to disable all JWT verification for this route. This can be used to opt specific routes out of the default JWT provider for the HTTPProxy. At most one of this field or the 'require' field can be specified.",
+											MarkdownDescription: "Disabled defines whether to disable all JWT verification for this route. This can be used to opt specific routes out of the default JWT provider for the HTTPProxy. At most one of this field or the 'require' field can be specified.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"require": schema.StringAttribute{
-											Description:         "Require names a specific JWT provider (defined in the virtual host)to require for the route. If specified, this field overrides thedefault provider if one exists. If this field is not specified,the default provider will be required if one exists. At most one ofthis field or the 'disabled' field can be specified.",
-											MarkdownDescription: "Require names a specific JWT provider (defined in the virtual host)to require for the route. If specified, this field overrides thedefault provider if one exists. If this field is not specified,the default provider will be required if one exists. At most one ofthis field or the 'disabled' field can be specified.",
+											Description:         "Require names a specific JWT provider (defined in the virtual host) to require for the route. If specified, this field overrides the default provider if one exists. If this field is not specified, the default provider will be required if one exists. At most one of this field or the 'disabled' field can be specified.",
+											MarkdownDescription: "Require names a specific JWT provider (defined in the virtual host) to require for the route. If specified, this field overrides the default provider if one exists. If this field is not specified, the default provider will be required if one exists. At most one of this field or the 'disabled' field can be specified.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1386,25 +1386,25 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "The load balancing policy for this route.",
 									Attributes: map[string]schema.Attribute{
 										"request_hash_policies": schema.ListNestedAttribute{
-											Description:         "RequestHashPolicies contains a list of hash policies to apply when the'RequestHash' load balancing strategy is chosen. If an element of thesupplied list of hash policies is invalid, it will be ignored. If thelist of hash policies is empty after validation, the load balancingstrategy will fall back to the default 'RoundRobin'.",
-											MarkdownDescription: "RequestHashPolicies contains a list of hash policies to apply when the'RequestHash' load balancing strategy is chosen. If an element of thesupplied list of hash policies is invalid, it will be ignored. If thelist of hash policies is empty after validation, the load balancingstrategy will fall back to the default 'RoundRobin'.",
+											Description:         "RequestHashPolicies contains a list of hash policies to apply when the 'RequestHash' load balancing strategy is chosen. If an element of the supplied list of hash policies is invalid, it will be ignored. If the list of hash policies is empty after validation, the load balancing strategy will fall back to the default 'RoundRobin'.",
+											MarkdownDescription: "RequestHashPolicies contains a list of hash policies to apply when the 'RequestHash' load balancing strategy is chosen. If an element of the supplied list of hash policies is invalid, it will be ignored. If the list of hash policies is empty after validation, the load balancing strategy will fall back to the default 'RoundRobin'.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"hash_source_ip": schema.BoolAttribute{
-														Description:         "HashSourceIP should be set to true when request source IP hash basedload balancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
-														MarkdownDescription: "HashSourceIP should be set to true when request source IP hash basedload balancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
+														Description:         "HashSourceIP should be set to true when request source IP hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
+														MarkdownDescription: "HashSourceIP should be set to true when request source IP hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"header_hash_options": schema.SingleNestedAttribute{
-														Description:         "HeaderHashOptions should be set when request header hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
-														MarkdownDescription: "HeaderHashOptions should be set when request header hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
+														Description:         "HeaderHashOptions should be set when request header hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
+														MarkdownDescription: "HeaderHashOptions should be set when request header hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
 														Attributes: map[string]schema.Attribute{
 															"header_name": schema.StringAttribute{
-																Description:         "HeaderName is the name of the HTTP request header that will be used tocalculate the hash key. If the header specified is not present on arequest, no hash will be produced.",
-																MarkdownDescription: "HeaderName is the name of the HTTP request header that will be used tocalculate the hash key. If the header specified is not present on arequest, no hash will be produced.",
+																Description:         "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
+																MarkdownDescription: "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1419,12 +1419,12 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"query_parameter_hash_options": schema.SingleNestedAttribute{
-														Description:         "QueryParameterHashOptions should be set when request query parameter hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
-														MarkdownDescription: "QueryParameterHashOptions should be set when request query parameter hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
+														Description:         "QueryParameterHashOptions should be set when request query parameter hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
+														MarkdownDescription: "QueryParameterHashOptions should be set when request query parameter hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
 														Attributes: map[string]schema.Attribute{
 															"parameter_name": schema.StringAttribute{
-																Description:         "ParameterName is the name of the HTTP request query parameter that will be used tocalculate the hash key. If the query parameter specified is not present on arequest, no hash will be produced.",
-																MarkdownDescription: "ParameterName is the name of the HTTP request query parameter that will be used tocalculate the hash key. If the query parameter specified is not present on arequest, no hash will be produced.",
+																Description:         "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
+																MarkdownDescription: "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1439,8 +1439,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"terminal": schema.BoolAttribute{
-														Description:         "Terminal is a flag that allows for short-circuiting computing of a hashfor a given request. If set to true, and the request attribute specifiedin the attribute hash options is present, no further hash policies willbe used to calculate a hash for the request.",
-														MarkdownDescription: "Terminal is a flag that allows for short-circuiting computing of a hashfor a given request. If set to true, and the request attribute specifiedin the attribute hash options is present, no further hash policies willbe used to calculate a hash for the request.",
+														Description:         "Terminal is a flag that allows for short-circuiting computing of a hash for a given request. If set to true, and the request attribute specified in the attribute hash options is present, no further hash policies will be used to calculate a hash for the request.",
+														MarkdownDescription: "Terminal is a flag that allows for short-circuiting computing of a hash for a given request. If set to true, and the request attribute specified in the attribute hash options is present, no further hash policies will be used to calculate a hash for the request.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1453,8 +1453,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"strategy": schema.StringAttribute{
-											Description:         "Strategy specifies the policy used to balance requestsacross the pool of backend pods. Valid policy names are'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie',and 'RequestHash'. If an unknown strategy name is specifiedor no policy is supplied, the default 'RoundRobin' policyis used.",
-											MarkdownDescription: "Strategy specifies the policy used to balance requestsacross the pool of backend pods. Valid policy names are'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie',and 'RequestHash'. If an unknown strategy name is specifiedor no policy is supplied, the default 'RoundRobin' policyis used.",
+											Description:         "Strategy specifies the policy used to balance requests across the pool of backend pods. Valid policy names are 'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie', and 'RequestHash'. If an unknown strategy name is specified or no policy is supplied, the default 'RoundRobin' policy is used.",
+											MarkdownDescription: "Strategy specifies the policy used to balance requests across the pool of backend pods. Valid policy names are 'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie', and 'RequestHash'. If an unknown strategy name is specified or no policy is supplied, the default 'RoundRobin' policy is used.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1466,8 +1466,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"path_rewrite_policy": schema.SingleNestedAttribute{
-									Description:         "The policy for rewriting the path of the request URLafter the request has been routed to a Service.",
-									MarkdownDescription: "The policy for rewriting the path of the request URLafter the request has been routed to a Service.",
+									Description:         "The policy for rewriting the path of the request URL after the request has been routed to a Service.",
+									MarkdownDescription: "The policy for rewriting the path of the request URL after the request has been routed to a Service.",
 									Attributes: map[string]schema.Attribute{
 										"replace_prefix": schema.ListNestedAttribute{
 											Description:         "ReplacePrefix describes how the path prefix should be replaced.",
@@ -1475,8 +1475,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"prefix": schema.StringAttribute{
-														Description:         "Prefix specifies the URL path prefix to be replaced.If Prefix is specified, it must exactly match the MatchConditionprefix that is rendered by the chain of including HTTPProxiesand only that path prefix will be replaced by Replacement.This allows HTTPProxies that are included through multipleroots to only replace specific path prefixes, leaving othersunmodified.If Prefix is not specified, all routing prefixes renderedby the include chain will be replaced.",
-														MarkdownDescription: "Prefix specifies the URL path prefix to be replaced.If Prefix is specified, it must exactly match the MatchConditionprefix that is rendered by the chain of including HTTPProxiesand only that path prefix will be replaced by Replacement.This allows HTTPProxies that are included through multipleroots to only replace specific path prefixes, leaving othersunmodified.If Prefix is not specified, all routing prefixes renderedby the include chain will be replaced.",
+														Description:         "Prefix specifies the URL path prefix to be replaced. If Prefix is specified, it must exactly match the MatchCondition prefix that is rendered by the chain of including HTTPProxies and only that path prefix will be replaced by Replacement. This allows HTTPProxies that are included through multiple roots to only replace specific path prefixes, leaving others unmodified. If Prefix is not specified, all routing prefixes rendered by the include chain will be replaced.",
+														MarkdownDescription: "Prefix specifies the URL path prefix to be replaced. If Prefix is specified, it must exactly match the MatchCondition prefix that is rendered by the chain of including HTTPProxies and only that path prefix will be replaced by Replacement. This allows HTTPProxies that are included through multiple roots to only replace specific path prefixes, leaving others unmodified. If Prefix is not specified, all routing prefixes rendered by the include chain will be replaced.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1486,8 +1486,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"replacement": schema.StringAttribute{
-														Description:         "Replacement is the string that the routing path prefixwill be replaced with. This must not be empty.",
-														MarkdownDescription: "Replacement is the string that the routing path prefixwill be replaced with. This must not be empty.",
+														Description:         "Replacement is the string that the routing path prefix will be replaced with. This must not be empty.",
+														MarkdownDescription: "Replacement is the string that the routing path prefix will be replaced with. This must not be empty.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -1508,8 +1508,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"permit_insecure": schema.BoolAttribute{
-									Description:         "Allow this path to respond to insecure requests over HTTP which are normallynot permitted when a 'virtualhost.tls' block is present.",
-									MarkdownDescription: "Allow this path to respond to insecure requests over HTTP which are normallynot permitted when a 'virtualhost.tls' block is present.",
+									Description:         "Allow this path to respond to insecure requests over HTTP which are normally not permitted when a 'virtualhost.tls' block is present.",
+									MarkdownDescription: "Allow this path to respond to insecure requests over HTTP which are normally not permitted when a 'virtualhost.tls' block is present.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1520,12 +1520,12 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "The policy for rate limiting on the route.",
 									Attributes: map[string]schema.Attribute{
 										"global": schema.SingleNestedAttribute{
-											Description:         "Global defines global rate limiting parameters, i.e. parametersdefining descriptors that are sent to an external rate limitservice (RLS) for a rate limit decision on each request.",
-											MarkdownDescription: "Global defines global rate limiting parameters, i.e. parametersdefining descriptors that are sent to an external rate limitservice (RLS) for a rate limit decision on each request.",
+											Description:         "Global defines global rate limiting parameters, i.e. parameters defining descriptors that are sent to an external rate limit service (RLS) for a rate limit decision on each request.",
+											MarkdownDescription: "Global defines global rate limiting parameters, i.e. parameters defining descriptors that are sent to an external rate limit service (RLS) for a rate limit decision on each request.",
 											Attributes: map[string]schema.Attribute{
 												"descriptors": schema.ListNestedAttribute{
-													Description:         "Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries.",
-													MarkdownDescription: "Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries.",
+													Description:         "Descriptors defines the list of descriptors that will be generated and sent to the rate limit service. Each descriptor contains 1+ key-value pair entries.",
+													MarkdownDescription: "Descriptors defines the list of descriptors that will be generated and sent to the rate limit service. Each descriptor contains 1+ key-value pair entries.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"entries": schema.ListNestedAttribute{
@@ -1538,8 +1538,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																			MarkdownDescription: "GenericKey defines a descriptor entry with a static key and value.",
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.StringAttribute{
-																					Description:         "Key defines the key of the descriptor entry. If not set, thekey is set to 'generic_key'.",
-																					MarkdownDescription: "Key defines the key of the descriptor entry. If not set, thekey is set to 'generic_key'.",
+																					Description:         "Key defines the key of the descriptor entry. If not set, the key is set to 'generic_key'.",
+																					MarkdownDescription: "Key defines the key of the descriptor entry. If not set, the key is set to 'generic_key'.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -1562,8 +1562,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																		},
 
 																		"remote_address": schema.MapAttribute{
-																			Description:         "RemoteAddress defines a descriptor entry with a key of 'remote_address'and a value equal to the client's IP address (from x-forwarded-for).",
-																			MarkdownDescription: "RemoteAddress defines a descriptor entry with a key of 'remote_address'and a value equal to the client's IP address (from x-forwarded-for).",
+																			Description:         "RemoteAddress defines a descriptor entry with a key of 'remote_address' and a value equal to the client's IP address (from x-forwarded-for).",
+																			MarkdownDescription: "RemoteAddress defines a descriptor entry with a key of 'remote_address' and a value equal to the client's IP address (from x-forwarded-for).",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1571,8 +1571,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																		},
 
 																		"request_header": schema.SingleNestedAttribute{
-																			Description:         "RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header.",
-																			MarkdownDescription: "RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header.",
+																			Description:         "RequestHeader defines a descriptor entry that's populated only if a given header is present on the request. The descriptor key is static, and the descriptor value is equal to the value of the header.",
+																			MarkdownDescription: "RequestHeader defines a descriptor entry that's populated only if a given header is present on the request. The descriptor key is static, and the descriptor value is equal to the value of the header.",
 																			Attributes: map[string]schema.Attribute{
 																				"descriptor_key": schema.StringAttribute{
 																					Description:         "DescriptorKey defines the key to use on the descriptor entry.",
@@ -1602,25 +1602,25 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																		},
 
 																		"request_header_value_match": schema.SingleNestedAttribute{
-																			Description:         "RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static.",
-																			MarkdownDescription: "RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static.",
+																			Description:         "RequestHeaderValueMatch defines a descriptor entry that's populated if the request's headers match a set of 1+ match criteria. The descriptor key is 'header_match', and the descriptor value is static.",
+																			MarkdownDescription: "RequestHeaderValueMatch defines a descriptor entry that's populated if the request's headers match a set of 1+ match criteria. The descriptor key is 'header_match', and the descriptor value is static.",
 																			Attributes: map[string]schema.Attribute{
 																				"expect_match": schema.BoolAttribute{
-																					Description:         "ExpectMatch defines whether the request must positively match the matchcriteria in order to generate a descriptor entry (i.e. true), or notmatch the match criteria in order to generate a descriptor entry (i.e. false).The default is true.",
-																					MarkdownDescription: "ExpectMatch defines whether the request must positively match the matchcriteria in order to generate a descriptor entry (i.e. true), or notmatch the match criteria in order to generate a descriptor entry (i.e. false).The default is true.",
+																					Description:         "ExpectMatch defines whether the request must positively match the match criteria in order to generate a descriptor entry (i.e. true), or not match the match criteria in order to generate a descriptor entry (i.e. false). The default is true.",
+																					MarkdownDescription: "ExpectMatch defines whether the request must positively match the match criteria in order to generate a descriptor entry (i.e. true), or not match the match criteria in order to generate a descriptor entry (i.e. false). The default is true.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"headers": schema.ListNestedAttribute{
-																					Description:         "Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not.",
-																					MarkdownDescription: "Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not.",
+																					Description:         "Headers is a list of 1+ match criteria to apply against the request to determine whether to populate the descriptor entry or not.",
+																					MarkdownDescription: "Headers is a list of 1+ match criteria to apply against the request to determine whether to populate the descriptor entry or not.",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"contains": schema.StringAttribute{
-																								Description:         "Contains specifies a substring that must be present inthe header value.",
-																								MarkdownDescription: "Contains specifies a substring that must be present inthe header value.",
+																								Description:         "Contains specifies a substring that must be present in the header value.",
+																								MarkdownDescription: "Contains specifies a substring that must be present in the header value.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -1635,64 +1635,64 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																							},
 
 																							"ignore_case": schema.BoolAttribute{
-																								Description:         "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
-																								MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
+																								Description:         "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
+																								MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "Name is the name of the header to match against. Name is required.Header names are case insensitive.",
-																								MarkdownDescription: "Name is the name of the header to match against. Name is required.Header names are case insensitive.",
+																								Description:         "Name is the name of the header to match against. Name is required. Header names are case insensitive.",
+																								MarkdownDescription: "Name is the name of the header to match against. Name is required. Header names are case insensitive.",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"notcontains": schema.StringAttribute{
-																								Description:         "NotContains specifies a substring that must not be presentin the header value.",
-																								MarkdownDescription: "NotContains specifies a substring that must not be presentin the header value.",
+																								Description:         "NotContains specifies a substring that must not be present in the header value.",
+																								MarkdownDescription: "NotContains specifies a substring that must not be present in the header value.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"notexact": schema.StringAttribute{
-																								Description:         "NoExact specifies a string that the header value must not beequal to. The condition is true if the header has any other value.",
-																								MarkdownDescription: "NoExact specifies a string that the header value must not beequal to. The condition is true if the header has any other value.",
+																								Description:         "NoExact specifies a string that the header value must not be equal to. The condition is true if the header has any other value.",
+																								MarkdownDescription: "NoExact specifies a string that the header value must not be equal to. The condition is true if the header has any other value.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"notpresent": schema.BoolAttribute{
-																								Description:         "NotPresent specifies that condition is true when the named headeris not present. Note that setting NotPresent to false does notmake the condition true if the named header is present.",
-																								MarkdownDescription: "NotPresent specifies that condition is true when the named headeris not present. Note that setting NotPresent to false does notmake the condition true if the named header is present.",
+																								Description:         "NotPresent specifies that condition is true when the named header is not present. Note that setting NotPresent to false does not make the condition true if the named header is present.",
+																								MarkdownDescription: "NotPresent specifies that condition is true when the named header is not present. Note that setting NotPresent to false does not make the condition true if the named header is present.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"present": schema.BoolAttribute{
-																								Description:         "Present specifies that condition is true when the named headeris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named headeris absent.",
-																								MarkdownDescription: "Present specifies that condition is true when the named headeris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named headeris absent.",
+																								Description:         "Present specifies that condition is true when the named header is present, regardless of its value. Note that setting Present to false does not make the condition true if the named header is absent.",
+																								MarkdownDescription: "Present specifies that condition is true when the named header is present, regardless of its value. Note that setting Present to false does not make the condition true if the named header is absent.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"regex": schema.StringAttribute{
-																								Description:         "Regex specifies a regular expression pattern that must match the headervalue.",
-																								MarkdownDescription: "Regex specifies a regular expression pattern that must match the headervalue.",
+																								Description:         "Regex specifies a regular expression pattern that must match the header value.",
+																								MarkdownDescription: "Regex specifies a regular expression pattern that must match the header value.",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"treat_missing_as_empty": schema.BoolAttribute{
-																								Description:         "TreatMissingAsEmpty specifies if the header match rule specified headerdoes not exist, this header value will be treated as empty. Defaults to false.Unlike the underlying Envoy implementation this is **only** supported fornegative matches (e.g. NotContains, NotExact).",
-																								MarkdownDescription: "TreatMissingAsEmpty specifies if the header match rule specified headerdoes not exist, this header value will be treated as empty. Defaults to false.Unlike the underlying Envoy implementation this is **only** supported fornegative matches (e.g. NotContains, NotExact).",
+																								Description:         "TreatMissingAsEmpty specifies if the header match rule specified header does not exist, this header value will be treated as empty. Defaults to false. Unlike the underlying Envoy implementation this is **only** supported for negative matches (e.g. NotContains, NotExact).",
+																								MarkdownDescription: "TreatMissingAsEmpty specifies if the header match rule specified header does not exist, this header value will be treated as empty. Defaults to false. Unlike the underlying Envoy implementation this is **only** supported for negative matches (e.g. NotContains, NotExact).",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -1733,8 +1733,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"disabled": schema.BoolAttribute{
-													Description:         "Disabled configures the HTTPProxy to not usethe default global rate limit policy defined by the Contour configuration.",
-													MarkdownDescription: "Disabled configures the HTTPProxy to not usethe default global rate limit policy defined by the Contour configuration.",
+													Description:         "Disabled configures the HTTPProxy to not use the default global rate limit policy defined by the Contour configuration.",
+													MarkdownDescription: "Disabled configures the HTTPProxy to not use the default global rate limit policy defined by the Contour configuration.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1746,20 +1746,20 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"local": schema.SingleNestedAttribute{
-											Description:         "Local defines local rate limiting parameters, i.e. parametersfor rate limiting that occurs within each Envoy pod as requestsare handled.",
-											MarkdownDescription: "Local defines local rate limiting parameters, i.e. parametersfor rate limiting that occurs within each Envoy pod as requestsare handled.",
+											Description:         "Local defines local rate limiting parameters, i.e. parameters for rate limiting that occurs within each Envoy pod as requests are handled.",
+											MarkdownDescription: "Local defines local rate limiting parameters, i.e. parameters for rate limiting that occurs within each Envoy pod as requests are handled.",
 											Attributes: map[string]schema.Attribute{
 												"burst": schema.Int64Attribute{
-													Description:         "Burst defines the number of requests above the requests perunit that should be allowed within a short period of time.",
-													MarkdownDescription: "Burst defines the number of requests above the requests perunit that should be allowed within a short period of time.",
+													Description:         "Burst defines the number of requests above the requests per unit that should be allowed within a short period of time.",
+													MarkdownDescription: "Burst defines the number of requests above the requests per unit that should be allowed within a short period of time.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"requests": schema.Int64Attribute{
-													Description:         "Requests defines how many requests per unit of time shouldbe allowed before rate limiting occurs.",
-													MarkdownDescription: "Requests defines how many requests per unit of time shouldbe allowed before rate limiting occurs.",
+													Description:         "Requests defines how many requests per unit of time should be allowed before rate limiting occurs.",
+													MarkdownDescription: "Requests defines how many requests per unit of time should be allowed before rate limiting occurs.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1769,8 +1769,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"response_headers_to_add": schema.ListNestedAttribute{
-													Description:         "ResponseHeadersToAdd is an optional list of response headers toset when a request is rate-limited.",
-													MarkdownDescription: "ResponseHeadersToAdd is an optional list of response headers toset when a request is rate-limited.",
+													Description:         "ResponseHeadersToAdd is an optional list of response headers to set when a request is rate-limited.",
+													MarkdownDescription: "ResponseHeadersToAdd is an optional list of response headers to set when a request is rate-limited.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
@@ -1802,8 +1802,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"response_status_code": schema.Int64Attribute{
-													Description:         "ResponseStatusCode is the HTTP status code to use for responsesto rate-limited requests. Codes must be in the 400-599 range(inclusive). If not specified, the Envoy default of 429 (TooMany Requests) is used.",
-													MarkdownDescription: "ResponseStatusCode is the HTTP status code to use for responsesto rate-limited requests. Codes must be in the 400-599 range(inclusive). If not specified, the Envoy default of 429 (TooMany Requests) is used.",
+													Description:         "ResponseStatusCode is the HTTP status code to use for responses to rate-limited requests. Codes must be in the 400-599 range (inclusive). If not specified, the Envoy default of 429 (Too Many Requests) is used.",
+													MarkdownDescription: "ResponseStatusCode is the HTTP status code to use for responses to rate-limited requests. Codes must be in the 400-599 range (inclusive). If not specified, the Envoy default of 429 (Too Many Requests) is used.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1814,8 +1814,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"unit": schema.StringAttribute{
-													Description:         "Unit defines the period of time within which requestsover the limit will be rate limited. Valid values are'second', 'minute' and 'hour'.",
-													MarkdownDescription: "Unit defines the period of time within which requestsover the limit will be rate limited. Valid values are'second', 'minute' and 'hour'.",
+													Description:         "Unit defines the period of time within which requests over the limit will be rate limited. Valid values are 'second', 'minute' and 'hour'.",
+													MarkdownDescription: "Unit defines the period of time within which requests over the limit will be rate limited. Valid values are 'second', 'minute' and 'hour'.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1835,8 +1835,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"request_headers_policy": schema.SingleNestedAttribute{
-									Description:         "The policy for managing request headers during proxying.You may dynamically rewrite the Host header to be forwardedupstream to the content of a request header usingthe below format '%REQ(X-Header-Name)%'. If the value of the headeris empty, it is ignored.*NOTE: Pay attention to the potential security implications of using this option.Provided header must come from trusted source.**NOTE: The header rewrite is only done while forwarding and has no bearingon the routing decision.",
-									MarkdownDescription: "The policy for managing request headers during proxying.You may dynamically rewrite the Host header to be forwardedupstream to the content of a request header usingthe below format '%REQ(X-Header-Name)%'. If the value of the headeris empty, it is ignored.*NOTE: Pay attention to the potential security implications of using this option.Provided header must come from trusted source.**NOTE: The header rewrite is only done while forwarding and has no bearingon the routing decision.",
+									Description:         "The policy for managing request headers during proxying. You may dynamically rewrite the Host header to be forwarded upstream to the content of a request header using the below format '%REQ(X-Header-Name)%'. If the value of the header is empty, it is ignored. *NOTE: Pay attention to the potential security implications of using this option. Provided header must come from trusted source. **NOTE: The header rewrite is only done while forwarding and has no bearing on the routing decision.",
+									MarkdownDescription: "The policy for managing request headers during proxying. You may dynamically rewrite the Host header to be forwarded upstream to the content of a request header using the below format '%REQ(X-Header-Name)%'. If the value of the header is empty, it is ignored. *NOTE: Pay attention to the potential security implications of using this option. Provided header must come from trusted source. **NOTE: The header rewrite is only done while forwarding and has no bearing on the routing decision.",
 									Attributes: map[string]schema.Attribute{
 										"remove": schema.ListAttribute{
 											Description:         "Remove specifies a list of HTTP header names to remove.",
@@ -1848,8 +1848,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"set": schema.ListNestedAttribute{
-											Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
-											MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+											Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+											MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
@@ -1890,8 +1890,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "RequestRedirectPolicy defines an HTTP redirection.",
 									Attributes: map[string]schema.Attribute{
 										"hostname": schema.StringAttribute{
-											Description:         "Hostname is the precise hostname to be used in the value of the 'Location'header in the response.When empty, the hostname of the request is used.No wildcards are allowed.",
-											MarkdownDescription: "Hostname is the precise hostname to be used in the value of the 'Location'header in the response.When empty, the hostname of the request is used.No wildcards are allowed.",
+											Description:         "Hostname is the precise hostname to be used in the value of the 'Location' header in the response. When empty, the hostname of the request is used. No wildcards are allowed.",
+											MarkdownDescription: "Hostname is the precise hostname to be used in the value of the 'Location' header in the response. When empty, the hostname of the request is used. No wildcards are allowed.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1903,8 +1903,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"path": schema.StringAttribute{
-											Description:         "Path allows for redirection to a different path from theoriginal on the request. The path must start with aleading slash.Note: Only one of Path or Prefix can be defined.",
-											MarkdownDescription: "Path allows for redirection to a different path from theoriginal on the request. The path must start with aleading slash.Note: Only one of Path or Prefix can be defined.",
+											Description:         "Path allows for redirection to a different path from the original on the request. The path must start with a leading slash. Note: Only one of Path or Prefix can be defined.",
+											MarkdownDescription: "Path allows for redirection to a different path from the original on the request. The path must start with a leading slash. Note: Only one of Path or Prefix can be defined.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1914,8 +1914,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"port": schema.Int64Attribute{
-											Description:         "Port is the port to be used in the value of the 'Location'header in the response.When empty, port (if specified) of the request is used.",
-											MarkdownDescription: "Port is the port to be used in the value of the 'Location'header in the response.When empty, port (if specified) of the request is used.",
+											Description:         "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.",
+											MarkdownDescription: "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1926,8 +1926,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"prefix": schema.StringAttribute{
-											Description:         "Prefix defines the value to swap the matched prefix or path with.The prefix must start with a leading slash.Note: Only one of Path or Prefix can be defined.",
-											MarkdownDescription: "Prefix defines the value to swap the matched prefix or path with.The prefix must start with a leading slash.Note: Only one of Path or Prefix can be defined.",
+											Description:         "Prefix defines the value to swap the matched prefix or path with. The prefix must start with a leading slash. Note: Only one of Path or Prefix can be defined.",
+											MarkdownDescription: "Prefix defines the value to swap the matched prefix or path with. The prefix must start with a leading slash. Note: Only one of Path or Prefix can be defined.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1937,8 +1937,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"scheme": schema.StringAttribute{
-											Description:         "Scheme is the scheme to be used in the value of the 'Location'header in the response.When empty, the scheme of the request is used.",
-											MarkdownDescription: "Scheme is the scheme to be used in the value of the 'Location'header in the response.When empty, the scheme of the request is used.",
+											Description:         "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.",
+											MarkdownDescription: "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1964,8 +1964,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"response_headers_policy": schema.SingleNestedAttribute{
-									Description:         "The policy for managing response headers during proxying.Rewriting the 'Host' header is not supported.",
-									MarkdownDescription: "The policy for managing response headers during proxying.Rewriting the 'Host' header is not supported.",
+									Description:         "The policy for managing response headers during proxying. Rewriting the 'Host' header is not supported.",
+									MarkdownDescription: "The policy for managing response headers during proxying. Rewriting the 'Host' header is not supported.",
 									Attributes: map[string]schema.Attribute{
 										"remove": schema.ListAttribute{
 											Description:         "Remove specifies a list of HTTP header names to remove.",
@@ -1977,8 +1977,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"set": schema.ListNestedAttribute{
-											Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
-											MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+											Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+											MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
@@ -2019,8 +2019,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "The retry policy for this route.",
 									Attributes: map[string]schema.Attribute{
 										"count": schema.Int64Attribute{
-											Description:         "NumRetries is maximum allowed number of retries.If set to -1, then retries are disabled.If set to 0 or not supplied, the value is setto the Envoy default of 1.",
-											MarkdownDescription: "NumRetries is maximum allowed number of retries.If set to -1, then retries are disabled.If set to 0 or not supplied, the value is setto the Envoy default of 1.",
+											Description:         "NumRetries is maximum allowed number of retries. If set to -1, then retries are disabled. If set to 0 or not supplied, the value is set to the Envoy default of 1.",
+											MarkdownDescription: "NumRetries is maximum allowed number of retries. If set to -1, then retries are disabled. If set to 0 or not supplied, the value is set to the Envoy default of 1.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2030,8 +2030,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"per_try_timeout": schema.StringAttribute{
-											Description:         "PerTryTimeout specifies the timeout per retry attempt.Ignored if NumRetries is not supplied.",
-											MarkdownDescription: "PerTryTimeout specifies the timeout per retry attempt.Ignored if NumRetries is not supplied.",
+											Description:         "PerTryTimeout specifies the timeout per retry attempt. Ignored if NumRetries is not supplied.",
+											MarkdownDescription: "PerTryTimeout specifies the timeout per retry attempt. Ignored if NumRetries is not supplied.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2041,8 +2041,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"retriable_status_codes": schema.ListAttribute{
-											Description:         "RetriableStatusCodes specifies the HTTP status codes that should be retried.This field is only respected when you include 'retriable-status-codes' in the 'RetryOn' field.",
-											MarkdownDescription: "RetriableStatusCodes specifies the HTTP status codes that should be retried.This field is only respected when you include 'retriable-status-codes' in the 'RetryOn' field.",
+											Description:         "RetriableStatusCodes specifies the HTTP status codes that should be retried. This field is only respected when you include 'retriable-status-codes' in the 'RetryOn' field.",
+											MarkdownDescription: "RetriableStatusCodes specifies the HTTP status codes that should be retried. This field is only respected when you include 'retriable-status-codes' in the 'RetryOn' field.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -2050,8 +2050,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"retry_on": schema.ListAttribute{
-											Description:         "RetryOn specifies the conditions on which to retry a request.Supported [HTTP conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on):- '5xx'- 'gateway-error'- 'reset'- 'connect-failure'- 'retriable-4xx'- 'refused-stream'- 'retriable-status-codes'- 'retriable-headers'Supported [gRPC conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-grpc-on):- 'cancelled'- 'deadline-exceeded'- 'internal'- 'resource-exhausted'- 'unavailable'",
-											MarkdownDescription: "RetryOn specifies the conditions on which to retry a request.Supported [HTTP conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on):- '5xx'- 'gateway-error'- 'reset'- 'connect-failure'- 'retriable-4xx'- 'refused-stream'- 'retriable-status-codes'- 'retriable-headers'Supported [gRPC conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-grpc-on):- 'cancelled'- 'deadline-exceeded'- 'internal'- 'resource-exhausted'- 'unavailable'",
+											Description:         "RetryOn specifies the conditions on which to retry a request. Supported [HTTP conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on): - '5xx' - 'gateway-error' - 'reset' - 'connect-failure' - 'retriable-4xx' - 'refused-stream' - 'retriable-status-codes' - 'retriable-headers' Supported [gRPC conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-grpc-on): - 'cancelled' - 'deadline-exceeded' - 'internal' - 'resource-exhausted' - 'unavailable'",
+											MarkdownDescription: "RetryOn specifies the conditions on which to retry a request. Supported [HTTP conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on): - '5xx' - 'gateway-error' - 'reset' - 'connect-failure' - 'retriable-4xx' - 'refused-stream' - 'retriable-status-codes' - 'retriable-headers' Supported [gRPC conditions](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-grpc-on): - 'cancelled' - 'deadline-exceeded' - 'internal' - 'resource-exhausted' - 'unavailable'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -2074,12 +2074,12 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"domain_rewrite": schema.SingleNestedAttribute{
-															Description:         "DomainRewrite enables rewriting the Set-Cookie Domain element.If not set, Domain will not be rewritten.",
-															MarkdownDescription: "DomainRewrite enables rewriting the Set-Cookie Domain element.If not set, Domain will not be rewritten.",
+															Description:         "DomainRewrite enables rewriting the Set-Cookie Domain element. If not set, Domain will not be rewritten.",
+															MarkdownDescription: "DomainRewrite enables rewriting the Set-Cookie Domain element. If not set, Domain will not be rewritten.",
 															Attributes: map[string]schema.Attribute{
 																"value": schema.StringAttribute{
-																	Description:         "Value is the value to rewrite the Domain attribute to.For now this is required.",
-																	MarkdownDescription: "Value is the value to rewrite the Domain attribute to.For now this is required.",
+																	Description:         "Value is the value to rewrite the Domain attribute to. For now this is required.",
+																	MarkdownDescription: "Value is the value to rewrite the Domain attribute to. For now this is required.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -2109,12 +2109,12 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"path_rewrite": schema.SingleNestedAttribute{
-															Description:         "PathRewrite enables rewriting the Set-Cookie Path element.If not set, Path will not be rewritten.",
-															MarkdownDescription: "PathRewrite enables rewriting the Set-Cookie Path element.If not set, Path will not be rewritten.",
+															Description:         "PathRewrite enables rewriting the Set-Cookie Path element. If not set, Path will not be rewritten.",
+															MarkdownDescription: "PathRewrite enables rewriting the Set-Cookie Path element. If not set, Path will not be rewritten.",
 															Attributes: map[string]schema.Attribute{
 																"value": schema.StringAttribute{
-																	Description:         "Value is the value to rewrite the Path attribute to.For now this is required.",
-																	MarkdownDescription: "Value is the value to rewrite the Path attribute to.For now this is required.",
+																	Description:         "Value is the value to rewrite the Path attribute to. For now this is required.",
+																	MarkdownDescription: "Value is the value to rewrite the Path attribute to. For now this is required.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -2131,8 +2131,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"same_site": schema.StringAttribute{
-															Description:         "SameSite enables rewriting the Set-Cookie SameSite element.If not set, SameSite attribute will not be rewritten.",
-															MarkdownDescription: "SameSite enables rewriting the Set-Cookie SameSite element.If not set, SameSite attribute will not be rewritten.",
+															Description:         "SameSite enables rewriting the Set-Cookie SameSite element. If not set, SameSite attribute will not be rewritten.",
+															MarkdownDescription: "SameSite enables rewriting the Set-Cookie SameSite element. If not set, SameSite attribute will not be rewritten.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2142,8 +2142,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"secure": schema.BoolAttribute{
-															Description:         "Secure enables rewriting the Set-Cookie Secure element.If not set, Secure attribute will not be rewritten.",
-															MarkdownDescription: "Secure enables rewriting the Set-Cookie Secure element.If not set, Secure attribute will not be rewritten.",
+															Description:         "Secure enables rewriting the Set-Cookie Secure element. If not set, Secure attribute will not be rewritten.",
+															MarkdownDescription: "Secure enables rewriting the Set-Cookie Secure element. If not set, Secure attribute will not be rewritten.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2156,8 +2156,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"health_port": schema.Int64Attribute{
-												Description:         "HealthPort is the port for this service healthcheck.If not specified, Port is used for service healthchecks.",
-												MarkdownDescription: "HealthPort is the port for this service healthcheck.If not specified, Port is used for service healthchecks.",
+												Description:         "HealthPort is the port for this service healthcheck. If not specified, Port is used for service healthchecks.",
+												MarkdownDescription: "HealthPort is the port for this service healthcheck. If not specified, Port is used for service healthchecks.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2168,16 +2168,16 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"mirror": schema.BoolAttribute{
-												Description:         "If Mirror is true the Service will receive a read only mirror of the traffic for this route.If Mirror is true, then fractional mirroring can be enabled by optionally setting the Weightfield. Legal values for Weight are 1-100. Omitting the Weight field will result in 100% mirroring.NOTE: Setting Weight explicitly to 0 will unexpectedly result in 100% traffic mirroring. Thisoccurs since we cannot distinguish omitted fields from those explicitly set to their defaultvalues",
-												MarkdownDescription: "If Mirror is true the Service will receive a read only mirror of the traffic for this route.If Mirror is true, then fractional mirroring can be enabled by optionally setting the Weightfield. Legal values for Weight are 1-100. Omitting the Weight field will result in 100% mirroring.NOTE: Setting Weight explicitly to 0 will unexpectedly result in 100% traffic mirroring. Thisoccurs since we cannot distinguish omitted fields from those explicitly set to their defaultvalues",
+												Description:         "If Mirror is true the Service will receive a read only mirror of the traffic for this route. If Mirror is true, then fractional mirroring can be enabled by optionally setting the Weight field. Legal values for Weight are 1-100. Omitting the Weight field will result in 100% mirroring. NOTE: Setting Weight explicitly to 0 will unexpectedly result in 100% traffic mirroring. This occurs since we cannot distinguish omitted fields from those explicitly set to their default values",
+												MarkdownDescription: "If Mirror is true the Service will receive a read only mirror of the traffic for this route. If Mirror is true, then fractional mirroring can be enabled by optionally setting the Weight field. Legal values for Weight are 1-100. Omitting the Weight field will result in 100% mirroring. NOTE: Setting Weight explicitly to 0 will unexpectedly result in 100% traffic mirroring. This occurs since we cannot distinguish omitted fields from those explicitly set to their default values",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name is the name of Kubernetes service to proxy traffic.Names defined here will be used to look up corresponding endpoints which contain the ips to route.",
-												MarkdownDescription: "Name is the name of Kubernetes service to proxy traffic.Names defined here will be used to look up corresponding endpoints which contain the ips to route.",
+												Description:         "Name is the name of Kubernetes service to proxy traffic. Names defined here will be used to look up corresponding endpoints which contain the ips to route.",
+												MarkdownDescription: "Name is the name of Kubernetes service to proxy traffic. Names defined here will be used to look up corresponding endpoints which contain the ips to route.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -2196,8 +2196,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"protocol": schema.StringAttribute{
-												Description:         "Protocol may be used to specify (or override) the protocol used to reach this Service.Values may be tls, h2, h2c. If omitted, protocol-selection falls back on Service annotations.",
-												MarkdownDescription: "Protocol may be used to specify (or override) the protocol used to reach this Service.Values may be tls, h2, h2c. If omitted, protocol-selection falls back on Service annotations.",
+												Description:         "Protocol may be used to specify (or override) the protocol used to reach this Service. Values may be tls, h2, h2c. If omitted, protocol-selection falls back on Service annotations.",
+												MarkdownDescription: "Protocol may be used to specify (or override) the protocol used to reach this Service. Values may be tls, h2, h2c. If omitted, protocol-selection falls back on Service annotations.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2220,8 +2220,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"set": schema.ListNestedAttribute{
-														Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
-														MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+														Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+														MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
@@ -2258,8 +2258,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"response_headers_policy": schema.SingleNestedAttribute{
-												Description:         "The policy for managing response headers during proxying.Rewriting the 'Host' header is not supported.",
-												MarkdownDescription: "The policy for managing response headers during proxying.Rewriting the 'Host' header is not supported.",
+												Description:         "The policy for managing response headers during proxying. Rewriting the 'Host' header is not supported.",
+												MarkdownDescription: "The policy for managing response headers during proxying. Rewriting the 'Host' header is not supported.",
 												Attributes: map[string]schema.Attribute{
 													"remove": schema.ListAttribute{
 														Description:         "Remove specifies a list of HTTP header names to remove.",
@@ -2271,8 +2271,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"set": schema.ListNestedAttribute{
-														Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
-														MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+														Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+														MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
@@ -2313,8 +2313,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												MarkdownDescription: "Slow start will gradually increase amount of traffic to a newly added endpoint.",
 												Attributes: map[string]schema.Attribute{
 													"aggression": schema.StringAttribute{
-														Description:         "The speed of traffic increase over the slow start window.Defaults to 1.0, so that endpoint would get linearly increasing amount of traffic.When increasing the value for this parameter, the speed of traffic ramp-up increases non-linearly.The value of aggression parameter should be greater than 0.0.More info: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/slow_start",
-														MarkdownDescription: "The speed of traffic increase over the slow start window.Defaults to 1.0, so that endpoint would get linearly increasing amount of traffic.When increasing the value for this parameter, the speed of traffic ramp-up increases non-linearly.The value of aggression parameter should be greater than 0.0.More info: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/slow_start",
+														Description:         "The speed of traffic increase over the slow start window. Defaults to 1.0, so that endpoint would get linearly increasing amount of traffic. When increasing the value for this parameter, the speed of traffic ramp-up increases non-linearly. The value of aggression parameter should be greater than 0.0. More info: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/slow_start",
+														MarkdownDescription: "The speed of traffic increase over the slow start window. Defaults to 1.0, so that endpoint would get linearly increasing amount of traffic. When increasing the value for this parameter, the speed of traffic ramp-up increases non-linearly. The value of aggression parameter should be greater than 0.0. More info: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/slow_start",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2324,8 +2324,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"min_weight_percent": schema.Int64Attribute{
-														Description:         "The minimum or starting percentage of traffic to send to new endpoints.A non-zero value helps avoid a too small initial weight, which may cause endpoints in slow start mode to receive no traffic in the beginning of the slow start window.If not specified, the default is 10%.",
-														MarkdownDescription: "The minimum or starting percentage of traffic to send to new endpoints.A non-zero value helps avoid a too small initial weight, which may cause endpoints in slow start mode to receive no traffic in the beginning of the slow start window.If not specified, the default is 10%.",
+														Description:         "The minimum or starting percentage of traffic to send to new endpoints. A non-zero value helps avoid a too small initial weight, which may cause endpoints in slow start mode to receive no traffic in the beginning of the slow start window. If not specified, the default is 10%.",
+														MarkdownDescription: "The minimum or starting percentage of traffic to send to new endpoints. A non-zero value helps avoid a too small initial weight, which may cause endpoints in slow start mode to receive no traffic in the beginning of the slow start window. If not specified, the default is 10%.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2336,8 +2336,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"window": schema.StringAttribute{
-														Description:         "The duration of slow start window.Duration is expressed in the Go [Duration format](https://godoc.org/time#ParseDuration).Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
-														MarkdownDescription: "The duration of slow start window.Duration is expressed in the Go [Duration format](https://godoc.org/time#ParseDuration).Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
+														Description:         "The duration of slow start window. Duration is expressed in the Go [Duration format](https://godoc.org/time#ParseDuration). Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
+														MarkdownDescription: "The duration of slow start window. Duration is expressed in the Go [Duration format](https://godoc.org/time#ParseDuration). Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -2356,8 +2356,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												MarkdownDescription: "UpstreamValidation defines how to verify the backend service's certificate",
 												Attributes: map[string]schema.Attribute{
 													"ca_secret": schema.StringAttribute{
-														Description:         "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend.The secret must contain key named ca.crt.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
-														MarkdownDescription: "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend.The secret must contain key named ca.crt.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
+														Description:         "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend. The secret must contain key named ca.crt. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret. Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
+														MarkdownDescription: "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend. The secret must contain key named ca.crt. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret. Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -2368,8 +2368,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"subject_name": schema.StringAttribute{
-														Description:         "Key which is expected to be present in the 'subjectAltName' of the presented certificate.Deprecated: migrate to using the plural field subjectNames.",
-														MarkdownDescription: "Key which is expected to be present in the 'subjectAltName' of the presented certificate.Deprecated: migrate to using the plural field subjectNames.",
+														Description:         "Key which is expected to be present in the 'subjectAltName' of the presented certificate. Deprecated: migrate to using the plural field subjectNames.",
+														MarkdownDescription: "Key which is expected to be present in the 'subjectAltName' of the presented certificate. Deprecated: migrate to using the plural field subjectNames.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -2380,8 +2380,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"subject_names": schema.ListAttribute{
-														Description:         "List of keys, of which at least one is expected to be present in the 'subjectAltName of thepresented certificate.",
-														MarkdownDescription: "List of keys, of which at least one is expected to be present in the 'subjectAltName of thepresented certificate.",
+														Description:         "List of keys, of which at least one is expected to be present in the 'subjectAltName of the presented certificate.",
+														MarkdownDescription: "List of keys, of which at least one is expected to be present in the 'subjectAltName of the presented certificate.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -2415,8 +2415,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "The timeout policy for this route.",
 									Attributes: map[string]schema.Attribute{
 										"idle": schema.StringAttribute{
-											Description:         "Timeout for how long the proxy should wait while there is no activity during single request/response (for HTTP/1.1) or stream (for HTTP/2).Timeout will not trigger while HTTP/1.1 connection is idle between two consecutive requests.If not specified, there is no per-route idle timeout, though a connection manager-widestream_idle_timeout default of 5m still applies.",
-											MarkdownDescription: "Timeout for how long the proxy should wait while there is no activity during single request/response (for HTTP/1.1) or stream (for HTTP/2).Timeout will not trigger while HTTP/1.1 connection is idle between two consecutive requests.If not specified, there is no per-route idle timeout, though a connection manager-widestream_idle_timeout default of 5m still applies.",
+											Description:         "Timeout for how long the proxy should wait while there is no activity during single request/response (for HTTP/1.1) or stream (for HTTP/2). Timeout will not trigger while HTTP/1.1 connection is idle between two consecutive requests. If not specified, there is no per-route idle timeout, though a connection manager-wide stream_idle_timeout default of 5m still applies.",
+											MarkdownDescription: "Timeout for how long the proxy should wait while there is no activity during single request/response (for HTTP/1.1) or stream (for HTTP/2). Timeout will not trigger while HTTP/1.1 connection is idle between two consecutive requests. If not specified, there is no per-route idle timeout, though a connection manager-wide stream_idle_timeout default of 5m still applies.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2426,8 +2426,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"idle_connection": schema.StringAttribute{
-											Description:         "Timeout for how long connection from the proxy to the upstream service is kept when there are no active requests.If not supplied, Envoy's default value of 1h applies.",
-											MarkdownDescription: "Timeout for how long connection from the proxy to the upstream service is kept when there are no active requests.If not supplied, Envoy's default value of 1h applies.",
+											Description:         "Timeout for how long connection from the proxy to the upstream service is kept when there are no active requests. If not supplied, Envoy's default value of 1h applies.",
+											MarkdownDescription: "Timeout for how long connection from the proxy to the upstream service is kept when there are no active requests. If not supplied, Envoy's default value of 1h applies.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2437,8 +2437,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"response": schema.StringAttribute{
-											Description:         "Timeout for receiving a response from the server after processing a request from client.If not supplied, Envoy's default value of 15s applies.",
-											MarkdownDescription: "Timeout for receiving a response from the server after processing a request from client.If not supplied, Envoy's default value of 15s applies.",
+											Description:         "Timeout for receiving a response from the server after processing a request from client. If not supplied, Envoy's default value of 15s applies.",
+											MarkdownDescription: "Timeout for receiving a response from the server after processing a request from client. If not supplied, Envoy's default value of 15s applies.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2529,8 +2529,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"includes": schema.SingleNestedAttribute{
-								Description:         "IncludesDeprecated allow for specific routing configuration to be appended to another HTTPProxy in another namespace.Exists due to a mistake when developing HTTPProxy and the field was marked pluralwhen it should have been singular. This field should stay to not break backwards compatibility to v1 users.",
-								MarkdownDescription: "IncludesDeprecated allow for specific routing configuration to be appended to another HTTPProxy in another namespace.Exists due to a mistake when developing HTTPProxy and the field was marked pluralwhen it should have been singular. This field should stay to not break backwards compatibility to v1 users.",
+								Description:         "IncludesDeprecated allow for specific routing configuration to be appended to another HTTPProxy in another namespace. Exists due to a mistake when developing HTTPProxy and the field was marked plural when it should have been singular. This field should stay to not break backwards compatibility to v1 users.",
+								MarkdownDescription: "IncludesDeprecated allow for specific routing configuration to be appended to another HTTPProxy in another namespace. Exists due to a mistake when developing HTTPProxy and the field was marked plural when it should have been singular. This field should stay to not break backwards compatibility to v1 users.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name of the child HTTPProxy",
@@ -2554,29 +2554,29 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"load_balancer_policy": schema.SingleNestedAttribute{
-								Description:         "The load balancing policy for the backend services. Note that the'Cookie' and 'RequestHash' load balancing strategies cannot be usedhere.",
-								MarkdownDescription: "The load balancing policy for the backend services. Note that the'Cookie' and 'RequestHash' load balancing strategies cannot be usedhere.",
+								Description:         "The load balancing policy for the backend services. Note that the 'Cookie' and 'RequestHash' load balancing strategies cannot be used here.",
+								MarkdownDescription: "The load balancing policy for the backend services. Note that the 'Cookie' and 'RequestHash' load balancing strategies cannot be used here.",
 								Attributes: map[string]schema.Attribute{
 									"request_hash_policies": schema.ListNestedAttribute{
-										Description:         "RequestHashPolicies contains a list of hash policies to apply when the'RequestHash' load balancing strategy is chosen. If an element of thesupplied list of hash policies is invalid, it will be ignored. If thelist of hash policies is empty after validation, the load balancingstrategy will fall back to the default 'RoundRobin'.",
-										MarkdownDescription: "RequestHashPolicies contains a list of hash policies to apply when the'RequestHash' load balancing strategy is chosen. If an element of thesupplied list of hash policies is invalid, it will be ignored. If thelist of hash policies is empty after validation, the load balancingstrategy will fall back to the default 'RoundRobin'.",
+										Description:         "RequestHashPolicies contains a list of hash policies to apply when the 'RequestHash' load balancing strategy is chosen. If an element of the supplied list of hash policies is invalid, it will be ignored. If the list of hash policies is empty after validation, the load balancing strategy will fall back to the default 'RoundRobin'.",
+										MarkdownDescription: "RequestHashPolicies contains a list of hash policies to apply when the 'RequestHash' load balancing strategy is chosen. If an element of the supplied list of hash policies is invalid, it will be ignored. If the list of hash policies is empty after validation, the load balancing strategy will fall back to the default 'RoundRobin'.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"hash_source_ip": schema.BoolAttribute{
-													Description:         "HashSourceIP should be set to true when request source IP hash basedload balancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
-													MarkdownDescription: "HashSourceIP should be set to true when request source IP hash basedload balancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
+													Description:         "HashSourceIP should be set to true when request source IP hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
+													MarkdownDescription: "HashSourceIP should be set to true when request source IP hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"header_hash_options": schema.SingleNestedAttribute{
-													Description:         "HeaderHashOptions should be set when request header hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
-													MarkdownDescription: "HeaderHashOptions should be set when request header hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
+													Description:         "HeaderHashOptions should be set when request header hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
+													MarkdownDescription: "HeaderHashOptions should be set when request header hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
 													Attributes: map[string]schema.Attribute{
 														"header_name": schema.StringAttribute{
-															Description:         "HeaderName is the name of the HTTP request header that will be used tocalculate the hash key. If the header specified is not present on arequest, no hash will be produced.",
-															MarkdownDescription: "HeaderName is the name of the HTTP request header that will be used tocalculate the hash key. If the header specified is not present on arequest, no hash will be produced.",
+															Description:         "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
+															MarkdownDescription: "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2591,12 +2591,12 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"query_parameter_hash_options": schema.SingleNestedAttribute{
-													Description:         "QueryParameterHashOptions should be set when request query parameter hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
-													MarkdownDescription: "QueryParameterHashOptions should be set when request query parameter hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.",
+													Description:         "QueryParameterHashOptions should be set when request query parameter hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
+													MarkdownDescription: "QueryParameterHashOptions should be set when request query parameter hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.",
 													Attributes: map[string]schema.Attribute{
 														"parameter_name": schema.StringAttribute{
-															Description:         "ParameterName is the name of the HTTP request query parameter that will be used tocalculate the hash key. If the query parameter specified is not present on arequest, no hash will be produced.",
-															MarkdownDescription: "ParameterName is the name of the HTTP request query parameter that will be used tocalculate the hash key. If the query parameter specified is not present on arequest, no hash will be produced.",
+															Description:         "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
+															MarkdownDescription: "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2611,8 +2611,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"terminal": schema.BoolAttribute{
-													Description:         "Terminal is a flag that allows for short-circuiting computing of a hashfor a given request. If set to true, and the request attribute specifiedin the attribute hash options is present, no further hash policies willbe used to calculate a hash for the request.",
-													MarkdownDescription: "Terminal is a flag that allows for short-circuiting computing of a hashfor a given request. If set to true, and the request attribute specifiedin the attribute hash options is present, no further hash policies willbe used to calculate a hash for the request.",
+													Description:         "Terminal is a flag that allows for short-circuiting computing of a hash for a given request. If set to true, and the request attribute specified in the attribute hash options is present, no further hash policies will be used to calculate a hash for the request.",
+													MarkdownDescription: "Terminal is a flag that allows for short-circuiting computing of a hash for a given request. If set to true, and the request attribute specified in the attribute hash options is present, no further hash policies will be used to calculate a hash for the request.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2625,8 +2625,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"strategy": schema.StringAttribute{
-										Description:         "Strategy specifies the policy used to balance requestsacross the pool of backend pods. Valid policy names are'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie',and 'RequestHash'. If an unknown strategy name is specifiedor no policy is supplied, the default 'RoundRobin' policyis used.",
-										MarkdownDescription: "Strategy specifies the policy used to balance requestsacross the pool of backend pods. Valid policy names are'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie',and 'RequestHash'. If an unknown strategy name is specifiedor no policy is supplied, the default 'RoundRobin' policyis used.",
+										Description:         "Strategy specifies the policy used to balance requests across the pool of backend pods. Valid policy names are 'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie', and 'RequestHash'. If an unknown strategy name is specified or no policy is supplied, the default 'RoundRobin' policy is used.",
+										MarkdownDescription: "Strategy specifies the policy used to balance requests across the pool of backend pods. Valid policy names are 'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie', and 'RequestHash'. If an unknown strategy name is specified or no policy is supplied, the default 'RoundRobin' policy is used.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2648,12 +2648,12 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"domain_rewrite": schema.SingleNestedAttribute{
-														Description:         "DomainRewrite enables rewriting the Set-Cookie Domain element.If not set, Domain will not be rewritten.",
-														MarkdownDescription: "DomainRewrite enables rewriting the Set-Cookie Domain element.If not set, Domain will not be rewritten.",
+														Description:         "DomainRewrite enables rewriting the Set-Cookie Domain element. If not set, Domain will not be rewritten.",
+														MarkdownDescription: "DomainRewrite enables rewriting the Set-Cookie Domain element. If not set, Domain will not be rewritten.",
 														Attributes: map[string]schema.Attribute{
 															"value": schema.StringAttribute{
-																Description:         "Value is the value to rewrite the Domain attribute to.For now this is required.",
-																MarkdownDescription: "Value is the value to rewrite the Domain attribute to.For now this is required.",
+																Description:         "Value is the value to rewrite the Domain attribute to. For now this is required.",
+																MarkdownDescription: "Value is the value to rewrite the Domain attribute to. For now this is required.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -2683,12 +2683,12 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"path_rewrite": schema.SingleNestedAttribute{
-														Description:         "PathRewrite enables rewriting the Set-Cookie Path element.If not set, Path will not be rewritten.",
-														MarkdownDescription: "PathRewrite enables rewriting the Set-Cookie Path element.If not set, Path will not be rewritten.",
+														Description:         "PathRewrite enables rewriting the Set-Cookie Path element. If not set, Path will not be rewritten.",
+														MarkdownDescription: "PathRewrite enables rewriting the Set-Cookie Path element. If not set, Path will not be rewritten.",
 														Attributes: map[string]schema.Attribute{
 															"value": schema.StringAttribute{
-																Description:         "Value is the value to rewrite the Path attribute to.For now this is required.",
-																MarkdownDescription: "Value is the value to rewrite the Path attribute to.For now this is required.",
+																Description:         "Value is the value to rewrite the Path attribute to. For now this is required.",
+																MarkdownDescription: "Value is the value to rewrite the Path attribute to. For now this is required.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -2705,8 +2705,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"same_site": schema.StringAttribute{
-														Description:         "SameSite enables rewriting the Set-Cookie SameSite element.If not set, SameSite attribute will not be rewritten.",
-														MarkdownDescription: "SameSite enables rewriting the Set-Cookie SameSite element.If not set, SameSite attribute will not be rewritten.",
+														Description:         "SameSite enables rewriting the Set-Cookie SameSite element. If not set, SameSite attribute will not be rewritten.",
+														MarkdownDescription: "SameSite enables rewriting the Set-Cookie SameSite element. If not set, SameSite attribute will not be rewritten.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2716,8 +2716,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"secure": schema.BoolAttribute{
-														Description:         "Secure enables rewriting the Set-Cookie Secure element.If not set, Secure attribute will not be rewritten.",
-														MarkdownDescription: "Secure enables rewriting the Set-Cookie Secure element.If not set, Secure attribute will not be rewritten.",
+														Description:         "Secure enables rewriting the Set-Cookie Secure element. If not set, Secure attribute will not be rewritten.",
+														MarkdownDescription: "Secure enables rewriting the Set-Cookie Secure element. If not set, Secure attribute will not be rewritten.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2730,8 +2730,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"health_port": schema.Int64Attribute{
-											Description:         "HealthPort is the port for this service healthcheck.If not specified, Port is used for service healthchecks.",
-											MarkdownDescription: "HealthPort is the port for this service healthcheck.If not specified, Port is used for service healthchecks.",
+											Description:         "HealthPort is the port for this service healthcheck. If not specified, Port is used for service healthchecks.",
+											MarkdownDescription: "HealthPort is the port for this service healthcheck. If not specified, Port is used for service healthchecks.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2742,16 +2742,16 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"mirror": schema.BoolAttribute{
-											Description:         "If Mirror is true the Service will receive a read only mirror of the traffic for this route.If Mirror is true, then fractional mirroring can be enabled by optionally setting the Weightfield. Legal values for Weight are 1-100. Omitting the Weight field will result in 100% mirroring.NOTE: Setting Weight explicitly to 0 will unexpectedly result in 100% traffic mirroring. Thisoccurs since we cannot distinguish omitted fields from those explicitly set to their defaultvalues",
-											MarkdownDescription: "If Mirror is true the Service will receive a read only mirror of the traffic for this route.If Mirror is true, then fractional mirroring can be enabled by optionally setting the Weightfield. Legal values for Weight are 1-100. Omitting the Weight field will result in 100% mirroring.NOTE: Setting Weight explicitly to 0 will unexpectedly result in 100% traffic mirroring. Thisoccurs since we cannot distinguish omitted fields from those explicitly set to their defaultvalues",
+											Description:         "If Mirror is true the Service will receive a read only mirror of the traffic for this route. If Mirror is true, then fractional mirroring can be enabled by optionally setting the Weight field. Legal values for Weight are 1-100. Omitting the Weight field will result in 100% mirroring. NOTE: Setting Weight explicitly to 0 will unexpectedly result in 100% traffic mirroring. This occurs since we cannot distinguish omitted fields from those explicitly set to their default values",
+											MarkdownDescription: "If Mirror is true the Service will receive a read only mirror of the traffic for this route. If Mirror is true, then fractional mirroring can be enabled by optionally setting the Weight field. Legal values for Weight are 1-100. Omitting the Weight field will result in 100% mirroring. NOTE: Setting Weight explicitly to 0 will unexpectedly result in 100% traffic mirroring. This occurs since we cannot distinguish omitted fields from those explicitly set to their default values",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name is the name of Kubernetes service to proxy traffic.Names defined here will be used to look up corresponding endpoints which contain the ips to route.",
-											MarkdownDescription: "Name is the name of Kubernetes service to proxy traffic.Names defined here will be used to look up corresponding endpoints which contain the ips to route.",
+											Description:         "Name is the name of Kubernetes service to proxy traffic. Names defined here will be used to look up corresponding endpoints which contain the ips to route.",
+											MarkdownDescription: "Name is the name of Kubernetes service to proxy traffic. Names defined here will be used to look up corresponding endpoints which contain the ips to route.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -2770,8 +2770,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"protocol": schema.StringAttribute{
-											Description:         "Protocol may be used to specify (or override) the protocol used to reach this Service.Values may be tls, h2, h2c. If omitted, protocol-selection falls back on Service annotations.",
-											MarkdownDescription: "Protocol may be used to specify (or override) the protocol used to reach this Service.Values may be tls, h2, h2c. If omitted, protocol-selection falls back on Service annotations.",
+											Description:         "Protocol may be used to specify (or override) the protocol used to reach this Service. Values may be tls, h2, h2c. If omitted, protocol-selection falls back on Service annotations.",
+											MarkdownDescription: "Protocol may be used to specify (or override) the protocol used to reach this Service. Values may be tls, h2, h2c. If omitted, protocol-selection falls back on Service annotations.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2794,8 +2794,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"set": schema.ListNestedAttribute{
-													Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
-													MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+													Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+													MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
@@ -2832,8 +2832,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"response_headers_policy": schema.SingleNestedAttribute{
-											Description:         "The policy for managing response headers during proxying.Rewriting the 'Host' header is not supported.",
-											MarkdownDescription: "The policy for managing response headers during proxying.Rewriting the 'Host' header is not supported.",
+											Description:         "The policy for managing response headers during proxying. Rewriting the 'Host' header is not supported.",
+											MarkdownDescription: "The policy for managing response headers during proxying. Rewriting the 'Host' header is not supported.",
 											Attributes: map[string]schema.Attribute{
 												"remove": schema.ListAttribute{
 													Description:         "Remove specifies a list of HTTP header names to remove.",
@@ -2845,8 +2845,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"set": schema.ListNestedAttribute{
-													Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
-													MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header.If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+													Description:         "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
+													MarkdownDescription: "Set specifies a list of HTTP header values that will be set in the HTTP header. If the header does not exist it will be added, otherwise it will be overwritten with the new value.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
@@ -2887,8 +2887,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											MarkdownDescription: "Slow start will gradually increase amount of traffic to a newly added endpoint.",
 											Attributes: map[string]schema.Attribute{
 												"aggression": schema.StringAttribute{
-													Description:         "The speed of traffic increase over the slow start window.Defaults to 1.0, so that endpoint would get linearly increasing amount of traffic.When increasing the value for this parameter, the speed of traffic ramp-up increases non-linearly.The value of aggression parameter should be greater than 0.0.More info: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/slow_start",
-													MarkdownDescription: "The speed of traffic increase over the slow start window.Defaults to 1.0, so that endpoint would get linearly increasing amount of traffic.When increasing the value for this parameter, the speed of traffic ramp-up increases non-linearly.The value of aggression parameter should be greater than 0.0.More info: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/slow_start",
+													Description:         "The speed of traffic increase over the slow start window. Defaults to 1.0, so that endpoint would get linearly increasing amount of traffic. When increasing the value for this parameter, the speed of traffic ramp-up increases non-linearly. The value of aggression parameter should be greater than 0.0. More info: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/slow_start",
+													MarkdownDescription: "The speed of traffic increase over the slow start window. Defaults to 1.0, so that endpoint would get linearly increasing amount of traffic. When increasing the value for this parameter, the speed of traffic ramp-up increases non-linearly. The value of aggression parameter should be greater than 0.0. More info: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/slow_start",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2898,8 +2898,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"min_weight_percent": schema.Int64Attribute{
-													Description:         "The minimum or starting percentage of traffic to send to new endpoints.A non-zero value helps avoid a too small initial weight, which may cause endpoints in slow start mode to receive no traffic in the beginning of the slow start window.If not specified, the default is 10%.",
-													MarkdownDescription: "The minimum or starting percentage of traffic to send to new endpoints.A non-zero value helps avoid a too small initial weight, which may cause endpoints in slow start mode to receive no traffic in the beginning of the slow start window.If not specified, the default is 10%.",
+													Description:         "The minimum or starting percentage of traffic to send to new endpoints. A non-zero value helps avoid a too small initial weight, which may cause endpoints in slow start mode to receive no traffic in the beginning of the slow start window. If not specified, the default is 10%.",
+													MarkdownDescription: "The minimum or starting percentage of traffic to send to new endpoints. A non-zero value helps avoid a too small initial weight, which may cause endpoints in slow start mode to receive no traffic in the beginning of the slow start window. If not specified, the default is 10%.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2910,8 +2910,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"window": schema.StringAttribute{
-													Description:         "The duration of slow start window.Duration is expressed in the Go [Duration format](https://godoc.org/time#ParseDuration).Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
-													MarkdownDescription: "The duration of slow start window.Duration is expressed in the Go [Duration format](https://godoc.org/time#ParseDuration).Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
+													Description:         "The duration of slow start window. Duration is expressed in the Go [Duration format](https://godoc.org/time#ParseDuration). Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
+													MarkdownDescription: "The duration of slow start window. Duration is expressed in the Go [Duration format](https://godoc.org/time#ParseDuration). Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2930,8 +2930,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											MarkdownDescription: "UpstreamValidation defines how to verify the backend service's certificate",
 											Attributes: map[string]schema.Attribute{
 												"ca_secret": schema.StringAttribute{
-													Description:         "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend.The secret must contain key named ca.crt.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
-													MarkdownDescription: "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend.The secret must contain key named ca.crt.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
+													Description:         "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend. The secret must contain key named ca.crt. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret. Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
+													MarkdownDescription: "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend. The secret must contain key named ca.crt. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret. Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2942,8 +2942,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"subject_name": schema.StringAttribute{
-													Description:         "Key which is expected to be present in the 'subjectAltName' of the presented certificate.Deprecated: migrate to using the plural field subjectNames.",
-													MarkdownDescription: "Key which is expected to be present in the 'subjectAltName' of the presented certificate.Deprecated: migrate to using the plural field subjectNames.",
+													Description:         "Key which is expected to be present in the 'subjectAltName' of the presented certificate. Deprecated: migrate to using the plural field subjectNames.",
+													MarkdownDescription: "Key which is expected to be present in the 'subjectAltName' of the presented certificate. Deprecated: migrate to using the plural field subjectNames.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2954,8 +2954,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"subject_names": schema.ListAttribute{
-													Description:         "List of keys, of which at least one is expected to be present in the 'subjectAltName of thepresented certificate.",
-													MarkdownDescription: "List of keys, of which at least one is expected to be present in the 'subjectAltName of thepresented certificate.",
+													Description:         "List of keys, of which at least one is expected to be present in the 'subjectAltName of the presented certificate.",
+													MarkdownDescription: "List of keys, of which at least one is expected to be present in the 'subjectAltName of the presented certificate.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2990,20 +2990,20 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"virtualhost": schema.SingleNestedAttribute{
-						Description:         "Virtualhost appears at most once. If it is present, the object is consideredto be a 'root' HTTPProxy.",
-						MarkdownDescription: "Virtualhost appears at most once. If it is present, the object is consideredto be a 'root' HTTPProxy.",
+						Description:         "Virtualhost appears at most once. If it is present, the object is considered to be a 'root' HTTPProxy.",
+						MarkdownDescription: "Virtualhost appears at most once. If it is present, the object is considered to be a 'root' HTTPProxy.",
 						Attributes: map[string]schema.Attribute{
 							"authorization": schema.SingleNestedAttribute{
-								Description:         "This field configures an extension service to performauthorization for this virtual host. Authorization canonly be configured on virtual hosts that have TLS enabled.If the TLS configuration requires client certificatevalidation, the client certificate is always included in theauthentication check request.",
-								MarkdownDescription: "This field configures an extension service to performauthorization for this virtual host. Authorization canonly be configured on virtual hosts that have TLS enabled.If the TLS configuration requires client certificatevalidation, the client certificate is always included in theauthentication check request.",
+								Description:         "This field configures an extension service to perform authorization for this virtual host. Authorization can only be configured on virtual hosts that have TLS enabled. If the TLS configuration requires client certificate validation, the client certificate is always included in the authentication check request.",
+								MarkdownDescription: "This field configures an extension service to perform authorization for this virtual host. Authorization can only be configured on virtual hosts that have TLS enabled. If the TLS configuration requires client certificate validation, the client certificate is always included in the authentication check request.",
 								Attributes: map[string]schema.Attribute{
 									"auth_policy": schema.SingleNestedAttribute{
-										Description:         "AuthPolicy sets a default authorization policy for client requests.This policy will be used unless overridden by individual routes.",
-										MarkdownDescription: "AuthPolicy sets a default authorization policy for client requests.This policy will be used unless overridden by individual routes.",
+										Description:         "AuthPolicy sets a default authorization policy for client requests. This policy will be used unless overridden by individual routes.",
+										MarkdownDescription: "AuthPolicy sets a default authorization policy for client requests. This policy will be used unless overridden by individual routes.",
 										Attributes: map[string]schema.Attribute{
 											"context": schema.MapAttribute{
-												Description:         "Context is a set of key/value pairs that are sent to theauthentication server in the check request. If a contextis provided at an enclosing scope, the entries are mergedsuch that the inner scope overrides matching keys from theouter scope.",
-												MarkdownDescription: "Context is a set of key/value pairs that are sent to theauthentication server in the check request. If a contextis provided at an enclosing scope, the entries are mergedsuch that the inner scope overrides matching keys from theouter scope.",
+												Description:         "Context is a set of key/value pairs that are sent to the authentication server in the check request. If a context is provided at an enclosing scope, the entries are merged such that the inner scope overrides matching keys from the outer scope.",
+												MarkdownDescription: "Context is a set of key/value pairs that are sent to the authentication server in the check request. If a context is provided at an enclosing scope, the entries are merged such that the inner scope overrides matching keys from the outer scope.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -3011,8 +3011,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"disabled": schema.BoolAttribute{
-												Description:         "When true, this field disables client request authenticationfor the scope of the policy.",
-												MarkdownDescription: "When true, this field disables client request authenticationfor the scope of the policy.",
+												Description:         "When true, this field disables client request authentication for the scope of the policy.",
+												MarkdownDescription: "When true, this field disables client request authentication for the scope of the policy.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3028,8 +3028,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										MarkdownDescription: "ExtensionServiceRef specifies the extension resource that will authorize client requests.",
 										Attributes: map[string]schema.Attribute{
 											"api_version": schema.StringAttribute{
-												Description:         "API version of the referent.If this field is not specified, the default 'projectcontour.io/v1alpha1' will be used",
-												MarkdownDescription: "API version of the referent.If this field is not specified, the default 'projectcontour.io/v1alpha1' will be used",
+												Description:         "API version of the referent. If this field is not specified, the default 'projectcontour.io/v1alpha1' will be used",
+												MarkdownDescription: "API version of the referent. If this field is not specified, the default 'projectcontour.io/v1alpha1' will be used",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3039,8 +3039,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3050,8 +3050,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the referent.If this field is not specifies, the namespace of the resource that targets the referent will be used.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-												MarkdownDescription: "Namespace of the referent.If this field is not specifies, the namespace of the resource that targets the referent will be used.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+												Description:         "Namespace of the referent. If this field is not specifies, the namespace of the resource that targets the referent will be used. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+												MarkdownDescription: "Namespace of the referent. If this field is not specifies, the namespace of the resource that targets the referent will be used. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3066,16 +3066,16 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"fail_open": schema.BoolAttribute{
-										Description:         "If FailOpen is true, the client request is forwarded to the upstream serviceeven if the authorization server fails to respond. This field should not beset in most cases. It is intended for use only while migrating applicationsfrom internal authorization to Contour external authorization.",
-										MarkdownDescription: "If FailOpen is true, the client request is forwarded to the upstream serviceeven if the authorization server fails to respond. This field should not beset in most cases. It is intended for use only while migrating applicationsfrom internal authorization to Contour external authorization.",
+										Description:         "If FailOpen is true, the client request is forwarded to the upstream service even if the authorization server fails to respond. This field should not be set in most cases. It is intended for use only while migrating applications from internal authorization to Contour external authorization.",
+										MarkdownDescription: "If FailOpen is true, the client request is forwarded to the upstream service even if the authorization server fails to respond. This field should not be set in most cases. It is intended for use only while migrating applications from internal authorization to Contour external authorization.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"response_timeout": schema.StringAttribute{
-										Description:         "ResponseTimeout configures maximum time to wait for a check response from the authorization server.Timeout durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration).Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.The string 'infinity' is also a valid input and specifies no timeout.",
-										MarkdownDescription: "ResponseTimeout configures maximum time to wait for a check response from the authorization server.Timeout durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration).Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.The string 'infinity' is also a valid input and specifies no timeout.",
+										Description:         "ResponseTimeout configures maximum time to wait for a check response from the authorization server. Timeout durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration). Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. The string 'infinity' is also a valid input and specifies no timeout.",
+										MarkdownDescription: "ResponseTimeout configures maximum time to wait for a check response from the authorization server. Timeout durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration). Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. The string 'infinity' is also a valid input and specifies no timeout.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3156,8 +3156,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"allow_origin": schema.ListAttribute{
-										Description:         "AllowOrigin specifies the origins that will be allowed to do CORS requests.Allowed values include '*' which signifies any origin is allowed, an exactorigin of the form 'scheme://host[:port]' (where port is optional), or a validregex pattern.Note that regex patterns are validated and a simple 'glob' pattern (e.g. *.foo.com)will be rejected or produce unexpected matches when applied as a regex.",
-										MarkdownDescription: "AllowOrigin specifies the origins that will be allowed to do CORS requests.Allowed values include '*' which signifies any origin is allowed, an exactorigin of the form 'scheme://host[:port]' (where port is optional), or a validregex pattern.Note that regex patterns are validated and a simple 'glob' pattern (e.g. *.foo.com)will be rejected or produce unexpected matches when applied as a regex.",
+										Description:         "AllowOrigin specifies the origins that will be allowed to do CORS requests. Allowed values include '*' which signifies any origin is allowed, an exact origin of the form 'scheme://host[:port]' (where port is optional), or a valid regex pattern. Note that regex patterns are validated and a simple 'glob' pattern (e.g. *.foo.com) will be rejected or produce unexpected matches when applied as a regex.",
+										MarkdownDescription: "AllowOrigin specifies the origins that will be allowed to do CORS requests. Allowed values include '*' which signifies any origin is allowed, an exact origin of the form 'scheme://host[:port]' (where port is optional), or a valid regex pattern. Note that regex patterns are validated and a simple 'glob' pattern (e.g. *.foo.com) will be rejected or produce unexpected matches when applied as a regex.",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -3165,8 +3165,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"allow_private_network": schema.BoolAttribute{
-										Description:         "AllowPrivateNetwork specifies whether to allow private network requests.See https://developer.chrome.com/blog/private-network-access-preflight.",
-										MarkdownDescription: "AllowPrivateNetwork specifies whether to allow private network requests.See https://developer.chrome.com/blog/private-network-access-preflight.",
+										Description:         "AllowPrivateNetwork specifies whether to allow private network requests. See https://developer.chrome.com/blog/private-network-access-preflight.",
+										MarkdownDescription: "AllowPrivateNetwork specifies whether to allow private network requests. See https://developer.chrome.com/blog/private-network-access-preflight.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3182,8 +3182,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"max_age": schema.StringAttribute{
-										Description:         "MaxAge indicates for how long the results of a preflight request can be cached.MaxAge durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration).Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.Only positive values are allowed while 0 disables the cache requiring a preflight OPTIONScheck for all cross-origin requests.",
-										MarkdownDescription: "MaxAge indicates for how long the results of a preflight request can be cached.MaxAge durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration).Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.Only positive values are allowed while 0 disables the cache requiring a preflight OPTIONScheck for all cross-origin requests.",
+										Description:         "MaxAge indicates for how long the results of a preflight request can be cached. MaxAge durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration). Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. Only positive values are allowed while 0 disables the cache requiring a preflight OPTIONS check for all cross-origin requests.",
+										MarkdownDescription: "MaxAge indicates for how long the results of a preflight request can be cached. MaxAge durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration). Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. Only positive values are allowed while 0 disables the cache requiring a preflight OPTIONS check for all cross-origin requests.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3198,8 +3198,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"fqdn": schema.StringAttribute{
-								Description:         "The fully qualified domain name of the root of the ingress treeall leaves of the DAG rooted at this object relate to the fqdn.",
-								MarkdownDescription: "The fully qualified domain name of the root of the ingress treeall leaves of the DAG rooted at this object relate to the fqdn.",
+								Description:         "The fully qualified domain name of the root of the ingress tree all leaves of the DAG rooted at this object relate to the fqdn.",
+								MarkdownDescription: "The fully qualified domain name of the root of the ingress tree all leaves of the DAG rooted at this object relate to the fqdn.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -3209,21 +3209,21 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"ip_allow_policy": schema.ListNestedAttribute{
-								Description:         "IPAllowFilterPolicy is a list of ipv4/6 filter rules for which matchingrequests should be allowed. All other requests will be denied.Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined.The rules defined here may be overridden in a Route.",
-								MarkdownDescription: "IPAllowFilterPolicy is a list of ipv4/6 filter rules for which matchingrequests should be allowed. All other requests will be denied.Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined.The rules defined here may be overridden in a Route.",
+								Description:         "IPAllowFilterPolicy is a list of ipv4/6 filter rules for which matching requests should be allowed. All other requests will be denied. Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined. The rules defined here may be overridden in a Route.",
+								MarkdownDescription: "IPAllowFilterPolicy is a list of ipv4/6 filter rules for which matching requests should be allowed. All other requests will be denied. Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined. The rules defined here may be overridden in a Route.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"cidr": schema.StringAttribute{
-											Description:         "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also bea bare IP address (without a mask) to filter on exactly one address.",
-											MarkdownDescription: "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also bea bare IP address (without a mask) to filter on exactly one address.",
+											Description:         "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also be a bare IP address (without a mask) to filter on exactly one address.",
+											MarkdownDescription: "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also be a bare IP address (without a mask) to filter on exactly one address.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"source": schema.StringAttribute{
-											Description:         "Source indicates how to determine the ip address to filter on, and can beone of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and   X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and   X-Forwarded-For.",
-											MarkdownDescription: "Source indicates how to determine the ip address to filter on, and can beone of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and   X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and   X-Forwarded-For.",
+											Description:         "Source indicates how to determine the ip address to filter on, and can be one of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and X-Forwarded-For.",
+											MarkdownDescription: "Source indicates how to determine the ip address to filter on, and can be one of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and X-Forwarded-For.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -3239,21 +3239,21 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"ip_deny_policy": schema.ListNestedAttribute{
-								Description:         "IPDenyFilterPolicy is a list of ipv4/6 filter rules for which matchingrequests should be denied. All other requests will be allowed.Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined.The rules defined here may be overridden in a Route.",
-								MarkdownDescription: "IPDenyFilterPolicy is a list of ipv4/6 filter rules for which matchingrequests should be denied. All other requests will be allowed.Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined.The rules defined here may be overridden in a Route.",
+								Description:         "IPDenyFilterPolicy is a list of ipv4/6 filter rules for which matching requests should be denied. All other requests will be allowed. Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined. The rules defined here may be overridden in a Route.",
+								MarkdownDescription: "IPDenyFilterPolicy is a list of ipv4/6 filter rules for which matching requests should be denied. All other requests will be allowed. Only one of IPAllowFilterPolicy and IPDenyFilterPolicy can be defined. The rules defined here may be overridden in a Route.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"cidr": schema.StringAttribute{
-											Description:         "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also bea bare IP address (without a mask) to filter on exactly one address.",
-											MarkdownDescription: "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also bea bare IP address (without a mask) to filter on exactly one address.",
+											Description:         "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also be a bare IP address (without a mask) to filter on exactly one address.",
+											MarkdownDescription: "CIDR is a CIDR block of ipv4 or ipv6 addresses to filter on. This can also be a bare IP address (without a mask) to filter on exactly one address.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"source": schema.StringAttribute{
-											Description:         "Source indicates how to determine the ip address to filter on, and can beone of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and   X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and   X-Forwarded-For.",
-											MarkdownDescription: "Source indicates how to determine the ip address to filter on, and can beone of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and   X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and   X-Forwarded-For.",
+											Description:         "Source indicates how to determine the ip address to filter on, and can be one of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and X-Forwarded-For.",
+											MarkdownDescription: "Source indicates how to determine the ip address to filter on, and can be one of two values: - 'Remote' filters on the ip address of the client, accounting for PROXY and X-Forwarded-For as needed. - 'Peer' filters on the ip of the network request, ignoring PROXY and X-Forwarded-For.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -3274,8 +3274,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"audiences": schema.ListAttribute{
-											Description:         "Audiences that JWTs are allowed to have in the 'aud' field.If not provided, JWT audiences are not checked.",
-											MarkdownDescription: "Audiences that JWTs are allowed to have in the 'aud' field.If not provided, JWT audiences are not checked.",
+											Description:         "Audiences that JWTs are allowed to have in the 'aud' field. If not provided, JWT audiences are not checked.",
+											MarkdownDescription: "Audiences that JWTs are allowed to have in the 'aud' field. If not provided, JWT audiences are not checked.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -3283,24 +3283,24 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"default": schema.BoolAttribute{
-											Description:         "Whether the provider should apply to allroutes in the HTTPProxy/its includes bydefault. At most one provider can be markedas the default. If no provider is markedas the default, individual routes must explicitlyidentify the provider they require.",
-											MarkdownDescription: "Whether the provider should apply to allroutes in the HTTPProxy/its includes bydefault. At most one provider can be markedas the default. If no provider is markedas the default, individual routes must explicitlyidentify the provider they require.",
+											Description:         "Whether the provider should apply to all routes in the HTTPProxy/its includes by default. At most one provider can be marked as the default. If no provider is marked as the default, individual routes must explicitly identify the provider they require.",
+											MarkdownDescription: "Whether the provider should apply to all routes in the HTTPProxy/its includes by default. At most one provider can be marked as the default. If no provider is marked as the default, individual routes must explicitly identify the provider they require.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"forward_jwt": schema.BoolAttribute{
-											Description:         "Whether the JWT should be forwarded to the backendservice after successful verification. By default,the JWT is not forwarded.",
-											MarkdownDescription: "Whether the JWT should be forwarded to the backendservice after successful verification. By default,the JWT is not forwarded.",
+											Description:         "Whether the JWT should be forwarded to the backend service after successful verification. By default, the JWT is not forwarded.",
+											MarkdownDescription: "Whether the JWT should be forwarded to the backend service after successful verification. By default, the JWT is not forwarded.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"issuer": schema.StringAttribute{
-											Description:         "Issuer that JWTs are required to have in the 'iss' field.If not provided, JWT issuers are not checked.",
-											MarkdownDescription: "Issuer that JWTs are required to have in the 'iss' field.If not provided, JWT issuers are not checked.",
+											Description:         "Issuer that JWTs are required to have in the 'iss' field. If not provided, JWT issuers are not checked.",
+											MarkdownDescription: "Issuer that JWTs are required to have in the 'iss' field. If not provided, JWT issuers are not checked.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3322,8 +3322,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											MarkdownDescription: "Remote JWKS to use for verifying JWT signatures.",
 											Attributes: map[string]schema.Attribute{
 												"cache_duration": schema.StringAttribute{
-													Description:         "How long to cache the JWKS locally. If not specified,Envoy's default of 5m applies.",
-													MarkdownDescription: "How long to cache the JWKS locally. If not specified,Envoy's default of 5m applies.",
+													Description:         "How long to cache the JWKS locally. If not specified, Envoy's default of 5m applies.",
+													MarkdownDescription: "How long to cache the JWKS locally. If not specified, Envoy's default of 5m applies.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3333,8 +3333,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"dns_lookup_family": schema.StringAttribute{
-													Description:         "The DNS IP address resolution policy for the JWKS URI.When configured as 'v4', the DNS resolver will only perform a lookupfor addresses in the IPv4 family. If 'v6' is configured, the DNS resolverwill only perform a lookup for addresses in the IPv6 family.If 'all' is configured, the DNS resolverwill perform a lookup for addresses in both the IPv4 and IPv6 family.If 'auto' is configured, the DNS resolver will first perform a lookupfor addresses in the IPv6 family and fallback to a lookup for addressesin the IPv4 family. If not specified, the Contour-wide setting definedin the config file or ContourConfiguration applies (defaults to 'auto').See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto.html#envoy-v3-api-enum-config-cluster-v3-cluster-dnslookupfamilyfor more information.",
-													MarkdownDescription: "The DNS IP address resolution policy for the JWKS URI.When configured as 'v4', the DNS resolver will only perform a lookupfor addresses in the IPv4 family. If 'v6' is configured, the DNS resolverwill only perform a lookup for addresses in the IPv6 family.If 'all' is configured, the DNS resolverwill perform a lookup for addresses in both the IPv4 and IPv6 family.If 'auto' is configured, the DNS resolver will first perform a lookupfor addresses in the IPv6 family and fallback to a lookup for addressesin the IPv4 family. If not specified, the Contour-wide setting definedin the config file or ContourConfiguration applies (defaults to 'auto').See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto.html#envoy-v3-api-enum-config-cluster-v3-cluster-dnslookupfamilyfor more information.",
+													Description:         "The DNS IP address resolution policy for the JWKS URI. When configured as 'v4', the DNS resolver will only perform a lookup for addresses in the IPv4 family. If 'v6' is configured, the DNS resolver will only perform a lookup for addresses in the IPv6 family. If 'all' is configured, the DNS resolver will perform a lookup for addresses in both the IPv4 and IPv6 family. If 'auto' is configured, the DNS resolver will first perform a lookup for addresses in the IPv6 family and fallback to a lookup for addresses in the IPv4 family. If not specified, the Contour-wide setting defined in the config file or ContourConfiguration applies (defaults to 'auto'). See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto.html#envoy-v3-api-enum-config-cluster-v3-cluster-dnslookupfamily for more information.",
+													MarkdownDescription: "The DNS IP address resolution policy for the JWKS URI. When configured as 'v4', the DNS resolver will only perform a lookup for addresses in the IPv4 family. If 'v6' is configured, the DNS resolver will only perform a lookup for addresses in the IPv6 family. If 'all' is configured, the DNS resolver will perform a lookup for addresses in both the IPv4 and IPv6 family. If 'auto' is configured, the DNS resolver will first perform a lookup for addresses in the IPv6 family and fallback to a lookup for addresses in the IPv4 family. If not specified, the Contour-wide setting defined in the config file or ContourConfiguration applies (defaults to 'auto'). See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto.html#envoy-v3-api-enum-config-cluster-v3-cluster-dnslookupfamily for more information.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3344,8 +3344,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"timeout": schema.StringAttribute{
-													Description:         "How long to wait for a response from the URI.If not specified, a default of 1s applies.",
-													MarkdownDescription: "How long to wait for a response from the URI.If not specified, a default of 1s applies.",
+													Description:         "How long to wait for a response from the URI. If not specified, a default of 1s applies.",
+													MarkdownDescription: "How long to wait for a response from the URI. If not specified, a default of 1s applies.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3370,8 +3370,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 													MarkdownDescription: "UpstreamValidation defines how to verify the JWKS's TLS certificate.",
 													Attributes: map[string]schema.Attribute{
 														"ca_secret": schema.StringAttribute{
-															Description:         "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend.The secret must contain key named ca.crt.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
-															MarkdownDescription: "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend.The secret must contain key named ca.crt.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
+															Description:         "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend. The secret must contain key named ca.crt. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret. Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
+															MarkdownDescription: "Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend. The secret must contain key named ca.crt. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret. Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3382,8 +3382,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"subject_name": schema.StringAttribute{
-															Description:         "Key which is expected to be present in the 'subjectAltName' of the presented certificate.Deprecated: migrate to using the plural field subjectNames.",
-															MarkdownDescription: "Key which is expected to be present in the 'subjectAltName' of the presented certificate.Deprecated: migrate to using the plural field subjectNames.",
+															Description:         "Key which is expected to be present in the 'subjectAltName' of the presented certificate. Deprecated: migrate to using the plural field subjectNames.",
+															MarkdownDescription: "Key which is expected to be present in the 'subjectAltName' of the presented certificate. Deprecated: migrate to using the plural field subjectNames.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3394,8 +3394,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"subject_names": schema.ListAttribute{
-															Description:         "List of keys, of which at least one is expected to be present in the 'subjectAltName of thepresented certificate.",
-															MarkdownDescription: "List of keys, of which at least one is expected to be present in the 'subjectAltName of thepresented certificate.",
+															Description:         "List of keys, of which at least one is expected to be present in the 'subjectAltName of the presented certificate.",
+															MarkdownDescription: "List of keys, of which at least one is expected to be present in the 'subjectAltName of the presented certificate.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3423,12 +3423,12 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 								MarkdownDescription: "The policy for rate limiting on the virtual host.",
 								Attributes: map[string]schema.Attribute{
 									"global": schema.SingleNestedAttribute{
-										Description:         "Global defines global rate limiting parameters, i.e. parametersdefining descriptors that are sent to an external rate limitservice (RLS) for a rate limit decision on each request.",
-										MarkdownDescription: "Global defines global rate limiting parameters, i.e. parametersdefining descriptors that are sent to an external rate limitservice (RLS) for a rate limit decision on each request.",
+										Description:         "Global defines global rate limiting parameters, i.e. parameters defining descriptors that are sent to an external rate limit service (RLS) for a rate limit decision on each request.",
+										MarkdownDescription: "Global defines global rate limiting parameters, i.e. parameters defining descriptors that are sent to an external rate limit service (RLS) for a rate limit decision on each request.",
 										Attributes: map[string]schema.Attribute{
 											"descriptors": schema.ListNestedAttribute{
-												Description:         "Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries.",
-												MarkdownDescription: "Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries.",
+												Description:         "Descriptors defines the list of descriptors that will be generated and sent to the rate limit service. Each descriptor contains 1+ key-value pair entries.",
+												MarkdownDescription: "Descriptors defines the list of descriptors that will be generated and sent to the rate limit service. Each descriptor contains 1+ key-value pair entries.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"entries": schema.ListNestedAttribute{
@@ -3441,8 +3441,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																		MarkdownDescription: "GenericKey defines a descriptor entry with a static key and value.",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "Key defines the key of the descriptor entry. If not set, thekey is set to 'generic_key'.",
-																				MarkdownDescription: "Key defines the key of the descriptor entry. If not set, thekey is set to 'generic_key'.",
+																				Description:         "Key defines the key of the descriptor entry. If not set, the key is set to 'generic_key'.",
+																				MarkdownDescription: "Key defines the key of the descriptor entry. If not set, the key is set to 'generic_key'.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3465,8 +3465,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																	},
 
 																	"remote_address": schema.MapAttribute{
-																		Description:         "RemoteAddress defines a descriptor entry with a key of 'remote_address'and a value equal to the client's IP address (from x-forwarded-for).",
-																		MarkdownDescription: "RemoteAddress defines a descriptor entry with a key of 'remote_address'and a value equal to the client's IP address (from x-forwarded-for).",
+																		Description:         "RemoteAddress defines a descriptor entry with a key of 'remote_address' and a value equal to the client's IP address (from x-forwarded-for).",
+																		MarkdownDescription: "RemoteAddress defines a descriptor entry with a key of 'remote_address' and a value equal to the client's IP address (from x-forwarded-for).",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3474,8 +3474,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																	},
 
 																	"request_header": schema.SingleNestedAttribute{
-																		Description:         "RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header.",
-																		MarkdownDescription: "RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header.",
+																		Description:         "RequestHeader defines a descriptor entry that's populated only if a given header is present on the request. The descriptor key is static, and the descriptor value is equal to the value of the header.",
+																		MarkdownDescription: "RequestHeader defines a descriptor entry that's populated only if a given header is present on the request. The descriptor key is static, and the descriptor value is equal to the value of the header.",
 																		Attributes: map[string]schema.Attribute{
 																			"descriptor_key": schema.StringAttribute{
 																				Description:         "DescriptorKey defines the key to use on the descriptor entry.",
@@ -3505,25 +3505,25 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																	},
 
 																	"request_header_value_match": schema.SingleNestedAttribute{
-																		Description:         "RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static.",
-																		MarkdownDescription: "RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static.",
+																		Description:         "RequestHeaderValueMatch defines a descriptor entry that's populated if the request's headers match a set of 1+ match criteria. The descriptor key is 'header_match', and the descriptor value is static.",
+																		MarkdownDescription: "RequestHeaderValueMatch defines a descriptor entry that's populated if the request's headers match a set of 1+ match criteria. The descriptor key is 'header_match', and the descriptor value is static.",
 																		Attributes: map[string]schema.Attribute{
 																			"expect_match": schema.BoolAttribute{
-																				Description:         "ExpectMatch defines whether the request must positively match the matchcriteria in order to generate a descriptor entry (i.e. true), or notmatch the match criteria in order to generate a descriptor entry (i.e. false).The default is true.",
-																				MarkdownDescription: "ExpectMatch defines whether the request must positively match the matchcriteria in order to generate a descriptor entry (i.e. true), or notmatch the match criteria in order to generate a descriptor entry (i.e. false).The default is true.",
+																				Description:         "ExpectMatch defines whether the request must positively match the match criteria in order to generate a descriptor entry (i.e. true), or not match the match criteria in order to generate a descriptor entry (i.e. false). The default is true.",
+																				MarkdownDescription: "ExpectMatch defines whether the request must positively match the match criteria in order to generate a descriptor entry (i.e. true), or not match the match criteria in order to generate a descriptor entry (i.e. false). The default is true.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"headers": schema.ListNestedAttribute{
-																				Description:         "Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not.",
-																				MarkdownDescription: "Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not.",
+																				Description:         "Headers is a list of 1+ match criteria to apply against the request to determine whether to populate the descriptor entry or not.",
+																				MarkdownDescription: "Headers is a list of 1+ match criteria to apply against the request to determine whether to populate the descriptor entry or not.",
 																				NestedObject: schema.NestedAttributeObject{
 																					Attributes: map[string]schema.Attribute{
 																						"contains": schema.StringAttribute{
-																							Description:         "Contains specifies a substring that must be present inthe header value.",
-																							MarkdownDescription: "Contains specifies a substring that must be present inthe header value.",
+																							Description:         "Contains specifies a substring that must be present in the header value.",
+																							MarkdownDescription: "Contains specifies a substring that must be present in the header value.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -3538,64 +3538,64 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 																						},
 
 																						"ignore_case": schema.BoolAttribute{
-																							Description:         "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
-																							MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
+																							Description:         "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
+																							MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name is the name of the header to match against. Name is required.Header names are case insensitive.",
-																							MarkdownDescription: "Name is the name of the header to match against. Name is required.Header names are case insensitive.",
+																							Description:         "Name is the name of the header to match against. Name is required. Header names are case insensitive.",
+																							MarkdownDescription: "Name is the name of the header to match against. Name is required. Header names are case insensitive.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
 																						},
 
 																						"notcontains": schema.StringAttribute{
-																							Description:         "NotContains specifies a substring that must not be presentin the header value.",
-																							MarkdownDescription: "NotContains specifies a substring that must not be presentin the header value.",
+																							Description:         "NotContains specifies a substring that must not be present in the header value.",
+																							MarkdownDescription: "NotContains specifies a substring that must not be present in the header value.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"notexact": schema.StringAttribute{
-																							Description:         "NoExact specifies a string that the header value must not beequal to. The condition is true if the header has any other value.",
-																							MarkdownDescription: "NoExact specifies a string that the header value must not beequal to. The condition is true if the header has any other value.",
+																							Description:         "NoExact specifies a string that the header value must not be equal to. The condition is true if the header has any other value.",
+																							MarkdownDescription: "NoExact specifies a string that the header value must not be equal to. The condition is true if the header has any other value.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"notpresent": schema.BoolAttribute{
-																							Description:         "NotPresent specifies that condition is true when the named headeris not present. Note that setting NotPresent to false does notmake the condition true if the named header is present.",
-																							MarkdownDescription: "NotPresent specifies that condition is true when the named headeris not present. Note that setting NotPresent to false does notmake the condition true if the named header is present.",
+																							Description:         "NotPresent specifies that condition is true when the named header is not present. Note that setting NotPresent to false does not make the condition true if the named header is present.",
+																							MarkdownDescription: "NotPresent specifies that condition is true when the named header is not present. Note that setting NotPresent to false does not make the condition true if the named header is present.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"present": schema.BoolAttribute{
-																							Description:         "Present specifies that condition is true when the named headeris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named headeris absent.",
-																							MarkdownDescription: "Present specifies that condition is true when the named headeris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named headeris absent.",
+																							Description:         "Present specifies that condition is true when the named header is present, regardless of its value. Note that setting Present to false does not make the condition true if the named header is absent.",
+																							MarkdownDescription: "Present specifies that condition is true when the named header is present, regardless of its value. Note that setting Present to false does not make the condition true if the named header is absent.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"regex": schema.StringAttribute{
-																							Description:         "Regex specifies a regular expression pattern that must match the headervalue.",
-																							MarkdownDescription: "Regex specifies a regular expression pattern that must match the headervalue.",
+																							Description:         "Regex specifies a regular expression pattern that must match the header value.",
+																							MarkdownDescription: "Regex specifies a regular expression pattern that must match the header value.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"treat_missing_as_empty": schema.BoolAttribute{
-																							Description:         "TreatMissingAsEmpty specifies if the header match rule specified headerdoes not exist, this header value will be treated as empty. Defaults to false.Unlike the underlying Envoy implementation this is **only** supported fornegative matches (e.g. NotContains, NotExact).",
-																							MarkdownDescription: "TreatMissingAsEmpty specifies if the header match rule specified headerdoes not exist, this header value will be treated as empty. Defaults to false.Unlike the underlying Envoy implementation this is **only** supported fornegative matches (e.g. NotContains, NotExact).",
+																							Description:         "TreatMissingAsEmpty specifies if the header match rule specified header does not exist, this header value will be treated as empty. Defaults to false. Unlike the underlying Envoy implementation this is **only** supported for negative matches (e.g. NotContains, NotExact).",
+																							MarkdownDescription: "TreatMissingAsEmpty specifies if the header match rule specified header does not exist, this header value will be treated as empty. Defaults to false. Unlike the underlying Envoy implementation this is **only** supported for negative matches (e.g. NotContains, NotExact).",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -3636,8 +3636,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"disabled": schema.BoolAttribute{
-												Description:         "Disabled configures the HTTPProxy to not usethe default global rate limit policy defined by the Contour configuration.",
-												MarkdownDescription: "Disabled configures the HTTPProxy to not usethe default global rate limit policy defined by the Contour configuration.",
+												Description:         "Disabled configures the HTTPProxy to not use the default global rate limit policy defined by the Contour configuration.",
+												MarkdownDescription: "Disabled configures the HTTPProxy to not use the default global rate limit policy defined by the Contour configuration.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3649,20 +3649,20 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"local": schema.SingleNestedAttribute{
-										Description:         "Local defines local rate limiting parameters, i.e. parametersfor rate limiting that occurs within each Envoy pod as requestsare handled.",
-										MarkdownDescription: "Local defines local rate limiting parameters, i.e. parametersfor rate limiting that occurs within each Envoy pod as requestsare handled.",
+										Description:         "Local defines local rate limiting parameters, i.e. parameters for rate limiting that occurs within each Envoy pod as requests are handled.",
+										MarkdownDescription: "Local defines local rate limiting parameters, i.e. parameters for rate limiting that occurs within each Envoy pod as requests are handled.",
 										Attributes: map[string]schema.Attribute{
 											"burst": schema.Int64Attribute{
-												Description:         "Burst defines the number of requests above the requests perunit that should be allowed within a short period of time.",
-												MarkdownDescription: "Burst defines the number of requests above the requests perunit that should be allowed within a short period of time.",
+												Description:         "Burst defines the number of requests above the requests per unit that should be allowed within a short period of time.",
+												MarkdownDescription: "Burst defines the number of requests above the requests per unit that should be allowed within a short period of time.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"requests": schema.Int64Attribute{
-												Description:         "Requests defines how many requests per unit of time shouldbe allowed before rate limiting occurs.",
-												MarkdownDescription: "Requests defines how many requests per unit of time shouldbe allowed before rate limiting occurs.",
+												Description:         "Requests defines how many requests per unit of time should be allowed before rate limiting occurs.",
+												MarkdownDescription: "Requests defines how many requests per unit of time should be allowed before rate limiting occurs.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -3672,8 +3672,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"response_headers_to_add": schema.ListNestedAttribute{
-												Description:         "ResponseHeadersToAdd is an optional list of response headers toset when a request is rate-limited.",
-												MarkdownDescription: "ResponseHeadersToAdd is an optional list of response headers toset when a request is rate-limited.",
+												Description:         "ResponseHeadersToAdd is an optional list of response headers to set when a request is rate-limited.",
+												MarkdownDescription: "ResponseHeadersToAdd is an optional list of response headers to set when a request is rate-limited.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
@@ -3705,8 +3705,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"response_status_code": schema.Int64Attribute{
-												Description:         "ResponseStatusCode is the HTTP status code to use for responsesto rate-limited requests. Codes must be in the 400-599 range(inclusive). If not specified, the Envoy default of 429 (TooMany Requests) is used.",
-												MarkdownDescription: "ResponseStatusCode is the HTTP status code to use for responsesto rate-limited requests. Codes must be in the 400-599 range(inclusive). If not specified, the Envoy default of 429 (TooMany Requests) is used.",
+												Description:         "ResponseStatusCode is the HTTP status code to use for responses to rate-limited requests. Codes must be in the 400-599 range (inclusive). If not specified, the Envoy default of 429 (Too Many Requests) is used.",
+												MarkdownDescription: "ResponseStatusCode is the HTTP status code to use for responses to rate-limited requests. Codes must be in the 400-599 range (inclusive). If not specified, the Envoy default of 429 (Too Many Requests) is used.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3717,8 +3717,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"unit": schema.StringAttribute{
-												Description:         "Unit defines the period of time within which requestsover the limit will be rate limited. Valid values are'second', 'minute' and 'hour'.",
-												MarkdownDescription: "Unit defines the period of time within which requestsover the limit will be rate limited. Valid values are'second', 'minute' and 'hour'.",
+												Description:         "Unit defines the period of time within which requests over the limit will be rate limited. Valid values are 'second', 'minute' and 'hour'.",
+												MarkdownDescription: "Unit defines the period of time within which requests over the limit will be rate limited. Valid values are 'second', 'minute' and 'hour'.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -3738,16 +3738,16 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"tls": schema.SingleNestedAttribute{
-								Description:         "If present the fields describes TLS properties of the virtualhost. The SNI names that will be matched on are described in fqdn,the tls.secretName secret must contain a certificate that itselfcontains a name that matches the FQDN.",
-								MarkdownDescription: "If present the fields describes TLS properties of the virtualhost. The SNI names that will be matched on are described in fqdn,the tls.secretName secret must contain a certificate that itselfcontains a name that matches the FQDN.",
+								Description:         "If present the fields describes TLS properties of the virtual host. The SNI names that will be matched on are described in fqdn, the tls.secretName secret must contain a certificate that itself contains a name that matches the FQDN.",
+								MarkdownDescription: "If present the fields describes TLS properties of the virtual host. The SNI names that will be matched on are described in fqdn, the tls.secretName secret must contain a certificate that itself contains a name that matches the FQDN.",
 								Attributes: map[string]schema.Attribute{
 									"client_validation": schema.SingleNestedAttribute{
-										Description:         "ClientValidation defines how to verify the client certificatewhen an external client establishes a TLS connection to Envoy.This setting:1. Enables TLS client certificate validation.2. Specifies how the client certificate will be validated (i.e.   validation required or skipped).Note: Setting client certificate validation to be skipped shouldbe only used in conjunction with an external authorization server thatperforms client validation as Contour will ensure client certificatesare passed along.",
-										MarkdownDescription: "ClientValidation defines how to verify the client certificatewhen an external client establishes a TLS connection to Envoy.This setting:1. Enables TLS client certificate validation.2. Specifies how the client certificate will be validated (i.e.   validation required or skipped).Note: Setting client certificate validation to be skipped shouldbe only used in conjunction with an external authorization server thatperforms client validation as Contour will ensure client certificatesare passed along.",
+										Description:         "ClientValidation defines how to verify the client certificate when an external client establishes a TLS connection to Envoy. This setting: 1. Enables TLS client certificate validation. 2. Specifies how the client certificate will be validated (i.e. validation required or skipped). Note: Setting client certificate validation to be skipped should be only used in conjunction with an external authorization server that performs client validation as Contour will ensure client certificates are passed along.",
+										MarkdownDescription: "ClientValidation defines how to verify the client certificate when an external client establishes a TLS connection to Envoy. This setting: 1. Enables TLS client certificate validation. 2. Specifies how the client certificate will be validated (i.e. validation required or skipped). Note: Setting client certificate validation to be skipped should be only used in conjunction with an external authorization server that performs client validation as Contour will ensure client certificates are passed along.",
 										Attributes: map[string]schema.Attribute{
 											"ca_secret": schema.StringAttribute{
-												Description:         "Name of a Kubernetes secret that contains a CA certificate bundle.The secret must contain key named ca.crt.The client certificate must validate against the certificates in the bundle.If specified and SkipClientCertValidation is true, client certificates willbe required on requests.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
-												MarkdownDescription: "Name of a Kubernetes secret that contains a CA certificate bundle.The secret must contain key named ca.crt.The client certificate must validate against the certificates in the bundle.If specified and SkipClientCertValidation is true, client certificates willbe required on requests.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
+												Description:         "Name of a Kubernetes secret that contains a CA certificate bundle. The secret must contain key named ca.crt. The client certificate must validate against the certificates in the bundle. If specified and SkipClientCertValidation is true, client certificates will be required on requests. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
+												MarkdownDescription: "Name of a Kubernetes secret that contains a CA certificate bundle. The secret must contain key named ca.crt. The client certificate must validate against the certificates in the bundle. If specified and SkipClientCertValidation is true, client certificates will be required on requests. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3757,16 +3757,16 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"crl_only_verify_leaf_cert": schema.BoolAttribute{
-												Description:         "If this option is set to true, only the certificate at the end of thecertificate chain will be subject to validation by CRL.",
-												MarkdownDescription: "If this option is set to true, only the certificate at the end of thecertificate chain will be subject to validation by CRL.",
+												Description:         "If this option is set to true, only the certificate at the end of the certificate chain will be subject to validation by CRL.",
+												MarkdownDescription: "If this option is set to true, only the certificate at the end of the certificate chain will be subject to validation by CRL.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"crl_secret": schema.StringAttribute{
-												Description:         "Name of a Kubernetes opaque secret that contains a concatenated list of PEM encoded CRLs.The secret must contain key named crl.pem.This field will be used to verify that a client certificate has not been revoked.CRLs must be available from all CAs, unless crlOnlyVerifyLeafCert is true.Large CRL lists are not supported since individual secrets are limited to 1MiB in size.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
-												MarkdownDescription: "Name of a Kubernetes opaque secret that contains a concatenated list of PEM encoded CRLs.The secret must contain key named crl.pem.This field will be used to verify that a client certificate has not been revoked.CRLs must be available from all CAs, unless crlOnlyVerifyLeafCert is true.Large CRL lists are not supported since individual secrets are limited to 1MiB in size.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
+												Description:         "Name of a Kubernetes opaque secret that contains a concatenated list of PEM encoded CRLs. The secret must contain key named crl.pem. This field will be used to verify that a client certificate has not been revoked. CRLs must be available from all CAs, unless crlOnlyVerifyLeafCert is true. Large CRL lists are not supported since individual secrets are limited to 1MiB in size. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
+												MarkdownDescription: "Name of a Kubernetes opaque secret that contains a concatenated list of PEM encoded CRLs. The secret must contain key named crl.pem. This field will be used to verify that a client certificate has not been revoked. CRLs must be available from all CAs, unless crlOnlyVerifyLeafCert is true. Large CRL lists are not supported since individual secrets are limited to 1MiB in size. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3776,8 +3776,8 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"forward_client_certificate": schema.SingleNestedAttribute{
-												Description:         "ForwardClientCertificate adds the selected data from the passed client TLS certificateto the x-forwarded-client-cert header.",
-												MarkdownDescription: "ForwardClientCertificate adds the selected data from the passed client TLS certificateto the x-forwarded-client-cert header.",
+												Description:         "ForwardClientCertificate adds the selected data from the passed client TLS certificate to the x-forwarded-client-cert header.",
+												MarkdownDescription: "ForwardClientCertificate adds the selected data from the passed client TLS certificate to the x-forwarded-client-cert header.",
 												Attributes: map[string]schema.Attribute{
 													"cert": schema.BoolAttribute{
 														Description:         "Client cert in URL encoded PEM format.",
@@ -3825,16 +3825,16 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"optional_client_certificate": schema.BoolAttribute{
-												Description:         "OptionalClientCertificate when set to true will request a client certificatebut allow the connection to continue if the client does not provide one.If a client certificate is sent, it will be verified according to theother properties, which includes disabling validation ifSkipClientCertValidation is set. Defaults to false.",
-												MarkdownDescription: "OptionalClientCertificate when set to true will request a client certificatebut allow the connection to continue if the client does not provide one.If a client certificate is sent, it will be verified according to theother properties, which includes disabling validation ifSkipClientCertValidation is set. Defaults to false.",
+												Description:         "OptionalClientCertificate when set to true will request a client certificate but allow the connection to continue if the client does not provide one. If a client certificate is sent, it will be verified according to the other properties, which includes disabling validation if SkipClientCertValidation is set. Defaults to false.",
+												MarkdownDescription: "OptionalClientCertificate when set to true will request a client certificate but allow the connection to continue if the client does not provide one. If a client certificate is sent, it will be verified according to the other properties, which includes disabling validation if SkipClientCertValidation is set. Defaults to false.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"skip_client_cert_validation": schema.BoolAttribute{
-												Description:         "SkipClientCertValidation disables downstream client certificatevalidation. Defaults to false. This field is intended to be used inconjunction with external authorization in order to enable the externalauthorization server to validate client certificates. When this fieldis set to true, client certificates are requested but not verified byEnvoy. If CACertificate is specified, client certificates are required onrequests, but not verified. If external authorization is in use, they arepresented to the external authorization server.",
-												MarkdownDescription: "SkipClientCertValidation disables downstream client certificatevalidation. Defaults to false. This field is intended to be used inconjunction with external authorization in order to enable the externalauthorization server to validate client certificates. When this fieldis set to true, client certificates are requested but not verified byEnvoy. If CACertificate is specified, client certificates are required onrequests, but not verified. If external authorization is in use, they arepresented to the external authorization server.",
+												Description:         "SkipClientCertValidation disables downstream client certificate validation. Defaults to false. This field is intended to be used in conjunction with external authorization in order to enable the external authorization server to validate client certificates. When this field is set to true, client certificates are requested but not verified by Envoy. If CACertificate is specified, client certificates are required on requests, but not verified. If external authorization is in use, they are presented to the external authorization server.",
+												MarkdownDescription: "SkipClientCertValidation disables downstream client certificate validation. Defaults to false. This field is intended to be used in conjunction with external authorization in order to enable the external authorization server to validate client certificates. When this field is set to true, client certificates are requested but not verified by Envoy. If CACertificate is specified, client certificates are required on requests, but not verified. If external authorization is in use, they are presented to the external authorization server.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3846,40 +3846,40 @@ func (r *ProjectcontourIoHttpproxyV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"enable_fallback_certificate": schema.BoolAttribute{
-										Description:         "EnableFallbackCertificate defines if the vhost should allow a default certificate tobe applied which handles all requests which don't match the SNI defined in this vhost.",
-										MarkdownDescription: "EnableFallbackCertificate defines if the vhost should allow a default certificate tobe applied which handles all requests which don't match the SNI defined in this vhost.",
+										Description:         "EnableFallbackCertificate defines if the vhost should allow a default certificate to be applied which handles all requests which don't match the SNI defined in this vhost.",
+										MarkdownDescription: "EnableFallbackCertificate defines if the vhost should allow a default certificate to be applied which handles all requests which don't match the SNI defined in this vhost.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"maximum_protocol_version": schema.StringAttribute{
-										Description:         "MaximumProtocolVersion is the maximum TLS version this vhost shouldnegotiate. Valid options are '1.2' and '1.3' (default). Any other valuedefaults to TLS 1.3.",
-										MarkdownDescription: "MaximumProtocolVersion is the maximum TLS version this vhost shouldnegotiate. Valid options are '1.2' and '1.3' (default). Any other valuedefaults to TLS 1.3.",
+										Description:         "MaximumProtocolVersion is the maximum TLS version this vhost should negotiate. Valid options are '1.2' and '1.3' (default). Any other value defaults to TLS 1.3.",
+										MarkdownDescription: "MaximumProtocolVersion is the maximum TLS version this vhost should negotiate. Valid options are '1.2' and '1.3' (default). Any other value defaults to TLS 1.3.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"minimum_protocol_version": schema.StringAttribute{
-										Description:         "MinimumProtocolVersion is the minimum TLS version this vhost shouldnegotiate. Valid options are '1.2' (default) and '1.3'. Any other valuedefaults to TLS 1.2.",
-										MarkdownDescription: "MinimumProtocolVersion is the minimum TLS version this vhost shouldnegotiate. Valid options are '1.2' (default) and '1.3'. Any other valuedefaults to TLS 1.2.",
+										Description:         "MinimumProtocolVersion is the minimum TLS version this vhost should negotiate. Valid options are '1.2' (default) and '1.3'. Any other value defaults to TLS 1.2.",
+										MarkdownDescription: "MinimumProtocolVersion is the minimum TLS version this vhost should negotiate. Valid options are '1.2' (default) and '1.3'. Any other value defaults to TLS 1.2.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"passthrough": schema.BoolAttribute{
-										Description:         "Passthrough defines whether the encrypted TLS handshake will bepassed through to the backing cluster. Either Passthrough orSecretName must be specified, but not both.",
-										MarkdownDescription: "Passthrough defines whether the encrypted TLS handshake will bepassed through to the backing cluster. Either Passthrough orSecretName must be specified, but not both.",
+										Description:         "Passthrough defines whether the encrypted TLS handshake will be passed through to the backing cluster. Either Passthrough or SecretName must be specified, but not both.",
+										MarkdownDescription: "Passthrough defines whether the encrypted TLS handshake will be passed through to the backing cluster. Either Passthrough or SecretName must be specified, but not both.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"secret_name": schema.StringAttribute{
-										Description:         "SecretName is the name of a TLS secret.Either SecretName or Passthrough must be specified, but not both.If specified, the named secret must contain a matching certificatefor the virtual host's FQDN.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
-										MarkdownDescription: "SecretName is the name of a TLS secret.Either SecretName or Passthrough must be specified, but not both.If specified, the named secret must contain a matching certificatefor the virtual host's FQDN.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
+										Description:         "SecretName is the name of a TLS secret. Either SecretName or Passthrough must be specified, but not both. If specified, the named secret must contain a matching certificate for the virtual host's FQDN. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
+										MarkdownDescription: "SecretName is the name of a TLS secret. Either SecretName or Passthrough must be specified, but not both. If specified, the named secret must contain a matching certificate for the virtual host's FQDN. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

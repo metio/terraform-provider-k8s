@@ -136,16 +136,16 @@ func (r *VeleroIoDataDownloadV2Alpha1Manifest) Schema(_ context.Context, _ datas
 				MarkdownDescription: "DataDownloadSpec is the specification for a DataDownload.",
 				Attributes: map[string]schema.Attribute{
 					"backup_storage_location": schema.StringAttribute{
-						Description:         "BackupStorageLocation is the name of the backup storage locationwhere the backup repository is stored.",
-						MarkdownDescription: "BackupStorageLocation is the name of the backup storage locationwhere the backup repository is stored.",
+						Description:         "BackupStorageLocation is the name of the backup storage location where the backup repository is stored.",
+						MarkdownDescription: "BackupStorageLocation is the name of the backup storage location where the backup repository is stored.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"cancel": schema.BoolAttribute{
-						Description:         "Cancel indicates request to cancel the ongoing DataDownload. It can be setwhen the DataDownload is in InProgress phase",
-						MarkdownDescription: "Cancel indicates request to cancel the ongoing DataDownload. It can be setwhen the DataDownload is in InProgress phase",
+						Description:         "Cancel indicates request to cancel the ongoing DataDownload. It can be set when the DataDownload is in InProgress phase",
+						MarkdownDescription: "Cancel indicates request to cancel the ongoing DataDownload. It can be set when the DataDownload is in InProgress phase",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -161,16 +161,16 @@ func (r *VeleroIoDataDownloadV2Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"datamover": schema.StringAttribute{
-						Description:         "DataMover specifies the data mover to be used by the backup.If DataMover is '' or 'velero', the built-in data mover will be used.",
-						MarkdownDescription: "DataMover specifies the data mover to be used by the backup.If DataMover is '' or 'velero', the built-in data mover will be used.",
+						Description:         "DataMover specifies the data mover to be used by the backup. If DataMover is '' or 'velero', the built-in data mover will be used.",
+						MarkdownDescription: "DataMover specifies the data mover to be used by the backup. If DataMover is '' or 'velero', the built-in data mover will be used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"operation_timeout": schema.StringAttribute{
-						Description:         "OperationTimeout specifies the time used to wait internal operations,before returning error as timeout.",
-						MarkdownDescription: "OperationTimeout specifies the time used to wait internal operations,before returning error as timeout.",
+						Description:         "OperationTimeout specifies the time used to wait internal operations, before returning error as timeout.",
+						MarkdownDescription: "OperationTimeout specifies the time used to wait internal operations, before returning error as timeout.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -185,8 +185,8 @@ func (r *VeleroIoDataDownloadV2Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"source_namespace": schema.StringAttribute{
-						Description:         "SourceNamespace is the original namespace where the volume is backed up from.It may be different from SourcePVC's namespace if namespace is remapped during restore.",
-						MarkdownDescription: "SourceNamespace is the original namespace where the volume is backed up from.It may be different from SourcePVC's namespace if namespace is remapped during restore.",
+						Description:         "SourceNamespace is the original namespace where the volume is backed up from. It may be different from SourcePVC's namespace if namespace is remapped during restore.",
+						MarkdownDescription: "SourceNamespace is the original namespace where the volume is backed up from. It may be different from SourcePVC's namespace if namespace is remapped during restore.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

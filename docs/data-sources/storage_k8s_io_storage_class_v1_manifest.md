@@ -3,12 +3,12 @@
 page_title: "k8s_storage_k8s_io_storage_class_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "storage.k8s.io"
 description: |-
-  StorageClass describes the parameters for a class of storage for which PersistentVolumes can be dynamically provisioned.StorageClasses are non-namespaced; the name of the storage class according to etcd is in ObjectMeta.Name.
+  StorageClass describes the parameters for a class of storage for which PersistentVolumes can be dynamically provisioned. StorageClasses are non-namespaced; the name of the storage class according to etcd is in ObjectMeta.Name.
 ---
 
 # k8s_storage_k8s_io_storage_class_v1_manifest (Data Source)
 
-StorageClass describes the parameters for a class of storage for which PersistentVolumes can be dynamically provisioned.StorageClasses are non-namespaced; the name of the storage class according to etcd is in ObjectMeta.Name.
+StorageClass describes the parameters for a class of storage for which PersistentVolumes can be dynamically provisioned. StorageClasses are non-namespaced; the name of the storage class according to etcd is in ObjectMeta.Name.
 
 ## Example Usage
 
@@ -36,7 +36,7 @@ data "k8s_storage_k8s_io_storage_class_v1_manifest" "example" {
 - `mount_options` (List of String) mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. ['ro', 'soft']. Not validated - mount of the PVs will simply fail if one is invalid.
 - `parameters` (Map of String) parameters holds the parameters for the provisioner that should create volumes of this storage class.
 - `reclaim_policy` (String) reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete.
-- `volume_binding_mode` (String) volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
+- `volume_binding_mode` (String) volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound. When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
 
 ### Read-Only
 

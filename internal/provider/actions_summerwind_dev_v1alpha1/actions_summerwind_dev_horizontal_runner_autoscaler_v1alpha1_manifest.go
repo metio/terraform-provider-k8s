@@ -268,8 +268,8 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"repository_names": schema.ListAttribute{
-									Description:         "RepositoryNames is the list of repository names to be used for calculating the metric.For example, a repository name is the REPO part of 'github.com/USER/REPO'.",
-									MarkdownDescription: "RepositoryNames is the list of repository names to be used for calculating the metric.For example, a repository name is the REPO part of 'github.com/USER/REPO'.",
+									Description:         "RepositoryNames is the list of repository names to be used for calculating the metric. For example, a repository name is the REPO part of 'github.com/USER/REPO'.",
+									MarkdownDescription: "RepositoryNames is the list of repository names to be used for calculating the metric. For example, a repository name is the REPO part of 'github.com/USER/REPO'.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -277,56 +277,56 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 								},
 
 								"scale_down_adjustment": schema.Int64Attribute{
-									Description:         "ScaleDownAdjustment is the number of runners removed on scale-down.You can only specify either ScaleDownFactor or ScaleDownAdjustment.",
-									MarkdownDescription: "ScaleDownAdjustment is the number of runners removed on scale-down.You can only specify either ScaleDownFactor or ScaleDownAdjustment.",
+									Description:         "ScaleDownAdjustment is the number of runners removed on scale-down. You can only specify either ScaleDownFactor or ScaleDownAdjustment.",
+									MarkdownDescription: "ScaleDownAdjustment is the number of runners removed on scale-down. You can only specify either ScaleDownFactor or ScaleDownAdjustment.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"scale_down_factor": schema.StringAttribute{
-									Description:         "ScaleDownFactor is the multiplicative factor applied to the current number of runners usedto determine how many pods should be removed.",
-									MarkdownDescription: "ScaleDownFactor is the multiplicative factor applied to the current number of runners usedto determine how many pods should be removed.",
+									Description:         "ScaleDownFactor is the multiplicative factor applied to the current number of runners used to determine how many pods should be removed.",
+									MarkdownDescription: "ScaleDownFactor is the multiplicative factor applied to the current number of runners used to determine how many pods should be removed.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"scale_down_threshold": schema.StringAttribute{
-									Description:         "ScaleDownThreshold is the percentage of busy runners less than which willtrigger the hpa to scale the runners down.",
-									MarkdownDescription: "ScaleDownThreshold is the percentage of busy runners less than which willtrigger the hpa to scale the runners down.",
+									Description:         "ScaleDownThreshold is the percentage of busy runners less than which will trigger the hpa to scale the runners down.",
+									MarkdownDescription: "ScaleDownThreshold is the percentage of busy runners less than which will trigger the hpa to scale the runners down.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"scale_up_adjustment": schema.Int64Attribute{
-									Description:         "ScaleUpAdjustment is the number of runners added on scale-up.You can only specify either ScaleUpFactor or ScaleUpAdjustment.",
-									MarkdownDescription: "ScaleUpAdjustment is the number of runners added on scale-up.You can only specify either ScaleUpFactor or ScaleUpAdjustment.",
+									Description:         "ScaleUpAdjustment is the number of runners added on scale-up. You can only specify either ScaleUpFactor or ScaleUpAdjustment.",
+									MarkdownDescription: "ScaleUpAdjustment is the number of runners added on scale-up. You can only specify either ScaleUpFactor or ScaleUpAdjustment.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"scale_up_factor": schema.StringAttribute{
-									Description:         "ScaleUpFactor is the multiplicative factor applied to the current number of runners usedto determine how many pods should be added.",
-									MarkdownDescription: "ScaleUpFactor is the multiplicative factor applied to the current number of runners usedto determine how many pods should be added.",
+									Description:         "ScaleUpFactor is the multiplicative factor applied to the current number of runners used to determine how many pods should be added.",
+									MarkdownDescription: "ScaleUpFactor is the multiplicative factor applied to the current number of runners used to determine how many pods should be added.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"scale_up_threshold": schema.StringAttribute{
-									Description:         "ScaleUpThreshold is the percentage of busy runners greater than which willtrigger the hpa to scale runners up.",
-									MarkdownDescription: "ScaleUpThreshold is the percentage of busy runners greater than which willtrigger the hpa to scale runners up.",
+									Description:         "ScaleUpThreshold is the percentage of busy runners greater than which will trigger the hpa to scale runners up.",
+									MarkdownDescription: "ScaleUpThreshold is the percentage of busy runners greater than which will trigger the hpa to scale runners up.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "Type is the type of metric to be used for autoscaling.It can be TotalNumberOfQueuedAndInProgressWorkflowRuns or PercentageRunnersBusy.",
-									MarkdownDescription: "Type is the type of metric to be used for autoscaling.It can be TotalNumberOfQueuedAndInProgressWorkflowRuns or PercentageRunnersBusy.",
+									Description:         "Type is the type of metric to be used for autoscaling. It can be TotalNumberOfQueuedAndInProgressWorkflowRuns or PercentageRunnersBusy.",
+									MarkdownDescription: "Type is the type of metric to be used for autoscaling. It can be TotalNumberOfQueuedAndInProgressWorkflowRuns or PercentageRunnersBusy.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -347,8 +347,8 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 					},
 
 					"scale_down_delay_seconds_after_scale_out": schema.Int64Attribute{
-						Description:         "ScaleDownDelaySecondsAfterScaleUp is the approximate delay for a scale down followed by a scale upUsed to prevent flapping (down->up->down->... loop)",
-						MarkdownDescription: "ScaleDownDelaySecondsAfterScaleUp is the approximate delay for a scale down followed by a scale upUsed to prevent flapping (down->up->down->... loop)",
+						Description:         "ScaleDownDelaySecondsAfterScaleUp is the approximate delay for a scale down followed by a scale up Used to prevent flapping (down->up->down->... loop)",
+						MarkdownDescription: "ScaleDownDelaySecondsAfterScaleUp is the approximate delay for a scale down followed by a scale up Used to prevent flapping (down->up->down->... loop)",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -383,8 +383,8 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 					},
 
 					"scale_up_triggers": schema.ListNestedAttribute{
-						Description:         "ScaleUpTriggers is an experimental feature to increase the desired replicas by 1on each webhook requested received by the webhookBasedAutoscaler.This feature requires you to also enable and deploy the webhookBasedAutoscaler onto your cluster.Note that the added runners remain until the next sync period at least,and they may or may not be used by GitHub Actions depending on the timing.They are intended to be used to gain 'resource slack' immediately after youreceive a webhook from GitHub, so that you can loosely expect MinReplicas runners to be always available.",
-						MarkdownDescription: "ScaleUpTriggers is an experimental feature to increase the desired replicas by 1on each webhook requested received by the webhookBasedAutoscaler.This feature requires you to also enable and deploy the webhookBasedAutoscaler onto your cluster.Note that the added runners remain until the next sync period at least,and they may or may not be used by GitHub Actions depending on the timing.They are intended to be used to gain 'resource slack' immediately after youreceive a webhook from GitHub, so that you can loosely expect MinReplicas runners to be always available.",
+						Description:         "ScaleUpTriggers is an experimental feature to increase the desired replicas by 1 on each webhook requested received by the webhookBasedAutoscaler. This feature requires you to also enable and deploy the webhookBasedAutoscaler onto your cluster. Note that the added runners remain until the next sync period at least, and they may or may not be used by GitHub Actions depending on the timing. They are intended to be used to gain 'resource slack' immediately after you receive a webhook from GitHub, so that you can loosely expect MinReplicas runners to be always available.",
+						MarkdownDescription: "ScaleUpTriggers is an experimental feature to increase the desired replicas by 1 on each webhook requested received by the webhookBasedAutoscaler. This feature requires you to also enable and deploy the webhookBasedAutoscaler onto your cluster. Note that the added runners remain until the next sync period at least, and they may or may not be used by GitHub Actions depending on the timing. They are intended to be used to gain 'resource slack' immediately after you receive a webhook from GitHub, so that you can loosely expect MinReplicas runners to be always available.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"amount": schema.Int64Attribute{
@@ -412,8 +412,8 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 											MarkdownDescription: "https://docs.github.com/en/actions/reference/events-that-trigger-workflows#check_run",
 											Attributes: map[string]schema.Attribute{
 												"names": schema.ListAttribute{
-													Description:         "Names is a list of GitHub Actions glob patterns.Any check_run event whose name matches one of patterns in the list can trigger autoscaling.Note that check_run name seem to equal to the job name you've defined in your actions workflow yaml file.So it is very likely that you can utilize this to trigger depending on the job.",
-													MarkdownDescription: "Names is a list of GitHub Actions glob patterns.Any check_run event whose name matches one of patterns in the list can trigger autoscaling.Note that check_run name seem to equal to the job name you've defined in your actions workflow yaml file.So it is very likely that you can utilize this to trigger depending on the job.",
+													Description:         "Names is a list of GitHub Actions glob patterns. Any check_run event whose name matches one of patterns in the list can trigger autoscaling. Note that check_run name seem to equal to the job name you've defined in your actions workflow yaml file. So it is very likely that you can utilize this to trigger depending on the job.",
+													MarkdownDescription: "Names is a list of GitHub Actions glob patterns. Any check_run event whose name matches one of patterns in the list can trigger autoscaling. Note that check_run name seem to equal to the job name you've defined in your actions workflow yaml file. So it is very likely that you can utilize this to trigger depending on the job.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -421,8 +421,8 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 												},
 
 												"repositories": schema.ListAttribute{
-													Description:         "Repositories is a list of GitHub repositories.Any check_run event whose repository matches one of repositories in the list can trigger autoscaling.",
-													MarkdownDescription: "Repositories is a list of GitHub repositories.Any check_run event whose repository matches one of repositories in the list can trigger autoscaling.",
+													Description:         "Repositories is a list of GitHub repositories. Any check_run event whose repository matches one of repositories in the list can trigger autoscaling.",
+													MarkdownDescription: "Repositories is a list of GitHub repositories. Any check_run event whose repository matches one of repositories in the list can trigger autoscaling.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -479,8 +479,8 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 										},
 
 										"push": schema.MapAttribute{
-											Description:         "PushSpec is the condition for triggering scale-up on push eventAlso see https://docs.github.com/en/actions/reference/events-that-trigger-workflows#push",
-											MarkdownDescription: "PushSpec is the condition for triggering scale-up on push eventAlso see https://docs.github.com/en/actions/reference/events-that-trigger-workflows#push",
+											Description:         "PushSpec is the condition for triggering scale-up on push event Also see https://docs.github.com/en/actions/reference/events-that-trigger-workflows#push",
+											MarkdownDescription: "PushSpec is the condition for triggering scale-up on push event Also see https://docs.github.com/en/actions/reference/events-that-trigger-workflows#push",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -508,8 +508,8 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 					},
 
 					"scheduled_overrides": schema.ListNestedAttribute{
-						Description:         "ScheduledOverrides is the list of ScheduledOverride.It can be used to override a few fields of HorizontalRunnerAutoscalerSpec on schedule.The earlier a scheduled override is, the higher it is prioritized.",
-						MarkdownDescription: "ScheduledOverrides is the list of ScheduledOverride.It can be used to override a few fields of HorizontalRunnerAutoscalerSpec on schedule.The earlier a scheduled override is, the higher it is prioritized.",
+						Description:         "ScheduledOverrides is the list of ScheduledOverride. It can be used to override a few fields of HorizontalRunnerAutoscalerSpec on schedule. The earlier a scheduled override is, the higher it is prioritized.",
+						MarkdownDescription: "ScheduledOverrides is the list of ScheduledOverride. It can be used to override a few fields of HorizontalRunnerAutoscalerSpec on schedule. The earlier a scheduled override is, the higher it is prioritized.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"end_time": schema.StringAttribute{
@@ -524,8 +524,8 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 								},
 
 								"min_replicas": schema.Int64Attribute{
-									Description:         "MinReplicas is the number of runners while overriding.If omitted, it doesn't override minReplicas.",
-									MarkdownDescription: "MinReplicas is the number of runners while overriding.If omitted, it doesn't override minReplicas.",
+									Description:         "MinReplicas is the number of runners while overriding. If omitted, it doesn't override minReplicas.",
+									MarkdownDescription: "MinReplicas is the number of runners while overriding. If omitted, it doesn't override minReplicas.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -539,8 +539,8 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"frequency": schema.StringAttribute{
-											Description:         "Frequency is the name of a predefined interval of each recurrence.The valid values are 'Daily', 'Weekly', 'Monthly', and 'Yearly'.If empty, the corresponding override happens only once.",
-											MarkdownDescription: "Frequency is the name of a predefined interval of each recurrence.The valid values are 'Daily', 'Weekly', 'Monthly', and 'Yearly'.If empty, the corresponding override happens only once.",
+											Description:         "Frequency is the name of a predefined interval of each recurrence. The valid values are 'Daily', 'Weekly', 'Monthly', and 'Yearly'. If empty, the corresponding override happens only once.",
+											MarkdownDescription: "Frequency is the name of a predefined interval of each recurrence. The valid values are 'Daily', 'Weekly', 'Monthly', and 'Yearly'. If empty, the corresponding override happens only once.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -550,8 +550,8 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 										},
 
 										"until_time": schema.StringAttribute{
-											Description:         "UntilTime is the time of the final recurrence.If empty, the schedule recurs forever.",
-											MarkdownDescription: "UntilTime is the time of the final recurrence.If empty, the schedule recurs forever.",
+											Description:         "UntilTime is the time of the final recurrence. If empty, the schedule recurs forever.",
+											MarkdownDescription: "UntilTime is the time of the final recurrence. If empty, the schedule recurs forever.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

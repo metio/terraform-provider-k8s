@@ -52,12 +52,12 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef points to the kubernetes Gateway resource that will have this policy attached.  This field is following the guidelines of Kubernetes Gateway API policy attachment. (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) TargetRef points to the kubernetes Gateway resource that will have this policy attached. This field is following the guidelines of Kubernetes Gateway API policy attachment. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 Optional:
 
-- `associate_with_vpc` (Boolean) AssociateWithVpc indicates whether the VpcServiceNetworkAssociation should be created for the current VPC of k8s cluster.  This value will be considered true by default.
-- `security_group_ids` (List of String) SecurityGroupIds defines the security groups enforced on the VpcServiceNetworkAssociation. Security groups does not take effect if AssociateWithVpc is set to false.  For more details, please check the VPC Lattice documentation https://docs.aws.amazon.com/vpc-lattice/latest/ug/security-groups.html
+- `associate_with_vpc` (Boolean) AssociateWithVpc indicates whether the VpcServiceNetworkAssociation should be created for the current VPC of k8s cluster. This value will be considered true by default.
+- `security_group_ids` (List of String) SecurityGroupIds defines the security groups enforced on the VpcServiceNetworkAssociation. Security groups does not take effect if AssociateWithVpc is set to false. For more details, please check the VPC Lattice documentation https://docs.aws.amazon.com/vpc-lattice/latest/ug/security-groups.html
 
 <a id="nestedatt--spec--target_ref"></a>
 ### Nested Schema for `spec.target_ref`

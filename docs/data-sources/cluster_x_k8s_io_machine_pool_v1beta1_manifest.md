@@ -61,25 +61,25 @@ Required:
 Optional:
 
 - `failure_domains` (List of String) FailureDomains is the list of failure domains this MachinePool should be attached to.
-- `min_ready_seconds` (Number) Minimum number of seconds for which a newly created machine instances shouldbe ready.Defaults to 0 (machine instance will be considered available as soon as itis ready)
-- `provider_id_list` (List of String) ProviderIDList are the identification IDs of machine instances provided by the provider.This field must match the provider IDs as seen on the node objects corresponding to a machine pool's machine instances.
-- `replicas` (Number) Number of desired machines. Defaults to 1.This is a pointer to distinguish between explicit zero and not specified.
+- `min_ready_seconds` (Number) Minimum number of seconds for which a newly created machine instances should be ready. Defaults to 0 (machine instance will be considered available as soon as it is ready)
+- `provider_id_list` (List of String) ProviderIDList are the identification IDs of machine instances provided by the provider. This field must match the provider IDs as seen on the node objects corresponding to a machine pool's machine instances.
+- `replicas` (Number) Number of desired machines. Defaults to 1. This is a pointer to distinguish between explicit zero and not specified.
 
 <a id="nestedatt--spec--template"></a>
 ### Nested Schema for `spec.template`
 
 Optional:
 
-- `metadata` (Attributes) Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--template--metadata))
-- `spec` (Attributes) Specification of the desired behavior of the machine.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec--template--spec))
+- `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--template--metadata))
+- `spec` (Attributes) Specification of the desired behavior of the machine. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec--template--spec))
 
 <a id="nestedatt--spec--template--metadata"></a>
 ### Nested Schema for `spec.template.metadata`
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
 
 
 <a id="nestedatt--spec--template--spec"></a>
@@ -87,26 +87,26 @@ Optional:
 
 Required:
 
-- `bootstrap` (Attributes) Bootstrap is a reference to a local struct which encapsulatesfields to configure the Machine’s bootstrapping mechanism. (see [below for nested schema](#nestedatt--spec--template--spec--bootstrap))
+- `bootstrap` (Attributes) Bootstrap is a reference to a local struct which encapsulates fields to configure the Machine’s bootstrapping mechanism. (see [below for nested schema](#nestedatt--spec--template--spec--bootstrap))
 - `cluster_name` (String) ClusterName is the name of the Cluster this object belongs to.
-- `infrastructure_ref` (Attributes) InfrastructureRef is a required reference to a custom resourceoffered by an infrastructure provider. (see [below for nested schema](#nestedatt--spec--template--spec--infrastructure_ref))
+- `infrastructure_ref` (Attributes) InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider. (see [below for nested schema](#nestedatt--spec--template--spec--infrastructure_ref))
 
 Optional:
 
-- `failure_domain` (String) FailureDomain is the failure domain the machine will be created in.Must match a key in the FailureDomains map stored on the cluster object.
-- `node_deletion_timeout` (String) NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machinehosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely.Defaults to 10 seconds.
-- `node_drain_timeout` (String) NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'
-- `node_volume_detach_timeout` (String) NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.
-- `provider_id` (String) ProviderID is the identification ID of the machine provided by the provider.This field must match the provider ID as seen on the node object corresponding to this machine.This field is required by higher level consumers of cluster-api. Example use case is cluster autoscalerwith cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find outmachines at provider which could not get registered as Kubernetes nodes. With cluster-api as ageneric out-of-tree provider for autoscaler, this field is required by autoscaler to beable to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserverand then a comparison is done to find out unregistered machines and are marked for delete.This field will be set by the actuators and consumed by higher level entities like autoscaler that willbe interfacing with cluster-api as generic provider.
-- `version` (String) Version defines the desired Kubernetes version.This field is meant to be optionally used by bootstrap providers.
+- `failure_domain` (String) FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.
+- `node_deletion_timeout` (String) NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds.
+- `node_drain_timeout` (String) NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'
+- `node_volume_detach_timeout` (String) NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.
+- `provider_id` (String) ProviderID is the identification ID of the machine provided by the provider. This field must match the provider ID as seen on the node object corresponding to this machine. This field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler with cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out machines at provider which could not get registered as Kubernetes nodes. With cluster-api as a generic out-of-tree provider for autoscaler, this field is required by autoscaler to be able to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver and then a comparison is done to find out unregistered machines and are marked for delete. This field will be set by the actuators and consumed by higher level entities like autoscaler that will be interfacing with cluster-api as generic provider.
+- `version` (String) Version defines the desired Kubernetes version. This field is meant to be optionally used by bootstrap providers.
 
 <a id="nestedatt--spec--template--spec--bootstrap"></a>
 ### Nested Schema for `spec.template.spec.bootstrap`
 
 Optional:
 
-- `config_ref` (Attributes) ConfigRef is a reference to a bootstrap provider-specific resourcethat holds configuration details. The reference is optional toallow users/operators to specify Bootstrap.DataSecretName withoutthe need of a controller. (see [below for nested schema](#nestedatt--spec--template--spec--bootstrap--config_ref))
-- `data_secret_name` (String) DataSecretName is the name of the secret that stores the bootstrap data script.If nil, the Machine should remain in the Pending state.
+- `config_ref` (Attributes) ConfigRef is a reference to a bootstrap provider-specific resource that holds configuration details. The reference is optional to allow users/operators to specify Bootstrap.DataSecretName without the need of a controller. (see [below for nested schema](#nestedatt--spec--template--spec--bootstrap--config_ref))
+- `data_secret_name` (String) DataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.
 
 <a id="nestedatt--spec--template--spec--bootstrap--config_ref"></a>
 ### Nested Schema for `spec.template.spec.bootstrap.config_ref`
@@ -114,12 +114,12 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -129,9 +129,9 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids

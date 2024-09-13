@@ -229,8 +229,8 @@ func (r *TelemetryIstioIoTelemetryV1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "Allows tailoring of logging behavior to specific conditions.",
 									Attributes: map[string]schema.Attribute{
 										"mode": schema.StringAttribute{
-											Description:         "This determines whether or not to apply the access logging configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
-											MarkdownDescription: "This determines whether or not to apply the access logging configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
+											Description:         "This determines whether or not to apply the access logging configuration based on the direction of traffic relative to the proxied workload. Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
+											MarkdownDescription: "This determines whether or not to apply the access logging configuration based on the direction of traffic relative to the proxied workload. Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -306,8 +306,8 @@ func (r *TelemetryIstioIoTelemetryV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"metric": schema.StringAttribute{
-														Description:         "One of the well-known [Istio Standard Metrics](https://istio.io/latest/docs/reference/config/metrics/).Valid Options: ALL_METRICS, REQUEST_COUNT, REQUEST_DURATION, REQUEST_SIZE, RESPONSE_SIZE, TCP_OPENED_CONNECTIONS, TCP_CLOSED_CONNECTIONS, TCP_SENT_BYTES, TCP_RECEIVED_BYTES, GRPC_REQUEST_MESSAGES, GRPC_RESPONSE_MESSAGES",
-														MarkdownDescription: "One of the well-known [Istio Standard Metrics](https://istio.io/latest/docs/reference/config/metrics/).Valid Options: ALL_METRICS, REQUEST_COUNT, REQUEST_DURATION, REQUEST_SIZE, RESPONSE_SIZE, TCP_OPENED_CONNECTIONS, TCP_CLOSED_CONNECTIONS, TCP_SENT_BYTES, TCP_RECEIVED_BYTES, GRPC_REQUEST_MESSAGES, GRPC_RESPONSE_MESSAGES",
+														Description:         "One of the well-known [Istio Standard Metrics](https://istio.io/latest/docs/reference/config/metrics/). Valid Options: ALL_METRICS, REQUEST_COUNT, REQUEST_DURATION, REQUEST_SIZE, RESPONSE_SIZE, TCP_OPENED_CONNECTIONS, TCP_CLOSED_CONNECTIONS, TCP_SENT_BYTES, TCP_RECEIVED_BYTES, GRPC_REQUEST_MESSAGES, GRPC_RESPONSE_MESSAGES",
+														MarkdownDescription: "One of the well-known [Istio Standard Metrics](https://istio.io/latest/docs/reference/config/metrics/). Valid Options: ALL_METRICS, REQUEST_COUNT, REQUEST_DURATION, REQUEST_SIZE, RESPONSE_SIZE, TCP_OPENED_CONNECTIONS, TCP_CLOSED_CONNECTIONS, TCP_SENT_BYTES, TCP_RECEIVED_BYTES, GRPC_REQUEST_MESSAGES, GRPC_RESPONSE_MESSAGES",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -317,8 +317,8 @@ func (r *TelemetryIstioIoTelemetryV1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"mode": schema.StringAttribute{
-														Description:         "Controls which mode of metrics generation is selected: 'CLIENT', 'SERVER', or 'CLIENT_AND_SERVER'.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
-														MarkdownDescription: "Controls which mode of metrics generation is selected: 'CLIENT', 'SERVER', or 'CLIENT_AND_SERVER'.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
+														Description:         "Controls which mode of metrics generation is selected: 'CLIENT', 'SERVER', or 'CLIENT_AND_SERVER'. Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
+														MarkdownDescription: "Controls which mode of metrics generation is selected: 'CLIENT', 'SERVER', or 'CLIENT_AND_SERVER'. Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -337,8 +337,8 @@ func (r *TelemetryIstioIoTelemetryV1Manifest) Schema(_ context.Context, _ dataso
 												MarkdownDescription: "Optional.",
 												Attributes: map[string]schema.Attribute{
 													"operation": schema.StringAttribute{
-														Description:         "Operation controls whether or not to update/add a tag, or to remove it.Valid Options: UPSERT, REMOVE",
-														MarkdownDescription: "Operation controls whether or not to update/add a tag, or to remove it.Valid Options: UPSERT, REMOVE",
+														Description:         "Operation controls whether or not to update/add a tag, or to remove it. Valid Options: UPSERT, REMOVE",
+														MarkdownDescription: "Operation controls whether or not to update/add a tag, or to remove it. Valid Options: UPSERT, REMOVE",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -633,8 +633,8 @@ func (r *TelemetryIstioIoTelemetryV1Manifest) Schema(_ context.Context, _ dataso
 									MarkdownDescription: "Allows tailoring of behavior to specific conditions.",
 									Attributes: map[string]schema.Attribute{
 										"mode": schema.StringAttribute{
-											Description:         "This determines whether or not to apply the tracing configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
-											MarkdownDescription: "This determines whether or not to apply the tracing configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
+											Description:         "This determines whether or not to apply the tracing configuration based on the direction of traffic relative to the proxied workload. Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
+											MarkdownDescription: "This determines whether or not to apply the tracing configuration based on the direction of traffic relative to the proxied workload. Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

@@ -59,9 +59,9 @@ Optional:
 - `grpc_route` (Attributes) An object that represents the specification of a gRPC gatewayRoute. (see [below for nested schema](#nestedatt--spec--grpc_route))
 - `http2_route` (Attributes) An object that represents the specification of an HTTP/2 gatewayRoute. (see [below for nested schema](#nestedatt--spec--http2_route))
 - `http_route` (Attributes) An object that represents the specification of an HTTP gatewayRoute. (see [below for nested schema](#nestedatt--spec--http_route))
-- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this GatewayRoute belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
+- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this GatewayRoute belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
 - `priority` (Number) Priority for the gatewayroute. Default Priority is 1000 which is lowest priority
-- `virtual_gateway_ref` (Attributes) A reference to k8s VirtualGateway CR that this GatewayRoute belongs to. The admission controller populates it using VirtualGateway's selector, and prevents users from setting this field.  Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--virtual_gateway_ref))
+- `virtual_gateway_ref` (Attributes) A reference to k8s VirtualGateway CR that this GatewayRoute belongs to. The admission controller populates it using VirtualGateway's selector, and prevents users from setting this field. Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--virtual_gateway_ref))
 
 <a id="nestedatt--spec--grpc_route"></a>
 ### Nested Schema for `spec.grpc_route`

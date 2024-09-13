@@ -163,8 +163,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Metadata(_ context.Co
 
 func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters.When the system load increases, it will query the metrics from multiple clusters and scales up the replicas.When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas.After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.",
-		MarkdownDescription: "FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters.When the system load increases, it will query the metrics from multiple clusters and scales up the replicas.When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas.After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.",
+		Description:         "FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters. When the system load increases, it will query the metrics from multiple clusters and scales up the replicas. When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas. After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.",
+		MarkdownDescription: "FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters. When the system load increases, it will query the metrics from multiple clusters and scales up the replicas. When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas. After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -235,21 +235,21 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 				MarkdownDescription: "Spec is the specification of the FederatedHPA.",
 				Attributes: map[string]schema.Attribute{
 					"behavior": schema.SingleNestedAttribute{
-						Description:         "Behavior configures the scaling behavior of the targetin both Up and Down directions (scaleUp and scaleDown fields respectively).If not set, the default HPAScalingRules for scale up and scale down are used.",
-						MarkdownDescription: "Behavior configures the scaling behavior of the targetin both Up and Down directions (scaleUp and scaleDown fields respectively).If not set, the default HPAScalingRules for scale up and scale down are used.",
+						Description:         "Behavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively). If not set, the default HPAScalingRules for scale up and scale down are used.",
+						MarkdownDescription: "Behavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively). If not set, the default HPAScalingRules for scale up and scale down are used.",
 						Attributes: map[string]schema.Attribute{
 							"scale_down": schema.SingleNestedAttribute{
-								Description:         "scaleDown is scaling policy for scaling Down.If not set, the default value is to allow to scale down to minReplicas pods, with a300 second stabilization window (i.e., the highest recommendation forthe last 300sec is used).",
-								MarkdownDescription: "scaleDown is scaling policy for scaling Down.If not set, the default value is to allow to scale down to minReplicas pods, with a300 second stabilization window (i.e., the highest recommendation forthe last 300sec is used).",
+								Description:         "scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used).",
+								MarkdownDescription: "scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used).",
 								Attributes: map[string]schema.Attribute{
 									"policies": schema.ListNestedAttribute{
-										Description:         "policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
-										MarkdownDescription: "policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+										Description:         "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+										MarkdownDescription: "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"period_seconds": schema.Int64Attribute{
-													Description:         "periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
-													MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+													Description:         "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+													MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -264,8 +264,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 												},
 
 												"value": schema.Int64Attribute{
-													Description:         "value contains the amount of change which is permitted by the policy.It must be greater than zero",
-													MarkdownDescription: "value contains the amount of change which is permitted by the policy.It must be greater than zero",
+													Description:         "value contains the amount of change which is permitted by the policy. It must be greater than zero",
+													MarkdownDescription: "value contains the amount of change which is permitted by the policy. It must be greater than zero",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -278,16 +278,16 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 									},
 
 									"select_policy": schema.StringAttribute{
-										Description:         "selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.",
-										MarkdownDescription: "selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.",
+										Description:         "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
+										MarkdownDescription: "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"stabilization_window_seconds": schema.Int64Attribute{
-										Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
-										MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+										Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+										MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -299,17 +299,17 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"scale_up": schema.SingleNestedAttribute{
-								Description:         "scaleUp is scaling policy for scaling Up.If not set, the default value is the higher of:  * increase no more than 4 pods per 60 seconds  * double the number of pods per 60 secondsNo stabilization is used.",
-								MarkdownDescription: "scaleUp is scaling policy for scaling Up.If not set, the default value is the higher of:  * increase no more than 4 pods per 60 seconds  * double the number of pods per 60 secondsNo stabilization is used.",
+								Description:         "scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of: * increase no more than 4 pods per 60 seconds * double the number of pods per 60 seconds No stabilization is used.",
+								MarkdownDescription: "scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of: * increase no more than 4 pods per 60 seconds * double the number of pods per 60 seconds No stabilization is used.",
 								Attributes: map[string]schema.Attribute{
 									"policies": schema.ListNestedAttribute{
-										Description:         "policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
-										MarkdownDescription: "policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+										Description:         "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+										MarkdownDescription: "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"period_seconds": schema.Int64Attribute{
-													Description:         "periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
-													MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+													Description:         "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+													MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -324,8 +324,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 												},
 
 												"value": schema.Int64Attribute{
-													Description:         "value contains the amount of change which is permitted by the policy.It must be greater than zero",
-													MarkdownDescription: "value contains the amount of change which is permitted by the policy.It must be greater than zero",
+													Description:         "value contains the amount of change which is permitted by the policy. It must be greater than zero",
+													MarkdownDescription: "value contains the amount of change which is permitted by the policy. It must be greater than zero",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -338,16 +338,16 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 									},
 
 									"select_policy": schema.StringAttribute{
-										Description:         "selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.",
-										MarkdownDescription: "selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.",
+										Description:         "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
+										MarkdownDescription: "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"stabilization_window_seconds": schema.Int64Attribute{
-										Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
-										MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+										Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+										MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -364,21 +364,21 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"max_replicas": schema.Int64Attribute{
-						Description:         "MaxReplicas is the upper limit for the number of replicas to which theautoscaler can scale up.It cannot be less that minReplicas.",
-						MarkdownDescription: "MaxReplicas is the upper limit for the number of replicas to which theautoscaler can scale up.It cannot be less that minReplicas.",
+						Description:         "MaxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas.",
+						MarkdownDescription: "MaxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"metrics": schema.ListNestedAttribute{
-						Description:         "Metrics contains the specifications for which to use to calculate thedesired replica count (the maximum replica count across all metrics willbe used). The desired replica count is calculated multiplying theratio between the target value and the current value by the currentnumber of pods. Ergo, metrics used must decrease as the pod count isincreased, and vice-versa. See the individual metric source types formore information about how each type of metric must respond.If not set, the default metric will be set to 80% average CPU utilization.",
-						MarkdownDescription: "Metrics contains the specifications for which to use to calculate thedesired replica count (the maximum replica count across all metrics willbe used). The desired replica count is calculated multiplying theratio between the target value and the current value by the currentnumber of pods. Ergo, metrics used must decrease as the pod count isincreased, and vice-versa. See the individual metric source types formore information about how each type of metric must respond.If not set, the default metric will be set to 80% average CPU utilization.",
+						Description:         "Metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used). The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods. Ergo, metrics used must decrease as the pod count is increased, and vice-versa. See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization.",
+						MarkdownDescription: "Metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used). The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods. Ergo, metrics used must decrease as the pod count is increased, and vice-versa. See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"container_resource": schema.SingleNestedAttribute{
-									Description:         "containerResource refers to a resource metric (such as those specified inrequests and limits) known to Kubernetes describing a single container ineach pod of the current scale target (e.g. CPU or memory). Such metrics arebuilt in to Kubernetes, and have special scaling options on top of thoseavailable to normal per-pod metrics using the 'pods' source.This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.",
-									MarkdownDescription: "containerResource refers to a resource metric (such as those specified inrequests and limits) known to Kubernetes describing a single container ineach pod of the current scale target (e.g. CPU or memory). Such metrics arebuilt in to Kubernetes, and have special scaling options on top of thoseavailable to normal per-pod metrics using the 'pods' source.This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.",
+									Description:         "containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.",
+									MarkdownDescription: "containerResource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.",
 									Attributes: map[string]schema.Attribute{
 										"container": schema.StringAttribute{
 											Description:         "container is the name of the container in the pods of the scaling target",
@@ -401,16 +401,16 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 											MarkdownDescription: "target specifies the target value for the given metric",
 											Attributes: map[string]schema.Attribute{
 												"average_utilization": schema.Int64Attribute{
-													Description:         "averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type",
-													MarkdownDescription: "averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type",
+													Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+													MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"average_value": schema.StringAttribute{
-													Description:         "averageValue is the target value of the average of themetric across all relevant pods (as a quantity)",
-													MarkdownDescription: "averageValue is the target value of the average of themetric across all relevant pods (as a quantity)",
+													Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+													MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -443,8 +443,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 								},
 
 								"external": schema.SingleNestedAttribute{
-									Description:         "external refers to a global metric that is not associatedwith any Kubernetes object. It allows autoscaling based on informationcoming from components running outside of cluster(for example length of queue in cloud messaging service, orQPS from loadbalancer running outside of cluster).",
-									MarkdownDescription: "external refers to a global metric that is not associatedwith any Kubernetes object. It allows autoscaling based on informationcoming from components running outside of cluster(for example length of queue in cloud messaging service, orQPS from loadbalancer running outside of cluster).",
+									Description:         "external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).",
+									MarkdownDescription: "external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).",
 									Attributes: map[string]schema.Attribute{
 										"metric": schema.SingleNestedAttribute{
 											Description:         "metric identifies the target metric by name and selector",
@@ -459,8 +459,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 												},
 
 												"selector": schema.SingleNestedAttribute{
-													Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metricWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.When unset, just the metricName will be used to gather metrics.",
-													MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metricWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.When unset, just the metricName will be used to gather metrics.",
+													Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
+													MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -476,16 +476,16 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -499,8 +499,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -522,16 +522,16 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 											MarkdownDescription: "target specifies the target value for the given metric",
 											Attributes: map[string]schema.Attribute{
 												"average_utilization": schema.Int64Attribute{
-													Description:         "averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type",
-													MarkdownDescription: "averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type",
+													Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+													MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"average_value": schema.StringAttribute{
-													Description:         "averageValue is the target value of the average of themetric across all relevant pods (as a quantity)",
-													MarkdownDescription: "averageValue is the target value of the average of themetric across all relevant pods (as a quantity)",
+													Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+													MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -564,8 +564,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 								},
 
 								"object": schema.SingleNestedAttribute{
-									Description:         "object refers to a metric describing a single kubernetes object(for example, hits-per-second on an Ingress object).",
-									MarkdownDescription: "object refers to a metric describing a single kubernetes object(for example, hits-per-second on an Ingress object).",
+									Description:         "object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).",
+									MarkdownDescription: "object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).",
 									Attributes: map[string]schema.Attribute{
 										"described_object": schema.SingleNestedAttribute{
 											Description:         "describedObject specifies the descriptions of a object,such as kind,name apiVersion",
@@ -613,8 +613,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 												},
 
 												"selector": schema.SingleNestedAttribute{
-													Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metricWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.When unset, just the metricName will be used to gather metrics.",
-													MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metricWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.When unset, just the metricName will be used to gather metrics.",
+													Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
+													MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -630,16 +630,16 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -653,8 +653,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -676,16 +676,16 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 											MarkdownDescription: "target specifies the target value for the given metric",
 											Attributes: map[string]schema.Attribute{
 												"average_utilization": schema.Int64Attribute{
-													Description:         "averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type",
-													MarkdownDescription: "averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type",
+													Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+													MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"average_value": schema.StringAttribute{
-													Description:         "averageValue is the target value of the average of themetric across all relevant pods (as a quantity)",
-													MarkdownDescription: "averageValue is the target value of the average of themetric across all relevant pods (as a quantity)",
+													Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+													MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -718,8 +718,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 								},
 
 								"pods": schema.SingleNestedAttribute{
-									Description:         "pods refers to a metric describing each pod in the current scale target(for example, transactions-processed-per-second).  The values will beaveraged together before being compared to the target value.",
-									MarkdownDescription: "pods refers to a metric describing each pod in the current scale target(for example, transactions-processed-per-second).  The values will beaveraged together before being compared to the target value.",
+									Description:         "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.",
+									MarkdownDescription: "pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.",
 									Attributes: map[string]schema.Attribute{
 										"metric": schema.SingleNestedAttribute{
 											Description:         "metric identifies the target metric by name and selector",
@@ -734,8 +734,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 												},
 
 												"selector": schema.SingleNestedAttribute{
-													Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metricWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.When unset, just the metricName will be used to gather metrics.",
-													MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metricWhen set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.When unset, just the metricName will be used to gather metrics.",
+													Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
+													MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -751,16 +751,16 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -774,8 +774,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -797,16 +797,16 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 											MarkdownDescription: "target specifies the target value for the given metric",
 											Attributes: map[string]schema.Attribute{
 												"average_utilization": schema.Int64Attribute{
-													Description:         "averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type",
-													MarkdownDescription: "averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type",
+													Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+													MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"average_value": schema.StringAttribute{
-													Description:         "averageValue is the target value of the average of themetric across all relevant pods (as a quantity)",
-													MarkdownDescription: "averageValue is the target value of the average of themetric across all relevant pods (as a quantity)",
+													Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+													MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -839,8 +839,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 								},
 
 								"resource": schema.SingleNestedAttribute{
-									Description:         "resource refers to a resource metric (such as those specified inrequests and limits) known to Kubernetes describing each pod in thecurrent scale target (e.g. CPU or memory). Such metrics are built in toKubernetes, and have special scaling options on top of those availableto normal per-pod metrics using the 'pods' source.",
-									MarkdownDescription: "resource refers to a resource metric (such as those specified inrequests and limits) known to Kubernetes describing each pod in thecurrent scale target (e.g. CPU or memory). Such metrics are built in toKubernetes, and have special scaling options on top of those availableto normal per-pod metrics using the 'pods' source.",
+									Description:         "resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source.",
+									MarkdownDescription: "resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the 'pods' source.",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "name is the name of the resource in question.",
@@ -855,16 +855,16 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 											MarkdownDescription: "target specifies the target value for the given metric",
 											Attributes: map[string]schema.Attribute{
 												"average_utilization": schema.Int64Attribute{
-													Description:         "averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type",
-													MarkdownDescription: "averageUtilization is the target value of the average of theresource metric across all relevant pods, represented as a percentage ofthe requested value of the resource for the pods.Currently only valid for Resource metric source type",
+													Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
+													MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"average_value": schema.StringAttribute{
-													Description:         "averageValue is the target value of the average of themetric across all relevant pods (as a quantity)",
-													MarkdownDescription: "averageValue is the target value of the average of themetric across all relevant pods (as a quantity)",
+													Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+													MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -897,8 +897,8 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "type is the type of metric source.  It should be one of 'ContainerResource', 'External','Object', 'Pods' or 'Resource', each mapping to a matching field in the object.Note: 'ContainerResource' type is available on when the feature-gateHPAContainerMetrics is enabled",
-									MarkdownDescription: "type is the type of metric source.  It should be one of 'ContainerResource', 'External','Object', 'Pods' or 'Resource', each mapping to a matching field in the object.Note: 'ContainerResource' type is available on when the feature-gateHPAContainerMetrics is enabled",
+									Description:         "type is the type of metric source. It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
+									MarkdownDescription: "type is the type of metric source. It should be one of 'ContainerResource', 'External', 'Object', 'Pods' or 'Resource', each mapping to a matching field in the object. Note: 'ContainerResource' type is available on when the feature-gate HPAContainerMetrics is enabled",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -911,16 +911,16 @@ func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"min_replicas": schema.Int64Attribute{
-						Description:         "MinReplicas is the lower limit for the number of replicas to which theautoscaler can scale down.It defaults to 1 pod.",
-						MarkdownDescription: "MinReplicas is the lower limit for the number of replicas to which theautoscaler can scale down.It defaults to 1 pod.",
+						Description:         "MinReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod.",
+						MarkdownDescription: "MinReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"scale_target_ref": schema.SingleNestedAttribute{
-						Description:         "ScaleTargetRef points to the target resource to scale, and is used tothe pods for which metrics should be collected, as well as to actuallychange the replica count.",
-						MarkdownDescription: "ScaleTargetRef points to the target resource to scale, and is used tothe pods for which metrics should be collected, as well as to actuallychange the replica count.",
+						Description:         "ScaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count.",
+						MarkdownDescription: "ScaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "apiVersion is the API version of the referent",

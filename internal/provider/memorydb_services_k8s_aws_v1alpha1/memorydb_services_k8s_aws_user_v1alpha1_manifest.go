@@ -134,8 +134,8 @@ func (r *MemorydbServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context, _
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "UserSpec defines the desired state of User.You create users and assign them specific permissions by using an accessstring. You assign the users to Access Control Lists aligned with a specificrole (administrators, human resources) that are then deployed to one or moreMemoryDB clusters.",
-				MarkdownDescription: "UserSpec defines the desired state of User.You create users and assign them specific permissions by using an accessstring. You assign the users to Access Control Lists aligned with a specificrole (administrators, human resources) that are then deployed to one or moreMemoryDB clusters.",
+				Description:         "UserSpec defines the desired state of User. You create users and assign them specific permissions by using an access string. You assign the users to Access Control Lists aligned with a specific role (administrators, human resources) that are then deployed to one or more MemoryDB clusters.",
+				MarkdownDescription: "UserSpec defines the desired state of User. You create users and assign them specific permissions by using an access string. You assign the users to Access Control Lists aligned with a specific role (administrators, human resources) that are then deployed to one or more MemoryDB clusters.",
 				Attributes: map[string]schema.Attribute{
 					"access_string": schema.StringAttribute{
 						Description:         "Access permissions string used for this user.",
@@ -146,8 +146,8 @@ func (r *MemorydbServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"authentication_mode": schema.SingleNestedAttribute{
-						Description:         "Denotes the user's authentication properties, such as whether it requiresa password to authenticate.",
-						MarkdownDescription: "Denotes the user's authentication properties, such as whether it requiresa password to authenticate.",
+						Description:         "Denotes the user's authentication properties, such as whether it requires a password to authenticate.",
+						MarkdownDescription: "Denotes the user's authentication properties, such as whether it requires a password to authenticate.",
 						Attributes: map[string]schema.Attribute{
 							"passwords": schema.ListNestedAttribute{
 								Description:         "",
@@ -198,16 +198,16 @@ func (r *MemorydbServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the user. This value must be unique as it also serves as theuser identifier.",
-						MarkdownDescription: "The name of the user. This value must be unique as it also serves as theuser identifier.",
+						Description:         "The name of the user. This value must be unique as it also serves as the user identifier.",
+						MarkdownDescription: "The name of the user. This value must be unique as it also serves as the user identifier.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
-						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted.",
+						Description:         "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+						MarkdownDescription: "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

@@ -52,8 +52,8 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotClassV1Alpha1Manifest) Meta
 
 func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotClassV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VolumeGroupSnapshotClass specifies parameters that a underlying storage systemuses when creating a volume group snapshot. A specific VolumeGroupSnapshotClassis used by specifying its name in a VolumeGroupSnapshot object.VolumeGroupSnapshotClasses are non-namespaced.",
-		MarkdownDescription: "VolumeGroupSnapshotClass specifies parameters that a underlying storage systemuses when creating a volume group snapshot. A specific VolumeGroupSnapshotClassis used by specifying its name in a VolumeGroupSnapshot object.VolumeGroupSnapshotClasses are non-namespaced.",
+		Description:         "VolumeGroupSnapshotClass specifies parameters that a underlying storage system uses when creating a volume group snapshot. A specific VolumeGroupSnapshotClass is used by specifying its name in a VolumeGroupSnapshot object. VolumeGroupSnapshotClasses are non-namespaced.",
+		MarkdownDescription: "VolumeGroupSnapshotClass specifies parameters that a underlying storage system uses when creating a volume group snapshot. A specific VolumeGroupSnapshotClass is used by specifying its name in a VolumeGroupSnapshot object. VolumeGroupSnapshotClasses are non-namespaced.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -108,8 +108,8 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotClassV1Alpha1Manifest) Sche
 			},
 
 			"deletion_policy": schema.StringAttribute{
-				Description:         "DeletionPolicy determines whether a VolumeGroupSnapshotContent createdthrough the VolumeGroupSnapshotClass should be deleted when its boundVolumeGroupSnapshot is deleted.Supported values are 'Retain' and 'Delete'.'Retain' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are kept.'Delete' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are deleted.Required.",
-				MarkdownDescription: "DeletionPolicy determines whether a VolumeGroupSnapshotContent createdthrough the VolumeGroupSnapshotClass should be deleted when its boundVolumeGroupSnapshot is deleted.Supported values are 'Retain' and 'Delete'.'Retain' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are kept.'Delete' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are deleted.Required.",
+				Description:         "DeletionPolicy determines whether a VolumeGroupSnapshotContent created through the VolumeGroupSnapshotClass should be deleted when its bound VolumeGroupSnapshot is deleted. Supported values are 'Retain' and 'Delete'. 'Retain' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are kept. 'Delete' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are deleted. Required.",
+				MarkdownDescription: "DeletionPolicy determines whether a VolumeGroupSnapshotContent created through the VolumeGroupSnapshotClass should be deleted when its bound VolumeGroupSnapshot is deleted. Supported values are 'Retain' and 'Delete'. 'Retain' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are kept. 'Delete' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are deleted. Required.",
 				Required:            true,
 				Optional:            false,
 				Computed:            false,
@@ -119,16 +119,16 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotClassV1Alpha1Manifest) Sche
 			},
 
 			"driver": schema.StringAttribute{
-				Description:         "Driver is the name of the storage driver expected to handle this VolumeGroupSnapshotClass.Required.",
-				MarkdownDescription: "Driver is the name of the storage driver expected to handle this VolumeGroupSnapshotClass.Required.",
+				Description:         "Driver is the name of the storage driver expected to handle this VolumeGroupSnapshotClass. Required.",
+				MarkdownDescription: "Driver is the name of the storage driver expected to handle this VolumeGroupSnapshotClass. Required.",
 				Required:            true,
 				Optional:            false,
 				Computed:            false,
 			},
 
 			"parameters": schema.MapAttribute{
-				Description:         "Parameters is a key-value map with storage driver specific parameters forcreating group snapshots.These values are opaque to Kubernetes and are passed directly to the driver.",
-				MarkdownDescription: "Parameters is a key-value map with storage driver specific parameters forcreating group snapshots.These values are opaque to Kubernetes and are passed directly to the driver.",
+				Description:         "Parameters is a key-value map with storage driver specific parameters for creating group snapshots. These values are opaque to Kubernetes and are passed directly to the driver.",
+				MarkdownDescription: "Parameters is a key-value map with storage driver specific parameters for creating group snapshots. These values are opaque to Kubernetes and are passed directly to the driver.",
 				ElementType:         types.StringType,
 				Required:            false,
 				Optional:            true,

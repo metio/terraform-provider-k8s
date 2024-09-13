@@ -139,12 +139,12 @@ func (r *NetworkfirewallServicesK8SAwsFirewallV1Alpha1Manifest) Schema(_ context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "FirewallSpec defines the desired state of Firewall.The firewall defines the configuration settings for an Network Firewall firewall.These settings include the firewall policy, the subnets in your VPC to usefor the firewall endpoints, and any tags that are attached to the firewallAmazon Web Services resource.The status of the firewall, for example whether it's ready to filter networktraffic, is provided in the corresponding FirewallStatus. You can retrieveboth objects by calling DescribeFirewall.",
-				MarkdownDescription: "FirewallSpec defines the desired state of Firewall.The firewall defines the configuration settings for an Network Firewall firewall.These settings include the firewall policy, the subnets in your VPC to usefor the firewall endpoints, and any tags that are attached to the firewallAmazon Web Services resource.The status of the firewall, for example whether it's ready to filter networktraffic, is provided in the corresponding FirewallStatus. You can retrieveboth objects by calling DescribeFirewall.",
+				Description:         "FirewallSpec defines the desired state of Firewall. The firewall defines the configuration settings for an Network Firewall firewall. These settings include the firewall policy, the subnets in your VPC to use for the firewall endpoints, and any tags that are attached to the firewall Amazon Web Services resource. The status of the firewall, for example whether it's ready to filter network traffic, is provided in the corresponding FirewallStatus. You can retrieve both objects by calling DescribeFirewall.",
+				MarkdownDescription: "FirewallSpec defines the desired state of Firewall. The firewall defines the configuration settings for an Network Firewall firewall. These settings include the firewall policy, the subnets in your VPC to use for the firewall endpoints, and any tags that are attached to the firewall Amazon Web Services resource. The status of the firewall, for example whether it's ready to filter network traffic, is provided in the corresponding FirewallStatus. You can retrieve both objects by calling DescribeFirewall.",
 				Attributes: map[string]schema.Attribute{
 					"delete_protection": schema.BoolAttribute{
-						Description:         "A flag indicating whether it is possible to delete the firewall. A settingof TRUE indicates that the firewall is protected against deletion. Use thissetting to protect against accidentally deleting a firewall that is in use.When you create a firewall, the operation initializes this flag to TRUE.",
-						MarkdownDescription: "A flag indicating whether it is possible to delete the firewall. A settingof TRUE indicates that the firewall is protected against deletion. Use thissetting to protect against accidentally deleting a firewall that is in use.When you create a firewall, the operation initializes this flag to TRUE.",
+						Description:         "A flag indicating whether it is possible to delete the firewall. A setting of TRUE indicates that the firewall is protected against deletion. Use this setting to protect against accidentally deleting a firewall that is in use. When you create a firewall, the operation initializes this flag to TRUE.",
+						MarkdownDescription: "A flag indicating whether it is possible to delete the firewall. A setting of TRUE indicates that the firewall is protected against deletion. Use this setting to protect against accidentally deleting a firewall that is in use. When you create a firewall, the operation initializes this flag to TRUE.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -184,40 +184,40 @@ func (r *NetworkfirewallServicesK8SAwsFirewallV1Alpha1Manifest) Schema(_ context
 					},
 
 					"firewall_name": schema.StringAttribute{
-						Description:         "The descriptive name of the firewall. You can't change the name of a firewallafter you create it.",
-						MarkdownDescription: "The descriptive name of the firewall. You can't change the name of a firewallafter you create it.",
+						Description:         "The descriptive name of the firewall. You can't change the name of a firewall after you create it.",
+						MarkdownDescription: "The descriptive name of the firewall. You can't change the name of a firewall after you create it.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"firewall_policy_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the FirewallPolicy that you want to usefor the firewall.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the FirewallPolicy that you want to usefor the firewall.",
+						Description:         "The Amazon Resource Name (ARN) of the FirewallPolicy that you want to use for the firewall.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the FirewallPolicy that you want to use for the firewall.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"firewall_policy_change_protection": schema.BoolAttribute{
-						Description:         "A setting indicating whether the firewall is protected against a change tothe firewall policy association. Use this setting to protect against accidentallymodifying the firewall policy for a firewall that is in use. When you createa firewall, the operation initializes this setting to TRUE.",
-						MarkdownDescription: "A setting indicating whether the firewall is protected against a change tothe firewall policy association. Use this setting to protect against accidentallymodifying the firewall policy for a firewall that is in use. When you createa firewall, the operation initializes this setting to TRUE.",
+						Description:         "A setting indicating whether the firewall is protected against a change to the firewall policy association. Use this setting to protect against accidentally modifying the firewall policy for a firewall that is in use. When you create a firewall, the operation initializes this setting to TRUE.",
+						MarkdownDescription: "A setting indicating whether the firewall is protected against a change to the firewall policy association. Use this setting to protect against accidentally modifying the firewall policy for a firewall that is in use. When you create a firewall, the operation initializes this setting to TRUE.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"subnet_change_protection": schema.BoolAttribute{
-						Description:         "A setting indicating whether the firewall is protected against changes tothe subnet associations. Use this setting to protect against accidentallymodifying the subnet associations for a firewall that is in use. When youcreate a firewall, the operation initializes this setting to TRUE.",
-						MarkdownDescription: "A setting indicating whether the firewall is protected against changes tothe subnet associations. Use this setting to protect against accidentallymodifying the subnet associations for a firewall that is in use. When youcreate a firewall, the operation initializes this setting to TRUE.",
+						Description:         "A setting indicating whether the firewall is protected against changes to the subnet associations. Use this setting to protect against accidentally modifying the subnet associations for a firewall that is in use. When you create a firewall, the operation initializes this setting to TRUE.",
+						MarkdownDescription: "A setting indicating whether the firewall is protected against changes to the subnet associations. Use this setting to protect against accidentally modifying the subnet associations for a firewall that is in use. When you create a firewall, the operation initializes this setting to TRUE.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"subnet_mappings": schema.ListNestedAttribute{
-						Description:         "The public subnets to use for your Network Firewall firewalls. Each subnetmust belong to a different Availability Zone in the VPC. Network Firewallcreates a firewall endpoint in each subnet.",
-						MarkdownDescription: "The public subnets to use for your Network Firewall firewalls. Each subnetmust belong to a different Availability Zone in the VPC. Network Firewallcreates a firewall endpoint in each subnet.",
+						Description:         "The public subnets to use for your Network Firewall firewalls. Each subnet must belong to a different Availability Zone in the VPC. Network Firewall creates a firewall endpoint in each subnet.",
+						MarkdownDescription: "The public subnets to use for your Network Firewall firewalls. Each subnet must belong to a different Availability Zone in the VPC. Network Firewall creates a firewall endpoint in each subnet.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"ip_address_type": schema.StringAttribute{
@@ -270,8 +270,8 @@ func (r *NetworkfirewallServicesK8SAwsFirewallV1Alpha1Manifest) Schema(_ context
 					},
 
 					"vpc_id": schema.StringAttribute{
-						Description:         "The unique identifier of the VPC where Network Firewall should create thefirewall.You can't change this setting after you create the firewall.",
-						MarkdownDescription: "The unique identifier of the VPC where Network Firewall should create thefirewall.You can't change this setting after you create the firewall.",
+						Description:         "The unique identifier of the VPC where Network Firewall should create the firewall. You can't change this setting after you create the firewall.",
+						MarkdownDescription: "The unique identifier of the VPC where Network Firewall should create the firewall. You can't change this setting after you create the firewall.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

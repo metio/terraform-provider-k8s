@@ -53,11 +53,14 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `resources` (List of Map of String) Envoy xDS resources, a list of the following Envoy resource types: type.googleapis.com/envoy.config.listener.v3.Listener, type.googleapis.com/envoy.config.route.v3.RouteConfiguration, type.googleapis.com/envoy.config.cluster.v3.Cluster, type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment, and type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.Secret.
+
 Optional:
 
-- `backend_services` (Attributes List) BackendServices specifies Kubernetes services whose backends are automatically synced to Envoy using EDS.  Traffic for these services is not forwarded to an Envoy listener. This allows an Envoy listener load balance traffic to these backends while normal Cilium service load balancing takes care of balancing traffic for these services at the same time. (see [below for nested schema](#nestedatt--spec--backend_services))
+- `backend_services` (Attributes List) BackendServices specifies Kubernetes services whose backends are automatically synced to Envoy using EDS. Traffic for these services is not forwarded to an Envoy listener. This allows an Envoy listener load balance traffic to these backends while normal Cilium service load balancing takes care of balancing traffic for these services at the same time. (see [below for nested schema](#nestedatt--spec--backend_services))
 - `node_selector` (Attributes) NodeSelector is a label selector that determines to which nodes this configuration applies. If nil, then this config applies to all nodes. (see [below for nested schema](#nestedatt--spec--node_selector))
-- `resources` (List of Map of String) Envoy xDS resources, a list of the following Envoy resource types: type.googleapis.com/envoy.config.listener.v3.Listener, type.googleapis.com/envoy.config.route.v3.RouteConfiguration, type.googleapis.com/envoy.config.cluster.v3.Cluster, type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment, and type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.Secret.
 - `services` (Attributes List) Services specifies Kubernetes services for which traffic is forwarded to an Envoy listener for L7 load balancing. Backends of these services are automatically synced to Envoy usign EDS. (see [below for nested schema](#nestedatt--spec--services))
 
 <a id="nestedatt--spec--backend_services"></a>
@@ -104,6 +107,6 @@ Required:
 
 Optional:
 
-- `listener` (String) Listener specifies the name of the Envoy listener the service traffic is redirected to. The listener must be specified in the Envoy 'resources' of the same CiliumEnvoyConfig.  If omitted, the first listener specified in 'resources' is used.
+- `listener` (String) Listener specifies the name of the Envoy listener the service traffic is redirected to. The listener must be specified in the Envoy 'resources' of the same CiliumEnvoyConfig. If omitted, the first listener specified in 'resources' is used.
 - `namespace` (String) Namespace is the Kubernetes service namespace. In CiliumEnvoyConfig namespace this is overridden to the namespace of the CEC, In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.
 - `ports` (List of String) Ports is a set of service's frontend ports that should be redirected to the Envoy listener. By default all frontend ports of the service are redirected.

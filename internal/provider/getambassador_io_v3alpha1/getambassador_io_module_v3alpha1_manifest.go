@@ -54,8 +54,8 @@ func (r *GetambassadorIoModuleV3Alpha1Manifest) Metadata(_ context.Context, requ
 
 func (r *GetambassadorIoModuleV3Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A Module defines system-wide configuration.  The type of module is controlled by the .metadata.name; valid names are 'ambassador' or 'tls'.  https://www.getambassador.io/docs/edge-stack/latest/topics/running/ambassador/#the-ambassador-module https://www.getambassador.io/docs/edge-stack/latest/topics/running/tls/#tls-module-deprecated",
-		MarkdownDescription: "A Module defines system-wide configuration.  The type of module is controlled by the .metadata.name; valid names are 'ambassador' or 'tls'.  https://www.getambassador.io/docs/edge-stack/latest/topics/running/ambassador/#the-ambassador-module https://www.getambassador.io/docs/edge-stack/latest/topics/running/tls/#tls-module-deprecated",
+		Description:         "A Module defines system-wide configuration. The type of module is controlled by the .metadata.name; valid names are 'ambassador' or 'tls'. https://www.getambassador.io/docs/edge-stack/latest/topics/running/ambassador/#the-ambassador-module https://www.getambassador.io/docs/edge-stack/latest/topics/running/tls/#tls-module-deprecated",
+		MarkdownDescription: "A Module defines system-wide configuration. The type of module is controlled by the .metadata.name; valid names are 'ambassador' or 'tls'. https://www.getambassador.io/docs/edge-stack/latest/topics/running/ambassador/#the-ambassador-module https://www.getambassador.io/docs/edge-stack/latest/topics/running/tls/#tls-module-deprecated",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -126,8 +126,8 @@ func (r *GetambassadorIoModuleV3Alpha1Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"ambassador_id": schema.ListAttribute{
-						Description:         "AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is:  ambassador_id: - 'default'",
-						MarkdownDescription: "AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is:  ambassador_id: - 'default'",
+						Description:         "AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is: ambassador_id: - 'default'",
+						MarkdownDescription: "AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is: ambassador_id: - 'default'",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

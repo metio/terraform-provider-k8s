@@ -122,8 +122,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Metadata(_ context.Context, request 
 
 func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Monitor is the Schema for the monitor API. At most one instanceof this resource is supported. It must be named 'tigera-secure'.",
-		MarkdownDescription: "Monitor is the Schema for the monitor API. At most one instanceof this resource is supported. It must be named 'tigera-secure'.",
+		Description:         "Monitor is the Schema for the monitor API. At most one instance of this resource is supported. It must be named 'tigera-secure'.",
+		MarkdownDescription: "Monitor is the Schema for the monitor API. At most one instance of this resource is supported. It must be named 'tigera-secure'.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -194,13 +194,13 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 										MarkdownDescription: "Define resources requests and limits for single Pods.",
 										Attributes: map[string]schema.Attribute{
 											"claims": schema.ListNestedAttribute{
-												Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -213,8 +213,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"limits": schema.MapAttribute{
-												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -222,8 +222,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -246,41 +246,41 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"external_prometheus": schema.SingleNestedAttribute{
-						Description:         "ExternalPrometheus optionally configures integration with an external Prometheus for scraping Calico metrics. Whenspecified, the operator will render resources in the defined namespace. This option can be useful for configuringscraping from git-ops tools without the need of post-installation steps.",
-						MarkdownDescription: "ExternalPrometheus optionally configures integration with an external Prometheus for scraping Calico metrics. Whenspecified, the operator will render resources in the defined namespace. This option can be useful for configuringscraping from git-ops tools without the need of post-installation steps.",
+						Description:         "ExternalPrometheus optionally configures integration with an external Prometheus for scraping Calico metrics. When specified, the operator will render resources in the defined namespace. This option can be useful for configuring scraping from git-ops tools without the need of post-installation steps.",
+						MarkdownDescription: "ExternalPrometheus optionally configures integration with an external Prometheus for scraping Calico metrics. When specified, the operator will render resources in the defined namespace. This option can be useful for configuring scraping from git-ops tools without the need of post-installation steps.",
 						Attributes: map[string]schema.Attribute{
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace is the namespace where the operator will create resources for your Prometheus instance. The namespacemust be created before the operator will create Prometheus resources.",
-								MarkdownDescription: "Namespace is the namespace where the operator will create resources for your Prometheus instance. The namespacemust be created before the operator will create Prometheus resources.",
+								Description:         "Namespace is the namespace where the operator will create resources for your Prometheus instance. The namespace must be created before the operator will create Prometheus resources.",
+								MarkdownDescription: "Namespace is the namespace where the operator will create resources for your Prometheus instance. The namespace must be created before the operator will create Prometheus resources.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"service_monitor": schema.SingleNestedAttribute{
-								Description:         "ServiceMonitor when specified, the operator will create a ServiceMonitor object in the namespace. It is recommendedthat you configure labels if you want your prometheus instance to pick up the configuration automatically.The operator will configure 1 endpoint by default:- Params to scrape all metrics available in Calico Enterprise.- BearerTokenSecret (If not overridden, the operator will also create corresponding RBAC that allows authz to the metrics.)- TLSConfig, containing the caFile and serverName.",
-								MarkdownDescription: "ServiceMonitor when specified, the operator will create a ServiceMonitor object in the namespace. It is recommendedthat you configure labels if you want your prometheus instance to pick up the configuration automatically.The operator will configure 1 endpoint by default:- Params to scrape all metrics available in Calico Enterprise.- BearerTokenSecret (If not overridden, the operator will also create corresponding RBAC that allows authz to the metrics.)- TLSConfig, containing the caFile and serverName.",
+								Description:         "ServiceMonitor when specified, the operator will create a ServiceMonitor object in the namespace. It is recommended that you configure labels if you want your prometheus instance to pick up the configuration automatically. The operator will configure 1 endpoint by default: - Params to scrape all metrics available in Calico Enterprise. - BearerTokenSecret (If not overridden, the operator will also create corresponding RBAC that allows authz to the metrics.) - TLSConfig, containing the caFile and serverName.",
+								MarkdownDescription: "ServiceMonitor when specified, the operator will create a ServiceMonitor object in the namespace. It is recommended that you configure labels if you want your prometheus instance to pick up the configuration automatically. The operator will configure 1 endpoint by default: - Params to scrape all metrics available in Calico Enterprise. - BearerTokenSecret (If not overridden, the operator will also create corresponding RBAC that allows authz to the metrics.) - TLSConfig, containing the caFile and serverName.",
 								Attributes: map[string]schema.Attribute{
 									"endpoints": schema.ListNestedAttribute{
-										Description:         "The endpoints to scrape. This struct contains a subset of the Endpoint as defined in the prometheus docs. Fieldsrelated to connecting to our Prometheus server are automatically set by the operator.",
-										MarkdownDescription: "The endpoints to scrape. This struct contains a subset of the Endpoint as defined in the prometheus docs. Fieldsrelated to connecting to our Prometheus server are automatically set by the operator.",
+										Description:         "The endpoints to scrape. This struct contains a subset of the Endpoint as defined in the prometheus docs. Fields related to connecting to our Prometheus server are automatically set by the operator.",
+										MarkdownDescription: "The endpoints to scrape. This struct contains a subset of the Endpoint as defined in the prometheus docs. Fields related to connecting to our Prometheus server are automatically set by the operator.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"bearer_token_secret": schema.SingleNestedAttribute{
-													Description:         "Secret to mount to read bearer token for scraping targets.Recommended: when unset, the operator will create a Secret, a ClusterRole and a ClusterRoleBinding.",
-													MarkdownDescription: "Secret to mount to read bearer token for scraping targets.Recommended: when unset, the operator will create a Secret, a ClusterRole and a ClusterRoleBinding.",
+													Description:         "Secret to mount to read bearer token for scraping targets. Recommended: when unset, the operator will create a Secret, a ClusterRole and a ClusterRoleBinding.",
+													MarkdownDescription: "Secret to mount to read bearer token for scraping targets. Recommended: when unset, the operator will create a Secret, a ClusterRole and a ClusterRoleBinding.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -316,8 +316,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"interval": schema.StringAttribute{
-													Description:         "Interval at which metrics should be scraped.If not specified Prometheus' global scrape interval is used.",
-													MarkdownDescription: "Interval at which metrics should be scraped.If not specified Prometheus' global scrape interval is used.",
+													Description:         "Interval at which metrics should be scraped. If not specified Prometheus' global scrape interval is used.",
+													MarkdownDescription: "Interval at which metrics should be scraped. If not specified Prometheus' global scrape interval is used.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -332,8 +332,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"action": schema.StringAttribute{
-																Description:         "Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.",
-																MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.",
+																Description:         "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
+																MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -359,8 +359,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"replacement": schema.StringAttribute{
-																Description:         "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
-																MarkdownDescription: "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
+																Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+																MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -375,8 +375,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"source_labels": schema.ListAttribute{
-																Description:         "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
-																MarkdownDescription: "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
+																Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+																MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -384,8 +384,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"target_label": schema.StringAttribute{
-																Description:         "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
-																MarkdownDescription: "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
+																Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+																MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -398,8 +398,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"params": schema.MapAttribute{
-													Description:         "Optional HTTP URL parametersDefault: scrape all metrics.",
-													MarkdownDescription: "Optional HTTP URL parametersDefault: scrape all metrics.",
+													Description:         "Optional HTTP URL parameters Default: scrape all metrics.",
+													MarkdownDescription: "Optional HTTP URL parameters Default: scrape all metrics.",
 													ElementType:         types.ListType{ElemType: types.StringType},
 													Required:            false,
 													Optional:            true,
@@ -407,13 +407,13 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"relabelings": schema.ListNestedAttribute{
-													Description:         "RelabelConfigs to apply to samples before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
-													MarkdownDescription: "RelabelConfigs to apply to samples before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+													Description:         "RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+													MarkdownDescription: "RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"action": schema.StringAttribute{
-																Description:         "Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.",
-																MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.",
+																Description:         "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
+																MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -439,8 +439,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"replacement": schema.StringAttribute{
-																Description:         "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
-																MarkdownDescription: "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
+																Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+																MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -455,8 +455,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"source_labels": schema.ListAttribute{
-																Description:         "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
-																MarkdownDescription: "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
+																Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+																MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -464,8 +464,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 															},
 
 															"target_label": schema.StringAttribute{
-																Description:         "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
-																MarkdownDescription: "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
+																Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+																MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -478,8 +478,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"scrape_timeout": schema.StringAttribute{
-													Description:         "Timeout after which the scrape is ended.If not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.",
-													MarkdownDescription: "Timeout after which the scrape is ended.If not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.",
+													Description:         "Timeout after which the scrape is ended. If not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.",
+													MarkdownDescription: "Timeout after which the scrape is ended. If not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -495,8 +495,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Labels are the metadata.labels of the ServiceMonitor. When combined with spec.serviceMonitorSelector.matchLabelson your prometheus instance, the service monitor will automatically be picked up.Default: k8s-app=tigera-prometheus",
-										MarkdownDescription: "Labels are the metadata.labels of the ServiceMonitor. When combined with spec.serviceMonitorSelector.matchLabelson your prometheus instance, the service monitor will automatically be picked up.Default: k8s-app=tigera-prometheus",
+										Description:         "Labels are the metadata.labels of the ServiceMonitor. When combined with spec.serviceMonitorSelector.matchLabels on your prometheus instance, the service monitor will automatically be picked up. Default: k8s-app=tigera-prometheus",
+										MarkdownDescription: "Labels are the metadata.labels of the ServiceMonitor. When combined with spec.serviceMonitorSelector.matchLabels on your prometheus instance, the service monitor will automatically be picked up. Default: k8s-app=tigera-prometheus",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -526,13 +526,13 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 										MarkdownDescription: "CommonPrometheusFields are the options available to both the Prometheus server and agent.",
 										Attributes: map[string]schema.Attribute{
 											"containers": schema.ListNestedAttribute{
-												Description:         "Containers is a list of Prometheus containers.If specified, this overrides the specified Prometheus Deployment containers.If omitted, the Prometheus Deployment will use its default values for its containers.",
-												MarkdownDescription: "Containers is a list of Prometheus containers.If specified, this overrides the specified Prometheus Deployment containers.If omitted, the Prometheus Deployment will use its default values for its containers.",
+												Description:         "Containers is a list of Prometheus containers. If specified, this overrides the specified Prometheus Deployment containers. If omitted, the Prometheus Deployment will use its default values for its containers.",
+												MarkdownDescription: "Containers is a list of Prometheus containers. If specified, this overrides the specified Prometheus Deployment containers. If omitted, the Prometheus Deployment will use its default values for its containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name is an enum which identifies the Prometheus Deployment container by name.Supported values are: authn-proxy",
-															MarkdownDescription: "Name is an enum which identifies the Prometheus Deployment container by name.Supported values are: authn-proxy",
+															Description:         "Name is an enum which identifies the Prometheus Deployment container by name. Supported values are: authn-proxy",
+															MarkdownDescription: "Name is an enum which identifies the Prometheus Deployment container by name. Supported values are: authn-proxy",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -542,17 +542,17 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"resources": schema.SingleNestedAttribute{
-															Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Prometheus container's resources.If omitted, the Prometheus will use its default value for this container's resources.",
-															MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Prometheus container's resources.If omitted, the Prometheus will use its default value for this container's resources.",
+															Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Prometheus container's resources. If omitted, the Prometheus will use its default value for this container's resources.",
+															MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Prometheus container's resources. If omitted, the Prometheus will use its default value for this container's resources.",
 															Attributes: map[string]schema.Attribute{
 																"claims": schema.ListNestedAttribute{
-																	Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-																	MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																	Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																	MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																				MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																				Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																				MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -565,8 +565,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"limits": schema.MapAttribute{
-																	Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																	MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -574,8 +574,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"requests": schema.MapAttribute{
-																	Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																	MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -598,13 +598,13 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 												MarkdownDescription: "Define resources requests and limits for single Pods.",
 												Attributes: map[string]schema.Attribute{
 													"claims": schema.ListNestedAttribute{
-														Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-														MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+														Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+														MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																	MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																	Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																	MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -617,8 +617,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 													},
 
 													"limits": schema.MapAttribute{
-														Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -626,8 +626,8 @@ func (r *OperatorTigeraIoMonitorV1Manifest) Schema(_ context.Context, _ datasour
 													},
 
 													"requests": schema.MapAttribute{
-														Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-														MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,

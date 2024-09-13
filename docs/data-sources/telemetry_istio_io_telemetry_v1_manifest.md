@@ -85,7 +85,7 @@ Optional:
 
 Optional:
 
-- `mode` (String) This determines whether or not to apply the access logging configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER
+- `mode` (String) This determines whether or not to apply the access logging configuration based on the direction of traffic relative to the proxied workload. Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER
 
 
 <a id="nestedatt--spec--access_logging--providers"></a>
@@ -121,8 +121,8 @@ Optional:
 Optional:
 
 - `custom_metric` (String) Allows free-form specification of a metric.
-- `metric` (String) One of the well-known [Istio Standard Metrics](https://istio.io/latest/docs/reference/config/metrics/).Valid Options: ALL_METRICS, REQUEST_COUNT, REQUEST_DURATION, REQUEST_SIZE, RESPONSE_SIZE, TCP_OPENED_CONNECTIONS, TCP_CLOSED_CONNECTIONS, TCP_SENT_BYTES, TCP_RECEIVED_BYTES, GRPC_REQUEST_MESSAGES, GRPC_RESPONSE_MESSAGES
-- `mode` (String) Controls which mode of metrics generation is selected: 'CLIENT', 'SERVER', or 'CLIENT_AND_SERVER'.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER
+- `metric` (String) One of the well-known [Istio Standard Metrics](https://istio.io/latest/docs/reference/config/metrics/). Valid Options: ALL_METRICS, REQUEST_COUNT, REQUEST_DURATION, REQUEST_SIZE, RESPONSE_SIZE, TCP_OPENED_CONNECTIONS, TCP_CLOSED_CONNECTIONS, TCP_SENT_BYTES, TCP_RECEIVED_BYTES, GRPC_REQUEST_MESSAGES, GRPC_RESPONSE_MESSAGES
+- `mode` (String) Controls which mode of metrics generation is selected: 'CLIENT', 'SERVER', or 'CLIENT_AND_SERVER'. Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER
 
 
 <a id="nestedatt--spec--metrics--overrides--tag_overrides"></a>
@@ -130,7 +130,7 @@ Optional:
 
 Optional:
 
-- `operation` (String) Operation controls whether or not to update/add a tag, or to remove it.Valid Options: UPSERT, REMOVE
+- `operation` (String) Operation controls whether or not to update/add a tag, or to remove it. Valid Options: UPSERT, REMOVE
 - `value` (String) Value is only considered if the operation is 'UPSERT'.
 
 
@@ -239,7 +239,7 @@ Required:
 
 Optional:
 
-- `mode` (String) This determines whether or not to apply the tracing configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER
+- `mode` (String) This determines whether or not to apply the tracing configuration based on the direction of traffic relative to the proxied workload. Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER
 
 
 <a id="nestedatt--spec--tracing--providers"></a>

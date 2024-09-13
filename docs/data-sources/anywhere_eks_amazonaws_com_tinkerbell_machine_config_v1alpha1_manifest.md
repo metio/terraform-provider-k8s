@@ -121,7 +121,7 @@ Optional:
 - `eviction_soft_grace_period` (Map of String) EvictionSoftGracePeriod is a map of signal names to quantities that defines grace periods for each soft eviction signal.
 - `image_gc_high_threshold_percent` (Number) ImageGCHighThresholdPercent is the percent of disk usage after which image garbage collection is always run.
 - `image_gc_low_threshold_percent` (Number) ImageGCLowThresholdPercent is the percent of disk usage before which image garbage collection is never run.
-- `kube_api_burst` (Number) KubeAPIBurst  is the burst to allow while talking with kubernetes API server.
+- `kube_api_burst` (Number) KubeAPIBurst is the burst to allow while talking with kubernetes API server.
 - `kube_apiqps` (Number) KubeAPIQPS is the QPS to use while talking with kubernetes apiserver.
 - `kube_reserved` (Map of String) KubeReserved is a set of ResourceName=ResourceQuantity pairs that describe resources reserved for kubernetes system components
 - `max_pods` (Number) MaxPods defines the maximum number of pods that can run on a node.

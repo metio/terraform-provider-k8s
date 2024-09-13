@@ -169,21 +169,21 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "NodePoolSpec is the top level nodepool specification. Nodepoolslaunch nodes in response to pods that are unschedulable. A single nodepoolis capable of managing a diverse set of nodes. Node properties are determinedfrom a combination of nodepool and pod scheduling constraints.",
-				MarkdownDescription: "NodePoolSpec is the top level nodepool specification. Nodepoolslaunch nodes in response to pods that are unschedulable. A single nodepoolis capable of managing a diverse set of nodes. Node properties are determinedfrom a combination of nodepool and pod scheduling constraints.",
+				Description:         "NodePoolSpec is the top level nodepool specification. Nodepools launch nodes in response to pods that are unschedulable. A single nodepool is capable of managing a diverse set of nodes. Node properties are determined from a combination of nodepool and pod scheduling constraints.",
+				MarkdownDescription: "NodePoolSpec is the top level nodepool specification. Nodepools launch nodes in response to pods that are unschedulable. A single nodepool is capable of managing a diverse set of nodes. Node properties are determined from a combination of nodepool and pod scheduling constraints.",
 				Attributes: map[string]schema.Attribute{
 					"disruption": schema.SingleNestedAttribute{
 						Description:         "Disruption contains the parameters that relate to Karpenter's disruption logic",
 						MarkdownDescription: "Disruption contains the parameters that relate to Karpenter's disruption logic",
 						Attributes: map[string]schema.Attribute{
 							"budgets": schema.ListNestedAttribute{
-								Description:         "Budgets is a list of Budgets.If there are multiple active budgets, Karpenter usesthe most restrictive value. If left undefined,this will default to one budget with a value to 10%.",
-								MarkdownDescription: "Budgets is a list of Budgets.If there are multiple active budgets, Karpenter usesthe most restrictive value. If left undefined,this will default to one budget with a value to 10%.",
+								Description:         "Budgets is a list of Budgets. If there are multiple active budgets, Karpenter uses the most restrictive value. If left undefined, this will default to one budget with a value to 10%.",
+								MarkdownDescription: "Budgets is a list of Budgets. If there are multiple active budgets, Karpenter uses the most restrictive value. If left undefined, this will default to one budget with a value to 10%.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"duration": schema.StringAttribute{
-											Description:         "Duration determines how long a Budget is active since each Schedule hit.Only minutes and hours are accepted, as cron does not work in seconds.If omitted, the budget is always active.This is required if Schedule is set.This regex has an optional 0s at the end since the duration.String() always addsa 0s at the end.",
-											MarkdownDescription: "Duration determines how long a Budget is active since each Schedule hit.Only minutes and hours are accepted, as cron does not work in seconds.If omitted, the budget is always active.This is required if Schedule is set.This regex has an optional 0s at the end since the duration.String() always addsa 0s at the end.",
+											Description:         "Duration determines how long a Budget is active since each Schedule hit. Only minutes and hours are accepted, as cron does not work in seconds. If omitted, the budget is always active. This is required if Schedule is set. This regex has an optional 0s at the end since the duration.String() always adds a 0s at the end.",
+											MarkdownDescription: "Duration determines how long a Budget is active since each Schedule hit. Only minutes and hours are accepted, as cron does not work in seconds. If omitted, the budget is always active. This is required if Schedule is set. This regex has an optional 0s at the end since the duration.String() always adds a 0s at the end.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -193,8 +193,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"nodes": schema.StringAttribute{
-											Description:         "Nodes dictates the maximum number of NodeClaims owned by this NodePoolthat can be terminating at once. This is calculated by counting nodes thathave a deletion timestamp set, or are actively being deleted by Karpenter.This field is required when specifying a budget.This cannot be of type intstr.IntOrString since kubebuilder doesn't support patternchecking for int nodes for IntOrString nodes.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/55efe4be40394a288216dab63156b0a64fb82929/pkg/crd/markers/validation.go#L379-L388",
-											MarkdownDescription: "Nodes dictates the maximum number of NodeClaims owned by this NodePoolthat can be terminating at once. This is calculated by counting nodes thathave a deletion timestamp set, or are actively being deleted by Karpenter.This field is required when specifying a budget.This cannot be of type intstr.IntOrString since kubebuilder doesn't support patternchecking for int nodes for IntOrString nodes.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/55efe4be40394a288216dab63156b0a64fb82929/pkg/crd/markers/validation.go#L379-L388",
+											Description:         "Nodes dictates the maximum number of NodeClaims owned by this NodePool that can be terminating at once. This is calculated by counting nodes that have a deletion timestamp set, or are actively being deleted by Karpenter. This field is required when specifying a budget. This cannot be of type intstr.IntOrString since kubebuilder doesn't support pattern checking for int nodes for IntOrString nodes. Ref: https://github.com/kubernetes-sigs/controller-tools/blob/55efe4be40394a288216dab63156b0a64fb82929/pkg/crd/markers/validation.go#L379-L388",
+											MarkdownDescription: "Nodes dictates the maximum number of NodeClaims owned by this NodePool that can be terminating at once. This is calculated by counting nodes that have a deletion timestamp set, or are actively being deleted by Karpenter. This field is required when specifying a budget. This cannot be of type intstr.IntOrString since kubebuilder doesn't support pattern checking for int nodes for IntOrString nodes. Ref: https://github.com/kubernetes-sigs/controller-tools/blob/55efe4be40394a288216dab63156b0a64fb82929/pkg/crd/markers/validation.go#L379-L388",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -204,8 +204,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"schedule": schema.StringAttribute{
-											Description:         "Schedule specifies when a budget begins being active, followingthe upstream cronjob syntax. If omitted, the budget is always active.Timezones are not supported.This field is required if Duration is set.",
-											MarkdownDescription: "Schedule specifies when a budget begins being active, followingthe upstream cronjob syntax. If omitted, the budget is always active.Timezones are not supported.This field is required if Duration is set.",
+											Description:         "Schedule specifies when a budget begins being active, following the upstream cronjob syntax. If omitted, the budget is always active. Timezones are not supported. This field is required if Duration is set.",
+											MarkdownDescription: "Schedule specifies when a budget begins being active, following the upstream cronjob syntax. If omitted, the budget is always active. Timezones are not supported. This field is required if Duration is set.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -221,8 +221,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"consolidate_after": schema.StringAttribute{
-								Description:         "ConsolidateAfter is the duration the controller will waitbefore attempting to terminate nodes that are underutilized.Refer to ConsolidationPolicy for how underutilization is considered.",
-								MarkdownDescription: "ConsolidateAfter is the duration the controller will waitbefore attempting to terminate nodes that are underutilized.Refer to ConsolidationPolicy for how underutilization is considered.",
+								Description:         "ConsolidateAfter is the duration the controller will wait before attempting to terminate nodes that are underutilized. Refer to ConsolidationPolicy for how underutilization is considered.",
+								MarkdownDescription: "ConsolidateAfter is the duration the controller will wait before attempting to terminate nodes that are underutilized. Refer to ConsolidationPolicy for how underutilization is considered.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -232,8 +232,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"consolidation_policy": schema.StringAttribute{
-								Description:         "ConsolidationPolicy describes which nodes Karpenter can disrupt through its consolidationalgorithm. This policy defaults to 'WhenUnderutilized' if not specified",
-								MarkdownDescription: "ConsolidationPolicy describes which nodes Karpenter can disrupt through its consolidationalgorithm. This policy defaults to 'WhenUnderutilized' if not specified",
+								Description:         "ConsolidationPolicy describes which nodes Karpenter can disrupt through its consolidation algorithm. This policy defaults to 'WhenUnderutilized' if not specified",
+								MarkdownDescription: "ConsolidationPolicy describes which nodes Karpenter can disrupt through its consolidation algorithm. This policy defaults to 'WhenUnderutilized' if not specified",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -243,8 +243,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"expire_after": schema.StringAttribute{
-								Description:         "ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.",
-								MarkdownDescription: "ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.",
+								Description:         "ExpireAfter is the duration the controller will wait before terminating a node, measured from when the node is created. This is useful to implement features like eventually consistent node upgrade, memory leak protection, and disruption testing.",
+								MarkdownDescription: "ExpireAfter is the duration the controller will wait before terminating a node, measured from when the node is created. This is useful to implement features like eventually consistent node upgrade, memory leak protection, and disruption testing.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -268,16 +268,16 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"template": schema.SingleNestedAttribute{
-						Description:         "Template contains the template of possibilities for the provisioning logic to launch a NodeClaim with.NodeClaims launched from this NodePool will often be further constrained than the template specifies.",
-						MarkdownDescription: "Template contains the template of possibilities for the provisioning logic to launch a NodeClaim with.NodeClaims launched from this NodePool will often be further constrained than the template specifies.",
+						Description:         "Template contains the template of possibilities for the provisioning logic to launch a NodeClaim with. NodeClaims launched from this NodePool will often be further constrained than the template specifies.",
+						MarkdownDescription: "Template contains the template of possibilities for the provisioning logic to launch a NodeClaim with. NodeClaims launched from this NodePool will often be further constrained than the template specifies.",
 						Attributes: map[string]schema.Attribute{
 							"metadata": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
-										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+										Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -285,8 +285,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
-										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+										Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -303,12 +303,12 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 								MarkdownDescription: "NodeClaimSpec describes the desired state of the NodeClaim",
 								Attributes: map[string]schema.Attribute{
 									"kubelet": schema.SingleNestedAttribute{
-										Description:         "Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types.",
-										MarkdownDescription: "Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types.",
+										Description:         "Kubelet defines args to be used when configuring kubelet on provisioned nodes. They are a subset of the upstream types, recognizing not all options may be supported. Wherever possible, the types and names should reflect the upstream kubelet types.",
+										MarkdownDescription: "Kubelet defines args to be used when configuring kubelet on provisioned nodes. They are a subset of the upstream types, recognizing not all options may be supported. Wherever possible, the types and names should reflect the upstream kubelet types.",
 										Attributes: map[string]schema.Attribute{
 											"cluster_dns": schema.ListAttribute{
-												Description:         "clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.",
-												MarkdownDescription: "clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.",
+												Description:         "clusterDNS is a list of IP addresses for the cluster DNS server. Note that not all providers may use all addresses.",
+												MarkdownDescription: "clusterDNS is a list of IP addresses for the cluster DNS server. Note that not all providers may use all addresses.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -333,8 +333,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"eviction_max_pod_grace_period": schema.Int64Attribute{
-												Description:         "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.",
-												MarkdownDescription: "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.",
+												Description:         "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods in response to soft eviction thresholds being met.",
+												MarkdownDescription: "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods in response to soft eviction thresholds being met.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -359,8 +359,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"image_gc_high_threshold_percent": schema.Int64Attribute{
-												Description:         "ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.",
-												MarkdownDescription: "ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.",
+												Description:         "ImageGCHighThresholdPercent is the percent of disk usage after which image garbage collection is always run. The percent is calculated by dividing this field value by 100, so this field must be between 0 and 100, inclusive. When specified, the value must be greater than ImageGCLowThresholdPercent.",
+												MarkdownDescription: "ImageGCHighThresholdPercent is the percent of disk usage after which image garbage collection is always run. The percent is calculated by dividing this field value by 100, so this field must be between 0 and 100, inclusive. When specified, the value must be greater than ImageGCLowThresholdPercent.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -371,8 +371,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"image_gc_low_threshold_percent": schema.Int64Attribute{
-												Description:         "ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent",
-												MarkdownDescription: "ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent",
+												Description:         "ImageGCLowThresholdPercent is the percent of disk usage before which image garbage collection is never run. Lowest disk usage to garbage collect to. The percent is calculated by dividing this field value by 100, so the field value must be between 0 and 100, inclusive. When specified, the value must be less than imageGCHighThresholdPercent",
+												MarkdownDescription: "ImageGCLowThresholdPercent is the percent of disk usage before which image garbage collection is never run. Lowest disk usage to garbage collect to. The percent is calculated by dividing this field value by 100, so the field value must be between 0 and 100, inclusive. When specified, the value must be less than imageGCHighThresholdPercent",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -392,8 +392,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"max_pods": schema.Int64Attribute{
-												Description:         "MaxPods is an override for the maximum number of pods that can run ona worker node instance.",
-												MarkdownDescription: "MaxPods is an override for the maximum number of pods that can run ona worker node instance.",
+												Description:         "MaxPods is an override for the maximum number of pods that can run on a worker node instance.",
+												MarkdownDescription: "MaxPods is an override for the maximum number of pods that can run on a worker node instance.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -403,8 +403,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"pods_per_core": schema.Int64Attribute{
-												Description:         "PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.",
-												MarkdownDescription: "PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.",
+												Description:         "PodsPerCore is an override for the number of pods that can run on a worker node instance based on the number of cpu cores. This value cannot exceed MaxPods, so, if MaxPods is a lower value, that value will be used.",
+												MarkdownDescription: "PodsPerCore is an override for the number of pods that can run on a worker node instance based on the number of cpu cores. This value cannot exceed MaxPods, so, if MaxPods is a lower value, that value will be used.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -478,8 +478,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"min_values": schema.Int64Attribute{
-													Description:         "This field is ALPHA and can be dropped or replaced at any timeMinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
-													MarkdownDescription: "This field is ALPHA and can be dropped or replaced at any timeMinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
+													Description:         "This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
+													MarkdownDescription: "This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -490,8 +490,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-													MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+													Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+													MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -501,8 +501,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+													Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -534,13 +534,13 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"startup_taints": schema.ListNestedAttribute{
-										Description:         "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automaticallywithin a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used bydaemonsets to allow initialization and enforce startup ordering.  StartupTaints are ignored for provisioningpurposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
-										MarkdownDescription: "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automaticallywithin a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used bydaemonsets to allow initialization and enforce startup ordering.  StartupTaints are ignored for provisioningpurposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
+										Description:         "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automatically within a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used by daemonsets to allow initialization and enforce startup ordering. StartupTaints are ignored for provisioning purposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
+										MarkdownDescription: "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automatically within a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used by daemonsets to allow initialization and enforce startup ordering. StartupTaints are ignored for provisioning purposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -562,8 +562,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"time_added": schema.StringAttribute{
-													Description:         "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
-													MarkdownDescription: "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
+													Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+													MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -595,8 +595,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -618,8 +618,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"time_added": schema.StringAttribute{
-													Description:         "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
-													MarkdownDescription: "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
+													Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+													MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -656,8 +656,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"weight": schema.Int64Attribute{
-						Description:         "Weight is the priority given to the nodepool during scheduling. A highernumerical weight indicates that this nodepool will be orderedahead of other nodepools with lower weights. A nodepool with no weightwill be treated as if it is a nodepool with a weight of 0.",
-						MarkdownDescription: "Weight is the priority given to the nodepool during scheduling. A highernumerical weight indicates that this nodepool will be orderedahead of other nodepools with lower weights. A nodepool with no weightwill be treated as if it is a nodepool with a weight of 0.",
+						Description:         "Weight is the priority given to the nodepool during scheduling. A higher numerical weight indicates that this nodepool will be ordered ahead of other nodepools with lower weights. A nodepool with no weight will be treated as if it is a nodepool with a weight of 0.",
+						MarkdownDescription: "Weight is the priority given to the nodepool during scheduling. A higher numerical weight indicates that this nodepool will be ordered ahead of other nodepools with lower weights. A nodepool with no weight will be treated as if it is a nodepool with a weight of 0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

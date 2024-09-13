@@ -134,20 +134,20 @@ func (r *InfrastructureClusterXK8SIoVsphereDeploymentZoneV1Beta1Manifest) Schema
 					},
 
 					"placement_constraint": schema.SingleNestedAttribute{
-						Description:         "PlacementConstraint encapsulates the placement constraintsused within this deployment zone.",
-						MarkdownDescription: "PlacementConstraint encapsulates the placement constraintsused within this deployment zone.",
+						Description:         "PlacementConstraint encapsulates the placement constraints used within this deployment zone.",
+						MarkdownDescription: "PlacementConstraint encapsulates the placement constraints used within this deployment zone.",
 						Attributes: map[string]schema.Attribute{
 							"folder": schema.StringAttribute{
-								Description:         "Folder is the name or inventory path of the folder in which thevirtual machine is created/located.",
-								MarkdownDescription: "Folder is the name or inventory path of the folder in which thevirtual machine is created/located.",
+								Description:         "Folder is the name or inventory path of the folder in which the virtual machine is created/located.",
+								MarkdownDescription: "Folder is the name or inventory path of the folder in which the virtual machine is created/located.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_pool": schema.StringAttribute{
-								Description:         "ResourcePool is the name or inventory path of the resource pool in whichthe virtual machine is created/located.",
-								MarkdownDescription: "ResourcePool is the name or inventory path of the resource pool in whichthe virtual machine is created/located.",
+								Description:         "ResourcePool is the name or inventory path of the resource pool in which the virtual machine is created/located.",
+								MarkdownDescription: "ResourcePool is the name or inventory path of the resource pool in which the virtual machine is created/located.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

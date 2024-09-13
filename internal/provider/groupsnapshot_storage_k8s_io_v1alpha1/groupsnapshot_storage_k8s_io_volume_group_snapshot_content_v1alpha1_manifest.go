@@ -70,8 +70,8 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Me
 
 func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VolumeGroupSnapshotContent represents the actual 'on-disk' group snapshot objectin the underlying storage system",
-		MarkdownDescription: "VolumeGroupSnapshotContent represents the actual 'on-disk' group snapshot objectin the underlying storage system",
+		Description:         "VolumeGroupSnapshotContent represents the actual 'on-disk' group snapshot object in the underlying storage system",
+		MarkdownDescription: "VolumeGroupSnapshotContent represents the actual 'on-disk' group snapshot object in the underlying storage system",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -126,12 +126,12 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Sc
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Spec defines properties of a VolumeGroupSnapshotContent created by the underlying storage system.Required.",
-				MarkdownDescription: "Spec defines properties of a VolumeGroupSnapshotContent created by the underlying storage system.Required.",
+				Description:         "Spec defines properties of a VolumeGroupSnapshotContent created by the underlying storage system. Required.",
+				MarkdownDescription: "Spec defines properties of a VolumeGroupSnapshotContent created by the underlying storage system. Required.",
 				Attributes: map[string]schema.Attribute{
 					"deletion_policy": schema.StringAttribute{
-						Description:         "DeletionPolicy determines whether this VolumeGroupSnapshotContent and thephysical group snapshot on the underlying storage system should be deletedwhen the bound VolumeGroupSnapshot is deleted.Supported values are 'Retain' and 'Delete'.'Retain' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are kept.'Delete' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are deleted.For dynamically provisioned group snapshots, this field will automaticallybe filled in by the CSI snapshotter sidecar with the 'DeletionPolicy' fielddefined in the corresponding VolumeGroupSnapshotClass.For pre-existing snapshots, users MUST specify this field when creating theVolumeGroupSnapshotContent object.Required.",
-						MarkdownDescription: "DeletionPolicy determines whether this VolumeGroupSnapshotContent and thephysical group snapshot on the underlying storage system should be deletedwhen the bound VolumeGroupSnapshot is deleted.Supported values are 'Retain' and 'Delete'.'Retain' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are kept.'Delete' means that the VolumeGroupSnapshotContent and its physical groupsnapshot on underlying storage system are deleted.For dynamically provisioned group snapshots, this field will automaticallybe filled in by the CSI snapshotter sidecar with the 'DeletionPolicy' fielddefined in the corresponding VolumeGroupSnapshotClass.For pre-existing snapshots, users MUST specify this field when creating theVolumeGroupSnapshotContent object.Required.",
+						Description:         "DeletionPolicy determines whether this VolumeGroupSnapshotContent and the physical group snapshot on the underlying storage system should be deleted when the bound VolumeGroupSnapshot is deleted. Supported values are 'Retain' and 'Delete'. 'Retain' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are kept. 'Delete' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are deleted. For dynamically provisioned group snapshots, this field will automatically be filled in by the CSI snapshotter sidecar with the 'DeletionPolicy' field defined in the corresponding VolumeGroupSnapshotClass. For pre-existing snapshots, users MUST specify this field when creating the VolumeGroupSnapshotContent object. Required.",
+						MarkdownDescription: "DeletionPolicy determines whether this VolumeGroupSnapshotContent and the physical group snapshot on the underlying storage system should be deleted when the bound VolumeGroupSnapshot is deleted. Supported values are 'Retain' and 'Delete'. 'Retain' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are kept. 'Delete' means that the VolumeGroupSnapshotContent and its physical group snapshot on underlying storage system are deleted. For dynamically provisioned group snapshots, this field will automatically be filled in by the CSI snapshotter sidecar with the 'DeletionPolicy' field defined in the corresponding VolumeGroupSnapshotClass. For pre-existing snapshots, users MUST specify this field when creating the VolumeGroupSnapshotContent object. Required.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -141,32 +141,32 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Sc
 					},
 
 					"driver": schema.StringAttribute{
-						Description:         "Driver is the name of the CSI driver used to create the physical group snapshot onthe underlying storage system.This MUST be the same as the name returned by the CSI GetPluginName() call forthat driver.Required.",
-						MarkdownDescription: "Driver is the name of the CSI driver used to create the physical group snapshot onthe underlying storage system.This MUST be the same as the name returned by the CSI GetPluginName() call forthat driver.Required.",
+						Description:         "Driver is the name of the CSI driver used to create the physical group snapshot on the underlying storage system. This MUST be the same as the name returned by the CSI GetPluginName() call for that driver. Required.",
+						MarkdownDescription: "Driver is the name of the CSI driver used to create the physical group snapshot on the underlying storage system. This MUST be the same as the name returned by the CSI GetPluginName() call for that driver. Required.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"source": schema.SingleNestedAttribute{
-						Description:         "Source specifies whether the snapshot is (or should be) dynamically provisionedor already exists, and just requires a Kubernetes object representation.This field is immutable after creation.Required.",
-						MarkdownDescription: "Source specifies whether the snapshot is (or should be) dynamically provisionedor already exists, and just requires a Kubernetes object representation.This field is immutable after creation.Required.",
+						Description:         "Source specifies whether the snapshot is (or should be) dynamically provisioned or already exists, and just requires a Kubernetes object representation. This field is immutable after creation. Required.",
+						MarkdownDescription: "Source specifies whether the snapshot is (or should be) dynamically provisioned or already exists, and just requires a Kubernetes object representation. This field is immutable after creation. Required.",
 						Attributes: map[string]schema.Attribute{
 							"group_snapshot_handles": schema.SingleNestedAttribute{
-								Description:         "GroupSnapshotHandles specifies the CSI 'group_snapshot_id' of a pre-existinggroup snapshot and a list of CSI 'snapshot_id' of pre-existing snapshotson the underlying storage system for which a Kubernetes objectrepresentation was (or should be) created.This field is immutable.",
-								MarkdownDescription: "GroupSnapshotHandles specifies the CSI 'group_snapshot_id' of a pre-existinggroup snapshot and a list of CSI 'snapshot_id' of pre-existing snapshotson the underlying storage system for which a Kubernetes objectrepresentation was (or should be) created.This field is immutable.",
+								Description:         "GroupSnapshotHandles specifies the CSI 'group_snapshot_id' of a pre-existing group snapshot and a list of CSI 'snapshot_id' of pre-existing snapshots on the underlying storage system for which a Kubernetes object representation was (or should be) created. This field is immutable.",
+								MarkdownDescription: "GroupSnapshotHandles specifies the CSI 'group_snapshot_id' of a pre-existing group snapshot and a list of CSI 'snapshot_id' of pre-existing snapshots on the underlying storage system for which a Kubernetes object representation was (or should be) created. This field is immutable.",
 								Attributes: map[string]schema.Attribute{
 									"volume_group_snapshot_handle": schema.StringAttribute{
-										Description:         "VolumeGroupSnapshotHandle specifies the CSI 'group_snapshot_id' of a pre-existinggroup snapshot on the underlying storage system for which a Kubernetes objectrepresentation was (or should be) created.This field is immutable.Required.",
-										MarkdownDescription: "VolumeGroupSnapshotHandle specifies the CSI 'group_snapshot_id' of a pre-existinggroup snapshot on the underlying storage system for which a Kubernetes objectrepresentation was (or should be) created.This field is immutable.Required.",
+										Description:         "VolumeGroupSnapshotHandle specifies the CSI 'group_snapshot_id' of a pre-existing group snapshot on the underlying storage system for which a Kubernetes object representation was (or should be) created. This field is immutable. Required.",
+										MarkdownDescription: "VolumeGroupSnapshotHandle specifies the CSI 'group_snapshot_id' of a pre-existing group snapshot on the underlying storage system for which a Kubernetes object representation was (or should be) created. This field is immutable. Required.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"volume_snapshot_handles": schema.ListAttribute{
-										Description:         "VolumeSnapshotHandles is a list of CSI 'snapshot_id' of pre-existingsnapshots on the underlying storage system for which Kubernetes objectsrepresentation were (or should be) created.This field is immutable.Required.",
-										MarkdownDescription: "VolumeSnapshotHandles is a list of CSI 'snapshot_id' of pre-existingsnapshots on the underlying storage system for which Kubernetes objectsrepresentation were (or should be) created.This field is immutable.Required.",
+										Description:         "VolumeSnapshotHandles is a list of CSI 'snapshot_id' of pre-existing snapshots on the underlying storage system for which Kubernetes objects representation were (or should be) created. This field is immutable. Required.",
+										MarkdownDescription: "VolumeSnapshotHandles is a list of CSI 'snapshot_id' of pre-existing snapshots on the underlying storage system for which Kubernetes objects representation were (or should be) created. This field is immutable. Required.",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -179,8 +179,8 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Sc
 							},
 
 							"volume_handles": schema.ListAttribute{
-								Description:         "VolumeHandles is a list of volume handles on the backend to be snapshottedtogether. It is specified for dynamic provisioning of the VolumeGroupSnapshot.This field is immutable.",
-								MarkdownDescription: "VolumeHandles is a list of volume handles on the backend to be snapshottedtogether. It is specified for dynamic provisioning of the VolumeGroupSnapshot.This field is immutable.",
+								Description:         "VolumeHandles is a list of volume handles on the backend to be snapshotted together. It is specified for dynamic provisioning of the VolumeGroupSnapshot. This field is immutable.",
+								MarkdownDescription: "VolumeHandles is a list of volume handles on the backend to be snapshotted together. It is specified for dynamic provisioning of the VolumeGroupSnapshot. This field is immutable.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -193,16 +193,16 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Sc
 					},
 
 					"volume_group_snapshot_class_name": schema.StringAttribute{
-						Description:         "VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClass fromwhich this group snapshot was (or will be) created.Note that after provisioning, the VolumeGroupSnapshotClass may be deleted orrecreated with different set of values, and as such, should not be referencedpost-snapshot creation.For dynamic provisioning, this field must be set.This field may be unset for pre-provisioned snapshots.",
-						MarkdownDescription: "VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClass fromwhich this group snapshot was (or will be) created.Note that after provisioning, the VolumeGroupSnapshotClass may be deleted orrecreated with different set of values, and as such, should not be referencedpost-snapshot creation.For dynamic provisioning, this field must be set.This field may be unset for pre-provisioned snapshots.",
+						Description:         "VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClass from which this group snapshot was (or will be) created. Note that after provisioning, the VolumeGroupSnapshotClass may be deleted or recreated with different set of values, and as such, should not be referenced post-snapshot creation. For dynamic provisioning, this field must be set. This field may be unset for pre-provisioned snapshots.",
+						MarkdownDescription: "VolumeGroupSnapshotClassName is the name of the VolumeGroupSnapshotClass from which this group snapshot was (or will be) created. Note that after provisioning, the VolumeGroupSnapshotClass may be deleted or recreated with different set of values, and as such, should not be referenced post-snapshot creation. For dynamic provisioning, this field must be set. This field may be unset for pre-provisioned snapshots.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"volume_group_snapshot_ref": schema.SingleNestedAttribute{
-						Description:         "VolumeGroupSnapshotRef specifies the VolumeGroupSnapshot object to which thisVolumeGroupSnapshotContent object is bound.VolumeGroupSnapshot.Spec.VolumeGroupSnapshotContentName field must reference tothis VolumeGroupSnapshotContent's name for the bidirectional binding to be valid.For a pre-existing VolumeGroupSnapshotContent object, name and namespace of theVolumeGroupSnapshot object MUST be provided for binding to happen.This field is immutable after creation.Required.",
-						MarkdownDescription: "VolumeGroupSnapshotRef specifies the VolumeGroupSnapshot object to which thisVolumeGroupSnapshotContent object is bound.VolumeGroupSnapshot.Spec.VolumeGroupSnapshotContentName field must reference tothis VolumeGroupSnapshotContent's name for the bidirectional binding to be valid.For a pre-existing VolumeGroupSnapshotContent object, name and namespace of theVolumeGroupSnapshot object MUST be provided for binding to happen.This field is immutable after creation.Required.",
+						Description:         "VolumeGroupSnapshotRef specifies the VolumeGroupSnapshot object to which this VolumeGroupSnapshotContent object is bound. VolumeGroupSnapshot.Spec.VolumeGroupSnapshotContentName field must reference to this VolumeGroupSnapshotContent's name for the bidirectional binding to be valid. For a pre-existing VolumeGroupSnapshotContent object, name and namespace of the VolumeGroupSnapshot object MUST be provided for binding to happen. This field is immutable after creation. Required.",
+						MarkdownDescription: "VolumeGroupSnapshotRef specifies the VolumeGroupSnapshot object to which this VolumeGroupSnapshotContent object is bound. VolumeGroupSnapshot.Spec.VolumeGroupSnapshotContentName field must reference to this VolumeGroupSnapshotContent's name for the bidirectional binding to be valid. For a pre-existing VolumeGroupSnapshotContent object, name and namespace of the VolumeGroupSnapshot object MUST be provided for binding to happen. This field is immutable after creation. Required.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -213,48 +213,48 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Sc
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_version": schema.StringAttribute{
-								Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"uid": schema.StringAttribute{
-								Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-								MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

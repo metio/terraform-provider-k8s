@@ -126,8 +126,8 @@ func (r *RulesKubeedgeIoRuleEndpointV1Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"properties": schema.MapAttribute{
-						Description:         "properties is not required except for servicebus rule-endpoint type. It is a mapvalue representing rule-endpoint properties. When ruleEndpointType is servicebus,its value is {'service_port':'8080'}.",
-						MarkdownDescription: "properties is not required except for servicebus rule-endpoint type. It is a mapvalue representing rule-endpoint properties. When ruleEndpointType is servicebus,its value is {'service_port':'8080'}.",
+						Description:         "properties is not required except for servicebus rule-endpoint type. It is a map value representing rule-endpoint properties. When ruleEndpointType is servicebus, its value is {'service_port':'8080'}. ",
+						MarkdownDescription: "properties is not required except for servicebus rule-endpoint type. It is a map value representing rule-endpoint properties. When ruleEndpointType is servicebus, its value is {'service_port':'8080'}. ",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -135,8 +135,8 @@ func (r *RulesKubeedgeIoRuleEndpointV1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"rule_endpoint_type": schema.StringAttribute{
-						Description:         "ruleEndpointType is a string value representing rule-endpoint type. its value isone of rest/eventbus/servicebus.",
-						MarkdownDescription: "ruleEndpointType is a string value representing rule-endpoint type. its value isone of rest/eventbus/servicebus.",
+						Description:         "ruleEndpointType is a string value representing rule-endpoint type. its value is one of rest/eventbus/servicebus. ",
+						MarkdownDescription: "ruleEndpointType is a string value representing rule-endpoint type. its value is one of rest/eventbus/servicebus. ",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

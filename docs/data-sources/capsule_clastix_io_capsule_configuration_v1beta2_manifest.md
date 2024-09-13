@@ -54,13 +54,13 @@ Optional:
 
 Required:
 
-- `enable_tls_reconciler` (Boolean) Toggles the TLS reconciler, the controller that is able to generate CA and certificates for the webhookswhen not using an already provided CA and certificate, or when these are managed externally with Vault, or cert-manager.
+- `enable_tls_reconciler` (Boolean) Toggles the TLS reconciler, the controller that is able to generate CA and certificates for the webhooks when not using an already provided CA and certificate, or when these are managed externally with Vault, or cert-manager.
 
 Optional:
 
-- `force_tenant_prefix` (Boolean) Enforces the Tenant owner, during Namespace creation, to name it using the selected Tenant name as prefix,separated by a dash. This is useful to avoid Namespace name collision in a public CaaS environment.
-- `node_metadata` (Attributes) Allows to set the forbidden metadata for the worker nodes that could be patched by a Tenant.This applies only if the Tenant has an active NodeSelector, and the Owner have right to patch their nodes. (see [below for nested schema](#nestedatt--spec--node_metadata))
-- `overrides` (Attributes) Allows to set different name rather than the canonical one for the Capsule configuration objects,such as webhook secret or configurations. (see [below for nested schema](#nestedatt--spec--overrides))
+- `force_tenant_prefix` (Boolean) Enforces the Tenant owner, during Namespace creation, to name it using the selected Tenant name as prefix, separated by a dash. This is useful to avoid Namespace name collision in a public CaaS environment.
+- `node_metadata` (Attributes) Allows to set the forbidden metadata for the worker nodes that could be patched by a Tenant. This applies only if the Tenant has an active NodeSelector, and the Owner have right to patch their nodes. (see [below for nested schema](#nestedatt--spec--node_metadata))
+- `overrides` (Attributes) Allows to set different name rather than the canonical one for the Capsule configuration objects, such as webhook secret or configurations. (see [below for nested schema](#nestedatt--spec--overrides))
 - `protected_namespace_regex` (String) Disallow creation of namespaces, whose name matches this regexp
 - `user_groups` (List of String) Names of the groups for Capsule users.
 
@@ -97,5 +97,5 @@ Optional:
 Required:
 
 - `mutating_webhook_configuration_name` (String) Name of the MutatingWebhookConfiguration which contains the dynamic admission controller paths and resources.
-- `tls_secret_name` (String) Defines the Secret name used for the webhook server.Must be in the same Namespace where the Capsule Deployment is deployed.
+- `tls_secret_name` (String) Defines the Secret name used for the webhook server. Must be in the same Namespace where the Capsule Deployment is deployed.
 - `validating_webhook_configuration_name` (String) Name of the ValidatingWebhookConfiguration which contains the dynamic admission controller paths and resources.

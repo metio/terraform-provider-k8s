@@ -223,8 +223,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 								MarkdownDescription: "PITR is the configuration of the point in time recovery",
 								Attributes: map[string]schema.Attribute{
 									"backup_storage_name": schema.StringAttribute{
-										Description:         "BackupStorageName is the name of the BackupStorage where the PITR is enabledThe BackupStorage must be created in the same namespace as the DatabaseCluster.",
-										MarkdownDescription: "BackupStorageName is the name of the BackupStorage where the PITR is enabledThe BackupStorage must be created in the same namespace as the DatabaseCluster.",
+										Description:         "BackupStorageName is the name of the BackupStorage where the PITR is enabled The BackupStorage must be created in the same namespace as the DatabaseCluster.",
+										MarkdownDescription: "BackupStorageName is the name of the BackupStorage where the PITR is enabled The BackupStorage must be created in the same namespace as the DatabaseCluster.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -257,8 +257,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"backup_storage_name": schema.StringAttribute{
-											Description:         "BackupStorageName is the name of the BackupStorage CR that defines thestorage location.The BackupStorage must be created in the same namespace as the DatabaseCluster.",
-											MarkdownDescription: "BackupStorageName is the name of the BackupStorage CR that defines thestorage location.The BackupStorage must be created in the same namespace as the DatabaseCluster.",
+											Description:         "BackupStorageName is the name of the BackupStorage CR that defines the storage location. The BackupStorage must be created in the same namespace as the DatabaseCluster.",
+											MarkdownDescription: "BackupStorageName is the name of the BackupStorage CR that defines the storage location. The BackupStorage must be created in the same namespace as the DatabaseCluster.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -316,8 +316,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 								MarkdownDescription: "BackupSource is the backup source to restore from",
 								Attributes: map[string]schema.Attribute{
 									"backup_storage_name": schema.StringAttribute{
-										Description:         "BackupStorageName is the name of the BackupStorage used for backups.The BackupStorage must be created in the same namespace as the DatabaseCluster.",
-										MarkdownDescription: "BackupStorageName is the name of the BackupStorage used for backups.The BackupStorage must be created in the same namespace as the DatabaseCluster.",
+										Description:         "BackupStorageName is the name of the BackupStorage used for backups. The BackupStorage must be created in the same namespace as the DatabaseCluster.",
+										MarkdownDescription: "BackupStorageName is the name of the BackupStorage used for backups. The BackupStorage must be created in the same namespace as the DatabaseCluster.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -390,8 +390,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"cr_version": schema.StringAttribute{
-								Description:         "CRVersion is the desired version of the CR to use with theunderlying operator.If unspecified, everest-operator will use the same version as the operator.NOTE: Updating this property post installation may lead to a restart of the cluster.",
-								MarkdownDescription: "CRVersion is the desired version of the CR to use with theunderlying operator.If unspecified, everest-operator will use the same version as the operator.NOTE: Updating this property post installation may lead to a restart of the cluster.",
+								Description:         "CRVersion is the desired version of the CR to use with the underlying operator. If unspecified, everest-operator will use the same version as the operator. NOTE: Updating this property post installation may lead to a restart of the cluster.",
+								MarkdownDescription: "CRVersion is the desired version of the CR to use with the underlying operator. If unspecified, everest-operator will use the same version as the operator. NOTE: Updating this property post installation may lead to a restart of the cluster.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -409,8 +409,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"resources": schema.SingleNestedAttribute{
-								Description:         "Resources are the resource limits for each engine replica.If not set, resource limits are not imposed",
-								MarkdownDescription: "Resources are the resource limits for each engine replica.If not set, resource limits are not imposed",
+								Description:         "Resources are the resource limits for each engine replica. If not set, resource limits are not imposed",
+								MarkdownDescription: "Resources are the resource limits for each engine replica. If not set, resource limits are not imposed",
 								Attributes: map[string]schema.Attribute{
 									"cpu": schema.StringAttribute{
 										Description:         "CPU is the CPU resource requirements",
@@ -495,8 +495,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "Monitoring is the monitoring configuration",
 						Attributes: map[string]schema.Attribute{
 							"monitoring_config_name": schema.StringAttribute{
-								Description:         "MonitoringConfigName is the name of a monitoringConfig CR.The MonitoringConfig must be created in the same namespace as the DatabaseCluster.",
-								MarkdownDescription: "MonitoringConfigName is the name of a monitoringConfig CR.The MonitoringConfig must be created in the same namespace as the DatabaseCluster.",
+								Description:         "MonitoringConfigName is the name of a monitoringConfig CR. The MonitoringConfig must be created in the same namespace as the DatabaseCluster.",
+								MarkdownDescription: "MonitoringConfigName is the name of a monitoringConfig CR. The MonitoringConfig must be created in the same namespace as the DatabaseCluster.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -507,13 +507,13 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 								MarkdownDescription: "Resources defines resource limitations for the monitoring.",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -526,8 +526,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -535,8 +535,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -562,8 +562,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"proxy": schema.SingleNestedAttribute{
-						Description:         "Proxy is the proxy specification. If not set, an appropriateproxy specification will be applied for the given engine. Acommon use case for setting this field is to control theexternal access to the database cluster.",
-						MarkdownDescription: "Proxy is the proxy specification. If not set, an appropriateproxy specification will be applied for the given engine. Acommon use case for setting this field is to control theexternal access to the database cluster.",
+						Description:         "Proxy is the proxy specification. If not set, an appropriate proxy specification will be applied for the given engine. A common use case for setting this field is to control the external access to the database cluster.",
+						MarkdownDescription: "Proxy is the proxy specification. If not set, an appropriate proxy specification will be applied for the given engine. A common use case for setting this field is to control the external access to the database cluster.",
 						Attributes: map[string]schema.Attribute{
 							"config": schema.StringAttribute{
 								Description:         "Config is the proxy configuration",
@@ -578,8 +578,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 								MarkdownDescription: "Expose is the proxy expose configuration",
 								Attributes: map[string]schema.Attribute{
 									"ip_source_ranges": schema.ListAttribute{
-										Description:         "IPSourceRanges is the list of IP source ranges (CIDR notation)to allow access from. If not set, there is no limitations",
-										MarkdownDescription: "IPSourceRanges is the list of IP source ranges (CIDR notation)to allow access from. If not set, there is no limitations",
+										Description:         "IPSourceRanges is the list of IP source ranges (CIDR notation) to allow access from. If not set, there is no limitations",
+										MarkdownDescription: "IPSourceRanges is the list of IP source ranges (CIDR notation) to allow access from. If not set, there is no limitations",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -614,8 +614,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"resources": schema.SingleNestedAttribute{
-								Description:         "Resources are the resource limits for each proxy replica.If not set, resource limits are not imposed",
-								MarkdownDescription: "Resources are the resource limits for each proxy replica.If not set, resource limits are not imposed",
+								Description:         "Resources are the resource limits for each proxy replica. If not set, resource limits are not imposed",
+								MarkdownDescription: "Resources are the resource limits for each proxy replica. If not set, resource limits are not imposed",
 								Attributes: map[string]schema.Attribute{
 									"cpu": schema.StringAttribute{
 										Description:         "CPU is the CPU resource requirements",

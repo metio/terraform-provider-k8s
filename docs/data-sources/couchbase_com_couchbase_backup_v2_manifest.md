@@ -3,12 +3,12 @@
 page_title: "k8s_couchbase_com_couchbase_backup_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "couchbase.com"
 description: |-
-  CouchbaseBackup allows automatic backup of all data from a Couchbase clusterinto persistent storage.
+  CouchbaseBackup allows automatic backup of all data from a Couchbase cluster into persistent storage.
 ---
 
 # k8s_couchbase_com_couchbase_backup_v2_manifest (Data Source)
 
-CouchbaseBackup allows automatic backup of all data from a Couchbase clusterinto persistent storage.
+CouchbaseBackup allows automatic backup of all data from a Couchbase cluster into persistent storage.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_couchbase_com_couchbase_backup_v2_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) CouchbaseBackupSpec is allows the specification of how a Couchbase backup isconfigured, including when backups are performed, how long they are retainedfor, and where they are backed up to. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) CouchbaseBackupSpec is allows the specification of how a Couchbase backup is configured, including when backups are performed, how long they are retained for, and where they are backed up to. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,24 +55,24 @@ Optional:
 
 Optional:
 
-- `auto_scaling` (Attributes) AutoScaling allows the volume size to be dynamically increased.When specified, the backup volume will start with an initial sizeas defined by 'spec.size', and increase as required. (see [below for nested schema](#nestedatt--spec--auto_scaling))
-- `backoff_limit` (Number) Number of times a backup job should try to execute.Once it hits the BackoffLimit it will not run until the next scheduled job.
-- `backup_retention` (String) Number of hours to hold backups for, everything older will be deleted.  More info:https://golang.org/pkg/time/#ParseDuration
-- `data` (Attributes) Data allows control over what key-value/document data is included in thebackup.  By default, all data is included.  Modificationsto this field will only take effect on the next full backup. (see [below for nested schema](#nestedatt--spec--data))
-- `default_recovery_method` (String) DefaultRecoveryMethod specifies how cbbackupmgr shouldrecover from broken backup/restore attempts.
-- `ephemeral_volume` (Boolean) EphemeralVolume sets backup to use an ephemeral volume insteadof a persistent volume. This is used when backing up to a remotecloud provider, where a persistent volume is not needed.
+- `auto_scaling` (Attributes) AutoScaling allows the volume size to be dynamically increased. When specified, the backup volume will start with an initial size as defined by 'spec.size', and increase as required. (see [below for nested schema](#nestedatt--spec--auto_scaling))
+- `backoff_limit` (Number) Number of times a backup job should try to execute. Once it hits the BackoffLimit it will not run until the next scheduled job.
+- `backup_retention` (String) Number of hours to hold backups for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration
+- `data` (Attributes) Data allows control over what key-value/document data is included in the backup. By default, all data is included. Modifications to this field will only take effect on the next full backup. (see [below for nested schema](#nestedatt--spec--data))
+- `default_recovery_method` (String) DefaultRecoveryMethod specifies how cbbackupmgr should recover from broken backup/restore attempts.
+- `ephemeral_volume` (Boolean) EphemeralVolume sets backup to use an ephemeral volume instead of a persistent volume. This is used when backing up to a remote cloud provider, where a persistent volume is not needed.
 - `failed_jobs_history_limit` (Number) Amount of failed jobs to keep.
-- `full` (Attributes) Full is the schedule on when to take full backups.Used in Full/Incremental and FullOnly backup strategies. (see [below for nested schema](#nestedatt--spec--full))
-- `incremental` (Attributes) Incremental is the schedule on when to take incremental backups.Used in Full/Incremental backup strategies. (see [below for nested schema](#nestedatt--spec--incremental))
-- `log_retention` (String) Number of hours to hold script logs for, everything older will be deleted.  More info:https://golang.org/pkg/time/#ParseDuration
+- `full` (Attributes) Full is the schedule on when to take full backups. Used in Full/Incremental and FullOnly backup strategies. (see [below for nested schema](#nestedatt--spec--full))
+- `incremental` (Attributes) Incremental is the schedule on when to take incremental backups. Used in Full/Incremental backup strategies. (see [below for nested schema](#nestedatt--spec--incremental))
+- `log_retention` (String) Number of hours to hold script logs for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration
 - `object_store` (Attributes) ObjectStore allows for backing up to a remote cloud storage. (see [below for nested schema](#nestedatt--spec--object_store))
-- `s3bucket` (String) DEPRECATED - by spec.objectStore.uriName of S3 bucket to backup to. If non-empty this overrides local backup.
-- `services` (Attributes) Services allows control over what services are included in the backup.By default, all service data and metadata are included apart from users.Modifications to this field will only take effect on the next full backup. (see [below for nested schema](#nestedatt--spec--services))
-- `size` (String) Size allows the specification of a backup persistent volume, when usingvolume based backup. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `s3bucket` (String) DEPRECATED - by spec.objectStore.uri Name of S3 bucket to backup to. If non-empty this overrides local backup.
+- `services` (Attributes) Services allows control over what services are included in the backup. By default, all service data and metadata are included apart from users. Modifications to this field will only take effect on the next full backup. (see [below for nested schema](#nestedatt--spec--services))
+- `size` (String) Size allows the specification of a backup persistent volume, when using volume based backup. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 - `storage_class_name` (String) Name of StorageClass to use.
-- `strategy` (String) Strategy defines how to perform backups.  'full_only' will only perform fullbackups, and you must define a schedule in the 'spec.full' field.  'full_incremental'will perform periodic full backups, and incremental backups in between.  You mustdefine full and incremental schedules in the 'spec.full' and 'spec.incremental' fieldsrespectively.  Care should be taken to ensure full and incremental schedules do notoverlap, taking into account the backup time, as this will cause failures as the jobsattempt to mount the same backup volume. To cause a backup to occur immediately use 'immediate_incremental'or 'immediate_full' for incremental or full backups respectively.This field default to 'full_incremental'.Info: https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html
+- `strategy` (String) Strategy defines how to perform backups. 'full_only' will only perform full backups, and you must define a schedule in the 'spec.full' field. 'full_incremental' will perform periodic full backups, and incremental backups in between. You must define full and incremental schedules in the 'spec.full' and 'spec.incremental' fields respectively. Care should be taken to ensure full and incremental schedules do not overlap, taking into account the backup time, as this will cause failures as the jobs attempt to mount the same backup volume. To cause a backup to occur immediately use 'immediate_incremental' or 'immediate_full' for incremental or full backups respectively. This field default to 'full_incremental'. Info: https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html
 - `successful_jobs_history_limit` (Number) Amount of successful jobs to keep.
-- `threads` (Number) How many threads to use during the backup.  This field defaults to 1.
+- `threads` (Number) How many threads to use during the backup. This field defaults to 1.
 - `ttl_seconds_after_finished` (Number) Amount of time to elapse before a completed job is deleted.
 
 <a id="nestedatt--spec--auto_scaling"></a>
@@ -80,9 +80,9 @@ Optional:
 
 Optional:
 
-- `increment_percent` (Number) IncrementPercent controls how much the volume is increased each time thethreshold is exceeded, upto a maximum as defined by the limit.This field defaults to 20 if not specified.
-- `limit` (String) Limit imposes a hard limit on the size we can autoscale to.  When notspecified no bounds are imposed. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `threshold_percent` (Number) ThresholdPercent determines the point at which a volume is autoscaled.This represents the percentage of free space remaining on the volume,when less than this threshold, it will trigger a volume expansion.For example, if the volume is 100Gi, and the threshold 20%, then a resizewill be triggered when the used capacity exceeds 80Gi, and free space isless than 20Gi.  This field defaults to 20 if not specified.
+- `increment_percent` (Number) IncrementPercent controls how much the volume is increased each time the threshold is exceeded, upto a maximum as defined by the limit. This field defaults to 20 if not specified.
+- `limit` (String) Limit imposes a hard limit on the size we can autoscale to. When not specified no bounds are imposed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `threshold_percent` (Number) ThresholdPercent determines the point at which a volume is autoscaled. This represents the percentage of free space remaining on the volume, when less than this threshold, it will trigger a volume expansion. For example, if the volume is 100Gi, and the threshold 20%, then a resize will be triggered when the used capacity exceeds 80Gi, and free space is less than 20Gi. This field defaults to 20 if not specified.
 
 
 <a id="nestedatt--spec--data"></a>
@@ -90,8 +90,8 @@ Optional:
 
 Optional:
 
-- `exclude` (List of String) Exclude defines the buckets, scopes or collections that are excluded from the backup.When this field is set, it implies that by default everything will be backed up,and data items can be explicitly excluded.  You may define an exclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Excluded data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as included items.
-- `include` (List of String) Include defines the buckets, scopes or collections that are included in the backup.When this field is set, it implies that by default nothing will be backed up,and data items must be explicitly included.  You may define an inclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Included data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as excluded items.
+- `exclude` (List of String) Exclude defines the buckets, scopes or collections that are excluded from the backup. When this field is set, it implies that by default everything will be backed up, and data items can be explicitly excluded. You may define an exclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections. Excluded data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal. This field cannot be used at the same time as included items.
+- `include` (List of String) Include defines the buckets, scopes or collections that are included in the backup. When this field is set, it implies that by default nothing will be backed up, and data items must be explicitly included. You may define an inclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections. Included data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal. This field cannot be used at the same time as excluded items.
 
 
 <a id="nestedatt--spec--full"></a>
@@ -115,19 +115,19 @@ Required:
 
 Optional:
 
-- `endpoint` (Attributes) Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store.If set will override 'CouchbaseCluster.spec.backup.objectEndpoint'See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores (see [below for nested schema](#nestedatt--spec--object_store--endpoint))
-- `secret` (String) ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token.These correspond to the fields used by cbbackupmgrhttps://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2
-- `uri` (String) URI is a reference to a remote object store.This is the prefix of the object store and the bucket name.i.e s3://bucket, az://bucket or gs://bucket.
-- `use_iam` (Boolean) Whether to allow the backup SDK to attempt to authenticateusing the instance metadata api.If set, will override 'CouchbaseCluster.spec.backup.useIAM'.
+- `endpoint` (Attributes) Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store. If set will override 'CouchbaseCluster.spec.backup.objectEndpoint' See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores (see [below for nested schema](#nestedatt--spec--object_store--endpoint))
+- `secret` (String) ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token. These correspond to the fields used by cbbackupmgr https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2
+- `uri` (String) URI is a reference to a remote object store. This is the prefix of the object store and the bucket name. i.e s3://bucket, az://bucket or gs://bucket.
+- `use_iam` (Boolean) Whether to allow the backup SDK to attempt to authenticate using the instance metadata api. If set, will override 'CouchbaseCluster.spec.backup.useIAM'.
 
 <a id="nestedatt--spec--object_store--endpoint"></a>
 ### Nested Schema for `spec.object_store.endpoint`
 
 Optional:
 
-- `secret` (String) The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpointThe secret must have the key with the name 'tls.crt'
+- `secret` (String) The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint The secret must have the key with the name 'tls.crt'
 - `url` (String) The host/address of the custom object endpoint.
-- `use_virtual_path` (Boolean) UseVirtualPath will force the AWS SDK to use the new virtual style pathswhich are often required by S3 compatible object stores.
+- `use_virtual_path` (Boolean) UseVirtualPath will force the AWS SDK to use the new virtual style paths which are often required by S3 compatible object stores.
 
 
 
@@ -136,15 +136,15 @@ Optional:
 
 Optional:
 
-- `analytics` (Boolean) Analytics enables the backup of analytics data.This field defaults to 'true'.
-- `bucket_config` (Boolean) BucketConfig enables the backup of bucket configuration.This field defaults to 'true'.
-- `bucket_query` (Boolean) BucketQuery enables the backup of query metadata for all buckets.This field defaults to 'true'.
-- `cluster_analytics` (Boolean) ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms.This field defaults to 'true'.
-- `cluster_query` (Boolean) ClusterQuery enables the backup of cluster level query metadata.This field defaults to 'true'.
-- `data` (Boolean) Data enables the backup of key-value data/documents for all buckets.This can be further refined with the couchbasebackups.spec.data configuration.This field defaults to 'true'.
-- `eventing` (Boolean) Eventing enables the backup of eventing service metadata.This field defaults to 'true'.
-- `fts_aliases` (Boolean) FTSAliases enables the backup of full-text search alias definitions.This field defaults to 'true'.
-- `fts_indexes` (Boolean) FTSIndexes enables the backup of full-text search index definitions for all buckets.This field defaults to 'true'.
-- `gs_indexes` (Boolean) GSIndexes enables the backup of global secondary index definitions for all buckets.This field defaults to 'true'.
-- `users` (Boolean) Users enables the backup of users including their roles and permissions. This isonly available for Couchbase Server 7.6 and later. This field defaults to 'false'.
-- `views` (Boolean) Views enables the backup of view definitions for all buckets.This field defaults to 'true'.
+- `analytics` (Boolean) Analytics enables the backup of analytics data. This field defaults to 'true'.
+- `bucket_config` (Boolean) BucketConfig enables the backup of bucket configuration. This field defaults to 'true'.
+- `bucket_query` (Boolean) BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.
+- `cluster_analytics` (Boolean) ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms. This field defaults to 'true'.
+- `cluster_query` (Boolean) ClusterQuery enables the backup of cluster level query metadata. This field defaults to 'true'.
+- `data` (Boolean) Data enables the backup of key-value data/documents for all buckets. This can be further refined with the couchbasebackups.spec.data configuration. This field defaults to 'true'.
+- `eventing` (Boolean) Eventing enables the backup of eventing service metadata. This field defaults to 'true'.
+- `fts_aliases` (Boolean) FTSAliases enables the backup of full-text search alias definitions. This field defaults to 'true'.
+- `fts_indexes` (Boolean) FTSIndexes enables the backup of full-text search index definitions for all buckets. This field defaults to 'true'.
+- `gs_indexes` (Boolean) GSIndexes enables the backup of global secondary index definitions for all buckets. This field defaults to 'true'.
+- `users` (Boolean) Users enables the backup of users including their roles and permissions. This is only available for Couchbase Server 7.6 and later. This field defaults to 'false'.
+- `views` (Boolean) Views enables the backup of view definitions for all buckets. This field defaults to 'true'.

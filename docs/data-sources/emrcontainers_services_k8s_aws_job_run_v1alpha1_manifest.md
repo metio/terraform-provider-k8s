@@ -30,7 +30,7 @@ data "k8s_emrcontainers_services_k8s_aws_job_run_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) JobRunSpec defines the desired state of JobRun.This entity describes a job run. A job run is a unit of work, such as a Sparkjar, PySpark script, or SparkSQL query, that you submit to Amazon EMR onEKS. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) JobRunSpec defines the desired state of JobRun. This entity describes a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -65,7 +65,7 @@ Optional:
 - `name` (String) The name of the job run.
 - `tags` (Map of String) The tags assigned to job runs.
 - `virtual_cluster_id` (String) The virtual cluster ID for which the job run request is submitted.
-- `virtual_cluster_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--virtual_cluster_ref))
+- `virtual_cluster_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--virtual_cluster_ref))
 
 <a id="nestedatt--spec--job_driver"></a>
 ### Nested Schema for `spec.job_driver`
@@ -90,7 +90,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--virtual_cluster_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--virtual_cluster_ref--from))
 
 <a id="nestedatt--spec--virtual_cluster_ref--from"></a>
 ### Nested Schema for `spec.virtual_cluster_ref.from`

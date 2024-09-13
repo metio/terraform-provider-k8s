@@ -185,12 +185,12 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.SingleNestedAttribute{
-									Description:         "Default is a configuration specific to the group of clients referenced in'targetRef'",
-									MarkdownDescription: "Default is a configuration specific to the group of clients referenced in'targetRef'",
+									Description:         "Default is a configuration specific to the group of clients referenced in 'targetRef'",
+									MarkdownDescription: "Default is a configuration specific to the group of clients referenced in 'targetRef'",
 									Attributes: map[string]schema.Attribute{
 										"connection_timeout": schema.StringAttribute{
-											Description:         "ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established.Default value is 5 seconds. Cannot be set to 0.",
-											MarkdownDescription: "ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established.Default value is 5 seconds. Cannot be set to 0.",
+											Description:         "ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established. Default value is 5 seconds. Cannot be set to 0.",
+											MarkdownDescription: "ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established. Default value is 5 seconds. Cannot be set to 0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -201,40 +201,40 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 											MarkdownDescription: "Http provides configuration for HTTP specific timeouts",
 											Attributes: map[string]schema.Attribute{
 												"max_connection_duration": schema.StringAttribute{
-													Description:         "MaxConnectionDuration is the time after which a connection will be drained and/or closed,starting from when it was first established. Setting this timeout to 0 will disable it.Disabled by default.",
-													MarkdownDescription: "MaxConnectionDuration is the time after which a connection will be drained and/or closed,starting from when it was first established. Setting this timeout to 0 will disable it.Disabled by default.",
+													Description:         "MaxConnectionDuration is the time after which a connection will be drained and/or closed, starting from when it was first established. Setting this timeout to 0 will disable it. Disabled by default.",
+													MarkdownDescription: "MaxConnectionDuration is the time after which a connection will be drained and/or closed, starting from when it was first established. Setting this timeout to 0 will disable it. Disabled by default.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_stream_duration": schema.StringAttribute{
-													Description:         "MaxStreamDuration is the maximum time that a stream’s lifetime will span.Setting this timeout to 0 will disable it. Disabled by default.",
-													MarkdownDescription: "MaxStreamDuration is the maximum time that a stream’s lifetime will span.Setting this timeout to 0 will disable it. Disabled by default.",
+													Description:         "MaxStreamDuration is the maximum time that a stream’s lifetime will span. Setting this timeout to 0 will disable it. Disabled by default.",
+													MarkdownDescription: "MaxStreamDuration is the maximum time that a stream’s lifetime will span. Setting this timeout to 0 will disable it. Disabled by default.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"request_headers_timeout": schema.StringAttribute{
-													Description:         "RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer isactivated when the first byte of the headers is received, and is disarmed when the last byte ofthe headers has been received. If not specified or set to 0, this timeout is disabled.Disabled by default.",
-													MarkdownDescription: "RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer isactivated when the first byte of the headers is received, and is disarmed when the last byte ofthe headers has been received. If not specified or set to 0, this timeout is disabled.Disabled by default.",
+													Description:         "RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer is activated when the first byte of the headers is received, and is disarmed when the last byte of the headers has been received. If not specified or set to 0, this timeout is disabled. Disabled by default.",
+													MarkdownDescription: "RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer is activated when the first byte of the headers is received, and is disarmed when the last byte of the headers has been received. If not specified or set to 0, this timeout is disabled. Disabled by default.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"request_timeout": schema.StringAttribute{
-													Description:         "RequestTimeout The amount of time that proxy will wait for the entire request to be received.The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent,OR when the response is initiated. Setting this timeout to 0 will disable it.Default is 15s.",
-													MarkdownDescription: "RequestTimeout The amount of time that proxy will wait for the entire request to be received.The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent,OR when the response is initiated. Setting this timeout to 0 will disable it.Default is 15s.",
+													Description:         "RequestTimeout The amount of time that proxy will wait for the entire request to be received. The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent, OR when the response is initiated. Setting this timeout to 0 will disable it. Default is 15s.",
+													MarkdownDescription: "RequestTimeout The amount of time that proxy will wait for the entire request to be received. The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent, OR when the response is initiated. Setting this timeout to 0 will disable it. Default is 15s.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"stream_idle_timeout": schema.StringAttribute{
-													Description:         "StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity.Setting this timeout to 0 will disable it. Default is 30m",
-													MarkdownDescription: "StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity.Setting this timeout to 0 will disable it. Default is 30m",
+													Description:         "StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity. Setting this timeout to 0 will disable it. Default is 30m",
+													MarkdownDescription: "StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity. Setting this timeout to 0 will disable it. Default is 30m",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -246,8 +246,8 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"idle_timeout": schema.StringAttribute{
-											Description:         "IdleTimeout is defined as the period in which there are no bytes sent or received on connectionSetting this timeout to 0 will disable it. Be cautious when disabling it becauseit can lead to connection leaking. Default value is 1h.",
-											MarkdownDescription: "IdleTimeout is defined as the period in which there are no bytes sent or received on connectionSetting this timeout to 0 will disable it. Be cautious when disabling it becauseit can lead to connection leaking. Default value is 1h.",
+											Description:         "IdleTimeout is defined as the period in which there are no bytes sent or received on connection Setting this timeout to 0 will disable it. Be cautious when disabling it because it can lead to connection leaking. Default value is 1h.",
+											MarkdownDescription: "IdleTimeout is defined as the period in which there are no bytes sent or received on connection Setting this timeout to 0 will disable it. Be cautious when disabling it because it can lead to connection leaking. Default value is 1h.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -259,8 +259,8 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group ofclients.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofclients.",
+									Description:         "TargetRef is a reference to the resource that represents a group of clients.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of clients.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -274,8 +274,8 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -291,24 +291,24 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_types": schema.ListAttribute{
-											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -316,16 +316,16 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"section_name": schema.StringAttribute{
-											Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-											MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -344,8 +344,8 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
-						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
+						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
+						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
@@ -359,8 +359,8 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"labels": schema.MapAttribute{
-								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -376,24 +376,24 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"proxy_types": schema.ListAttribute{
-								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -401,16 +401,16 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"section_name": schema.StringAttribute{
-								Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-								MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tags": schema.MapAttribute{
-								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -428,12 +428,12 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.SingleNestedAttribute{
-									Description:         "Default is a configuration specific to the group of destinations referenced in'targetRef'",
-									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in'targetRef'",
+									Description:         "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
+									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
 									Attributes: map[string]schema.Attribute{
 										"connection_timeout": schema.StringAttribute{
-											Description:         "ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established.Default value is 5 seconds. Cannot be set to 0.",
-											MarkdownDescription: "ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established.Default value is 5 seconds. Cannot be set to 0.",
+											Description:         "ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established. Default value is 5 seconds. Cannot be set to 0.",
+											MarkdownDescription: "ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established. Default value is 5 seconds. Cannot be set to 0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -444,40 +444,40 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 											MarkdownDescription: "Http provides configuration for HTTP specific timeouts",
 											Attributes: map[string]schema.Attribute{
 												"max_connection_duration": schema.StringAttribute{
-													Description:         "MaxConnectionDuration is the time after which a connection will be drained and/or closed,starting from when it was first established. Setting this timeout to 0 will disable it.Disabled by default.",
-													MarkdownDescription: "MaxConnectionDuration is the time after which a connection will be drained and/or closed,starting from when it was first established. Setting this timeout to 0 will disable it.Disabled by default.",
+													Description:         "MaxConnectionDuration is the time after which a connection will be drained and/or closed, starting from when it was first established. Setting this timeout to 0 will disable it. Disabled by default.",
+													MarkdownDescription: "MaxConnectionDuration is the time after which a connection will be drained and/or closed, starting from when it was first established. Setting this timeout to 0 will disable it. Disabled by default.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_stream_duration": schema.StringAttribute{
-													Description:         "MaxStreamDuration is the maximum time that a stream’s lifetime will span.Setting this timeout to 0 will disable it. Disabled by default.",
-													MarkdownDescription: "MaxStreamDuration is the maximum time that a stream’s lifetime will span.Setting this timeout to 0 will disable it. Disabled by default.",
+													Description:         "MaxStreamDuration is the maximum time that a stream’s lifetime will span. Setting this timeout to 0 will disable it. Disabled by default.",
+													MarkdownDescription: "MaxStreamDuration is the maximum time that a stream’s lifetime will span. Setting this timeout to 0 will disable it. Disabled by default.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"request_headers_timeout": schema.StringAttribute{
-													Description:         "RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer isactivated when the first byte of the headers is received, and is disarmed when the last byte ofthe headers has been received. If not specified or set to 0, this timeout is disabled.Disabled by default.",
-													MarkdownDescription: "RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer isactivated when the first byte of the headers is received, and is disarmed when the last byte ofthe headers has been received. If not specified or set to 0, this timeout is disabled.Disabled by default.",
+													Description:         "RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer is activated when the first byte of the headers is received, and is disarmed when the last byte of the headers has been received. If not specified or set to 0, this timeout is disabled. Disabled by default.",
+													MarkdownDescription: "RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer is activated when the first byte of the headers is received, and is disarmed when the last byte of the headers has been received. If not specified or set to 0, this timeout is disabled. Disabled by default.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"request_timeout": schema.StringAttribute{
-													Description:         "RequestTimeout The amount of time that proxy will wait for the entire request to be received.The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent,OR when the response is initiated. Setting this timeout to 0 will disable it.Default is 15s.",
-													MarkdownDescription: "RequestTimeout The amount of time that proxy will wait for the entire request to be received.The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent,OR when the response is initiated. Setting this timeout to 0 will disable it.Default is 15s.",
+													Description:         "RequestTimeout The amount of time that proxy will wait for the entire request to be received. The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent, OR when the response is initiated. Setting this timeout to 0 will disable it. Default is 15s.",
+													MarkdownDescription: "RequestTimeout The amount of time that proxy will wait for the entire request to be received. The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent, OR when the response is initiated. Setting this timeout to 0 will disable it. Default is 15s.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"stream_idle_timeout": schema.StringAttribute{
-													Description:         "StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity.Setting this timeout to 0 will disable it. Default is 30m",
-													MarkdownDescription: "StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity.Setting this timeout to 0 will disable it. Default is 30m",
+													Description:         "StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity. Setting this timeout to 0 will disable it. Default is 30m",
+													MarkdownDescription: "StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity. Setting this timeout to 0 will disable it. Default is 30m",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -489,8 +489,8 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"idle_timeout": schema.StringAttribute{
-											Description:         "IdleTimeout is defined as the period in which there are no bytes sent or received on connectionSetting this timeout to 0 will disable it. Be cautious when disabling it becauseit can lead to connection leaking. Default value is 1h.",
-											MarkdownDescription: "IdleTimeout is defined as the period in which there are no bytes sent or received on connectionSetting this timeout to 0 will disable it. Be cautious when disabling it becauseit can lead to connection leaking. Default value is 1h.",
+											Description:         "IdleTimeout is defined as the period in which there are no bytes sent or received on connection Setting this timeout to 0 will disable it. Be cautious when disabling it because it can lead to connection leaking. Default value is 1h.",
+											MarkdownDescription: "IdleTimeout is defined as the period in which there are no bytes sent or received on connection Setting this timeout to 0 will disable it. Be cautious when disabling it because it can lead to connection leaking. Default value is 1h.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -502,8 +502,8 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group ofdestinations.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofdestinations.",
+									Description:         "TargetRef is a reference to the resource that represents a group of destinations.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of destinations.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -517,8 +517,8 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -534,24 +534,24 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_types": schema.ListAttribute{
-											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -559,16 +559,16 @@ func (r *KumaIoMeshTimeoutV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 										},
 
 										"section_name": schema.StringAttribute{
-											Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-											MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

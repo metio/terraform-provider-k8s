@@ -237,48 +237,48 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.SingleNestedAttribute{
-									Description:         "Default is a configuration specific to the group of destinationsreferenced in 'targetRef'",
-									MarkdownDescription: "Default is a configuration specific to the group of destinationsreferenced in 'targetRef'",
+									Description:         "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
+									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
 									Attributes: map[string]schema.Attribute{
 										"connection_limits": schema.SingleNestedAttribute{
-											Description:         "ConnectionLimits contains configuration of each circuit breaking limit,which when exceeded makes the circuit breaker to become open (no trafficis allowed like no current is allowed in the circuits when physicalcircuit breaker ir open)",
-											MarkdownDescription: "ConnectionLimits contains configuration of each circuit breaking limit,which when exceeded makes the circuit breaker to become open (no trafficis allowed like no current is allowed in the circuits when physicalcircuit breaker ir open)",
+											Description:         "ConnectionLimits contains configuration of each circuit breaking limit, which when exceeded makes the circuit breaker to become open (no traffic is allowed like no current is allowed in the circuits when physical circuit breaker ir open)",
+											MarkdownDescription: "ConnectionLimits contains configuration of each circuit breaking limit, which when exceeded makes the circuit breaker to become open (no traffic is allowed like no current is allowed in the circuits when physical circuit breaker ir open)",
 											Attributes: map[string]schema.Attribute{
 												"max_connection_pools": schema.Int64Attribute{
-													Description:         "The maximum number of connection pools per cluster that are concurrentlysupported at once. Set this for clusters which create a large number ofconnection pools.",
-													MarkdownDescription: "The maximum number of connection pools per cluster that are concurrentlysupported at once. Set this for clusters which create a large number ofconnection pools.",
+													Description:         "The maximum number of connection pools per cluster that are concurrently supported at once. Set this for clusters which create a large number of connection pools.",
+													MarkdownDescription: "The maximum number of connection pools per cluster that are concurrently supported at once. Set this for clusters which create a large number of connection pools.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_connections": schema.Int64Attribute{
-													Description:         "The maximum number of connections allowed to be made to the upstreamcluster.",
-													MarkdownDescription: "The maximum number of connections allowed to be made to the upstreamcluster.",
+													Description:         "The maximum number of connections allowed to be made to the upstream cluster.",
+													MarkdownDescription: "The maximum number of connections allowed to be made to the upstream cluster.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_pending_requests": schema.Int64Attribute{
-													Description:         "The maximum number of pending requests that are allowed to the upstreamcluster. This limit is applied as a connection limit for non-HTTPtraffic.",
-													MarkdownDescription: "The maximum number of pending requests that are allowed to the upstreamcluster. This limit is applied as a connection limit for non-HTTPtraffic.",
+													Description:         "The maximum number of pending requests that are allowed to the upstream cluster. This limit is applied as a connection limit for non-HTTP traffic.",
+													MarkdownDescription: "The maximum number of pending requests that are allowed to the upstream cluster. This limit is applied as a connection limit for non-HTTP traffic.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_requests": schema.Int64Attribute{
-													Description:         "The maximum number of parallel requests that are allowed to be madeto the upstream cluster. This limit does not apply to non-HTTP traffic.",
-													MarkdownDescription: "The maximum number of parallel requests that are allowed to be madeto the upstream cluster. This limit does not apply to non-HTTP traffic.",
+													Description:         "The maximum number of parallel requests that are allowed to be made to the upstream cluster. This limit does not apply to non-HTTP traffic.",
+													MarkdownDescription: "The maximum number of parallel requests that are allowed to be made to the upstream cluster. This limit does not apply to non-HTTP traffic.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_retries": schema.Int64Attribute{
-													Description:         "The maximum number of parallel retries that will be allowed tothe upstream cluster.",
-													MarkdownDescription: "The maximum number of parallel retries that will be allowed tothe upstream cluster.",
+													Description:         "The maximum number of parallel retries that will be allowed to the upstream cluster.",
+													MarkdownDescription: "The maximum number of parallel retries that will be allowed to the upstream cluster.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -290,12 +290,12 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"outlier_detection": schema.SingleNestedAttribute{
-											Description:         "OutlierDetection contains the configuration of the process of dynamicallydetermining whether some number of hosts in an upstream cluster areperforming unlike the others and removing them from the healthy loadbalancing set. Performance might be along different axes such asconsecutive failures, temporal success rate, temporal latency, etc.Outlier detection is a form of passive health checking.",
-											MarkdownDescription: "OutlierDetection contains the configuration of the process of dynamicallydetermining whether some number of hosts in an upstream cluster areperforming unlike the others and removing them from the healthy loadbalancing set. Performance might be along different axes such asconsecutive failures, temporal success rate, temporal latency, etc.Outlier detection is a form of passive health checking.",
+											Description:         "OutlierDetection contains the configuration of the process of dynamically determining whether some number of hosts in an upstream cluster are performing unlike the others and removing them from the healthy load balancing set. Performance might be along different axes such as consecutive failures, temporal success rate, temporal latency, etc. Outlier detection is a form of passive health checking.",
+											MarkdownDescription: "OutlierDetection contains the configuration of the process of dynamically determining whether some number of hosts in an upstream cluster are performing unlike the others and removing them from the healthy load balancing set. Performance might be along different axes such as consecutive failures, temporal success rate, temporal latency, etc. Outlier detection is a form of passive health checking.",
 											Attributes: map[string]schema.Attribute{
 												"base_ejection_time": schema.StringAttribute{
-													Description:         "The base time that a host is ejected for. The real time is equal tothe base time multiplied by the number of times the host has beenejected.",
-													MarkdownDescription: "The base time that a host is ejected for. The real time is equal tothe base time multiplied by the number of times the host has beenejected.",
+													Description:         "The base time that a host is ejected for. The real time is equal to the base time multiplied by the number of times the host has been ejected.",
+													MarkdownDescription: "The base time that a host is ejected for. The real time is equal to the base time multiplied by the number of times the host has been ejected.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -306,28 +306,28 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "Contains configuration for supported outlier detectors",
 													Attributes: map[string]schema.Attribute{
 														"failure_percentage": schema.SingleNestedAttribute{
-															Description:         "Failure Percentage based outlier detection functions similarly to successrate detection, in that it relies on success rate data from each host ina cluster. However, rather than compare those values to the mean successrate of the cluster as a whole, they are compared to a flatuser-configured threshold. This threshold is configured via theoutlierDetection.failurePercentageThreshold field.The other configuration fields for failure percentage based detection aresimilar to the fields for success rate detection. As with success ratedetection, detection will not be performed for a host if its requestvolume over the aggregation interval is less than theoutlierDetection.detectors.failurePercentage.requestVolume value.Detection also will not be performed for a cluster if the number of hostswith the minimum required request volume in an interval is less than theoutlierDetection.detectors.failurePercentage.minimumHosts value.",
-															MarkdownDescription: "Failure Percentage based outlier detection functions similarly to successrate detection, in that it relies on success rate data from each host ina cluster. However, rather than compare those values to the mean successrate of the cluster as a whole, they are compared to a flatuser-configured threshold. This threshold is configured via theoutlierDetection.failurePercentageThreshold field.The other configuration fields for failure percentage based detection aresimilar to the fields for success rate detection. As with success ratedetection, detection will not be performed for a host if its requestvolume over the aggregation interval is less than theoutlierDetection.detectors.failurePercentage.requestVolume value.Detection also will not be performed for a cluster if the number of hostswith the minimum required request volume in an interval is less than theoutlierDetection.detectors.failurePercentage.minimumHosts value.",
+															Description:         "Failure Percentage based outlier detection functions similarly to success rate detection, in that it relies on success rate data from each host in a cluster. However, rather than compare those values to the mean success rate of the cluster as a whole, they are compared to a flat user-configured threshold. This threshold is configured via the outlierDetection.failurePercentageThreshold field. The other configuration fields for failure percentage based detection are similar to the fields for success rate detection. As with success rate detection, detection will not be performed for a host if its request volume over the aggregation interval is less than the outlierDetection.detectors.failurePercentage.requestVolume value. Detection also will not be performed for a cluster if the number of hosts with the minimum required request volume in an interval is less than the outlierDetection.detectors.failurePercentage.minimumHosts value.",
+															MarkdownDescription: "Failure Percentage based outlier detection functions similarly to success rate detection, in that it relies on success rate data from each host in a cluster. However, rather than compare those values to the mean success rate of the cluster as a whole, they are compared to a flat user-configured threshold. This threshold is configured via the outlierDetection.failurePercentageThreshold field. The other configuration fields for failure percentage based detection are similar to the fields for success rate detection. As with success rate detection, detection will not be performed for a host if its request volume over the aggregation interval is less than the outlierDetection.detectors.failurePercentage.requestVolume value. Detection also will not be performed for a cluster if the number of hosts with the minimum required request volume in an interval is less than the outlierDetection.detectors.failurePercentage.minimumHosts value.",
 															Attributes: map[string]schema.Attribute{
 																"minimum_hosts": schema.Int64Attribute{
-																	Description:         "The minimum number of hosts in a cluster in order to perform failurepercentage-based ejection. If the total number of hosts in the cluster isless than this value, failure percentage-based ejection will not beperformed.",
-																	MarkdownDescription: "The minimum number of hosts in a cluster in order to perform failurepercentage-based ejection. If the total number of hosts in the cluster isless than this value, failure percentage-based ejection will not beperformed.",
+																	Description:         "The minimum number of hosts in a cluster in order to perform failure percentage-based ejection. If the total number of hosts in the cluster is less than this value, failure percentage-based ejection will not be performed.",
+																	MarkdownDescription: "The minimum number of hosts in a cluster in order to perform failure percentage-based ejection. If the total number of hosts in the cluster is less than this value, failure percentage-based ejection will not be performed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"request_volume": schema.Int64Attribute{
-																	Description:         "The minimum number of total requests that must be collected in oneinterval (as defined by the interval duration above) to perform failurepercentage-based ejection for this host. If the volume is lower than thissetting, failure percentage-based ejection will not be performed for thishost.",
-																	MarkdownDescription: "The minimum number of total requests that must be collected in oneinterval (as defined by the interval duration above) to perform failurepercentage-based ejection for this host. If the volume is lower than thissetting, failure percentage-based ejection will not be performed for thishost.",
+																	Description:         "The minimum number of total requests that must be collected in one interval (as defined by the interval duration above) to perform failure percentage-based ejection for this host. If the volume is lower than this setting, failure percentage-based ejection will not be performed for this host.",
+																	MarkdownDescription: "The minimum number of total requests that must be collected in one interval (as defined by the interval duration above) to perform failure percentage-based ejection for this host. If the volume is lower than this setting, failure percentage-based ejection will not be performed for this host.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"threshold": schema.Int64Attribute{
-																	Description:         "The failure percentage to use when determining failure percentage-basedoutlier detection. If the failure percentage of a given host is greaterthan or equal to this value, it will be ejected.",
-																	MarkdownDescription: "The failure percentage to use when determining failure percentage-basedoutlier detection. If the failure percentage of a given host is greaterthan or equal to this value, it will be ejected.",
+																	Description:         "The failure percentage to use when determining failure percentage-based outlier detection. If the failure percentage of a given host is greater than or equal to this value, it will be ejected.",
+																	MarkdownDescription: "The failure percentage to use when determining failure percentage-based outlier detection. If the failure percentage of a given host is greater than or equal to this value, it will be ejected.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -339,12 +339,12 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"gateway_failures": schema.SingleNestedAttribute{
-															Description:         "In the default mode (outlierDetection.splitExternalLocalOriginErrors isfalse) this detection type takes into account a subset of 5xx errors,called 'gateway errors' (502, 503 or 504 status code) and local originfailures, such as timeout, TCP reset etc.In split mode (outlierDetection.splitExternalLocalOriginErrors is true)this detection type takes into account a subset of 5xx errors, called'gateway errors' (502, 503 or 504 status code) and is supported only bythe http router.",
-															MarkdownDescription: "In the default mode (outlierDetection.splitExternalLocalOriginErrors isfalse) this detection type takes into account a subset of 5xx errors,called 'gateway errors' (502, 503 or 504 status code) and local originfailures, such as timeout, TCP reset etc.In split mode (outlierDetection.splitExternalLocalOriginErrors is true)this detection type takes into account a subset of 5xx errors, called'gateway errors' (502, 503 or 504 status code) and is supported only bythe http router.",
+															Description:         "In the default mode (outlierDetection.splitExternalLocalOriginErrors is false) this detection type takes into account a subset of 5xx errors, called 'gateway errors' (502, 503 or 504 status code) and local origin failures, such as timeout, TCP reset etc. In split mode (outlierDetection.splitExternalLocalOriginErrors is true) this detection type takes into account a subset of 5xx errors, called 'gateway errors' (502, 503 or 504 status code) and is supported only by the http router.",
+															MarkdownDescription: "In the default mode (outlierDetection.splitExternalLocalOriginErrors is false) this detection type takes into account a subset of 5xx errors, called 'gateway errors' (502, 503 or 504 status code) and local origin failures, such as timeout, TCP reset etc. In split mode (outlierDetection.splitExternalLocalOriginErrors is true) this detection type takes into account a subset of 5xx errors, called 'gateway errors' (502, 503 or 504 status code) and is supported only by the http router.",
 															Attributes: map[string]schema.Attribute{
 																"consecutive": schema.Int64Attribute{
-																	Description:         "The number of consecutive gateway failures (502, 503, 504 status codes)before a consecutive gateway failure ejection occurs.",
-																	MarkdownDescription: "The number of consecutive gateway failures (502, 503, 504 status codes)before a consecutive gateway failure ejection occurs.",
+																	Description:         "The number of consecutive gateway failures (502, 503, 504 status codes) before a consecutive gateway failure ejection occurs.",
+																	MarkdownDescription: "The number of consecutive gateway failures (502, 503, 504 status codes) before a consecutive gateway failure ejection occurs.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -356,12 +356,12 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"local_origin_failures": schema.SingleNestedAttribute{
-															Description:         "This detection type is enabled only whenoutlierDetection.splitExternalLocalOriginErrors is true and takes intoaccount only locally originated errors (timeout, reset, etc).If Envoy repeatedly cannot connect to an upstream host or communicationwith the upstream host is repeatedly interrupted, it will be ejected.Various locally originated problems are detected: timeout, TCP reset,ICMP errors, etc. This detection type is supported by http router andtcp proxy.",
-															MarkdownDescription: "This detection type is enabled only whenoutlierDetection.splitExternalLocalOriginErrors is true and takes intoaccount only locally originated errors (timeout, reset, etc).If Envoy repeatedly cannot connect to an upstream host or communicationwith the upstream host is repeatedly interrupted, it will be ejected.Various locally originated problems are detected: timeout, TCP reset,ICMP errors, etc. This detection type is supported by http router andtcp proxy.",
+															Description:         "This detection type is enabled only when outlierDetection.splitExternalLocalOriginErrors is true and takes into account only locally originated errors (timeout, reset, etc). If Envoy repeatedly cannot connect to an upstream host or communication with the upstream host is repeatedly interrupted, it will be ejected. Various locally originated problems are detected: timeout, TCP reset, ICMP errors, etc. This detection type is supported by http router and tcp proxy.",
+															MarkdownDescription: "This detection type is enabled only when outlierDetection.splitExternalLocalOriginErrors is true and takes into account only locally originated errors (timeout, reset, etc). If Envoy repeatedly cannot connect to an upstream host or communication with the upstream host is repeatedly interrupted, it will be ejected. Various locally originated problems are detected: timeout, TCP reset, ICMP errors, etc. This detection type is supported by http router and tcp proxy.",
 															Attributes: map[string]schema.Attribute{
 																"consecutive": schema.Int64Attribute{
-																	Description:         "The number of consecutive locally originated failures before ejectionoccurs. Parameter takes effect only when splitExternalAndLocalErrorsis set to true.",
-																	MarkdownDescription: "The number of consecutive locally originated failures before ejectionoccurs. Parameter takes effect only when splitExternalAndLocalErrorsis set to true.",
+																	Description:         "The number of consecutive locally originated failures before ejection occurs. Parameter takes effect only when splitExternalAndLocalErrors is set to true.",
+																	MarkdownDescription: "The number of consecutive locally originated failures before ejection occurs. Parameter takes effect only when splitExternalAndLocalErrors is set to true.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -373,28 +373,28 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"success_rate": schema.SingleNestedAttribute{
-															Description:         "Success Rate based outlier detection aggregates success rate data fromevery host in a cluster. Then at given intervals ejects hosts based onstatistical outlier detection. Success Rate outlier detection will not becalculated for a host if its request volume over the aggregation intervalis less than the outlierDetection.detectors.successRate.requestVolumevalue.Moreover, detection will not be performed for a cluster if the number ofhosts with the minimum required request volume in an interval is lessthan the outlierDetection.detectors.successRate.minimumHosts value.In the default configuration mode(outlierDetection.splitExternalLocalOriginErrors is false) this detectiontype takes into account all types of errors: locally and externallyoriginated.In split mode (outlierDetection.splitExternalLocalOriginErrors is true),locally originated errors and externally originated (transaction) errorsare counted and treated separately.",
-															MarkdownDescription: "Success Rate based outlier detection aggregates success rate data fromevery host in a cluster. Then at given intervals ejects hosts based onstatistical outlier detection. Success Rate outlier detection will not becalculated for a host if its request volume over the aggregation intervalis less than the outlierDetection.detectors.successRate.requestVolumevalue.Moreover, detection will not be performed for a cluster if the number ofhosts with the minimum required request volume in an interval is lessthan the outlierDetection.detectors.successRate.minimumHosts value.In the default configuration mode(outlierDetection.splitExternalLocalOriginErrors is false) this detectiontype takes into account all types of errors: locally and externallyoriginated.In split mode (outlierDetection.splitExternalLocalOriginErrors is true),locally originated errors and externally originated (transaction) errorsare counted and treated separately.",
+															Description:         "Success Rate based outlier detection aggregates success rate data from every host in a cluster. Then at given intervals ejects hosts based on statistical outlier detection. Success Rate outlier detection will not be calculated for a host if its request volume over the aggregation interval is less than the outlierDetection.detectors.successRate.requestVolume value. Moreover, detection will not be performed for a cluster if the number of hosts with the minimum required request volume in an interval is less than the outlierDetection.detectors.successRate.minimumHosts value. In the default configuration mode (outlierDetection.splitExternalLocalOriginErrors is false) this detection type takes into account all types of errors: locally and externally originated. In split mode (outlierDetection.splitExternalLocalOriginErrors is true), locally originated errors and externally originated (transaction) errors are counted and treated separately.",
+															MarkdownDescription: "Success Rate based outlier detection aggregates success rate data from every host in a cluster. Then at given intervals ejects hosts based on statistical outlier detection. Success Rate outlier detection will not be calculated for a host if its request volume over the aggregation interval is less than the outlierDetection.detectors.successRate.requestVolume value. Moreover, detection will not be performed for a cluster if the number of hosts with the minimum required request volume in an interval is less than the outlierDetection.detectors.successRate.minimumHosts value. In the default configuration mode (outlierDetection.splitExternalLocalOriginErrors is false) this detection type takes into account all types of errors: locally and externally originated. In split mode (outlierDetection.splitExternalLocalOriginErrors is true), locally originated errors and externally originated (transaction) errors are counted and treated separately.",
 															Attributes: map[string]schema.Attribute{
 																"minimum_hosts": schema.Int64Attribute{
-																	Description:         "The number of hosts in a cluster that must have enough request volume todetect success rate outliers. If the number of hosts is less than thissetting, outlier detection via success rate statistics is not performedfor any host in the cluster.",
-																	MarkdownDescription: "The number of hosts in a cluster that must have enough request volume todetect success rate outliers. If the number of hosts is less than thissetting, outlier detection via success rate statistics is not performedfor any host in the cluster.",
+																	Description:         "The number of hosts in a cluster that must have enough request volume to detect success rate outliers. If the number of hosts is less than this setting, outlier detection via success rate statistics is not performed for any host in the cluster.",
+																	MarkdownDescription: "The number of hosts in a cluster that must have enough request volume to detect success rate outliers. If the number of hosts is less than this setting, outlier detection via success rate statistics is not performed for any host in the cluster.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"request_volume": schema.Int64Attribute{
-																	Description:         "The minimum number of total requests that must be collected in oneinterval (as defined by the interval duration configured inoutlierDetection section) to include this host in success rate basedoutlier detection. If the volume is lower than this setting, outlierdetection via success rate statistics is not performed for that host.",
-																	MarkdownDescription: "The minimum number of total requests that must be collected in oneinterval (as defined by the interval duration configured inoutlierDetection section) to include this host in success rate basedoutlier detection. If the volume is lower than this setting, outlierdetection via success rate statistics is not performed for that host.",
+																	Description:         "The minimum number of total requests that must be collected in one interval (as defined by the interval duration configured in outlierDetection section) to include this host in success rate based outlier detection. If the volume is lower than this setting, outlier detection via success rate statistics is not performed for that host.",
+																	MarkdownDescription: "The minimum number of total requests that must be collected in one interval (as defined by the interval duration configured in outlierDetection section) to include this host in success rate based outlier detection. If the volume is lower than this setting, outlier detection via success rate statistics is not performed for that host.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"standard_deviation_factor": schema.StringAttribute{
-																	Description:         "This factor is used to determine the ejection threshold for success rateoutlier ejection. The ejection threshold is the difference betweenthe mean success rate, and the product of this factor and the standarddeviation of the mean success rate: mean - (standard_deviation *success_rate_standard_deviation_factor).Either int or decimal represented as string.",
-																	MarkdownDescription: "This factor is used to determine the ejection threshold for success rateoutlier ejection. The ejection threshold is the difference betweenthe mean success rate, and the product of this factor and the standarddeviation of the mean success rate: mean - (standard_deviation *success_rate_standard_deviation_factor).Either int or decimal represented as string.",
+																	Description:         "This factor is used to determine the ejection threshold for success rate outlier ejection. The ejection threshold is the difference between the mean success rate, and the product of this factor and the standard deviation of the mean success rate: mean - (standard_deviation * success_rate_standard_deviation_factor). Either int or decimal represented as string.",
+																	MarkdownDescription: "This factor is used to determine the ejection threshold for success rate outlier ejection. The ejection threshold is the difference between the mean success rate, and the product of this factor and the standard deviation of the mean success rate: mean - (standard_deviation * success_rate_standard_deviation_factor). Either int or decimal represented as string.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -406,12 +406,12 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"total_failures": schema.SingleNestedAttribute{
-															Description:         "In the default mode (outlierDetection.splitExternalAndLocalErrors isfalse) this detection type takes into account all generated errors:locally originated and externally originated (transaction) errors.In split mode (outlierDetection.splitExternalLocalOriginErrors is true)this detection type takes into account only externally originated(transaction) errors, ignoring locally originated errors.If an upstream host is an HTTP-server, only 5xx types of error are takeninto account (see Consecutive Gateway Failure for exceptions).Properly formatted responses, even when they carry an operational error(like index not found, access denied) are not taken into account.",
-															MarkdownDescription: "In the default mode (outlierDetection.splitExternalAndLocalErrors isfalse) this detection type takes into account all generated errors:locally originated and externally originated (transaction) errors.In split mode (outlierDetection.splitExternalLocalOriginErrors is true)this detection type takes into account only externally originated(transaction) errors, ignoring locally originated errors.If an upstream host is an HTTP-server, only 5xx types of error are takeninto account (see Consecutive Gateway Failure for exceptions).Properly formatted responses, even when they carry an operational error(like index not found, access denied) are not taken into account.",
+															Description:         "In the default mode (outlierDetection.splitExternalAndLocalErrors is false) this detection type takes into account all generated errors: locally originated and externally originated (transaction) errors. In split mode (outlierDetection.splitExternalLocalOriginErrors is true) this detection type takes into account only externally originated (transaction) errors, ignoring locally originated errors. If an upstream host is an HTTP-server, only 5xx types of error are taken into account (see Consecutive Gateway Failure for exceptions). Properly formatted responses, even when they carry an operational error (like index not found, access denied) are not taken into account.",
+															MarkdownDescription: "In the default mode (outlierDetection.splitExternalAndLocalErrors is false) this detection type takes into account all generated errors: locally originated and externally originated (transaction) errors. In split mode (outlierDetection.splitExternalLocalOriginErrors is true) this detection type takes into account only externally originated (transaction) errors, ignoring locally originated errors. If an upstream host is an HTTP-server, only 5xx types of error are taken into account (see Consecutive Gateway Failure for exceptions). Properly formatted responses, even when they carry an operational error (like index not found, access denied) are not taken into account.",
 															Attributes: map[string]schema.Attribute{
 																"consecutive": schema.Int64Attribute{
-																	Description:         "The number of consecutive server-side error responses (for HTTP traffic,5xx responses; for TCP traffic, connection failures; for Redis, failureto respond PONG; etc.) before a consecutive total failure ejectionoccurs.",
-																	MarkdownDescription: "The number of consecutive server-side error responses (for HTTP traffic,5xx responses; for TCP traffic, connection failures; for Redis, failureto respond PONG; etc.) before a consecutive total failure ejectionoccurs.",
+																	Description:         "The number of consecutive server-side error responses (for HTTP traffic, 5xx responses; for TCP traffic, connection failures; for Redis, failure to respond PONG; etc.) before a consecutive total failure ejection occurs.",
+																	MarkdownDescription: "The number of consecutive server-side error responses (for HTTP traffic, 5xx responses; for TCP traffic, connection failures; for Redis, failure to respond PONG; etc.) before a consecutive total failure ejection occurs.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -436,24 +436,24 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"interval": schema.StringAttribute{
-													Description:         "The time interval between ejection analysis sweeps. This can result inboth new ejections and hosts being returned to service.",
-													MarkdownDescription: "The time interval between ejection analysis sweeps. This can result inboth new ejections and hosts being returned to service.",
+													Description:         "The time interval between ejection analysis sweeps. This can result in both new ejections and hosts being returned to service.",
+													MarkdownDescription: "The time interval between ejection analysis sweeps. This can result in both new ejections and hosts being returned to service.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_ejection_percent": schema.Int64Attribute{
-													Description:         "The maximum % of an upstream cluster that can be ejected due to outlierdetection. Defaults to 10% but will eject at least one host regardless ofthe value.",
-													MarkdownDescription: "The maximum % of an upstream cluster that can be ejected due to outlierdetection. Defaults to 10% but will eject at least one host regardless ofthe value.",
+													Description:         "The maximum % of an upstream cluster that can be ejected due to outlier detection. Defaults to 10% but will eject at least one host regardless of the value.",
+													MarkdownDescription: "The maximum % of an upstream cluster that can be ejected due to outlier detection. Defaults to 10% but will eject at least one host regardless of the value.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"split_external_and_local_errors": schema.BoolAttribute{
-													Description:         "Determines whether to distinguish local origin failures from externalerrors. If set to true the following configuration parameters are takeninto account: detectors.localOriginFailures.consecutive",
-													MarkdownDescription: "Determines whether to distinguish local origin failures from externalerrors. If set to true the following configuration parameters are takeninto account: detectors.localOriginFailures.consecutive",
+													Description:         "Determines whether to distinguish local origin failures from external errors. If set to true the following configuration parameters are taken into account: detectors.localOriginFailures.consecutive",
+													MarkdownDescription: "Determines whether to distinguish local origin failures from external errors. If set to true the following configuration parameters are taken into account: detectors.localOriginFailures.consecutive",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -470,8 +470,8 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group ofdestinations.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofdestinations.",
+									Description:         "TargetRef is a reference to the resource that represents a group of destinations.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of destinations.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -485,8 +485,8 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -502,24 +502,24 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_types": schema.ListAttribute{
-											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -527,16 +527,16 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"section_name": schema.StringAttribute{
-											Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-											MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -555,8 +555,8 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined in place.",
-						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined in place.",
+						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined in place.",
+						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined in place.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
@@ -570,8 +570,8 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"labels": schema.MapAttribute{
-								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+								Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+								MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -587,24 +587,24 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+								Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+								MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"proxy_types": schema.ListAttribute{
-								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -612,16 +612,16 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"section_name": schema.StringAttribute{
-								Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-								MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+								MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tags": schema.MapAttribute{
-								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -634,53 +634,53 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"to": schema.ListNestedAttribute{
-						Description:         "To list makes a match between the consumed services and correspondingconfigurations",
-						MarkdownDescription: "To list makes a match between the consumed services and correspondingconfigurations",
+						Description:         "To list makes a match between the consumed services and corresponding configurations",
+						MarkdownDescription: "To list makes a match between the consumed services and corresponding configurations",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.SingleNestedAttribute{
-									Description:         "Default is a configuration specific to the group of destinationsreferenced in 'targetRef'",
-									MarkdownDescription: "Default is a configuration specific to the group of destinationsreferenced in 'targetRef'",
+									Description:         "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
+									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
 									Attributes: map[string]schema.Attribute{
 										"connection_limits": schema.SingleNestedAttribute{
-											Description:         "ConnectionLimits contains configuration of each circuit breaking limit,which when exceeded makes the circuit breaker to become open (no trafficis allowed like no current is allowed in the circuits when physicalcircuit breaker ir open)",
-											MarkdownDescription: "ConnectionLimits contains configuration of each circuit breaking limit,which when exceeded makes the circuit breaker to become open (no trafficis allowed like no current is allowed in the circuits when physicalcircuit breaker ir open)",
+											Description:         "ConnectionLimits contains configuration of each circuit breaking limit, which when exceeded makes the circuit breaker to become open (no traffic is allowed like no current is allowed in the circuits when physical circuit breaker ir open)",
+											MarkdownDescription: "ConnectionLimits contains configuration of each circuit breaking limit, which when exceeded makes the circuit breaker to become open (no traffic is allowed like no current is allowed in the circuits when physical circuit breaker ir open)",
 											Attributes: map[string]schema.Attribute{
 												"max_connection_pools": schema.Int64Attribute{
-													Description:         "The maximum number of connection pools per cluster that are concurrentlysupported at once. Set this for clusters which create a large number ofconnection pools.",
-													MarkdownDescription: "The maximum number of connection pools per cluster that are concurrentlysupported at once. Set this for clusters which create a large number ofconnection pools.",
+													Description:         "The maximum number of connection pools per cluster that are concurrently supported at once. Set this for clusters which create a large number of connection pools.",
+													MarkdownDescription: "The maximum number of connection pools per cluster that are concurrently supported at once. Set this for clusters which create a large number of connection pools.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_connections": schema.Int64Attribute{
-													Description:         "The maximum number of connections allowed to be made to the upstreamcluster.",
-													MarkdownDescription: "The maximum number of connections allowed to be made to the upstreamcluster.",
+													Description:         "The maximum number of connections allowed to be made to the upstream cluster.",
+													MarkdownDescription: "The maximum number of connections allowed to be made to the upstream cluster.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_pending_requests": schema.Int64Attribute{
-													Description:         "The maximum number of pending requests that are allowed to the upstreamcluster. This limit is applied as a connection limit for non-HTTPtraffic.",
-													MarkdownDescription: "The maximum number of pending requests that are allowed to the upstreamcluster. This limit is applied as a connection limit for non-HTTPtraffic.",
+													Description:         "The maximum number of pending requests that are allowed to the upstream cluster. This limit is applied as a connection limit for non-HTTP traffic.",
+													MarkdownDescription: "The maximum number of pending requests that are allowed to the upstream cluster. This limit is applied as a connection limit for non-HTTP traffic.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_requests": schema.Int64Attribute{
-													Description:         "The maximum number of parallel requests that are allowed to be madeto the upstream cluster. This limit does not apply to non-HTTP traffic.",
-													MarkdownDescription: "The maximum number of parallel requests that are allowed to be madeto the upstream cluster. This limit does not apply to non-HTTP traffic.",
+													Description:         "The maximum number of parallel requests that are allowed to be made to the upstream cluster. This limit does not apply to non-HTTP traffic.",
+													MarkdownDescription: "The maximum number of parallel requests that are allowed to be made to the upstream cluster. This limit does not apply to non-HTTP traffic.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_retries": schema.Int64Attribute{
-													Description:         "The maximum number of parallel retries that will be allowed tothe upstream cluster.",
-													MarkdownDescription: "The maximum number of parallel retries that will be allowed tothe upstream cluster.",
+													Description:         "The maximum number of parallel retries that will be allowed to the upstream cluster.",
+													MarkdownDescription: "The maximum number of parallel retries that will be allowed to the upstream cluster.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -692,12 +692,12 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"outlier_detection": schema.SingleNestedAttribute{
-											Description:         "OutlierDetection contains the configuration of the process of dynamicallydetermining whether some number of hosts in an upstream cluster areperforming unlike the others and removing them from the healthy loadbalancing set. Performance might be along different axes such asconsecutive failures, temporal success rate, temporal latency, etc.Outlier detection is a form of passive health checking.",
-											MarkdownDescription: "OutlierDetection contains the configuration of the process of dynamicallydetermining whether some number of hosts in an upstream cluster areperforming unlike the others and removing them from the healthy loadbalancing set. Performance might be along different axes such asconsecutive failures, temporal success rate, temporal latency, etc.Outlier detection is a form of passive health checking.",
+											Description:         "OutlierDetection contains the configuration of the process of dynamically determining whether some number of hosts in an upstream cluster are performing unlike the others and removing them from the healthy load balancing set. Performance might be along different axes such as consecutive failures, temporal success rate, temporal latency, etc. Outlier detection is a form of passive health checking.",
+											MarkdownDescription: "OutlierDetection contains the configuration of the process of dynamically determining whether some number of hosts in an upstream cluster are performing unlike the others and removing them from the healthy load balancing set. Performance might be along different axes such as consecutive failures, temporal success rate, temporal latency, etc. Outlier detection is a form of passive health checking.",
 											Attributes: map[string]schema.Attribute{
 												"base_ejection_time": schema.StringAttribute{
-													Description:         "The base time that a host is ejected for. The real time is equal tothe base time multiplied by the number of times the host has beenejected.",
-													MarkdownDescription: "The base time that a host is ejected for. The real time is equal tothe base time multiplied by the number of times the host has beenejected.",
+													Description:         "The base time that a host is ejected for. The real time is equal to the base time multiplied by the number of times the host has been ejected.",
+													MarkdownDescription: "The base time that a host is ejected for. The real time is equal to the base time multiplied by the number of times the host has been ejected.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -708,28 +708,28 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "Contains configuration for supported outlier detectors",
 													Attributes: map[string]schema.Attribute{
 														"failure_percentage": schema.SingleNestedAttribute{
-															Description:         "Failure Percentage based outlier detection functions similarly to successrate detection, in that it relies on success rate data from each host ina cluster. However, rather than compare those values to the mean successrate of the cluster as a whole, they are compared to a flatuser-configured threshold. This threshold is configured via theoutlierDetection.failurePercentageThreshold field.The other configuration fields for failure percentage based detection aresimilar to the fields for success rate detection. As with success ratedetection, detection will not be performed for a host if its requestvolume over the aggregation interval is less than theoutlierDetection.detectors.failurePercentage.requestVolume value.Detection also will not be performed for a cluster if the number of hostswith the minimum required request volume in an interval is less than theoutlierDetection.detectors.failurePercentage.minimumHosts value.",
-															MarkdownDescription: "Failure Percentage based outlier detection functions similarly to successrate detection, in that it relies on success rate data from each host ina cluster. However, rather than compare those values to the mean successrate of the cluster as a whole, they are compared to a flatuser-configured threshold. This threshold is configured via theoutlierDetection.failurePercentageThreshold field.The other configuration fields for failure percentage based detection aresimilar to the fields for success rate detection. As with success ratedetection, detection will not be performed for a host if its requestvolume over the aggregation interval is less than theoutlierDetection.detectors.failurePercentage.requestVolume value.Detection also will not be performed for a cluster if the number of hostswith the minimum required request volume in an interval is less than theoutlierDetection.detectors.failurePercentage.minimumHosts value.",
+															Description:         "Failure Percentage based outlier detection functions similarly to success rate detection, in that it relies on success rate data from each host in a cluster. However, rather than compare those values to the mean success rate of the cluster as a whole, they are compared to a flat user-configured threshold. This threshold is configured via the outlierDetection.failurePercentageThreshold field. The other configuration fields for failure percentage based detection are similar to the fields for success rate detection. As with success rate detection, detection will not be performed for a host if its request volume over the aggregation interval is less than the outlierDetection.detectors.failurePercentage.requestVolume value. Detection also will not be performed for a cluster if the number of hosts with the minimum required request volume in an interval is less than the outlierDetection.detectors.failurePercentage.minimumHosts value.",
+															MarkdownDescription: "Failure Percentage based outlier detection functions similarly to success rate detection, in that it relies on success rate data from each host in a cluster. However, rather than compare those values to the mean success rate of the cluster as a whole, they are compared to a flat user-configured threshold. This threshold is configured via the outlierDetection.failurePercentageThreshold field. The other configuration fields for failure percentage based detection are similar to the fields for success rate detection. As with success rate detection, detection will not be performed for a host if its request volume over the aggregation interval is less than the outlierDetection.detectors.failurePercentage.requestVolume value. Detection also will not be performed for a cluster if the number of hosts with the minimum required request volume in an interval is less than the outlierDetection.detectors.failurePercentage.minimumHosts value.",
 															Attributes: map[string]schema.Attribute{
 																"minimum_hosts": schema.Int64Attribute{
-																	Description:         "The minimum number of hosts in a cluster in order to perform failurepercentage-based ejection. If the total number of hosts in the cluster isless than this value, failure percentage-based ejection will not beperformed.",
-																	MarkdownDescription: "The minimum number of hosts in a cluster in order to perform failurepercentage-based ejection. If the total number of hosts in the cluster isless than this value, failure percentage-based ejection will not beperformed.",
+																	Description:         "The minimum number of hosts in a cluster in order to perform failure percentage-based ejection. If the total number of hosts in the cluster is less than this value, failure percentage-based ejection will not be performed.",
+																	MarkdownDescription: "The minimum number of hosts in a cluster in order to perform failure percentage-based ejection. If the total number of hosts in the cluster is less than this value, failure percentage-based ejection will not be performed.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"request_volume": schema.Int64Attribute{
-																	Description:         "The minimum number of total requests that must be collected in oneinterval (as defined by the interval duration above) to perform failurepercentage-based ejection for this host. If the volume is lower than thissetting, failure percentage-based ejection will not be performed for thishost.",
-																	MarkdownDescription: "The minimum number of total requests that must be collected in oneinterval (as defined by the interval duration above) to perform failurepercentage-based ejection for this host. If the volume is lower than thissetting, failure percentage-based ejection will not be performed for thishost.",
+																	Description:         "The minimum number of total requests that must be collected in one interval (as defined by the interval duration above) to perform failure percentage-based ejection for this host. If the volume is lower than this setting, failure percentage-based ejection will not be performed for this host.",
+																	MarkdownDescription: "The minimum number of total requests that must be collected in one interval (as defined by the interval duration above) to perform failure percentage-based ejection for this host. If the volume is lower than this setting, failure percentage-based ejection will not be performed for this host.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"threshold": schema.Int64Attribute{
-																	Description:         "The failure percentage to use when determining failure percentage-basedoutlier detection. If the failure percentage of a given host is greaterthan or equal to this value, it will be ejected.",
-																	MarkdownDescription: "The failure percentage to use when determining failure percentage-basedoutlier detection. If the failure percentage of a given host is greaterthan or equal to this value, it will be ejected.",
+																	Description:         "The failure percentage to use when determining failure percentage-based outlier detection. If the failure percentage of a given host is greater than or equal to this value, it will be ejected.",
+																	MarkdownDescription: "The failure percentage to use when determining failure percentage-based outlier detection. If the failure percentage of a given host is greater than or equal to this value, it will be ejected.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -741,12 +741,12 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"gateway_failures": schema.SingleNestedAttribute{
-															Description:         "In the default mode (outlierDetection.splitExternalLocalOriginErrors isfalse) this detection type takes into account a subset of 5xx errors,called 'gateway errors' (502, 503 or 504 status code) and local originfailures, such as timeout, TCP reset etc.In split mode (outlierDetection.splitExternalLocalOriginErrors is true)this detection type takes into account a subset of 5xx errors, called'gateway errors' (502, 503 or 504 status code) and is supported only bythe http router.",
-															MarkdownDescription: "In the default mode (outlierDetection.splitExternalLocalOriginErrors isfalse) this detection type takes into account a subset of 5xx errors,called 'gateway errors' (502, 503 or 504 status code) and local originfailures, such as timeout, TCP reset etc.In split mode (outlierDetection.splitExternalLocalOriginErrors is true)this detection type takes into account a subset of 5xx errors, called'gateway errors' (502, 503 or 504 status code) and is supported only bythe http router.",
+															Description:         "In the default mode (outlierDetection.splitExternalLocalOriginErrors is false) this detection type takes into account a subset of 5xx errors, called 'gateway errors' (502, 503 or 504 status code) and local origin failures, such as timeout, TCP reset etc. In split mode (outlierDetection.splitExternalLocalOriginErrors is true) this detection type takes into account a subset of 5xx errors, called 'gateway errors' (502, 503 or 504 status code) and is supported only by the http router.",
+															MarkdownDescription: "In the default mode (outlierDetection.splitExternalLocalOriginErrors is false) this detection type takes into account a subset of 5xx errors, called 'gateway errors' (502, 503 or 504 status code) and local origin failures, such as timeout, TCP reset etc. In split mode (outlierDetection.splitExternalLocalOriginErrors is true) this detection type takes into account a subset of 5xx errors, called 'gateway errors' (502, 503 or 504 status code) and is supported only by the http router.",
 															Attributes: map[string]schema.Attribute{
 																"consecutive": schema.Int64Attribute{
-																	Description:         "The number of consecutive gateway failures (502, 503, 504 status codes)before a consecutive gateway failure ejection occurs.",
-																	MarkdownDescription: "The number of consecutive gateway failures (502, 503, 504 status codes)before a consecutive gateway failure ejection occurs.",
+																	Description:         "The number of consecutive gateway failures (502, 503, 504 status codes) before a consecutive gateway failure ejection occurs.",
+																	MarkdownDescription: "The number of consecutive gateway failures (502, 503, 504 status codes) before a consecutive gateway failure ejection occurs.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -758,12 +758,12 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"local_origin_failures": schema.SingleNestedAttribute{
-															Description:         "This detection type is enabled only whenoutlierDetection.splitExternalLocalOriginErrors is true and takes intoaccount only locally originated errors (timeout, reset, etc).If Envoy repeatedly cannot connect to an upstream host or communicationwith the upstream host is repeatedly interrupted, it will be ejected.Various locally originated problems are detected: timeout, TCP reset,ICMP errors, etc. This detection type is supported by http router andtcp proxy.",
-															MarkdownDescription: "This detection type is enabled only whenoutlierDetection.splitExternalLocalOriginErrors is true and takes intoaccount only locally originated errors (timeout, reset, etc).If Envoy repeatedly cannot connect to an upstream host or communicationwith the upstream host is repeatedly interrupted, it will be ejected.Various locally originated problems are detected: timeout, TCP reset,ICMP errors, etc. This detection type is supported by http router andtcp proxy.",
+															Description:         "This detection type is enabled only when outlierDetection.splitExternalLocalOriginErrors is true and takes into account only locally originated errors (timeout, reset, etc). If Envoy repeatedly cannot connect to an upstream host or communication with the upstream host is repeatedly interrupted, it will be ejected. Various locally originated problems are detected: timeout, TCP reset, ICMP errors, etc. This detection type is supported by http router and tcp proxy.",
+															MarkdownDescription: "This detection type is enabled only when outlierDetection.splitExternalLocalOriginErrors is true and takes into account only locally originated errors (timeout, reset, etc). If Envoy repeatedly cannot connect to an upstream host or communication with the upstream host is repeatedly interrupted, it will be ejected. Various locally originated problems are detected: timeout, TCP reset, ICMP errors, etc. This detection type is supported by http router and tcp proxy.",
 															Attributes: map[string]schema.Attribute{
 																"consecutive": schema.Int64Attribute{
-																	Description:         "The number of consecutive locally originated failures before ejectionoccurs. Parameter takes effect only when splitExternalAndLocalErrorsis set to true.",
-																	MarkdownDescription: "The number of consecutive locally originated failures before ejectionoccurs. Parameter takes effect only when splitExternalAndLocalErrorsis set to true.",
+																	Description:         "The number of consecutive locally originated failures before ejection occurs. Parameter takes effect only when splitExternalAndLocalErrors is set to true.",
+																	MarkdownDescription: "The number of consecutive locally originated failures before ejection occurs. Parameter takes effect only when splitExternalAndLocalErrors is set to true.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -775,28 +775,28 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"success_rate": schema.SingleNestedAttribute{
-															Description:         "Success Rate based outlier detection aggregates success rate data fromevery host in a cluster. Then at given intervals ejects hosts based onstatistical outlier detection. Success Rate outlier detection will not becalculated for a host if its request volume over the aggregation intervalis less than the outlierDetection.detectors.successRate.requestVolumevalue.Moreover, detection will not be performed for a cluster if the number ofhosts with the minimum required request volume in an interval is lessthan the outlierDetection.detectors.successRate.minimumHosts value.In the default configuration mode(outlierDetection.splitExternalLocalOriginErrors is false) this detectiontype takes into account all types of errors: locally and externallyoriginated.In split mode (outlierDetection.splitExternalLocalOriginErrors is true),locally originated errors and externally originated (transaction) errorsare counted and treated separately.",
-															MarkdownDescription: "Success Rate based outlier detection aggregates success rate data fromevery host in a cluster. Then at given intervals ejects hosts based onstatistical outlier detection. Success Rate outlier detection will not becalculated for a host if its request volume over the aggregation intervalis less than the outlierDetection.detectors.successRate.requestVolumevalue.Moreover, detection will not be performed for a cluster if the number ofhosts with the minimum required request volume in an interval is lessthan the outlierDetection.detectors.successRate.minimumHosts value.In the default configuration mode(outlierDetection.splitExternalLocalOriginErrors is false) this detectiontype takes into account all types of errors: locally and externallyoriginated.In split mode (outlierDetection.splitExternalLocalOriginErrors is true),locally originated errors and externally originated (transaction) errorsare counted and treated separately.",
+															Description:         "Success Rate based outlier detection aggregates success rate data from every host in a cluster. Then at given intervals ejects hosts based on statistical outlier detection. Success Rate outlier detection will not be calculated for a host if its request volume over the aggregation interval is less than the outlierDetection.detectors.successRate.requestVolume value. Moreover, detection will not be performed for a cluster if the number of hosts with the minimum required request volume in an interval is less than the outlierDetection.detectors.successRate.minimumHosts value. In the default configuration mode (outlierDetection.splitExternalLocalOriginErrors is false) this detection type takes into account all types of errors: locally and externally originated. In split mode (outlierDetection.splitExternalLocalOriginErrors is true), locally originated errors and externally originated (transaction) errors are counted and treated separately.",
+															MarkdownDescription: "Success Rate based outlier detection aggregates success rate data from every host in a cluster. Then at given intervals ejects hosts based on statistical outlier detection. Success Rate outlier detection will not be calculated for a host if its request volume over the aggregation interval is less than the outlierDetection.detectors.successRate.requestVolume value. Moreover, detection will not be performed for a cluster if the number of hosts with the minimum required request volume in an interval is less than the outlierDetection.detectors.successRate.minimumHosts value. In the default configuration mode (outlierDetection.splitExternalLocalOriginErrors is false) this detection type takes into account all types of errors: locally and externally originated. In split mode (outlierDetection.splitExternalLocalOriginErrors is true), locally originated errors and externally originated (transaction) errors are counted and treated separately.",
 															Attributes: map[string]schema.Attribute{
 																"minimum_hosts": schema.Int64Attribute{
-																	Description:         "The number of hosts in a cluster that must have enough request volume todetect success rate outliers. If the number of hosts is less than thissetting, outlier detection via success rate statistics is not performedfor any host in the cluster.",
-																	MarkdownDescription: "The number of hosts in a cluster that must have enough request volume todetect success rate outliers. If the number of hosts is less than thissetting, outlier detection via success rate statistics is not performedfor any host in the cluster.",
+																	Description:         "The number of hosts in a cluster that must have enough request volume to detect success rate outliers. If the number of hosts is less than this setting, outlier detection via success rate statistics is not performed for any host in the cluster.",
+																	MarkdownDescription: "The number of hosts in a cluster that must have enough request volume to detect success rate outliers. If the number of hosts is less than this setting, outlier detection via success rate statistics is not performed for any host in the cluster.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"request_volume": schema.Int64Attribute{
-																	Description:         "The minimum number of total requests that must be collected in oneinterval (as defined by the interval duration configured inoutlierDetection section) to include this host in success rate basedoutlier detection. If the volume is lower than this setting, outlierdetection via success rate statistics is not performed for that host.",
-																	MarkdownDescription: "The minimum number of total requests that must be collected in oneinterval (as defined by the interval duration configured inoutlierDetection section) to include this host in success rate basedoutlier detection. If the volume is lower than this setting, outlierdetection via success rate statistics is not performed for that host.",
+																	Description:         "The minimum number of total requests that must be collected in one interval (as defined by the interval duration configured in outlierDetection section) to include this host in success rate based outlier detection. If the volume is lower than this setting, outlier detection via success rate statistics is not performed for that host.",
+																	MarkdownDescription: "The minimum number of total requests that must be collected in one interval (as defined by the interval duration configured in outlierDetection section) to include this host in success rate based outlier detection. If the volume is lower than this setting, outlier detection via success rate statistics is not performed for that host.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"standard_deviation_factor": schema.StringAttribute{
-																	Description:         "This factor is used to determine the ejection threshold for success rateoutlier ejection. The ejection threshold is the difference betweenthe mean success rate, and the product of this factor and the standarddeviation of the mean success rate: mean - (standard_deviation *success_rate_standard_deviation_factor).Either int or decimal represented as string.",
-																	MarkdownDescription: "This factor is used to determine the ejection threshold for success rateoutlier ejection. The ejection threshold is the difference betweenthe mean success rate, and the product of this factor and the standarddeviation of the mean success rate: mean - (standard_deviation *success_rate_standard_deviation_factor).Either int or decimal represented as string.",
+																	Description:         "This factor is used to determine the ejection threshold for success rate outlier ejection. The ejection threshold is the difference between the mean success rate, and the product of this factor and the standard deviation of the mean success rate: mean - (standard_deviation * success_rate_standard_deviation_factor). Either int or decimal represented as string.",
+																	MarkdownDescription: "This factor is used to determine the ejection threshold for success rate outlier ejection. The ejection threshold is the difference between the mean success rate, and the product of this factor and the standard deviation of the mean success rate: mean - (standard_deviation * success_rate_standard_deviation_factor). Either int or decimal represented as string.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -808,12 +808,12 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"total_failures": schema.SingleNestedAttribute{
-															Description:         "In the default mode (outlierDetection.splitExternalAndLocalErrors isfalse) this detection type takes into account all generated errors:locally originated and externally originated (transaction) errors.In split mode (outlierDetection.splitExternalLocalOriginErrors is true)this detection type takes into account only externally originated(transaction) errors, ignoring locally originated errors.If an upstream host is an HTTP-server, only 5xx types of error are takeninto account (see Consecutive Gateway Failure for exceptions).Properly formatted responses, even when they carry an operational error(like index not found, access denied) are not taken into account.",
-															MarkdownDescription: "In the default mode (outlierDetection.splitExternalAndLocalErrors isfalse) this detection type takes into account all generated errors:locally originated and externally originated (transaction) errors.In split mode (outlierDetection.splitExternalLocalOriginErrors is true)this detection type takes into account only externally originated(transaction) errors, ignoring locally originated errors.If an upstream host is an HTTP-server, only 5xx types of error are takeninto account (see Consecutive Gateway Failure for exceptions).Properly formatted responses, even when they carry an operational error(like index not found, access denied) are not taken into account.",
+															Description:         "In the default mode (outlierDetection.splitExternalAndLocalErrors is false) this detection type takes into account all generated errors: locally originated and externally originated (transaction) errors. In split mode (outlierDetection.splitExternalLocalOriginErrors is true) this detection type takes into account only externally originated (transaction) errors, ignoring locally originated errors. If an upstream host is an HTTP-server, only 5xx types of error are taken into account (see Consecutive Gateway Failure for exceptions). Properly formatted responses, even when they carry an operational error (like index not found, access denied) are not taken into account.",
+															MarkdownDescription: "In the default mode (outlierDetection.splitExternalAndLocalErrors is false) this detection type takes into account all generated errors: locally originated and externally originated (transaction) errors. In split mode (outlierDetection.splitExternalLocalOriginErrors is true) this detection type takes into account only externally originated (transaction) errors, ignoring locally originated errors. If an upstream host is an HTTP-server, only 5xx types of error are taken into account (see Consecutive Gateway Failure for exceptions). Properly formatted responses, even when they carry an operational error (like index not found, access denied) are not taken into account.",
 															Attributes: map[string]schema.Attribute{
 																"consecutive": schema.Int64Attribute{
-																	Description:         "The number of consecutive server-side error responses (for HTTP traffic,5xx responses; for TCP traffic, connection failures; for Redis, failureto respond PONG; etc.) before a consecutive total failure ejectionoccurs.",
-																	MarkdownDescription: "The number of consecutive server-side error responses (for HTTP traffic,5xx responses; for TCP traffic, connection failures; for Redis, failureto respond PONG; etc.) before a consecutive total failure ejectionoccurs.",
+																	Description:         "The number of consecutive server-side error responses (for HTTP traffic, 5xx responses; for TCP traffic, connection failures; for Redis, failure to respond PONG; etc.) before a consecutive total failure ejection occurs.",
+																	MarkdownDescription: "The number of consecutive server-side error responses (for HTTP traffic, 5xx responses; for TCP traffic, connection failures; for Redis, failure to respond PONG; etc.) before a consecutive total failure ejection occurs.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -838,24 +838,24 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"interval": schema.StringAttribute{
-													Description:         "The time interval between ejection analysis sweeps. This can result inboth new ejections and hosts being returned to service.",
-													MarkdownDescription: "The time interval between ejection analysis sweeps. This can result inboth new ejections and hosts being returned to service.",
+													Description:         "The time interval between ejection analysis sweeps. This can result in both new ejections and hosts being returned to service.",
+													MarkdownDescription: "The time interval between ejection analysis sweeps. This can result in both new ejections and hosts being returned to service.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"max_ejection_percent": schema.Int64Attribute{
-													Description:         "The maximum % of an upstream cluster that can be ejected due to outlierdetection. Defaults to 10% but will eject at least one host regardless ofthe value.",
-													MarkdownDescription: "The maximum % of an upstream cluster that can be ejected due to outlierdetection. Defaults to 10% but will eject at least one host regardless ofthe value.",
+													Description:         "The maximum % of an upstream cluster that can be ejected due to outlier detection. Defaults to 10% but will eject at least one host regardless of the value.",
+													MarkdownDescription: "The maximum % of an upstream cluster that can be ejected due to outlier detection. Defaults to 10% but will eject at least one host regardless of the value.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"split_external_and_local_errors": schema.BoolAttribute{
-													Description:         "Determines whether to distinguish local origin failures from externalerrors. If set to true the following configuration parameters are takeninto account: detectors.localOriginFailures.consecutive",
-													MarkdownDescription: "Determines whether to distinguish local origin failures from externalerrors. If set to true the following configuration parameters are takeninto account: detectors.localOriginFailures.consecutive",
+													Description:         "Determines whether to distinguish local origin failures from external errors. If set to true the following configuration parameters are taken into account: detectors.localOriginFailures.consecutive",
+													MarkdownDescription: "Determines whether to distinguish local origin failures from external errors. If set to true the following configuration parameters are taken into account: detectors.localOriginFailures.consecutive",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -872,8 +872,8 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group ofdestinations.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofdestinations.",
+									Description:         "TargetRef is a reference to the resource that represents a group of destinations.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of destinations.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -887,8 +887,8 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"labels": schema.MapAttribute{
-											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
-											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.",
+											Description:         "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
+											MarkdownDescription: "Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -904,24 +904,24 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
-											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.",
+											Description:         "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
+											MarkdownDescription: "Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_types": schema.ListAttribute{
-											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
-											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -929,16 +929,16 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"section_name": schema.StringAttribute{
-											Description:         "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
-											MarkdownDescription: "SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											Description:         "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
+											MarkdownDescription: "SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

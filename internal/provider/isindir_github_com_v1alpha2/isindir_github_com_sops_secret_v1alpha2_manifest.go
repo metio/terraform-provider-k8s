@@ -251,8 +251,8 @@ func (r *IsindirGithubComSopsSecretV1Alpha2Manifest) Schema(_ context.Context, _
 					},
 
 					"encrypted_regex": schema.StringAttribute{
-						Description:         "Regex used to encrypt SopsSecret resourceThis opstion should be used with more care, as it can make resource unapplicable to the cluster.",
-						MarkdownDescription: "Regex used to encrypt SopsSecret resourceThis opstion should be used with more care, as it can make resource unapplicable to the cluster.",
+						Description:         "Regex used to encrypt SopsSecret resource This opstion should be used with more care, as it can make resource unapplicable to the cluster.",
+						MarkdownDescription: "Regex used to encrypt SopsSecret resource This opstion should be used with more care, as it can make resource unapplicable to the cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -486,8 +486,8 @@ func (r *IsindirGithubComSopsSecretV1Alpha2Manifest) Schema(_ context.Context, _
 								},
 
 								"data": schema.MapAttribute{
-									Description:         "Data map to use in Kubernetes secret (equivalent to Kubernetes Secret object stringData, please see for moreinformation: https://kubernetes.io/docs/concepts/configuration/secret/#overview-of-secrets)",
-									MarkdownDescription: "Data map to use in Kubernetes secret (equivalent to Kubernetes Secret object stringData, please see for moreinformation: https://kubernetes.io/docs/concepts/configuration/secret/#overview-of-secrets)",
+									Description:         "Data map to use in Kubernetes secret (equivalent to Kubernetes Secret object stringData, please see for more information: https://kubernetes.io/docs/concepts/configuration/secret/#overview-of-secrets)",
+									MarkdownDescription: "Data map to use in Kubernetes secret (equivalent to Kubernetes Secret object stringData, please see for more information: https://kubernetes.io/docs/concepts/configuration/secret/#overview-of-secrets)",
 									ElementType:         types.StringType,
 									Required:            true,
 									Optional:            false,
@@ -512,8 +512,8 @@ func (r *IsindirGithubComSopsSecretV1Alpha2Manifest) Schema(_ context.Context, _
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "Kubernetes secret type. Default: Opauqe. Possible values: Opauqe,kubernetes.io/service-account-token, kubernetes.io/dockercfg,kubernetes.io/dockerconfigjson, kubernetes.io/basic-auth,kubernetes.io/ssh-auth, kubernetes.io/tls, bootstrap.kubernetes.io/token",
-									MarkdownDescription: "Kubernetes secret type. Default: Opauqe. Possible values: Opauqe,kubernetes.io/service-account-token, kubernetes.io/dockercfg,kubernetes.io/dockerconfigjson, kubernetes.io/basic-auth,kubernetes.io/ssh-auth, kubernetes.io/tls, bootstrap.kubernetes.io/token",
+									Description:         "Kubernetes secret type. Default: Opauqe. Possible values: Opauqe, kubernetes.io/service-account-token, kubernetes.io/dockercfg, kubernetes.io/dockerconfigjson, kubernetes.io/basic-auth, kubernetes.io/ssh-auth, kubernetes.io/tls, bootstrap.kubernetes.io/token",
+									MarkdownDescription: "Kubernetes secret type. Default: Opauqe. Possible values: Opauqe, kubernetes.io/service-account-token, kubernetes.io/dockercfg, kubernetes.io/dockerconfigjson, kubernetes.io/basic-auth, kubernetes.io/ssh-auth, kubernetes.io/tls, bootstrap.kubernetes.io/token",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

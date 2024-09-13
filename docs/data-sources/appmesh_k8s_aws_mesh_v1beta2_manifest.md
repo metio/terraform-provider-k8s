@@ -58,7 +58,7 @@ Optional:
 - `egress_filter` (Attributes) The egress filter rules for the service mesh. If unspecified, default settings from AWS API will be applied. Refer to AWS Docs for default settings. (see [below for nested schema](#nestedatt--spec--egress_filter))
 - `mesh_owner` (String) The AWS IAM account ID of the service mesh owner. Required if the account ID is not your own.
 - `mesh_service_discovery` (Attributes) (see [below for nested schema](#nestedatt--spec--mesh_service_discovery))
-- `namespace_selector` (Attributes) NamespaceSelector selects Namespaces using labels to designate mesh membership. This field follows standard label selector semantics: 	if present but empty, it selects all namespaces. 	if absent, it selects no namespace. (see [below for nested schema](#nestedatt--spec--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector selects Namespaces using labels to designate mesh membership. This field follows standard label selector semantics: if present but empty, it selects all namespaces. if absent, it selects no namespace. (see [below for nested schema](#nestedatt--spec--namespace_selector))
 
 <a id="nestedatt--spec--egress_filter"></a>
 ### Nested Schema for `spec.egress_filter`

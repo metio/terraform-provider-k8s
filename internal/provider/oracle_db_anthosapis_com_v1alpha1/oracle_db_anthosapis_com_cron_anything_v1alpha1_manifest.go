@@ -257,8 +257,8 @@ func (r *OracleDbAnthosapisComCronAnythingV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"history_time_limit_seconds": schema.Int64Attribute{
-								Description:         "The time since completion that a resource is kept before deletion. This only affects finishable resources. This does not have any default value and if it is not provided, HistoryCountLimit will be used to prune completed resources. If both HistoryCountLimit and  HistoryTimeLimitSeconds are set, it is treated as an OR operation.",
-								MarkdownDescription: "The time since completion that a resource is kept before deletion. This only affects finishable resources. This does not have any default value and if it is not provided, HistoryCountLimit will be used to prune completed resources. If both HistoryCountLimit and  HistoryTimeLimitSeconds are set, it is treated as an OR operation.",
+								Description:         "The time since completion that a resource is kept before deletion. This only affects finishable resources. This does not have any default value and if it is not provided, HistoryCountLimit will be used to prune completed resources. If both HistoryCountLimit and HistoryTimeLimitSeconds are set, it is treated as an OR operation.",
+								MarkdownDescription: "The time since completion that a resource is kept before deletion. This only affects finishable resources. This does not have any default value and if it is not provided, HistoryCountLimit will be used to prune completed resources. If both HistoryCountLimit and HistoryTimeLimitSeconds are set, it is treated as an OR operation.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

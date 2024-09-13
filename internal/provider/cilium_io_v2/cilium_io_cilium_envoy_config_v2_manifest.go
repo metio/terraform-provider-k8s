@@ -144,8 +144,8 @@ func (r *CiliumIoCiliumEnvoyConfigV2Manifest) Schema(_ context.Context, _ dataso
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"backend_services": schema.ListNestedAttribute{
-						Description:         "BackendServices specifies Kubernetes services whose backends are automatically synced to Envoy using EDS.  Traffic for these services is not forwarded to an Envoy listener. This allows an Envoy listener load balance traffic to these backends while normal Cilium service load balancing takes care of balancing traffic for these services at the same time.",
-						MarkdownDescription: "BackendServices specifies Kubernetes services whose backends are automatically synced to Envoy using EDS.  Traffic for these services is not forwarded to an Envoy listener. This allows an Envoy listener load balance traffic to these backends while normal Cilium service load balancing takes care of balancing traffic for these services at the same time.",
+						Description:         "BackendServices specifies Kubernetes services whose backends are automatically synced to Envoy using EDS. Traffic for these services is not forwarded to an Envoy listener. This allows an Envoy listener load balance traffic to these backends while normal Cilium service load balancing takes care of balancing traffic for these services at the same time.",
+						MarkdownDescription: "BackendServices specifies Kubernetes services whose backends are automatically synced to Envoy using EDS. Traffic for these services is not forwarded to an Envoy listener. This allows an Envoy listener load balance traffic to these backends while normal Cilium service load balancing takes care of balancing traffic for these services at the same time.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -240,8 +240,8 @@ func (r *CiliumIoCiliumEnvoyConfigV2Manifest) Schema(_ context.Context, _ dataso
 						Description:         "Envoy xDS resources, a list of the following Envoy resource types: type.googleapis.com/envoy.config.listener.v3.Listener, type.googleapis.com/envoy.config.route.v3.RouteConfiguration, type.googleapis.com/envoy.config.cluster.v3.Cluster, type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment, and type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.Secret.",
 						MarkdownDescription: "Envoy xDS resources, a list of the following Envoy resource types: type.googleapis.com/envoy.config.listener.v3.Listener, type.googleapis.com/envoy.config.route.v3.RouteConfiguration, type.googleapis.com/envoy.config.cluster.v3.Cluster, type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment, and type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.Secret.",
 						ElementType:         types.MapType{ElemType: types.StringType},
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 					},
 
@@ -251,8 +251,8 @@ func (r *CiliumIoCiliumEnvoyConfigV2Manifest) Schema(_ context.Context, _ dataso
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"listener": schema.StringAttribute{
-									Description:         "Listener specifies the name of the Envoy listener the service traffic is redirected to. The listener must be specified in the Envoy 'resources' of the same CiliumEnvoyConfig.  If omitted, the first listener specified in 'resources' is used.",
-									MarkdownDescription: "Listener specifies the name of the Envoy listener the service traffic is redirected to. The listener must be specified in the Envoy 'resources' of the same CiliumEnvoyConfig.  If omitted, the first listener specified in 'resources' is used.",
+									Description:         "Listener specifies the name of the Envoy listener the service traffic is redirected to. The listener must be specified in the Envoy 'resources' of the same CiliumEnvoyConfig. If omitted, the first listener specified in 'resources' is used.",
+									MarkdownDescription: "Listener specifies the name of the Envoy listener the service traffic is redirected to. The listener must be specified in the Envoy 'resources' of the same CiliumEnvoyConfig. If omitted, the first listener specified in 'resources' is used.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

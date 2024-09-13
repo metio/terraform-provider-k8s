@@ -143,8 +143,8 @@ func (r *Apigatewayv2ServicesK8SAwsApiV1Alpha1Manifest) Schema(_ context.Context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ApiSpec defines the desired state of Api.Represents an API.",
-				MarkdownDescription: "ApiSpec defines the desired state of Api.Represents an API.",
+				Description:         "ApiSpec defines the desired state of Api. Represents an API.",
+				MarkdownDescription: "ApiSpec defines the desired state of Api. Represents an API.",
 				Attributes: map[string]schema.Attribute{
 					"api_key_selection_expression": schema.StringAttribute{
 						Description:         "",
@@ -171,8 +171,8 @@ func (r *Apigatewayv2ServicesK8SAwsApiV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"cors_configuration": schema.SingleNestedAttribute{
-						Description:         "Represents a CORS configuration. Supported only for HTTP APIs. See ConfiguringCORS (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html)for more information.",
-						MarkdownDescription: "Represents a CORS configuration. Supported only for HTTP APIs. See ConfiguringCORS (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html)for more information.",
+						Description:         "Represents a CORS configuration. Supported only for HTTP APIs. See Configuring CORS (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html) for more information.",
+						MarkdownDescription: "Represents a CORS configuration. Supported only for HTTP APIs. See Configuring CORS (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html) for more information.",
 						Attributes: map[string]schema.Attribute{
 							"allow_credentials": schema.BoolAttribute{
 								Description:         "",

@@ -134,8 +134,8 @@ func (r *PostgresqlCnpgIoBackupV1Manifest) Schema(_ context.Context, _ datasourc
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Specification of the desired behavior of the backup.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
-				MarkdownDescription: "Specification of the desired behavior of the backup.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+				Description:         "Specification of the desired behavior of the backup. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+				MarkdownDescription: "Specification of the desired behavior of the backup. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
 				Attributes: map[string]schema.Attribute{
 					"cluster": schema.SingleNestedAttribute{
 						Description:         "The cluster to backup",
@@ -155,8 +155,8 @@ func (r *PostgresqlCnpgIoBackupV1Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"method": schema.StringAttribute{
-						Description:         "The backup method to be used, possible options are 'barmanObjectStore','volumeSnapshot' or 'plugin'. Defaults to: 'barmanObjectStore'.",
-						MarkdownDescription: "The backup method to be used, possible options are 'barmanObjectStore','volumeSnapshot' or 'plugin'. Defaults to: 'barmanObjectStore'.",
+						Description:         "The backup method to be used, possible options are 'barmanObjectStore', 'volumeSnapshot' or 'plugin'. Defaults to: 'barmanObjectStore'.",
+						MarkdownDescription: "The backup method to be used, possible options are 'barmanObjectStore', 'volumeSnapshot' or 'plugin'. Defaults to: 'barmanObjectStore'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -166,28 +166,28 @@ func (r *PostgresqlCnpgIoBackupV1Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"online": schema.BoolAttribute{
-						Description:         "Whether the default type of backup with volume snapshots isonline/hot ('true', default) or offline/cold ('false')Overrides the default setting specified in the cluster field '.spec.backup.volumeSnapshot.online'",
-						MarkdownDescription: "Whether the default type of backup with volume snapshots isonline/hot ('true', default) or offline/cold ('false')Overrides the default setting specified in the cluster field '.spec.backup.volumeSnapshot.online'",
+						Description:         "Whether the default type of backup with volume snapshots is online/hot ('true', default) or offline/cold ('false') Overrides the default setting specified in the cluster field '.spec.backup.volumeSnapshot.online'",
+						MarkdownDescription: "Whether the default type of backup with volume snapshots is online/hot ('true', default) or offline/cold ('false') Overrides the default setting specified in the cluster field '.spec.backup.volumeSnapshot.online'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"online_configuration": schema.SingleNestedAttribute{
-						Description:         "Configuration parameters to control the online/hot backup with volume snapshotsOverrides the default settings specified in the cluster '.backup.volumeSnapshot.onlineConfiguration' stanza",
-						MarkdownDescription: "Configuration parameters to control the online/hot backup with volume snapshotsOverrides the default settings specified in the cluster '.backup.volumeSnapshot.onlineConfiguration' stanza",
+						Description:         "Configuration parameters to control the online/hot backup with volume snapshots Overrides the default settings specified in the cluster '.backup.volumeSnapshot.onlineConfiguration' stanza",
+						MarkdownDescription: "Configuration parameters to control the online/hot backup with volume snapshots Overrides the default settings specified in the cluster '.backup.volumeSnapshot.onlineConfiguration' stanza",
 						Attributes: map[string]schema.Attribute{
 							"immediate_checkpoint": schema.BoolAttribute{
-								Description:         "Control whether the I/O workload for the backup initial checkpoint willbe limited, according to the 'checkpoint_completion_target' setting onthe PostgreSQL server. If set to true, an immediate checkpoint will beused, meaning PostgreSQL will complete the checkpoint as soon aspossible. 'false' by default.",
-								MarkdownDescription: "Control whether the I/O workload for the backup initial checkpoint willbe limited, according to the 'checkpoint_completion_target' setting onthe PostgreSQL server. If set to true, an immediate checkpoint will beused, meaning PostgreSQL will complete the checkpoint as soon aspossible. 'false' by default.",
+								Description:         "Control whether the I/O workload for the backup initial checkpoint will be limited, according to the 'checkpoint_completion_target' setting on the PostgreSQL server. If set to true, an immediate checkpoint will be used, meaning PostgreSQL will complete the checkpoint as soon as possible. 'false' by default.",
+								MarkdownDescription: "Control whether the I/O workload for the backup initial checkpoint will be limited, according to the 'checkpoint_completion_target' setting on the PostgreSQL server. If set to true, an immediate checkpoint will be used, meaning PostgreSQL will complete the checkpoint as soon as possible. 'false' by default.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"wait_for_archive": schema.BoolAttribute{
-								Description:         "If false, the function will return immediately after the backup is completed,without waiting for WAL to be archived.This behavior is only useful with backup software that independently monitors WAL archiving.Otherwise, WAL required to make the backup consistent might be missing and make the backup useless.By default, or when this parameter is true, pg_backup_stop will wait for WAL to be archived when archiving isenabled.On a standby, this means that it will wait only when archive_mode = always.If write activity on the primary is low, it may be useful to run pg_switch_wal on the primary in order to triggeran immediate segment switch.",
-								MarkdownDescription: "If false, the function will return immediately after the backup is completed,without waiting for WAL to be archived.This behavior is only useful with backup software that independently monitors WAL archiving.Otherwise, WAL required to make the backup consistent might be missing and make the backup useless.By default, or when this parameter is true, pg_backup_stop will wait for WAL to be archived when archiving isenabled.On a standby, this means that it will wait only when archive_mode = always.If write activity on the primary is low, it may be useful to run pg_switch_wal on the primary in order to triggeran immediate segment switch.",
+								Description:         "If false, the function will return immediately after the backup is completed, without waiting for WAL to be archived. This behavior is only useful with backup software that independently monitors WAL archiving. Otherwise, WAL required to make the backup consistent might be missing and make the backup useless. By default, or when this parameter is true, pg_backup_stop will wait for WAL to be archived when archiving is enabled. On a standby, this means that it will wait only when archive_mode = always. If write activity on the primary is low, it may be useful to run pg_switch_wal on the primary in order to trigger an immediate segment switch.",
+								MarkdownDescription: "If false, the function will return immediately after the backup is completed, without waiting for WAL to be archived. This behavior is only useful with backup software that independently monitors WAL archiving. Otherwise, WAL required to make the backup consistent might be missing and make the backup useless. By default, or when this parameter is true, pg_backup_stop will wait for WAL to be archived when archiving is enabled. On a standby, this means that it will wait only when archive_mode = always. If write activity on the primary is low, it may be useful to run pg_switch_wal on the primary in order to trigger an immediate segment switch.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -211,8 +211,8 @@ func (r *PostgresqlCnpgIoBackupV1Manifest) Schema(_ context.Context, _ datasourc
 							},
 
 							"parameters": schema.MapAttribute{
-								Description:         "Parameters are the configuration parameters passed to the backupplugin for this backup",
-								MarkdownDescription: "Parameters are the configuration parameters passed to the backupplugin for this backup",
+								Description:         "Parameters are the configuration parameters passed to the backup plugin for this backup",
+								MarkdownDescription: "Parameters are the configuration parameters passed to the backup plugin for this backup",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -225,8 +225,8 @@ func (r *PostgresqlCnpgIoBackupV1Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"target": schema.StringAttribute{
-						Description:         "The policy to decide which instance should perform this backup. If empty,it defaults to 'cluster.spec.backup.target'.Available options are empty string, 'primary' and 'prefer-standby'.'primary' to have backups run always on primary instances,'prefer-standby' to have backups run preferably on the most updatedstandby, if available.",
-						MarkdownDescription: "The policy to decide which instance should perform this backup. If empty,it defaults to 'cluster.spec.backup.target'.Available options are empty string, 'primary' and 'prefer-standby'.'primary' to have backups run always on primary instances,'prefer-standby' to have backups run preferably on the most updatedstandby, if available.",
+						Description:         "The policy to decide which instance should perform this backup. If empty, it defaults to 'cluster.spec.backup.target'. Available options are empty string, 'primary' and 'prefer-standby'. 'primary' to have backups run always on primary instances, 'prefer-standby' to have backups run preferably on the most updated standby, if available.",
+						MarkdownDescription: "The policy to decide which instance should perform this backup. If empty, it defaults to 'cluster.spec.backup.target'. Available options are empty string, 'primary' and 'prefer-standby'. 'primary' to have backups run always on primary instances, 'prefer-standby' to have backups run preferably on the most updated standby, if available.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

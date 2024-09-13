@@ -3,12 +3,12 @@
 page_title: "k8s_multicluster_crd_antrea_io_label_identity_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "multicluster.crd.antrea.io"
 description: |-
-  LabelIdentity is an imported label identity from the ClusterSet.For each unique label identity, a LabelIdentity will be created in the member cluster.
+  LabelIdentity is an imported label identity from the ClusterSet. For each unique label identity, a LabelIdentity will be created in the member cluster.
 ---
 
 # k8s_multicluster_crd_antrea_io_label_identity_v1alpha1_manifest (Data Source)
 
-LabelIdentity is an imported label identity from the ClusterSet.For each unique label identity, a LabelIdentity will be created in the member cluster.
+LabelIdentity is an imported label identity from the ClusterSet. For each unique label identity, a LabelIdentity will be created in the member cluster.
 
 ## Example Usage
 
@@ -55,4 +55,4 @@ Optional:
 Optional:
 
 - `id` (Number) ID is the ID allocated for the label identity by the leader cluster.
-- `label` (String) Label is the normalized string of a label identity.The format of normalized label identity is 'ns:(?P<nslabels>(.)*)&pod:(?P<podlabels>(.)*)'E.g., 'ns:kubernetes.io/metadata.name=kube-system&pod:app=db'
+- `label` (String) Label is the normalized string of a label identity. The format of normalized label identity is 'ns:(?P<nslabels>(.)*)&pod:(?P<podlabels>(.)*)' E.g., 'ns:kubernetes.io/metadata.name=kube-system&pod:app=db'

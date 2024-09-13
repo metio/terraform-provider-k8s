@@ -141,8 +141,8 @@ func (r *IamServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context, _ data
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "UserSpec defines the desired state of User.Contains information about an IAM user entity.This data type is used as a response element in the following operations:   * CreateUser   * GetUser   * ListUsers",
-				MarkdownDescription: "UserSpec defines the desired state of User.Contains information about an IAM user entity.This data type is used as a response element in the following operations:   * CreateUser   * GetUser   * ListUsers",
+				Description:         "UserSpec defines the desired state of User. Contains information about an IAM user entity. This data type is used as a response element in the following operations: * CreateUser * GetUser * ListUsers",
+				MarkdownDescription: "UserSpec defines the desired state of User. Contains information about an IAM user entity. This data type is used as a response element in the following operations: * CreateUser * GetUser * ListUsers",
 				Attributes: map[string]schema.Attribute{
 					"inline_policies": schema.MapAttribute{
 						Description:         "",
@@ -154,36 +154,36 @@ func (r *IamServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the user to create.IAM user, group, role, and policy names must be unique within the account.Names are not distinguished by case. For example, you cannot create resourcesnamed both 'MyResource' and 'myresource'.",
-						MarkdownDescription: "The name of the user to create.IAM user, group, role, and policy names must be unique within the account.Names are not distinguished by case. For example, you cannot create resourcesnamed both 'MyResource' and 'myresource'.",
+						Description:         "The name of the user to create. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both 'MyResource' and 'myresource'.",
+						MarkdownDescription: "The name of the user to create. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both 'MyResource' and 'myresource'.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"path": schema.StringAttribute{
-						Description:         "The path for the user name. For more information about paths, see IAM identifiers(https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)in the IAM User Guide.This parameter is optional. If it is not included, it defaults to a slash(/).This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))a string of characters consisting of either a forward slash (/) by itselfor a string that must begin and end with forward slashes. In addition, itcan contain any ASCII character from the ! (u0021) through the DEL character(u007F), including most punctuation characters, digits, and upper and lowercasedletters.",
-						MarkdownDescription: "The path for the user name. For more information about paths, see IAM identifiers(https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)in the IAM User Guide.This parameter is optional. If it is not included, it defaults to a slash(/).This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))a string of characters consisting of either a forward slash (/) by itselfor a string that must begin and end with forward slashes. In addition, itcan contain any ASCII character from the ! (u0021) through the DEL character(u007F), including most punctuation characters, digits, and upper and lowercasedletters.",
+						Description:         "The path for the user name. For more information about paths, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex)) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (u0021) through the DEL character (u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+						MarkdownDescription: "The path for the user name. For more information about paths, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex)) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (u0021) through the DEL character (u007F), including most punctuation characters, digits, and upper and lowercased letters.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"permissions_boundary": schema.StringAttribute{
-						Description:         "The ARN of the managed policy that is used to set the permissions boundaryfor the user.A permissions boundary policy defines the maximum permissions that identity-basedpolicies can grant to an entity, but does not grant permissions. Permissionsboundaries do not define the maximum permissions that a resource-based policycan grant to an entity. To learn more, see Permissions boundaries for IAMentities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html)in the IAM User Guide.For more information about policy types, see Policy types (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policy-types)in the IAM User Guide.",
-						MarkdownDescription: "The ARN of the managed policy that is used to set the permissions boundaryfor the user.A permissions boundary policy defines the maximum permissions that identity-basedpolicies can grant to an entity, but does not grant permissions. Permissionsboundaries do not define the maximum permissions that a resource-based policycan grant to an entity. To learn more, see Permissions boundaries for IAMentities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html)in the IAM User Guide.For more information about policy types, see Policy types (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policy-types)in the IAM User Guide.",
+						Description:         "The ARN of the managed policy that is used to set the permissions boundary for the user. A permissions boundary policy defines the maximum permissions that identity-based policies can grant to an entity, but does not grant permissions. Permissions boundaries do not define the maximum permissions that a resource-based policy can grant to an entity. To learn more, see Permissions boundaries for IAM entities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) in the IAM User Guide. For more information about policy types, see Policy types (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policy-types) in the IAM User Guide.",
+						MarkdownDescription: "The ARN of the managed policy that is used to set the permissions boundary for the user. A permissions boundary policy defines the maximum permissions that identity-based policies can grant to an entity, but does not grant permissions. Permissions boundaries do not define the maximum permissions that a resource-based policy can grant to an entity. To learn more, see Permissions boundaries for IAM entities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) in the IAM User Guide. For more information about policy types, see Policy types (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policy-types) in the IAM User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"permissions_boundary_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -226,8 +226,8 @@ func (r *IamServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context, _ data
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -257,8 +257,8 @@ func (r *IamServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of tags that you want to attach to the new user. Each tag consistsof a key name and an associated value. For more information about tagging,see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html)in the IAM User Guide.If any one of the tags is invalid or if you exceed the allowed maximum numberof tags, then the entire request fails and the resource is not created.",
-						MarkdownDescription: "A list of tags that you want to attach to the new user. Each tag consistsof a key name and an associated value. For more information about tagging,see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html)in the IAM User Guide.If any one of the tags is invalid or if you exceed the allowed maximum numberof tags, then the entire request fails and the resource is not created.",
+						Description:         "A list of tags that you want to attach to the new user. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html) in the IAM User Guide. If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
+						MarkdownDescription: "A list of tags that you want to attach to the new user. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html) in the IAM User Guide. If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

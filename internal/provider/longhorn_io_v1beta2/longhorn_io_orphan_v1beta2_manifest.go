@@ -135,8 +135,8 @@ func (r *LonghornIoOrphanV1Beta2Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"orphan_type": schema.StringAttribute{
-						Description:         "The type of the orphaned data.Can be 'replica'.",
-						MarkdownDescription: "The type of the orphaned data.Can be 'replica'.",
+						Description:         "The type of the orphaned data. Can be 'replica'.",
+						MarkdownDescription: "The type of the orphaned data. Can be 'replica'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

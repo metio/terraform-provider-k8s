@@ -69,8 +69,8 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Metadata(_ context.
 
 func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ObservabilityPolicy is a Direct Attached Policy. It provides a way to configure observability settings forthe NGINX Gateway Fabric data plane. Used in conjunction with the NginxProxy CRD that is attached to theGatewayClass parametersRef.",
-		MarkdownDescription: "ObservabilityPolicy is a Direct Attached Policy. It provides a way to configure observability settings forthe NGINX Gateway Fabric data plane. Used in conjunction with the NginxProxy CRD that is attached to theGatewayClass parametersRef.",
+		Description:         "ObservabilityPolicy is a Direct Attached Policy. It provides a way to configure observability settings for the NGINX Gateway Fabric data plane. Used in conjunction with the NginxProxy CRD that is attached to the GatewayClass parametersRef.",
+		MarkdownDescription: "ObservabilityPolicy is a Direct Attached Policy. It provides a way to configure observability settings for the NGINX Gateway Fabric data plane. Used in conjunction with the NginxProxy CRD that is attached to the GatewayClass parametersRef.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -141,8 +141,8 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Schema(_ context.Co
 				MarkdownDescription: "Spec defines the desired state of the ObservabilityPolicy.",
 				Attributes: map[string]schema.Attribute{
 					"target_refs": schema.ListNestedAttribute{
-						Description:         "TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute, GRPCRoute.",
-						MarkdownDescription: "TargetRefs identifies the API object(s) to apply the policy to.Objects must be in the same namespace as the policy.Support: HTTPRoute, GRPCRoute.",
+						Description:         "TargetRefs identifies the API object(s) to apply the policy to. Objects must be in the same namespace as the policy. Support: HTTPRoute, GRPCRoute.",
+						MarkdownDescription: "TargetRefs identifies the API object(s) to apply the policy to. Objects must be in the same namespace as the policy. Support: HTTPRoute, GRPCRoute.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"group": schema.StringAttribute{
@@ -193,8 +193,8 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Schema(_ context.Co
 						MarkdownDescription: "Tracing allows for enabling and configuring tracing.",
 						Attributes: map[string]schema.Attribute{
 							"context": schema.StringAttribute{
-								Description:         "Context specifies how to propagate traceparent/tracestate headers.Default: https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context",
-								MarkdownDescription: "Context specifies how to propagate traceparent/tracestate headers.Default: https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context",
+								Description:         "Context specifies how to propagate traceparent/tracestate headers. Default: https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context",
+								MarkdownDescription: "Context specifies how to propagate traceparent/tracestate headers. Default: https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -204,8 +204,8 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"ratio": schema.Int64Attribute{
-								Description:         "Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100.By default, 100% of http requests are traced. Not applicable for parent-based tracing.If ratio is set to 0, tracing is disabled.",
-								MarkdownDescription: "Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100.By default, 100% of http requests are traced. Not applicable for parent-based tracing.If ratio is set to 0, tracing is disabled.",
+								Description:         "Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100. By default, 100% of http requests are traced. Not applicable for parent-based tracing. If ratio is set to 0, tracing is disabled.",
+								MarkdownDescription: "Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100. By default, 100% of http requests are traced. Not applicable for parent-based tracing. If ratio is set to 0, tracing is disabled.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -221,8 +221,8 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Schema(_ context.Co
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
-											Description:         "Key is the key for a span attribute.Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''",
-											MarkdownDescription: "Key is the key for a span attribute.Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''",
+											Description:         "Key is the key for a span attribute. Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''",
+											MarkdownDescription: "Key is the key for a span attribute. Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -234,8 +234,8 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Value is the value for a span attribute.Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''",
-											MarkdownDescription: "Value is the value for a span attribute.Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''",
+											Description:         "Value is the value for a span attribute. Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''",
+											MarkdownDescription: "Value is the value for a span attribute. Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -253,8 +253,8 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"span_name": schema.StringAttribute{
-								Description:         "SpanName defines the name of the Otel span. By default is the name of the location for a request.If specified, applies to all locations that are created for a route.Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''Examples of invalid names: some-$value, quoted-'value'-name, unescaped",
-								MarkdownDescription: "SpanName defines the name of the Otel span. By default is the name of the location for a request.If specified, applies to all locations that are created for a route.Format: must have all ''' escaped and must not contain any '$' or end with an unescaped ''Examples of invalid names: some-$value, quoted-'value'-name, unescaped",
+								Description:         "SpanName defines the name of the Otel span. By default is the name of the location for a request. If specified, applies to all locations that are created for a route. Format: must have all ''' escaped and must not contain any '$' or end with an unescaped '' Examples of invalid names: some-$value, quoted-'value'-name, unescaped",
+								MarkdownDescription: "SpanName defines the name of the Otel span. By default is the name of the location for a request. If specified, applies to all locations that are created for a route. Format: must have all ''' escaped and must not contain any '$' or end with an unescaped '' Examples of invalid names: some-$value, quoted-'value'-name, unescaped",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -96,7 +96,7 @@ Optional:
 - `allow_origins` (Attributes List) String patterns that match allowed origins. (see [below for nested schema](#nestedatt--spec--http--cors_policy--allow_origins))
 - `expose_headers` (List of String) A list of HTTP headers that the browsers are allowed to access.
 - `max_age` (String) Specifies how long the results of a preflight request can be cached.
-- `unmatched_preflights` (String) Indicates whether preflight requests not matching the configured allowed origin shouldn't be forwarded to the upstream.Valid Options: FORWARD, IGNORE
+- `unmatched_preflights` (String) Indicates whether preflight requests not matching the configured allowed origin shouldn't be forwarded to the upstream. Valid Options: FORWARD, IGNORE
 
 <a id="nestedatt--spec--http--cors_policy--allow_origins"></a>
 ### Nested Schema for `spec.http.cors_policy.allow_origins`
@@ -382,7 +382,7 @@ Optional:
 Optional:
 
 - `authority` (String) On a redirect, overwrite the Authority/Host portion of the URL with this value.
-- `derive_port` (String) On a redirect, dynamically set the port: * FROM_PROTOCOL_DEFAULT: automatically set to 80 for HTTP and 443 for HTTPS.Valid Options: FROM_PROTOCOL_DEFAULT, FROM_REQUEST_PORT
+- `derive_port` (String) On a redirect, dynamically set the port: * FROM_PROTOCOL_DEFAULT: automatically set to 80 for HTTP and 443 for HTTPS. Valid Options: FROM_PROTOCOL_DEFAULT, FROM_REQUEST_PORT
 - `port` (Number) On a redirect, overwrite the port portion of the URL with this value.
 - `redirect_code` (Number) On a redirect, Specifies the HTTP status code to use in the redirect response.
 - `scheme` (String) On a redirect, overwrite the scheme portion of the URL with this value.

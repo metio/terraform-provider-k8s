@@ -56,7 +56,7 @@ Optional:
 Optional:
 
 - `aws_name` (String) AWSName is the AppMesh VirtualService object's name. If unspecified or empty, it defaults to be '${name}.${namespace}' of k8s VirtualService
-- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this VirtualService belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
+- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this VirtualService belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
 - `provider` (Attributes) The provider for virtual services. You can specify a single virtual node or virtual router. (see [below for nested schema](#nestedatt--spec--provider))
 
 <a id="nestedatt--spec--mesh_ref"></a>

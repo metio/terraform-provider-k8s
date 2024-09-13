@@ -3,12 +3,12 @@
 page_title: "k8s_crd_projectcalico_org_global_network_set_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "crd.projectcalico.org"
 description: |-
-  GlobalNetworkSet contains a set of arbitrary IP sub-networks/CIDRs that share labels to allow rules to refer to them via selectors.  The labels of GlobalNetworkSet are not namespaced.
+  GlobalNetworkSet contains a set of arbitrary IP sub-networks/CIDRs that share labels to allow rules to refer to them via selectors. The labels of GlobalNetworkSet are not namespaced.
 ---
 
 # k8s_crd_projectcalico_org_global_network_set_v1_manifest (Data Source)
 
-GlobalNetworkSet contains a set of arbitrary IP sub-networks/CIDRs that share labels to allow rules to refer to them via selectors.  The labels of GlobalNetworkSet are not namespaced.
+GlobalNetworkSet contains a set of arbitrary IP sub-networks/CIDRs that share labels to allow rules to refer to them via selectors. The labels of GlobalNetworkSet are not namespaced.
 
 ## Example Usage
 

@@ -58,7 +58,7 @@ Optional:
 - `args` (List of String) executor binary arguments
 - `command` (List of String) executor default binary command
 - `content_types` (List of String) ContentTypes list of handled content types
-- `executor_type` (String) ExecutorType one of 'rest' for rest openapi based executors or 'job' which will be default runners for testkubeor 'container' for container executors
+- `executor_type` (String) ExecutorType one of 'rest' for rest openapi based executors or 'job' which will be default runners for testkube or 'container' for container executors
 - `features` (List of String) Features list of possible features which executor handles
 - `image` (String) Image for kube-job
 - `image_pull_secrets` (Attributes List) container executor default image pull secrets (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
@@ -75,7 +75,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--meta"></a>

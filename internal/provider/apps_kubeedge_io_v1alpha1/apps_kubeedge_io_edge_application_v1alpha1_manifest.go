@@ -435,8 +435,8 @@ func (r *AppsKubeedgeIoEdgeApplicationV1Alpha1Manifest) Schema(_ context.Context
 																					MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																					Attributes: map[string]schema.Attribute{
 																						"key": schema.StringAttribute{
-																							Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																							MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																							Description:         "The key of the secret to select from. Must be a valid secret key.",
+																							MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -508,8 +508,8 @@ func (r *AppsKubeedgeIoEdgeApplicationV1Alpha1Manifest) Schema(_ context.Context
 															},
 
 															"predicate": schema.SingleNestedAttribute{
-																Description:         "Predicate filters images before applying the rule.  Defaults to nil, in that case, the system will automatically detect image fields if the resource type is Pod, ReplicaSet, Deployment or StatefulSet by following rule:   - Pod: /spec/containers/<N>/image   - ReplicaSet: /spec/template/spec/containers/<N>/image   - Deployment: /spec/template/spec/containers/<N>/image   - StatefulSet: /spec/template/spec/containers/<N>/image In addition, all images will be processed if the resource object has more than one containers.  If not nil, only images matches the filters will be processed.",
-																MarkdownDescription: "Predicate filters images before applying the rule.  Defaults to nil, in that case, the system will automatically detect image fields if the resource type is Pod, ReplicaSet, Deployment or StatefulSet by following rule:   - Pod: /spec/containers/<N>/image   - ReplicaSet: /spec/template/spec/containers/<N>/image   - Deployment: /spec/template/spec/containers/<N>/image   - StatefulSet: /spec/template/spec/containers/<N>/image In addition, all images will be processed if the resource object has more than one containers.  If not nil, only images matches the filters will be processed.",
+																Description:         "Predicate filters images before applying the rule. Defaults to nil, in that case, the system will automatically detect image fields if the resource type is Pod, ReplicaSet, Deployment or StatefulSet by following rule: - Pod: /spec/containers/<N>/image - ReplicaSet: /spec/template/spec/containers/<N>/image - Deployment: /spec/template/spec/containers/<N>/image - StatefulSet: /spec/template/spec/containers/<N>/image In addition, all images will be processed if the resource object has more than one containers. If not nil, only images matches the filters will be processed.",
+																MarkdownDescription: "Predicate filters images before applying the rule. Defaults to nil, in that case, the system will automatically detect image fields if the resource type is Pod, ReplicaSet, Deployment or StatefulSet by following rule: - Pod: /spec/containers/<N>/image - ReplicaSet: /spec/template/spec/containers/<N>/image - Deployment: /spec/template/spec/containers/<N>/image - StatefulSet: /spec/template/spec/containers/<N>/image In addition, all images will be processed if the resource object has more than one containers. If not nil, only images matches the filters will be processed.",
 																Attributes: map[string]schema.Attribute{
 																	"path": schema.StringAttribute{
 																		Description:         "Path indicates the path of target field",
@@ -564,8 +564,8 @@ func (r *AppsKubeedgeIoEdgeApplicationV1Alpha1Manifest) Schema(_ context.Context
 																MarkdownDescription: "Value to be applied to resources. Must not be empty",
 																Attributes: map[string]schema.Attribute{
 																	"claims": schema.ListNestedAttribute{
-																		Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																		MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																		Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																		MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{

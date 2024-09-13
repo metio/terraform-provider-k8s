@@ -56,8 +56,8 @@ func (r *ProjectcontourIoTlscertificateDelegationV1Manifest) Metadata(_ context.
 
 func (r *ProjectcontourIoTlscertificateDelegationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "TLSCertificateDelegation is an TLS Certificate Delegation CRD specification.See design/tls-certificate-delegation.md for details.",
-		MarkdownDescription: "TLSCertificateDelegation is an TLS Certificate Delegation CRD specification.See design/tls-certificate-delegation.md for details.",
+		Description:         "TLSCertificateDelegation is an TLS Certificate Delegation CRD specification. See design/tls-certificate-delegation.md for details.",
+		MarkdownDescription: "TLSCertificateDelegation is an TLS Certificate Delegation CRD specification. See design/tls-certificate-delegation.md for details.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -141,8 +141,8 @@ func (r *ProjectcontourIoTlscertificateDelegationV1Manifest) Schema(_ context.Co
 								},
 
 								"target_namespaces": schema.ListAttribute{
-									Description:         "required, the namespaces the authority to reference thesecret will be delegated to.If TargetNamespaces is nil or empty, the CertificateDelegation'is ignored. If the TargetNamespace list contains the character, '*'the secret will be delegated to all namespaces.",
-									MarkdownDescription: "required, the namespaces the authority to reference thesecret will be delegated to.If TargetNamespaces is nil or empty, the CertificateDelegation'is ignored. If the TargetNamespace list contains the character, '*'the secret will be delegated to all namespaces.",
+									Description:         "required, the namespaces the authority to reference the secret will be delegated to. If TargetNamespaces is nil or empty, the CertificateDelegation' is ignored. If the TargetNamespace list contains the character, '*' the secret will be delegated to all namespaces.",
+									MarkdownDescription: "required, the namespaces the authority to reference the secret will be delegated to. If TargetNamespaces is nil or empty, the CertificateDelegation' is ignored. If the TargetNamespace list contains the character, '*' the secret will be delegated to all namespaces.",
 									ElementType:         types.StringType,
 									Required:            true,
 									Optional:            false,

@@ -70,18 +70,18 @@ Required:
 
 Optional:
 
-- `bucket` (String) Bucket name for bucket admin roles.  When not specified for a role that can be scopedto a specific bucket, the role will apply to all buckets in the cluster.Deprecated:  Couchbase Autonomous Operator 2.3
-- `buckets` (Attributes) Bucket level access to apply to specified role. The bucket must exist.  When not specified,the bucket field will be checked. If both are empty and the role can be scoped to a specific bucket, the rolewill apply to all buckets in the cluster (see [below for nested schema](#nestedatt--spec--roles--buckets))
-- `collections` (Attributes) Collection level access to apply to the specified role.  The collection must exist.When not specified, the role is subject to scope or bucket level access. (see [below for nested schema](#nestedatt--spec--roles--collections))
-- `scopes` (Attributes) Scope level access to apply to specified role.  The scope must exist.  When not specified,the role will apply to selected bucket or all buckets in the cluster. (see [below for nested schema](#nestedatt--spec--roles--scopes))
+- `bucket` (String) Bucket name for bucket admin roles. When not specified for a role that can be scoped to a specific bucket, the role will apply to all buckets in the cluster. Deprecated: Couchbase Autonomous Operator 2.3
+- `buckets` (Attributes) Bucket level access to apply to specified role. The bucket must exist. When not specified, the bucket field will be checked. If both are empty and the role can be scoped to a specific bucket, the role will apply to all buckets in the cluster (see [below for nested schema](#nestedatt--spec--roles--buckets))
+- `collections` (Attributes) Collection level access to apply to the specified role. The collection must exist. When not specified, the role is subject to scope or bucket level access. (see [below for nested schema](#nestedatt--spec--roles--collections))
+- `scopes` (Attributes) Scope level access to apply to specified role. The scope must exist. When not specified, the role will apply to selected bucket or all buckets in the cluster. (see [below for nested schema](#nestedatt--spec--roles--scopes))
 
 <a id="nestedatt--spec--roles--buckets"></a>
 ### Nested Schema for `spec.roles.buckets`
 
 Optional:
 
-- `resources` (Attributes List) Resources is an explicit list of named bucket resources that will be consideredfor inclusion in this role.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency. (see [below for nested schema](#nestedatt--spec--roles--buckets--resources))
-- `selector` (Attributes) Selector allows resources to be implicitly considered for inclusion in thisrole.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--roles--buckets--selector))
+- `resources` (Attributes List) Resources is an explicit list of named bucket resources that will be considered for inclusion in this role. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency. (see [below for nested schema](#nestedatt--spec--roles--buckets--resources))
+- `selector` (Attributes) Selector allows resources to be implicitly considered for inclusion in this role. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--roles--buckets--selector))
 
 <a id="nestedatt--spec--roles--buckets--resources"></a>
 ### Nested Schema for `spec.roles.buckets.resources`
@@ -92,7 +92,7 @@ Required:
 
 Optional:
 
-- `kind` (String) Kind indicates the kind of resource that is being referenced.  A Rolecan only reference 'CouchbaseBucket' kind.  This field defaultsto 'CouchbaseBucket' if not specified.
+- `kind` (String) Kind indicates the kind of resource that is being referenced. A Role can only reference 'CouchbaseBucket' kind. This field defaults to 'CouchbaseBucket' if not specified.
 
 
 <a id="nestedatt--spec--roles--buckets--selector"></a>
@@ -101,7 +101,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--roles--buckets--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--roles--buckets--selector--match_expressions"></a>
 ### Nested Schema for `spec.roles.buckets.selector.match_expressions`
@@ -109,11 +109,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -123,19 +123,19 @@ Optional:
 
 Optional:
 
-- `resources` (Attributes List) Resources is an explicit list of named resources that will be consideredfor inclusion in this collection or collections.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency. (see [below for nested schema](#nestedatt--spec--roles--collections--resources))
-- `selector` (Attributes) Selector allows resources to be implicitly considered for inclusion in thiscollection or collections.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--roles--collections--selector))
+- `resources` (Attributes List) Resources is an explicit list of named resources that will be considered for inclusion in this collection or collections. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency. (see [below for nested schema](#nestedatt--spec--roles--collections--resources))
+- `selector` (Attributes) Selector allows resources to be implicitly considered for inclusion in this collection or collections. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--roles--collections--selector))
 
 <a id="nestedatt--spec--roles--collections--resources"></a>
 ### Nested Schema for `spec.roles.collections.resources`
 
 Required:
 
-- `name` (String) Name is the name of the Kubernetes resource name that is being referenced.Legal collection names have a maximum length of 251characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.
+- `name` (String) Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.
 
 Optional:
 
-- `kind` (String) Kind indicates the kind of resource that is being referenced.  A scopecan only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup'resource kinds.  This field defaults to 'CouchbaseCollection' if notspecified.
+- `kind` (String) Kind indicates the kind of resource that is being referenced. A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds. This field defaults to 'CouchbaseCollection' if not specified.
 
 
 <a id="nestedatt--spec--roles--collections--selector"></a>
@@ -144,7 +144,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--roles--collections--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--roles--collections--selector--match_expressions"></a>
 ### Nested Schema for `spec.roles.collections.selector.match_expressions`
@@ -152,11 +152,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -166,19 +166,19 @@ Optional:
 
 Optional:
 
-- `resources` (Attributes List) Resources is an explicit list of named resources that will be consideredfor inclusion in this scope or scopes.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency. (see [below for nested schema](#nestedatt--spec--roles--scopes--resources))
-- `selector` (Attributes) Selector allows resources to be implicitly considered for inclusion in thisscope or scopes.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--roles--scopes--selector))
+- `resources` (Attributes List) Resources is an explicit list of named resources that will be considered for inclusion in this scope or scopes. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency. (see [below for nested schema](#nestedatt--spec--roles--scopes--resources))
+- `selector` (Attributes) Selector allows resources to be implicitly considered for inclusion in this scope or scopes. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--roles--scopes--selector))
 
 <a id="nestedatt--spec--roles--scopes--resources"></a>
 ### Nested Schema for `spec.roles.scopes.resources`
 
 Required:
 
-- `name` (String) Name is the name of the Kubernetes resource name that is being referenced.Legal scope names have a maximum length of 251characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.
+- `name` (String) Name is the name of the Kubernetes resource name that is being referenced. Legal scope names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.
 
 Optional:
 
-- `kind` (String) Kind indicates the kind of resource that is being referenced.  A scopecan only reference 'CouchbaseScope' and 'CouchbaseScopeGroup'resource kinds.  This field defaults to 'CouchbaseScope' if notspecified.
+- `kind` (String) Kind indicates the kind of resource that is being referenced. A scope can only reference 'CouchbaseScope' and 'CouchbaseScopeGroup' resource kinds. This field defaults to 'CouchbaseScope' if not specified.
 
 
 <a id="nestedatt--spec--roles--scopes--selector"></a>
@@ -187,7 +187,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--roles--scopes--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--roles--scopes--selector--match_expressions"></a>
 ### Nested Schema for `spec.roles.scopes.selector.match_expressions`
@@ -195,8 +195,8 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.

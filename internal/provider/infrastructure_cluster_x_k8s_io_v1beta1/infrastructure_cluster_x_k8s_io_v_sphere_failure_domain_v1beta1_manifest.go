@@ -137,8 +137,8 @@ func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1Manifest) Schema(
 						MarkdownDescription: "Region defines the name and type of a region",
 						Attributes: map[string]schema.Attribute{
 							"auto_configure": schema.BoolAttribute{
-								Description:         "AutoConfigure tags the Type which is specified in the TopologyDeprecated: This field is going to be removed in a future release.",
-								MarkdownDescription: "AutoConfigure tags the Type which is specified in the TopologyDeprecated: This field is going to be removed in a future release.",
+								Description:         "AutoConfigure tags the Type which is specified in the Topology Deprecated: This field is going to be removed in a future release.",
+								MarkdownDescription: "AutoConfigure tags the Type which is specified in the Topology Deprecated: This field is going to be removed in a future release.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -197,8 +197,8 @@ func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1Manifest) Schema(
 							},
 
 							"datastore": schema.StringAttribute{
-								Description:         "Datastore is the name or inventory path of the datastore in which thevirtual machine is created/located.",
-								MarkdownDescription: "Datastore is the name or inventory path of the datastore in which thevirtual machine is created/located.",
+								Description:         "Datastore is the name or inventory path of the datastore in which the virtual machine is created/located.",
+								MarkdownDescription: "Datastore is the name or inventory path of the datastore in which the virtual machine is created/located.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -248,8 +248,8 @@ func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1Manifest) Schema(
 						MarkdownDescription: "Zone defines the name and type of a zone",
 						Attributes: map[string]schema.Attribute{
 							"auto_configure": schema.BoolAttribute{
-								Description:         "AutoConfigure tags the Type which is specified in the TopologyDeprecated: This field is going to be removed in a future release.",
-								MarkdownDescription: "AutoConfigure tags the Type which is specified in the TopologyDeprecated: This field is going to be removed in a future release.",
+								Description:         "AutoConfigure tags the Type which is specified in the Topology Deprecated: This field is going to be removed in a future release.",
+								MarkdownDescription: "AutoConfigure tags the Type which is specified in the Topology Deprecated: This field is going to be removed in a future release.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

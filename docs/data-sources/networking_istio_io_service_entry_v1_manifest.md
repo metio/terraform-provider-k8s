@@ -62,9 +62,9 @@ Optional:
 - `addresses` (List of String) The virtual IP addresses associated with the service.
 - `endpoints` (Attributes List) One or more endpoints associated with the service. (see [below for nested schema](#nestedatt--spec--endpoints))
 - `export_to` (List of String) A list of namespaces to which this service is exported.
-- `location` (String) Specify whether the service should be considered external to the mesh or part of the mesh.Valid Options: MESH_EXTERNAL, MESH_INTERNAL
+- `location` (String) Specify whether the service should be considered external to the mesh or part of the mesh. Valid Options: MESH_EXTERNAL, MESH_INTERNAL
 - `ports` (Attributes List) The ports associated with the external service. (see [below for nested schema](#nestedatt--spec--ports))
-- `resolution` (String) Service resolution mode for the hosts.Valid Options: NONE, STATIC, DNS, DNS_ROUND_ROBIN
+- `resolution` (String) Service resolution mode for the hosts. Valid Options: NONE, STATIC, DNS, DNS_ROUND_ROBIN
 - `subject_alt_names` (List of String) If specified, the proxy will verify that the server certificate's subject alternate name matches one of the specified values.
 - `workload_selector` (Attributes) Applicable only for MESH_INTERNAL services. (see [below for nested schema](#nestedatt--spec--workload_selector))
 

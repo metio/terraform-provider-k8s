@@ -3,12 +3,12 @@
 page_title: "k8s_getambassador_io_module_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "getambassador.io"
 description: |-
-  A Module defines system-wide configuration.  The type of module is controlled by the .metadata.name; valid names are 'ambassador' or 'tls'.  https://www.getambassador.io/docs/edge-stack/latest/topics/running/ambassador/#the-ambassador-module https://www.getambassador.io/docs/edge-stack/latest/topics/running/tls/#tls-module-deprecated
+  A Module defines system-wide configuration. The type of module is controlled by the .metadata.name; valid names are 'ambassador' or 'tls'. https://www.getambassador.io/docs/edge-stack/latest/topics/running/ambassador/#the-ambassador-module https://www.getambassador.io/docs/edge-stack/latest/topics/running/tls/#tls-module-deprecated
 ---
 
 # k8s_getambassador_io_module_v2_manifest (Data Source)
 
-A Module defines system-wide configuration.  The type of module is controlled by the .metadata.name; valid names are 'ambassador' or 'tls'.  https://www.getambassador.io/docs/edge-stack/latest/topics/running/ambassador/#the-ambassador-module https://www.getambassador.io/docs/edge-stack/latest/topics/running/tls/#tls-module-deprecated
+A Module defines system-wide configuration. The type of module is controlled by the .metadata.name; valid names are 'ambassador' or 'tls'. https://www.getambassador.io/docs/edge-stack/latest/topics/running/ambassador/#the-ambassador-module https://www.getambassador.io/docs/edge-stack/latest/topics/running/tls/#tls-module-deprecated
 
 ## Example Usage
 
@@ -55,5 +55,5 @@ Optional:
 
 Optional:
 
-- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource.  May either be a string or a list of strings.  If no value is provided, the default is:  ambassador_id: - 'default'
+- `ambassador_id` (List of String) AmbassadorID declares which Ambassador instances should pay attention to this resource. May either be a string or a list of strings. If no value is provided, the default is: ambassador_id: - 'default'
 - `config` (Map of String)

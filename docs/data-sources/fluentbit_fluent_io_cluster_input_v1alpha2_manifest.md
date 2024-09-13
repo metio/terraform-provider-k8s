@@ -54,13 +54,13 @@ Optional:
 
 Optional:
 
-- `alias` (String) A user friendly alias name for this input plugin.Used in metrics for distinction of each configured input.
+- `alias` (String) A user friendly alias name for this input plugin. Used in metrics for distinction of each configured input.
 - `collectd` (Attributes) Collectd defines the Collectd input plugin configuration (see [below for nested schema](#nestedatt--spec--collectd))
 - `custom_plugin` (Attributes) CustomPlugin defines Custom Input configuration. (see [below for nested schema](#nestedatt--spec--custom_plugin))
 - `dummy` (Attributes) Dummy defines Dummy Input configuration. (see [below for nested schema](#nestedatt--spec--dummy))
 - `exec_wasi` (Attributes) ExecWasi defines the exec wasi input plugin configuration (see [below for nested schema](#nestedatt--spec--exec_wasi))
 - `fluent_bit_metrics` (Attributes) FluentBitMetrics defines Fluent Bit Metrics Input configuration. (see [below for nested schema](#nestedatt--spec--fluent_bit_metrics))
-- `forward` (Attributes) Forward defines forward  input plugin configuration (see [below for nested schema](#nestedatt--spec--forward))
+- `forward` (Attributes) Forward defines forward input plugin configuration (see [below for nested schema](#nestedatt--spec--forward))
 - `http` (Attributes) HTTP defines the HTTP input plugin configuration (see [below for nested schema](#nestedatt--spec--http))
 - `kubernetes_events` (Attributes) KubernetesEvents defines the KubernetesEvents input plugin configuration (see [below for nested schema](#nestedatt--spec--kubernetes_events))
 - `log_level` (String)
@@ -69,7 +69,7 @@ Optional:
 - `node_exporter_metrics` (Attributes) NodeExporterMetrics defines Node Exporter Metrics Input configuration. (see [below for nested schema](#nestedatt--spec--node_exporter_metrics))
 - `open_telemetry` (Attributes) OpenTelemetry defines the OpenTelemetry input plugin configuration (see [below for nested schema](#nestedatt--spec--open_telemetry))
 - `processors` (Map of String) Processors defines the processors configuration
-- `prometheus_scrape_metrics` (Attributes) PrometheusScrapeMetrics  defines Prometheus Scrape Metrics Input configuration. (see [below for nested schema](#nestedatt--spec--prometheus_scrape_metrics))
+- `prometheus_scrape_metrics` (Attributes) PrometheusScrapeMetrics defines Prometheus Scrape Metrics Input configuration. (see [below for nested schema](#nestedatt--spec--prometheus_scrape_metrics))
 - `statsd` (Attributes) StatsD defines the StatsD input plugin configuration (see [below for nested schema](#nestedatt--spec--statsd))
 - `syslog` (Attributes) Syslog defines the Syslog input plugin configuration (see [below for nested schema](#nestedatt--spec--syslog))
 - `systemd` (Attributes) Systemd defines Systemd Input configuration. (see [below for nested schema](#nestedatt--spec--systemd))
@@ -92,7 +92,7 @@ Optional:
 
 Optional:
 
-- `config` (String) Config holds any unsupported plugins classic configurations,if ConfigFileFormat is set to yaml, this filed will be ignored
+- `config` (String) Config holds any unsupported plugins classic configurations, if ConfigFileFormat is set to yaml, this filed will be ignored
 - `yaml_config` (Map of String) YamlConfig holds the unsupported plugins yaml configurations, it only works when the ConfigFileFormat is yaml
 
 
@@ -138,8 +138,8 @@ Optional:
 
 Optional:
 
-- `buffer_max_size` (String) Specify maximum buffer memory size used to recieve a forward message.The value must be according to the Unit Size specification.
-- `bufferchunk_size` (String) Set the initial buffer size to store incoming data.This value is used too to increase buffer size as required.The value must be according to the Unit Size specification.
+- `buffer_max_size` (String) Specify maximum buffer memory size used to recieve a forward message. The value must be according to the Unit Size specification.
+- `bufferchunk_size` (String) Set the initial buffer size to store incoming data. This value is used too to increase buffer size as required. The value must be according to the Unit Size specification.
 - `listen` (String) Listener network interface.
 - `port` (Number) Port for forward plugin instance.
 - `tag` (String) in_forward uses the tag value for incoming logs. If not set it uses tag from incoming log.
@@ -154,7 +154,7 @@ Optional:
 
 Optional:
 
-- `buffer_chunk_size` (String) This sets the chunk size for incoming incoming JSON messages.These chunks are then stored/managed in the space available by buffer_max_size,default 512K.
+- `buffer_chunk_size` (String) This sets the chunk size for incoming incoming JSON messages. These chunks are then stored/managed in the space available by buffer_max_size,default 512K.
 - `buffer_max_size` (String) Specify the maximum buffer size in KB to receive a JSON message,default 4M.
 - `listen` (String) The address to listen on,default 0.0.0.0
 - `port` (Number) The port for Fluent Bit to listen on,default 9880
@@ -171,7 +171,7 @@ Optional:
 - `ca_file` (String) Absolute path to CA certificate file
 - `ca_path` (String) Absolute path to scan for certificate files
 - `crt_file` (String) Absolute path to Certificate file
-- `debug` (Number) Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
+- `debug` (Number) Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose
 - `key_file` (String) Absolute path to private Key file
 - `key_password` (Attributes) Optional password for tls.key_file file (see [below for nested schema](#nestedatt--spec--http--tls--key_password))
 - `verify` (Boolean) Force certificate validation
@@ -196,11 +196,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -223,7 +223,7 @@ Optional:
 - `kube_request_limit` (Number) kubernetes limit parameter for events query, no limit applied when set to 0.
 - `kube_retention_time` (String) Kubernetes retention time for events.
 - `kube_token_file` (String) Token file
-- `kube_token_ttl` (String) configurable 'time to live' for the K8s token. By default, it is set to 600 seconds.After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.
+- `kube_token_ttl` (String) configurable 'time to live' for the K8s token. By default, it is set to 600 seconds. After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.
 - `kube_url` (String) API Server end-point
 - `tag` (String) Tag name associated to all records comming from this plugin.
 - `tls_debug` (Number) Debug level between 0 (nothing) and 4 (every detail).
@@ -312,14 +312,14 @@ Optional:
 
 Optional:
 
-- `buffer_chunk_size` (String) By default the buffer to store the incoming Syslog messages, do not allocate the maximum memory allowed, instead it allocate memory when is required.The rounds of allocations are set by Buffer_Chunk_Size. If not set, Buffer_Chunk_Size is equal to 32000 bytes (32KB).
+- `buffer_chunk_size` (String) By default the buffer to store the incoming Syslog messages, do not allocate the maximum memory allowed, instead it allocate memory when is required. The rounds of allocations are set by Buffer_Chunk_Size. If not set, Buffer_Chunk_Size is equal to 32000 bytes (32KB).
 - `buffer_max_size` (String) Specify the maximum buffer size to receive a Syslog message. If not set, the default size will be the value of Buffer_Chunk_Size.
 - `listen` (String) If Mode is set to tcp or udp, specify the network interface to bind, default: 0.0.0.0
 - `mode` (String) Defines transport protocol mode: unix_udp (UDP over Unix socket), unix_tcp (TCP over Unix socket), tcp or udp
-- `parser` (String) Specify an alternative parser for the message. If Mode is set to tcp or udp then the default parser is syslog-rfc5424 otherwise syslog-rfc3164-local is used.If your syslog messages have fractional seconds set this Parser value to syslog-rfc5424 instead.
+- `parser` (String) Specify an alternative parser for the message. If Mode is set to tcp or udp then the default parser is syslog-rfc5424 otherwise syslog-rfc3164-local is used. If your syslog messages have fractional seconds set this Parser value to syslog-rfc5424 instead.
 - `path` (String) If Mode is set to unix_tcp or unix_udp, set the absolute path to the Unix socket file.
 - `port` (Number) If Mode is set to tcp or udp, specify the TCP port to listen for incoming connections.
-- `receive_buffer_size` (String) Specify the maximum socket receive buffer size. If not set, the default value is OS-dependant,but generally too low to accept thousands of syslog messages per second without loss on udp or unix_udp sockets. Note that on Linux the value is capped by sysctl net.core.rmem_max.
+- `receive_buffer_size` (String) Specify the maximum socket receive buffer size. If not set, the default value is OS-dependant, but generally too low to accept thousands of syslog messages per second without loss on udp or unix_udp sockets. Note that on Linux the value is capped by sysctl net.core.rmem_max.
 - `source_address_key` (String) Specify the key where the source address will be injected.
 - `unix_perm` (Number) If Mode is set to unix_tcp or unix_udp, set the permission of the Unix socket file, default: 0644
 
@@ -330,17 +330,17 @@ Optional:
 Optional:
 
 - `db` (String) Specify the database file to keep track of monitored files and offsets.
-- `db_sync` (String) Set a default synchronization (I/O) method. values: Extra, Full, Normal, Off.This flag affects how the internal SQLite engine do synchronization to disk,for more details about each option please refer to this section.note: this option was introduced on Fluent Bit v1.4.6.
-- `max_entries` (Number) When Fluent Bit starts, the Journal might have a high number of logs in the queue.In order to avoid delays and reduce memory usage, this option allows to specify the maximum number of log entries that can be processed per round.Once the limit is reached, Fluent Bit will continue processing the remaining log entries once Journald performs the notification.
+- `db_sync` (String) Set a default synchronization (I/O) method. values: Extra, Full, Normal, Off. This flag affects how the internal SQLite engine do synchronization to disk, for more details about each option please refer to this section. note: this option was introduced on Fluent Bit v1.4.6.
+- `max_entries` (Number) When Fluent Bit starts, the Journal might have a high number of logs in the queue. In order to avoid delays and reduce memory usage, this option allows to specify the maximum number of log entries that can be processed per round. Once the limit is reached, Fluent Bit will continue processing the remaining log entries once Journald performs the notification.
 - `max_fields` (Number) Set a maximum number of fields (keys) allowed per record.
-- `path` (String) Optional path to the Systemd journal directory,if not set, the plugin will use default paths to read local-only logs.
+- `path` (String) Optional path to the Systemd journal directory, if not set, the plugin will use default paths to read local-only logs.
 - `pause_on_chunks_overlimit` (String) Specifies if the input plugin should be paused (stop ingesting new data) when the storage.max_chunks_up value is reached.
 - `read_from_tail` (String) Start reading new entries. Skip entries already stored in Journald.
 - `storage_type` (String) Specify the buffering mechanism to use. It can be memory or filesystem
 - `strip_underscores` (String) Remove the leading underscore of the Journald field (key). For example the Journald field _PID becomes the key PID.
-- `systemd_filter` (List of String) Allows to perform a query over logs that contains a specific Journald key/value pairs, e.g: _SYSTEMD_UNIT=UNIT.The Systemd_Filter option can be specified multiple times in the input section to apply multiple filters as required.
-- `systemd_filter_type` (String) Define the filter type when Systemd_Filter is specified multiple times. Allowed values are And and Or.With And a record is matched only when all of the Systemd_Filter have a match.With Or a record is matched when any of the Systemd_Filter has a match.
-- `tag` (String) The tag is used to route messages but on Systemd plugin there is an extra functionality:if the tag includes a star/wildcard, it will be expanded with the Systemd Unit file (e.g: host.* => host.UNIT_NAME).
+- `systemd_filter` (List of String) Allows to perform a query over logs that contains a specific Journald key/value pairs, e.g: _SYSTEMD_UNIT=UNIT. The Systemd_Filter option can be specified multiple times in the input section to apply multiple filters as required.
+- `systemd_filter_type` (String) Define the filter type when Systemd_Filter is specified multiple times. Allowed values are And and Or. With And a record is matched only when all of the Systemd_Filter have a match. With Or a record is matched when any of the Systemd_Filter has a match.
+- `tag` (String) The tag is used to route messages but on Systemd plugin there is an extra functionality: if the tag includes a star/wildcard, it will be expanded with the Systemd Unit file (e.g: host.* => host.UNIT_NAME).
 
 
 <a id="nestedatt--spec--tail"></a>
@@ -348,33 +348,33 @@ Optional:
 
 Optional:
 
-- `buffer_chunk_size` (String) Set the initial buffer size to read files data.This value is used too to increase buffer size.The value must be according to the Unit Size specification.
-- `buffer_max_size` (String) Set the limit of the buffer size per monitored file.When a buffer needs to be increased (e.g: very long lines),this value is used to restrict how much the memory buffer can grow.If reading a file exceed this limit, the file is removed from the monitored file listThe value must be according to the Unit Size specification.
+- `buffer_chunk_size` (String) Set the initial buffer size to read files data. This value is used too to increase buffer size. The value must be according to the Unit Size specification.
+- `buffer_max_size` (String) Set the limit of the buffer size per monitored file. When a buffer needs to be increased (e.g: very long lines), this value is used to restrict how much the memory buffer can grow. If reading a file exceed this limit, the file is removed from the monitored file list The value must be according to the Unit Size specification.
 - `db` (String) Specify the database file to keep track of monitored files and offsets.
 - `db_sync` (String) Set a default synchronization (I/O) method. Values: Extra, Full, Normal, Off.
 - `disable_inotify_watcher` (Boolean) DisableInotifyWatcher will disable inotify and use the file stat watcher instead.
-- `docker_mode` (Boolean) If enabled, the plugin will recombine split Docker log lines before passing them to any parser as configured above.This mode cannot be used at the same time as Multiline.
+- `docker_mode` (Boolean) If enabled, the plugin will recombine split Docker log lines before passing them to any parser as configured above. This mode cannot be used at the same time as Multiline.
 - `docker_mode_flush_seconds` (Number) Wait period time in seconds to flush queued unfinished split lines.
 - `docker_mode_parser` (String) Specify an optional parser for the first line of the docker multiline mode. The parser name to be specified must be registered in the parsers.conf file.
-- `exclude_path` (String) Set one or multiple shell patterns separated by commas to exclude files matching a certain criteria,e.g: exclude_path=*.gz,*.zip
-- `ignored_older` (String) Ignores records which are older than this time in seconds.Supports m,h,d (minutes, hours, days) syntax.Default behavior is to read all records from specified files.Only available when a Parser is specificied and it can parse the time of a record.
-- `key` (String) When a message is unstructured (no parser applied), it's appended as a string under the key name log.This option allows to define an alternative name for that key.
-- `mem_buf_limit` (String) Set a limit of memory that Tail plugin can use when appending data to the Engine.If the limit is reach, it will be paused; when the data is flushed it resumes.
-- `multiline` (Boolean) If enabled, the plugin will try to discover multiline messagesand use the proper parsers to compose the outgoing messages.Note that when this option is enabled the Parser option is not used.
+- `exclude_path` (String) Set one or multiple shell patterns separated by commas to exclude files matching a certain criteria, e.g: exclude_path=*.gz,*.zip
+- `ignored_older` (String) Ignores records which are older than this time in seconds. Supports m,h,d (minutes, hours, days) syntax. Default behavior is to read all records from specified files. Only available when a Parser is specificied and it can parse the time of a record.
+- `key` (String) When a message is unstructured (no parser applied), it's appended as a string under the key name log. This option allows to define an alternative name for that key.
+- `mem_buf_limit` (String) Set a limit of memory that Tail plugin can use when appending data to the Engine. If the limit is reach, it will be paused; when the data is flushed it resumes.
+- `multiline` (Boolean) If enabled, the plugin will try to discover multiline messages and use the proper parsers to compose the outgoing messages. Note that when this option is enabled the Parser option is not used.
 - `multiline_flush_seconds` (Number) Wait period time in seconds to process queued multiline messages
-- `multiline_parser` (String) This will help to reassembly multiline messages originally split by Docker or CRISpecify one or Multiline Parser definition to apply to the content.
+- `multiline_parser` (String) This will help to reassembly multiline messages originally split by Docker or CRI Specify one or Multiline Parser definition to apply to the content.
 - `parser` (String) Specify the name of a parser to interpret the entry as a structured message.
-- `parser_firstline` (String) Name of the parser that matchs the beginning of a multiline message.Note that the regular expression defined in the parser must include a group name (named capture)
-- `parser_n` (List of String) Optional-extra parser to interpret and structure multiline entries.This option can be used to define multiple parsers.
+- `parser_firstline` (String) Name of the parser that matchs the beginning of a multiline message. Note that the regular expression defined in the parser must include a group name (named capture)
+- `parser_n` (List of String) Optional-extra parser to interpret and structure multiline entries. This option can be used to define multiple parsers.
 - `path` (String) Pattern specifying a specific log files or multiple ones through the use of common wildcards.
-- `path_key` (String) If enabled, it appends the name of the monitored file as part of the record.The value assigned becomes the key in the map.
+- `path_key` (String) If enabled, it appends the name of the monitored file as part of the record. The value assigned becomes the key in the map.
 - `pause_on_chunks_overlimit` (String) Specifies if the input plugin should be paused (stop ingesting new data) when the storage.max_chunks_up value is reached.
-- `read_from_head` (Boolean) For new discovered files on start (without a database offset/position),read the content from the head of the file, not tail.
+- `read_from_head` (Boolean) For new discovered files on start (without a database offset/position), read the content from the head of the file, not tail.
 - `refresh_interval_seconds` (Number) The interval of refreshing the list of watched files in seconds.
 - `rotate_wait_seconds` (Number) Specify the number of extra time in seconds to monitor a file once is rotated in case some pending data is flushed.
-- `skip_long_lines` (Boolean) When a monitored file reach it buffer capacity due to a very long line (Buffer_Max_Size),the default behavior is to stop monitoring that file.Skip_Long_Lines alter that behavior and instruct Fluent Bit to skip long linesand continue processing other lines that fits into the buffer size.
+- `skip_long_lines` (Boolean) When a monitored file reach it buffer capacity due to a very long line (Buffer_Max_Size), the default behavior is to stop monitoring that file. Skip_Long_Lines alter that behavior and instruct Fluent Bit to skip long lines and continue processing other lines that fits into the buffer size.
 - `storage_type` (String) Specify the buffering mechanism to use. It can be memory or filesystem
-- `tag` (String) Set a tag (with regex-extract fields) that will be placed on lines read.E.g. kube.<namespace_name>.<pod_name>.<container_name>
+- `tag` (String) Set a tag (with regex-extract fields) that will be placed on lines read. E.g. kube.<namespace_name>.<pod_name>.<container_name>
 - `tag_regex` (String) Set a regex to exctract fields from the file
 
 
@@ -384,8 +384,8 @@ Optional:
 Optional:
 
 - `buffer_size` (String) Specify the maximum buffer size in KB to receive a JSON message. If not set, the default size will be the value of Chunk_Size.
-- `chunk_size` (String) By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed, instead it allocate memory when is required.The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).
-- `format` (String) Specify the expected payload format. It support the options json and none.When using json, it expects JSON maps, when is set to none, it will split every record using the defined Separator (option below).
+- `chunk_size` (String) By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed, instead it allocate memory when is required. The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).
+- `format` (String) Specify the expected payload format. It support the options json and none. When using json, it expects JSON maps, when is set to none, it will split every record using the defined Separator (option below).
 - `listen` (String) Listener network interface,default 0.0.0.0
 - `port` (Number) TCP port where listening for connections,default 5170
 - `separator` (String) When the expected Format is set to none, Fluent Bit needs a separator string to split the records. By default it uses the breakline character (LF or 0x10).
@@ -396,9 +396,9 @@ Optional:
 
 Optional:
 
-- `buffer_size` (String) BufferSize Specify the maximum buffer size in KB to receive a JSON message.If not set, the default size will be the value of Chunk_Size.
-- `chunk_size` (String) By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed,instead it allocate memory when is required.The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).
-- `format` (String) Format Specify the expected payload format. It support the options json and none.When using json, it expects JSON maps, when is set to none,it will split every record using the defined Separator (option below).
+- `buffer_size` (String) BufferSize Specify the maximum buffer size in KB to receive a JSON message. If not set, the default size will be the value of Chunk_Size.
+- `chunk_size` (String) By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed, instead it allocate memory when is required. The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).
+- `format` (String) Format Specify the expected payload format. It support the options json and none. When using json, it expects JSON maps, when is set to none, it will split every record using the defined Separator (option below).
 - `listen` (String) Listen Listener network interface, default: 0.0.0.0
 - `port` (Number) Port Specify the UDP port where listening for connections, default: 5170
 - `separator` (String) Separator When the expected Format is set to none, Fluent Bit needs a separator string to split the records. By default it uses the breakline character (LF or 0x10).

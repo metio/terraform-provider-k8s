@@ -3,12 +3,12 @@
 page_title: "k8s_apps_kubeblocks_io_cluster_definition_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apps.kubeblocks.io"
 description: |-
-  ClusterDefinition defines the topology for databases or storage systems,offering a variety of topological configurations to meet diverse deployment needs and scenarios.It includes a list of Components, each linked to a ComponentDefinition, which enhances reusability and reduce redundancy.For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions,simplifying the setup of new systems.Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown for Components,ensuring a controlled and predictable management of component lifecycles.
+  ClusterDefinition defines the topology for databases or storage systems, offering a variety of topological configurations to meet diverse deployment needs and scenarios. It includes a list of Components, each linked to a ComponentDefinition, which enhances reusability and reduce redundancy. For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions, simplifying the setup of new systems. Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown for Components, ensuring a controlled and predictable management of component lifecycles.
 ---
 
 # k8s_apps_kubeblocks_io_cluster_definition_v1alpha1_manifest (Data Source)
 
-ClusterDefinition defines the topology for databases or storage systems,offering a variety of topological configurations to meet diverse deployment needs and scenarios.It includes a list of Components, each linked to a ComponentDefinition, which enhances reusability and reduce redundancy.For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions,simplifying the setup of new systems.Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown for Components,ensuring a controlled and predictable management of component lifecycles.
+ClusterDefinition defines the topology for databases or storage systems, offering a variety of topological configurations to meet diverse deployment needs and scenarios. It includes a list of Components, each linked to a ComponentDefinition, which enhances reusability and reduce redundancy. For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions, simplifying the setup of new systems. Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown for Components, ensuring a controlled and predictable management of component lifecycles.
 
 ## Example Usage
 
@@ -62,20 +62,20 @@ Optional:
 Required:
 
 - `components` (Attributes List) Components specifies the components in the topology. (see [below for nested schema](#nestedatt--spec--topologies--components))
-- `name` (String) Name is the unique identifier for the cluster topology.Cannot be updated.
+- `name` (String) Name is the unique identifier for the cluster topology. Cannot be updated.
 
 Optional:
 
-- `default` (Boolean) Default indicates whether this topology serves as the default configuration.When set to true, this topology is automatically used unless another is explicitly specified.
-- `orders` (Attributes) Specifies the sequence in which components within a cluster topology arestarted, stopped, and upgraded.This ordering is crucial for maintaining the correct dependencies and operational flow across components. (see [below for nested schema](#nestedatt--spec--topologies--orders))
+- `default` (Boolean) Default indicates whether this topology serves as the default configuration. When set to true, this topology is automatically used unless another is explicitly specified.
+- `orders` (Attributes) Specifies the sequence in which components within a cluster topology are started, stopped, and upgraded. This ordering is crucial for maintaining the correct dependencies and operational flow across components. (see [below for nested schema](#nestedatt--spec--topologies--orders))
 
 <a id="nestedatt--spec--topologies--components"></a>
 ### Nested Schema for `spec.topologies.components`
 
 Required:
 
-- `comp_def` (String) Specifies the name or prefix of the ComponentDefinition custom resource(CR) thatdefines the Component's characteristics and behavior.When a prefix is used, the system selects the ComponentDefinition CR with the latest version that matches the prefix.This approach allows:1. Precise selection by providing the exact name of a ComponentDefinition CR.2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a prefix.Once set, this field cannot be updated.
-- `name` (String) Defines the unique identifier of the component within the cluster topology.It follows IANA Service naming rules and is used as part of the Service's DNS name.The name must start with a lowercase letter, can contain lowercase letters, numbers,and hyphens, and must end with a lowercase letter or number.Cannot be updated once set.
+- `comp_def` (String) Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinition custom resource (CR) that defines the Component's characteristics and behavior. The system selects the ComponentDefinition CR with the latest version that matches the pattern. This approach allows: 1. Precise selection by providing the exact name of a ComponentDefinition CR. 2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a name prefix or regular expression pattern. Once set, this field cannot be updated.
+- `name` (String) Defines the unique identifier of the component within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number. Cannot be updated once set.
 
 
 <a id="nestedatt--spec--topologies--orders"></a>
@@ -83,6 +83,6 @@ Required:
 
 Optional:
 
-- `provision` (List of String) Specifies the order for creating and initializing components.This is designed for components that depend on one another. Components without dependencies can be grouped together.Components that can be provisioned independently or have no dependencies can be listed together in the same stage,separated by commas.
-- `terminate` (List of String) Outlines the order for stopping and deleting components.This sequence is designed for components that require a graceful shutdown or have interdependencies.Components that can be terminated independently or have no dependencies can be listed together in the same stage,separated by commas.
-- `update` (List of String) Update determines the order for updating components' specifications, such as image upgrades or resource scaling.This sequence is designed for components that have dependencies or require specific update procedures.Components that can be updated independently or have no dependencies can be listed together in the same stage,separated by commas.
+- `provision` (List of String) Specifies the order for creating and initializing components. This is designed for components that depend on one another. Components without dependencies can be grouped together. Components that can be provisioned independently or have no dependencies can be listed together in the same stage, separated by commas.
+- `terminate` (List of String) Outlines the order for stopping and deleting components. This sequence is designed for components that require a graceful shutdown or have interdependencies. Components that can be terminated independently or have no dependencies can be listed together in the same stage, separated by commas.
+- `update` (List of String) Update determines the order for updating components' specifications, such as image upgrades or resource scaling. This sequence is designed for components that have dependencies or require specific update procedures. Components that can be updated independently or have no dependencies can be listed together in the same stage, separated by commas.

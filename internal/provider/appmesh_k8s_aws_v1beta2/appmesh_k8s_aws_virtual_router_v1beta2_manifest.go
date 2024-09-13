@@ -389,8 +389,8 @@ func (r *AppmeshK8SAwsVirtualRouterV1Beta2Manifest) Schema(_ context.Context, _ 
 					},
 
 					"mesh_ref": schema.SingleNestedAttribute{
-						Description:         "A reference to k8s Mesh CR that this VirtualRouter belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only.",
-						MarkdownDescription: "A reference to k8s Mesh CR that this VirtualRouter belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only.",
+						Description:         "A reference to k8s Mesh CR that this VirtualRouter belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only.",
+						MarkdownDescription: "A reference to k8s Mesh CR that this VirtualRouter belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name is the name of Mesh CR",

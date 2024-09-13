@@ -139,6 +139,7 @@ type ResourcesTeleportDevTeleportProvisionTokenV2ManifestData struct {
 				Workspace_name    *string `tfsdk:"workspace_name" json:"workspace_name,omitempty"`
 			} `tfsdk:"allow" json:"allow,omitempty"`
 			Audience *string `tfsdk:"audience" json:"audience,omitempty"`
+			Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
 		} `tfsdk:"terraform_cloud" json:"terraform_cloud,omitempty"`
 		Tpm *struct {
 			Allow *[]struct {
@@ -496,16 +497,16 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 							},
 
 							"enterprise_server_host": schema.StringAttribute{
-								Description:         "EnterpriseServerHost allows joining from runners associated with a GitHub Enterprise Server instance. When unconfigured, tokens will be validated against github.com, but when configured to the host of a GHES instance, then the tokens will be validated against host.  This value should be the hostname of the GHES instance, and should not include the scheme or a path. The instance must be accessible over HTTPS at this hostname and the certificate must be trusted by the Auth Server.",
-								MarkdownDescription: "EnterpriseServerHost allows joining from runners associated with a GitHub Enterprise Server instance. When unconfigured, tokens will be validated against github.com, but when configured to the host of a GHES instance, then the tokens will be validated against host.  This value should be the hostname of the GHES instance, and should not include the scheme or a path. The instance must be accessible over HTTPS at this hostname and the certificate must be trusted by the Auth Server.",
+								Description:         "EnterpriseServerHost allows joining from runners associated with a GitHub Enterprise Server instance. When unconfigured, tokens will be validated against github.com, but when configured to the host of a GHES instance, then the tokens will be validated against host. This value should be the hostname of the GHES instance, and should not include the scheme or a path. The instance must be accessible over HTTPS at this hostname and the certificate must be trusted by the Auth Server.",
+								MarkdownDescription: "EnterpriseServerHost allows joining from runners associated with a GitHub Enterprise Server instance. When unconfigured, tokens will be validated against github.com, but when configured to the host of a GHES instance, then the tokens will be validated against host. This value should be the hostname of the GHES instance, and should not include the scheme or a path. The instance must be accessible over HTTPS at this hostname and the certificate must be trusted by the Auth Server.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"enterprise_slug": schema.StringAttribute{
-								Description:         "EnterpriseSlug allows the slug of a GitHub Enterprise organisation to be included in the expected issuer of the OIDC tokens. This is for compatibility with the 'include_enterprise_slug' option in GHE.  This field should be set to the slug of your enterprise if this is enabled. If this is not enabled, then this field must be left empty. This field cannot be specified if 'enterprise_server_host' is specified.  See https://docs.github.com/en/enterprise-cloud@latest/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#customizing-the-issuer-value-for-an-enterprise for more information about customized issuer values.",
-								MarkdownDescription: "EnterpriseSlug allows the slug of a GitHub Enterprise organisation to be included in the expected issuer of the OIDC tokens. This is for compatibility with the 'include_enterprise_slug' option in GHE.  This field should be set to the slug of your enterprise if this is enabled. If this is not enabled, then this field must be left empty. This field cannot be specified if 'enterprise_server_host' is specified.  See https://docs.github.com/en/enterprise-cloud@latest/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#customizing-the-issuer-value-for-an-enterprise for more information about customized issuer values.",
+								Description:         "EnterpriseSlug allows the slug of a GitHub Enterprise organisation to be included in the expected issuer of the OIDC tokens. This is for compatibility with the 'include_enterprise_slug' option in GHE. This field should be set to the slug of your enterprise if this is enabled. If this is not enabled, then this field must be left empty. This field cannot be specified if 'enterprise_server_host' is specified. See https://docs.github.com/en/enterprise-cloud@latest/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#customizing-the-issuer-value-for-an-enterprise for more information about customized issuer values.",
+								MarkdownDescription: "EnterpriseSlug allows the slug of a GitHub Enterprise organisation to be included in the expected issuer of the OIDC tokens. This is for compatibility with the 'include_enterprise_slug' option in GHE. This field should be set to the slug of your enterprise if this is enabled. If this is not enabled, then this field must be left empty. This field cannot be specified if 'enterprise_server_host' is specified. See https://docs.github.com/en/enterprise-cloud@latest/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#customizing-the-issuer-value-for-an-enterprise for more information about customized issuer values.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -894,6 +895,14 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 							"audience": schema.StringAttribute{
 								Description:         "Audience is the JWT audience as configured in the TFC_WORKLOAD_IDENTITY_AUDIENCE(_$TAG) variable in Terraform Cloud. If unset, defaults to the Teleport cluster name. For example, if 'TFC_WORKLOAD_IDENTITY_AUDIENCE_TELEPORT=foo' is set in Terraform Cloud, this value should be 'foo'. If the variable is set to match the cluster name, it does not need to be set here.",
 								MarkdownDescription: "Audience is the JWT audience as configured in the TFC_WORKLOAD_IDENTITY_AUDIENCE(_$TAG) variable in Terraform Cloud. If unset, defaults to the Teleport cluster name. For example, if 'TFC_WORKLOAD_IDENTITY_AUDIENCE_TELEPORT=foo' is set in Terraform Cloud, this value should be 'foo'. If the variable is set to match the cluster name, it does not need to be set here.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"hostname": schema.StringAttribute{
+								Description:         "Hostname is the hostname of the Terraform Enterprise instance expected to issue JWTs allowed by this token. This may be unset for regular Terraform Cloud use, in which case it will be assumed to be 'app.terraform.io'. Otherwise, it must both match the 'iss' (issuer) field included in JWTs, and provide standard JWKS endpoints.",
+								MarkdownDescription: "Hostname is the hostname of the Terraform Enterprise instance expected to issue JWTs allowed by this token. This may be unset for regular Terraform Cloud use, in which case it will be assumed to be 'app.terraform.io'. Otherwise, it must both match the 'iss' (issuer) field included in JWTs, and provide standard JWKS endpoints.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

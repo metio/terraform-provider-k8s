@@ -3,12 +3,12 @@
 page_title: "k8s_addons_cluster_x_k8s_io_cluster_resource_set_binding_v1alpha3_manifest Data Source - terraform-provider-k8s"
 subcategory: "addons.cluster.x-k8s.io"
 description: |-
-  ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.Deprecated: This type will be removed in one of the next releases.
+  ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to. Deprecated: This type will be removed in one of the next releases.
 ---
 
 # k8s_addons_cluster_x_k8s_io_cluster_resource_set_binding_v1alpha3_manifest (Data Source)
 
-ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.Deprecated: This type will be removed in one of the next releases.
+ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to. Deprecated: This type will be removed in one of the next releases.
 
 ## Example Usage
 
@@ -79,5 +79,5 @@ Required:
 
 Optional:
 
-- `hash` (String) Hash is the hash of a resource's data. This can be used to decide if a resource is changed.For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.
+- `hash` (String) Hash is the hash of a resource's data. This can be used to decide if a resource is changed. For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.
 - `last_applied_time` (String) LastAppliedTime identifies when this resource was last applied to the cluster.

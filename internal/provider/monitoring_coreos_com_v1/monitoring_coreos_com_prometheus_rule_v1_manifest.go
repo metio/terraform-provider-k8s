@@ -68,8 +68,8 @@ func (r *MonitoringCoreosComPrometheusRuleV1Manifest) Metadata(_ context.Context
 
 func (r *MonitoringCoreosComPrometheusRuleV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "The 'PrometheusRule' custom resource definition (CRD) defines [alerting](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) and [recording](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects.'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.",
-		MarkdownDescription: "The 'PrometheusRule' custom resource definition (CRD) defines [alerting](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) and [recording](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects.'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.",
+		Description:         "The 'PrometheusRule' custom resource definition (CRD) defines [alerting](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) and [recording](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects. 'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.",
+		MarkdownDescription: "The 'PrometheusRule' custom resource definition (CRD) defines [alerting](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) and [recording](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) rules to be evaluated by 'Prometheus' or 'ThanosRuler' objects. 'Prometheus' and 'ThanosRuler' objects select 'PrometheusRule' objects using label and namespace selectors.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -156,8 +156,8 @@ func (r *MonitoringCoreosComPrometheusRuleV1Manifest) Schema(_ context.Context, 
 								},
 
 								"limit": schema.Int64Attribute{
-									Description:         "Limit the number of alerts an alerting rule and series a recordingrule can produce.Limit is supported starting with Prometheus >= 2.31 and Thanos Ruler >= 0.24.",
-									MarkdownDescription: "Limit the number of alerts an alerting rule and series a recordingrule can produce.Limit is supported starting with Prometheus >= 2.31 and Thanos Ruler >= 0.24.",
+									Description:         "Limit the number of alerts an alerting rule and series a recording rule can produce. Limit is supported starting with Prometheus >= 2.31 and Thanos Ruler >= 0.24.",
+									MarkdownDescription: "Limit the number of alerts an alerting rule and series a recording rule can produce. Limit is supported starting with Prometheus >= 2.31 and Thanos Ruler >= 0.24.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -175,8 +175,8 @@ func (r *MonitoringCoreosComPrometheusRuleV1Manifest) Schema(_ context.Context, 
 								},
 
 								"partial_response_strategy": schema.StringAttribute{
-									Description:         "PartialResponseStrategy is only used by ThanosRuler and willbe ignored by Prometheus instances.More info: https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md#partial-response",
-									MarkdownDescription: "PartialResponseStrategy is only used by ThanosRuler and willbe ignored by Prometheus instances.More info: https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md#partial-response",
+									Description:         "PartialResponseStrategy is only used by ThanosRuler and will be ignored by Prometheus instances. More info: https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md#partial-response",
+									MarkdownDescription: "PartialResponseStrategy is only used by ThanosRuler and will be ignored by Prometheus instances. More info: https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md#partial-response",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -191,16 +191,16 @@ func (r *MonitoringCoreosComPrometheusRuleV1Manifest) Schema(_ context.Context, 
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"alert": schema.StringAttribute{
-												Description:         "Name of the alert. Must be a valid label value.Only one of 'record' and 'alert' must be set.",
-												MarkdownDescription: "Name of the alert. Must be a valid label value.Only one of 'record' and 'alert' must be set.",
+												Description:         "Name of the alert. Must be a valid label value. Only one of 'record' and 'alert' must be set.",
+												MarkdownDescription: "Name of the alert. Must be a valid label value. Only one of 'record' and 'alert' must be set.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"annotations": schema.MapAttribute{
-												Description:         "Annotations to add to each alert.Only valid for alerting rules.",
-												MarkdownDescription: "Annotations to add to each alert.Only valid for alerting rules.",
+												Description:         "Annotations to add to each alert. Only valid for alerting rules.",
+												MarkdownDescription: "Annotations to add to each alert. Only valid for alerting rules.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -248,8 +248,8 @@ func (r *MonitoringCoreosComPrometheusRuleV1Manifest) Schema(_ context.Context, 
 											},
 
 											"record": schema.StringAttribute{
-												Description:         "Name of the time series to output to. Must be a valid metric name.Only one of 'record' and 'alert' must be set.",
-												MarkdownDescription: "Name of the time series to output to. Must be a valid metric name.Only one of 'record' and 'alert' must be set.",
+												Description:         "Name of the time series to output to. Must be a valid metric name. Only one of 'record' and 'alert' must be set.",
+												MarkdownDescription: "Name of the time series to output to. Must be a valid metric name. Only one of 'record' and 'alert' must be set.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

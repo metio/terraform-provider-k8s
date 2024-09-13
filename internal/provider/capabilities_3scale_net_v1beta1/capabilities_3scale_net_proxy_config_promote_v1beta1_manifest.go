@@ -127,8 +127,8 @@ func (r *Capabilities3ScaleNetProxyConfigPromoteV1Beta1Manifest) Schema(_ contex
 				MarkdownDescription: "ProxyConfigPromoteSpec defines the desired state of ProxyConfigPromote",
 				Attributes: map[string]schema.Attribute{
 					"delete_cr": schema.BoolAttribute{
-						Description:         "deleteCR  deletes this CR when it has successfully completed the promotion",
-						MarkdownDescription: "deleteCR  deletes this CR when it has successfully completed the promotion",
+						Description:         "deleteCR deletes this CR when it has successfully completed the promotion",
+						MarkdownDescription: "deleteCR deletes this CR when it has successfully completed the promotion",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

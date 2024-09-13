@@ -67,7 +67,7 @@ Optional:
 Required:
 
 - `kind` (String) Kind of the resource.
-- `plural_name` (String) Lower-cased plural name of the resource (e.g. configmaps).  If not provided, it will be computed by lower-casing the kind and suffixing an 's'.
+- `plural_name` (String) Lower-cased plural name of the resource (e.g. configmaps). If not provided, it will be computed by lower-casing the kind and suffixing an 's'.
 - `scope` (String) Scope of the resource.
 - `version` (String) Version of the resource.
 

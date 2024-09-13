@@ -63,11 +63,11 @@ Required:
 Optional:
 
 - `address` (String) HTTP/S webhook address of this provider
-- `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a secret containinga PEM-encoded CA certificate ('caFile') (see [below for nested schema](#nestedatt--spec--cert_secret_ref))
+- `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a secret containing a PEM-encoded CA certificate ('caFile') (see [below for nested schema](#nestedatt--spec--cert_secret_ref))
 - `channel` (String) Alert channel for this provider
 - `proxy` (String) HTTP/S address of the proxy
-- `secret_ref` (Attributes) Secret reference containing the provider webhook URLusing 'address' as data key (see [below for nested schema](#nestedatt--spec--secret_ref))
-- `suspend` (Boolean) This flag tells the controller to suspend subsequent events handling.Defaults to false.
+- `secret_ref` (Attributes) Secret reference containing the provider webhook URL using 'address' as data key (see [below for nested schema](#nestedatt--spec--secret_ref))
+- `suspend` (Boolean) This flag tells the controller to suspend subsequent events handling. Defaults to false.
 - `timeout` (String) Timeout for sending alerts to the provider.
 - `username` (String) Bot username for this provider
 

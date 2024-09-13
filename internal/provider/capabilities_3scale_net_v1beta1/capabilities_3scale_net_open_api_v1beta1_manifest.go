@@ -351,8 +351,8 @@ func (r *Capabilities3ScaleNetOpenApiV1Beta1Manifest) Schema(_ context.Context, 
 							},
 
 							"issuer_endpoint_ref": schema.SingleNestedAttribute{
-								Description:         "IssuerEndpointRef  is the reference to OIDC issuer Secret that contains IssuerEndpoint",
-								MarkdownDescription: "IssuerEndpointRef  is the reference to OIDC issuer Secret that contains IssuerEndpoint",
+								Description:         "IssuerEndpointRef is the reference to OIDC issuer Secret that contains IssuerEndpoint",
+								MarkdownDescription: "IssuerEndpointRef is the reference to OIDC issuer Secret that contains IssuerEndpoint",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "name is unique within a namespace to reference a secret resource.",

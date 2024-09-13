@@ -55,7 +55,7 @@ Required:
 
 Optional:
 
-- `arch` (List of String) Arch for x86_64  aarch64... , represent for the arch of this offline package
+- `arch` (List of String) Arch for x86_64 aarch64... , represent for the arch of this offline package
 - `docker` (Attributes List) (see [below for nested schema](#nestedatt--spec--docker))
 - `kubespray` (String) Kubespray , the tag of kubespray
 

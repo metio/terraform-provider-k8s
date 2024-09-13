@@ -55,20 +55,20 @@ Optional:
 
 Optional:
 
-- `code_sha256` (String) Only publish a version if the hash value matches the value that's specified.Use this option to avoid publishing a version if the function code has changedsince you last updated it. You can get the hash for the version that youuploaded from the output of UpdateFunctionCode.
-- `description` (String) A description for the version to override the description in the functionconfiguration.
+- `code_sha256` (String) Only publish a version if the hash value matches the value that's specified. Use this option to avoid publishing a version if the function code has changed since you last updated it. You can get the hash for the version that you uploaded from the output of UpdateFunctionCode.
+- `description` (String) A description for the version to override the description in the function configuration.
 - `function_event_invoke_config` (Attributes) (see [below for nested schema](#nestedatt--spec--function_event_invoke_config))
-- `function_name` (String) The name of the Lambda function.Name formats   * Function name - MyFunction.   * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.   * Partial ARN - 123456789012:function:MyFunction.The length constraint applies only to the full ARN. If you specify only thefunction name, it is limited to 64 characters in length.
-- `function_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--function_ref))
+- `function_name` (String) The name of the Lambda function. Name formats * Function name - MyFunction. * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Partial ARN - 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+- `function_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--function_ref))
 - `provisioned_concurrency_config` (Attributes) (see [below for nested schema](#nestedatt--spec--provisioned_concurrency_config))
-- `revision_id` (String) Only update the function if the revision ID matches the ID that's specified.Use this option to avoid publishing a version if the function configurationhas changed since you last updated it.
+- `revision_id` (String) Only update the function if the revision ID matches the ID that's specified. Use this option to avoid publishing a version if the function configuration has changed since you last updated it.
 
 <a id="nestedatt--spec--function_event_invoke_config"></a>
 ### Nested Schema for `spec.function_event_invoke_config`
 
 Optional:
 
-- `destination_config` (Attributes) A configuration object that specifies the destination of an event after Lambdaprocesses it. (see [below for nested schema](#nestedatt--spec--function_event_invoke_config--destination_config))
+- `destination_config` (Attributes) A configuration object that specifies the destination of an event after Lambda processes it. (see [below for nested schema](#nestedatt--spec--function_event_invoke_config--destination_config))
 - `function_name` (String)
 - `maximum_event_age_in_seconds` (Number)
 - `maximum_retry_attempts` (Number)
@@ -105,7 +105,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--function_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--function_ref--from))
 
 <a id="nestedatt--spec--function_ref--from"></a>
 ### Nested Schema for `spec.function_ref.from`
@@ -113,6 +113,7 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)
 
 
 

@@ -5973,8 +5973,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -6117,8 +6117,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -7069,8 +7069,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -7112,8 +7112,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -8191,8 +8191,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -8226,8 +8226,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -9172,8 +9172,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -9340,8 +9340,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -10035,8 +10035,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -10062,8 +10062,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -11023,8 +11023,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -11058,8 +11058,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -12212,8 +12212,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -12239,8 +12239,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -12802,8 +12802,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -12837,8 +12837,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -13616,8 +13616,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -13643,8 +13643,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -14289,8 +14289,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -14348,8 +14348,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -15194,8 +15194,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -15221,8 +15221,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -16027,8 +16027,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -16054,8 +16054,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -16783,8 +16783,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -16810,8 +16810,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -17512,8 +17512,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -17664,8 +17664,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -18420,8 +18420,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -18441,8 +18441,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"field_ref": schema.SingleNestedAttribute{
-								Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations,spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-								MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations,spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+								Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+								MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 								Attributes: map[string]schema.Attribute{
 									"api_version": schema.StringAttribute{
 										Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -18470,16 +18470,16 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Description:         "The key of the secret to select from. Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -18522,8 +18522,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"path": schema.StringAttribute{
-												Description:         "Path to the artifact on the check runner.Special paths: /dev/stdout & /dev/stdin",
-												MarkdownDescription: "Path to the artifact on the check runner.Special paths: /dev/stdout & /dev/stdin",
+												Description:         "Path to the artifact on the check runner. Special paths: /dev/stdout & /dev/stdin",
+												MarkdownDescription: "Path to the artifact on the check runner. Special paths: /dev/stdout & /dev/stdin",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -18665,8 +18665,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"destination": schema.StringAttribute{
-											Description:         "Destination is the full path to where the contents of the URL should be downloaded to.If left empty, the sha256 hash of the URL will be used as the dir name.",
-											MarkdownDescription: "Destination is the full path to where the contents of the URL should be downloaded to.If left empty, the sha256 hash of the URL will be used as the dir name.",
+											Description:         "Destination is the full path to where the contents of the URL should be downloaded to. If left empty, the sha256 hash of the URL will be used as the dir name.",
+											MarkdownDescription: "Destination is the full path to where the contents of the URL should be downloaded to. If left empty, the sha256 hash of the URL will be used as the dir name.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -19915,8 +19915,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -19942,8 +19942,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -20453,8 +20453,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"script": schema.StringAttribute{
-									Description:         "Script can be a inline script or a path to a script that needs to be executedOn windows executed via powershell and in darwin and linux executed using bash",
-									MarkdownDescription: "Script can be a inline script or a path to a script that needs to be executedOn windows executed via powershell and in darwin and linux executed using bash",
+									Description:         "Script can be a inline script or a path to a script that needs to be executed On windows executed via powershell and in darwin and linux executed using bash",
+									MarkdownDescription: "Script can be a inline script or a path to a script that needs to be executed On windows executed via powershell and in darwin and linux executed using bash",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -21291,8 +21291,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -21342,24 +21342,24 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"path": schema.StringAttribute{
-									Description:         "Path  to folder or object storage, e.g. 's3://<bucket-name>',  'gcs://<bucket-name>', '/path/tp/folder'",
-									MarkdownDescription: "Path  to folder or object storage, e.g. 's3://<bucket-name>',  'gcs://<bucket-name>', '/path/tp/folder'",
+									Description:         "Path to folder or object storage, e.g. 's3://<bucket-name>', 'gcs://<bucket-name>', '/path/tp/folder'",
+									MarkdownDescription: "Path to folder or object storage, e.g. 's3://<bucket-name>', 'gcs://<bucket-name>', '/path/tp/folder'",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"recursive": schema.BoolAttribute{
-									Description:         "Recursive when set to true will recursively scan the folder to list the files in it.However, symlinks are simply listed but not traversed.",
-									MarkdownDescription: "Recursive when set to true will recursively scan the folder to list the files in it.However, symlinks are simply listed but not traversed.",
+									Description:         "Recursive when set to true will recursively scan the folder to list the files in it. However, symlinks are simply listed but not traversed.",
+									MarkdownDescription: "Recursive when set to true will recursively scan the folder to list the files in it. However, symlinks are simply listed but not traversed.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -22594,8 +22594,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -22738,8 +22738,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -23666,8 +23666,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -23701,8 +23701,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -24597,8 +24597,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -24632,8 +24632,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -25506,8 +25506,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -25701,8 +25701,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -26557,8 +26557,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"insecure_skip_verify": schema.BoolAttribute{
-											Description:         "InsecureSkipVerify controls whether a client verifies the server'scertificate chain and host name",
-											MarkdownDescription: "InsecureSkipVerify controls whether a client verifies the server'scertificate chain and host name",
+											Description:         "InsecureSkipVerify controls whether a client verifies the server's certificate chain and host name",
+											MarkdownDescription: "InsecureSkipVerify controls whether a client verifies the server's certificate chain and host name",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -26905,8 +26905,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -26948,8 +26948,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -27652,8 +27652,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -27696,8 +27696,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -28248,8 +28248,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"path": schema.StringAttribute{
-												Description:         "Path to the artifact on the check runner.Special paths: /dev/stdout & /dev/stdin",
-												MarkdownDescription: "Path to the artifact on the check runner.Special paths: /dev/stdout & /dev/stdin",
+												Description:         "Path to the artifact on the check runner. Special paths: /dev/stdout & /dev/stdin",
+												MarkdownDescription: "Path to the artifact on the check runner. Special paths: /dev/stdout & /dev/stdin",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -28328,8 +28328,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -28355,8 +28355,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -29200,8 +29200,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -29268,8 +29268,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -30146,8 +30146,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -30173,8 +30173,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -30684,8 +30684,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"resources": schema.MapAttribute{
-									Description:         "Resources are kubernetes resources that are created & clearedafter every check run.",
-									MarkdownDescription: "Resources are kubernetes resources that are created & clearedafter every check run.",
+									Description:         "Resources are kubernetes resources that are created & cleared after every check run.",
+									MarkdownDescription: "Resources are kubernetes resources that are created & cleared after every check run.",
 									ElementType:         types.StringType,
 									Required:            true,
 									Optional:            false,
@@ -30693,8 +30693,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"static_resources": schema.MapAttribute{
-									Description:         "StaticResources are kubernetes resources that are created & onlycleared when the canary is deleted",
-									MarkdownDescription: "StaticResources are kubernetes resources that are created & onlycleared when the canary is deleted",
+									Description:         "StaticResources are kubernetes resources that are created & only cleared when the canary is deleted",
+									MarkdownDescription: "StaticResources are kubernetes resources that are created & only cleared when the canary is deleted",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -30812,24 +30812,24 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"expr": schema.StringAttribute{
-											Description:         "Expr is a cel expression that determines whether all the resourcesare in their desired state before running checks on them.	Default: 'dyn(resources).all(r, k8s.isHealthy(r))'",
-											MarkdownDescription: "Expr is a cel expression that determines whether all the resourcesare in their desired state before running checks on them.	Default: 'dyn(resources).all(r, k8s.isHealthy(r))'",
+											Description:         "Expr is a cel expression that determines whether all the resources are in their desired state before running checks on them. Default: 'dyn(resources).all(r, k8s.isHealthy(r))'",
+											MarkdownDescription: "Expr is a cel expression that determines whether all the resources are in their desired state before running checks on them. Default: 'dyn(resources).all(r, k8s.isHealthy(r))'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"interval": schema.StringAttribute{
-											Description:         "Interval to check if all static & non-static resources are ready.	Default: 5s",
-											MarkdownDescription: "Interval to check if all static & non-static resources are ready.	Default: 5s",
+											Description:         "Interval to check if all static & non-static resources are ready. Default: 5s",
+											MarkdownDescription: "Interval to check if all static & non-static resources are ready. Default: 5s",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"timeout": schema.StringAttribute{
-											Description:         "Timeout to wait for all static & non-static resources to be ready.	Default: 10m",
-											MarkdownDescription: "Timeout to wait for all static & non-static resources to be ready.	Default: 10m",
+											Description:         "Timeout to wait for all static & non-static resources to be ready. Default: 10m",
+											MarkdownDescription: "Timeout to wait for all static & non-static resources to be ready. Default: 10m",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -30893,8 +30893,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -31037,8 +31037,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -31741,8 +31741,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -32103,8 +32103,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -32255,8 +32255,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -33074,8 +33074,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -33226,8 +33226,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -34069,8 +34069,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -34162,8 +34162,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -34782,8 +34782,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -34934,8 +34934,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -35793,8 +35793,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -35852,8 +35852,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -36480,8 +36480,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -36632,8 +36632,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -37584,8 +37584,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -38021,8 +38021,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -38819,8 +38819,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"insecure_skip_verify": schema.BoolAttribute{
-											Description:         "InsecureSkipVerify controls whether a client verifies the server'scertificate chain and host name",
-											MarkdownDescription: "InsecureSkipVerify controls whether a client verifies the server'scertificate chain and host name",
+											Description:         "InsecureSkipVerify controls whether a client verifies the server's certificate chain and host name",
+											MarkdownDescription: "InsecureSkipVerify controls whether a client verifies the server's certificate chain and host name",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -39183,8 +39183,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -39327,8 +39327,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -40172,8 +40172,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -40316,8 +40316,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -41161,8 +41161,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -41204,8 +41204,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -42033,8 +42033,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"metrics": schema.ListNestedAttribute{
-									Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-									MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+									Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+									MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{},
 									},
@@ -42060,8 +42060,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"relationships": schema.SingleNestedAttribute{
-									Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-									MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+									Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+									MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 									Attributes: map[string]schema.Attribute{
 										"components": schema.ListNestedAttribute{
 											Description:         "",
@@ -42663,8 +42663,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"metrics": schema.ListNestedAttribute{
-								Description:         "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
-								MarkdownDescription: "Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter",
+								Description:         "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
+								MarkdownDescription: "Metrics to expose from check. https://canarychecker.io/concepts/metrics-exporter",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"labels": schema.ListNestedAttribute{
@@ -42749,8 +42749,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"relationships": schema.SingleNestedAttribute{
-								Description:         "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
-								MarkdownDescription: "Relationships defines a way to link the check results to components and configsusing lookup expressions.",
+								Description:         "Relationships defines a way to link the check results to components and configs using lookup expressions.",
+								MarkdownDescription: "Relationships defines a way to link the check results to components and configs using lookup expressions.",
 								Attributes: map[string]schema.Attribute{
 									"components": schema.ListNestedAttribute{
 										Description:         "",

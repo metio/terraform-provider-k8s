@@ -144,16 +144,16 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Manifest) Schema(_ context.Context
 				MarkdownDescription: "StateMachineSpec defines the desired state of StateMachine.",
 				Attributes: map[string]schema.Attribute{
 					"definition": schema.StringAttribute{
-						Description:         "The Amazon States Language definition of the state machine. See Amazon StatesLanguage (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html).",
-						MarkdownDescription: "The Amazon States Language definition of the state machine. See Amazon StatesLanguage (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html).",
+						Description:         "The Amazon States Language definition of the state machine. See Amazon States Language (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html).",
+						MarkdownDescription: "The Amazon States Language definition of the state machine. See Amazon States Language (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html).",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"logging_configuration": schema.SingleNestedAttribute{
-						Description:         "Defines what execution history events are logged and where they are logged.By default, the level is set to OFF. For more information see Log Levels(https://docs.aws.amazon.com/step-functions/latest/dg/cloudwatch-log-level.html)in the AWS Step Functions User Guide.",
-						MarkdownDescription: "Defines what execution history events are logged and where they are logged.By default, the level is set to OFF. For more information see Log Levels(https://docs.aws.amazon.com/step-functions/latest/dg/cloudwatch-log-level.html)in the AWS Step Functions User Guide.",
+						Description:         "Defines what execution history events are logged and where they are logged. By default, the level is set to OFF. For more information see Log Levels (https://docs.aws.amazon.com/step-functions/latest/dg/cloudwatch-log-level.html) in the AWS Step Functions User Guide.",
+						MarkdownDescription: "Defines what execution history events are logged and where they are logged. By default, the level is set to OFF. For more information see Log Levels (https://docs.aws.amazon.com/step-functions/latest/dg/cloudwatch-log-level.html) in the AWS Step Functions User Guide.",
 						Attributes: map[string]schema.Attribute{
 							"destinations": schema.ListNestedAttribute{
 								Description:         "",
@@ -205,8 +205,8 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the state machine.A name must not contain:   * white space   * brackets < > { } [ ]   * wildcard characters ? *   * special characters ' # %  ^ | ~ ' $ & , ; : /   * control characters (U+0000-001F, U+007F-009F)To enable logging with CloudWatch Logs, the name should only contain 0-9,A-Z, a-z, - and _.",
-						MarkdownDescription: "The name of the state machine.A name must not contain:   * white space   * brackets < > { } [ ]   * wildcard characters ? *   * special characters ' # %  ^ | ~ ' $ & , ; : /   * control characters (U+0000-001F, U+007F-009F)To enable logging with CloudWatch Logs, the name should only contain 0-9,A-Z, a-z, - and _.",
+						Description:         "The name of the state machine. A name must not contain: * white space * brackets < > { } [ ] * wildcard characters ? * * special characters ' # % ^ | ~ ' $ & , ; : / * control characters (U+0000-001F, U+007F-009F) To enable logging with CloudWatch Logs, the name should only contain 0-9, A-Z, a-z, - and _.",
+						MarkdownDescription: "The name of the state machine. A name must not contain: * white space * brackets < > { } [ ] * wildcard characters ? * * special characters ' # % ^ | ~ ' $ & , ; : / * control characters (U+0000-001F, U+007F-009F) To enable logging with CloudWatch Logs, the name should only contain 0-9, A-Z, a-z, - and _.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -221,8 +221,8 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "Tags to be added when creating a state machine.An array of key-value pairs. For more information, see Using Cost AllocationTags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)in the AWS Billing and Cost Management User Guide, and Controlling AccessUsing IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).Tags may only contain Unicode letters, digits, white space, or these symbols:_ . : / = + - @.",
-						MarkdownDescription: "Tags to be added when creating a state machine.An array of key-value pairs. For more information, see Using Cost AllocationTags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)in the AWS Billing and Cost Management User Guide, and Controlling AccessUsing IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).Tags may only contain Unicode letters, digits, white space, or these symbols:_ . : / = + - @.",
+						Description:         "Tags to be added when creating a state machine. An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the AWS Billing and Cost Management User Guide, and Controlling Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html). Tags may only contain Unicode letters, digits, white space, or these symbols: _ . : / = + - @.",
+						MarkdownDescription: "Tags to be added when creating a state machine. An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the AWS Billing and Cost Management User Guide, and Controlling Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html). Tags may only contain Unicode letters, digits, white space, or these symbols: _ . : / = + - @.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -265,8 +265,8 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"type_": schema.StringAttribute{
-						Description:         "Determines whether a Standard or Express state machine is created. The defaultis STANDARD. You cannot update the type of a state machine once it has beencreated.",
-						MarkdownDescription: "Determines whether a Standard or Express state machine is created. The defaultis STANDARD. You cannot update the type of a state machine once it has beencreated.",
+						Description:         "Determines whether a Standard or Express state machine is created. The default is STANDARD. You cannot update the type of a state machine once it has been created.",
+						MarkdownDescription: "Determines whether a Standard or Express state machine is created. The default is STANDARD. You cannot update the type of a state machine once it has been created.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -30,7 +30,7 @@ data "k8s_k8up_io_snapshot_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) SnapshotSpec contains all information needed about a restic snapshot so itcan be restored. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) SnapshotSpec contains all information needed about a restic snapshot so it can be restored. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

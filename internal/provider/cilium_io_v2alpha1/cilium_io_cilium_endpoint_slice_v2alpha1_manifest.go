@@ -163,8 +163,8 @@ func (r *CiliumIoCiliumEndpointSliceV2Alpha1Manifest) Schema(_ context.Context, 
 						},
 
 						"named_ports": schema.ListNestedAttribute{
-							Description:         "NamedPorts List of named Layer 4 port and protocol pairs which will be used in Network Policy specs.  swagger:model NamedPorts",
-							MarkdownDescription: "NamedPorts List of named Layer 4 port and protocol pairs which will be used in Network Policy specs.  swagger:model NamedPorts",
+							Description:         "NamedPorts List of named Layer 4 port and protocol pairs which will be used in Network Policy specs. swagger:model NamedPorts",
+							MarkdownDescription: "NamedPorts List of named Layer 4 port and protocol pairs which will be used in Network Policy specs. swagger:model NamedPorts",
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{

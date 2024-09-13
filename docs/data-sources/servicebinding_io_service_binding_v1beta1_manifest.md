@@ -61,7 +61,7 @@ Required:
 Optional:
 
 - `env` (Attributes List) Env is the collection of mappings from Secret entries to environment variables (see [below for nested schema](#nestedatt--spec--env))
-- `name` (String) Name is the name of the service as projected into the workload container.  Defaults to .metadata.name.
+- `name` (String) Name is the name of the service as projected into the workload container. Defaults to .metadata.name.
 - `provider` (String) Provider is the provider of the service as projected into the workload container
 - `type` (String) Type is the type of the service as projected into the workload container
 

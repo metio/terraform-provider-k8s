@@ -61,8 +61,8 @@ func (r *TinkerbellOrgWorkflowV1Alpha2Manifest) Metadata(_ context.Context, requ
 
 func (r *TinkerbellOrgWorkflowV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Workflow describes a set of actions to be run on a specific Hardware. Workflows executeonce and should be considered ephemeral.",
-		MarkdownDescription: "Workflow describes a set of actions to be run on a specific Hardware. Workflows executeonce and should be considered ephemeral.",
+		Description:         "Workflow describes a set of actions to be run on a specific Hardware. Workflows execute once and should be considered ephemeral.",
+		MarkdownDescription: "Workflow describes a set of actions to be run on a specific Hardware. Workflows execute once and should be considered ephemeral.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -137,8 +137,8 @@ func (r *TinkerbellOrgWorkflowV1Alpha2Manifest) Schema(_ context.Context, _ data
 						MarkdownDescription: "HardwareRef is a reference to a Hardware resource this workflow will execute on.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -150,8 +150,8 @@ func (r *TinkerbellOrgWorkflowV1Alpha2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"template_params": schema.MapAttribute{
-						Description:         "TemplateParams are a list of key-value pairs that are injected into templates at rendertime. TemplateParams are exposed to templates using a top level .Params key.For example, TemplateParams = {'foo': 'bar'}, the foo key can be accessed via .Params.foo.",
-						MarkdownDescription: "TemplateParams are a list of key-value pairs that are injected into templates at rendertime. TemplateParams are exposed to templates using a top level .Params key.For example, TemplateParams = {'foo': 'bar'}, the foo key can be accessed via .Params.foo.",
+						Description:         "TemplateParams are a list of key-value pairs that are injected into templates at render time. TemplateParams are exposed to templates using a top level .Params key. For example, TemplateParams = {'foo': 'bar'}, the foo key can be accessed via .Params.foo.",
+						MarkdownDescription: "TemplateParams are a list of key-value pairs that are injected into templates at render time. TemplateParams are exposed to templates using a top level .Params key. For example, TemplateParams = {'foo': 'bar'}, the foo key can be accessed via .Params.foo.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -163,8 +163,8 @@ func (r *TinkerbellOrgWorkflowV1Alpha2Manifest) Schema(_ context.Context, _ data
 						MarkdownDescription: "TemplateRef is a reference to a Template resource used to render workflow actions.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -176,8 +176,8 @@ func (r *TinkerbellOrgWorkflowV1Alpha2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"timeout": schema.Int64Attribute{
-						Description:         "TimeoutSeconds defines the time the workflow has to complete. The timer begins when the firstaction is requested. When set to 0, no timeout is applied.",
-						MarkdownDescription: "TimeoutSeconds defines the time the workflow has to complete. The timer begins when the firstaction is requested. When set to 0, no timeout is applied.",
+						Description:         "TimeoutSeconds defines the time the workflow has to complete. The timer begins when the first action is requested. When set to 0, no timeout is applied.",
+						MarkdownDescription: "TimeoutSeconds defines the time the workflow has to complete. The timer begins when the first action is requested. When set to 0, no timeout is applied.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -365,8 +365,8 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Manifest) Schema(_ context.Context,
 													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,

@@ -137,8 +137,8 @@ func (r *OperatorTigeraIoTlspassThroughRouteV1Manifest) Schema(_ context.Context
 					},
 
 					"sni_match": schema.SingleNestedAttribute{
-						Description:         "SNIMatch is used to match requests based on the server name for the intended destination server. Matching requestswill be proxied to the Destination.",
-						MarkdownDescription: "SNIMatch is used to match requests based on the server name for the intended destination server. Matching requestswill be proxied to the Destination.",
+						Description:         "SNIMatch is used to match requests based on the server name for the intended destination server. Matching requests will be proxied to the Destination.",
+						MarkdownDescription: "SNIMatch is used to match requests based on the server name for the intended destination server. Matching requests will be proxied to the Destination.",
 						Attributes: map[string]schema.Attribute{
 							"server_name": schema.StringAttribute{
 								Description:         "ServerName is used to match the server name for the request.",

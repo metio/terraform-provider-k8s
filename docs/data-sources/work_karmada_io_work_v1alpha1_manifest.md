@@ -52,7 +52,7 @@ Optional:
 
 Optional:
 
-- `suspend_dispatching` (Boolean) SuspendDispatching controls whether dispatching shouldbe suspended, nil means not suspend.Note: true means stop propagating to all clusters.
+- `suspend_dispatching` (Boolean) SuspendDispatching controls whether dispatching should be suspended, nil means not suspend. Note: true means stop propagating to all clusters.
 - `workload` (Attributes) Workload represents the manifest workload to be deployed on managed cluster. (see [below for nested schema](#nestedatt--spec--workload))
 
 <a id="nestedatt--spec--workload"></a>

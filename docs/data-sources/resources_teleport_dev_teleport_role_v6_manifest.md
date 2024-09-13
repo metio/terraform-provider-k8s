@@ -149,13 +149,13 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of List of String) Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins.  Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.
+- `annotations` (Map of List of String) Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins. Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.
 - `claims_to_roles` (Attributes List) ClaimsToRoles specifies a mapping from claims (traits) to teleport roles. (see [below for nested schema](#nestedatt--spec--allow--request--claims_to_roles))
 - `max_duration` (String) MaxDuration is the amount of time the access will be granted for. If this is zero, the default duration is used.
 - `roles` (List of String) Roles is the name of roles which will match the request rule.
 - `search_as_roles` (List of String) SearchAsRoles is a list of extra roles which should apply to a user while they are searching for resources as part of a Resource Access Request, and defines the underlying roles which will be requested as part of any Resource Access Request.
-- `suggested_reviewers` (List of String) SuggestedReviewers is a list of reviewer suggestions.  These can be teleport usernames, but that is not a requirement.
-- `thresholds` (Attributes List) Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition.  If no thresholds are provided, a default threshold of 1 for approval and denial is used. (see [below for nested schema](#nestedatt--spec--allow--request--thresholds))
+- `suggested_reviewers` (List of String) SuggestedReviewers is a list of reviewer suggestions. These can be teleport usernames, but that is not a requirement.
+- `thresholds` (Attributes List) Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition. If no thresholds are provided, a default threshold of 1 for approval and denial is used. (see [below for nested schema](#nestedatt--spec--allow--request--thresholds))
 
 <a id="nestedatt--spec--allow--request--claims_to_roles"></a>
 ### Nested Schema for `spec.allow.request.claims_to_roles`
@@ -229,9 +229,9 @@ Optional:
 
 Optional:
 
-- `dns_sans` (List of String) DNSSANs specifies matchers for the SPIFFE ID DNS SANs.  Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: *.example.com would match foo.example.com
-- `ip_sans` (List of String) IPSANs specifies matchers for the SPIFFE ID IP SANs.  Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matchers should be specified using CIDR notation, it supports IPv4 and IPv6.  Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42
-- `path` (String) Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar
+- `dns_sans` (List of String) DNSSANs specifies matchers for the SPIFFE ID DNS SANs. Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: *.example.com would match foo.example.com
+- `ip_sans` (List of String) IPSANs specifies matchers for the SPIFFE ID IP SANs. Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matchers should be specified using CIDR notation, it supports IPv4 and IPv6. Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42
+- `path` (String) Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar
 
 
 
@@ -325,13 +325,13 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of List of String) Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins.  Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.
+- `annotations` (Map of List of String) Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins. Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.
 - `claims_to_roles` (Attributes List) ClaimsToRoles specifies a mapping from claims (traits) to teleport roles. (see [below for nested schema](#nestedatt--spec--deny--request--claims_to_roles))
 - `max_duration` (String) MaxDuration is the amount of time the access will be granted for. If this is zero, the default duration is used.
 - `roles` (List of String) Roles is the name of roles which will match the request rule.
 - `search_as_roles` (List of String) SearchAsRoles is a list of extra roles which should apply to a user while they are searching for resources as part of a Resource Access Request, and defines the underlying roles which will be requested as part of any Resource Access Request.
-- `suggested_reviewers` (List of String) SuggestedReviewers is a list of reviewer suggestions.  These can be teleport usernames, but that is not a requirement.
-- `thresholds` (Attributes List) Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition.  If no thresholds are provided, a default threshold of 1 for approval and denial is used. (see [below for nested schema](#nestedatt--spec--deny--request--thresholds))
+- `suggested_reviewers` (List of String) SuggestedReviewers is a list of reviewer suggestions. These can be teleport usernames, but that is not a requirement.
+- `thresholds` (Attributes List) Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition. If no thresholds are provided, a default threshold of 1 for approval and denial is used. (see [below for nested schema](#nestedatt--spec--deny--request--thresholds))
 
 <a id="nestedatt--spec--deny--request--claims_to_roles"></a>
 ### Nested Schema for `spec.deny.request.claims_to_roles`
@@ -405,9 +405,9 @@ Optional:
 
 Optional:
 
-- `dns_sans` (List of String) DNSSANs specifies matchers for the SPIFFE ID DNS SANs.  Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: *.example.com would match foo.example.com
-- `ip_sans` (List of String) IPSANs specifies matchers for the SPIFFE ID IP SANs.  Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matchers should be specified using CIDR notation, it supports IPv4 and IPv6.  Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42
-- `path` (String) Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar
+- `dns_sans` (List of String) DNSSANs specifies matchers for the SPIFFE ID DNS SANs. Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: *.example.com would match foo.example.com
+- `ip_sans` (List of String) IPSANs specifies matchers for the SPIFFE ID IP SANs. Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met. The matchers should be specified using CIDR notation, it supports IPv4 and IPv6. Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42
+- `path` (String) Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash. The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax. Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar
 
 
 

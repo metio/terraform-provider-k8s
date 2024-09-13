@@ -54,16 +54,16 @@ Optional:
 
 Optional:
 
-- `admission_checks` (List of String) admissionChecks lists the AdmissionChecks required by this ClusterQueue.Cannot be used along with AdmissionCheckStrategy.
-- `admission_checks_strategy` (Attributes) admissionCheckStrategy defines a list of strategies to determine which ResourceFlavors require AdmissionChecks.This property cannot be used in conjunction with the 'admissionChecks' property. (see [below for nested schema](#nestedatt--spec--admission_checks_strategy))
-- `cohort` (String) cohort that this ClusterQueue belongs to. CQs that belong to thesame cohort can borrow unused resources from each other.A CQ can be a member of a single borrowing cohort. A workload submittedto a queue referencing this CQ can borrow quota from any CQ in the cohort.Only quota for the [resource, flavor] pairs listed in the CQ can beborrowed.If empty, this ClusterQueue cannot borrow from any other ClusterQueue andvice versa.A cohort is a name that links CQs together, but it doesn't reference anyobject.Validation of a cohort name is equivalent to that of object names:subdomain in DNS (RFC 1123).
-- `fair_sharing` (Attributes) fairSharing defines the properties of the ClusterQueue when participating in fair sharing.The values are only relevant if fair sharing is enabled in the Kueue configuration. (see [below for nested schema](#nestedatt--spec--fair_sharing))
-- `flavor_fungibility` (Attributes) flavorFungibility defines whether a workload should try the next flavorbefore borrowing or preempting in the flavor being evaluated. (see [below for nested schema](#nestedatt--spec--flavor_fungibility))
-- `namespace_selector` (Attributes) namespaceSelector defines which namespaces are allowed to submit workloads tothis clusterQueue. Beyond this basic support for policy, a policy agent likeGatekeeper should be used to enforce more advanced policies.Defaults to null which is a nothing selector (no namespaces eligible).If set to an empty selector '{}', then all namespaces are eligible. (see [below for nested schema](#nestedatt--spec--namespace_selector))
-- `preemption` (Attributes) preemption describes policies to preempt Workloads from this ClusterQueueor the ClusterQueue's cohort.Preemption can happen in two scenarios:- When a Workload fits within the nominal quota of the ClusterQueue, but  the quota is currently borrowed by other ClusterQueues in the cohort.  Preempting Workloads in other ClusterQueues allows this ClusterQueue to  reclaim its nominal quota.- When a Workload doesn't fit within the nominal quota of the ClusterQueue  and there are admitted Workloads in the ClusterQueue with lower priority.The preemption algorithm tries to find a minimal set of Workloads topreempt to accomomdate the pending Workload, preempting Workloads withlower priority first. (see [below for nested schema](#nestedatt--spec--preemption))
-- `queueing_strategy` (String) QueueingStrategy indicates the queueing strategy of the workloadsacross the queues in this ClusterQueue.Current Supported Strategies:- StrictFIFO: workloads are ordered strictly by creation time.Older workloads that can't be admitted will block admitting newerworkloads even if they fit available quota.- BestEffortFIFO: workloads are ordered by creation time,however older workloads that can't be admitted will not blockadmitting newer workloads that fit existing quota.
-- `resource_groups` (Attributes List) resourceGroups describes groups of resources.Each resource group defines the list of resources and a list of flavorsthat provide quotas for these resources.Each resource and each flavor can only form part of one resource group.resourceGroups can be up to 16. (see [below for nested schema](#nestedatt--spec--resource_groups))
-- `stop_policy` (String) stopPolicy - if set to a value different from None, the ClusterQueue is considered Inactive, no new reservation beingmade.Depending on its value, its associated workloads will:- None - Workloads are admitted- HoldAndDrain - Admitted workloads are evicted and Reserving workloads will cancel the reservation.- Hold - Admitted workloads will run to completion and Reserving workloads will cancel the reservation.
+- `admission_checks` (List of String) admissionChecks lists the AdmissionChecks required by this ClusterQueue. Cannot be used along with AdmissionCheckStrategy.
+- `admission_checks_strategy` (Attributes) admissionCheckStrategy defines a list of strategies to determine which ResourceFlavors require AdmissionChecks. This property cannot be used in conjunction with the 'admissionChecks' property. (see [below for nested schema](#nestedatt--spec--admission_checks_strategy))
+- `cohort` (String) cohort that this ClusterQueue belongs to. CQs that belong to the same cohort can borrow unused resources from each other. A CQ can be a member of a single borrowing cohort. A workload submitted to a queue referencing this CQ can borrow quota from any CQ in the cohort. Only quota for the [resource, flavor] pairs listed in the CQ can be borrowed. If empty, this ClusterQueue cannot borrow from any other ClusterQueue and vice versa. A cohort is a name that links CQs together, but it doesn't reference any object. Validation of a cohort name is equivalent to that of object names: subdomain in DNS (RFC 1123).
+- `fair_sharing` (Attributes) fairSharing defines the properties of the ClusterQueue when participating in fair sharing. The values are only relevant if fair sharing is enabled in the Kueue configuration. (see [below for nested schema](#nestedatt--spec--fair_sharing))
+- `flavor_fungibility` (Attributes) flavorFungibility defines whether a workload should try the next flavor before borrowing or preempting in the flavor being evaluated. (see [below for nested schema](#nestedatt--spec--flavor_fungibility))
+- `namespace_selector` (Attributes) namespaceSelector defines which namespaces are allowed to submit workloads to this clusterQueue. Beyond this basic support for policy, a policy agent like Gatekeeper should be used to enforce more advanced policies. Defaults to null which is a nothing selector (no namespaces eligible). If set to an empty selector '{}', then all namespaces are eligible. (see [below for nested schema](#nestedatt--spec--namespace_selector))
+- `preemption` (Attributes) preemption describes policies to preempt Workloads from this ClusterQueue or the ClusterQueue's cohort. Preemption can happen in two scenarios: - When a Workload fits within the nominal quota of the ClusterQueue, but the quota is currently borrowed by other ClusterQueues in the cohort. Preempting Workloads in other ClusterQueues allows this ClusterQueue to reclaim its nominal quota. - When a Workload doesn't fit within the nominal quota of the ClusterQueue and there are admitted Workloads in the ClusterQueue with lower priority. The preemption algorithm tries to find a minimal set of Workloads to preempt to accomomdate the pending Workload, preempting Workloads with lower priority first. (see [below for nested schema](#nestedatt--spec--preemption))
+- `queueing_strategy` (String) QueueingStrategy indicates the queueing strategy of the workloads across the queues in this ClusterQueue. Current Supported Strategies: - StrictFIFO: workloads are ordered strictly by creation time. Older workloads that can't be admitted will block admitting newer workloads even if they fit available quota. - BestEffortFIFO: workloads are ordered by creation time, however older workloads that can't be admitted will not block admitting newer workloads that fit existing quota.
+- `resource_groups` (Attributes List) resourceGroups describes groups of resources. Each resource group defines the list of resources and a list of flavors that provide quotas for these resources. Each resource and each flavor can only form part of one resource group. resourceGroups can be up to 16. (see [below for nested schema](#nestedatt--spec--resource_groups))
+- `stop_policy` (String) stopPolicy - if set to a value different from None, the ClusterQueue is considered Inactive, no new reservation being made. Depending on its value, its associated workloads will: - None - Workloads are admitted - HoldAndDrain - Admitted workloads are evicted and Reserving workloads will cancel the reservation. - Hold - Admitted workloads will run to completion and Reserving workloads will cancel the reservation.
 
 <a id="nestedatt--spec--admission_checks_strategy"></a>
 ### Nested Schema for `spec.admission_checks_strategy`
@@ -81,7 +81,7 @@ Required:
 
 Optional:
 
-- `on_flavors` (List of String) onFlavors is a list of ResourceFlavors' names that this AdmissionCheck should run for.If empty, the AdmissionCheck will run for all workloads submitted to the ClusterQueue.
+- `on_flavors` (List of String) onFlavors is a list of ResourceFlavors' names that this AdmissionCheck should run for. If empty, the AdmissionCheck will run for all workloads submitted to the ClusterQueue.
 
 
 
@@ -90,7 +90,7 @@ Optional:
 
 Optional:
 
-- `weight` (String) weight gives a comparative advantage to this ClusterQueue when competing for unusedresources in the cohort against other ClusterQueues.The share of a ClusterQueue is based on the dominant resource usage above nominalquotas for each resource, divided by the weight.Admission prioritizes scheduling workloads from ClusterQueues with the lowest shareand preempting workloads from the ClusterQueues with the highest share.A zero weight implies infinite share value, meaning that this ClusterQueue will alwaysbe at disadvantage against other ClusterQueues.
+- `weight` (String) weight gives a comparative advantage to this ClusterQueue when competing for unused resources in the cohort against other ClusterQueues. The share of a ClusterQueue is based on the dominant resource usage above nominal quotas for each resource, divided by the weight. Admission prioritizes scheduling workloads from ClusterQueues with the lowest share and preempting workloads from the ClusterQueues with the highest share. A zero weight implies infinite share value, meaning that this ClusterQueue will always be at disadvantage against other ClusterQueues.
 
 
 <a id="nestedatt--spec--flavor_fungibility"></a>
@@ -98,8 +98,8 @@ Optional:
 
 Optional:
 
-- `when_can_borrow` (String) whenCanBorrow determines whether a workload should try the next flavorbefore borrowing in current flavor. The possible values are:- 'Borrow' (default): allocate in current flavor if borrowing  is possible.- 'TryNextFlavor': try next flavor even if the current  flavor has enough resources to borrow.
-- `when_can_preempt` (String) whenCanPreempt determines whether a workload should try the next flavorbefore borrowing in current flavor. The possible values are:- 'Preempt': allocate in current flavor if it's possible to preempt some workloads.- 'TryNextFlavor' (default): try next flavor even if there are enough  candidates for preemption in the current flavor.
+- `when_can_borrow` (String) whenCanBorrow determines whether a workload should try the next flavor before borrowing in current flavor. The possible values are: - 'Borrow' (default): allocate in current flavor if borrowing is possible. - 'TryNextFlavor': try next flavor even if the current flavor has enough resources to borrow.
+- `when_can_preempt` (String) whenCanPreempt determines whether a workload should try the next flavor before borrowing in current flavor. The possible values are: - 'Preempt': allocate in current flavor if it's possible to preempt some workloads. - 'TryNextFlavor' (default): try next flavor even if there are enough candidates for preemption in the current flavor.
 
 
 <a id="nestedatt--spec--namespace_selector"></a>
@@ -108,7 +108,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.namespace_selector.match_expressions`
@@ -116,11 +116,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -129,17 +129,17 @@ Optional:
 
 Optional:
 
-- `borrow_within_cohort` (Attributes) borrowWithinCohort provides configuration to allow preemption withincohort while borrowing. (see [below for nested schema](#nestedatt--spec--preemption--borrow_within_cohort))
-- `reclaim_within_cohort` (String) reclaimWithinCohort determines whether a pending Workload can preemptWorkloads from other ClusterQueues in the cohort that are using more thantheir nominal quota. The possible values are:- 'Never' (default): do not preempt Workloads in the cohort.- 'LowerPriority': if the pending Workload fits within the nominal  quota of its ClusterQueue, only preempt Workloads in the cohort that have  lower priority than the pending Workload.- 'Any': if the pending Workload fits within the nominal quota of its  ClusterQueue, preempt any Workload in the cohort, irrespective of  priority.
-- `within_cluster_queue` (String) withinClusterQueue determines whether a pending Workload that doesn't fitwithin the nominal quota for its ClusterQueue, can preempt active Workloads inthe ClusterQueue. The possible values are:- 'Never' (default): do not preempt Workloads in the ClusterQueue.- 'LowerPriority': only preempt Workloads in the ClusterQueue that have  lower priority than the pending Workload.- 'LowerOrNewerEqualPriority': only preempt Workloads in the ClusterQueue that  either have a lower priority than the pending workload or equal priority  and are newer than the pending workload.
+- `borrow_within_cohort` (Attributes) borrowWithinCohort provides configuration to allow preemption within cohort while borrowing. (see [below for nested schema](#nestedatt--spec--preemption--borrow_within_cohort))
+- `reclaim_within_cohort` (String) reclaimWithinCohort determines whether a pending Workload can preempt Workloads from other ClusterQueues in the cohort that are using more than their nominal quota. The possible values are: - 'Never' (default): do not preempt Workloads in the cohort. - 'LowerPriority': if the pending Workload fits within the nominal quota of its ClusterQueue, only preempt Workloads in the cohort that have lower priority than the pending Workload. - 'Any': if the pending Workload fits within the nominal quota of its ClusterQueue, preempt any Workload in the cohort, irrespective of priority.
+- `within_cluster_queue` (String) withinClusterQueue determines whether a pending Workload that doesn't fit within the nominal quota for its ClusterQueue, can preempt active Workloads in the ClusterQueue. The possible values are: - 'Never' (default): do not preempt Workloads in the ClusterQueue. - 'LowerPriority': only preempt Workloads in the ClusterQueue that have lower priority than the pending Workload. - 'LowerOrNewerEqualPriority': only preempt Workloads in the ClusterQueue that either have a lower priority than the pending workload or equal priority and are newer than the pending workload.
 
 <a id="nestedatt--spec--preemption--borrow_within_cohort"></a>
 ### Nested Schema for `spec.preemption.borrow_within_cohort`
 
 Optional:
 
-- `max_priority_threshold` (Number) maxPriorityThreshold allows to restrict the set of workloads whichmight be preempted by a borrowing workload, to only workloads withpriority less than or equal to the specified threshold priority.When the threshold is not specified, then any workload satisfying thepolicy can be preempted by the borrowing workload.
-- `policy` (String) policy determines the policy for preemption to reclaim quota within cohort while borrowing.Possible values are:- 'Never' (default): do not allow for preemption, in other   ClusterQueues within the cohort, for a borrowing workload.- 'LowerPriority': allow preemption, in other ClusterQueues   within the cohort, for a borrowing workload, but only if   the preempted workloads are of lower priority.
+- `max_priority_threshold` (Number) maxPriorityThreshold allows to restrict the set of workloads which might be preempted by a borrowing workload, to only workloads with priority less than or equal to the specified threshold priority. When the threshold is not specified, then any workload satisfying the policy can be preempted by the borrowing workload.
+- `policy` (String) policy determines the policy for preemption to reclaim quota within cohort while borrowing. Possible values are: - 'Never' (default): do not allow for preemption, in other ClusterQueues within the cohort, for a borrowing workload. - 'LowerPriority': allow preemption, in other ClusterQueues within the cohort, for a borrowing workload, but only if the preempted workloads are of lower priority.
 
 
 
@@ -148,16 +148,16 @@ Optional:
 
 Required:
 
-- `covered_resources` (List of String) coveredResources is the list of resources covered by the flavors in thisgroup.Examples: cpu, memory, vendor.com/gpu.The list cannot be empty and it can contain up to 16 resources.
-- `flavors` (Attributes List) flavors is the list of flavors that provide the resources of this group.Typically, different flavors represent different hardware models(e.g., gpu models, cpu architectures) or pricing models (on-demand vs spotcpus).Each flavor MUST list all the resources listed for this group in the sameorder as the .resources field.The list cannot be empty and it can contain up to 16 flavors. (see [below for nested schema](#nestedatt--spec--resource_groups--flavors))
+- `covered_resources` (List of String) coveredResources is the list of resources covered by the flavors in this group. Examples: cpu, memory, vendor.com/gpu. The list cannot be empty and it can contain up to 16 resources.
+- `flavors` (Attributes List) flavors is the list of flavors that provide the resources of this group. Typically, different flavors represent different hardware models (e.g., gpu models, cpu architectures) or pricing models (on-demand vs spot cpus). Each flavor MUST list all the resources listed for this group in the same order as the .resources field. The list cannot be empty and it can contain up to 16 flavors. (see [below for nested schema](#nestedatt--spec--resource_groups--flavors))
 
 <a id="nestedatt--spec--resource_groups--flavors"></a>
 ### Nested Schema for `spec.resource_groups.flavors`
 
 Required:
 
-- `name` (String) name of this flavor. The name should match the .metadata.name of aResourceFlavor. If a matching ResourceFlavor does not exist, theClusterQueue will have an Active condition set to False.
-- `resources` (Attributes List) resources is the list of quotas for this flavor per resource.There could be up to 16 resources. (see [below for nested schema](#nestedatt--spec--resource_groups--flavors--resources))
+- `name` (String) name of this flavor. The name should match the .metadata.name of a ResourceFlavor. If a matching ResourceFlavor does not exist, the ClusterQueue will have an Active condition set to False.
+- `resources` (Attributes List) resources is the list of quotas for this flavor per resource. There could be up to 16 resources. (see [below for nested schema](#nestedatt--spec--resource_groups--flavors--resources))
 
 <a id="nestedatt--spec--resource_groups--flavors--resources"></a>
 ### Nested Schema for `spec.resource_groups.flavors.resources`
@@ -165,9 +165,9 @@ Required:
 Required:
 
 - `name` (String) name of this resource.
-- `nominal_quota` (String) nominalQuota is the quantity of this resource that is available forWorkloads admitted by this ClusterQueue at a point in time.The nominalQuota must be non-negative.nominalQuota should represent the resources in the cluster available forrunning jobs (after discounting resources consumed by system componentsand pods not managed by kueue). In an autoscaled cluster, nominalQuotashould account for resources that can be provided by a component such asKubernetes cluster-autoscaler.If the ClusterQueue belongs to a cohort, the sum of the quotas for each(flavor, resource) combination defines the maximum quantity that can beallocated by a ClusterQueue in the cohort.
+- `nominal_quota` (String) nominalQuota is the quantity of this resource that is available for Workloads admitted by this ClusterQueue at a point in time. The nominalQuota must be non-negative. nominalQuota should represent the resources in the cluster available for running jobs (after discounting resources consumed by system components and pods not managed by kueue). In an autoscaled cluster, nominalQuota should account for resources that can be provided by a component such as Kubernetes cluster-autoscaler. If the ClusterQueue belongs to a cohort, the sum of the quotas for each (flavor, resource) combination defines the maximum quantity that can be allocated by a ClusterQueue in the cohort.
 
 Optional:
 
-- `borrowing_limit` (String) borrowingLimit is the maximum amount of quota for the [flavor, resource]combination that this ClusterQueue is allowed to borrow from the unusedquota of other ClusterQueues in the same cohort.In total, at a given time, Workloads in a ClusterQueue can consume aquantity of quota equal to nominalQuota+borrowingLimit, assuming the otherClusterQueues in the cohort have enough unused quota.If null, it means that there is no borrowing limit.If not null, it must be non-negative.borrowingLimit must be null if spec.cohort is empty.
-- `lending_limit` (String) lendingLimit is the maximum amount of unused quota for the [flavor, resource]combination that this ClusterQueue can lend to other ClusterQueues in the same cohort.In total, at a given time, ClusterQueue reserves for its exclusive usea quantity of quota equals to nominalQuota - lendingLimit.If null, it means that there is no lending limit, meaning thatall the nominalQuota can be borrowed by other clusterQueues in the cohort.If not null, it must be non-negative.lendingLimit must be null if spec.cohort is empty.This field is in beta stage and is enabled by default.
+- `borrowing_limit` (String) borrowingLimit is the maximum amount of quota for the [flavor, resource] combination that this ClusterQueue is allowed to borrow from the unused quota of other ClusterQueues in the same cohort. In total, at a given time, Workloads in a ClusterQueue can consume a quantity of quota equal to nominalQuota+borrowingLimit, assuming the other ClusterQueues in the cohort have enough unused quota. If null, it means that there is no borrowing limit. If not null, it must be non-negative. borrowingLimit must be null if spec.cohort is empty.
+- `lending_limit` (String) lendingLimit is the maximum amount of unused quota for the [flavor, resource] combination that this ClusterQueue can lend to other ClusterQueues in the same cohort. In total, at a given time, ClusterQueue reserves for its exclusive use a quantity of quota equals to nominalQuota - lendingLimit. If null, it means that there is no lending limit, meaning that all the nominalQuota can be borrowed by other clusterQueues in the cohort. If not null, it must be non-negative. lendingLimit must be null if spec.cohort is empty. This field is in beta stage and is enabled by default.

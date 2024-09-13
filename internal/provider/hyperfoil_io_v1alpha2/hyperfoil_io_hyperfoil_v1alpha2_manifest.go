@@ -252,8 +252,8 @@ func (r *HyperfoilIoHyperfoilV1Alpha2Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"secret_env_vars": schema.ListAttribute{
-						Description:         "List of secrets in this namespace; each entry from those secrets will be mappedas environment variable, using the key as variable name.",
-						MarkdownDescription: "List of secrets in this namespace; each entry from those secrets will be mappedas environment variable, using the key as variable name.",
+						Description:         "List of secrets in this namespace; each entry from those secrets will be mapped as environment variable, using the key as variable name.",
+						MarkdownDescription: "List of secrets in this namespace; each entry from those secrets will be mapped as environment variable, using the key as variable name.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -261,16 +261,16 @@ func (r *HyperfoilIoHyperfoilV1Alpha2Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"service_type": schema.StringAttribute{
-						Description:         "Type of the service being exposed. By default this is ClusterIP if Openshift Route resource is available (the route will target this service).If Openshift Routes are not available (on vanilla Kubernetes) the default is NodePort.",
-						MarkdownDescription: "Type of the service being exposed. By default this is ClusterIP if Openshift Route resource is available (the route will target this service).If Openshift Routes are not available (on vanilla Kubernetes) the default is NodePort.",
+						Description:         "Type of the service being exposed. By default this is ClusterIP if Openshift Route resource is available (the route will target this service). If Openshift Routes are not available (on vanilla Kubernetes) the default is NodePort.",
+						MarkdownDescription: "Type of the service being exposed. By default this is ClusterIP if Openshift Route resource is available (the route will target this service). If Openshift Routes are not available (on vanilla Kubernetes) the default is NodePort.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"trigger_url": schema.StringAttribute{
-						Description:         "If this is set the controller does not start benchmark run right away after hitting/benchmark/my-benchmark/start ; instead it responds with status 301 and header Locationset to concatenation of this string and 'BENCHMARK=my-benchmark&RUN_ID=xxxx'.CLI interprets that response as a request to hit CI instance on this URL, assuming thatCI will trigger a new job that will eventually call /benchmark/my-benchmark/start?runId=xxxxwith header 'x-trigger-job'. This is useful if the the CI has to synchronize Hyperfoilto other benchmarks that don't use this controller instance.",
-						MarkdownDescription: "If this is set the controller does not start benchmark run right away after hitting/benchmark/my-benchmark/start ; instead it responds with status 301 and header Locationset to concatenation of this string and 'BENCHMARK=my-benchmark&RUN_ID=xxxx'.CLI interprets that response as a request to hit CI instance on this URL, assuming thatCI will trigger a new job that will eventually call /benchmark/my-benchmark/start?runId=xxxxwith header 'x-trigger-job'. This is useful if the the CI has to synchronize Hyperfoilto other benchmarks that don't use this controller instance.",
+						Description:         "If this is set the controller does not start benchmark run right away after hitting /benchmark/my-benchmark/start ; instead it responds with status 301 and header Location set to concatenation of this string and 'BENCHMARK=my-benchmark&RUN_ID=xxxx'. CLI interprets that response as a request to hit CI instance on this URL, assuming that CI will trigger a new job that will eventually call /benchmark/my-benchmark/start?runId=xxxx with header 'x-trigger-job'. This is useful if the the CI has to synchronize Hyperfoil to other benchmarks that don't use this controller instance.",
+						MarkdownDescription: "If this is set the controller does not start benchmark run right away after hitting /benchmark/my-benchmark/start ; instead it responds with status 301 and header Location set to concatenation of this string and 'BENCHMARK=my-benchmark&RUN_ID=xxxx'. CLI interprets that response as a request to hit CI instance on this URL, assuming that CI will trigger a new job that will eventually call /benchmark/my-benchmark/start?runId=xxxx with header 'x-trigger-job'. This is useful if the the CI has to synchronize Hyperfoil to other benchmarks that don't use this controller instance.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

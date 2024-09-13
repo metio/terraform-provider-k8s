@@ -286,8 +286,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "BeegfsDriverSpec defines the desired state of BeegfsDriver",
 				Attributes: map[string]schema.Attribute{
 					"container_image_overrides": schema.SingleNestedAttribute{
-						Description:         "A structure that allows for default container images and tags to be overridden. Use it in air-gapped networks,networks with private registry mirrors, or to pin a particular container version. Unless otherwise noted, versionsother than the default are not supported.",
-						MarkdownDescription: "A structure that allows for default container images and tags to be overridden. Use it in air-gapped networks,networks with private registry mirrors, or to pin a particular container version. Unless otherwise noted, versionsother than the default are not supported.",
+						Description:         "A structure that allows for default container images and tags to be overridden. Use it in air-gapped networks, networks with private registry mirrors, or to pin a particular container version. Unless otherwise noted, versions other than the default are not supported.",
+						MarkdownDescription: "A structure that allows for default container images and tags to be overridden. Use it in air-gapped networks, networks with private registry mirrors, or to pin a particular container version. Unless otherwise noted, versions other than the default are not supported.",
 						Attributes: map[string]schema.Attribute{
 							"beegfs_csi_driver": schema.SingleNestedAttribute{
 								Description:         "Defaults to ghcr.io/thinkparq/beegfs-csi-driver:<the operator version>.",
@@ -420,21 +420,21 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"container_resource_overrides": schema.SingleNestedAttribute{
-						Description:         "The ContainerResourceOverrides allow for customization of the container resource limits and requests.Each container has default requests and limits for both cpu and memory resources. Only explicitly definedoverrides will be applied, otherwise the default values will be used. For example, if the cpu limit for thecontroller's beegfs container is the only resource with an override set, only the controller's beegfs containercpu limit setting will be overridden. Every other value will use the default setting. Storage resources are notused by the BeeGFS CSI driver. Any storage resource values configured will be ignored.",
-						MarkdownDescription: "The ContainerResourceOverrides allow for customization of the container resource limits and requests.Each container has default requests and limits for both cpu and memory resources. Only explicitly definedoverrides will be applied, otherwise the default values will be used. For example, if the cpu limit for thecontroller's beegfs container is the only resource with an override set, only the controller's beegfs containercpu limit setting will be overridden. Every other value will use the default setting. Storage resources are notused by the BeeGFS CSI driver. Any storage resource values configured will be ignored.",
+						Description:         "The ContainerResourceOverrides allow for customization of the container resource limits and requests. Each container has default requests and limits for both cpu and memory resources. Only explicitly defined overrides will be applied, otherwise the default values will be used. For example, if the cpu limit for the controller's beegfs container is the only resource with an override set, only the controller's beegfs container cpu limit setting will be overridden. Every other value will use the default setting. Storage resources are not used by the BeeGFS CSI driver. Any storage resource values configured will be ignored.",
+						MarkdownDescription: "The ContainerResourceOverrides allow for customization of the container resource limits and requests. Each container has default requests and limits for both cpu and memory resources. Only explicitly defined overrides will be applied, otherwise the default values will be used. For example, if the cpu limit for the controller's beegfs container is the only resource with an override set, only the controller's beegfs container cpu limit setting will be overridden. Every other value will use the default setting. Storage resources are not used by the BeeGFS CSI driver. Any storage resource values configured will be ignored.",
 						Attributes: map[string]schema.Attribute{
 							"controller_beegfs": schema.SingleNestedAttribute{
-								Description:         "The resource specifications for the beegfs container of the BeeGFS driver controller pod.The default values for requests are (cpu: 100m, memory: 16Mi).The default values for limits are (cpu: None, memory: 256Mi).",
-								MarkdownDescription: "The resource specifications for the beegfs container of the BeeGFS driver controller pod.The default values for requests are (cpu: 100m, memory: 16Mi).The default values for limits are (cpu: None, memory: 256Mi).",
+								Description:         "The resource specifications for the beegfs container of the BeeGFS driver controller pod. The default values for requests are (cpu: 100m, memory: 16Mi). The default values for limits are (cpu: None, memory: 256Mi).",
+								MarkdownDescription: "The resource specifications for the beegfs container of the BeeGFS driver controller pod. The default values for requests are (cpu: 100m, memory: 16Mi). The default values for limits are (cpu: None, memory: 256Mi).",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -447,8 +447,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -456,8 +456,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -470,17 +470,17 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"controller_csi_provisioner": schema.SingleNestedAttribute{
-								Description:         "The resource specifications for the csi-provisioner container of the BeeGFS driver controller pod.The default values for requests are (cpu: 80m, memory: 24Mi)The default values for limits are (cpu: None, memory 256Mi)",
-								MarkdownDescription: "The resource specifications for the csi-provisioner container of the BeeGFS driver controller pod.The default values for requests are (cpu: 80m, memory: 24Mi)The default values for limits are (cpu: None, memory 256Mi)",
+								Description:         "The resource specifications for the csi-provisioner container of the BeeGFS driver controller pod. The default values for requests are (cpu: 80m, memory: 24Mi) The default values for limits are (cpu: None, memory 256Mi)",
+								MarkdownDescription: "The resource specifications for the csi-provisioner container of the BeeGFS driver controller pod. The default values for requests are (cpu: 80m, memory: 24Mi) The default values for limits are (cpu: None, memory 256Mi)",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -493,8 +493,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -502,8 +502,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -516,17 +516,17 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"node_beegfs": schema.SingleNestedAttribute{
-								Description:         "The resource specifications for the beegfs container of the BeeGFS driver node pod.The default values for requests are (cpu: 100m, memory: 20Mi)The default values for limits are (cpu: None, memory: 128Mi)",
-								MarkdownDescription: "The resource specifications for the beegfs container of the BeeGFS driver node pod.The default values for requests are (cpu: 100m, memory: 20Mi)The default values for limits are (cpu: None, memory: 128Mi)",
+								Description:         "The resource specifications for the beegfs container of the BeeGFS driver node pod. The default values for requests are (cpu: 100m, memory: 20Mi) The default values for limits are (cpu: None, memory: 128Mi)",
+								MarkdownDescription: "The resource specifications for the beegfs container of the BeeGFS driver node pod. The default values for requests are (cpu: 100m, memory: 20Mi) The default values for limits are (cpu: None, memory: 128Mi)",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -539,8 +539,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -548,8 +548,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -562,17 +562,17 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"node_driver_registrar": schema.SingleNestedAttribute{
-								Description:         "The resource specifications for the node-driver-registrar container of the BeeGFS driver node pod.The default values for requests are (cpu: 80m, memory: 10Mi)The default values for limits are (cpu: None, memory 128Mi)",
-								MarkdownDescription: "The resource specifications for the node-driver-registrar container of the BeeGFS driver node pod.The default values for requests are (cpu: 80m, memory: 10Mi)The default values for limits are (cpu: None, memory 128Mi)",
+								Description:         "The resource specifications for the node-driver-registrar container of the BeeGFS driver node pod. The default values for requests are (cpu: 80m, memory: 10Mi) The default values for limits are (cpu: None, memory 128Mi)",
+								MarkdownDescription: "The resource specifications for the node-driver-registrar container of the BeeGFS driver node pod. The default values for requests are (cpu: 80m, memory: 10Mi) The default values for limits are (cpu: None, memory 128Mi)",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -585,8 +585,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -594,8 +594,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -608,17 +608,17 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"node_liveness_probe": schema.SingleNestedAttribute{
-								Description:         "The resource specifications for the liveness-probe container of the BeeGFS driver node pod.The default values for requests are (cpu: 60m, memory: 20Mi)The default values for limits are (cpu: None, memory: 128Mi)",
-								MarkdownDescription: "The resource specifications for the liveness-probe container of the BeeGFS driver node pod.The default values for requests are (cpu: 60m, memory: 20Mi)The default values for limits are (cpu: None, memory: 128Mi)",
+								Description:         "The resource specifications for the liveness-probe container of the BeeGFS driver node pod. The default values for requests are (cpu: 60m, memory: 20Mi) The default values for limits are (cpu: None, memory: 128Mi)",
+								MarkdownDescription: "The resource specifications for the liveness-probe container of the BeeGFS driver node pod. The default values for requests are (cpu: 60m, memory: 20Mi) The default values for limits are (cpu: None, memory: 128Mi)",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -631,8 +631,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -640,8 +640,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -659,8 +659,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"log_level": schema.Int64Attribute{
-						Description:         "The logging level of deployed containers expressed as an integer from 0 (low detail) to 5 (high detail). 0only logs errors. 3 logs most RPC requests/responses and some detail about driver actions. 5 logs all RPCrequests/responses, including redundant/frequently occurring ones. Empty defaults to level 3.",
-						MarkdownDescription: "The logging level of deployed containers expressed as an integer from 0 (low detail) to 5 (high detail). 0only logs errors. 3 logs most RPC requests/responses and some detail about driver actions. 5 logs all RPCrequests/responses, including redundant/frequently occurring ones. Empty defaults to level 3.",
+						Description:         "The logging level of deployed containers expressed as an integer from 0 (low detail) to 5 (high detail). 0 only logs errors. 3 logs most RPC requests/responses and some detail about driver actions. 5 logs all RPC requests/responses, including redundant/frequently occurring ones. Empty defaults to level 3.",
+						MarkdownDescription: "The logging level of deployed containers expressed as an integer from 0 (low detail) to 5 (high detail). 0 only logs errors. 3 logs most RPC requests/responses and some detail about driver actions. 5 logs all RPC requests/responses, including redundant/frequently occurring ones. Empty defaults to level 3.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -671,12 +671,12 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"node_affinity_controller_service": schema.SingleNestedAttribute{
-						Description:         "The controller service consists of a single Pod. It preferably runs on an infrastructure/master node, but therunning node must have the beegfs-utils and beegfs-client packages installed. E.g.'preferred: node-role.kubernetes.io/master Exists' and/or 'required: node.openshift.io/os_id NotIn rhcos'.",
-						MarkdownDescription: "The controller service consists of a single Pod. It preferably runs on an infrastructure/master node, but therunning node must have the beegfs-utils and beegfs-client packages installed. E.g.'preferred: node-role.kubernetes.io/master Exists' and/or 'required: node.openshift.io/os_id NotIn rhcos'.",
+						Description:         "The controller service consists of a single Pod. It preferably runs on an infrastructure/master node, but the running node must have the beegfs-utils and beegfs-client packages installed. E.g. 'preferred: node-role.kubernetes.io/master Exists' and/or 'required: node.openshift.io/os_id NotIn rhcos'.",
+						MarkdownDescription: "The controller service consists of a single Pod. It preferably runs on an infrastructure/master node, but the running node must have the beegfs-utils and beegfs-client packages installed. E.g. 'preferred: node-role.kubernetes.io/master Exists' and/or 'required: node.openshift.io/os_id NotIn rhcos'.",
 						Attributes: map[string]schema.Attribute{
 							"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-								Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
-								MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+								Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+								MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"preference": schema.SingleNestedAttribute{
@@ -697,16 +697,16 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -733,16 +733,16 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -775,8 +775,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-								Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
-								MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+								Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+								MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector_terms": schema.ListNestedAttribute{
 										Description:         "Required. A list of node selector terms. The terms are ORed.",
@@ -797,16 +797,16 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -833,16 +833,16 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -872,12 +872,12 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"node_affinity_node_service": schema.SingleNestedAttribute{
-						Description:         "The node service consists of one Pod running on each eligible node. It runs on every node expected to host aworkload that requires BeeGFS. Running nodes must have the beegfs-utils and beegfs-client packages installed.E.g. 'required: node.openshift.io/os_id NotIn rhcos'.",
-						MarkdownDescription: "The node service consists of one Pod running on each eligible node. It runs on every node expected to host aworkload that requires BeeGFS. Running nodes must have the beegfs-utils and beegfs-client packages installed.E.g. 'required: node.openshift.io/os_id NotIn rhcos'.",
+						Description:         "The node service consists of one Pod running on each eligible node. It runs on every node expected to host a workload that requires BeeGFS. Running nodes must have the beegfs-utils and beegfs-client packages installed. E.g. 'required: node.openshift.io/os_id NotIn rhcos'.",
+						MarkdownDescription: "The node service consists of one Pod running on each eligible node. It runs on every node expected to host a workload that requires BeeGFS. Running nodes must have the beegfs-utils and beegfs-client packages installed. E.g. 'required: node.openshift.io/os_id NotIn rhcos'.",
 						Attributes: map[string]schema.Attribute{
 							"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-								Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
-								MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+								Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+								MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"preference": schema.SingleNestedAttribute{
@@ -898,16 +898,16 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -934,16 +934,16 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -976,8 +976,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-								Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
-								MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+								Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+								MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector_terms": schema.ListNestedAttribute{
 										Description:         "Required. A list of node selector terms. The terms are ORed.",
@@ -998,16 +998,16 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1034,16 +1034,16 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-																MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1073,16 +1073,16 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"plugin_config": schema.SingleNestedAttribute{
-						Description:         "The top level configuration structure containing default configuration (applied to all file systems on all nodes),file system specific configuration, and node specific configuration. Fields from node and file system specificconfigurations override fields from the default configuration. Often not required.",
-						MarkdownDescription: "The top level configuration structure containing default configuration (applied to all file systems on all nodes),file system specific configuration, and node specific configuration. Fields from node and file system specificconfigurations override fields from the default configuration. Often not required.",
+						Description:         "The top level configuration structure containing default configuration (applied to all file systems on all nodes), file system specific configuration, and node specific configuration. Fields from node and file system specific configurations override fields from the default configuration. Often not required.",
+						MarkdownDescription: "The top level configuration structure containing default configuration (applied to all file systems on all nodes), file system specific configuration, and node specific configuration. Fields from node and file system specific configurations override fields from the default configuration. Often not required.",
 						Attributes: map[string]schema.Attribute{
 							"config": schema.SingleNestedAttribute{
-								Description:         "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view.",
-								MarkdownDescription: "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view.",
+								Description:         "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view.",
+								MarkdownDescription: "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view.",
 								Attributes: map[string]schema.Attribute{
 									"beegfs_client_conf": schema.MapAttribute{
-										Description:         "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).",
-										MarkdownDescription: "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).",
+										Description:         "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).",
+										MarkdownDescription: "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1090,8 +1090,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"conn_interfaces": schema.ListAttribute{
-										Description:         "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.",
-										MarkdownDescription: "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.",
+										Description:         "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.",
+										MarkdownDescription: "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1099,8 +1099,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"conn_net_filter": schema.ListAttribute{
-										Description:         "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.",
-										MarkdownDescription: "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.",
+										Description:         "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.",
+										MarkdownDescription: "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1108,8 +1108,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"conn_rdma_interfaces": schema.ListAttribute{
-										Description:         "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.",
-										MarkdownDescription: "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.",
+										Description:         "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.",
+										MarkdownDescription: "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1117,8 +1117,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"conn_tcp_only_filter": schema.ListAttribute{
-										Description:         "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.",
-										MarkdownDescription: "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.",
+										Description:         "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.",
+										MarkdownDescription: "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1136,12 +1136,12 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"config": schema.SingleNestedAttribute{
-											Description:         "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view.",
-											MarkdownDescription: "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view.",
+											Description:         "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view.",
+											MarkdownDescription: "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view.",
 											Attributes: map[string]schema.Attribute{
 												"beegfs_client_conf": schema.MapAttribute{
-													Description:         "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).",
-													MarkdownDescription: "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).",
+													Description:         "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).",
+													MarkdownDescription: "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1149,8 +1149,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"conn_interfaces": schema.ListAttribute{
-													Description:         "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.",
-													MarkdownDescription: "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.",
+													Description:         "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.",
+													MarkdownDescription: "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1158,8 +1158,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"conn_net_filter": schema.ListAttribute{
-													Description:         "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.",
-													MarkdownDescription: "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.",
+													Description:         "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.",
+													MarkdownDescription: "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1167,8 +1167,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"conn_rdma_interfaces": schema.ListAttribute{
-													Description:         "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.",
-													MarkdownDescription: "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.",
+													Description:         "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.",
+													MarkdownDescription: "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1176,8 +1176,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"conn_tcp_only_filter": schema.ListAttribute{
-													Description:         "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.",
-													MarkdownDescription: "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.",
+													Description:         "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.",
+													MarkdownDescription: "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1204,17 +1204,17 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"node_specific_configs": schema.ListNestedAttribute{
-								Description:         "A list of node specific configurations that override file system specific configurations and the defaultconfiguration on specific nodes.",
-								MarkdownDescription: "A list of node specific configurations that override file system specific configurations and the defaultconfiguration on specific nodes.",
+								Description:         "A list of node specific configurations that override file system specific configurations and the default configuration on specific nodes.",
+								MarkdownDescription: "A list of node specific configurations that override file system specific configurations and the default configuration on specific nodes.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"config": schema.SingleNestedAttribute{
-											Description:         "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view.",
-											MarkdownDescription: "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view.",
+											Description:         "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view.",
+											MarkdownDescription: "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view.",
 											Attributes: map[string]schema.Attribute{
 												"beegfs_client_conf": schema.MapAttribute{
-													Description:         "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).",
-													MarkdownDescription: "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).",
+													Description:         "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).",
+													MarkdownDescription: "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1222,8 +1222,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"conn_interfaces": schema.ListAttribute{
-													Description:         "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.",
-													MarkdownDescription: "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.",
+													Description:         "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.",
+													MarkdownDescription: "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1231,8 +1231,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"conn_net_filter": schema.ListAttribute{
-													Description:         "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.",
-													MarkdownDescription: "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.",
+													Description:         "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.",
+													MarkdownDescription: "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1240,8 +1240,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"conn_rdma_interfaces": schema.ListAttribute{
-													Description:         "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.",
-													MarkdownDescription: "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.",
+													Description:         "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.",
+													MarkdownDescription: "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1249,8 +1249,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"conn_tcp_only_filter": schema.ListAttribute{
-													Description:         "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.",
-													MarkdownDescription: "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.",
+													Description:         "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.",
+													MarkdownDescription: "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1263,17 +1263,17 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"file_system_specific_configs": schema.ListNestedAttribute{
-											Description:         "A list of file system specific configurations that override the default configuration for specific file systemson these nodes.",
-											MarkdownDescription: "A list of file system specific configurations that override the default configuration for specific file systemson these nodes.",
+											Description:         "A list of file system specific configurations that override the default configuration for specific file systems on these nodes.",
+											MarkdownDescription: "A list of file system specific configurations that override the default configuration for specific file systems on these nodes.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"config": schema.SingleNestedAttribute{
-														Description:         "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view.",
-														MarkdownDescription: "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values andadditional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which isspecified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered inform view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify itin YAML view.",
+														Description:         "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view.",
+														MarkdownDescription: "The primary configuration structure containing all of the custom configuration (beegfs-client.conf keys/values and additional CSI driver specific fields) associated with a single BeeGFS file system except for sysMgmtdHost, which is specified elsewhere. WARNING: This structure includes a beegfsClientConf field. This field may not be rendered in form view by OpenShift or other graphical interfaces, but it can be critical in some environments. Add or modify it in YAML view.",
 														Attributes: map[string]schema.Attribute{
 															"beegfs_client_conf": schema.MapAttribute{
-																Description:         "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).",
-																MarkdownDescription: "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. Seebeegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers orbooleans (e.g. '8000', not 8000 and 'true', not true).",
+																Description:         "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).",
+																MarkdownDescription: "A map of additional key value pairs matching key value pairs in the beegfs-client.conf file. See beegfs-client.conf for more details. Values MUST be specified as strings, even if they appear to be integers or booleans (e.g. '8000', not 8000 and 'true', not true).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1281,8 +1281,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"conn_interfaces": schema.ListAttribute{
-																Description:         "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.",
-																MarkdownDescription: "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required.See beegfs-client.conf for more details.",
+																Description:         "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.",
+																MarkdownDescription: "A list of interfaces the BeeGFS client service can communicate over (e.g. 'ib0' or 'eth0'). Often not required. See beegfs-client.conf for more details.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1290,8 +1290,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"conn_net_filter": schema.ListAttribute{
-																Description:         "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.",
-																MarkdownDescription: "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Oftennot required. See beegfs-client.conf for more details.",
+																Description:         "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.",
+																MarkdownDescription: "A list of subnets the BeeGFS client service can use for outgoing communication (e.g. '10.10.10.10/24'). Often not required. See beegfs-client.conf for more details.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1299,8 +1299,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"conn_rdma_interfaces": schema.ListAttribute{
-																Description:         "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.",
-																MarkdownDescription: "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in supportof the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter.This feature requires the BeeGFS client version 7.3.0 or later.",
+																Description:         "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.",
+																MarkdownDescription: "A list of interfaces the BeeGFS client will use for outbound RDMA connections. This is used in support of the BeeGFS multi-rail feature. This feature does not depend on or use the connInterfaces parameter. This feature requires the BeeGFS client version 7.3.0 or later.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1308,8 +1308,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"conn_tcp_only_filter": schema.ListAttribute{
-																Description:         "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.",
-																MarkdownDescription: "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24').Often not required. See beegfs-client.conf for more details.",
+																Description:         "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.",
+																MarkdownDescription: "A list of subnets in which RDMA communication cannot or should not be established (e.g. '10.10.10.11/24'). Often not required. See beegfs-client.conf for more details.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1336,8 +1336,8 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"node_list": schema.ListAttribute{
-											Description:         "The list of nodes this configuration should be applied on. Each entry is the hostname of the node or the nameassigned to the node by the container orchestrator (e.g. 'node1' or 'cluster05-node03').",
-											MarkdownDescription: "The list of nodes this configuration should be applied on. Each entry is the hostname of the node or the nameassigned to the node by the container orchestrator (e.g. 'node1' or 'cluster05-node03').",
+											Description:         "The list of nodes this configuration should be applied on. Each entry is the hostname of the node or the name assigned to the node by the container orchestrator (e.g. 'node1' or 'cluster05-node03').",
+											MarkdownDescription: "The list of nodes this configuration should be applied on. Each entry is the hostname of the node or the name assigned to the node by the container orchestrator (e.g. 'node1' or 'cluster05-node03').",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,

@@ -60,9 +60,9 @@ Optional:
 - `gateway_route_selector` (Attributes) GatewayRouteSelector selects GatewayRoutes using labels to designate GatewayRoute membership. If not specified it selects all GatewayRoutes in that namespace. (see [below for nested schema](#nestedatt--spec--gateway_route_selector))
 - `listeners` (Attributes List) The listener that the virtual gateway is expected to receive inbound traffic from (see [below for nested schema](#nestedatt--spec--listeners))
 - `logging` (Attributes) The inbound and outbound access logging information for the virtual gateway. (see [below for nested schema](#nestedatt--spec--logging))
-- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this VirtualGateway belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field.  Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
+- `mesh_ref` (Attributes) A reference to k8s Mesh CR that this VirtualGateway belongs to. The admission controller populates it using Meshes's selector, and prevents users from setting this field. Populated by the system. Read-only. (see [below for nested schema](#nestedatt--spec--mesh_ref))
 - `namespace_selector` (Attributes) NamespaceSelector selects Namespaces using labels to designate GatewayRoute membership. This field follows standard label selector semantics; if present but empty, it selects all namespaces. (see [below for nested schema](#nestedatt--spec--namespace_selector))
-- `pod_selector` (Attributes) PodSelector selects Pods using labels to designate VirtualGateway membership. This field follows standard label selector semantics: 	if present but empty, it selects all pods within namespace. 	if absent, it selects no pod. (see [below for nested schema](#nestedatt--spec--pod_selector))
+- `pod_selector` (Attributes) PodSelector selects Pods using labels to designate VirtualGateway membership. This field follows standard label selector semantics: if present but empty, it selects all pods within namespace. if absent, it selects no pod. (see [below for nested schema](#nestedatt--spec--pod_selector))
 
 <a id="nestedatt--spec--backend_defaults"></a>
 ### Nested Schema for `spec.backend_defaults`

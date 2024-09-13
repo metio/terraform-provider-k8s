@@ -57,8 +57,8 @@ Optional:
 
 - `allow` (Map of Map of List of String) Defines the allow policy for the profile
 - `disabled` (Boolean) Whether the profile is disabled and should be skipped during reconciliation.
-- `inherit` (Attributes List) A SELinuxProfile or set of profiles that this inherits from.Note that they need to be in the same namespace. (see [below for nested schema](#nestedatt--spec--inherit))
-- `permissive` (Boolean) Permissive, when true will cause the SELinux profile to onlylog violations instead of enforcing them.
+- `inherit` (Attributes List) A SELinuxProfile or set of profiles that this inherits from. Note that they need to be in the same namespace. (see [below for nested schema](#nestedatt--spec--inherit))
+- `permissive` (Boolean) Permissive, when true will cause the SELinux profile to only log violations instead of enforcing them.
 
 <a id="nestedatt--spec--inherit"></a>
 ### Nested Schema for `spec.inherit`
@@ -69,4 +69,4 @@ Required:
 
 Optional:
 
-- `kind` (String) The Kind of the policy that this inherits from.Can be a SelinuxProfile object Or 'System' if an alreadyinstalled policy will be used.The allowed 'System' policies are available in theSecurityProfilesOperatorDaemon instance.
+- `kind` (String) The Kind of the policy that this inherits from. Can be a SelinuxProfile object Or 'System' if an already installed policy will be used. The allowed 'System' policies are available in the SecurityProfilesOperatorDaemon instance.

@@ -66,7 +66,7 @@ Optional:
 
 Required:
 
-- `endpoints` (List of String) List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated asa separate group in the configuration. Multiple Alertmanagers in HA per group can besupported by using DNS resolution (See EnableDNSDiscovery).
+- `endpoints` (List of String) List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated as a separate group in the configuration. Multiple Alertmanagers in HA per group can be supported by using DNS resolution (See EnableDNSDiscovery).
 
 Optional:
 
@@ -134,7 +134,7 @@ Optional:
 Optional:
 
 - `capacity` (Number) Capacity of the queue for notifications to be sent to the Alertmanager.
-- `for_grace_period` (String) Minimum duration between alert and restored 'for' state. This is maintainedonly for alerts with configured 'for' time greater than the grace period.
+- `for_grace_period` (String) Minimum duration between alert and restored 'for' state. This is maintained only for alerts with configured 'for' time greater than the grace period.
 - `for_outage_tolerance` (String) Max time to tolerate outage for restoring 'for' state of alert.
 - `resend_delay` (String) Minimum amount of time to wait before resending an alert to Alertmanager.
 - `timeout` (String) HTTP timeout duration when sending notifications to the Alertmanager.
@@ -145,16 +145,16 @@ Optional:
 
 Required:
 
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
 
 Optional:
 
 - `action` (String) Action to perform based on regex matching. Default is 'replace'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
 - `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 
@@ -170,7 +170,7 @@ Optional:
 
 Required:
 
-- `endpoints` (List of String) List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated asa separate group in the configuration. Multiple Alertmanagers in HA per group can besupported by using DNS resolution (See EnableDNSDiscovery).
+- `endpoints` (List of String) List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated as a separate group in the configuration. Multiple Alertmanagers in HA per group can be supported by using DNS resolution (See EnableDNSDiscovery).
 
 Optional:
 
@@ -238,7 +238,7 @@ Optional:
 Optional:
 
 - `capacity` (Number) Capacity of the queue for notifications to be sent to the Alertmanager.
-- `for_grace_period` (String) Minimum duration between alert and restored 'for' state. This is maintainedonly for alerts with configured 'for' time greater than the grace period.
+- `for_grace_period` (String) Minimum duration between alert and restored 'for' state. This is maintained only for alerts with configured 'for' time greater than the grace period.
 - `for_outage_tolerance` (String) Max time to tolerate outage for restoring 'for' state of alert.
 - `resend_delay` (String) Minimum amount of time to wait before resending an alert to Alertmanager.
 - `timeout` (String) HTTP timeout duration when sending notifications to the Alertmanager.
@@ -249,16 +249,16 @@ Optional:
 
 Required:
 
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
 
 Optional:
 
 - `action` (String) Action to perform based on regex matching. Default is 'replace'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
 - `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 
@@ -296,16 +296,16 @@ Optional:
 
 Required:
 
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
 
 Optional:
 
 - `action` (String) Action to perform based on regex matching. Default is 'replace'
 - `modulus` (Number) Modulus to take of the hash of the source label values.
 - `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 

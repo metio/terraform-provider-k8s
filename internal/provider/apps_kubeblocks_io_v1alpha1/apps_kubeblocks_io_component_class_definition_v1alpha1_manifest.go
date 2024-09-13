@@ -192,8 +192,8 @@ func (r *AppsKubeblocksIoComponentClassDefinitionV1Alpha1Manifest) Schema(_ cont
 								},
 
 								"template": schema.StringAttribute{
-									Description:         "template is a class definition template that uses the Go template syntax and allows for variable declaration. When defining a class in Series, specifying the variable's value is sufficient, as the complete class definition will be generated through rendering the template.  For example:  '''yaml template: | cpu: '{{ or .cpu 1 }}' memory: '{{ or .memory 4 }}Gi' '''",
-									MarkdownDescription: "template is a class definition template that uses the Go template syntax and allows for variable declaration. When defining a class in Series, specifying the variable's value is sufficient, as the complete class definition will be generated through rendering the template.  For example:  '''yaml template: | cpu: '{{ or .cpu 1 }}' memory: '{{ or .memory 4 }}Gi' '''",
+									Description:         "template is a class definition template that uses the Go template syntax and allows for variable declaration. When defining a class in Series, specifying the variable's value is sufficient, as the complete class definition will be generated through rendering the template. For example: '''yaml template: | cpu: '{{ or .cpu 1 }}' memory: '{{ or .memory 4 }}Gi' '''",
+									MarkdownDescription: "template is a class definition template that uses the Go template syntax and allows for variable declaration. When defining a class in Series, specifying the variable's value is sufficient, as the complete class definition will be generated through rendering the template. For example: '''yaml template: | cpu: '{{ or .cpu 1 }}' memory: '{{ or .memory 4 }}Gi' '''",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

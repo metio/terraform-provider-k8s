@@ -62,8 +62,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetBindingV1Alpha3Manifest) Metadata(
 
 func (r *AddonsClusterXK8SIoClusterResourceSetBindingV1Alpha3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.Deprecated: This type will be removed in one of the next releases.",
-		MarkdownDescription: "ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to.Deprecated: This type will be removed in one of the next releases.",
+		Description:         "ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to. Deprecated: This type will be removed in one of the next releases.",
+		MarkdownDescription: "ClusterResourceSetBinding lists all matching ClusterResourceSets with the cluster it belongs to. Deprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -160,8 +160,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetBindingV1Alpha3Manifest) Schema(_ 
 											},
 
 											"hash": schema.StringAttribute{
-												Description:         "Hash is the hash of a resource's data. This can be used to decide if a resource is changed.For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
-												MarkdownDescription: "Hash is the hash of a resource's data. This can be used to decide if a resource is changed.For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
+												Description:         "Hash is the hash of a resource's data. This can be used to decide if a resource is changed. For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
+												MarkdownDescription: "Hash is the hash of a resource's data. This can be used to decide if a resource is changed. For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

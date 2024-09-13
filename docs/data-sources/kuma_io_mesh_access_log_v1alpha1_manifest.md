@@ -56,7 +56,7 @@ Optional:
 Optional:
 
 - `from` (Attributes List) From list makes a match between clients and corresponding configurations (see [below for nested schema](#nestedatt--spec--from))
-- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined in-place. (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined in-place. (see [below for nested schema](#nestedatt--spec--target_ref))
 - `to` (Attributes List) To list makes a match between the consumed services and corresponding configurations (see [below for nested schema](#nestedatt--spec--to))
 
 <a id="nestedatt--spec--from"></a>
@@ -64,11 +64,11 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group ofclients. (see [below for nested schema](#nestedatt--spec--from--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group of clients. (see [below for nested schema](#nestedatt--spec--from--target_ref))
 
 Optional:
 
-- `default` (Attributes) Default is a configuration specific to the group of clients referenced in'targetRef' (see [below for nested schema](#nestedatt--spec--from--default))
+- `default` (Attributes) Default is a configuration specific to the group of clients referenced in 'targetRef' (see [below for nested schema](#nestedatt--spec--from--default))
 
 <a id="nestedatt--spec--from--target_ref"></a>
 ### Nested Schema for `spec.from.target_ref`
@@ -76,13 +76,13 @@ Optional:
 Optional:
 
 - `kind` (String) Kind of the referenced resource
-- `labels` (Map of String) Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.
+- `labels` (Map of String) Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
-- `namespace` (String) Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.
-- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
-- `section_name` (String) SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
+- `namespace` (String) Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.
+- `section_name` (String) SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--from--default"></a>
@@ -114,7 +114,7 @@ Required:
 
 Optional:
 
-- `format` (Attributes) Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--from--default--backends--file--format))
+- `format` (Attributes) Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--from--default--backends--file--format))
 
 <a id="nestedatt--spec--from--default--backends--file--format"></a>
 ### Nested Schema for `spec.from.default.backends.file.format`
@@ -149,8 +149,8 @@ Required:
 
 Optional:
 
-- `attributes` (Attributes List) Attributes can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--from--default--backends--open_telemetry--attributes))
-- `body` (Map of String) Body is a raw string or an OTLP any value as described athttps://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-bodyIt can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators
+- `attributes` (Attributes List) Attributes can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--from--default--backends--open_telemetry--attributes))
+- `body` (Map of String) Body is a raw string or an OTLP any value as described at https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body It can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators
 
 <a id="nestedatt--spec--from--default--backends--open_telemetry--attributes"></a>
 ### Nested Schema for `spec.from.default.backends.open_telemetry.attributes`
@@ -171,7 +171,7 @@ Required:
 
 Optional:
 
-- `format` (Attributes) Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--from--default--backends--tcp--format))
+- `format` (Attributes) Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--from--default--backends--tcp--format))
 
 <a id="nestedatt--spec--from--default--backends--tcp--format"></a>
 ### Nested Schema for `spec.from.default.backends.tcp.format`
@@ -206,13 +206,13 @@ Optional:
 Optional:
 
 - `kind` (String) Kind of the referenced resource
-- `labels` (Map of String) Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.
+- `labels` (Map of String) Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
-- `namespace` (String) Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.
-- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
-- `section_name` (String) SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
+- `namespace` (String) Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.
+- `section_name` (String) SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--to"></a>
@@ -220,11 +220,11 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group ofdestinations. (see [below for nested schema](#nestedatt--spec--to--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group of destinations. (see [below for nested schema](#nestedatt--spec--to--target_ref))
 
 Optional:
 
-- `default` (Attributes) Default is a configuration specific to the group of destinations referenced in'targetRef' (see [below for nested schema](#nestedatt--spec--to--default))
+- `default` (Attributes) Default is a configuration specific to the group of destinations referenced in 'targetRef' (see [below for nested schema](#nestedatt--spec--to--default))
 
 <a id="nestedatt--spec--to--target_ref"></a>
 ### Nested Schema for `spec.to.target_ref`
@@ -232,13 +232,13 @@ Optional:
 Optional:
 
 - `kind` (String) Kind of the referenced resource
-- `labels` (Map of String) Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.
+- `labels` (Map of String) Labels are used to select group of MeshServices that match labels. Either Labels or Name and Namespace can be used.
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
-- `namespace` (String) Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.
-- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
-- `section_name` (String) SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
+- `namespace` (String) Namespace specifies the namespace of target resource. If empty only resources in policy namespace will be targeted.
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified, all data plane types are targeted by the policy.
+- `section_name` (String) SectionName is used to target specific section of resource. For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--to--default"></a>
@@ -270,7 +270,7 @@ Required:
 
 Optional:
 
-- `format` (Attributes) Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--to--default--backends--file--format))
+- `format` (Attributes) Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--to--default--backends--file--format))
 
 <a id="nestedatt--spec--to--default--backends--file--format"></a>
 ### Nested Schema for `spec.to.default.backends.file.format`
@@ -305,8 +305,8 @@ Required:
 
 Optional:
 
-- `attributes` (Attributes List) Attributes can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--to--default--backends--open_telemetry--attributes))
-- `body` (Map of String) Body is a raw string or an OTLP any value as described athttps://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-bodyIt can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators
+- `attributes` (Attributes List) Attributes can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--to--default--backends--open_telemetry--attributes))
+- `body` (Map of String) Body is a raw string or an OTLP any value as described at https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body It can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators
 
 <a id="nestedatt--spec--to--default--backends--open_telemetry--attributes"></a>
 ### Nested Schema for `spec.to.default.backends.open_telemetry.attributes`
@@ -327,7 +327,7 @@ Required:
 
 Optional:
 
-- `format` (Attributes) Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--to--default--backends--tcp--format))
+- `format` (Attributes) Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators (see [below for nested schema](#nestedatt--spec--to--default--backends--tcp--format))
 
 <a id="nestedatt--spec--to--default--backends--tcp--format"></a>
 ### Nested Schema for `spec.to.default.backends.tcp.format`

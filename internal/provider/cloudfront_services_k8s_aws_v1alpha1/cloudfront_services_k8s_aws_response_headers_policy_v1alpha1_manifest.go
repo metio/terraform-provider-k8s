@@ -186,12 +186,12 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ResponseHeadersPolicySpec defines the desired state of ResponseHeadersPolicy.A response headers policy.A response headers policy contains information about a set of HTTP responseheaders.After you create a response headers policy, you can use its ID to attachit to one or more cache behaviors in a CloudFront distribution. When it'sattached to a cache behavior, the response headers policy affects the HTTPheaders that CloudFront includes in HTTP responses to requests that matchthe cache behavior. CloudFront adds or removes response headers accordingto the configuration of the response headers policy.For more information, see Adding or removing HTTP headers in CloudFront responses(https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html)in the Amazon CloudFront Developer Guide.",
-				MarkdownDescription: "ResponseHeadersPolicySpec defines the desired state of ResponseHeadersPolicy.A response headers policy.A response headers policy contains information about a set of HTTP responseheaders.After you create a response headers policy, you can use its ID to attachit to one or more cache behaviors in a CloudFront distribution. When it'sattached to a cache behavior, the response headers policy affects the HTTPheaders that CloudFront includes in HTTP responses to requests that matchthe cache behavior. CloudFront adds or removes response headers accordingto the configuration of the response headers policy.For more information, see Adding or removing HTTP headers in CloudFront responses(https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html)in the Amazon CloudFront Developer Guide.",
+				Description:         "ResponseHeadersPolicySpec defines the desired state of ResponseHeadersPolicy. A response headers policy. A response headers policy contains information about a set of HTTP response headers. After you create a response headers policy, you can use its ID to attach it to one or more cache behaviors in a CloudFront distribution. When it's attached to a cache behavior, the response headers policy affects the HTTP headers that CloudFront includes in HTTP responses to requests that match the cache behavior. CloudFront adds or removes response headers according to the configuration of the response headers policy. For more information, see Adding or removing HTTP headers in CloudFront responses (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html) in the Amazon CloudFront Developer Guide.",
+				MarkdownDescription: "ResponseHeadersPolicySpec defines the desired state of ResponseHeadersPolicy. A response headers policy. A response headers policy contains information about a set of HTTP response headers. After you create a response headers policy, you can use its ID to attach it to one or more cache behaviors in a CloudFront distribution. When it's attached to a cache behavior, the response headers policy affects the HTTP headers that CloudFront includes in HTTP responses to requests that match the cache behavior. CloudFront adds or removes response headers according to the configuration of the response headers policy. For more information, see Adding or removing HTTP headers in CloudFront responses (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html) in the Amazon CloudFront Developer Guide.",
 				Attributes: map[string]schema.Attribute{
 					"response_headers_policy_config": schema.SingleNestedAttribute{
-						Description:         "Contains metadata about the response headers policy, and a set of configurationsthat specify the HTTP headers.",
-						MarkdownDescription: "Contains metadata about the response headers policy, and a set of configurationsthat specify the HTTP headers.",
+						Description:         "Contains metadata about the response headers policy, and a set of configurations that specify the HTTP headers.",
+						MarkdownDescription: "Contains metadata about the response headers policy, and a set of configurations that specify the HTTP headers.",
 						Attributes: map[string]schema.Attribute{
 							"comment": schema.StringAttribute{
 								Description:         "",
@@ -202,8 +202,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 							},
 
 							"cors_config": schema.SingleNestedAttribute{
-								Description:         "A configuration for a set of HTTP response headers that are used for cross-originresource sharing (CORS). CloudFront adds these headers to HTTP responsesthat it sends for CORS requests that match a cache behavior associated withthis response headers policy.For more information about CORS, see Cross-Origin Resource Sharing (CORS)(https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) in the MDN Web Docs.",
-								MarkdownDescription: "A configuration for a set of HTTP response headers that are used for cross-originresource sharing (CORS). CloudFront adds these headers to HTTP responsesthat it sends for CORS requests that match a cache behavior associated withthis response headers policy.For more information about CORS, see Cross-Origin Resource Sharing (CORS)(https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) in the MDN Web Docs.",
+								Description:         "A configuration for a set of HTTP response headers that are used for cross-origin resource sharing (CORS). CloudFront adds these headers to HTTP responses that it sends for CORS requests that match a cache behavior associated with this response headers policy. For more information about CORS, see Cross-Origin Resource Sharing (CORS) (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) in the MDN Web Docs.",
+								MarkdownDescription: "A configuration for a set of HTTP response headers that are used for cross-origin resource sharing (CORS). CloudFront adds these headers to HTTP responses that it sends for CORS requests that match a cache behavior associated with this response headers policy. For more information about CORS, see Cross-Origin Resource Sharing (CORS) (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) in the MDN Web Docs.",
 								Attributes: map[string]schema.Attribute{
 									"access_control_allow_credentials": schema.BoolAttribute{
 										Description:         "",
@@ -214,8 +214,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 									},
 
 									"access_control_allow_headers": schema.SingleNestedAttribute{
-										Description:         "A list of HTTP header names that CloudFront includes as values for the Access-Control-Allow-HeadersHTTP response header.For more information about the Access-Control-Allow-Headers HTTP responseheader, see Access-Control-Allow-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers)in the MDN Web Docs.",
-										MarkdownDescription: "A list of HTTP header names that CloudFront includes as values for the Access-Control-Allow-HeadersHTTP response header.For more information about the Access-Control-Allow-Headers HTTP responseheader, see Access-Control-Allow-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers)in the MDN Web Docs.",
+										Description:         "A list of HTTP header names that CloudFront includes as values for the Access-Control-Allow-Headers HTTP response header. For more information about the Access-Control-Allow-Headers HTTP response header, see Access-Control-Allow-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers) in the MDN Web Docs.",
+										MarkdownDescription: "A list of HTTP header names that CloudFront includes as values for the Access-Control-Allow-Headers HTTP response header. For more information about the Access-Control-Allow-Headers HTTP response header, see Access-Control-Allow-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers) in the MDN Web Docs.",
 										Attributes: map[string]schema.Attribute{
 											"items": schema.ListAttribute{
 												Description:         "",
@@ -232,8 +232,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 									},
 
 									"access_control_allow_methods": schema.SingleNestedAttribute{
-										Description:         "A list of HTTP methods that CloudFront includes as values for the Access-Control-Allow-MethodsHTTP response header.For more information about the Access-Control-Allow-Methods HTTP responseheader, see Access-Control-Allow-Methods (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)in the MDN Web Docs.",
-										MarkdownDescription: "A list of HTTP methods that CloudFront includes as values for the Access-Control-Allow-MethodsHTTP response header.For more information about the Access-Control-Allow-Methods HTTP responseheader, see Access-Control-Allow-Methods (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)in the MDN Web Docs.",
+										Description:         "A list of HTTP methods that CloudFront includes as values for the Access-Control-Allow-Methods HTTP response header. For more information about the Access-Control-Allow-Methods HTTP response header, see Access-Control-Allow-Methods (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods) in the MDN Web Docs.",
+										MarkdownDescription: "A list of HTTP methods that CloudFront includes as values for the Access-Control-Allow-Methods HTTP response header. For more information about the Access-Control-Allow-Methods HTTP response header, see Access-Control-Allow-Methods (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods) in the MDN Web Docs.",
 										Attributes: map[string]schema.Attribute{
 											"items": schema.ListAttribute{
 												Description:         "",
@@ -250,8 +250,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 									},
 
 									"access_control_allow_origins": schema.SingleNestedAttribute{
-										Description:         "A list of origins (domain names) that CloudFront can use as the value forthe Access-Control-Allow-Origin HTTP response header.For more information about the Access-Control-Allow-Origin HTTP responseheader, see Access-Control-Allow-Origin (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin)in the MDN Web Docs.",
-										MarkdownDescription: "A list of origins (domain names) that CloudFront can use as the value forthe Access-Control-Allow-Origin HTTP response header.For more information about the Access-Control-Allow-Origin HTTP responseheader, see Access-Control-Allow-Origin (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin)in the MDN Web Docs.",
+										Description:         "A list of origins (domain names) that CloudFront can use as the value for the Access-Control-Allow-Origin HTTP response header. For more information about the Access-Control-Allow-Origin HTTP response header, see Access-Control-Allow-Origin (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) in the MDN Web Docs.",
+										MarkdownDescription: "A list of origins (domain names) that CloudFront can use as the value for the Access-Control-Allow-Origin HTTP response header. For more information about the Access-Control-Allow-Origin HTTP response header, see Access-Control-Allow-Origin (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) in the MDN Web Docs.",
 										Attributes: map[string]schema.Attribute{
 											"items": schema.ListAttribute{
 												Description:         "",
@@ -268,8 +268,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 									},
 
 									"access_control_expose_headers": schema.SingleNestedAttribute{
-										Description:         "A list of HTTP headers that CloudFront includes as values for the Access-Control-Expose-HeadersHTTP response header.For more information about the Access-Control-Expose-Headers HTTP responseheader, see Access-Control-Expose-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers)in the MDN Web Docs.",
-										MarkdownDescription: "A list of HTTP headers that CloudFront includes as values for the Access-Control-Expose-HeadersHTTP response header.For more information about the Access-Control-Expose-Headers HTTP responseheader, see Access-Control-Expose-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers)in the MDN Web Docs.",
+										Description:         "A list of HTTP headers that CloudFront includes as values for the Access-Control-Expose-Headers HTTP response header. For more information about the Access-Control-Expose-Headers HTTP response header, see Access-Control-Expose-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers) in the MDN Web Docs.",
+										MarkdownDescription: "A list of HTTP headers that CloudFront includes as values for the Access-Control-Expose-Headers HTTP response header. For more information about the Access-Control-Expose-Headers HTTP response header, see Access-Control-Expose-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers) in the MDN Web Docs.",
 										Attributes: map[string]schema.Attribute{
 											"items": schema.ListAttribute{
 												Description:         "",
@@ -307,8 +307,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 							},
 
 							"custom_headers_config": schema.SingleNestedAttribute{
-								Description:         "A list of HTTP response header names and their values. CloudFront includesthese headers in HTTP responses that it sends for requests that match a cachebehavior that's associated with this response headers policy.",
-								MarkdownDescription: "A list of HTTP response header names and their values. CloudFront includesthese headers in HTTP responses that it sends for requests that match a cachebehavior that's associated with this response headers policy.",
+								Description:         "A list of HTTP response header names and their values. CloudFront includes these headers in HTTP responses that it sends for requests that match a cache behavior that's associated with this response headers policy.",
+								MarkdownDescription: "A list of HTTP response header names and their values. CloudFront includes these headers in HTTP responses that it sends for requests that match a cache behavior that's associated with this response headers policy.",
 								Attributes: map[string]schema.Attribute{
 									"items": schema.ListNestedAttribute{
 										Description:         "",
@@ -359,8 +359,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 							},
 
 							"remove_headers_config": schema.SingleNestedAttribute{
-								Description:         "A list of HTTP header names that CloudFront removes from HTTP responses torequests that match the cache behavior that this response headers policyis attached to.",
-								MarkdownDescription: "A list of HTTP header names that CloudFront removes from HTTP responses torequests that match the cache behavior that this response headers policyis attached to.",
+								Description:         "A list of HTTP header names that CloudFront removes from HTTP responses to requests that match the cache behavior that this response headers policy is attached to.",
+								MarkdownDescription: "A list of HTTP header names that CloudFront removes from HTTP responses to requests that match the cache behavior that this response headers policy is attached to.",
 								Attributes: map[string]schema.Attribute{
 									"items": schema.ListNestedAttribute{
 										Description:         "",
@@ -387,12 +387,12 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 							},
 
 							"security_headers_config": schema.SingleNestedAttribute{
-								Description:         "A configuration for a set of security-related HTTP response headers. CloudFrontadds these headers to HTTP responses that it sends for requests that matcha cache behavior associated with this response headers policy.",
-								MarkdownDescription: "A configuration for a set of security-related HTTP response headers. CloudFrontadds these headers to HTTP responses that it sends for requests that matcha cache behavior associated with this response headers policy.",
+								Description:         "A configuration for a set of security-related HTTP response headers. CloudFront adds these headers to HTTP responses that it sends for requests that match a cache behavior associated with this response headers policy.",
+								MarkdownDescription: "A configuration for a set of security-related HTTP response headers. CloudFront adds these headers to HTTP responses that it sends for requests that match a cache behavior associated with this response headers policy.",
 								Attributes: map[string]schema.Attribute{
 									"content_security_policy": schema.SingleNestedAttribute{
-										Description:         "The policy directives and their values that CloudFront includes as valuesfor the Content-Security-Policy HTTP response header.For more information about the Content-Security-Policy HTTP response header,see Content-Security-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)in the MDN Web Docs.",
-										MarkdownDescription: "The policy directives and their values that CloudFront includes as valuesfor the Content-Security-Policy HTTP response header.For more information about the Content-Security-Policy HTTP response header,see Content-Security-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)in the MDN Web Docs.",
+										Description:         "The policy directives and their values that CloudFront includes as values for the Content-Security-Policy HTTP response header. For more information about the Content-Security-Policy HTTP response header, see Content-Security-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) in the MDN Web Docs.",
+										MarkdownDescription: "The policy directives and their values that CloudFront includes as values for the Content-Security-Policy HTTP response header. For more information about the Content-Security-Policy HTTP response header, see Content-Security-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) in the MDN Web Docs.",
 										Attributes: map[string]schema.Attribute{
 											"content_security_policy": schema.StringAttribute{
 												Description:         "",
@@ -416,8 +416,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 									},
 
 									"content_type_options": schema.SingleNestedAttribute{
-										Description:         "Determines whether CloudFront includes the X-Content-Type-Options HTTP responseheader with its value set to nosniff.For more information about the X-Content-Type-Options HTTP response header,see X-Content-Type-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options)in the MDN Web Docs.",
-										MarkdownDescription: "Determines whether CloudFront includes the X-Content-Type-Options HTTP responseheader with its value set to nosniff.For more information about the X-Content-Type-Options HTTP response header,see X-Content-Type-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options)in the MDN Web Docs.",
+										Description:         "Determines whether CloudFront includes the X-Content-Type-Options HTTP response header with its value set to nosniff. For more information about the X-Content-Type-Options HTTP response header, see X-Content-Type-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options) in the MDN Web Docs.",
+										MarkdownDescription: "Determines whether CloudFront includes the X-Content-Type-Options HTTP response header with its value set to nosniff. For more information about the X-Content-Type-Options HTTP response header, see X-Content-Type-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options) in the MDN Web Docs.",
 										Attributes: map[string]schema.Attribute{
 											"override": schema.BoolAttribute{
 												Description:         "",
@@ -433,8 +433,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 									},
 
 									"frame_options": schema.SingleNestedAttribute{
-										Description:         "Determines whether CloudFront includes the X-Frame-Options HTTP responseheader and the header's value.For more information about the X-Frame-Options HTTP response header, seeX-Frame-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)in the MDN Web Docs.",
-										MarkdownDescription: "Determines whether CloudFront includes the X-Frame-Options HTTP responseheader and the header's value.For more information about the X-Frame-Options HTTP response header, seeX-Frame-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)in the MDN Web Docs.",
+										Description:         "Determines whether CloudFront includes the X-Frame-Options HTTP response header and the header's value. For more information about the X-Frame-Options HTTP response header, see X-Frame-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options) in the MDN Web Docs.",
+										MarkdownDescription: "Determines whether CloudFront includes the X-Frame-Options HTTP response header and the header's value. For more information about the X-Frame-Options HTTP response header, see X-Frame-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options) in the MDN Web Docs.",
 										Attributes: map[string]schema.Attribute{
 											"frame_option": schema.StringAttribute{
 												Description:         "",
@@ -458,8 +458,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 									},
 
 									"referrer_policy": schema.SingleNestedAttribute{
-										Description:         "Determines whether CloudFront includes the Referrer-Policy HTTP responseheader and the header's value.For more information about the Referrer-Policy HTTP response header, seeReferrer-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy)in the MDN Web Docs.",
-										MarkdownDescription: "Determines whether CloudFront includes the Referrer-Policy HTTP responseheader and the header's value.For more information about the Referrer-Policy HTTP response header, seeReferrer-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy)in the MDN Web Docs.",
+										Description:         "Determines whether CloudFront includes the Referrer-Policy HTTP response header and the header's value. For more information about the Referrer-Policy HTTP response header, see Referrer-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy) in the MDN Web Docs.",
+										MarkdownDescription: "Determines whether CloudFront includes the Referrer-Policy HTTP response header and the header's value. For more information about the Referrer-Policy HTTP response header, see Referrer-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy) in the MDN Web Docs.",
 										Attributes: map[string]schema.Attribute{
 											"override": schema.BoolAttribute{
 												Description:         "",
@@ -483,8 +483,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 									},
 
 									"strict_transport_security": schema.SingleNestedAttribute{
-										Description:         "Determines whether CloudFront includes the Strict-Transport-Security HTTPresponse header and the header's value.For more information about the Strict-Transport-Security HTTP response header,see Strict-Transport-Security (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)in the MDN Web Docs.",
-										MarkdownDescription: "Determines whether CloudFront includes the Strict-Transport-Security HTTPresponse header and the header's value.For more information about the Strict-Transport-Security HTTP response header,see Strict-Transport-Security (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)in the MDN Web Docs.",
+										Description:         "Determines whether CloudFront includes the Strict-Transport-Security HTTP response header and the header's value. For more information about the Strict-Transport-Security HTTP response header, see Strict-Transport-Security (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) in the MDN Web Docs.",
+										MarkdownDescription: "Determines whether CloudFront includes the Strict-Transport-Security HTTP response header and the header's value. For more information about the Strict-Transport-Security HTTP response header, see Strict-Transport-Security (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) in the MDN Web Docs.",
 										Attributes: map[string]schema.Attribute{
 											"access_control_max_age_sec": schema.Int64Attribute{
 												Description:         "",
@@ -524,8 +524,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 									},
 
 									"xss_protection": schema.SingleNestedAttribute{
-										Description:         "Determines whether CloudFront includes the X-XSS-Protection HTTP responseheader and the header's value.For more information about the X-XSS-Protection HTTP response header, seeX-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)in the MDN Web Docs.",
-										MarkdownDescription: "Determines whether CloudFront includes the X-XSS-Protection HTTP responseheader and the header's value.For more information about the X-XSS-Protection HTTP response header, seeX-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)in the MDN Web Docs.",
+										Description:         "Determines whether CloudFront includes the X-XSS-Protection HTTP response header and the header's value. For more information about the X-XSS-Protection HTTP response header, see X-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection) in the MDN Web Docs.",
+										MarkdownDescription: "Determines whether CloudFront includes the X-XSS-Protection HTTP response header and the header's value. For more information about the X-XSS-Protection HTTP response header, see X-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection) in the MDN Web Docs.",
 										Attributes: map[string]schema.Attribute{
 											"mode_block": schema.BoolAttribute{
 												Description:         "",
@@ -570,8 +570,8 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 							},
 
 							"server_timing_headers_config": schema.SingleNestedAttribute{
-								Description:         "A configuration for enabling the Server-Timing header in HTTP responses sentfrom CloudFront. CloudFront adds this header to HTTP responses that it sendsin response to requests that match a cache behavior that's associated withthis response headers policy.You can use the Server-Timing header to view metrics that can help you gaininsights about the behavior and performance of CloudFront. For example, youcan see which cache layer served a cache hit, or the first byte latency fromthe origin when there was a cache miss. You can use the metrics in the Server-Timingheader to troubleshoot issues or test the efficiency of your CloudFront configuration.For more information, see Server-Timing header (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html#server-timing-header)in the Amazon CloudFront Developer Guide.",
-								MarkdownDescription: "A configuration for enabling the Server-Timing header in HTTP responses sentfrom CloudFront. CloudFront adds this header to HTTP responses that it sendsin response to requests that match a cache behavior that's associated withthis response headers policy.You can use the Server-Timing header to view metrics that can help you gaininsights about the behavior and performance of CloudFront. For example, youcan see which cache layer served a cache hit, or the first byte latency fromthe origin when there was a cache miss. You can use the metrics in the Server-Timingheader to troubleshoot issues or test the efficiency of your CloudFront configuration.For more information, see Server-Timing header (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html#server-timing-header)in the Amazon CloudFront Developer Guide.",
+								Description:         "A configuration for enabling the Server-Timing header in HTTP responses sent from CloudFront. CloudFront adds this header to HTTP responses that it sends in response to requests that match a cache behavior that's associated with this response headers policy. You can use the Server-Timing header to view metrics that can help you gain insights about the behavior and performance of CloudFront. For example, you can see which cache layer served a cache hit, or the first byte latency from the origin when there was a cache miss. You can use the metrics in the Server-Timing header to troubleshoot issues or test the efficiency of your CloudFront configuration. For more information, see Server-Timing header (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html#server-timing-header) in the Amazon CloudFront Developer Guide.",
+								MarkdownDescription: "A configuration for enabling the Server-Timing header in HTTP responses sent from CloudFront. CloudFront adds this header to HTTP responses that it sends in response to requests that match a cache behavior that's associated with this response headers policy. You can use the Server-Timing header to view metrics that can help you gain insights about the behavior and performance of CloudFront. For example, you can see which cache layer served a cache hit, or the first byte latency from the origin when there was a cache miss. You can use the metrics in the Server-Timing header to troubleshoot issues or test the efficiency of your CloudFront configuration. For more information, see Server-Timing header (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html#server-timing-header) in the Amazon CloudFront Developer Guide.",
 								Attributes: map[string]schema.Attribute{
 									"enabled": schema.BoolAttribute{
 										Description:         "",

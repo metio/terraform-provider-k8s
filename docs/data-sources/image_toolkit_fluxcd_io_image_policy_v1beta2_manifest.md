@@ -30,7 +30,7 @@ data "k8s_image_toolkit_fluxcd_io_image_policy_v1beta2_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) ImagePolicySpec defines the parameters for calculating theImagePolicy. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ImagePolicySpec defines the parameters for calculating the ImagePolicy. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,12 +55,12 @@ Optional:
 
 Required:
 
-- `image_repository_ref` (Attributes) ImageRepositoryRef points at the object specifying the imagebeing scanned (see [below for nested schema](#nestedatt--spec--image_repository_ref))
-- `policy` (Attributes) Policy gives the particulars of the policy to be followed inselecting the most recent image (see [below for nested schema](#nestedatt--spec--policy))
+- `image_repository_ref` (Attributes) ImageRepositoryRef points at the object specifying the image being scanned (see [below for nested schema](#nestedatt--spec--image_repository_ref))
+- `policy` (Attributes) Policy gives the particulars of the policy to be followed in selecting the most recent image (see [below for nested schema](#nestedatt--spec--policy))
 
 Optional:
 
-- `filter_tags` (Attributes) FilterTags enables filtering for only a subset of tags based on a set ofrules. If no rules are provided, all the tags from the repository will beordered and compared. (see [below for nested schema](#nestedatt--spec--filter_tags))
+- `filter_tags` (Attributes) FilterTags enables filtering for only a subset of tags based on a set of rules. If no rules are provided, all the tags from the repository will be ordered and compared. (see [below for nested schema](#nestedatt--spec--filter_tags))
 
 <a id="nestedatt--spec--image_repository_ref"></a>
 ### Nested Schema for `spec.image_repository_ref`
@@ -81,14 +81,14 @@ Optional:
 
 - `alphabetical` (Attributes) Alphabetical set of rules to use for alphabetical ordering of the tags. (see [below for nested schema](#nestedatt--spec--policy--alphabetical))
 - `numerical` (Attributes) Numerical set of rules to use for numerical ordering of the tags. (see [below for nested schema](#nestedatt--spec--policy--numerical))
-- `semver` (Attributes) SemVer gives a semantic version range to check against the tagsavailable. (see [below for nested schema](#nestedatt--spec--policy--semver))
+- `semver` (Attributes) SemVer gives a semantic version range to check against the tags available. (see [below for nested schema](#nestedatt--spec--policy--semver))
 
 <a id="nestedatt--spec--policy--alphabetical"></a>
 ### Nested Schema for `spec.policy.alphabetical`
 
 Optional:
 
-- `order` (String) Order specifies the sorting order of the tags. Given the letters of thealphabet as tags, ascending order would select Z, and descending orderwould select A.
+- `order` (String) Order specifies the sorting order of the tags. Given the letters of the alphabet as tags, ascending order would select Z, and descending order would select A.
 
 
 <a id="nestedatt--spec--policy--numerical"></a>
@@ -96,7 +96,7 @@ Optional:
 
 Optional:
 
-- `order` (String) Order specifies the sorting order of the tags. Given the integer valuesfrom 0 to 9 as tags, ascending order would select 9, and descending orderwould select 0.
+- `order` (String) Order specifies the sorting order of the tags. Given the integer values from 0 to 9 as tags, ascending order would select 9, and descending order would select 0.
 
 
 <a id="nestedatt--spec--policy--semver"></a>
@@ -104,7 +104,7 @@ Optional:
 
 Required:
 
-- `range` (String) Range gives a semver range for the image tag; the highestversion within the range that's a tag yields the latest image.
+- `range` (String) Range gives a semver range for the image tag; the highest version within the range that's a tag yields the latest image.
 
 
 
@@ -113,5 +113,5 @@ Required:
 
 Optional:
 
-- `extract` (String) Extract allows a capture group to be extracted from the specified regularexpression pattern, useful before tag evaluation.
-- `pattern` (String) Pattern specifies a regular expression pattern used to filter for imagetags.
+- `extract` (String) Extract allows a capture group to be extracted from the specified regular expression pattern, useful before tag evaluation.
+- `pattern` (String) Pattern specifies a regular expression pattern used to filter for image tags.

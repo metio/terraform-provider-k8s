@@ -296,8 +296,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 					},
 
 					"control_plane_load_balancer": schema.SingleNestedAttribute{
-						Description:         "ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior.Use this for legacy support, use Network.LoadBalancers for the extended VPC support.",
-						MarkdownDescription: "ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior.Use this for legacy support, use Network.LoadBalancers for the extended VPC support.",
+						Description:         "ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior. Use this for legacy support, use Network.LoadBalancers for the extended VPC support.",
+						MarkdownDescription: "ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior. Use this for legacy support, use Network.LoadBalancers for the extended VPC support.",
 						Attributes: map[string]schema.Attribute{
 							"additional_listeners": schema.ListNestedAttribute{
 								Description:         "AdditionalListeners sets the additional listeners for the control plane load balancer.",
@@ -330,8 +330,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 										},
 
 										"protocol": schema.StringAttribute{
-											Description:         "protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.",
-											MarkdownDescription: "protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.",
+											Description:         "protocol defines the protocol to use for the VPC Load Balancer Listener. Will default to TCP protocol if not specified.",
+											MarkdownDescription: "protocol defines the protocol to use for the VPC Load Balancer Listener. Will default to TCP protocol if not specified.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -506,8 +506,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 							},
 
 							"security_groups": schema.ListNestedAttribute{
-								Description:         "securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
-								MarkdownDescription: "securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+								Description:         "securityGroups defines the Security Groups to attach to the load balancer. Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+								MarkdownDescription: "securityGroups defines the Security Groups to attach to the load balancer. Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"id": schema.StringAttribute{
@@ -539,8 +539,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 							},
 
 							"subnets": schema.ListNestedAttribute{
-								Description:         "subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
-								MarkdownDescription: "subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+								Description:         "subnets defines the VPC Subnets to attach to the load balancer. Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+								MarkdownDescription: "subnets defines the VPC Subnets to attach to the load balancer. Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"id": schema.StringAttribute{
@@ -764,8 +764,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.",
-														MarkdownDescription: "protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.",
+														Description:         "protocol defines the protocol to use for the VPC Load Balancer Listener. Will default to TCP protocol if not specified.",
+														MarkdownDescription: "protocol defines the protocol to use for the VPC Load Balancer Listener. Will default to TCP protocol if not specified.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -940,8 +940,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 										},
 
 										"security_groups": schema.ListNestedAttribute{
-											Description:         "securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
-											MarkdownDescription: "securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+											Description:         "securityGroups defines the Security Groups to attach to the load balancer. Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+											MarkdownDescription: "securityGroups defines the Security Groups to attach to the load balancer. Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"id": schema.StringAttribute{
@@ -973,8 +973,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 										},
 
 										"subnets": schema.ListNestedAttribute{
-											Description:         "subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
-											MarkdownDescription: "subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+											Description:         "subnets defines the VPC Subnets to attach to the load balancer. Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+											MarkdownDescription: "subnets defines the VPC Subnets to attach to the load balancer. Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"id": schema.StringAttribute{
@@ -1012,8 +1012,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 							},
 
 							"resource_group": schema.SingleNestedAttribute{
-								Description:         "resourceGroup is the Resource Group containing all of the newtork resources.This can be different than the Resource Group containing the remaining cluster resources.",
-								MarkdownDescription: "resourceGroup is the Resource Group containing all of the newtork resources.This can be different than the Resource Group containing the remaining cluster resources.",
+								Description:         "resourceGroup is the Resource Group containing all of the newtork resources. This can be different than the Resource Group containing the remaining cluster resources.",
+								MarkdownDescription: "resourceGroup is the Resource Group containing all of the newtork resources. This can be different than the Resource Group containing the remaining cluster resources.",
 								Attributes: map[string]schema.Attribute{
 									"id": schema.StringAttribute{
 										Description:         "id defines the IBM Cloud Resource ID.",
@@ -1074,20 +1074,20 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 													},
 
 													"destination": schema.SingleNestedAttribute{
-														Description:         "destination is a VPCSecurityGroupRulePrototype which defines the destination of outbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionOutbound.",
-														MarkdownDescription: "destination is a VPCSecurityGroupRulePrototype which defines the destination of outbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionOutbound.",
+														Description:         "destination is a VPCSecurityGroupRulePrototype which defines the destination of outbound traffic for the Security Group Rule. Only used when direction is VPCSecurityGroupRuleDirectionOutbound.",
+														MarkdownDescription: "destination is a VPCSecurityGroupRulePrototype which defines the destination of outbound traffic for the Security Group Rule. Only used when direction is VPCSecurityGroupRuleDirectionOutbound.",
 														Attributes: map[string]schema.Attribute{
 															"icmp_code": schema.Int64Attribute{
-																Description:         "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
-																MarkdownDescription: "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																Description:         "icmpCode is the ICMP code for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																MarkdownDescription: "icmpCode is the ICMP code for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"icmp_type": schema.Int64Attribute{
-																Description:         "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
-																MarkdownDescription: "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																Description:         "icmpType is the ICMP type for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																MarkdownDescription: "icmpType is the ICMP type for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1138,21 +1138,21 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 															},
 
 															"remotes": schema.ListNestedAttribute{
-																Description:         "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
-																MarkdownDescription: "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																Description:         "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote. Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc. This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																MarkdownDescription: "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote. Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc. This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"address": schema.StringAttribute{
-																			Description:         " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
-																			MarkdownDescription: " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																			Description:         " address is the address to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																			MarkdownDescription: " address is the address to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"cidr_subnet_name": schema.StringAttribute{
-																			Description:         "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
-																			MarkdownDescription: "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																			Description:         "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																			MarkdownDescription: "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1170,8 +1170,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 																		},
 
 																		"security_group_name": schema.StringAttribute{
-																			Description:         "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
-																			MarkdownDescription: "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																			Description:         "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																			MarkdownDescription: "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1208,20 +1208,20 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 													},
 
 													"source": schema.SingleNestedAttribute{
-														Description:         "source is a VPCSecurityGroupRulePrototype which defines the source of inbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionInbound.",
-														MarkdownDescription: "source is a VPCSecurityGroupRulePrototype which defines the source of inbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionInbound.",
+														Description:         "source is a VPCSecurityGroupRulePrototype which defines the source of inbound traffic for the Security Group Rule. Only used when direction is VPCSecurityGroupRuleDirectionInbound.",
+														MarkdownDescription: "source is a VPCSecurityGroupRulePrototype which defines the source of inbound traffic for the Security Group Rule. Only used when direction is VPCSecurityGroupRuleDirectionInbound.",
 														Attributes: map[string]schema.Attribute{
 															"icmp_code": schema.Int64Attribute{
-																Description:         "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
-																MarkdownDescription: "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																Description:         "icmpCode is the ICMP code for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																MarkdownDescription: "icmpCode is the ICMP code for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"icmp_type": schema.Int64Attribute{
-																Description:         "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
-																MarkdownDescription: "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																Description:         "icmpType is the ICMP type for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																MarkdownDescription: "icmpType is the ICMP type for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1272,21 +1272,21 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 															},
 
 															"remotes": schema.ListNestedAttribute{
-																Description:         "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
-																MarkdownDescription: "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																Description:         "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote. Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc. This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																MarkdownDescription: "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote. Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc. This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"address": schema.StringAttribute{
-																			Description:         " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
-																			MarkdownDescription: " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																			Description:         " address is the address to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																			MarkdownDescription: " address is the address to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"cidr_subnet_name": schema.StringAttribute{
-																			Description:         "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
-																			MarkdownDescription: "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																			Description:         "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																			MarkdownDescription: "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1304,8 +1304,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 																		},
 
 																		"security_group_name": schema.StringAttribute{
-																			Description:         "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
-																			MarkdownDescription: "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																			Description:         "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																			MarkdownDescription: "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,

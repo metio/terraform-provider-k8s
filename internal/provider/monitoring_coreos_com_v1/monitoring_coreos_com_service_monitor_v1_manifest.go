@@ -239,8 +239,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Metadata(_ context.Context
 
 func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services.Among other things, it allows to specify:* The services to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.",
-		MarkdownDescription: "The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services.Among other things, it allows to specify:* The services to scrape via label selectors.* The container ports to scrape.* Authentication credentials to use.* Target and metric relabeling.'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.",
+		Description:         "The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services. Among other things, it allows to specify: * The services to scrape via label selectors. * The container ports to scrape. * Authentication credentials to use. * Target and metric relabeling. 'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.",
+		MarkdownDescription: "The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services. Among other things, it allows to specify: * The services to scrape via label selectors. * The container ports to scrape. * Authentication credentials to use. * Target and metric relabeling. 'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -307,16 +307,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Specification of desired Service selection for target discovery byPrometheus.",
-				MarkdownDescription: "Specification of desired Service selection for target discovery byPrometheus.",
+				Description:         "Specification of desired Service selection for target discovery by Prometheus.",
+				MarkdownDescription: "Specification of desired Service selection for target discovery by Prometheus.",
 				Attributes: map[string]schema.Attribute{
 					"attach_metadata": schema.SingleNestedAttribute{
-						Description:         "'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.37.0.",
-						MarkdownDescription: "'attachMetadata' defines additional metadata which is added to thediscovered targets.It requires Prometheus >= v2.37.0.",
+						Description:         "'attachMetadata' defines additional metadata which is added to the discovered targets. It requires Prometheus >= v2.37.0.",
+						MarkdownDescription: "'attachMetadata' defines additional metadata which is added to the discovered targets. It requires Prometheus >= v2.37.0.",
 						Attributes: map[string]schema.Attribute{
 							"node": schema.BoolAttribute{
-								Description:         "When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.",
-								MarkdownDescription: "When set to true, Prometheus attaches node metadata to the discoveredtargets.The Prometheus service account must have the 'list' and 'watch'permissions on the 'Nodes' objects.",
+								Description:         "When set to true, Prometheus attaches node metadata to the discovered targets. The Prometheus service account must have the 'list' and 'watch' permissions on the 'Nodes' objects.",
+								MarkdownDescription: "When set to true, Prometheus attaches node metadata to the discovered targets. The Prometheus service account must have the 'list' and 'watch' permissions on the 'Nodes' objects.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -328,8 +328,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"body_size_limit": schema.StringAttribute{
-						Description:         "When defined, bodySizeLimit specifies a job level limit on the sizeof uncompressed response body that will be accepted by Prometheus.It requires Prometheus >= v2.28.0.",
-						MarkdownDescription: "When defined, bodySizeLimit specifies a job level limit on the sizeof uncompressed response body that will be accepted by Prometheus.It requires Prometheus >= v2.28.0.",
+						Description:         "When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus. It requires Prometheus >= v2.28.0.",
+						MarkdownDescription: "When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus. It requires Prometheus >= v2.28.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -339,29 +339,29 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"endpoints": schema.ListNestedAttribute{
-						Description:         "List of endpoints part of this ServiceMonitor.Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects.In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels.",
-						MarkdownDescription: "List of endpoints part of this ServiceMonitor.Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects.In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels.",
+						Description:         "List of endpoints part of this ServiceMonitor. Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects. In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels.",
+						MarkdownDescription: "List of endpoints part of this ServiceMonitor. Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects. In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authorization": schema.SingleNestedAttribute{
-									Description:         "'authorization' configures the Authorization header credentials to use whenscraping the target.Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
-									MarkdownDescription: "'authorization' configures the Authorization header credentials to use whenscraping the target.Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
+									Description:         "'authorization' configures the Authorization header credentials to use when scraping the target. Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
+									MarkdownDescription: "'authorization' configures the Authorization header credentials to use when scraping the target. Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
 									Attributes: map[string]schema.Attribute{
 										"credentials": schema.SingleNestedAttribute{
 											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
 											MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -381,8 +381,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
-											MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+											Description:         "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
+											MarkdownDescription: "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -394,24 +394,24 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"basic_auth": schema.SingleNestedAttribute{
-									Description:         "'basicAuth' configures the Basic Authentication credentials to use whenscraping the target.Cannot be set at the same time as 'authorization', or 'oauth2'.",
-									MarkdownDescription: "'basicAuth' configures the Basic Authentication credentials to use whenscraping the target.Cannot be set at the same time as 'authorization', or 'oauth2'.",
+									Description:         "'basicAuth' configures the Basic Authentication credentials to use when scraping the target. Cannot be set at the same time as 'authorization', or 'oauth2'.",
+									MarkdownDescription: "'basicAuth' configures the Basic Authentication credentials to use when scraping the target. Cannot be set at the same time as 'authorization', or 'oauth2'.",
 									Attributes: map[string]schema.Attribute{
 										"password": schema.SingleNestedAttribute{
-											Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
-											MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
+											Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+											MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -431,20 +431,20 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"username": schema.SingleNestedAttribute{
-											Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
-											MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
+											Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+											MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -469,28 +469,28 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"bearer_token_file": schema.StringAttribute{
-									Description:         "File to read bearer token for scraping the target.Deprecated: use 'authorization' instead.",
-									MarkdownDescription: "File to read bearer token for scraping the target.Deprecated: use 'authorization' instead.",
+									Description:         "File to read bearer token for scraping the target. Deprecated: use 'authorization' instead.",
+									MarkdownDescription: "File to read bearer token for scraping the target. Deprecated: use 'authorization' instead.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"bearer_token_secret": schema.SingleNestedAttribute{
-									Description:         "'bearerTokenSecret' specifies a key of a Secret containing the bearertoken for scraping targets. The secret needs to be in the same namespaceas the ServiceMonitor object and readable by the Prometheus Operator.Deprecated: use 'authorization' instead.",
-									MarkdownDescription: "'bearerTokenSecret' specifies a key of a Secret containing the bearertoken for scraping targets. The secret needs to be in the same namespaceas the ServiceMonitor object and readable by the Prometheus Operator.Deprecated: use 'authorization' instead.",
+									Description:         "'bearerTokenSecret' specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator. Deprecated: use 'authorization' instead.",
+									MarkdownDescription: "'bearerTokenSecret' specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator. Deprecated: use 'authorization' instead.",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
-											Description:         "The key of the secret to select from.  Must be a valid secret key.",
-											MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+											Description:         "The key of the secret to select from. Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -518,40 +518,40 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"filter_running": schema.BoolAttribute{
-									Description:         "When true, the pods which are not running (e.g. either in Failed orSucceeded state) are dropped during the target discovery.If unset, the filtering is enabled.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
-									MarkdownDescription: "When true, the pods which are not running (e.g. either in Failed orSucceeded state) are dropped during the target discovery.If unset, the filtering is enabled.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
+									Description:         "When true, the pods which are not running (e.g. either in Failed or Succeeded state) are dropped during the target discovery. If unset, the filtering is enabled. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
+									MarkdownDescription: "When true, the pods which are not running (e.g. either in Failed or Succeeded state) are dropped during the target discovery. If unset, the filtering is enabled. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"follow_redirects": schema.BoolAttribute{
-									Description:         "'followRedirects' defines whether the scrape requests should follow HTTP3xx redirects.",
-									MarkdownDescription: "'followRedirects' defines whether the scrape requests should follow HTTP3xx redirects.",
+									Description:         "'followRedirects' defines whether the scrape requests should follow HTTP 3xx redirects.",
+									MarkdownDescription: "'followRedirects' defines whether the scrape requests should follow HTTP 3xx redirects.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"honor_labels": schema.BoolAttribute{
-									Description:         "When true, 'honorLabels' preserves the metric's labels when they collidewith the target's labels.",
-									MarkdownDescription: "When true, 'honorLabels' preserves the metric's labels when they collidewith the target's labels.",
+									Description:         "When true, 'honorLabels' preserves the metric's labels when they collide with the target's labels.",
+									MarkdownDescription: "When true, 'honorLabels' preserves the metric's labels when they collide with the target's labels.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"honor_timestamps": schema.BoolAttribute{
-									Description:         "'honorTimestamps' controls whether Prometheus preserves the timestampswhen exposed by the target.",
-									MarkdownDescription: "'honorTimestamps' controls whether Prometheus preserves the timestampswhen exposed by the target.",
+									Description:         "'honorTimestamps' controls whether Prometheus preserves the timestamps when exposed by the target.",
+									MarkdownDescription: "'honorTimestamps' controls whether Prometheus preserves the timestamps when exposed by the target.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"interval": schema.StringAttribute{
-									Description:         "Interval at which Prometheus scrapes the metrics from the target.If empty, Prometheus uses the global scrape interval.",
-									MarkdownDescription: "Interval at which Prometheus scrapes the metrics from the target.If empty, Prometheus uses the global scrape interval.",
+									Description:         "Interval at which Prometheus scrapes the metrics from the target. If empty, Prometheus uses the global scrape interval.",
+									MarkdownDescription: "Interval at which Prometheus scrapes the metrics from the target. If empty, Prometheus uses the global scrape interval.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -561,13 +561,13 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"metric_relabelings": schema.ListNestedAttribute{
-									Description:         "'metricRelabelings' configures the relabeling rules to apply to thesamples before ingestion.",
-									MarkdownDescription: "'metricRelabelings' configures the relabeling rules to apply to thesamples before ingestion.",
+									Description:         "'metricRelabelings' configures the relabeling rules to apply to the samples before ingestion.",
+									MarkdownDescription: "'metricRelabelings' configures the relabeling rules to apply to the samples before ingestion.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"action": schema.StringAttribute{
-												Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
-												MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+												Description:         "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
+												MarkdownDescription: "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -577,8 +577,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 											},
 
 											"modulus": schema.Int64Attribute{
-												Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
-												MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+												Description:         "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
+												MarkdownDescription: "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -593,8 +593,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 											},
 
 											"replacement": schema.StringAttribute{
-												Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
-												MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+												Description:         "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
+												MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -609,8 +609,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 											},
 
 											"source_labels": schema.ListAttribute{
-												Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
-												MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+												Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+												MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -618,8 +618,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 											},
 
 											"target_label": schema.StringAttribute{
-												Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
-												MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+												Description:         "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
+												MarkdownDescription: "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -632,12 +632,12 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"oauth2": schema.SingleNestedAttribute{
-									Description:         "'oauth2' configures the OAuth2 settings to use when scraping the target.It requires Prometheus >= 2.27.0.Cannot be set at the same time as 'authorization', or 'basicAuth'.",
-									MarkdownDescription: "'oauth2' configures the OAuth2 settings to use when scraping the target.It requires Prometheus >= 2.27.0.Cannot be set at the same time as 'authorization', or 'basicAuth'.",
+									Description:         "'oauth2' configures the OAuth2 settings to use when scraping the target. It requires Prometheus >= 2.27.0. Cannot be set at the same time as 'authorization', or 'basicAuth'.",
+									MarkdownDescription: "'oauth2' configures the OAuth2 settings to use when scraping the target. It requires Prometheus >= 2.27.0. Cannot be set at the same time as 'authorization', or 'basicAuth'.",
 									Attributes: map[string]schema.Attribute{
 										"client_id": schema.SingleNestedAttribute{
-											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
-											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 											Attributes: map[string]schema.Attribute{
 												"config_map": schema.SingleNestedAttribute{
 													Description:         "ConfigMap containing data to use for the targets.",
@@ -652,8 +652,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -677,16 +677,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 													MarkdownDescription: "Secret containing data to use for the targets.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -711,20 +711,20 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"client_secret": schema.SingleNestedAttribute{
-											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
-											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -744,8 +744,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"endpoint_params": schema.MapAttribute{
-											Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
-											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+											Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -753,16 +753,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"no_proxy": schema.StringAttribute{
-											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
-											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_connect_header": schema.MapAttribute{
-											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
-											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -770,8 +770,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"proxy_from_environment": schema.BoolAttribute{
-											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
-											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -798,8 +798,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"tls_config": schema.SingleNestedAttribute{
-											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
-											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Description:         "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
 											Attributes: map[string]schema.Attribute{
 												"ca": schema.SingleNestedAttribute{
 													Description:         "Certificate authority used when verifying server certificates.",
@@ -818,8 +818,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -843,16 +843,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 															MarkdownDescription: "Secret containing data to use for the targets.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -893,8 +893,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -918,16 +918,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 															MarkdownDescription: "Secret containing data to use for the targets.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -964,16 +964,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 													MarkdownDescription: "Secret containing the client key file for the targets.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -993,8 +993,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 												},
 
 												"max_version": schema.StringAttribute{
-													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
-													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1004,8 +1004,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 												},
 
 												"min_version": schema.StringAttribute{
-													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
-													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1053,37 +1053,37 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"path": schema.StringAttribute{
-									Description:         "HTTP path from which to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').",
-									MarkdownDescription: "HTTP path from which to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').",
+									Description:         "HTTP path from which to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
+									MarkdownDescription: "HTTP path from which to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"port": schema.StringAttribute{
-									Description:         "Name of the Service port which this endpoint refers to.It takes precedence over 'targetPort'.",
-									MarkdownDescription: "Name of the Service port which this endpoint refers to.It takes precedence over 'targetPort'.",
+									Description:         "Name of the Service port which this endpoint refers to. It takes precedence over 'targetPort'.",
+									MarkdownDescription: "Name of the Service port which this endpoint refers to. It takes precedence over 'targetPort'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"proxy_url": schema.StringAttribute{
-									Description:         "'proxyURL' configures the HTTP Proxy URL (e.g.'http://proxyserver:2195') to go through when scraping the target.",
-									MarkdownDescription: "'proxyURL' configures the HTTP Proxy URL (e.g.'http://proxyserver:2195') to go through when scraping the target.",
+									Description:         "'proxyURL' configures the HTTP Proxy URL (e.g. 'http://proxyserver:2195') to go through when scraping the target.",
+									MarkdownDescription: "'proxyURL' configures the HTTP Proxy URL (e.g. 'http://proxyserver:2195') to go through when scraping the target.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"relabelings": schema.ListNestedAttribute{
-									Description:         "'relabelings' configures the relabeling rules to apply the target'smetadata labels.The Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
-									MarkdownDescription: "'relabelings' configures the relabeling rules to apply the target'smetadata labels.The Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+									Description:         "'relabelings' configures the relabeling rules to apply the target's metadata labels. The Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+									MarkdownDescription: "'relabelings' configures the relabeling rules to apply the target's metadata labels. The Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"action": schema.StringAttribute{
-												Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
-												MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+												Description:         "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
+												MarkdownDescription: "Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1093,8 +1093,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 											},
 
 											"modulus": schema.Int64Attribute{
-												Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
-												MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+												Description:         "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
+												MarkdownDescription: "Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1109,8 +1109,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 											},
 
 											"replacement": schema.StringAttribute{
-												Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
-												MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+												Description:         "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
+												MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1125,8 +1125,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 											},
 
 											"source_labels": schema.ListAttribute{
-												Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
-												MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+												Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+												MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1134,8 +1134,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 											},
 
 											"target_label": schema.StringAttribute{
-												Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
-												MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+												Description:         "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
+												MarkdownDescription: "Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1148,8 +1148,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"scheme": schema.StringAttribute{
-									Description:         "HTTP scheme to use for scraping.'http' and 'https' are the expected values unless you rewrite the'__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.",
-									MarkdownDescription: "HTTP scheme to use for scraping.'http' and 'https' are the expected values unless you rewrite the'__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.",
+									Description:         "HTTP scheme to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
+									MarkdownDescription: "HTTP scheme to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1159,8 +1159,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"scrape_timeout": schema.StringAttribute{
-									Description:         "Timeout after which Prometheus considers the scrape to be failed.If empty, Prometheus uses the global scrape timeout unless it is lessthan the target's scrape interval value in which the latter is used.",
-									MarkdownDescription: "Timeout after which Prometheus considers the scrape to be failed.If empty, Prometheus uses the global scrape timeout unless it is lessthan the target's scrape interval value in which the latter is used.",
+									Description:         "Timeout after which Prometheus considers the scrape to be failed. If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.",
+									MarkdownDescription: "Timeout after which Prometheus considers the scrape to be failed. If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1170,8 +1170,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"target_port": schema.StringAttribute{
-									Description:         "Name or number of the target port of the 'Pod' object behind theService. The port must be specified with the container's port property.",
-									MarkdownDescription: "Name or number of the target port of the 'Pod' object behind theService. The port must be specified with the container's port property.",
+									Description:         "Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.",
+									MarkdownDescription: "Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1198,8 +1198,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1223,16 +1223,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 													MarkdownDescription: "Secret containing data to use for the targets.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1281,8 +1281,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1306,16 +1306,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 													MarkdownDescription: "Secret containing data to use for the targets.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1368,16 +1368,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 											MarkdownDescription: "Secret containing the client key file for the targets.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-													MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1397,8 +1397,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"max_version": schema.StringAttribute{
-											Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
-											MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+											Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+											MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1408,8 +1408,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"min_version": schema.StringAttribute{
-											Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
-											MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+											Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+											MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1432,8 +1432,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"track_timestamps_staleness": schema.BoolAttribute{
-									Description:         "'trackTimestampsStaleness' defines whether Prometheus tracks staleness ofthe metrics that have an explicit timestamp present in scraped data.Has no effect if 'honorTimestamps' is false.It requires Prometheus >= v2.48.0.",
-									MarkdownDescription: "'trackTimestampsStaleness' defines whether Prometheus tracks staleness ofthe metrics that have an explicit timestamp present in scraped data.Has no effect if 'honorTimestamps' is false.It requires Prometheus >= v2.48.0.",
+									Description:         "'trackTimestampsStaleness' defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false. It requires Prometheus >= v2.48.0.",
+									MarkdownDescription: "'trackTimestampsStaleness' defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false. It requires Prometheus >= v2.48.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1446,52 +1446,52 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"job_label": schema.StringAttribute{
-						Description:         "'jobLabel' selects the label from the associated Kubernetes 'Service'object which will be used as the 'job' label for all metrics.For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service'object is labeled with 'foo: bar', then Prometheus adds the 'job='bar''label to all ingested metrics.If the value of this field is empty or if the label doesn't exist forthe given Service, the 'job' label of the metrics defaults to the nameof the associated Kubernetes 'Service'.",
-						MarkdownDescription: "'jobLabel' selects the label from the associated Kubernetes 'Service'object which will be used as the 'job' label for all metrics.For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service'object is labeled with 'foo: bar', then Prometheus adds the 'job='bar''label to all ingested metrics.If the value of this field is empty or if the label doesn't exist forthe given Service, the 'job' label of the metrics defaults to the nameof the associated Kubernetes 'Service'.",
+						Description:         "'jobLabel' selects the label from the associated Kubernetes 'Service' object which will be used as the 'job' label for all metrics. For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics. If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the associated Kubernetes 'Service'.",
+						MarkdownDescription: "'jobLabel' selects the label from the associated Kubernetes 'Service' object which will be used as the 'job' label for all metrics. For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics. If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the associated Kubernetes 'Service'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"keep_dropped_targets": schema.Int64Attribute{
-						Description:         "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.",
-						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.",
+						Description:         "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit. It requires Prometheus >= v2.47.0.",
+						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit. It requires Prometheus >= v2.47.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on number of labels that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
-						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
+						Description:         "Per-scrape limit on number of labels that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
+						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_name_length_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
-						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
+						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
+						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_value_length_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
-						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample.It requires Prometheus >= v2.27.0.",
+						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
+						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample. It requires Prometheus >= v2.27.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"namespace_selector": schema.SingleNestedAttribute{
-						Description:         "'namespaceSelector' defines in which namespace(s) Prometheus should discover the services.By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces.",
-						MarkdownDescription: "'namespaceSelector' defines in which namespace(s) Prometheus should discover the services.By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces.",
+						Description:         "'namespaceSelector' defines in which namespace(s) Prometheus should discover the services. By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces.",
+						MarkdownDescription: "'namespaceSelector' defines in which namespace(s) Prometheus should discover the services. By default, the services are discovered in the same namespace as the 'ServiceMonitor' object but it is possible to select pods across different/all namespaces.",
 						Attributes: map[string]schema.Attribute{
 							"any": schema.BoolAttribute{
-								Description:         "Boolean describing whether all namespaces are selected in contrast to alist restricting them.",
-								MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to alist restricting them.",
+								Description:         "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
+								MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1512,8 +1512,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"pod_target_labels": schema.ListAttribute{
-						Description:         "'podTargetLabels' defines the labels which are transferred from theassociated Kubernetes 'Pod' object onto the ingested metrics.",
-						MarkdownDescription: "'podTargetLabels' defines the labels which are transferred from theassociated Kubernetes 'Pod' object onto the ingested metrics.",
+						Description:         "'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.",
+						MarkdownDescription: "'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1521,8 +1521,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"sample_limit": schema.Int64Attribute{
-						Description:         "'sampleLimit' defines a per-scrape limit on the number of scraped samplesthat will be accepted.",
-						MarkdownDescription: "'sampleLimit' defines a per-scrape limit on the number of scraped samplesthat will be accepted.",
+						Description:         "'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.",
+						MarkdownDescription: "'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1540,8 +1540,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"scrape_protocols": schema.ListAttribute{
-						Description:         "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients theprotocols supported by Prometheus in order of preference (from most to least preferred).If unset, Prometheus uses its default value.It requires Prometheus >= v2.49.0.",
-						MarkdownDescription: "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients theprotocols supported by Prometheus in order of preference (from most to least preferred).If unset, Prometheus uses its default value.It requires Prometheus >= v2.49.0.",
+						Description:         "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0.",
+						MarkdownDescription: "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1566,16 +1566,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1589,8 +1589,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1603,8 +1603,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"target_labels": schema.ListAttribute{
-						Description:         "'targetLabels' defines the labels which are transferred from theassociated Kubernetes 'Service' object onto the ingested metrics.",
-						MarkdownDescription: "'targetLabels' defines the labels which are transferred from theassociated Kubernetes 'Service' object onto the ingested metrics.",
+						Description:         "'targetLabels' defines the labels which are transferred from the associated Kubernetes 'Service' object onto the ingested metrics.",
+						MarkdownDescription: "'targetLabels' defines the labels which are transferred from the associated Kubernetes 'Service' object onto the ingested metrics.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1612,8 +1612,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"target_limit": schema.Int64Attribute{
-						Description:         "'targetLimit' defines a limit on the number of scraped targets that willbe accepted.",
-						MarkdownDescription: "'targetLimit' defines a limit on the number of scraped targets that willbe accepted.",
+						Description:         "'targetLimit' defines a limit on the number of scraped targets that will be accepted.",
+						MarkdownDescription: "'targetLimit' defines a limit on the number of scraped targets that will be accepted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

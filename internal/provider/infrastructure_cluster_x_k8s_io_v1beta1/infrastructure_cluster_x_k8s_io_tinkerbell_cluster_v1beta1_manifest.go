@@ -132,8 +132,8 @@ func (r *InfrastructureClusterXK8SIoTinkerbellClusterV1Beta1Manifest) Schema(_ c
 				MarkdownDescription: "TinkerbellClusterSpec defines the desired state of TinkerbellCluster.",
 				Attributes: map[string]schema.Attribute{
 					"control_plane_endpoint": schema.SingleNestedAttribute{
-						Description:         "ControlPlaneEndpoint is a required field by ClusterAPI v1beta1.See https://cluster-api.sigs.k8s.io/developer/architecture/controllers/cluster.htmlfor more details.",
-						MarkdownDescription: "ControlPlaneEndpoint is a required field by ClusterAPI v1beta1.See https://cluster-api.sigs.k8s.io/developer/architecture/controllers/cluster.htmlfor more details.",
+						Description:         "ControlPlaneEndpoint is a required field by ClusterAPI v1beta1. See https://cluster-api.sigs.k8s.io/developer/architecture/controllers/cluster.html for more details.",
+						MarkdownDescription: "ControlPlaneEndpoint is a required field by ClusterAPI v1beta1. See https://cluster-api.sigs.k8s.io/developer/architecture/controllers/cluster.html for more details.",
 						Attributes: map[string]schema.Attribute{
 							"host": schema.StringAttribute{
 								Description:         "The hostname on which the API server is serving.",
@@ -157,32 +157,32 @@ func (r *InfrastructureClusterXK8SIoTinkerbellClusterV1Beta1Manifest) Schema(_ c
 					},
 
 					"image_lookup_base_registry": schema.StringAttribute{
-						Description:         "ImageLookupBaseRegistry is the base Registry URL that is used for pulling images,if not set, the default will be to use ghcr.io/tinkerbell/cluster-api-provider-tinkerbell.",
-						MarkdownDescription: "ImageLookupBaseRegistry is the base Registry URL that is used for pulling images,if not set, the default will be to use ghcr.io/tinkerbell/cluster-api-provider-tinkerbell.",
+						Description:         "ImageLookupBaseRegistry is the base Registry URL that is used for pulling images, if not set, the default will be to use ghcr.io/tinkerbell/cluster-api-provider-tinkerbell.",
+						MarkdownDescription: "ImageLookupBaseRegistry is the base Registry URL that is used for pulling images, if not set, the default will be to use ghcr.io/tinkerbell/cluster-api-provider-tinkerbell.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"image_lookup_format": schema.StringAttribute{
-						Description:         "ImageLookupFormat is the URL naming format to use for machine images whena machine does not specify. When set, this will be used for all cluster machinesunless a machine specifies a different ImageLookupFormat. Supports substitutionsfor {{.BaseRegistry}}, {{.OSDistro}}, {{.OSVersion}} and {{.KubernetesVersion}} withthe basse URL, OS distribution, OS version, and kubernetes version, respectively.BaseRegistry will be the value in ImageLookupBaseRegistry or ghcr.io/tinkerbell/cluster-api-provider-tinkerbell(the default), OSDistro will be the value in ImageLookupOSDistro or ubuntu (the default),OSVersion will be the value in ImageLookupOSVersion or default based on the OSDistro(if known), and the kubernetes version as defined by the packages produced bykubernetes/release: v1.13.0, v1.12.5-mybuild.1, or v1.17.3. For example, the defaultimage format of {{.BaseRegistry}}/{{.OSDistro}}-{{.OSVersion}}:{{.KubernetesVersion}}.gz willattempt to pull the image from that location. See also: https://golang.org/pkg/text/template/",
-						MarkdownDescription: "ImageLookupFormat is the URL naming format to use for machine images whena machine does not specify. When set, this will be used for all cluster machinesunless a machine specifies a different ImageLookupFormat. Supports substitutionsfor {{.BaseRegistry}}, {{.OSDistro}}, {{.OSVersion}} and {{.KubernetesVersion}} withthe basse URL, OS distribution, OS version, and kubernetes version, respectively.BaseRegistry will be the value in ImageLookupBaseRegistry or ghcr.io/tinkerbell/cluster-api-provider-tinkerbell(the default), OSDistro will be the value in ImageLookupOSDistro or ubuntu (the default),OSVersion will be the value in ImageLookupOSVersion or default based on the OSDistro(if known), and the kubernetes version as defined by the packages produced bykubernetes/release: v1.13.0, v1.12.5-mybuild.1, or v1.17.3. For example, the defaultimage format of {{.BaseRegistry}}/{{.OSDistro}}-{{.OSVersion}}:{{.KubernetesVersion}}.gz willattempt to pull the image from that location. See also: https://golang.org/pkg/text/template/",
+						Description:         "ImageLookupFormat is the URL naming format to use for machine images when a machine does not specify. When set, this will be used for all cluster machines unless a machine specifies a different ImageLookupFormat. Supports substitutions for {{.BaseRegistry}}, {{.OSDistro}}, {{.OSVersion}} and {{.KubernetesVersion}} with the basse URL, OS distribution, OS version, and kubernetes version, respectively. BaseRegistry will be the value in ImageLookupBaseRegistry or ghcr.io/tinkerbell/cluster-api-provider-tinkerbell (the default), OSDistro will be the value in ImageLookupOSDistro or ubuntu (the default), OSVersion will be the value in ImageLookupOSVersion or default based on the OSDistro (if known), and the kubernetes version as defined by the packages produced by kubernetes/release: v1.13.0, v1.12.5-mybuild.1, or v1.17.3. For example, the default image format of {{.BaseRegistry}}/{{.OSDistro}}-{{.OSVersion}}:{{.KubernetesVersion}}.gz will attempt to pull the image from that location. See also: https://golang.org/pkg/text/template/",
+						MarkdownDescription: "ImageLookupFormat is the URL naming format to use for machine images when a machine does not specify. When set, this will be used for all cluster machines unless a machine specifies a different ImageLookupFormat. Supports substitutions for {{.BaseRegistry}}, {{.OSDistro}}, {{.OSVersion}} and {{.KubernetesVersion}} with the basse URL, OS distribution, OS version, and kubernetes version, respectively. BaseRegistry will be the value in ImageLookupBaseRegistry or ghcr.io/tinkerbell/cluster-api-provider-tinkerbell (the default), OSDistro will be the value in ImageLookupOSDistro or ubuntu (the default), OSVersion will be the value in ImageLookupOSVersion or default based on the OSDistro (if known), and the kubernetes version as defined by the packages produced by kubernetes/release: v1.13.0, v1.12.5-mybuild.1, or v1.17.3. For example, the default image format of {{.BaseRegistry}}/{{.OSDistro}}-{{.OSVersion}}:{{.KubernetesVersion}}.gz will attempt to pull the image from that location. See also: https://golang.org/pkg/text/template/",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"image_lookup_os_distro": schema.StringAttribute{
-						Description:         "ImageLookupOSDistro is the name of the OS distro to use when fetching machine images,if not set it will default to ubuntu.",
-						MarkdownDescription: "ImageLookupOSDistro is the name of the OS distro to use when fetching machine images,if not set it will default to ubuntu.",
+						Description:         "ImageLookupOSDistro is the name of the OS distro to use when fetching machine images, if not set it will default to ubuntu.",
+						MarkdownDescription: "ImageLookupOSDistro is the name of the OS distro to use when fetching machine images, if not set it will default to ubuntu.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"image_lookup_os_version": schema.StringAttribute{
-						Description:         "ImageLookupOSVersion is the version of the OS distribution to use when fetching machineimages. If not set it will default based on ImageLookupOSDistro.",
-						MarkdownDescription: "ImageLookupOSVersion is the version of the OS distribution to use when fetching machineimages. If not set it will default based on ImageLookupOSDistro.",
+						Description:         "ImageLookupOSVersion is the version of the OS distribution to use when fetching machine images. If not set it will default based on ImageLookupOSDistro.",
+						MarkdownDescription: "ImageLookupOSVersion is the version of the OS distribution to use when fetching machine images. If not set it will default based on ImageLookupOSDistro.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -88,7 +88,7 @@ Optional:
 
 Optional:
 
-- `propagation` (String) Propagation decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.
+- `propagation` (String) Propagation decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.
 
 
 <a id="nestedatt--spec--discovery"></a>
@@ -99,7 +99,7 @@ Optional:
 - `exclude_test_regex` (String) ExcludeTestRegex is used to exclude tests based on a regular expression.
 - `full_name` (Boolean) FullName makes use of the full test case folder path instead of the folder name.
 - `include_test_regex` (String) IncludeTestRegex is used to include tests based on a regular expression.
-- `test_file` (String) TestFile is the name of the file containing the test to run.If no extension is provided, chainsaw will try with .yaml first and .yml if needed.
+- `test_file` (String) TestFile is the name of the file containing the test to run. If no extension is provided, chainsaw will try with .yaml first and .yml if needed.
 
 
 <a id="nestedatt--spec--error"></a>
@@ -107,7 +107,7 @@ Optional:
 
 Optional:
 
-- `catch` (Attributes List) Catch defines what the tests steps will execute when an error happens.This will be combined with catch handlers defined at the test and step levels. (see [below for nested schema](#nestedatt--spec--error--catch))
+- `catch` (Attributes List) Catch defines what the tests steps will execute when an error happens. This will be combined with catch handlers defined at the test and step levels. (see [below for nested schema](#nestedatt--spec--error--catch))
 
 <a id="nestedatt--spec--error--catch"></a>
 ### Nested Schema for `spec.error.catch`
@@ -197,9 +197,9 @@ Optional:
 - `bindings` (Attributes List) Bindings defines additional binding key/values. (see [below for nested schema](#nestedatt--spec--error--catch--delete--bindings))
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--delete--clusters))
-- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents ofthe object, and how the garbage collector will handle the propagation.Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
+- `deletion_propagation_policy` (String) DeletionPropagationPolicy decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation. Overrides the deletion propagation policy set in the Configuration, the Test and the TestStep.
 - `expect` (Attributes List) Expect defines a list of matched checks to validate the operation outcome. (see [below for nested schema](#nestedatt--spec--error--catch--delete--expect))
-- `file` (String) File is the path to the referenced file. This can be a direct path to a fileor an expression that matches multiple files, such as 'manifest/*.yaml' for all YAMLfiles within the 'manifest' directory.
+- `file` (String) File is the path to the referenced file. This can be a direct path to a file or an expression that matches multiple files, such as 'manifest/*.yaml' for all YAML files within the 'manifest' directory.
 - `ref` (Attributes) Ref determines objects to be deleted. (see [below for nested schema](#nestedatt--spec--error--catch--delete--ref))
 - `template` (Boolean) Template determines whether resources should be considered for templating.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -243,13 +243,13 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `labels` (Map of String) Label selector to match objects to delete
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 
 
@@ -259,14 +259,14 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--describe--clusters))
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `show_events` (Boolean) Show Events indicates whether to include related events.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
@@ -292,8 +292,8 @@ Optional:
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--events--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -316,15 +316,15 @@ Optional:
 Required:
 
 - `api_version` (String) API version of the referent.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--get--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -349,10 +349,10 @@ Optional:
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--pod_logs--clusters))
 - `container` (String) Container in pod to get logs from else --all-containers is used.
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
-- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero,then the default is 10 if you use a selector, or -1 (all) if you use a pod name.This matches default behavior of 'kubectl logs'.
+- `tail` (Number) Tail is the number of last lines to collect from pods. If omitted or zero, then the default is 10 if you use a selector, or -1 (all) if you use a pod name. This matches default behavior of 'kubectl logs'.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
 <a id="nestedatt--spec--error--catch--pod_logs--clusters"></a>
@@ -443,15 +443,15 @@ Required:
 
 - `api_version` (String) API version of the referent.
 - `for` (Attributes) WaitFor specifies the condition to wait for. (see [below for nested schema](#nestedatt--spec--error--catch--wait--for))
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
 Optional:
 
 - `cluster` (String) Cluster defines the target cluster (will be inherited if not specified).
 - `clusters` (Attributes) Clusters holds a registry to clusters to support multi-cluster tests. (see [below for nested schema](#nestedatt--spec--error--catch--wait--clusters))
 - `format` (String) Format determines the output format (json or yaml).
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `selector` (String) Selector defines labels selector.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
 
@@ -520,7 +520,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name defines the namespace to use for tests.If not specified, every test will execute in a random ephemeral namespaceunless the namespace is overridden in a the test spec.
+- `name` (String) Name defines the namespace to use for tests. If not specified, every test will execute in a random ephemeral namespace unless the namespace is overridden in a the test spec.
 - `template` (Map of String) Template defines a template to create the test namespace.
 
 

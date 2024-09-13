@@ -164,8 +164,8 @@ func (r *SecretsHashicorpComVaultConnectionV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"timeout": schema.StringAttribute{
-						Description:         "Timeout applied to all Vault requests for this connection. If not set, thedefault timeout from the Vault API client config is used.",
-						MarkdownDescription: "Timeout applied to all Vault requests for this connection. If not set, thedefault timeout from the Vault API client config is used.",
+						Description:         "Timeout applied to all Vault requests for this connection. If not set, the default timeout from the Vault API client config is used.",
+						MarkdownDescription: "Timeout applied to all Vault requests for this connection. If not set, the default timeout from the Vault API client config is used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

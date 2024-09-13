@@ -3,12 +3,12 @@
 page_title: "k8s_traefik_io_middleware_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  Middleware is the CRD implementation of a Traefik Middleware.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/overview/
+  Middleware is the CRD implementation of a Traefik Middleware. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/overview/
 ---
 
 # k8s_traefik_io_middleware_v1alpha1_manifest (Data Source)
 
-Middleware is the CRD implementation of a Traefik Middleware.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/overview/
+Middleware is the CRD implementation of a Traefik Middleware. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/overview/
 
 ## Example Usage
 
@@ -55,38 +55,38 @@ Optional:
 
 Optional:
 
-- `add_prefix` (Attributes) AddPrefix holds the add prefix middleware configuration.This middleware updates the path of a request before forwarding it.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/addprefix/ (see [below for nested schema](#nestedatt--spec--add_prefix))
-- `basic_auth` (Attributes) BasicAuth holds the basic auth middleware configuration.This middleware restricts access to your services to known users.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/basicauth/ (see [below for nested schema](#nestedatt--spec--basic_auth))
-- `buffering` (Attributes) Buffering holds the buffering middleware configuration.This middleware retries or limits the size of requests that can be forwarded to backends.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/buffering/#maxrequestbodybytes (see [below for nested schema](#nestedatt--spec--buffering))
-- `chain` (Attributes) Chain holds the configuration of the chain middleware.This middleware enables to define reusable combinations of other pieces of middleware.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/chain/ (see [below for nested schema](#nestedatt--spec--chain))
+- `add_prefix` (Attributes) AddPrefix holds the add prefix middleware configuration. This middleware updates the path of a request before forwarding it. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/addprefix/ (see [below for nested schema](#nestedatt--spec--add_prefix))
+- `basic_auth` (Attributes) BasicAuth holds the basic auth middleware configuration. This middleware restricts access to your services to known users. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/basicauth/ (see [below for nested schema](#nestedatt--spec--basic_auth))
+- `buffering` (Attributes) Buffering holds the buffering middleware configuration. This middleware retries or limits the size of requests that can be forwarded to backends. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/buffering/#maxrequestbodybytes (see [below for nested schema](#nestedatt--spec--buffering))
+- `chain` (Attributes) Chain holds the configuration of the chain middleware. This middleware enables to define reusable combinations of other pieces of middleware. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/chain/ (see [below for nested schema](#nestedatt--spec--chain))
 - `circuit_breaker` (Attributes) CircuitBreaker holds the circuit breaker configuration. (see [below for nested schema](#nestedatt--spec--circuit_breaker))
-- `compress` (Attributes) Compress holds the compress middleware configuration.This middleware compresses responses before sending them to the client, using gzip, brotli, or zstd compression.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/compress/ (see [below for nested schema](#nestedatt--spec--compress))
-- `content_type` (Attributes) ContentType holds the content-type middleware configuration.This middleware exists to enable the correct behavior until at least the default one can be changed in a future version. (see [below for nested schema](#nestedatt--spec--content_type))
-- `digest_auth` (Attributes) DigestAuth holds the digest auth middleware configuration.This middleware restricts access to your services to known users.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/digestauth/ (see [below for nested schema](#nestedatt--spec--digest_auth))
-- `errors` (Attributes) ErrorPage holds the custom error middleware configuration.This middleware returns a custom page in lieu of the default, according to configured ranges of HTTP Status codes.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/errorpages/ (see [below for nested schema](#nestedatt--spec--errors))
-- `forward_auth` (Attributes) ForwardAuth holds the forward auth middleware configuration.This middleware delegates the request authentication to a Service.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/forwardauth/ (see [below for nested schema](#nestedatt--spec--forward_auth))
-- `grpc_web` (Attributes) GrpcWeb holds the gRPC web middleware configuration.This middleware converts a gRPC web request to an HTTP/2 gRPC request. (see [below for nested schema](#nestedatt--spec--grpc_web))
-- `headers` (Attributes) Headers holds the headers middleware configuration.This middleware manages the requests and responses headers.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/headers/#customrequestheaders (see [below for nested schema](#nestedatt--spec--headers))
-- `in_flight_req` (Attributes) InFlightReq holds the in-flight request middleware configuration.This middleware limits the number of requests being processed and served concurrently.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/inflightreq/ (see [below for nested schema](#nestedatt--spec--in_flight_req))
-- `ip_allow_list` (Attributes) IPAllowList holds the IP allowlist middleware configuration.This middleware limits allowed requests based on the client IP.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ipallowlist/ (see [below for nested schema](#nestedatt--spec--ip_allow_list))
+- `compress` (Attributes) Compress holds the compress middleware configuration. This middleware compresses responses before sending them to the client, using gzip, brotli, or zstd compression. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/compress/ (see [below for nested schema](#nestedatt--spec--compress))
+- `content_type` (Attributes) ContentType holds the content-type middleware configuration. This middleware exists to enable the correct behavior until at least the default one can be changed in a future version. (see [below for nested schema](#nestedatt--spec--content_type))
+- `digest_auth` (Attributes) DigestAuth holds the digest auth middleware configuration. This middleware restricts access to your services to known users. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/digestauth/ (see [below for nested schema](#nestedatt--spec--digest_auth))
+- `errors` (Attributes) ErrorPage holds the custom error middleware configuration. This middleware returns a custom page in lieu of the default, according to configured ranges of HTTP Status codes. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/errorpages/ (see [below for nested schema](#nestedatt--spec--errors))
+- `forward_auth` (Attributes) ForwardAuth holds the forward auth middleware configuration. This middleware delegates the request authentication to a Service. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/forwardauth/ (see [below for nested schema](#nestedatt--spec--forward_auth))
+- `grpc_web` (Attributes) GrpcWeb holds the gRPC web middleware configuration. This middleware converts a gRPC web request to an HTTP/2 gRPC request. (see [below for nested schema](#nestedatt--spec--grpc_web))
+- `headers` (Attributes) Headers holds the headers middleware configuration. This middleware manages the requests and responses headers. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/headers/#customrequestheaders (see [below for nested schema](#nestedatt--spec--headers))
+- `in_flight_req` (Attributes) InFlightReq holds the in-flight request middleware configuration. This middleware limits the number of requests being processed and served concurrently. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/inflightreq/ (see [below for nested schema](#nestedatt--spec--in_flight_req))
+- `ip_allow_list` (Attributes) IPAllowList holds the IP allowlist middleware configuration. This middleware limits allowed requests based on the client IP. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ipallowlist/ (see [below for nested schema](#nestedatt--spec--ip_allow_list))
 - `ip_white_list` (Attributes) Deprecated: please use IPAllowList instead. (see [below for nested schema](#nestedatt--spec--ip_white_list))
-- `pass_tls_client_cert` (Attributes) PassTLSClientCert holds the pass TLS client cert middleware configuration.This middleware adds the selected data from the passed client TLS certificate to a header.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/passtlsclientcert/ (see [below for nested schema](#nestedatt--spec--pass_tls_client_cert))
-- `plugin` (Map of String) Plugin defines the middleware plugin configuration.More info: https://doc.traefik.io/traefik/plugins/
-- `rate_limit` (Attributes) RateLimit holds the rate limit configuration.This middleware ensures that services will receive a fair amount of requests, and allows one to define what fair is.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ratelimit/ (see [below for nested schema](#nestedatt--spec--rate_limit))
-- `redirect_regex` (Attributes) RedirectRegex holds the redirect regex middleware configuration.This middleware redirects a request using regex matching and replacement.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/redirectregex/#regex (see [below for nested schema](#nestedatt--spec--redirect_regex))
-- `redirect_scheme` (Attributes) RedirectScheme holds the redirect scheme middleware configuration.This middleware redirects requests from a scheme/port to another.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/redirectscheme/ (see [below for nested schema](#nestedatt--spec--redirect_scheme))
-- `replace_path` (Attributes) ReplacePath holds the replace path middleware configuration.This middleware replaces the path of the request URL and store the original path in an X-Replaced-Path header.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/replacepath/ (see [below for nested schema](#nestedatt--spec--replace_path))
-- `replace_path_regex` (Attributes) ReplacePathRegex holds the replace path regex middleware configuration.This middleware replaces the path of a URL using regex matching and replacement.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/replacepathregex/ (see [below for nested schema](#nestedatt--spec--replace_path_regex))
-- `retry` (Attributes) Retry holds the retry middleware configuration.This middleware reissues requests a given number of times to a backend server if that server does not reply.As soon as the server answers, the middleware stops retrying, regardless of the response status.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/retry/ (see [below for nested schema](#nestedatt--spec--retry))
-- `strip_prefix` (Attributes) StripPrefix holds the strip prefix middleware configuration.This middleware removes the specified prefixes from the URL path.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/stripprefix/ (see [below for nested schema](#nestedatt--spec--strip_prefix))
-- `strip_prefix_regex` (Attributes) StripPrefixRegex holds the strip prefix regex middleware configuration.This middleware removes the matching prefixes from the URL path.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/stripprefixregex/ (see [below for nested schema](#nestedatt--spec--strip_prefix_regex))
+- `pass_tls_client_cert` (Attributes) PassTLSClientCert holds the pass TLS client cert middleware configuration. This middleware adds the selected data from the passed client TLS certificate to a header. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/passtlsclientcert/ (see [below for nested schema](#nestedatt--spec--pass_tls_client_cert))
+- `plugin` (Map of String) Plugin defines the middleware plugin configuration. More info: https://doc.traefik.io/traefik/plugins/
+- `rate_limit` (Attributes) RateLimit holds the rate limit configuration. This middleware ensures that services will receive a fair amount of requests, and allows one to define what fair is. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ratelimit/ (see [below for nested schema](#nestedatt--spec--rate_limit))
+- `redirect_regex` (Attributes) RedirectRegex holds the redirect regex middleware configuration. This middleware redirects a request using regex matching and replacement. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/redirectregex/#regex (see [below for nested schema](#nestedatt--spec--redirect_regex))
+- `redirect_scheme` (Attributes) RedirectScheme holds the redirect scheme middleware configuration. This middleware redirects requests from a scheme/port to another. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/redirectscheme/ (see [below for nested schema](#nestedatt--spec--redirect_scheme))
+- `replace_path` (Attributes) ReplacePath holds the replace path middleware configuration. This middleware replaces the path of the request URL and store the original path in an X-Replaced-Path header. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/replacepath/ (see [below for nested schema](#nestedatt--spec--replace_path))
+- `replace_path_regex` (Attributes) ReplacePathRegex holds the replace path regex middleware configuration. This middleware replaces the path of a URL using regex matching and replacement. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/replacepathregex/ (see [below for nested schema](#nestedatt--spec--replace_path_regex))
+- `retry` (Attributes) Retry holds the retry middleware configuration. This middleware reissues requests a given number of times to a backend server if that server does not reply. As soon as the server answers, the middleware stops retrying, regardless of the response status. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/retry/ (see [below for nested schema](#nestedatt--spec--retry))
+- `strip_prefix` (Attributes) StripPrefix holds the strip prefix middleware configuration. This middleware removes the specified prefixes from the URL path. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/stripprefix/ (see [below for nested schema](#nestedatt--spec--strip_prefix))
+- `strip_prefix_regex` (Attributes) StripPrefixRegex holds the strip prefix regex middleware configuration. This middleware removes the matching prefixes from the URL path. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/stripprefixregex/ (see [below for nested schema](#nestedatt--spec--strip_prefix_regex))
 
 <a id="nestedatt--spec--add_prefix"></a>
 ### Nested Schema for `spec.add_prefix`
 
 Optional:
 
-- `prefix` (String) Prefix is the string to add before the current path in the requested URL.It should include a leading slash (/).
+- `prefix` (String) Prefix is the string to add before the current path in the requested URL. It should include a leading slash (/).
 
 
 <a id="nestedatt--spec--basic_auth"></a>
@@ -94,9 +94,9 @@ Optional:
 
 Optional:
 
-- `header_field` (String) HeaderField defines a header field to store the authenticated user.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/basicauth/#headerfield
-- `realm` (String) Realm allows the protected resources on a server to be partitioned into a set of protection spaces, each with its own authentication scheme.Default: traefik.
-- `remove_header` (Boolean) RemoveHeader sets the removeHeader option to true to remove the authorization header before forwarding the request to your service.Default: false.
+- `header_field` (String) HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/basicauth/#headerfield
+- `realm` (String) Realm allows the protected resources on a server to be partitioned into a set of protection spaces, each with its own authentication scheme. Default: traefik.
+- `remove_header` (Boolean) RemoveHeader sets the removeHeader option to true to remove the authorization header before forwarding the request to your service. Default: false.
 - `secret` (String) Secret is the name of the referenced Kubernetes Secret containing user credentials.
 
 
@@ -105,11 +105,11 @@ Optional:
 
 Optional:
 
-- `max_request_body_bytes` (Number) MaxRequestBodyBytes defines the maximum allowed body size for the request (in bytes).If the request exceeds the allowed size, it is not forwarded to the service, and the client gets a 413 (Request Entity Too Large) response.Default: 0 (no maximum).
-- `max_response_body_bytes` (Number) MaxResponseBodyBytes defines the maximum allowed response size from the service (in bytes).If the response exceeds the allowed size, it is not forwarded to the client. The client gets a 500 (Internal Server Error) response instead.Default: 0 (no maximum).
-- `mem_request_body_bytes` (Number) MemRequestBodyBytes defines the threshold (in bytes) from which the request will be buffered on disk instead of in memory.Default: 1048576 (1Mi).
-- `mem_response_body_bytes` (Number) MemResponseBodyBytes defines the threshold (in bytes) from which the response will be buffered on disk instead of in memory.Default: 1048576 (1Mi).
-- `retry_expression` (String) RetryExpression defines the retry conditions.It is a logical combination of functions with operators AND (&&) and OR (||).More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/buffering/#retryexpression
+- `max_request_body_bytes` (Number) MaxRequestBodyBytes defines the maximum allowed body size for the request (in bytes). If the request exceeds the allowed size, it is not forwarded to the service, and the client gets a 413 (Request Entity Too Large) response. Default: 0 (no maximum).
+- `max_response_body_bytes` (Number) MaxResponseBodyBytes defines the maximum allowed response size from the service (in bytes). If the response exceeds the allowed size, it is not forwarded to the client. The client gets a 500 (Internal Server Error) response instead. Default: 0 (no maximum).
+- `mem_request_body_bytes` (Number) MemRequestBodyBytes defines the threshold (in bytes) from which the request will be buffered on disk instead of in memory. Default: 1048576 (1Mi).
+- `mem_response_body_bytes` (Number) MemResponseBodyBytes defines the threshold (in bytes) from which the response will be buffered on disk instead of in memory. Default: 1048576 (1Mi).
+- `retry_expression` (String) RetryExpression defines the retry conditions. It is a logical combination of functions with operators AND (&&) and OR (||). More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/buffering/#retryexpression
 
 
 <a id="nestedatt--spec--chain"></a>
@@ -151,9 +151,9 @@ Optional:
 
 - `default_encoding` (String) DefaultEncoding specifies the default encoding if the 'Accept-Encoding' header is not in the request or contains a wildcard ('*').
 - `encodings` (List of String) Encodings defines the list of supported compression algorithms.
-- `excluded_content_types` (List of String) ExcludedContentTypes defines the list of content types to compare the Content-Type header of the incoming requests and responses before compressing.'application/grpc' is always excluded.
+- `excluded_content_types` (List of String) ExcludedContentTypes defines the list of content types to compare the Content-Type header of the incoming requests and responses before compressing. 'application/grpc' is always excluded.
 - `included_content_types` (List of String) IncludedContentTypes defines the list of content types to compare the Content-Type header of the responses before compressing.
-- `min_response_body_bytes` (Number) MinResponseBodyBytes defines the minimum amount of bytes a response body must have to be compressed.Default: 1024.
+- `min_response_body_bytes` (Number) MinResponseBodyBytes defines the minimum amount of bytes a response body must have to be compressed. Default: 1024.
 
 
 <a id="nestedatt--spec--content_type"></a>
@@ -161,7 +161,7 @@ Optional:
 
 Optional:
 
-- `auto_detect` (Boolean) AutoDetect specifies whether to let the 'Content-Type' header, if it has not been set by the backend,be automatically set to a value derived from the contents of the response.Deprecated: AutoDetect option is deprecated, Content-Type middleware is only meant to be used to enable the content-type detection, please remove any usage of this option.
+- `auto_detect` (Boolean) AutoDetect specifies whether to let the 'Content-Type' header, if it has not been set by the backend, be automatically set to a value derived from the contents of the response. Deprecated: AutoDetect option is deprecated, Content-Type middleware is only meant to be used to enable the content-type detection, please remove any usage of this option.
 
 
 <a id="nestedatt--spec--digest_auth"></a>
@@ -169,8 +169,8 @@ Optional:
 
 Optional:
 
-- `header_field` (String) HeaderField defines a header field to store the authenticated user.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/basicauth/#headerfield
-- `realm` (String) Realm allows the protected resources on a server to be partitioned into a set of protection spaces, each with its own authentication scheme.Default: traefik.
+- `header_field` (String) HeaderField defines a header field to store the authenticated user. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/basicauth/#headerfield
+- `realm` (String) Realm allows the protected resources on a server to be partitioned into a set of protection spaces, each with its own authentication scheme. Default: traefik.
 - `remove_header` (Boolean) RemoveHeader defines whether to remove the authorization header before forwarding the request to the backend.
 - `secret` (String) Secret is the name of the referenced Kubernetes Secret containing user credentials.
 
@@ -180,49 +180,49 @@ Optional:
 
 Optional:
 
-- `query` (String) Query defines the URL for the error page (hosted by service).The {status} variable can be used in order to insert the status code in the URL.
-- `service` (Attributes) Service defines the reference to a Kubernetes Service that will serve the error page.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/errorpages/#service (see [below for nested schema](#nestedatt--spec--errors--service))
-- `status` (List of String) Status defines which status or range of statuses should result in an error page.It can be either a status code as a number (500),as multiple comma-separated numbers (500,502),as ranges by separating two codes with a dash (500-599),or a combination of the two (404,418,500-599).
+- `query` (String) Query defines the URL for the error page (hosted by service). The {status} variable can be used in order to insert the status code in the URL.
+- `service` (Attributes) Service defines the reference to a Kubernetes Service that will serve the error page. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/errorpages/#service (see [below for nested schema](#nestedatt--spec--errors--service))
+- `status` (List of String) Status defines which status or range of statuses should result in an error page. It can be either a status code as a number (500), as multiple comma-separated numbers (500,502), as ranges by separating two codes with a dash (500-599), or a combination of the two (404,418,500-599).
 
 <a id="nestedatt--spec--errors--service"></a>
 ### Nested Schema for `spec.errors.service`
 
 Required:
 
-- `name` (String) Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.
+- `name` (String) Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.
 
 Optional:
 
 - `health_check` (Attributes) Healthcheck defines health checks for ExternalName services. (see [below for nested schema](#nestedatt--spec--errors--service--health_check))
 - `kind` (String) Kind defines the kind of the Service.
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.
-- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.
-- `node_port_lb` (Boolean) NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.
-- `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.
-- `port` (String) Port defines the port of a Kubernetes Service.This can be a reference to a named port.
+- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.
+- `node_port_lb` (Boolean) NodePortLB controls, when creating the load-balancer, whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort. It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes. By default, NodePortLB is false.
+- `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.
+- `port` (String) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--errors--service--response_forwarding))
-- `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.
-- `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.
-- `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--errors--service--sticky))
-- `strategy` (String) Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.
-- `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
+- `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.
+- `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.
+- `sticky` (Attributes) Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--errors--service--sticky))
+- `strategy` (String) Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.
+- `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).
 
 <a id="nestedatt--spec--errors--service--health_check"></a>
 ### Nested Schema for `spec.errors.service.health_check`
 
 Optional:
 
-- `follow_redirects` (Boolean) FollowRedirects defines whether redirects should be followed during the health check calls.Default: true
+- `follow_redirects` (Boolean) FollowRedirects defines whether redirects should be followed during the health check calls. Default: true
 - `headers` (Map of String) Headers defines custom headers to be sent to the health check endpoint.
 - `hostname` (String) Hostname defines the value of hostname in the Host header of the health check request.
-- `interval` (String) Interval defines the frequency of the health check calls.Default: 30s
+- `interval` (String) Interval defines the frequency of the health check calls. Default: 30s
 - `method` (String) Method defines the healthcheck method.
-- `mode` (String) Mode defines the health check mode.If defined to grpc, will use the gRPC health check protocol to probe the server.Default: http
+- `mode` (String) Mode defines the health check mode. If defined to grpc, will use the gRPC health check protocol to probe the server. Default: http
 - `path` (String) Path defines the server URL path for the health check endpoint.
 - `port` (Number) Port defines the server URL port for the health check endpoint.
 - `scheme` (String) Scheme replaces the server URL scheme for the health check endpoint.
 - `status` (Number) Status defines the expected HTTP status code of the response to the health check request.
-- `timeout` (String) Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy.Default: 5s
+- `timeout` (String) Timeout defines the maximum duration Traefik will wait for a health check request before considering the server unhealthy. Default: 5s
 
 
 <a id="nestedatt--spec--errors--service--response_forwarding"></a>
@@ -230,7 +230,7 @@ Optional:
 
 Optional:
 
-- `flush_interval` (String) FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms
+- `flush_interval` (String) FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms
 
 
 <a id="nestedatt--spec--errors--service--sticky"></a>
@@ -246,9 +246,9 @@ Optional:
 Optional:
 
 - `http_only` (Boolean) HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.
-- `max_age` (Number) MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.
+- `max_age` (Number) MaxAge indicates the number of seconds until the cookie expires. When set to a negative number, the cookie expires immediately. When set to zero, the cookie never expires.
 - `name` (String) Name defines the Cookie name.
-- `same_site` (String) SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+- `same_site` (String) SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
 - `secure` (Boolean) Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).
 
 
@@ -262,9 +262,9 @@ Optional:
 
 - `add_auth_cookies_to_response` (List of String) AddAuthCookiesToResponse defines the list of cookies to copy from the authentication server response to the response.
 - `address` (String) Address defines the authentication server address.
-- `auth_request_headers` (List of String) AuthRequestHeaders defines the list of the headers to copy from the request to the authentication server.If not set or empty then all request headers are passed.
+- `auth_request_headers` (List of String) AuthRequestHeaders defines the list of the headers to copy from the request to the authentication server. If not set or empty then all request headers are passed.
 - `auth_response_headers` (List of String) AuthResponseHeaders defines the list of headers to copy from the authentication server response and set on forwarded request, replacing any existing conflicting headers.
-- `auth_response_headers_regex` (String) AuthResponseHeadersRegex defines the regex to match headers to copy from the authentication server response and set on forwarded request, after stripping all headers that match the regex.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/forwardauth/#authresponseheadersregex
+- `auth_response_headers_regex` (String) AuthResponseHeadersRegex defines the regex to match headers to copy from the authentication server response and set on forwarded request, after stripping all headers that match the regex. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/forwardauth/#authresponseheadersregex
 - `tls` (Attributes) TLS defines the configuration used to secure the connection to the authentication server. (see [below for nested schema](#nestedatt--spec--forward_auth--tls))
 - `trust_forward_header` (Boolean) TrustForwardHeader defines whether to trust (ie: forward) all X-Forwarded-* headers.
 
@@ -274,8 +274,8 @@ Optional:
 Optional:
 
 - `ca_optional` (Boolean) Deprecated: TLS client authentication is a server side option (see https://github.com/golang/go/blob/740a490f71d026bb7d2d13cb8fa2d6d6e0572b70/src/crypto/tls/common.go#L634).
-- `ca_secret` (String) CASecret is the name of the referenced Kubernetes Secret containing the CA to validate the server certificate.The CA certificate is extracted from key 'tls.ca' or 'ca.crt'.
-- `cert_secret` (String) CertSecret is the name of the referenced Kubernetes Secret containing the client certificate.The client certificate is extracted from the keys 'tls.crt' and 'tls.key'.
+- `ca_secret` (String) CASecret is the name of the referenced Kubernetes Secret containing the CA to validate the server certificate. The CA certificate is extracted from key 'tls.ca' or 'ca.crt'.
+- `cert_secret` (String) CertSecret is the name of the referenced Kubernetes Secret containing the client certificate. The client certificate is extracted from the keys 'tls.crt' and 'tls.key'.
 - `insecure_skip_verify` (Boolean) InsecureSkipVerify defines whether the server certificates should be validated.
 
 
@@ -285,7 +285,7 @@ Optional:
 
 Optional:
 
-- `allow_origins` (List of String) AllowOrigins is a list of allowable origins.Can also be a wildcard origin '*'.
+- `allow_origins` (List of String) AllowOrigins is a list of allowable origins. Can also be a wildcard origin '*'.
 
 
 <a id="nestedatt--spec--headers"></a>
@@ -306,26 +306,26 @@ Optional:
 - `content_security_policy` (String) ContentSecurityPolicy defines the Content-Security-Policy header value.
 - `content_security_policy_report_only` (String) ContentSecurityPolicyReportOnly defines the Content-Security-Policy-Report-Only header value.
 - `content_type_nosniff` (Boolean) ContentTypeNosniff defines whether to add the X-Content-Type-Options header with the nosniff value.
-- `custom_browser_xss_value` (String) CustomBrowserXSSValue defines the X-XSS-Protection header value.This overrides the BrowserXssFilter option.
-- `custom_frame_options_value` (String) CustomFrameOptionsValue defines the X-Frame-Options header value.This overrides the FrameDeny option.
+- `custom_browser_xss_value` (String) CustomBrowserXSSValue defines the X-XSS-Protection header value. This overrides the BrowserXssFilter option.
+- `custom_frame_options_value` (String) CustomFrameOptionsValue defines the X-Frame-Options header value. This overrides the FrameDeny option.
 - `custom_request_headers` (Map of String) CustomRequestHeaders defines the header names and values to apply to the request.
 - `custom_response_headers` (Map of String) CustomResponseHeaders defines the header names and values to apply to the response.
 - `feature_policy` (String) Deprecated: FeaturePolicy option is deprecated, please use PermissionsPolicy instead.
 - `force_sts_header` (Boolean) ForceSTSHeader defines whether to add the STS header even when the connection is HTTP.
 - `frame_deny` (Boolean) FrameDeny defines whether to add the X-Frame-Options header with the DENY value.
 - `hosts_proxy_headers` (List of String) HostsProxyHeaders defines the header keys that may hold a proxied hostname value for the request.
-- `is_development` (Boolean) IsDevelopment defines whether to mitigate the unwanted effects of the AllowedHosts, SSL, and STS options when developing.Usually testing takes place using HTTP, not HTTPS, and on localhost, not your production domain.If you would like your development environment to mimic production with complete Host blocking, SSL redirects,and STS headers, leave this as false.
-- `permissions_policy` (String) PermissionsPolicy defines the Permissions-Policy header value.This allows sites to control browser features.
+- `is_development` (Boolean) IsDevelopment defines whether to mitigate the unwanted effects of the AllowedHosts, SSL, and STS options when developing. Usually testing takes place using HTTP, not HTTPS, and on localhost, not your production domain. If you would like your development environment to mimic production with complete Host blocking, SSL redirects, and STS headers, leave this as false.
+- `permissions_policy` (String) PermissionsPolicy defines the Permissions-Policy header value. This allows sites to control browser features.
 - `public_key` (String) PublicKey is the public key that implements HPKP to prevent MITM attacks with forged certificates.
-- `referrer_policy` (String) ReferrerPolicy defines the Referrer-Policy header value.This allows sites to control whether browsers forward the Referer header to other sites.
+- `referrer_policy` (String) ReferrerPolicy defines the Referrer-Policy header value. This allows sites to control whether browsers forward the Referer header to other sites.
 - `ssl_force_host` (Boolean) Deprecated: SSLForceHost option is deprecated, please use RedirectRegex instead.
 - `ssl_host` (String) Deprecated: SSLHost option is deprecated, please use RedirectRegex instead.
-- `ssl_proxy_headers` (Map of String) SSLProxyHeaders defines the header keys with associated values that would indicate a valid HTTPS request.It can be useful when using other proxies (example: 'X-Forwarded-Proto': 'https').
+- `ssl_proxy_headers` (Map of String) SSLProxyHeaders defines the header keys with associated values that would indicate a valid HTTPS request. It can be useful when using other proxies (example: 'X-Forwarded-Proto': 'https').
 - `ssl_redirect` (Boolean) Deprecated: SSLRedirect option is deprecated, please use EntryPoint redirection or RedirectScheme instead.
 - `ssl_temporary_redirect` (Boolean) Deprecated: SSLTemporaryRedirect option is deprecated, please use EntryPoint redirection or RedirectScheme instead.
 - `sts_include_subdomains` (Boolean) STSIncludeSubdomains defines whether the includeSubDomains directive is appended to the Strict-Transport-Security header.
 - `sts_preload` (Boolean) STSPreload defines whether the preload flag is appended to the Strict-Transport-Security header.
-- `sts_seconds` (Number) STSSeconds defines the max-age of the Strict-Transport-Security header.If set to 0, the header is not set.
+- `sts_seconds` (Number) STSSeconds defines the max-age of the Strict-Transport-Security header. If set to 0, the header is not set.
 
 
 <a id="nestedatt--spec--in_flight_req"></a>
@@ -333,15 +333,15 @@ Optional:
 
 Optional:
 
-- `amount` (Number) Amount defines the maximum amount of allowed simultaneous in-flight request.The middleware responds with HTTP 429 Too Many Requests if there are already amount requests in progress (based on the same sourceCriterion strategy).
-- `source_criterion` (Attributes) SourceCriterion defines what criterion is used to group requests as originating from a common source.If several strategies are defined at the same time, an error will be raised.If none are set, the default is to use the requestHost.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/inflightreq/#sourcecriterion (see [below for nested schema](#nestedatt--spec--in_flight_req--source_criterion))
+- `amount` (Number) Amount defines the maximum amount of allowed simultaneous in-flight request. The middleware responds with HTTP 429 Too Many Requests if there are already amount requests in progress (based on the same sourceCriterion strategy).
+- `source_criterion` (Attributes) SourceCriterion defines what criterion is used to group requests as originating from a common source. If several strategies are defined at the same time, an error will be raised. If none are set, the default is to use the requestHost. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/inflightreq/#sourcecriterion (see [below for nested schema](#nestedatt--spec--in_flight_req--source_criterion))
 
 <a id="nestedatt--spec--in_flight_req--source_criterion"></a>
 ### Nested Schema for `spec.in_flight_req.source_criterion`
 
 Optional:
 
-- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--in_flight_req--source_criterion--ip_strategy))
+- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--in_flight_req--source_criterion--ip_strategy))
 - `request_header_name` (String) RequestHeaderName defines the name of the header used to group incoming requests.
 - `request_host` (Boolean) RequestHost defines whether to consider the request Host as the source.
 
@@ -361,8 +361,8 @@ Optional:
 
 Optional:
 
-- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--ip_allow_list--ip_strategy))
-- `reject_status_code` (Number) RejectStatusCode defines the HTTP status code used for refused requests.If not set, the default is 403 (Forbidden).
+- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--ip_allow_list--ip_strategy))
+- `reject_status_code` (Number) RejectStatusCode defines the HTTP status code used for refused requests. If not set, the default is 403 (Forbidden).
 - `source_range` (List of String) SourceRange defines the set of allowed IPs (or ranges of allowed IPs by using CIDR notation).
 
 <a id="nestedatt--spec--ip_allow_list--ip_strategy"></a>
@@ -380,7 +380,7 @@ Optional:
 
 Optional:
 
-- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--ip_white_list--ip_strategy))
+- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--ip_white_list--ip_strategy))
 - `source_range` (List of String) SourceRange defines the set of allowed IPs (or ranges of allowed IPs by using CIDR notation). Required.
 
 <a id="nestedatt--spec--ip_white_list--ip_strategy"></a>
@@ -449,17 +449,17 @@ Optional:
 
 Optional:
 
-- `average` (Number) Average is the maximum rate, by default in requests/s, allowed for the given source.It defaults to 0, which means no rate limiting.The rate is actually defined by dividing Average by Period. So for a rate below 1req/s,one needs to define a Period larger than a second.
-- `burst` (Number) Burst is the maximum number of requests allowed to arrive in the same arbitrarily small period of time.It defaults to 1.
-- `period` (String) Period, in combination with Average, defines the actual maximum rate, such as:r = Average / Period. It defaults to a second.
-- `source_criterion` (Attributes) SourceCriterion defines what criterion is used to group requests as originating from a common source.If several strategies are defined at the same time, an error will be raised.If none are set, the default is to use the request's remote address field (as an ipStrategy). (see [below for nested schema](#nestedatt--spec--rate_limit--source_criterion))
+- `average` (Number) Average is the maximum rate, by default in requests/s, allowed for the given source. It defaults to 0, which means no rate limiting. The rate is actually defined by dividing Average by Period. So for a rate below 1req/s, one needs to define a Period larger than a second.
+- `burst` (Number) Burst is the maximum number of requests allowed to arrive in the same arbitrarily small period of time. It defaults to 1.
+- `period` (String) Period, in combination with Average, defines the actual maximum rate, such as: r = Average / Period. It defaults to a second.
+- `source_criterion` (Attributes) SourceCriterion defines what criterion is used to group requests as originating from a common source. If several strategies are defined at the same time, an error will be raised. If none are set, the default is to use the request's remote address field (as an ipStrategy). (see [below for nested schema](#nestedatt--spec--rate_limit--source_criterion))
 
 <a id="nestedatt--spec--rate_limit--source_criterion"></a>
 ### Nested Schema for `spec.rate_limit.source_criterion`
 
 Optional:
 
-- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--rate_limit--source_criterion--ip_strategy))
+- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--rate_limit--source_criterion--ip_strategy))
 - `request_header_name` (String) RequestHeaderName defines the name of the header used to group incoming requests.
 - `request_host` (Boolean) RequestHost defines whether to consider the request Host as the source.
 
@@ -517,7 +517,7 @@ Optional:
 Optional:
 
 - `attempts` (Number) Attempts defines how many times the request should be retried.
-- `initial_interval` (String) InitialInterval defines the first wait time in the exponential backoff series.The maximum interval is calculated as twice the initialInterval.If unspecified, requests will be retried immediately.The value of initialInterval should be provided in seconds or as a valid duration format,see https://pkg.go.dev/time#ParseDuration.
+- `initial_interval` (String) InitialInterval defines the first wait time in the exponential backoff series. The maximum interval is calculated as twice the initialInterval. If unspecified, requests will be retried immediately. The value of initialInterval should be provided in seconds or as a valid duration format, see https://pkg.go.dev/time#ParseDuration.
 
 
 <a id="nestedatt--spec--strip_prefix"></a>
@@ -525,7 +525,7 @@ Optional:
 
 Optional:
 
-- `force_slash` (Boolean) Deprecated: ForceSlash option is deprecated, please remove any usage of this option.ForceSlash ensures that the resulting stripped path is not the empty string, by replacing it with / when necessary.Default: true.
+- `force_slash` (Boolean) Deprecated: ForceSlash option is deprecated, please remove any usage of this option. ForceSlash ensures that the resulting stripped path is not the empty string, by replacing it with / when necessary. Default: true.
 - `prefixes` (List of String) Prefixes defines the prefixes to strip from the request URL.
 
 

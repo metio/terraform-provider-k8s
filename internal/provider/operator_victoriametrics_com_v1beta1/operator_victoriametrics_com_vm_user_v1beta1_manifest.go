@@ -231,8 +231,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"default_url": schema.ListAttribute{
-						Description:         "DefaultURLs backend url for non-matching paths filterusually used for default backend with error message",
-						MarkdownDescription: "DefaultURLs backend url for non-matching paths filterusually used for default backend with error message",
+						Description:         "DefaultURLs backend url for non-matching paths filter usually used for default backend with error message",
+						MarkdownDescription: "DefaultURLs backend url for non-matching paths filter usually used for default backend with error message",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -256,24 +256,24 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"drop_src_path_prefix_parts": schema.Int64Attribute{
-						Description:         "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
-						MarkdownDescription: "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
+						Description:         "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
+						MarkdownDescription: "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"generate_password": schema.BoolAttribute{
-						Description:         "GeneratePassword instructs operator to generate password for userif spec.password if empty.",
-						MarkdownDescription: "GeneratePassword instructs operator to generate password for userif spec.password if empty.",
+						Description:         "GeneratePassword instructs operator to generate password for user if spec.password if empty.",
+						MarkdownDescription: "GeneratePassword instructs operator to generate password for user if spec.password if empty.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"headers": schema.ListAttribute{
-						Description:         "Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
-						MarkdownDescription: "Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
+						Description:         "Headers represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
+						MarkdownDescription: "Headers represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -281,8 +281,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"ip_filters": schema.SingleNestedAttribute{
-						Description:         "IPFilters defines per target src ip filterssupported only with enterprise version of vmauthhttps://docs.victoriametrics.com/vmauth.html#ip-filters",
-						MarkdownDescription: "IPFilters defines per target src ip filterssupported only with enterprise version of vmauthhttps://docs.victoriametrics.com/vmauth.html#ip-filters",
+						Description:         "IPFilters defines per target src ip filters supported only with enterprise version of vmauth https://docs.victoriametrics.com/vmauth.html#ip-filters",
+						MarkdownDescription: "IPFilters defines per target src ip filters supported only with enterprise version of vmauth https://docs.victoriametrics.com/vmauth.html#ip-filters",
 						Attributes: map[string]schema.Attribute{
 							"allow_list": schema.ListAttribute{
 								Description:         "",
@@ -308,8 +308,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"load_balancing_policy": schema.StringAttribute{
-						Description:         "LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')",
-						MarkdownDescription: "LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')",
+						Description:         "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')",
+						MarkdownDescription: "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -319,8 +319,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"max_concurrent_requests": schema.Int64Attribute{
-						Description:         "MaxConcurrentRequests defines max concurrent requests per user300 is default value for vmauth",
-						MarkdownDescription: "MaxConcurrentRequests defines max concurrent requests per user300 is default value for vmauth",
+						Description:         "MaxConcurrentRequests defines max concurrent requests per user 300 is default value for vmauth",
+						MarkdownDescription: "MaxConcurrentRequests defines max concurrent requests per user 300 is default value for vmauth",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -356,16 +356,16 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "PasswordRef allows fetching password from user-create secret by its name and key.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
-								Description:         "The key of the secret to select from.  Must be a valid secret key.",
-								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+								Description:         "The key of the secret to select from. Must be a valid secret key.",
+								MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -385,8 +385,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"response_headers": schema.ListAttribute{
-						Description:         "ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth",
-						MarkdownDescription: "ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth",
+						Description:         "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
+						MarkdownDescription: "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -394,8 +394,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"retry_status_codes": schema.ListAttribute{
-						Description:         "RetryStatusCodes defines http status codes in numeric format for request retriese.g. [429,503]",
-						MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retriese.g. [429,503]",
+						Description:         "RetryStatusCodes defines http status codes in numeric format for request retries e.g. [429,503]",
+						MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retries e.g. [429,503]",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -408,12 +408,12 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"crd": schema.SingleNestedAttribute{
-									Description:         "CRD describes exist operator's CRD object,operator generates access url based on CRD params.",
-									MarkdownDescription: "CRD describes exist operator's CRD object,operator generates access url based on CRD params.",
+									Description:         "CRD describes exist operator's CRD object, operator generates access url based on CRD params.",
+									MarkdownDescription: "CRD describes exist operator's CRD object, operator generates access url based on CRD params.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
-											Description:         "Kind one of:VMAgent VMAlert VMCluster VMSingle or VMAlertManager",
-											MarkdownDescription: "Kind one of:VMAgent VMAlert VMCluster VMSingle or VMAlertManager",
+											Description:         "Kind one of: VMAgent VMAlert VMCluster VMSingle or VMAlertManager",
+											MarkdownDescription: "Kind one of: VMAgent VMAlert VMCluster VMSingle or VMAlertManager",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -449,16 +449,16 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"drop_src_path_prefix_parts": schema.Int64Attribute{
-									Description:         "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
-									MarkdownDescription: "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
+									Description:         "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
+									MarkdownDescription: "DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"headers": schema.ListAttribute{
-									Description:         "RequestHeaders represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
-									MarkdownDescription: "RequestHeaders represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth",
+									Description:         "RequestHeaders represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
+									MarkdownDescription: "RequestHeaders represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -475,8 +475,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"load_balancing_policy": schema.StringAttribute{
-									Description:         "LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')",
-									MarkdownDescription: "LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')",
+									Description:         "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')",
+									MarkdownDescription: "LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -495,8 +495,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"response_headers": schema.ListAttribute{
-									Description:         "ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth",
-									MarkdownDescription: "ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth",
+									Description:         "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
+									MarkdownDescription: "ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -504,8 +504,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"retry_status_codes": schema.ListAttribute{
-									Description:         "RetryStatusCodes defines http status codes in numeric format for request retriesCan be defined per target or at VMUser.spec levele.g. [429,503]",
-									MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retriesCan be defined per target or at VMUser.spec levele.g. [429,503]",
+									Description:         "RetryStatusCodes defines http status codes in numeric format for request retries Can be defined per target or at VMUser.spec level e.g. [429,503]",
+									MarkdownDescription: "RetryStatusCodes defines http status codes in numeric format for request retries Can be defined per target or at VMUser.spec level e.g. [429,503]",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -531,8 +531,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"static": schema.SingleNestedAttribute{
-									Description:         "Static - user defined url for traffic forward,for instance http://vmsingle:8429",
-									MarkdownDescription: "Static - user defined url for traffic forward,for instance http://vmsingle:8429",
+									Description:         "Static - user defined url for traffic forward, for instance http://vmsingle:8429",
+									MarkdownDescription: "Static - user defined url for traffic forward, for instance http://vmsingle:8429",
 									Attributes: map[string]schema.Attribute{
 										"url": schema.StringAttribute{
 											Description:         "URL http url for given staticRef.",
@@ -561,20 +561,20 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 									MarkdownDescription: "TargetRefBasicAuth allow an target endpoint to authenticate over basic authentication",
 									Attributes: map[string]schema.Attribute{
 										"password": schema.SingleNestedAttribute{
-											Description:         "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
-											MarkdownDescription: "The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD",
+											Description:         "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
+											MarkdownDescription: "The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -594,20 +594,20 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 										},
 
 										"username": schema.SingleNestedAttribute{
-											Description:         "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
-											MarkdownDescription: "The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD",
+											Description:         "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
+											MarkdownDescription: "The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -632,8 +632,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"target_path_suffix": schema.StringAttribute{
-									Description:         "TargetPathSuffix allows to add some suffix to the target pathIt allows to hide tenant configuration from user with crd as ref.it also may contain any url encoded params.",
-									MarkdownDescription: "TargetPathSuffix allows to add some suffix to the target pathIt allows to hide tenant configuration from user with crd as ref.it also may contain any url encoded params.",
+									Description:         "TargetPathSuffix allows to add some suffix to the target path It allows to hide tenant configuration from user with crd as ref. it also may contain any url encoded params.",
+									MarkdownDescription: "TargetPathSuffix allows to add some suffix to the target path It allows to hide tenant configuration from user with crd as ref. it also may contain any url encoded params.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -666,8 +666,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -691,16 +691,16 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 										MarkdownDescription: "Secret containing data to use for the targets.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -749,8 +749,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -774,16 +774,16 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 										MarkdownDescription: "Secret containing data to use for the targets.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Description:         "The key of the secret to select from. Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -836,16 +836,16 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 								MarkdownDescription: "Secret containing the client key file for the targets.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Description:         "The key of the secret to select from. Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -882,16 +882,16 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "TokenRef allows fetching token from user-created secrets by its name and key.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
-								Description:         "The key of the secret to select from.  Must be a valid secret key.",
-								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+								Description:         "The key of the secret to select from. Must be a valid secret key.",
+								MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -911,8 +911,8 @@ func (r *OperatorVictoriametricsComVmuserV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"username": schema.StringAttribute{
-						Description:         "UserName basic auth user name for accessing protected endpoint,will be replaced with metadata.name of VMUser if omitted.",
-						MarkdownDescription: "UserName basic auth user name for accessing protected endpoint,will be replaced with metadata.name of VMUser if omitted.",
+						Description:         "UserName basic auth user name for accessing protected endpoint, will be replaced with metadata.name of VMUser if omitted.",
+						MarkdownDescription: "UserName basic auth user name for accessing protected endpoint, will be replaced with metadata.name of VMUser if omitted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

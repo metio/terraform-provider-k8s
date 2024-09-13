@@ -131,8 +131,8 @@ func (r *SecretsHashicorpComHcpauthV1Beta1Manifest) Schema(_ context.Context, _ 
 				MarkdownDescription: "HCPAuthSpec defines the desired state of HCPAuth",
 				Attributes: map[string]schema.Attribute{
 					"allowed_namespaces": schema.ListAttribute{
-						Description:         "AllowedNamespaces Kubernetes Namespaces which are allow-listed for use with this AuthMethod.This field allows administrators to customize which Kubernetes namespaces are authorized touse with this AuthMethod. While Vault will still enforce its own rules, this has the addedconfigurability of restricting which HCPAuthMethods can be used by which namespaces.Accepted values:[]{'*'} - wildcard, all namespaces.[]{'a', 'b'} - list of namespaces.unset - disallow all namespaces except the Operator's the HCPAuthMethod's namespace, thisis the default behavior.",
-						MarkdownDescription: "AllowedNamespaces Kubernetes Namespaces which are allow-listed for use with this AuthMethod.This field allows administrators to customize which Kubernetes namespaces are authorized touse with this AuthMethod. While Vault will still enforce its own rules, this has the addedconfigurability of restricting which HCPAuthMethods can be used by which namespaces.Accepted values:[]{'*'} - wildcard, all namespaces.[]{'a', 'b'} - list of namespaces.unset - disallow all namespaces except the Operator's the HCPAuthMethod's namespace, thisis the default behavior.",
+						Description:         "AllowedNamespaces Kubernetes Namespaces which are allow-listed for use with this AuthMethod. This field allows administrators to customize which Kubernetes namespaces are authorized to use with this AuthMethod. While Vault will still enforce its own rules, this has the added configurability of restricting which HCPAuthMethods can be used by which namespaces. Accepted values: []{'*'} - wildcard, all namespaces. []{'a', 'b'} - list of namespaces. unset - disallow all namespaces except the Operator's the HCPAuthMethod's namespace, this is the default behavior.",
+						MarkdownDescription: "AllowedNamespaces Kubernetes Namespaces which are allow-listed for use with this AuthMethod. This field allows administrators to customize which Kubernetes namespaces are authorized to use with this AuthMethod. While Vault will still enforce its own rules, this has the added configurability of restricting which HCPAuthMethods can be used by which namespaces. Accepted values: []{'*'} - wildcard, all namespaces. []{'a', 'b'} - list of namespaces. unset - disallow all namespaces except the Operator's the HCPAuthMethod's namespace, this is the default behavior.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -167,12 +167,12 @@ func (r *SecretsHashicorpComHcpauthV1Beta1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"service_principal": schema.SingleNestedAttribute{
-						Description:         "ServicePrincipal provides the necessary configuration for authenticating toHCP using a service principal. For security reasons, only project-levelservice principals should ever be used.",
-						MarkdownDescription: "ServicePrincipal provides the necessary configuration for authenticating toHCP using a service principal. For security reasons, only project-levelservice principals should ever be used.",
+						Description:         "ServicePrincipal provides the necessary configuration for authenticating to HCP using a service principal. For security reasons, only project-level service principals should ever be used.",
+						MarkdownDescription: "ServicePrincipal provides the necessary configuration for authenticating to HCP using a service principal. For security reasons, only project-level service principals should ever be used.",
 						Attributes: map[string]schema.Attribute{
 							"secret_ref": schema.StringAttribute{
-								Description:         "SecretRef is the name of a Kubernetes secret in the consumer's(VDS/VSS/PKI/HCP) namespace which provides the HCP ServicePrincipal clientID,and clientSecret.The secret data must have the following structure {  'clientID': 'clientID',  'clientSecret': 'clientSecret',}",
-								MarkdownDescription: "SecretRef is the name of a Kubernetes secret in the consumer's(VDS/VSS/PKI/HCP) namespace which provides the HCP ServicePrincipal clientID,and clientSecret.The secret data must have the following structure {  'clientID': 'clientID',  'clientSecret': 'clientSecret',}",
+								Description:         "SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI/HCP) namespace which provides the HCP ServicePrincipal clientID, and clientSecret. The secret data must have the following structure { 'clientID': 'clientID', 'clientSecret': 'clientSecret', }",
+								MarkdownDescription: "SecretRef is the name of a Kubernetes secret in the consumer's (VDS/VSS/PKI/HCP) namespace which provides the HCP ServicePrincipal clientID, and clientSecret. The secret data must have the following structure { 'clientID': 'clientID', 'clientSecret': 'clientSecret', }",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

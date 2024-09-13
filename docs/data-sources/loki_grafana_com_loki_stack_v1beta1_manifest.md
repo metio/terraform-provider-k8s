@@ -62,7 +62,7 @@ Required:
 Optional:
 
 - `limits` (Attributes) Limits defines the per-tenant limits to be applied to log stream processing and the per-tenant the config overrides. (see [below for nested schema](#nestedatt--spec--limits))
-- `management_state` (String) ManagementState defines if the CR should be managed by the operator or not.Default is managed.
+- `management_state` (String) ManagementState defines if the CR should be managed by the operator or not. Default is managed.
 - `replication_factor` (Number) ReplicationFactor defines the policy for log stream replication.
 - `rules` (Attributes) Rules defines the spec for the ruler component (see [below for nested schema](#nestedatt--spec--rules))
 - `template` (Attributes) Template defines the resource/limits/tolerations/nodeselectors per component (see [below for nested schema](#nestedatt--spec--template))
@@ -73,7 +73,7 @@ Optional:
 
 Required:
 
-- `secret` (Attributes) Secret for object storage authentication.Name of a secret in the same namespace as the LokiStack custom resource. (see [below for nested schema](#nestedatt--spec--storage--secret))
+- `secret` (Attributes) Secret for object storage authentication. Name of a secret in the same namespace as the LokiStack custom resource. (see [below for nested schema](#nestedatt--spec--storage--secret))
 
 Optional:
 
@@ -94,7 +94,7 @@ Required:
 
 Required:
 
-- `effective_date` (String) EffectiveDate is the date in UTC that the schema will be applied on.To ensure readibility of logs, this date should be before the currentdate in UTC.
+- `effective_date` (String) EffectiveDate is the date in UTC that the schema will be applied on. To ensure readibility of logs, this date should be before the current date in UTC.
 - `version` (String) Version for writing and reading logs.
 
 
@@ -103,7 +103,7 @@ Required:
 
 Optional:
 
-- `ca_name` (String) CA is the name of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.
+- `ca_name` (String) CA is the name of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource.
 
 
 
@@ -128,12 +128,12 @@ Optional:
 
 Optional:
 
-- `ingestion_burst_size` (Number) IngestionBurstSize defines the local rate-limited sample size perdistributor replica. It should be set to the set at least to themaximum logs size expected in a single push request.
+- `ingestion_burst_size` (Number) IngestionBurstSize defines the local rate-limited sample size per distributor replica. It should be set to the set at least to the maximum logs size expected in a single push request.
 - `ingestion_rate` (Number) IngestionRate defines the sample size per second. Units MB.
-- `max_global_streams_per_tenant` (Number) MaxGlobalStreamsPerTenant defines the maximum number of active streamsper tenant, across the cluster.
-- `max_label_name_length` (Number) MaxLabelNameLength defines the maximum number of characters allowedfor label keys in log streams.
-- `max_label_names_per_series` (Number) MaxLabelNamesPerSeries defines the maximum number of label names per seriesin each log stream.
-- `max_label_value_length` (Number) MaxLabelValueLength defines the maximum number of characters allowedfor label values in log streams.
+- `max_global_streams_per_tenant` (Number) MaxGlobalStreamsPerTenant defines the maximum number of active streams per tenant, across the cluster.
+- `max_label_name_length` (Number) MaxLabelNameLength defines the maximum number of characters allowed for label keys in log streams.
+- `max_label_names_per_series` (Number) MaxLabelNamesPerSeries defines the maximum number of label names per series in each log stream.
+- `max_label_value_length` (Number) MaxLabelValueLength defines the maximum number of characters allowed for label values in log streams.
 - `max_line_size` (Number) MaxLineSize defines the maximum line size on ingestion path. Units in Bytes.
 
 
@@ -142,9 +142,9 @@ Optional:
 
 Optional:
 
-- `max_chunks_per_query` (Number) MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.
-- `max_entries_limit_per_query` (Number) MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.
-- `max_query_series` (Number) MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.
+- `max_chunks_per_query` (Number) MaxChunksPerQuery defines the maximum number of chunks that can be fetched by a single query.
+- `max_entries_limit_per_query` (Number) MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.
+- `max_query_series` (Number) MaxQuerySeries defines the maximum of unique series that is returned by a metric query.
 
 
 
@@ -161,12 +161,12 @@ Optional:
 
 Optional:
 
-- `ingestion_burst_size` (Number) IngestionBurstSize defines the local rate-limited sample size perdistributor replica. It should be set to the set at least to themaximum logs size expected in a single push request.
+- `ingestion_burst_size` (Number) IngestionBurstSize defines the local rate-limited sample size per distributor replica. It should be set to the set at least to the maximum logs size expected in a single push request.
 - `ingestion_rate` (Number) IngestionRate defines the sample size per second. Units MB.
-- `max_global_streams_per_tenant` (Number) MaxGlobalStreamsPerTenant defines the maximum number of active streamsper tenant, across the cluster.
-- `max_label_name_length` (Number) MaxLabelNameLength defines the maximum number of characters allowedfor label keys in log streams.
-- `max_label_names_per_series` (Number) MaxLabelNamesPerSeries defines the maximum number of label names per seriesin each log stream.
-- `max_label_value_length` (Number) MaxLabelValueLength defines the maximum number of characters allowedfor label values in log streams.
+- `max_global_streams_per_tenant` (Number) MaxGlobalStreamsPerTenant defines the maximum number of active streams per tenant, across the cluster.
+- `max_label_name_length` (Number) MaxLabelNameLength defines the maximum number of characters allowed for label keys in log streams.
+- `max_label_names_per_series` (Number) MaxLabelNamesPerSeries defines the maximum number of label names per series in each log stream.
+- `max_label_value_length` (Number) MaxLabelValueLength defines the maximum number of characters allowed for label values in log streams.
 - `max_line_size` (Number) MaxLineSize defines the maximum line size on ingestion path. Units in Bytes.
 
 
@@ -175,9 +175,9 @@ Optional:
 
 Optional:
 
-- `max_chunks_per_query` (Number) MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.
-- `max_entries_limit_per_query` (Number) MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.
-- `max_query_series` (Number) MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.
+- `max_chunks_per_query` (Number) MaxChunksPerQuery defines the maximum number of chunks that can be fetched by a single query.
+- `max_entries_limit_per_query` (Number) MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.
+- `max_query_series` (Number) MaxQuerySeries defines the maximum of unique series that is returned by a metric query.
 
 
 
@@ -191,8 +191,8 @@ Required:
 
 Optional:
 
-- `namespace_selector` (Attributes) Namespaces to be selected for PrometheusRules discovery. If unspecified, onlythe same namespace as the LokiStack object is in is used. (see [below for nested schema](#nestedatt--spec--rules--namespace_selector))
-- `selector` (Attributes) A selector to select which LokiRules to mount for loading alerting/recordingrules from. (see [below for nested schema](#nestedatt--spec--rules--selector))
+- `namespace_selector` (Attributes) Namespaces to be selected for PrometheusRules discovery. If unspecified, only the same namespace as the LokiStack object is in is used. (see [below for nested schema](#nestedatt--spec--rules--namespace_selector))
+- `selector` (Attributes) A selector to select which LokiRules to mount for loading alerting/recording rules from. (see [below for nested schema](#nestedatt--spec--rules--selector))
 
 <a id="nestedatt--spec--rules--namespace_selector"></a>
 ### Nested Schema for `spec.rules.namespace_selector`
@@ -200,7 +200,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.namespace_selector.match_expressions`
@@ -208,11 +208,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -222,7 +222,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--rules--selector--match_expressions"></a>
 ### Nested Schema for `spec.rules.selector.match_expressions`
@@ -230,11 +230,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -258,20 +258,20 @@ Optional:
 
 Optional:
 
-- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedulethe component onto it.
+- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedule the component onto it.
 - `replicas` (Number) Replicas defines the number of replica pods of the component.
-- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--compactor--tolerations))
+- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedule the component onto it. (see [below for nested schema](#nestedatt--spec--template--compactor--tolerations))
 
 <a id="nestedatt--spec--template--compactor--tolerations"></a>
 ### Nested Schema for `spec.template.compactor.tolerations`
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -280,20 +280,20 @@ Optional:
 
 Optional:
 
-- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedulethe component onto it.
+- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedule the component onto it.
 - `replicas` (Number) Replicas defines the number of replica pods of the component.
-- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--distributor--tolerations))
+- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedule the component onto it. (see [below for nested schema](#nestedatt--spec--template--distributor--tolerations))
 
 <a id="nestedatt--spec--template--distributor--tolerations"></a>
 ### Nested Schema for `spec.template.distributor.tolerations`
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -302,20 +302,20 @@ Optional:
 
 Optional:
 
-- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedulethe component onto it.
+- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedule the component onto it.
 - `replicas` (Number) Replicas defines the number of replica pods of the component.
-- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--gateway--tolerations))
+- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedule the component onto it. (see [below for nested schema](#nestedatt--spec--template--gateway--tolerations))
 
 <a id="nestedatt--spec--template--gateway--tolerations"></a>
 ### Nested Schema for `spec.template.gateway.tolerations`
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -324,20 +324,20 @@ Optional:
 
 Optional:
 
-- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedulethe component onto it.
+- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedule the component onto it.
 - `replicas` (Number) Replicas defines the number of replica pods of the component.
-- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--index_gateway--tolerations))
+- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedule the component onto it. (see [below for nested schema](#nestedatt--spec--template--index_gateway--tolerations))
 
 <a id="nestedatt--spec--template--index_gateway--tolerations"></a>
 ### Nested Schema for `spec.template.index_gateway.tolerations`
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -346,20 +346,20 @@ Optional:
 
 Optional:
 
-- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedulethe component onto it.
+- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedule the component onto it.
 - `replicas` (Number) Replicas defines the number of replica pods of the component.
-- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--ingester--tolerations))
+- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedule the component onto it. (see [below for nested schema](#nestedatt--spec--template--ingester--tolerations))
 
 <a id="nestedatt--spec--template--ingester--tolerations"></a>
 ### Nested Schema for `spec.template.ingester.tolerations`
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -368,20 +368,20 @@ Optional:
 
 Optional:
 
-- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedulethe component onto it.
+- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedule the component onto it.
 - `replicas` (Number) Replicas defines the number of replica pods of the component.
-- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--querier--tolerations))
+- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedule the component onto it. (see [below for nested schema](#nestedatt--spec--template--querier--tolerations))
 
 <a id="nestedatt--spec--template--querier--tolerations"></a>
 ### Nested Schema for `spec.template.querier.tolerations`
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -390,20 +390,20 @@ Optional:
 
 Optional:
 
-- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedulethe component onto it.
+- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedule the component onto it.
 - `replicas` (Number) Replicas defines the number of replica pods of the component.
-- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--query_frontend--tolerations))
+- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedule the component onto it. (see [below for nested schema](#nestedatt--spec--template--query_frontend--tolerations))
 
 <a id="nestedatt--spec--template--query_frontend--tolerations"></a>
 ### Nested Schema for `spec.template.query_frontend.tolerations`
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -412,20 +412,20 @@ Optional:
 
 Optional:
 
-- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedulethe component onto it.
+- `node_selector` (Map of String) NodeSelector defines the labels required by a node to schedule the component onto it.
 - `replicas` (Number) Replicas defines the number of replica pods of the component.
-- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedulethe component onto it. (see [below for nested schema](#nestedatt--spec--template--ruler--tolerations))
+- `tolerations` (Attributes List) Tolerations defines the tolerations required by a node to schedule the component onto it. (see [below for nested schema](#nestedatt--spec--template--ruler--tolerations))
 
 <a id="nestedatt--spec--template--ruler--tolerations"></a>
 ### Nested Schema for `spec.template.ruler.tolerations`
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 

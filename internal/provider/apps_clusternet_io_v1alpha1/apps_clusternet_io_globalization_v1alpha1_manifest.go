@@ -134,8 +134,8 @@ func (r *AppsClusternetIoGlobalizationV1Alpha1Manifest) Schema(_ context.Context
 				MarkdownDescription: "GlobalizationSpec defines the desired state of Globalization",
 				Attributes: map[string]schema.Attribute{
 					"cluster_affinity": schema.SingleNestedAttribute{
-						Description:         "ClusterAffinity is a label query over managed clusters by labels.If no labels are specified, all clusters will be selected.",
-						MarkdownDescription: "ClusterAffinity is a label query over managed clusters by labels.If no labels are specified, all clusters will be selected.",
+						Description:         "ClusterAffinity is a label query over managed clusters by labels. If no labels are specified, all clusters will be selected.",
+						MarkdownDescription: "ClusterAffinity is a label query over managed clusters by labels. If no labels are specified, all clusters will be selected.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -151,16 +151,16 @@ func (r *AppsClusternetIoGlobalizationV1Alpha1Manifest) Schema(_ context.Context
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -174,8 +174,8 @@ func (r *AppsClusternetIoGlobalizationV1Alpha1Manifest) Schema(_ context.Context
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -200,8 +200,8 @@ func (r *AppsClusternetIoGlobalizationV1Alpha1Manifest) Schema(_ context.Context
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind is a string value representing the REST resource this object represents.In CamelCase.",
-								MarkdownDescription: "Kind is a string value representing the REST resource this object represents.In CamelCase.",
+								Description:         "Kind is a string value representing the REST resource this object represents. In CamelCase.",
+								MarkdownDescription: "Kind is a string value representing the REST resource this object represents. In CamelCase.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -286,8 +286,8 @@ func (r *AppsClusternetIoGlobalizationV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"priority": schema.Int64Attribute{
-						Description:         "Priority is an integer defining the relative importance of this Globalization compared to others.Lower numbers are considered lower priority.And these Globalization(s) will be applied by order from lower priority to higher.That means override values in lower Globalization will be overridden by those in higher Globalization.",
-						MarkdownDescription: "Priority is an integer defining the relative importance of this Globalization compared to others.Lower numbers are considered lower priority.And these Globalization(s) will be applied by order from lower priority to higher.That means override values in lower Globalization will be overridden by those in higher Globalization.",
+						Description:         "Priority is an integer defining the relative importance of this Globalization compared to others. Lower numbers are considered lower priority. And these Globalization(s) will be applied by order from lower priority to higher. That means override values in lower Globalization will be overridden by those in higher Globalization.",
+						MarkdownDescription: "Priority is an integer defining the relative importance of this Globalization compared to others. Lower numbers are considered lower priority. And these Globalization(s) will be applied by order from lower priority to higher. That means override values in lower Globalization will be overridden by those in higher Globalization.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

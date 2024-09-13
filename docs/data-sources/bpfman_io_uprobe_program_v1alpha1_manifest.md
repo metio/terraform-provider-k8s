@@ -53,18 +53,18 @@ Required:
 
 - `bpffunctionname` (String) BpfFunctionName is the name of the function that is the entry point for the BPF program
 - `bytecode` (Attributes) Bytecode configures where the bpf program's bytecode should be loaded from. (see [below for nested schema](#nestedatt--spec--bytecode))
-- `nodeselector` (Attributes) NodeSelector allows the user to specify which nodes to deploy the bpf program to.  This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty. (see [below for nested schema](#nestedatt--spec--nodeselector))
+- `nodeselector` (Attributes) NodeSelector allows the user to specify which nodes to deploy the bpf program to. This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty. (see [below for nested schema](#nestedatt--spec--nodeselector))
 - `target` (String) Library name or the absolute path to a binary or library.
 
 Optional:
 
-- `containers` (Attributes) Containers identifes the set of containers in which to attach the uprobe. If Containers is not specified, the uprobe will be attached in the bpfman-agent container.  The ContainerSelector is very flexible and even allows the selection of all containers in a cluster.  If an attempt is made to attach uprobes to too many containers, it can have a negative impact on on the cluster. (see [below for nested schema](#nestedatt--spec--containers))
+- `containers` (Attributes) Containers identifes the set of containers in which to attach the uprobe. If Containers is not specified, the uprobe will be attached in the bpfman-agent container. The ContainerSelector is very flexible and even allows the selection of all containers in a cluster. If an attempt is made to attach uprobes to too many containers, it can have a negative impact on on the cluster. (see [below for nested schema](#nestedatt--spec--containers))
 - `func_name` (String) Function to attach the uprobe to.
 - `globaldata` (Map of String) GlobalData allows the user to to set global variables when the program is loaded with an array of raw bytes. This is a very low level primitive. The caller is responsible for formatting the byte string appropriately considering such things as size, endianness, alignment and packing of data structures.
 - `mapownerselector` (Attributes) MapOwnerSelector is used to select the loaded eBPF program this eBPF program will share a map with. The value is a label applied to the BpfProgram to select. The selector must resolve to exactly one instance of a BpfProgram on a given node or the eBPF program will not load. (see [below for nested schema](#nestedatt--spec--mapownerselector))
 - `offset` (Number) Offset added to the address of the function for uprobe.
 - `pid` (Number) Only execute uprobe for given process identification number (PID). If PID is not provided, uprobe executes for all PIDs.
-- `retprobe` (Boolean) Whether the program is a uretprobe.  Default is false
+- `retprobe` (Boolean) Whether the program is a uretprobe. Default is false
 
 <a id="nestedatt--spec--bytecode"></a>
 ### Nested Schema for `spec.bytecode`
@@ -128,7 +128,7 @@ Required:
 
 Optional:
 
-- `containernames` (List of String) Name(s) of container(s).  If none are specified, all containers in the pod are selected.
+- `containernames` (List of String) Name(s) of container(s). If none are specified, all containers in the pod are selected.
 - `namespace` (String) Target namespaces.
 
 <a id="nestedatt--spec--containers--pods"></a>

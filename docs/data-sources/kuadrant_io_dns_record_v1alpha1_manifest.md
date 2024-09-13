@@ -56,13 +56,13 @@ Optional:
 Required:
 
 - `provider_ref` (Attributes) providerRef is a reference to a provider secret. (see [below for nested schema](#nestedatt--spec--provider_ref))
-- `root_host` (String) rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHostMust contain at least two groups of valid URL characters separated by a '.'
+- `root_host` (String) rootHost is the single root for all endpoints in a DNSRecord. it is expected all defined endpoints are children of or equal to this rootHost Must contain at least two groups of valid URL characters separated by a '.'
 
 Optional:
 
 - `endpoints` (Attributes List) endpoints is a list of endpoints that will be published into the dns provider. (see [below for nested schema](#nestedatt--spec--endpoints))
-- `health_check` (Attributes) HealthCheckSpec configures health checks in the DNS provider.By default this health check will be applied to each unique DNS A Record forthe listeners assigned to the target gateway (see [below for nested schema](#nestedatt--spec--health_check))
-- `owner_id` (String) ownerID is a unique string used to identify the owner of this record.If unset or set to an empty string the record UID will be used.
+- `health_check` (Attributes) HealthCheckSpec configures health checks in the DNS provider. By default this health check will be applied to each unique DNS A Record for the listeners assigned to the target gateway (see [below for nested schema](#nestedatt--spec--health_check))
+- `owner_id` (String) ownerID is a unique string used to identify the owner of this record. If unset or set to an empty string the record UID will be used.
 
 <a id="nestedatt--spec--provider_ref"></a>
 ### Nested Schema for `spec.provider_ref`
@@ -100,7 +100,7 @@ Optional:
 
 Optional:
 
-- `endpoint` (String) Endpoint is the path to append to the host to reach the expected health check.Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common
+- `endpoint` (String) Endpoint is the path to append to the host to reach the expected health check. Must start with '?' or '/', contain only valid URL characters and end with alphanumeric char or '/'. For example '/' or '/healthz' are common
 - `failure_threshold` (Number) FailureThreshold is a limit of consecutive failures that must occur for a host to be considered unhealthy
 - `port` (Number) Port to connect to the host on. Must be either 80, 443 or 1024-49151
 - `protocol` (String) Protocol to use when connecting to the host, valid values are 'HTTP' or 'HTTPS'

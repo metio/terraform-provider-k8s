@@ -454,8 +454,8 @@ func (r *CoreKubeadmiralIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ contex
 																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.StringAttribute{
-																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Description:         "The key of the secret to select from. Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -514,8 +514,8 @@ func (r *CoreKubeadmiralIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ contex
 													},
 
 													"image_path": schema.StringAttribute{
-														Description:         "ImagePath indicates the image path to target. For Example: /spec/template/spec/containers/0/image  If empty, the system will automatically resolve the image path if the resource type is Pod, CronJob, Deployment, StatefulSet, DaemonSet or Job.",
-														MarkdownDescription: "ImagePath indicates the image path to target. For Example: /spec/template/spec/containers/0/image  If empty, the system will automatically resolve the image path if the resource type is Pod, CronJob, Deployment, StatefulSet, DaemonSet or Job.",
+														Description:         "ImagePath indicates the image path to target. For Example: /spec/template/spec/containers/0/image If empty, the system will automatically resolve the image path if the resource type is Pod, CronJob, Deployment, StatefulSet, DaemonSet or Job.",
+														MarkdownDescription: "ImagePath indicates the image path to target. For Example: /spec/template/spec/containers/0/image If empty, the system will automatically resolve the image path if the resource type is Pod, CronJob, Deployment, StatefulSet, DaemonSet or Job.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

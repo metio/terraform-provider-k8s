@@ -102,7 +102,7 @@ Optional:
 
 Optional:
 
-- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
 - `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
 - `http2_max_requests` (Number) Maximum number of active requests to a destination.
 - `idle_timeout` (String) The idle timeout for upstream connection pool connections.
@@ -258,7 +258,7 @@ Optional:
 
 Optional:
 
-- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
 - `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
 - `http2_max_requests` (Number) Maximum number of active requests to a destination.
 - `idle_timeout` (String) The idle timeout for upstream connection pool connections.
@@ -408,7 +408,7 @@ Optional:
 - `client_certificate` (String) REQUIRED if mode is 'MUTUAL'.
 - `credential_name` (String) The name of the secret that holds the TLS certs for the client including the CA certificates.
 - `insecure_skip_verify` (Boolean) 'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.
-- `mode` (String) Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
+- `mode` (String) Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'MUTUAL'.
 - `sni` (String) SNI string to present to the server during TLS handshake.
 - `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate.
@@ -420,7 +420,7 @@ Optional:
 
 Optional:
 
-- `version` (String) The PROXY protocol version to use.Valid Options: V1, V2
+- `version` (String) The PROXY protocol version to use. Valid Options: V1, V2
 
 
 <a id="nestedatt--spec--subsets--traffic_policy--tls"></a>
@@ -433,7 +433,7 @@ Optional:
 - `client_certificate` (String) REQUIRED if mode is 'MUTUAL'.
 - `credential_name` (String) The name of the secret that holds the TLS certs for the client including the CA certificates.
 - `insecure_skip_verify` (Boolean) 'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.
-- `mode` (String) Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
+- `mode` (String) Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'MUTUAL'.
 - `sni` (String) SNI string to present to the server during TLS handshake.
 - `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate.
@@ -480,7 +480,7 @@ Optional:
 
 Optional:
 
-- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
 - `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
 - `http2_max_requests` (Number) Maximum number of active requests to a destination.
 - `idle_timeout` (String) The idle timeout for upstream connection pool connections.
@@ -636,7 +636,7 @@ Optional:
 
 Optional:
 
-- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination. Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
 - `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
 - `http2_max_requests` (Number) Maximum number of active requests to a destination.
 - `idle_timeout` (String) The idle timeout for upstream connection pool connections.
@@ -786,7 +786,7 @@ Optional:
 - `client_certificate` (String) REQUIRED if mode is 'MUTUAL'.
 - `credential_name` (String) The name of the secret that holds the TLS certs for the client including the CA certificates.
 - `insecure_skip_verify` (Boolean) 'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.
-- `mode` (String) Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
+- `mode` (String) Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'MUTUAL'.
 - `sni` (String) SNI string to present to the server during TLS handshake.
 - `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate.
@@ -798,7 +798,7 @@ Optional:
 
 Optional:
 
-- `version` (String) The PROXY protocol version to use.Valid Options: V1, V2
+- `version` (String) The PROXY protocol version to use. Valid Options: V1, V2
 
 
 <a id="nestedatt--spec--traffic_policy--tls"></a>
@@ -811,7 +811,7 @@ Optional:
 - `client_certificate` (String) REQUIRED if mode is 'MUTUAL'.
 - `credential_name` (String) The name of the secret that holds the TLS certs for the client including the CA certificates.
 - `insecure_skip_verify` (Boolean) 'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.
-- `mode` (String) Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
+- `mode` (String) Indicates whether connections to this port should be secured using TLS. Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'MUTUAL'.
 - `sni` (String) SNI string to present to the server during TLS handshake.
 - `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate.

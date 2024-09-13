@@ -3,12 +3,12 @@
 page_title: "k8s_couchbase_com_couchbase_collection_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "couchbase.com"
 description: |-
-  CouchbaseCollection represent the finest grained size of data storage in Couchbase.Collections contain all documents and indexes in the system.  Collections also formthe finest grain basis for role-based access control (RBAC) and cross-datacenterreplication (XDCR).  In order to be considered by the Operator, every collectionmust be referenced by a 'CouchbaseScope' or 'CouchbaseScopeGroup' resource.
+  CouchbaseCollection represent the finest grained size of data storage in Couchbase. Collections contain all documents and indexes in the system. Collections also form the finest grain basis for role-based access control (RBAC) and cross-datacenter replication (XDCR). In order to be considered by the Operator, every collection must be referenced by a 'CouchbaseScope' or 'CouchbaseScopeGroup' resource.
 ---
 
 # k8s_couchbase_com_couchbase_collection_v2_manifest (Data Source)
 
-CouchbaseCollection represent the finest grained size of data storage in Couchbase.Collections contain all documents and indexes in the system.  Collections also formthe finest grain basis for role-based access control (RBAC) and cross-datacenterreplication (XDCR).  In order to be considered by the Operator, every collectionmust be referenced by a 'CouchbaseScope' or 'CouchbaseScopeGroup' resource.
+CouchbaseCollection represent the finest grained size of data storage in Couchbase. Collections contain all documents and indexes in the system. Collections also form the finest grain basis for role-based access control (RBAC) and cross-datacenter replication (XDCR). In order to be considered by the Operator, every collection must be referenced by a 'CouchbaseScope' or 'CouchbaseScopeGroup' resource.
 
 ## Example Usage
 
@@ -55,5 +55,5 @@ Optional:
 
 Optional:
 
-- `max_ttl` (String) MaxTTL defines how long a document is permitted to exist for, withoutmodification, until it is automatically deleted.  This field takes precedence overany TTL defined at the bucket level.  This is a default, and maximumtime-to-live and may be set to a lower value by the client.  If the client specifiesa higher value, then it is truncated to the maximum durability.  Documents areremoved by Couchbase, after they have expired, when either accessed, the expirypager is run, or the bucket is compacted.  When set to 0, then documents are notexpired by default.  This field must be a duration in the range 0-2147483648s,defaulting to 0.  More info:https://golang.org/pkg/time/#ParseDuration
-- `name` (String) Name specifies the name of the collection.  By default, the metadata.name isused to define the collection name, however, due to the limited character set,this field can be used to override the default and provide the full functionality.Additionally the 'metadata.name' field is a DNS label, and thus limited to 63characters, this field must be used if the name is longer than this limit.Collection names must be 1-251 characters in length, contain only [a-zA-Z0-9_-%]and not start with either _ or %.
+- `max_ttl` (String) MaxTTL defines how long a document is permitted to exist for, without modification, until it is automatically deleted. This field takes precedence over any TTL defined at the bucket level. This is a default, and maximum time-to-live and may be set to a lower value by the client. If the client specifies a higher value, then it is truncated to the maximum durability. Documents are removed by Couchbase, after they have expired, when either accessed, the expiry pager is run, or the bucket is compacted. When set to 0, then documents are not expired by default. This field must be a duration in the range 0-2147483648s, defaulting to 0. More info: https://golang.org/pkg/time/#ParseDuration
+- `name` (String) Name specifies the name of the collection. By default, the metadata.name is used to define the collection name, however, due to the limited character set, this field can be used to override the default and provide the full functionality. Additionally the 'metadata.name' field is a DNS label, and thus limited to 63 characters, this field must be used if the name is longer than this limit. Collection names must be 1-251 characters in length, contain only [a-zA-Z0-9_-%] and not start with either _ or %.

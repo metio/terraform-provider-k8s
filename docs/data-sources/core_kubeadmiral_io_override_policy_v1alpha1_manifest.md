@@ -191,7 +191,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
@@ -212,7 +212,7 @@ Required:
 Optional:
 
 - `container_names` (List of String) ContainerNames are ignored when ImagePath is set. If empty, the image override rule applies to all containers. Otherwise, this override targets the specified container(s) or init container(s) in the pod template.
-- `image_path` (String) ImagePath indicates the image path to target. For Example: /spec/template/spec/containers/0/image  If empty, the system will automatically resolve the image path if the resource type is Pod, CronJob, Deployment, StatefulSet, DaemonSet or Job.
+- `image_path` (String) ImagePath indicates the image path to target. For Example: /spec/template/spec/containers/0/image If empty, the system will automatically resolve the image path if the resource type is Pod, CronJob, Deployment, StatefulSet, DaemonSet or Job.
 
 <a id="nestedatt--spec--override_rules--overriders--image--operations"></a>
 ### Nested Schema for `spec.override_rules.overriders.image.operations`

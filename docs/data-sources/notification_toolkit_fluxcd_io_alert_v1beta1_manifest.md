@@ -68,23 +68,23 @@ Required:
 
 Optional:
 
-- `event_severity` (String) Filter events based on severity, defaults to ('info').If set to 'info' no events will be filtered.
+- `event_severity` (String) Filter events based on severity, defaults to ('info'). If set to 'info' no events will be filtered.
 - `exclusion_list` (List of String) A list of Golang regular expressions to be used for excluding messages.
 - `summary` (String) Short description of the impact and affected cluster.
-- `suspend` (Boolean) This flag tells the controller to suspend subsequent events dispatching.Defaults to false.
+- `suspend` (Boolean) This flag tells the controller to suspend subsequent events dispatching. Defaults to false.
 
 <a id="nestedatt--spec--event_sources"></a>
 ### Nested Schema for `spec.event_sources`
 
 Required:
 
+- `kind` (String) Kind of the referent
 - `name` (String) Name of the referent
 
 Optional:
 
 - `api_version` (String) API version of the referent
-- `kind` (String) Kind of the referent
-- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `namespace` (String) Namespace of the referent
 
 

@@ -55,8 +55,8 @@ Optional:
 
 Required:
 
-- `rule_endpoint_type` (String) ruleEndpointType is a string value representing rule-endpoint type. its value isone of rest/eventbus/servicebus.
+- `rule_endpoint_type` (String) ruleEndpointType is a string value representing rule-endpoint type. its value is one of rest/eventbus/servicebus.
 
 Optional:
 
-- `properties` (Map of String) properties is not required except for servicebus rule-endpoint type. It is a mapvalue representing rule-endpoint properties. When ruleEndpointType is servicebus,its value is {'service_port':'8080'}.
+- `properties` (Map of String) properties is not required except for servicebus rule-endpoint type. It is a map value representing rule-endpoint properties. When ruleEndpointType is servicebus, its value is {'service_port':'8080'}.

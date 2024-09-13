@@ -109,8 +109,8 @@ func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Metadata(_ context.Context, reque
 
 func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "AppProject provides a logical grouping of applications, providing controls for:* where the apps may deploy to (cluster whitelist)* what may be deployed (repository whitelist, resource whitelist/blacklist)* who can access these applications (roles, OIDC group claims bindings)* and what they can do (RBAC policies)* automation access to these roles (JWT tokens)",
-		MarkdownDescription: "AppProject provides a logical grouping of applications, providing controls for:* where the apps may deploy to (cluster whitelist)* what may be deployed (repository whitelist, resource whitelist/blacklist)* who can access these applications (roles, OIDC group claims bindings)* and what they can do (RBAC policies)* automation access to these roles (JWT tokens)",
+		Description:         "AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster whitelist) * what may be deployed (repository whitelist, resource whitelist/blacklist) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens)",
+		MarkdownDescription: "AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster whitelist) * what may be deployed (repository whitelist, resource whitelist/blacklist) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens)",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -256,8 +256,8 @@ func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Namespace specifies the target namespace for the application's resources.The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
-									MarkdownDescription: "Namespace specifies the target namespace for the application's resources.The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
+									Description:         "Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
+									MarkdownDescription: "Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

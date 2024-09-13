@@ -3,12 +3,12 @@
 page_title: "k8s_tinkerbell_org_workflow_v1alpha2_manifest Data Source - terraform-provider-k8s"
 subcategory: "tinkerbell.org"
 description: |-
-  Workflow describes a set of actions to be run on a specific Hardware. Workflows executeonce and should be considered ephemeral.
+  Workflow describes a set of actions to be run on a specific Hardware. Workflows execute once and should be considered ephemeral.
 ---
 
 # k8s_tinkerbell_org_workflow_v1alpha2_manifest (Data Source)
 
-Workflow describes a set of actions to be run on a specific Hardware. Workflows executeonce and should be considered ephemeral.
+Workflow describes a set of actions to be run on a specific Hardware. Workflows execute once and should be considered ephemeral.
 
 ## Example Usage
 
@@ -56,16 +56,16 @@ Optional:
 Optional:
 
 - `hardware_ref` (Attributes) HardwareRef is a reference to a Hardware resource this workflow will execute on. (see [below for nested schema](#nestedatt--spec--hardware_ref))
-- `template_params` (Map of String) TemplateParams are a list of key-value pairs that are injected into templates at rendertime. TemplateParams are exposed to templates using a top level .Params key.For example, TemplateParams = {'foo': 'bar'}, the foo key can be accessed via .Params.foo.
+- `template_params` (Map of String) TemplateParams are a list of key-value pairs that are injected into templates at render time. TemplateParams are exposed to templates using a top level .Params key. For example, TemplateParams = {'foo': 'bar'}, the foo key can be accessed via .Params.foo.
 - `template_ref` (Attributes) TemplateRef is a reference to a Template resource used to render workflow actions. (see [below for nested schema](#nestedatt--spec--template_ref))
-- `timeout` (Number) TimeoutSeconds defines the time the workflow has to complete. The timer begins when the firstaction is requested. When set to 0, no timeout is applied.
+- `timeout` (Number) TimeoutSeconds defines the time the workflow has to complete. The timer begins when the first action is requested. When set to 0, no timeout is applied.
 
 <a id="nestedatt--spec--hardware_ref"></a>
 ### Nested Schema for `spec.hardware_ref`
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--template_ref"></a>
@@ -73,4 +73,4 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.

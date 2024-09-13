@@ -124,8 +124,8 @@ func (r *K8UpIoSnapshotV1Manifest) Schema(_ context.Context, _ datasource.Schema
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "SnapshotSpec contains all information needed about a restic snapshot so itcan be restored.",
-				MarkdownDescription: "SnapshotSpec contains all information needed about a restic snapshot so itcan be restored.",
+				Description:         "SnapshotSpec contains all information needed about a restic snapshot so it can be restored.",
+				MarkdownDescription: "SnapshotSpec contains all information needed about a restic snapshot so it can be restored.",
 				Attributes: map[string]schema.Attribute{
 					"date": schema.StringAttribute{
 						Description:         "",

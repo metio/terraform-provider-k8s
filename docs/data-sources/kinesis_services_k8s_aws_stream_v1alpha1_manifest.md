@@ -55,12 +55,12 @@ Optional:
 
 Required:
 
-- `name` (String) A name to identify the stream. The stream name is scoped to the Amazon WebServices account used by the application that creates the stream. It is alsoscoped by Amazon Web Services Region. That is, two streams in two differentAmazon Web Services accounts can have the same name. Two streams in the sameAmazon Web Services account but in two different Regions can also have thesame name.
+- `name` (String) A name to identify the stream. The stream name is scoped to the Amazon Web Services account used by the application that creates the stream. It is also scoped by Amazon Web Services Region. That is, two streams in two different Amazon Web Services accounts can have the same name. Two streams in the same Amazon Web Services account but in two different Regions can also have the same name.
 
 Optional:
 
-- `shard_count` (Number) The number of shards that the stream will use. The throughput of the streamis a function of the number of shards; more shards are required for greaterprovisioned throughput.
-- `stream_mode_details` (Attributes) Indicates the capacity mode of the data stream. Currently, in Kinesis DataStreams, you can choose between an on-demand capacity mode and a provisionedcapacity mode for your data streams. (see [below for nested schema](#nestedatt--spec--stream_mode_details))
+- `shard_count` (Number) The number of shards that the stream will use. The throughput of the stream is a function of the number of shards; more shards are required for greater provisioned throughput.
+- `stream_mode_details` (Attributes) Indicates the capacity mode of the data stream. Currently, in Kinesis Data Streams, you can choose between an on-demand capacity mode and a provisioned capacity mode for your data streams. (see [below for nested schema](#nestedatt--spec--stream_mode_details))
 
 <a id="nestedatt--spec--stream_mode_details"></a>
 ### Nested Schema for `spec.stream_mode_details`

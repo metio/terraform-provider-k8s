@@ -141,8 +141,8 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 				MarkdownDescription: "NodeClaimSpec describes the desired state of the NodeClaim",
 				Attributes: map[string]schema.Attribute{
 					"expire_after": schema.StringAttribute{
-						Description:         "ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.",
-						MarkdownDescription: "ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.",
+						Description:         "ExpireAfter is the duration the controller will wait before terminating a node, measured from when the node is created. This is useful to implement features like eventually consistent node upgrade, memory leak protection, and disruption testing.",
+						MarkdownDescription: "ExpireAfter is the duration the controller will wait before terminating a node, measured from when the node is created. This is useful to implement features like eventually consistent node upgrade, memory leak protection, and disruption testing.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -205,8 +205,8 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 								},
 
 								"min_values": schema.Int64Attribute{
-									Description:         "This field is ALPHA and can be dropped or replaced at any timeMinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
-									MarkdownDescription: "This field is ALPHA and can be dropped or replaced at any timeMinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
+									Description:         "This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
+									MarkdownDescription: "This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -217,8 +217,8 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 								},
 
 								"operator": schema.StringAttribute{
-									Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-									MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+									Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+									MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -228,8 +228,8 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 								},
 
 								"values": schema.ListAttribute{
-									Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-									MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+									Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+									MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -261,13 +261,13 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 					},
 
 					"startup_taints": schema.ListNestedAttribute{
-						Description:         "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automaticallywithin a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used bydaemonsets to allow initialization and enforce startup ordering.  StartupTaints are ignored for provisioningpurposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
-						MarkdownDescription: "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automaticallywithin a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used bydaemonsets to allow initialization and enforce startup ordering.  StartupTaints are ignored for provisioningpurposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
+						Description:         "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automatically within a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used by daemonsets to allow initialization and enforce startup ordering. StartupTaints are ignored for provisioning purposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
+						MarkdownDescription: "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automatically within a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used by daemonsets to allow initialization and enforce startup ordering. StartupTaints are ignored for provisioning purposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"effect": schema.StringAttribute{
-									Description:         "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
-									MarkdownDescription: "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									Description:         "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									MarkdownDescription: "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -289,8 +289,8 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 								},
 
 								"time_added": schema.StringAttribute{
-									Description:         "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
-									MarkdownDescription: "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
+									Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+									MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -322,8 +322,8 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"effect": schema.StringAttribute{
-									Description:         "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
-									MarkdownDescription: "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									Description:         "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									MarkdownDescription: "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -345,8 +345,8 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 								},
 
 								"time_added": schema.StringAttribute{
-									Description:         "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
-									MarkdownDescription: "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
+									Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+									MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -373,8 +373,8 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 					},
 
 					"termination_grace_period": schema.StringAttribute{
-						Description:         "TerminationGracePeriod is the maximum duration the controller will wait before forcefully deleting the pods on a node, measured from when deletion is first initiated.Warning: this feature takes precedence over a Pod's terminationGracePeriodSeconds value, and bypasses any blocked PDBs or the karpenter.sh/do-not-disrupt annotation.This field is intended to be used by cluster administrators to enforce that nodes can be cycled within a given time period.When set, drifted nodes will begin draining even if there are pods blocking eviction. Draining will respect PDBs and the do-not-disrupt annotation until the TGP is reached.Karpenter will preemptively delete pods so their terminationGracePeriodSeconds align with the node's terminationGracePeriod.If a pod would be terminated without being granted its full terminationGracePeriodSeconds prior to the node timeout,that pod will be deleted at T = node timeout - pod terminationGracePeriodSeconds.The feature can also be used to allow maximum time limits for long-running jobs which can delay node termination with preStop hooks.If left undefined, the controller will wait indefinitely for pods to be drained.",
-						MarkdownDescription: "TerminationGracePeriod is the maximum duration the controller will wait before forcefully deleting the pods on a node, measured from when deletion is first initiated.Warning: this feature takes precedence over a Pod's terminationGracePeriodSeconds value, and bypasses any blocked PDBs or the karpenter.sh/do-not-disrupt annotation.This field is intended to be used by cluster administrators to enforce that nodes can be cycled within a given time period.When set, drifted nodes will begin draining even if there are pods blocking eviction. Draining will respect PDBs and the do-not-disrupt annotation until the TGP is reached.Karpenter will preemptively delete pods so their terminationGracePeriodSeconds align with the node's terminationGracePeriod.If a pod would be terminated without being granted its full terminationGracePeriodSeconds prior to the node timeout,that pod will be deleted at T = node timeout - pod terminationGracePeriodSeconds.The feature can also be used to allow maximum time limits for long-running jobs which can delay node termination with preStop hooks.If left undefined, the controller will wait indefinitely for pods to be drained.",
+						Description:         "TerminationGracePeriod is the maximum duration the controller will wait before forcefully deleting the pods on a node, measured from when deletion is first initiated. Warning: this feature takes precedence over a Pod's terminationGracePeriodSeconds value, and bypasses any blocked PDBs or the karpenter.sh/do-not-disrupt annotation. This field is intended to be used by cluster administrators to enforce that nodes can be cycled within a given time period. When set, drifted nodes will begin draining even if there are pods blocking eviction. Draining will respect PDBs and the do-not-disrupt annotation until the TGP is reached. Karpenter will preemptively delete pods so their terminationGracePeriodSeconds align with the node's terminationGracePeriod. If a pod would be terminated without being granted its full terminationGracePeriodSeconds prior to the node timeout, that pod will be deleted at T = node timeout - pod terminationGracePeriodSeconds. The feature can also be used to allow maximum time limits for long-running jobs which can delay node termination with preStop hooks. If left undefined, the controller will wait indefinitely for pods to be drained.",
+						MarkdownDescription: "TerminationGracePeriod is the maximum duration the controller will wait before forcefully deleting the pods on a node, measured from when deletion is first initiated. Warning: this feature takes precedence over a Pod's terminationGracePeriodSeconds value, and bypasses any blocked PDBs or the karpenter.sh/do-not-disrupt annotation. This field is intended to be used by cluster administrators to enforce that nodes can be cycled within a given time period. When set, drifted nodes will begin draining even if there are pods blocking eviction. Draining will respect PDBs and the do-not-disrupt annotation until the TGP is reached. Karpenter will preemptively delete pods so their terminationGracePeriodSeconds align with the node's terminationGracePeriod. If a pod would be terminated without being granted its full terminationGracePeriodSeconds prior to the node timeout, that pod will be deleted at T = node timeout - pod terminationGracePeriodSeconds. The feature can also be used to allow maximum time limits for long-running jobs which can delay node termination with preStop hooks. If left undefined, the controller will wait indefinitely for pods to be drained.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

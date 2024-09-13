@@ -403,8 +403,8 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"pod_identity": schema.SingleNestedAttribute{
-								Description:         "AuthPodIdentity allows users to select the platform native identitymechanism",
-								MarkdownDescription: "AuthPodIdentity allows users to select the platform native identitymechanism",
+								Description:         "AuthPodIdentity allows users to select the platform native identity mechanism",
+								MarkdownDescription: "AuthPodIdentity allows users to select the platform native identity mechanism",
 								Attributes: map[string]schema.Attribute{
 									"identity_authority_host": schema.StringAttribute{
 										Description:         "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",
@@ -627,8 +627,8 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"pod_identity": schema.SingleNestedAttribute{
-								Description:         "AuthPodIdentity allows users to select the platform native identitymechanism",
-								MarkdownDescription: "AuthPodIdentity allows users to select the platform native identitymechanism",
+								Description:         "AuthPodIdentity allows users to select the platform native identity mechanism",
+								MarkdownDescription: "AuthPodIdentity allows users to select the platform native identity mechanism",
 								Attributes: map[string]schema.Attribute{
 									"identity_authority_host": schema.StringAttribute{
 										Description:         "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",
@@ -864,8 +864,8 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"pod_identity": schema.SingleNestedAttribute{
-								Description:         "AuthPodIdentity allows users to select the platform native identitymechanism",
-								MarkdownDescription: "AuthPodIdentity allows users to select the platform native identitymechanism",
+								Description:         "AuthPodIdentity allows users to select the platform native identity mechanism",
+								MarkdownDescription: "AuthPodIdentity allows users to select the platform native identity mechanism",
 								Attributes: map[string]schema.Attribute{
 									"identity_authority_host": schema.StringAttribute{
 										Description:         "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",
@@ -1149,8 +1149,8 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"pod_identity": schema.SingleNestedAttribute{
-						Description:         "AuthPodIdentity allows users to select the platform native identitymechanism",
-						MarkdownDescription: "AuthPodIdentity allows users to select the platform native identitymechanism",
+						Description:         "AuthPodIdentity allows users to select the platform native identity mechanism",
+						MarkdownDescription: "AuthPodIdentity allows users to select the platform native identity mechanism",
 						Attributes: map[string]schema.Attribute{
 							"identity_authority_host": schema.StringAttribute{
 								Description:         "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",

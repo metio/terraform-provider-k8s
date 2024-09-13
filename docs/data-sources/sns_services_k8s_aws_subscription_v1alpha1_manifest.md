@@ -30,7 +30,7 @@ data "k8s_sns_services_k8s_aws_subscription_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) SubscriptionSpec defines the desired state of Subscription.A wrapper type for the attributes of an Amazon SNS subscription. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) SubscriptionSpec defines the desired state of Subscription. A wrapper type for the attributes of an Amazon SNS subscription. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,26 +55,26 @@ Optional:
 
 Required:
 
-- `protocol` (String) The protocol that you want to use. Supported protocols include:   * http – delivery of JSON-encoded message via HTTP POST   * https – delivery of JSON-encoded message via HTTPS POST   * email – delivery of message via SMTP   * email-json – delivery of JSON-encoded message via SMTP   * sms – delivery of message via SMS   * sqs – delivery of JSON-encoded message to an Amazon SQS queue   * application – delivery of JSON-encoded message to an EndpointArn for   a mobile app and device   * lambda – delivery of JSON-encoded message to an Lambda function   * firehose – delivery of JSON-encoded message to an Amazon Kinesis Data   Firehose delivery stream.
+- `protocol` (String) The protocol that you want to use. Supported protocols include: * http – delivery of JSON-encoded message via HTTP POST * https – delivery of JSON-encoded message via HTTPS POST * email – delivery of message via SMTP * email-json – delivery of JSON-encoded message via SMTP * sms – delivery of message via SMS * sqs – delivery of JSON-encoded message to an Amazon SQS queue * application – delivery of JSON-encoded message to an EndpointArn for a mobile app and device * lambda – delivery of JSON-encoded message to an Lambda function * firehose – delivery of JSON-encoded message to an Amazon Kinesis Data Firehose delivery stream.
 
 Optional:
 
 - `delivery_policy` (String)
-- `endpoint` (String) The endpoint that you want to receive notifications. Endpoints vary by protocol:   * For the http protocol, the (public) endpoint is a URL beginning with   http://.   * For the https protocol, the (public) endpoint is a URL beginning with   https://.   * For the email protocol, the endpoint is an email address.   * For the email-json protocol, the endpoint is an email address.   * For the sms protocol, the endpoint is a phone number of an SMS-enabled   device.   * For the sqs protocol, the endpoint is the ARN of an Amazon SQS queue.   * For the application protocol, the endpoint is the EndpointArn of a mobile   app and device.   * For the lambda protocol, the endpoint is the ARN of an Lambda function.   * For the firehose protocol, the endpoint is the ARN of an Amazon Kinesis   Data Firehose delivery stream.
+- `endpoint` (String) The endpoint that you want to receive notifications. Endpoints vary by protocol: * For the http protocol, the (public) endpoint is a URL beginning with http://. * For the https protocol, the (public) endpoint is a URL beginning with https://. * For the email protocol, the endpoint is an email address. * For the email-json protocol, the endpoint is an email address. * For the sms protocol, the endpoint is a phone number of an SMS-enabled device. * For the sqs protocol, the endpoint is the ARN of an Amazon SQS queue. * For the application protocol, the endpoint is the EndpointArn of a mobile app and device. * For the lambda protocol, the endpoint is the ARN of an Lambda function. * For the firehose protocol, the endpoint is the ARN of an Amazon Kinesis Data Firehose delivery stream.
 - `filter_policy` (String)
 - `filter_policy_scope` (String)
 - `raw_message_delivery` (String)
 - `redrive_policy` (String)
 - `subscription_role_arn` (String)
 - `topic_arn` (String) The ARN of the topic you want to subscribe to.
-- `topic_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--topic_ref))
+- `topic_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--topic_ref))
 
 <a id="nestedatt--spec--topic_ref"></a>
 ### Nested Schema for `spec.topic_ref`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--topic_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--topic_ref--from))
 
 <a id="nestedatt--spec--topic_ref--from"></a>
 ### Nested Schema for `spec.topic_ref.from`

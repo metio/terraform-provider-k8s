@@ -1433,8 +1433,8 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"replicas": schema.Int64Attribute{
-						Description:         "The number of pods in the 'Deployment'.  Defaults to '1'.",
-						MarkdownDescription: "The number of pods in the 'Deployment'.  Defaults to '1'.",
+						Description:         "The number of pods in the 'Deployment'. Defaults to '1'.",
+						MarkdownDescription: "The number of pods in the 'Deployment'. Defaults to '1'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

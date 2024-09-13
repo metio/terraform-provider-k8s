@@ -582,12 +582,12 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropriateto think it as pipeline.",
-				MarkdownDescription: "BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropriateto think it as pipeline.",
+				Description:         "BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropriate to think it as pipeline.",
+				MarkdownDescription: "BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropriate to think it as pipeline.",
 				Attributes: map[string]schema.Attribute{
 					"configuration": schema.SingleNestedAttribute{
-						Description:         "The configuration that should be used to perform the Build.Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
-						MarkdownDescription: "The configuration that should be used to perform the Build.Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
+						Description:         "The configuration that should be used to perform the Build. Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
+						MarkdownDescription: "The configuration that should be used to perform the Build. Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
 								Description:         "Annotation to use for the builder pod. Only used for 'pod' strategy",
@@ -692,16 +692,16 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 					},
 
 					"max_running_builds": schema.Int64Attribute{
-						Description:         "the maximum amount of parallel running builds started by this operator instanceDeprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
-						MarkdownDescription: "the maximum amount of parallel running builds started by this operator instanceDeprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
+						Description:         "the maximum amount of parallel running builds started by this operator instance Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
+						MarkdownDescription: "the maximum amount of parallel running builds started by this operator instance Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"operator_namespace": schema.StringAttribute{
-						Description:         "The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
-						MarkdownDescription: "The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
+						Description:         "The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation). Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
+						MarkdownDescription: "The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation). Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -713,8 +713,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"buildah": schema.SingleNestedAttribute{
-									Description:         "a BuildahTask, for Buildah strategyDeprecated: use jib, s2i or a custom publishing strategy instead",
-									MarkdownDescription: "a BuildahTask, for Buildah strategyDeprecated: use jib, s2i or a custom publishing strategy instead",
+									Description:         "a BuildahTask, for Buildah strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
+									MarkdownDescription: "a BuildahTask, for Buildah strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
 									Attributes: map[string]schema.Attribute{
 										"base_image": schema.StringAttribute{
 											Description:         "base image layer",
@@ -1072,21 +1072,21 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 											MarkdownDescription: "the configuration required by Maven for the application build phase",
 											Attributes: map[string]schema.Attribute{
 												"ca_secrets": schema.ListNestedAttribute{
-													Description:         "The Secrets name and key, containing the CA certificate(s) used to connectto remote Maven repositories.It can contain X.509 certificates, and PKCS#7 formatted certificate chains.A JKS formatted keystore is automatically created to store the CA certificate(s),and configured to be used as a trusted certificate(s) by the Maven commands.Note that the root CA certificates are also imported into the created keystore.",
-													MarkdownDescription: "The Secrets name and key, containing the CA certificate(s) used to connectto remote Maven repositories.It can contain X.509 certificates, and PKCS#7 formatted certificate chains.A JKS formatted keystore is automatically created to store the CA certificate(s),and configured to be used as a trusted certificate(s) by the Maven commands.Note that the root CA certificates are also imported into the created keystore.",
+													Description:         "The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore.",
+													MarkdownDescription: "The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1107,8 +1107,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"cli_options": schema.ListAttribute{
-													Description:         "The CLI options that are appended to the list of arguments for Maven commands,e.g., '-V,--no-transfer-progress,-Dstyle.color=never'.See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
-													MarkdownDescription: "The CLI options that are appended to the list of arguments for Maven commands,e.g., '-V,--no-transfer-progress,-Dstyle.color=never'.See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
+													Description:         "The CLI options that are appended to the list of arguments for Maven commands, e.g., '-V,--no-transfer-progress,-Dstyle.color=never'. See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
+													MarkdownDescription: "The CLI options that are appended to the list of arguments for Maven commands, e.g., '-V,--no-transfer-progress,-Dstyle.color=never'. See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1116,8 +1116,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"extension": schema.ListNestedAttribute{
-													Description:         "The Maven build extensions.See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
-													MarkdownDescription: "The Maven build extensions.See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
+													Description:         "The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
+													MarkdownDescription: "The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"artifact_id": schema.StringAttribute{
@@ -1175,8 +1175,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"profiles": schema.ListNestedAttribute{
-													Description:         "A reference to the ConfigMap or Secret key that containsthe Maven profile.",
-													MarkdownDescription: "A reference to the ConfigMap or Secret key that containsthe Maven profile.",
+													Description:         "A reference to the ConfigMap or Secret key that contains the Maven profile.",
+													MarkdownDescription: "A reference to the ConfigMap or Secret key that contains the Maven profile.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"config_map_key_ref": schema.SingleNestedAttribute{
@@ -1192,8 +1192,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1217,16 +1217,16 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																MarkdownDescription: "Selects a key of a secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1286,8 +1286,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																MarkdownDescription: "can use stable releases",
 																Attributes: map[string]schema.Attribute{
 																	"checksum_policy": schema.StringAttribute{
-																		Description:         "When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
-																		MarkdownDescription: "When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
+																		Description:         "When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
+																		MarkdownDescription: "When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1302,8 +1302,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 
 																	"update_policy": schema.StringAttribute{
-																		Description:         "This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
-																		MarkdownDescription: "This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
+																		Description:         "This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
+																		MarkdownDescription: "This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1319,8 +1319,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																MarkdownDescription: "can use snapshot",
 																Attributes: map[string]schema.Attribute{
 																	"checksum_policy": schema.StringAttribute{
-																		Description:         "When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
-																		MarkdownDescription: "When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
+																		Description:         "When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
+																		MarkdownDescription: "When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1335,8 +1335,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 
 																	"update_policy": schema.StringAttribute{
-																		Description:         "This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
-																		MarkdownDescription: "This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
+																		Description:         "This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
+																		MarkdownDescription: "This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1406,8 +1406,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"settings": schema.SingleNestedAttribute{
-													Description:         "A reference to the ConfigMap or Secret key that containsthe Maven settings.",
-													MarkdownDescription: "A reference to the ConfigMap or Secret key that containsthe Maven settings.",
+													Description:         "A reference to the ConfigMap or Secret key that contains the Maven settings.",
+													MarkdownDescription: "A reference to the ConfigMap or Secret key that contains the Maven settings.",
 													Attributes: map[string]schema.Attribute{
 														"config_map_key_ref": schema.SingleNestedAttribute{
 															Description:         "Selects a key of a ConfigMap.",
@@ -1422,8 +1422,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1447,16 +1447,16 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 															MarkdownDescription: "Selects a key of a secret.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1481,8 +1481,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"settings_security": schema.SingleNestedAttribute{
-													Description:         "A reference to the ConfigMap or Secret key that containsthe security of the Maven settings.",
-													MarkdownDescription: "A reference to the ConfigMap or Secret key that containsthe security of the Maven settings.",
+													Description:         "A reference to the ConfigMap or Secret key that contains the security of the Maven settings.",
+													MarkdownDescription: "A reference to the ConfigMap or Secret key that contains the security of the Maven settings.",
 													Attributes: map[string]schema.Attribute{
 														"config_map_key_ref": schema.SingleNestedAttribute{
 															Description:         "Selects a key of a ConfigMap.",
@@ -1497,8 +1497,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1522,16 +1522,16 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 															MarkdownDescription: "Selects a key of a secret.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1838,8 +1838,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													},
 
 													"interceptors": schema.ListAttribute{
-														Description:         "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoaderuses to pre/post process sources",
-														MarkdownDescription: "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoaderuses to pre/post process sources",
+														Description:         "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources",
+														MarkdownDescription: "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -1855,8 +1855,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													},
 
 													"loader": schema.StringAttribute{
-														Description:         "Loader is an optional id of the org.apache.camel.k.RoutesLoader that willinterpret this source at runtime",
-														MarkdownDescription: "Loader is an optional id of the org.apache.camel.k.RoutesLoader that willinterpret this source at runtime",
+														Description:         "Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime",
+														MarkdownDescription: "Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1931,8 +1931,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 									MarkdownDescription: "User customizable task execution. These are executed after the build and before the package task.",
 									Attributes: map[string]schema.Attribute{
 										"command": schema.StringAttribute{
-											Description:         "the command to executeDeprecated: use ContainerCommands",
-											MarkdownDescription: "the command to executeDeprecated: use ContainerCommands",
+											Description:         "the command to execute Deprecated: use ContainerCommands",
+											MarkdownDescription: "the command to execute Deprecated: use ContainerCommands",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2287,8 +2287,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 								},
 
 								"kaniko": schema.SingleNestedAttribute{
-									Description:         "a KanikoTask, for Kaniko strategyDeprecated: use jib, s2i or a custom publishing strategy instead",
-									MarkdownDescription: "a KanikoTask, for Kaniko strategyDeprecated: use jib, s2i or a custom publishing strategy instead",
+									Description:         "a KanikoTask, for Kaniko strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
+									MarkdownDescription: "a KanikoTask, for Kaniko strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
 									Attributes: map[string]schema.Attribute{
 										"base_image": schema.StringAttribute{
 											Description:         "base image layer",
@@ -2524,8 +2524,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 								},
 
 								"package": schema.SingleNestedAttribute{
-									Description:         "Application pre publishinga PackageTask, used to package the project",
-									MarkdownDescription: "Application pre publishinga PackageTask, used to package the project",
+									Description:         "Application pre publishing a PackageTask, used to package the project",
+									MarkdownDescription: "Application pre publishing a PackageTask, used to package the project",
 									Attributes: map[string]schema.Attribute{
 										"base_image": schema.StringAttribute{
 											Description:         "the base image layer",
@@ -2663,21 +2663,21 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 											MarkdownDescription: "the configuration required by Maven for the application build phase",
 											Attributes: map[string]schema.Attribute{
 												"ca_secrets": schema.ListNestedAttribute{
-													Description:         "The Secrets name and key, containing the CA certificate(s) used to connectto remote Maven repositories.It can contain X.509 certificates, and PKCS#7 formatted certificate chains.A JKS formatted keystore is automatically created to store the CA certificate(s),and configured to be used as a trusted certificate(s) by the Maven commands.Note that the root CA certificates are also imported into the created keystore.",
-													MarkdownDescription: "The Secrets name and key, containing the CA certificate(s) used to connectto remote Maven repositories.It can contain X.509 certificates, and PKCS#7 formatted certificate chains.A JKS formatted keystore is automatically created to store the CA certificate(s),and configured to be used as a trusted certificate(s) by the Maven commands.Note that the root CA certificates are also imported into the created keystore.",
+													Description:         "The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore.",
+													MarkdownDescription: "The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2698,8 +2698,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"cli_options": schema.ListAttribute{
-													Description:         "The CLI options that are appended to the list of arguments for Maven commands,e.g., '-V,--no-transfer-progress,-Dstyle.color=never'.See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
-													MarkdownDescription: "The CLI options that are appended to the list of arguments for Maven commands,e.g., '-V,--no-transfer-progress,-Dstyle.color=never'.See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
+													Description:         "The CLI options that are appended to the list of arguments for Maven commands, e.g., '-V,--no-transfer-progress,-Dstyle.color=never'. See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
+													MarkdownDescription: "The CLI options that are appended to the list of arguments for Maven commands, e.g., '-V,--no-transfer-progress,-Dstyle.color=never'. See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2707,8 +2707,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"extension": schema.ListNestedAttribute{
-													Description:         "The Maven build extensions.See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
-													MarkdownDescription: "The Maven build extensions.See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
+													Description:         "The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
+													MarkdownDescription: "The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"artifact_id": schema.StringAttribute{
@@ -2766,8 +2766,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"profiles": schema.ListNestedAttribute{
-													Description:         "A reference to the ConfigMap or Secret key that containsthe Maven profile.",
-													MarkdownDescription: "A reference to the ConfigMap or Secret key that containsthe Maven profile.",
+													Description:         "A reference to the ConfigMap or Secret key that contains the Maven profile.",
+													MarkdownDescription: "A reference to the ConfigMap or Secret key that contains the Maven profile.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"config_map_key_ref": schema.SingleNestedAttribute{
@@ -2783,8 +2783,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2808,16 +2808,16 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																MarkdownDescription: "Selects a key of a secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2877,8 +2877,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																MarkdownDescription: "can use stable releases",
 																Attributes: map[string]schema.Attribute{
 																	"checksum_policy": schema.StringAttribute{
-																		Description:         "When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
-																		MarkdownDescription: "When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
+																		Description:         "When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
+																		MarkdownDescription: "When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2893,8 +2893,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 
 																	"update_policy": schema.StringAttribute{
-																		Description:         "This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
-																		MarkdownDescription: "This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
+																		Description:         "This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
+																		MarkdownDescription: "This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2910,8 +2910,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																MarkdownDescription: "can use snapshot",
 																Attributes: map[string]schema.Attribute{
 																	"checksum_policy": schema.StringAttribute{
-																		Description:         "When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
-																		MarkdownDescription: "When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
+																		Description:         "When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
+																		MarkdownDescription: "When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2926,8 +2926,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																	},
 
 																	"update_policy": schema.StringAttribute{
-																		Description:         "This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
-																		MarkdownDescription: "This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
+																		Description:         "This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
+																		MarkdownDescription: "This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2997,8 +2997,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"settings": schema.SingleNestedAttribute{
-													Description:         "A reference to the ConfigMap or Secret key that containsthe Maven settings.",
-													MarkdownDescription: "A reference to the ConfigMap or Secret key that containsthe Maven settings.",
+													Description:         "A reference to the ConfigMap or Secret key that contains the Maven settings.",
+													MarkdownDescription: "A reference to the ConfigMap or Secret key that contains the Maven settings.",
 													Attributes: map[string]schema.Attribute{
 														"config_map_key_ref": schema.SingleNestedAttribute{
 															Description:         "Selects a key of a ConfigMap.",
@@ -3013,8 +3013,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3038,16 +3038,16 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 															MarkdownDescription: "Selects a key of a secret.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3072,8 +3072,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"settings_security": schema.SingleNestedAttribute{
-													Description:         "A reference to the ConfigMap or Secret key that containsthe security of the Maven settings.",
-													MarkdownDescription: "A reference to the ConfigMap or Secret key that containsthe security of the Maven settings.",
+													Description:         "A reference to the ConfigMap or Secret key that contains the security of the Maven settings.",
+													MarkdownDescription: "A reference to the ConfigMap or Secret key that contains the security of the Maven settings.",
 													Attributes: map[string]schema.Attribute{
 														"config_map_key_ref": schema.SingleNestedAttribute{
 															Description:         "Selects a key of a ConfigMap.",
@@ -3088,8 +3088,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3113,16 +3113,16 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 															MarkdownDescription: "Selects a key of a secret.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
-																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3429,8 +3429,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													},
 
 													"interceptors": schema.ListAttribute{
-														Description:         "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoaderuses to pre/post process sources",
-														MarkdownDescription: "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoaderuses to pre/post process sources",
+														Description:         "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources",
+														MarkdownDescription: "Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -3446,8 +3446,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 													},
 
 													"loader": schema.StringAttribute{
-														Description:         "Loader is an optional id of the org.apache.camel.k.RoutesLoader that willinterpret this source at runtime",
-														MarkdownDescription: "Loader is an optional id of the org.apache.camel.k.RoutesLoader that willinterpret this source at runtime",
+														Description:         "Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime",
+														MarkdownDescription: "Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3722,8 +3722,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 								},
 
 								"spectrum": schema.SingleNestedAttribute{
-									Description:         "a SpectrumTask, for Spectrum strategyDeprecated: use jib, s2i or a custom publishing strategy instead",
-									MarkdownDescription: "a SpectrumTask, for Spectrum strategyDeprecated: use jib, s2i or a custom publishing strategy instead",
+									Description:         "a SpectrumTask, for Spectrum strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
+									MarkdownDescription: "a SpectrumTask, for Spectrum strategy Deprecated: use jib, s2i or a custom publishing strategy instead",
 									Attributes: map[string]schema.Attribute{
 										"base_image": schema.StringAttribute{
 											Description:         "base image layer",
@@ -3924,16 +3924,16 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 					},
 
 					"timeout": schema.StringAttribute{
-						Description:         "Timeout defines the Build maximum execution duration.The Build deadline is set to the Build start time plus the Timeout duration.If the Build deadline is exceeded, the Build context is canceled,and its phase set to BuildPhaseFailed.",
-						MarkdownDescription: "Timeout defines the Build maximum execution duration.The Build deadline is set to the Build start time plus the Timeout duration.If the Build deadline is exceeded, the Build context is canceled,and its phase set to BuildPhaseFailed.",
+						Description:         "Timeout defines the Build maximum execution duration. The Build deadline is set to the Build start time plus the Timeout duration. If the Build deadline is exceeded, the Build context is canceled, and its phase set to BuildPhaseFailed.",
+						MarkdownDescription: "Timeout defines the Build maximum execution duration. The Build deadline is set to the Build start time plus the Timeout duration. If the Build deadline is exceeded, the Build context is canceled, and its phase set to BuildPhaseFailed.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tool_image": schema.StringAttribute{
-						Description:         "The container image to be used to run the build.Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
-						MarkdownDescription: "The container image to be used to run the build.Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
+						Description:         "The container image to be used to run the build. Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
+						MarkdownDescription: "The container image to be used to run the build. Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

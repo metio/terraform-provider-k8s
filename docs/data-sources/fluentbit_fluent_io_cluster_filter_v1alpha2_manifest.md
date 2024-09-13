@@ -56,8 +56,8 @@ Optional:
 
 - `filters` (Attributes List) A set of filter plugins in order. (see [below for nested schema](#nestedatt--spec--filters))
 - `log_level` (String)
-- `match` (String) A pattern to match against the tags of incoming records.It's case-sensitive and support the star (*) character as a wildcard.
-- `match_regex` (String) A regular expression to match against the tags of incoming records.Use this option if you want to use the full regex syntax.
+- `match` (String) A pattern to match against the tags of incoming records. It's case-sensitive and support the star (*) character as a wildcard.
+- `match_regex` (String) A regular expression to match against the tags of incoming records. Use this option if you want to use the full regex syntax.
 
 <a id="nestedatt--spec--filters"></a>
 ### Nested Schema for `spec.filters`
@@ -102,7 +102,7 @@ Optional:
 
 Optional:
 
-- `config` (String) Config holds any unsupported plugins classic configurations,if ConfigFileFormat is set to yaml, this filed will be ignored
+- `config` (String) Config holds any unsupported plugins classic configurations, if ConfigFileFormat is set to yaml, this filed will be ignored
 - `yaml_config` (Map of String) YamlConfig holds the unsupported plugins yaml configurations, it only works when the ConfigFileFormat is yaml
 
 
@@ -112,8 +112,8 @@ Optional:
 Optional:
 
 - `alias` (String) Alias for the plugin
-- `exclude` (String) Exclude records which field matches the regular expression.Value Format: FIELD REGEX
-- `regex` (String) Keep records which field matches the regular expression.Value Format: FIELD REGEX
+- `exclude` (String) Exclude records which field matches the regular expression. Value Format: FIELD REGEX
+- `regex` (String) Keep records which field matches the regular expression. Value Format: FIELD REGEX
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
 
 
@@ -129,35 +129,35 @@ Optional:
 - `dns_retries` (Number) DNS lookup retries N times until the network start working
 - `dns_wait_time` (Number) DNS lookup interval between network status checks
 - `dummy_meta` (Boolean) If set, use dummy-meta data (for test/dev purposes)
-- `k8s_logging_exclude` (Boolean) Allow Kubernetes Pods to exclude their logs from the log processor(read more about it in Kubernetes Annotations section).
-- `k8s_logging_parser` (Boolean) Allow Kubernetes Pods to suggest a pre-defined Parser(read more about it in Kubernetes Annotations section)
-- `keep_log` (Boolean) When Keep_Log is disabled, the log field is removedfrom the incoming message once it has been successfully merged(Merge_Log must be enabled as well).
+- `k8s_logging_exclude` (Boolean) Allow Kubernetes Pods to exclude their logs from the log processor (read more about it in Kubernetes Annotations section).
+- `k8s_logging_parser` (Boolean) Allow Kubernetes Pods to suggest a pre-defined Parser (read more about it in Kubernetes Annotations section)
+- `keep_log` (Boolean) When Keep_Log is disabled, the log field is removed from the incoming message once it has been successfully merged (Merge_Log must be enabled as well).
 - `kube_ca_file` (String) CA certificate file
 - `kube_ca_path` (String) Absolute path to scan for certificate files
-- `kube_meta_cache_ttl` (String) configurable TTL for K8s cached metadata. By default, it is set to 0which means TTL for cache entries is disabled and cache entries are evicted at randomwhen capacity is reached. In order to enable this option, you should set the number to a time interval.For example, set this value to 60 or 60s and cache entries which have been created more than 60s will be evicted.
-- `kube_meta_namespace_cache_ttl` (Number) Configurable TTL for K8s cached namespace metadata.By default, it is set to 900 which means a 15min TTL for namespace cache entries.Setting this to 0 will mean entries are evicted at random once the cache is full.
-- `kube_meta_preload_cache_dir` (String) If set, Kubernetes meta-data can be cached/pre-loaded from files in JSON format in this directory,named as namespace-pod.meta
-- `kube_tag_prefix` (String) When the source records comes from Tail input plugin,this option allows to specify what's the prefix used in Tail configuration.
-- `kube_token_command` (String) Command to get Kubernetes authorization token.By default, it will be NULL and we will use token file to get token.
+- `kube_meta_cache_ttl` (String) configurable TTL for K8s cached metadata. By default, it is set to 0 which means TTL for cache entries is disabled and cache entries are evicted at random when capacity is reached. In order to enable this option, you should set the number to a time interval. For example, set this value to 60 or 60s and cache entries which have been created more than 60s will be evicted.
+- `kube_meta_namespace_cache_ttl` (Number) Configurable TTL for K8s cached namespace metadata. By default, it is set to 900 which means a 15min TTL for namespace cache entries. Setting this to 0 will mean entries are evicted at random once the cache is full.
+- `kube_meta_preload_cache_dir` (String) If set, Kubernetes meta-data can be cached/pre-loaded from files in JSON format in this directory, named as namespace-pod.meta
+- `kube_tag_prefix` (String) When the source records comes from Tail input plugin, this option allows to specify what's the prefix used in Tail configuration.
+- `kube_token_command` (String) Command to get Kubernetes authorization token. By default, it will be NULL and we will use token file to get token.
 - `kube_token_file` (String) Token file
-- `kube_token_ttl` (String) configurable 'time to live' for the K8s token. By default, it is set to 600 seconds.After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.
+- `kube_token_ttl` (String) configurable 'time to live' for the K8s token. By default, it is set to 600 seconds. After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.
 - `kube_url` (String) API Server end-point
 - `kubelet_host` (String) kubelet host using for HTTP request, this only works when Use_Kubelet set to On.
 - `kubelet_port` (Number) kubelet port using for HTTP request, this only works when useKubelet is set to On.
 - `labels` (Boolean) Include Kubernetes resource labels in the extra metadata.
-- `merge_log` (Boolean) When enabled, it checks if the log field content is a JSON string map,if so, it append the map fields as part of the log structure.
-- `merge_log_key` (String) When Merge_Log is enabled, the filter tries to assume the log field from the incoming message is a JSON string messageand make a structured representation of it at the same level of the log field in the map.Now if Merge_Log_Key is set (a string name), all the new structured fields taken from the original log content are inserted under the new key.
+- `merge_log` (Boolean) When enabled, it checks if the log field content is a JSON string map, if so, it append the map fields as part of the log structure.
+- `merge_log_key` (String) When Merge_Log is enabled, the filter tries to assume the log field from the incoming message is a JSON string message and make a structured representation of it at the same level of the log field in the map. Now if Merge_Log_Key is set (a string name), all the new structured fields taken from the original log content are inserted under the new key.
 - `merge_log_trim` (Boolean) When Merge_Log is enabled, trim (remove possible n or r) field values.
 - `merge_parser` (String) Optional parser name to specify how to parse the data contained in the log key. Recommended use is for developers or testing only.
 - `namespace_annotations` (Boolean) Include Kubernetes namespace resource annotations in the extra metadata.
 - `namespace_labels` (Boolean) Include Kubernetes namespace resource labels in the extra metadata.
-- `namespace_metadata_only` (Boolean) Include Kubernetes namespace metadata only and no pod metadata.If this is set, the values of Labels and Annotations are ignored.
-- `regex_parser` (String) Set an alternative Parser to process record Tag and extract pod_name, namespace_name, container_name and docker_id.The parser must be registered in a parsers file (refer to parser filter-kube-test as an example).
+- `namespace_metadata_only` (Boolean) Include Kubernetes namespace metadata only and no pod metadata. If this is set, the values of Labels and Annotations are ignored.
+- `regex_parser` (String) Set an alternative Parser to process record Tag and extract pod_name, namespace_name, container_name and docker_id. The parser must be registered in a parsers file (refer to parser filter-kube-test as an example).
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
 - `tls_debug` (Number) Debug level between 0 (nothing) and 4 (every detail).
 - `tls_verify` (Boolean) When enabled, turns on certificate validation when connecting to the Kubernetes API server.
 - `use_journal` (Boolean) When enabled, the filter reads logs coming in Journald format.
-- `use_kubelet` (Boolean) This is an optional feature flag to get metadata information from kubeletinstead of calling Kube Server API to enhance the log.This could mitigate the Kube API heavy traffic issue for large cluster.
+- `use_kubelet` (Boolean) This is an optional feature flag to get metadata information from kubelet instead of calling Kube Server API to enhance the log. This could mitigate the Kube API heavy traffic issue for large cluster.
 
 
 <a id="nestedatt--spec--filters--log_to_metrics"></a>
@@ -168,18 +168,18 @@ Optional:
 - `add_label` (List of String) Add a custom label NAME and set the value to the value of KEY
 - `alias` (String) Alias for the plugin
 - `bucket` (List of String) Defines a bucket for histogram
-- `discard_logs` (Boolean) Flag that defines if logs should be discarded after processing. This appliesfor all logs, no matter if they have emitted metrics or not.
+- `discard_logs` (Boolean) Flag that defines if logs should be discarded after processing. This applies for all logs, no matter if they have emitted metrics or not.
 - `emitter_mem_buf_limit` (String) set a buffer limit to restrict memory usage of metrics emitter
 - `emitter_name` (String) Name of the emitter (advanced users)
-- `exclude` (List of String) Optional filter for records in which the content of KEY does not matches the regular expression.Value Format: FIELD REGEX
-- `kubernetes_mode` (Boolean) If enabled, it will automatically put pod_id, pod_name, namespace_name, docker_id and container_nameinto the metric as labels. This option is intended to be used in combination with the kubernetes filter plugin.
+- `exclude` (List of String) Optional filter for records in which the content of KEY does not matches the regular expression. Value Format: FIELD REGEX
+- `kubernetes_mode` (Boolean) If enabled, it will automatically put pod_id, pod_name, namespace_name, docker_id and container_name into the metric as labels. This option is intended to be used in combination with the kubernetes filter plugin.
 - `label_field` (List of String) Includes a record field as label dimension in the metric.
 - `metric_description` (String) Sets a help text for the metric.
 - `metric_mode` (String) Defines the mode for the metric. Valid values are [counter, gauge or histogram]
 - `metric_name` (String) Sets the name of the metric.
 - `metric_namespace` (String) Namespace of the metric
 - `metric_subsystem` (String) Sets a sub-system for the metric.
-- `regex` (List of String) Optional filter for records in which the content of KEY matches the regular expression.Value Format: FIELD REGEX
+- `regex` (List of String) Optional filter for records in which the content of KEY matches the regular expression. Value Format: FIELD REGEX
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
 - `tag` (String) Defines the tag for the generated metrics record
 - `value_field` (String) Specify the record field that holds a numerical value
@@ -190,18 +190,18 @@ Optional:
 
 Required:
 
-- `call` (String) Lua function name that will be triggered to do filtering.It's assumed that the function is declared inside the Script defined above.
+- `call` (String) Lua function name that will be triggered to do filtering. It's assumed that the function is declared inside the Script defined above.
 
 Optional:
 
 - `alias` (String) Alias for the plugin
 - `code` (String) Inline LUA code instead of loading from a path via script.
-- `protected_mode` (Boolean) If enabled, Lua script will be executed in protected mode.It prevents to crash when invalid Lua script is executed. Default is true.
+- `protected_mode` (Boolean) If enabled, Lua script will be executed in protected mode. It prevents to crash when invalid Lua script is executed. Default is true.
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
 - `script` (Attributes) Path to the Lua script that will be used. (see [below for nested schema](#nestedatt--spec--filters--lua--script))
-- `time_as_table` (Boolean) By default when the Lua script is invoked, the record timestamp is passed as aFloating number which might lead to loss precision when the data is converted back.If you desire timestamp precision enabling this option will pass the timestamp asa Lua table with keys sec for seconds since epoch and nsec for nanoseconds.
-- `type_array_key` (List of String) If these keys are matched, the fields are handled as array. If more thanone key, delimit by space. It is useful the array can be empty.
-- `type_int_key` (List of String) If these keys are matched, the fields are converted to integer.If more than one key, delimit by space.Note that starting from Fluent Bit v1.6 integer data types are preservedand not converted to double as in previous versions.
+- `time_as_table` (Boolean) By default when the Lua script is invoked, the record timestamp is passed as a Floating number which might lead to loss precision when the data is converted back. If you desire timestamp precision enabling this option will pass the timestamp as a Lua table with keys sec for seconds since epoch and nsec for nanoseconds.
+- `type_array_key` (List of String) If these keys are matched, the fields are handled as array. If more than one key, delimit by space. It is useful the array can be empty.
+- `type_int_key` (List of String) If these keys are matched, the fields are converted to integer. If more than one key, delimit by space. Note that starting from Fluent Bit v1.6 integer data types are preserved and not converted to double as in previous versions.
 
 <a id="nestedatt--spec--filters--lua--script"></a>
 ### Nested Schema for `spec.filters.lua.script`
@@ -212,7 +212,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -225,7 +225,7 @@ Optional:
 - `alias` (String) Alias for the plugin
 - `conditions` (Attributes List) All conditions have to be true for the rules to be applied. (see [below for nested schema](#nestedatt--spec--filters--modify--conditions))
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
-- `rules` (Attributes List) Rules are applied in the order they appear,with each rule operating on the result of the previous rule. (see [below for nested schema](#nestedatt--spec--filters--modify--rules))
+- `rules` (Attributes List) Rules are applied in the order they appear, with each rule operating on the result of the previous rule. (see [below for nested schema](#nestedatt--spec--filters--modify--rules))
 
 <a id="nestedatt--spec--filters--modify--conditions"></a>
 ### Nested Schema for `spec.filters.modify.conditions`
@@ -251,8 +251,8 @@ Optional:
 
 - `add` (Map of String) Add a key/value pair with key KEY and value VALUE if KEY does not exist
 - `copy` (Map of String) Copy a key/value pair with key KEY to COPIED_KEY if KEY exists AND COPIED_KEY does not exist
-- `hard_copy` (Map of String) Copy a key/value pair with key KEY to COPIED_KEY if KEY exists.If COPIED_KEY already exists, this field is overwritten
-- `hard_rename` (Map of String) Rename a key/value pair with key KEY to RENAMED_KEY if KEY exists.If RENAMED_KEY already exists, this field is overwritten
+- `hard_copy` (Map of String) Copy a key/value pair with key KEY to COPIED_KEY if KEY exists. If COPIED_KEY already exists, this field is overwritten
+- `hard_rename` (Map of String) Rename a key/value pair with key KEY to RENAMED_KEY if KEY exists. If RENAMED_KEY already exists, this field is overwritten
 - `remove` (String) Remove a key/value pair with key KEY if it exists
 - `remove_regex` (String) Remove all key/value pairs with key matching regexp KEY
 - `remove_wildcard` (String) Remove all key/value pairs with key matching wildcard KEY
@@ -266,7 +266,7 @@ Optional:
 
 Required:
 
-- `parser` (String) Specify one or multiple Multiline Parsing definitions to apply to the content.You can specify multiple multiline parsers to detect different formats by separating them with a comma.
+- `parser` (String) Specify one or multiple Multiline Parsing definitions to apply to the content. You can specify multiple multiline parsers to detect different formats by separating them with a comma.
 
 Optional:
 
@@ -276,7 +276,7 @@ Optional:
 - `emitter_name` (String) Name for the emitter input instance which re-emits the completed records at the beginning of the pipeline.
 - `emitter_type` (String) The storage type for the emitter input instance. This option supports the values memory (default) and filesystem.
 - `flush_ms` (Number)
-- `key_content` (String) Key name that holds the content to process.Note that a Multiline Parser definition can already specify the key_content to use, but this option allows to overwrite that value for the purpose of the filter.
+- `key_content` (String) Key name that holds the content to process. Note that a Multiline Parser definition can already specify the key_content to use, but this option allows to overwrite that value for the purpose of the filter.
 - `mode` (String)
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
 
@@ -303,9 +303,9 @@ Optional:
 
 - `alias` (String) Alias for the plugin
 - `key_name` (String) Specify field name in record to parse.
-- `parser` (String) Specify the parser name to interpret the field.Multiple Parser entries are allowed (split by comma).
-- `preserve_key` (Boolean) Keep original Key_Name field in the parsed result.If false, the field will be removed.
-- `reserve_data` (Boolean) Keep all other original fields in the parsed result.If false, all other original fields will be removed.
+- `parser` (String) Specify the parser name to interpret the field. Multiple Parser entries are allowed (split by comma).
+- `preserve_key` (Boolean) Keep original Key_Name field in the parsed result. If false, the field will be removed.
+- `reserve_data` (Boolean) Keep all other original fields in the parsed result. If false, all other original fields will be removed.
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
 - `unescape_key` (Boolean) If the key is a escaped string (e.g: stringify JSON), unescape the string before to apply the parser.
 
@@ -331,10 +331,10 @@ Optional:
 
 - `alias` (String) Alias for the plugin
 - `emitter_mem_buf_limit` (String)
-- `emitter_name` (String) When the filter emits a record under the new Tag, there is an internal emitterplugin that takes care of the job. Since this emitter expose metrics as any othercomponent of the pipeline, you can use this property to configure an optional name for it.
+- `emitter_name` (String) When the filter emits a record under the new Tag, there is an internal emitter plugin that takes care of the job. Since this emitter expose metrics as any other component of the pipeline, you can use this property to configure an optional name for it.
 - `emitter_storage_type` (String)
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
-- `rules` (List of String) Defines the matching criteria and the format of the Tag for the matching record.The Rule format have four components: KEY REGEX NEW_TAG KEEP.
+- `rules` (List of String) Defines the matching criteria and the format of the Tag for the matching record. The Rule format have four components: KEY REGEX NEW_TAG KEEP.
 
 
 <a id="nestedatt--spec--filters--throttle"></a>

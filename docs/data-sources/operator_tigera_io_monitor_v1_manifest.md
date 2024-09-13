@@ -3,12 +3,12 @@
 page_title: "k8s_operator_tigera_io_monitor_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.tigera.io"
 description: |-
-  Monitor is the Schema for the monitor API. At most one instanceof this resource is supported. It must be named 'tigera-secure'.
+  Monitor is the Schema for the monitor API. At most one instance of this resource is supported. It must be named 'tigera-secure'.
 ---
 
 # k8s_operator_tigera_io_monitor_v1_manifest (Data Source)
 
-Monitor is the Schema for the monitor API. At most one instanceof this resource is supported. It must be named 'tigera-secure'.
+Monitor is the Schema for the monitor API. At most one instance of this resource is supported. It must be named 'tigera-secure'.
 
 ## Example Usage
 
@@ -55,7 +55,7 @@ Optional:
 Optional:
 
 - `alert_manager` (Attributes) AlertManager is the configuration for the AlertManager. (see [below for nested schema](#nestedatt--spec--alert_manager))
-- `external_prometheus` (Attributes) ExternalPrometheus optionally configures integration with an external Prometheus for scraping Calico metrics. Whenspecified, the operator will render resources in the defined namespace. This option can be useful for configuringscraping from git-ops tools without the need of post-installation steps. (see [below for nested schema](#nestedatt--spec--external_prometheus))
+- `external_prometheus` (Attributes) ExternalPrometheus optionally configures integration with an external Prometheus for scraping Calico metrics. When specified, the operator will render resources in the defined namespace. This option can be useful for configuring scraping from git-ops tools without the need of post-installation steps. (see [below for nested schema](#nestedatt--spec--external_prometheus))
 - `prometheus` (Attributes) Prometheus is the configuration for the Prometheus. (see [below for nested schema](#nestedatt--spec--prometheus))
 
 <a id="nestedatt--spec--alert_manager"></a>
@@ -77,16 +77,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--alert_manager--spec--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--alert_manager--spec--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--alert_manager--spec--resources--claims"></a>
 ### Nested Schema for `spec.alert_manager.spec.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -97,44 +97,44 @@ Required:
 
 Required:
 
-- `namespace` (String) Namespace is the namespace where the operator will create resources for your Prometheus instance. The namespacemust be created before the operator will create Prometheus resources.
+- `namespace` (String) Namespace is the namespace where the operator will create resources for your Prometheus instance. The namespace must be created before the operator will create Prometheus resources.
 
 Optional:
 
-- `service_monitor` (Attributes) ServiceMonitor when specified, the operator will create a ServiceMonitor object in the namespace. It is recommendedthat you configure labels if you want your prometheus instance to pick up the configuration automatically.The operator will configure 1 endpoint by default:- Params to scrape all metrics available in Calico Enterprise.- BearerTokenSecret (If not overridden, the operator will also create corresponding RBAC that allows authz to the metrics.)- TLSConfig, containing the caFile and serverName. (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor))
+- `service_monitor` (Attributes) ServiceMonitor when specified, the operator will create a ServiceMonitor object in the namespace. It is recommended that you configure labels if you want your prometheus instance to pick up the configuration automatically. The operator will configure 1 endpoint by default: - Params to scrape all metrics available in Calico Enterprise. - BearerTokenSecret (If not overridden, the operator will also create corresponding RBAC that allows authz to the metrics.) - TLSConfig, containing the caFile and serverName. (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor))
 
 <a id="nestedatt--spec--external_prometheus--service_monitor"></a>
 ### Nested Schema for `spec.external_prometheus.service_monitor`
 
 Optional:
 
-- `endpoints` (Attributes List) The endpoints to scrape. This struct contains a subset of the Endpoint as defined in the prometheus docs. Fieldsrelated to connecting to our Prometheus server are automatically set by the operator. (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--endpoints))
-- `labels` (Map of String) Labels are the metadata.labels of the ServiceMonitor. When combined with spec.serviceMonitorSelector.matchLabelson your prometheus instance, the service monitor will automatically be picked up.Default: k8s-app=tigera-prometheus
+- `endpoints` (Attributes List) The endpoints to scrape. This struct contains a subset of the Endpoint as defined in the prometheus docs. Fields related to connecting to our Prometheus server are automatically set by the operator. (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--endpoints))
+- `labels` (Map of String) Labels are the metadata.labels of the ServiceMonitor. When combined with spec.serviceMonitorSelector.matchLabels on your prometheus instance, the service monitor will automatically be picked up. Default: k8s-app=tigera-prometheus
 
 <a id="nestedatt--spec--external_prometheus--service_monitor--endpoints"></a>
 ### Nested Schema for `spec.external_prometheus.service_monitor.endpoints`
 
 Optional:
 
-- `bearer_token_secret` (Attributes) Secret to mount to read bearer token for scraping targets.Recommended: when unset, the operator will create a Secret, a ClusterRole and a ClusterRoleBinding. (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--endpoints--bearer_token_secret))
+- `bearer_token_secret` (Attributes) Secret to mount to read bearer token for scraping targets. Recommended: when unset, the operator will create a Secret, a ClusterRole and a ClusterRoleBinding. (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--endpoints--bearer_token_secret))
 - `honor_labels` (Boolean) HonorLabels chooses the metric's labels on collisions with target labels.
 - `honor_timestamps` (Boolean) HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.
-- `interval` (String) Interval at which metrics should be scraped.If not specified Prometheus' global scrape interval is used.
+- `interval` (String) Interval at which metrics should be scraped. If not specified Prometheus' global scrape interval is used.
 - `metric_relabelings` (Attributes List) MetricRelabelConfigs to apply to samples before ingestion. (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--endpoints--metric_relabelings))
-- `params` (Map of List of String) Optional HTTP URL parametersDefault: scrape all metrics.
-- `relabelings` (Attributes List) RelabelConfigs to apply to samples before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--endpoints--relabelings))
-- `scrape_timeout` (String) Timeout after which the scrape is ended.If not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.
+- `params` (Map of List of String) Optional HTTP URL parameters Default: scrape all metrics.
+- `relabelings` (Attributes List) RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--external_prometheus--service_monitor--endpoints--relabelings))
+- `scrape_timeout` (String) Timeout after which the scrape is ended. If not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.
 
 <a id="nestedatt--spec--external_prometheus--service_monitor--endpoints--bearer_token_secret"></a>
 ### Nested Schema for `spec.external_prometheus.service_monitor.endpoints.bearer_token_secret`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -143,13 +143,13 @@ Optional:
 
 Optional:
 
-- `action` (String) Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.
+- `action` (String) Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.
 - `modulus` (Number) Modulus to take of the hash of the source label values.
 - `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--external_prometheus--service_monitor--endpoints--relabelings"></a>
@@ -157,13 +157,13 @@ Optional:
 
 Optional:
 
-- `action` (String) Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.
+- `action` (String) Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.
 - `modulus` (Number) Modulus to take of the hash of the source label values.
 - `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
+- `replacement` (String) Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'
 - `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
+- `target_label` (String) Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 
 
 
@@ -188,7 +188,7 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of Prometheus containers.If specified, this overrides the specified Prometheus Deployment containers.If omitted, the Prometheus Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--prometheus--spec--common_prometheus_fields--containers))
+- `containers` (Attributes List) Containers is a list of Prometheus containers. If specified, this overrides the specified Prometheus Deployment containers. If omitted, the Prometheus Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--prometheus--spec--common_prometheus_fields--containers))
 - `resources` (Attributes) Define resources requests and limits for single Pods. (see [below for nested schema](#nestedatt--spec--prometheus--spec--common_prometheus_fields--resources))
 
 <a id="nestedatt--spec--prometheus--spec--common_prometheus_fields--containers"></a>
@@ -196,27 +196,27 @@ Optional:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the Prometheus Deployment container by name.Supported values are: authn-proxy
+- `name` (String) Name is an enum which identifies the Prometheus Deployment container by name. Supported values are: authn-proxy
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Prometheus container's resources.If omitted, the Prometheus will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--prometheus--spec--common_prometheus_fields--containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Prometheus container's resources. If omitted, the Prometheus will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--prometheus--spec--common_prometheus_fields--containers--resources))
 
 <a id="nestedatt--spec--prometheus--spec--common_prometheus_fields--containers--resources"></a>
 ### Nested Schema for `spec.prometheus.spec.common_prometheus_fields.containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--prometheus--spec--common_prometheus_fields--containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--prometheus--spec--common_prometheus_fields--containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--prometheus--spec--common_prometheus_fields--containers--resources--claims"></a>
 ### Nested Schema for `spec.prometheus.spec.common_prometheus_fields.containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -226,13 +226,13 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--prometheus--spec--common_prometheus_fields--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--prometheus--spec--common_prometheus_fields--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--prometheus--spec--common_prometheus_fields--resources--claims"></a>
 ### Nested Schema for `spec.prometheus.spec.common_prometheus_fields.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.

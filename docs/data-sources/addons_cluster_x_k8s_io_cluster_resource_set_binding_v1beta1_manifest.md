@@ -56,7 +56,7 @@ Optional:
 Optional:
 
 - `bindings` (Attributes List) Bindings is a list of ClusterResourceSets and their resources. (see [below for nested schema](#nestedatt--spec--bindings))
-- `cluster_name` (String) ClusterName is the name of the Cluster this binding applies to.Note: this field mandatory in v1beta2.
+- `cluster_name` (String) ClusterName is the name of the Cluster this binding applies to. Note: this field mandatory in v1beta2.
 
 <a id="nestedatt--spec--bindings"></a>
 ### Nested Schema for `spec.bindings`
@@ -80,5 +80,5 @@ Required:
 
 Optional:
 
-- `hash` (String) Hash is the hash of a resource's data. This can be used to decide if a resource is changed.For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.
+- `hash` (String) Hash is the hash of a resource's data. This can be used to decide if a resource is changed. For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.
 - `last_applied_time` (String) LastAppliedTime identifies when this resource was last applied to the cluster.

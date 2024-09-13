@@ -55,7 +55,7 @@ Optional:
 
 Required:
 
-- `volume` (String) the volume that this snapshot belongs to.This field is immutable after creation.Required
+- `volume` (String) the volume that this snapshot belongs to. This field is immutable after creation. Required
 
 Optional:
 

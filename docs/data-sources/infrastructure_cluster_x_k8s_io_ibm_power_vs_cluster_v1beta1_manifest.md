@@ -69,7 +69,7 @@ Optional:
 
 - `id` (String) ID of resource
 - `name` (String) Name of resource
-- `regex` (String) Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected
+- `regex` (String) Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected
 
 
 <a id="nestedatt--spec--control_plane_endpoint"></a>

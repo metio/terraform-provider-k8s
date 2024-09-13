@@ -56,7 +56,7 @@ Optional:
 Optional:
 
 - `content` (String) script content as string (content depends from executor)
-- `input_type` (String) script content type can be:  - direct content - created from file, - git repo directory checkout in case when test is some kind of project or have more than one file,
+- `input_type` (String) script content type can be: - direct content - created from file, - git repo directory checkout in case when test is some kind of project or have more than one file,
 - `name` (String) script execution custom name
 - `params` (Map of String) execution params passed to executor
 - `repository` (Attributes) repository details if exists (see [below for nested schema](#nestedatt--spec--repository))

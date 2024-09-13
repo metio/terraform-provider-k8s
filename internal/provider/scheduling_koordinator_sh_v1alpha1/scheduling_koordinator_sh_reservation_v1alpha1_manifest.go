@@ -94,8 +94,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Metadata(_ context.
 
 func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Reservation is the Schema for the reservation API.A Reservation object is non-namespaced.Any namespaced affinity/anti-affinity of reservation scheduling can be specified in the spec.template.",
-		MarkdownDescription: "Reservation is the Schema for the reservation API.A Reservation object is non-namespaced.Any namespaced affinity/anti-affinity of reservation scheduling can be specified in the spec.template.",
+		Description:         "Reservation is the Schema for the reservation API. A Reservation object is non-namespaced. Any namespaced affinity/anti-affinity of reservation scheduling can be specified in the spec.template.",
+		MarkdownDescription: "Reservation is the Schema for the reservation API. A Reservation object is non-namespaced. Any namespaced affinity/anti-affinity of reservation scheduling can be specified in the spec.template.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -154,8 +154,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"allocate_once": schema.BoolAttribute{
-						Description:         "When 'AllocateOnce' is set, the reserved resources are only available for the first owner who allocates successfullyand are not allocatable to other owners anymore. Defaults to true.",
-						MarkdownDescription: "When 'AllocateOnce' is set, the reserved resources are only available for the first owner who allocates successfullyand are not allocatable to other owners anymore. Defaults to true.",
+						Description:         "When 'AllocateOnce' is set, the reserved resources are only available for the first owner who allocates successfully and are not allocatable to other owners anymore. Defaults to true.",
+						MarkdownDescription: "When 'AllocateOnce' is set, the reserved resources are only available for the first owner who allocates successfully and are not allocatable to other owners anymore. Defaults to true.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -173,8 +173,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"expires": schema.StringAttribute{
-						Description:         "Expired timestamp when the reservation is expected to expire.If both 'expires' and 'ttl' are set, 'expires' is checked first.'expires' and 'ttl' are mutually exclusive. Defaults to being set dynamically at runtime based on the 'ttl'.",
-						MarkdownDescription: "Expired timestamp when the reservation is expected to expire.If both 'expires' and 'ttl' are set, 'expires' is checked first.'expires' and 'ttl' are mutually exclusive. Defaults to being set dynamically at runtime based on the 'ttl'.",
+						Description:         "Expired timestamp when the reservation is expected to expire. If both 'expires' and 'ttl' are set, 'expires' is checked first. 'expires' and 'ttl' are mutually exclusive. Defaults to being set dynamically at runtime based on the 'ttl'.",
+						MarkdownDescription: "Expired timestamp when the reservation is expected to expire. If both 'expires' and 'ttl' are set, 'expires' is checked first. 'expires' and 'ttl' are mutually exclusive. Defaults to being set dynamically at runtime based on the 'ttl'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -184,8 +184,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"owners": schema.ListNestedAttribute{
-						Description:         "Specify the owners who can allocate the reserved resources.Multiple owner selectors and ORed.",
-						MarkdownDescription: "Specify the owners who can allocate the reserved resources.Multiple owner selectors and ORed.",
+						Description:         "Specify the owners who can allocate the reserved resources. Multiple owner selectors and ORed.",
+						MarkdownDescription: "Specify the owners who can allocate the reserved resources. Multiple owner selectors and ORed.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"controller": schema.SingleNestedAttribute{
@@ -201,8 +201,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"block_owner_deletion": schema.BoolAttribute{
-											Description:         "If true, AND if the owner has the 'foregroundDeletion' finalizer, thenthe owner cannot be deleted from the key-value store until thisreference is removed.See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletionfor how the garbage collector interacts with this field and enforces the foreground deletion.Defaults to false.To set this field, a user needs 'delete' permission of the owner,otherwise 422 (Unprocessable Entity) will be returned.",
-											MarkdownDescription: "If true, AND if the owner has the 'foregroundDeletion' finalizer, thenthe owner cannot be deleted from the key-value store until thisreference is removed.See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletionfor how the garbage collector interacts with this field and enforces the foreground deletion.Defaults to false.To set this field, a user needs 'delete' permission of the owner,otherwise 422 (Unprocessable Entity) will be returned.",
+											Description:         "If true, AND if the owner has the 'foregroundDeletion' finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs 'delete' permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
+											MarkdownDescription: "If true, AND if the owner has the 'foregroundDeletion' finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs 'delete' permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -217,16 +217,16 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"kind": schema.StringAttribute{
-											Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+											Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+											MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -241,8 +241,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"uid": schema.StringAttribute{
-											Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
-											MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+											Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+											MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -257,8 +257,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 								},
 
 								"label_selector": schema.SingleNestedAttribute{
-									Description:         "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
-									MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
+									Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+									MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
 											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -274,16 +274,16 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"values": schema.ListAttribute{
-														Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -297,8 +297,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"match_labels": schema.MapAttribute{
-											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -326,48 +326,48 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"field_path": schema.StringAttribute{
-											Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
-											MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+											Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+											MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"kind": schema.StringAttribute{
-											Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-											MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+											Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+											MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"namespace": schema.StringAttribute{
-											Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-											MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+											Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+											MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"resource_version": schema.StringAttribute{
-											Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-											MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+											Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+											MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"uid": schema.StringAttribute{
-											Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-											MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+											Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+											MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -388,21 +388,21 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"pre_allocation": schema.BoolAttribute{
-						Description:         "By default, the resources requirements of reservation (specified in 'template.spec') is filtered by whether thenode has sufficient free resources (i.e. Reservation Request <  Node Free).When 'preAllocation' is set, the scheduler will skip this validation and allow overcommitment. The scheduledreservation would be waiting to be available until free resources are sufficient.",
-						MarkdownDescription: "By default, the resources requirements of reservation (specified in 'template.spec') is filtered by whether thenode has sufficient free resources (i.e. Reservation Request <  Node Free).When 'preAllocation' is set, the scheduler will skip this validation and allow overcommitment. The scheduledreservation would be waiting to be available until free resources are sufficient.",
+						Description:         "By default, the resources requirements of reservation (specified in 'template.spec') is filtered by whether the node has sufficient free resources (i.e. Reservation Request < Node Free). When 'preAllocation' is set, the scheduler will skip this validation and allow overcommitment. The scheduled reservation would be waiting to be available until free resources are sufficient.",
+						MarkdownDescription: "By default, the resources requirements of reservation (specified in 'template.spec') is filtered by whether the node has sufficient free resources (i.e. Reservation Request < Node Free). When 'preAllocation' is set, the scheduler will skip this validation and allow overcommitment. The scheduled reservation would be waiting to be available until free resources are sufficient.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"taints": schema.ListNestedAttribute{
-						Description:         "Specifies the reservation's taints. This can be toleranted by the reservation tolerance.Eviction is not supported for NoExecute taints",
-						MarkdownDescription: "Specifies the reservation's taints. This can be toleranted by the reservation tolerance.Eviction is not supported for NoExecute taints",
+						Description:         "Specifies the reservation's taints. This can be toleranted by the reservation tolerance. Eviction is not supported for NoExecute taints",
+						MarkdownDescription: "Specifies the reservation's taints. This can be toleranted by the reservation tolerance. Eviction is not supported for NoExecute taints",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"effect": schema.StringAttribute{
-									Description:         "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
-									MarkdownDescription: "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									Description:         "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									MarkdownDescription: "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -417,8 +417,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 								},
 
 								"time_added": schema.StringAttribute{
-									Description:         "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
-									MarkdownDescription: "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
+									Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+									MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -442,8 +442,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"template": schema.MapAttribute{
-						Description:         "Template defines the scheduling requirements (resources, affinities, images, ...) processed by the scheduler justlike a normal pod.If the 'template.spec.nodeName' is specified, the scheduler will not choose another node but reserve resources onthe specified node.",
-						MarkdownDescription: "Template defines the scheduling requirements (resources, affinities, images, ...) processed by the scheduler justlike a normal pod.If the 'template.spec.nodeName' is specified, the scheduler will not choose another node but reserve resources onthe specified node.",
+						Description:         "Template defines the scheduling requirements (resources, affinities, images, ...) processed by the scheduler just like a normal pod. If the 'template.spec.nodeName' is specified, the scheduler will not choose another node but reserve resources on the specified node.",
+						MarkdownDescription: "Template defines the scheduling requirements (resources, affinities, images, ...) processed by the scheduler just like a normal pod. If the 'template.spec.nodeName' is specified, the scheduler will not choose another node but reserve resources on the specified node.",
 						ElementType:         types.StringType,
 						Required:            true,
 						Optional:            false,
@@ -451,8 +451,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"ttl": schema.StringAttribute{
-						Description:         "Time-to-Live period for the reservation.'expires' and 'ttl' are mutually exclusive. Defaults to 24h. Set 0 to disable expiration.",
-						MarkdownDescription: "Time-to-Live period for the reservation.'expires' and 'ttl' are mutually exclusive. Defaults to 24h. Set 0 to disable expiration.",
+						Description:         "Time-to-Live period for the reservation. 'expires' and 'ttl' are mutually exclusive. Defaults to 24h. Set 0 to disable expiration.",
+						MarkdownDescription: "Time-to-Live period for the reservation. 'expires' and 'ttl' are mutually exclusive. Defaults to 24h. Set 0 to disable expiration.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

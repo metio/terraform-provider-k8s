@@ -130,8 +130,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Metadata(_ c
 
 func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereCluster is the Schema for the vsphereclusters APIDeprecated: This type will be removed in one of the next releases.",
-		MarkdownDescription: "VSphereCluster is the Schema for the vsphereclusters APIDeprecated: This type will be removed in one of the next releases.",
+		Description:         "VSphereCluster is the Schema for the vsphereclusters API Deprecated: This type will be removed in one of the next releases.",
+		MarkdownDescription: "VSphereCluster is the Schema for the vsphereclusters API Deprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -202,8 +202,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 				MarkdownDescription: "VSphereClusterSpec defines the desired state of VSphereCluster.",
 				Attributes: map[string]schema.Attribute{
 					"cloud_provider_configuration": schema.SingleNestedAttribute{
-						Description:         "CloudProviderConfiguration holds the cluster-wide configuration for the vSphere cloud provider.Deprecated: will be removed in v1alpha4.",
-						MarkdownDescription: "CloudProviderConfiguration holds the cluster-wide configuration for the vSphere cloud provider.Deprecated: will be removed in v1alpha4.",
+						Description:         "CloudProviderConfiguration holds the cluster-wide configuration for the vSphere cloud provider. Deprecated: will be removed in v1alpha4.",
+						MarkdownDescription: "CloudProviderConfiguration holds the cluster-wide configuration for the vSphere cloud provider. Deprecated: will be removed in v1alpha4.",
 						Attributes: map[string]schema.Attribute{
 							"disk": schema.SingleNestedAttribute{
 								Description:         "Disk is the vSphere cloud provider's disk configuration.",
@@ -227,24 +227,24 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 								MarkdownDescription: "Global is the vSphere cloud provider's global configuration.",
 								Attributes: map[string]schema.Attribute{
 									"api_bind_port": schema.StringAttribute{
-										Description:         "APIBindPort configures the vSphere cloud controller manager API port.Defaults to 43001.",
-										MarkdownDescription: "APIBindPort configures the vSphere cloud controller manager API port.Defaults to 43001.",
+										Description:         "APIBindPort configures the vSphere cloud controller manager API port. Defaults to 43001.",
+										MarkdownDescription: "APIBindPort configures the vSphere cloud controller manager API port. Defaults to 43001.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"api_disable": schema.BoolAttribute{
-										Description:         "APIDisable disables the vSphere cloud controller manager API.Defaults to true.",
-										MarkdownDescription: "APIDisable disables the vSphere cloud controller manager API.Defaults to true.",
+										Description:         "APIDisable disables the vSphere cloud controller manager API. Defaults to true.",
+										MarkdownDescription: "APIDisable disables the vSphere cloud controller manager API. Defaults to true.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"ca_file": schema.StringAttribute{
-										Description:         "CAFile Specifies the path to a CA certificate in PEM format.If not configured, the system's CA certificates will be used.",
-										MarkdownDescription: "CAFile Specifies the path to a CA certificate in PEM format.If not configured, the system's CA certificates will be used.",
+										Description:         "CAFile Specifies the path to a CA certificate in PEM format. If not configured, the system's CA certificates will be used.",
+										MarkdownDescription: "CAFile Specifies the path to a CA certificate in PEM format. If not configured, the system's CA certificates will be used.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -275,24 +275,24 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 									},
 
 									"port": schema.StringAttribute{
-										Description:         "Port is the port on which the vSphere endpoint is listening.Defaults to 443.",
-										MarkdownDescription: "Port is the port on which the vSphere endpoint is listening.Defaults to 443.",
+										Description:         "Port is the port on which the vSphere endpoint is listening. Defaults to 443.",
+										MarkdownDescription: "Port is the port on which the vSphere endpoint is listening. Defaults to 443.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"round_tripper_count": schema.Int64Attribute{
-										Description:         "RoundTripperCount specifies the SOAP round tripper count(retries = RoundTripper - 1)",
-										MarkdownDescription: "RoundTripperCount specifies the SOAP round tripper count(retries = RoundTripper - 1)",
+										Description:         "RoundTripperCount specifies the SOAP round tripper count (retries = RoundTripper - 1)",
+										MarkdownDescription: "RoundTripperCount specifies the SOAP round tripper count (retries = RoundTripper - 1)",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"secret_name": schema.StringAttribute{
-										Description:         "SecretName is the name of the Kubernetes secret in which the vSpherecredentials are located.",
-										MarkdownDescription: "SecretName is the name of the Kubernetes secret in which the vSpherecredentials are located.",
+										Description:         "SecretName is the name of the Kubernetes secret in which the vSphere credentials are located.",
+										MarkdownDescription: "SecretName is the name of the Kubernetes secret in which the vSphere credentials are located.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -307,24 +307,24 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 									},
 
 									"secrets_directory": schema.StringAttribute{
-										Description:         "SecretsDirectory is a directory in which secrets may be found. Thismay used in the event that:1. It is not desirable to use the K8s API to watch changes to secrets2. The cloud controller manager is not running in a K8s environment,   such as DC/OS. For example, the container storage interface (CSI) is   container orcehstrator (CO) agnostic, and should support non-K8s COs.Defaults to /etc/cloud/credentials.",
-										MarkdownDescription: "SecretsDirectory is a directory in which secrets may be found. Thismay used in the event that:1. It is not desirable to use the K8s API to watch changes to secrets2. The cloud controller manager is not running in a K8s environment,   such as DC/OS. For example, the container storage interface (CSI) is   container orcehstrator (CO) agnostic, and should support non-K8s COs.Defaults to /etc/cloud/credentials.",
+										Description:         "SecretsDirectory is a directory in which secrets may be found. This may used in the event that: 1. It is not desirable to use the K8s API to watch changes to secrets 2. The cloud controller manager is not running in a K8s environment, such as DC/OS. For example, the container storage interface (CSI) is container orcehstrator (CO) agnostic, and should support non-K8s COs. Defaults to /etc/cloud/credentials.",
+										MarkdownDescription: "SecretsDirectory is a directory in which secrets may be found. This may used in the event that: 1. It is not desirable to use the K8s API to watch changes to secrets 2. The cloud controller manager is not running in a K8s environment, such as DC/OS. For example, the container storage interface (CSI) is container orcehstrator (CO) agnostic, and should support non-K8s COs. Defaults to /etc/cloud/credentials.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"service_account": schema.StringAttribute{
-										Description:         "ServiceAccount is the Kubernetes service account used to launch the cloudcontroller manager.Defaults to cloud-controller-manager.",
-										MarkdownDescription: "ServiceAccount is the Kubernetes service account used to launch the cloudcontroller manager.Defaults to cloud-controller-manager.",
+										Description:         "ServiceAccount is the Kubernetes service account used to launch the cloud controller manager. Defaults to cloud-controller-manager.",
+										MarkdownDescription: "ServiceAccount is the Kubernetes service account used to launch the cloud controller manager. Defaults to cloud-controller-manager.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"thumbprint": schema.StringAttribute{
-										Description:         "Thumbprint is the cryptographic thumbprint of the vSphere endpoint'scertificate.",
-										MarkdownDescription: "Thumbprint is the cryptographic thumbprint of the vSphere endpoint'scertificate.",
+										Description:         "Thumbprint is the cryptographic thumbprint of the vSphere endpoint's certificate.",
+										MarkdownDescription: "Thumbprint is the cryptographic thumbprint of the vSphere endpoint's certificate.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -386,8 +386,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 							},
 
 							"provider_config": schema.SingleNestedAttribute{
-								Description:         "CPIProviderConfig contains extra information used to configure thevSphere cloud provider.",
-								MarkdownDescription: "CPIProviderConfig contains extra information used to configure thevSphere cloud provider.",
+								Description:         "CPIProviderConfig contains extra information used to configure the vSphere cloud provider.",
+								MarkdownDescription: "CPIProviderConfig contains extra information used to configure the vSphere cloud provider.",
 								Attributes: map[string]schema.Attribute{
 									"cloud": schema.SingleNestedAttribute{
 										Description:         "",
@@ -402,8 +402,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 											},
 
 											"extra_args": schema.MapAttribute{
-												Description:         "ExtraArgs passes through extra arguments to the cloud provider.The arguments here are passed to the cloud provider daemonset specification",
-												MarkdownDescription: "ExtraArgs passes through extra arguments to the cloud provider.The arguments here are passed to the cloud provider daemonset specification",
+												Description:         "ExtraArgs passes through extra arguments to the cloud provider. The arguments here are passed to the cloud provider daemonset specification",
+												MarkdownDescription: "ExtraArgs passes through extra arguments to the cloud provider. The arguments here are passed to the cloud provider daemonset specification",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -506,24 +506,24 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 									},
 
 									"port": schema.StringAttribute{
-										Description:         "Port is the port on which the vSphere endpoint is listening.Defaults to 443.",
-										MarkdownDescription: "Port is the port on which the vSphere endpoint is listening.Defaults to 443.",
+										Description:         "Port is the port on which the vSphere endpoint is listening. Defaults to 443.",
+										MarkdownDescription: "Port is the port on which the vSphere endpoint is listening. Defaults to 443.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"round_tripper_count": schema.Int64Attribute{
-										Description:         "RoundTripperCount specifies the SOAP round tripper count(retries = RoundTripper - 1)",
-										MarkdownDescription: "RoundTripperCount specifies the SOAP round tripper count(retries = RoundTripper - 1)",
+										Description:         "RoundTripperCount specifies the SOAP round tripper count (retries = RoundTripper - 1)",
+										MarkdownDescription: "RoundTripperCount specifies the SOAP round tripper count (retries = RoundTripper - 1)",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"thumbprint": schema.StringAttribute{
-										Description:         "Thumbprint is the cryptographic thumbprint of the vSphere endpoint'scertificate.",
-										MarkdownDescription: "Thumbprint is the cryptographic thumbprint of the vSphere endpoint'scertificate.",
+										Description:         "Thumbprint is the cryptographic thumbprint of the vSphere endpoint's certificate.",
+										MarkdownDescription: "Thumbprint is the cryptographic thumbprint of the vSphere endpoint's certificate.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -622,8 +622,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 					},
 
 					"identity_ref": schema.SingleNestedAttribute{
-						Description:         "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that containsthe identity to use when reconciling the cluster.",
-						MarkdownDescription: "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that containsthe identity to use when reconciling the cluster.",
+						Description:         "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that contains the identity to use when reconciling the cluster.",
+						MarkdownDescription: "IdentityRef is a reference to either a Secret or VSphereClusterIdentity that contains the identity to use when reconciling the cluster.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the identity. Can either be VSphereClusterIdentity or Secret",
@@ -653,16 +653,16 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 					},
 
 					"insecure": schema.BoolAttribute{
-						Description:         "Insecure is a flag that controls whether to validate thevSphere server's certificate.Deprecated: will be removed in v1alpha4.",
-						MarkdownDescription: "Insecure is a flag that controls whether to validate thevSphere server's certificate.Deprecated: will be removed in v1alpha4.",
+						Description:         "Insecure is a flag that controls whether to validate the vSphere server's certificate. Deprecated: will be removed in v1alpha4.",
+						MarkdownDescription: "Insecure is a flag that controls whether to validate the vSphere server's certificate. Deprecated: will be removed in v1alpha4.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"load_balancer_ref": schema.SingleNestedAttribute{
-						Description:         "LoadBalancerRef may be used to enable a control plane load balancerfor this cluster.When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready fieldwill not be true until the referenced resource is Status.Ready and has anon-empty Status.Address value.Deprecated: will be removed in v1alpha4.",
-						MarkdownDescription: "LoadBalancerRef may be used to enable a control plane load balancerfor this cluster.When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready fieldwill not be true until the referenced resource is Status.Ready and has anon-empty Status.Address value.Deprecated: will be removed in v1alpha4.",
+						Description:         "LoadBalancerRef may be used to enable a control plane load balancer for this cluster. When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready field will not be true until the referenced resource is Status.Ready and has a non-empty Status.Address value. Deprecated: will be removed in v1alpha4.",
+						MarkdownDescription: "LoadBalancerRef may be used to enable a control plane load balancer for this cluster. When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready field will not be true until the referenced resource is Status.Ready and has a non-empty Status.Address value. Deprecated: will be removed in v1alpha4.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -673,48 +673,48 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_version": schema.StringAttribute{
-								Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"uid": schema.StringAttribute{
-								Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-								MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -734,8 +734,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 					},
 
 					"thumbprint": schema.StringAttribute{
-						Description:         "Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificateWhen provided, Insecure should not be set to true",
-						MarkdownDescription: "Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificateWhen provided, Insecure should not be set to true",
+						Description:         "Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate When provided, Insecure should not be set to true",
+						MarkdownDescription: "Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate When provided, Insecure should not be set to true",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

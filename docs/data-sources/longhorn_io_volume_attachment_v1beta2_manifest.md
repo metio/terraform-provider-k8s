@@ -66,7 +66,7 @@ Optional:
 
 Optional:
 
-- `generation` (Number) A sequence number representing a specific generation of the desired state.Populated by the system. Read-only.
+- `generation` (Number) A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.
 - `id` (String) The unique ID of this attachment. Used to differentiate different attachments of the same volume.
 - `node_id` (String) The node that this attachment is requesting
 - `parameters` (Map of String) Optional additional parameter for this attachment

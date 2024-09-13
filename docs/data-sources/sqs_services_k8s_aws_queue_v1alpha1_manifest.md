@@ -64,15 +64,15 @@ Optional:
 - `fifo_queue` (String)
 - `kms_data_key_reuse_period_seconds` (String)
 - `kms_master_key_id` (String)
-- `kms_master_key_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--kms_master_key_ref))
+- `kms_master_key_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--kms_master_key_ref))
 - `maximum_message_size` (String)
 - `message_retention_period` (String)
 - `policy` (String)
-- `policy_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--policy_ref))
+- `policy_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--policy_ref))
 - `receive_message_wait_time_seconds` (String)
 - `redrive_allow_policy` (String)
 - `redrive_policy` (String)
-- `tags` (Map of String) Add cost allocation tags to the specified Amazon SQS queue. For an overview,see Tagging Your Amazon SQS Queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-tags.html)in the Amazon SQS Developer Guide.When you use queue tags, keep the following guidelines in mind:   * Adding more than 50 tags to a queue isn't recommended.   * Tags don't have any semantic meaning. Amazon SQS interprets tags as   character strings.   * Tags are case-sensitive.   * A new tag with a key identical to that of an existing tag overwrites   the existing tag.For a full list of tag restrictions, see Quotas related to queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-limits.html#limits-queues)in the Amazon SQS Developer Guide.To be able to tag a queue on creation, you must have the sqs:CreateQueueand sqs:TagQueue permissions.Cross-account permissions don't apply to this action. For more information,see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name)in the Amazon SQS Developer Guide.
+- `tags` (Map of String) Add cost allocation tags to the specified Amazon SQS queue. For an overview, see Tagging Your Amazon SQS Queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-tags.html) in the Amazon SQS Developer Guide. When you use queue tags, keep the following guidelines in mind: * Adding more than 50 tags to a queue isn't recommended. * Tags don't have any semantic meaning. Amazon SQS interprets tags as character strings. * Tags are case-sensitive. * A new tag with a key identical to that of an existing tag overwrites the existing tag. For a full list of tag restrictions, see Quotas related to queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-limits.html#limits-queues) in the Amazon SQS Developer Guide. To be able to tag a queue on creation, you must have the sqs:CreateQueue and sqs:TagQueue permissions. Cross-account permissions don't apply to this action. For more information, see Grant cross-account permissions to a role and a username (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name) in the Amazon SQS Developer Guide.
 - `visibility_timeout` (String)
 
 <a id="nestedatt--spec--kms_master_key_ref"></a>
@@ -80,7 +80,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--kms_master_key_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--kms_master_key_ref--from))
 
 <a id="nestedatt--spec--kms_master_key_ref--from"></a>
 ### Nested Schema for `spec.kms_master_key_ref.from`
@@ -97,7 +97,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--policy_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--policy_ref--from))
 
 <a id="nestedatt--spec--policy_ref--from"></a>
 ### Nested Schema for `spec.policy_ref.from`

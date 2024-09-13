@@ -347,24 +347,24 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ContourConfigurationSpec represents a configuration of a Contour controller.It contains most of all the options that can be customized, theother remaining options being command line flags.",
-				MarkdownDescription: "ContourConfigurationSpec represents a configuration of a Contour controller.It contains most of all the options that can be customized, theother remaining options being command line flags.",
+				Description:         "ContourConfigurationSpec represents a configuration of a Contour controller. It contains most of all the options that can be customized, the other remaining options being command line flags.",
+				MarkdownDescription: "ContourConfigurationSpec represents a configuration of a Contour controller. It contains most of all the options that can be customized, the other remaining options being command line flags.",
 				Attributes: map[string]schema.Attribute{
 					"debug": schema.SingleNestedAttribute{
-						Description:         "Debug contains parameters to enable debug loggingand debug interfaces inside Contour.",
-						MarkdownDescription: "Debug contains parameters to enable debug loggingand debug interfaces inside Contour.",
+						Description:         "Debug contains parameters to enable debug logging and debug interfaces inside Contour.",
+						MarkdownDescription: "Debug contains parameters to enable debug logging and debug interfaces inside Contour.",
 						Attributes: map[string]schema.Attribute{
 							"address": schema.StringAttribute{
-								Description:         "Defines the Contour debug address interface.Contour's default is '127.0.0.1'.",
-								MarkdownDescription: "Defines the Contour debug address interface.Contour's default is '127.0.0.1'.",
+								Description:         "Defines the Contour debug address interface. Contour's default is '127.0.0.1'.",
+								MarkdownDescription: "Defines the Contour debug address interface. Contour's default is '127.0.0.1'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"port": schema.Int64Attribute{
-								Description:         "Defines the Contour debug address port.Contour's default is 6060.",
-								MarkdownDescription: "Defines the Contour debug address port.Contour's default is 6060.",
+								Description:         "Defines the Contour debug address port. Contour's default is 6060.",
+								MarkdownDescription: "Defines the Contour debug address port. Contour's default is 6060.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -376,20 +376,20 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"enable_external_name_service": schema.BoolAttribute{
-						Description:         "EnableExternalNameService allows processing of ExternalNameServicesContour's default is false for security reasons.",
-						MarkdownDescription: "EnableExternalNameService allows processing of ExternalNameServicesContour's default is false for security reasons.",
+						Description:         "EnableExternalNameService allows processing of ExternalNameServices Contour's default is false for security reasons.",
+						MarkdownDescription: "EnableExternalNameService allows processing of ExternalNameServices Contour's default is false for security reasons.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"envoy": schema.SingleNestedAttribute{
-						Description:         "Envoy contains parameters for Envoy as wellas how to optionally configure a managed Envoy fleet.",
-						MarkdownDescription: "Envoy contains parameters for Envoy as wellas how to optionally configure a managed Envoy fleet.",
+						Description:         "Envoy contains parameters for Envoy as well as how to optionally configure a managed Envoy fleet.",
+						MarkdownDescription: "Envoy contains parameters for Envoy as well as how to optionally configure a managed Envoy fleet.",
 						Attributes: map[string]schema.Attribute{
 							"client_certificate": schema.SingleNestedAttribute{
-								Description:         "ClientCertificate defines the namespace/name of the Kubernetessecret containing the client certificate and private keyto be used when establishing TLS connection to upstreamcluster.",
-								MarkdownDescription: "ClientCertificate defines the namespace/name of the Kubernetessecret containing the client certificate and private keyto be used when establishing TLS connection to upstreamcluster.",
+								Description:         "ClientCertificate defines the namespace/name of the Kubernetes secret containing the client certificate and private key to be used when establishing TLS connection to upstream cluster.",
+								MarkdownDescription: "ClientCertificate defines the namespace/name of the Kubernetes secret containing the client certificate and private key to be used when establishing TLS connection to upstream cluster.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -413,12 +413,12 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"cluster": schema.SingleNestedAttribute{
-								Description:         "Cluster holds various configurable Envoy cluster values that canbe set in the config file.",
-								MarkdownDescription: "Cluster holds various configurable Envoy cluster values that canbe set in the config file.",
+								Description:         "Cluster holds various configurable Envoy cluster values that can be set in the config file.",
+								MarkdownDescription: "Cluster holds various configurable Envoy cluster values that can be set in the config file.",
 								Attributes: map[string]schema.Attribute{
 									"circuit_breakers": schema.SingleNestedAttribute{
-										Description:         "GlobalCircuitBreakerDefaults specifies default circuit breaker budget across all services.If defined, this will be used as the default for all services.",
-										MarkdownDescription: "GlobalCircuitBreakerDefaults specifies default circuit breaker budget across all services.If defined, this will be used as the default for all services.",
+										Description:         "GlobalCircuitBreakerDefaults specifies default circuit breaker budget across all services. If defined, this will be used as the default for all services.",
+										MarkdownDescription: "GlobalCircuitBreakerDefaults specifies default circuit breaker budget across all services. If defined, this will be used as the default for all services.",
 										Attributes: map[string]schema.Attribute{
 											"max_connections": schema.Int64Attribute{
 												Description:         "The maximum number of connections that a single Envoy instance allows to the Kubernetes Service; defaults to 1024.",
@@ -453,8 +453,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 											},
 
 											"per_host_max_connections": schema.Int64Attribute{
-												Description:         "PerHostMaxConnections is the maximum number of connectionsthat Envoy will allow to each individual host in a cluster.",
-												MarkdownDescription: "PerHostMaxConnections is the maximum number of connectionsthat Envoy will allow to each individual host in a cluster.",
+												Description:         "PerHostMaxConnections is the maximum number of connections that Envoy will allow to each individual host in a cluster.",
+												MarkdownDescription: "PerHostMaxConnections is the maximum number of connections that Envoy will allow to each individual host in a cluster.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -466,16 +466,16 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"dns_lookup_family": schema.StringAttribute{
-										Description:         "DNSLookupFamily defines how external names are looked upWhen configured as V4, the DNS resolver will only perform a lookupfor addresses in the IPv4 family. If V6 is configured, the DNS resolverwill only perform a lookup for addresses in the IPv6 family.If AUTO is configured, the DNS resolver will first perform a lookupfor addresses in the IPv6 family and fallback to a lookup for addressesin the IPv4 family. If ALL is specified, the DNS resolver will perform a lookup forboth IPv4 and IPv6 families, and return all resolved addresses.When this is used, Happy Eyeballs will be enabled for upstream connections.Refer to Happy Eyeballs Support for more information.Note: This only applies to externalName clusters.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto.html#envoy-v3-api-enum-config-cluster-v3-cluster-dnslookupfamilyfor more information.Values: 'auto' (default), 'v4', 'v6', 'all'.Other values will produce an error.",
-										MarkdownDescription: "DNSLookupFamily defines how external names are looked upWhen configured as V4, the DNS resolver will only perform a lookupfor addresses in the IPv4 family. If V6 is configured, the DNS resolverwill only perform a lookup for addresses in the IPv6 family.If AUTO is configured, the DNS resolver will first perform a lookupfor addresses in the IPv6 family and fallback to a lookup for addressesin the IPv4 family. If ALL is specified, the DNS resolver will perform a lookup forboth IPv4 and IPv6 families, and return all resolved addresses.When this is used, Happy Eyeballs will be enabled for upstream connections.Refer to Happy Eyeballs Support for more information.Note: This only applies to externalName clusters.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto.html#envoy-v3-api-enum-config-cluster-v3-cluster-dnslookupfamilyfor more information.Values: 'auto' (default), 'v4', 'v6', 'all'.Other values will produce an error.",
+										Description:         "DNSLookupFamily defines how external names are looked up When configured as V4, the DNS resolver will only perform a lookup for addresses in the IPv4 family. If V6 is configured, the DNS resolver will only perform a lookup for addresses in the IPv6 family. If AUTO is configured, the DNS resolver will first perform a lookup for addresses in the IPv6 family and fallback to a lookup for addresses in the IPv4 family. If ALL is specified, the DNS resolver will perform a lookup for both IPv4 and IPv6 families, and return all resolved addresses. When this is used, Happy Eyeballs will be enabled for upstream connections. Refer to Happy Eyeballs Support for more information. Note: This only applies to externalName clusters. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto.html#envoy-v3-api-enum-config-cluster-v3-cluster-dnslookupfamily for more information. Values: 'auto' (default), 'v4', 'v6', 'all'. Other values will produce an error.",
+										MarkdownDescription: "DNSLookupFamily defines how external names are looked up When configured as V4, the DNS resolver will only perform a lookup for addresses in the IPv4 family. If V6 is configured, the DNS resolver will only perform a lookup for addresses in the IPv6 family. If AUTO is configured, the DNS resolver will first perform a lookup for addresses in the IPv6 family and fallback to a lookup for addresses in the IPv4 family. If ALL is specified, the DNS resolver will perform a lookup for both IPv4 and IPv6 families, and return all resolved addresses. When this is used, Happy Eyeballs will be enabled for upstream connections. Refer to Happy Eyeballs Support for more information. Note: This only applies to externalName clusters. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto.html#envoy-v3-api-enum-config-cluster-v3-cluster-dnslookupfamily for more information. Values: 'auto' (default), 'v4', 'v6', 'all'. Other values will produce an error.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"max_requests_per_connection": schema.Int64Attribute{
-										Description:         "Defines the maximum requests for upstream connections. If not specified, there is no limit.see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-msg-config-core-v3-httpprotocoloptionsfor more information.",
-										MarkdownDescription: "Defines the maximum requests for upstream connections. If not specified, there is no limit.see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-msg-config-core-v3-httpprotocoloptionsfor more information.",
+										Description:         "Defines the maximum requests for upstream connections. If not specified, there is no limit. see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-msg-config-core-v3-httpprotocoloptions for more information.",
+										MarkdownDescription: "Defines the maximum requests for upstream connections. If not specified, there is no limit. see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-msg-config-core-v3-httpprotocoloptions for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -485,8 +485,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"per_connection_buffer_limit_bytes": schema.Int64Attribute{
-										Description:         "Defines the soft limit on size of the cluster’s new connection read and write buffers in bytes.If unspecified, an implementation defined default is applied (1MiB).see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#envoy-v3-api-field-config-cluster-v3-cluster-per-connection-buffer-limit-bytesfor more information.",
-										MarkdownDescription: "Defines the soft limit on size of the cluster’s new connection read and write buffers in bytes.If unspecified, an implementation defined default is applied (1MiB).see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#envoy-v3-api-field-config-cluster-v3-cluster-per-connection-buffer-limit-bytesfor more information.",
+										Description:         "Defines the soft limit on size of the cluster’s new connection read and write buffers in bytes. If unspecified, an implementation defined default is applied (1MiB). see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#envoy-v3-api-field-config-cluster-v3-cluster-per-connection-buffer-limit-bytes for more information.",
+										MarkdownDescription: "Defines the soft limit on size of the cluster’s new connection read and write buffers in bytes. If unspecified, an implementation defined default is applied (1MiB). see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#envoy-v3-api-field-config-cluster-v3-cluster-per-connection-buffer-limit-bytes for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -500,8 +500,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 										MarkdownDescription: "UpstreamTLS contains the TLS policy parameters for upstream connections",
 										Attributes: map[string]schema.Attribute{
 											"cipher_suites": schema.ListAttribute{
-												Description:         "CipherSuites defines the TLS ciphers to be supported by Envoy TLSlisteners when negotiating TLS 1.2. Ciphers are validated against theset that Envoy supports by default. This parameter should only be usedby advanced users. Note that these will be ignored when TLS 1.3 is inuse.This field is optional; when it is undefined, a Contour-managed ciphersuite listwill be used, which may be updated to keep it secure.Contour's default list is:  - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]'  - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]'  - 'ECDHE-ECDSA-AES256-GCM-SHA384'  - 'ECDHE-RSA-AES256-GCM-SHA384'Ciphers provided are validated against the following list:  - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]'  - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]'  - 'ECDHE-ECDSA-AES128-GCM-SHA256'  - 'ECDHE-RSA-AES128-GCM-SHA256'  - 'ECDHE-ECDSA-AES128-SHA'  - 'ECDHE-RSA-AES128-SHA'  - 'AES128-GCM-SHA256'  - 'AES128-SHA'  - 'ECDHE-ECDSA-AES256-GCM-SHA384'  - 'ECDHE-RSA-AES256-GCM-SHA384'  - 'ECDHE-ECDSA-AES256-SHA'  - 'ECDHE-RSA-AES256-SHA'  - 'AES256-GCM-SHA384'  - 'AES256-SHA'Contour recommends leaving this undefined unless you are sure you must.See: https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/transport_sockets/tls/v3/common.proto#extensions-transport-sockets-tls-v3-tlsparametersNote: This list is a superset of what is valid for stock Envoy builds and those using BoringSSL FIPS.",
-												MarkdownDescription: "CipherSuites defines the TLS ciphers to be supported by Envoy TLSlisteners when negotiating TLS 1.2. Ciphers are validated against theset that Envoy supports by default. This parameter should only be usedby advanced users. Note that these will be ignored when TLS 1.3 is inuse.This field is optional; when it is undefined, a Contour-managed ciphersuite listwill be used, which may be updated to keep it secure.Contour's default list is:  - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]'  - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]'  - 'ECDHE-ECDSA-AES256-GCM-SHA384'  - 'ECDHE-RSA-AES256-GCM-SHA384'Ciphers provided are validated against the following list:  - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]'  - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]'  - 'ECDHE-ECDSA-AES128-GCM-SHA256'  - 'ECDHE-RSA-AES128-GCM-SHA256'  - 'ECDHE-ECDSA-AES128-SHA'  - 'ECDHE-RSA-AES128-SHA'  - 'AES128-GCM-SHA256'  - 'AES128-SHA'  - 'ECDHE-ECDSA-AES256-GCM-SHA384'  - 'ECDHE-RSA-AES256-GCM-SHA384'  - 'ECDHE-ECDSA-AES256-SHA'  - 'ECDHE-RSA-AES256-SHA'  - 'AES256-GCM-SHA384'  - 'AES256-SHA'Contour recommends leaving this undefined unless you are sure you must.See: https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/transport_sockets/tls/v3/common.proto#extensions-transport-sockets-tls-v3-tlsparametersNote: This list is a superset of what is valid for stock Envoy builds and those using BoringSSL FIPS.",
+												Description:         "CipherSuites defines the TLS ciphers to be supported by Envoy TLS listeners when negotiating TLS 1.2. Ciphers are validated against the set that Envoy supports by default. This parameter should only be used by advanced users. Note that these will be ignored when TLS 1.3 is in use. This field is optional; when it is undefined, a Contour-managed ciphersuite list will be used, which may be updated to keep it secure. Contour's default list is: - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]' - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]' - 'ECDHE-ECDSA-AES256-GCM-SHA384' - 'ECDHE-RSA-AES256-GCM-SHA384' Ciphers provided are validated against the following list: - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]' - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]' - 'ECDHE-ECDSA-AES128-GCM-SHA256' - 'ECDHE-RSA-AES128-GCM-SHA256' - 'ECDHE-ECDSA-AES128-SHA' - 'ECDHE-RSA-AES128-SHA' - 'AES128-GCM-SHA256' - 'AES128-SHA' - 'ECDHE-ECDSA-AES256-GCM-SHA384' - 'ECDHE-RSA-AES256-GCM-SHA384' - 'ECDHE-ECDSA-AES256-SHA' - 'ECDHE-RSA-AES256-SHA' - 'AES256-GCM-SHA384' - 'AES256-SHA' Contour recommends leaving this undefined unless you are sure you must. See: https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/transport_sockets/tls/v3/common.proto#extensions-transport-sockets-tls-v3-tlsparameters Note: This list is a superset of what is valid for stock Envoy builds and those using BoringSSL FIPS.",
+												MarkdownDescription: "CipherSuites defines the TLS ciphers to be supported by Envoy TLS listeners when negotiating TLS 1.2. Ciphers are validated against the set that Envoy supports by default. This parameter should only be used by advanced users. Note that these will be ignored when TLS 1.3 is in use. This field is optional; when it is undefined, a Contour-managed ciphersuite list will be used, which may be updated to keep it secure. Contour's default list is: - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]' - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]' - 'ECDHE-ECDSA-AES256-GCM-SHA384' - 'ECDHE-RSA-AES256-GCM-SHA384' Ciphers provided are validated against the following list: - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]' - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]' - 'ECDHE-ECDSA-AES128-GCM-SHA256' - 'ECDHE-RSA-AES128-GCM-SHA256' - 'ECDHE-ECDSA-AES128-SHA' - 'ECDHE-RSA-AES128-SHA' - 'AES128-GCM-SHA256' - 'AES128-SHA' - 'ECDHE-ECDSA-AES256-GCM-SHA384' - 'ECDHE-RSA-AES256-GCM-SHA384' - 'ECDHE-ECDSA-AES256-SHA' - 'ECDHE-RSA-AES256-SHA' - 'AES256-GCM-SHA384' - 'AES256-SHA' Contour recommends leaving this undefined unless you are sure you must. See: https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/transport_sockets/tls/v3/common.proto#extensions-transport-sockets-tls-v3-tlsparameters Note: This list is a superset of what is valid for stock Envoy builds and those using BoringSSL FIPS.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -509,16 +509,16 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 											},
 
 											"maximum_protocol_version": schema.StringAttribute{
-												Description:         "MaximumProtocolVersion is the maximum TLS version this vhost shouldnegotiate.Values: '1.2', '1.3'(default).Other values will produce an error.",
-												MarkdownDescription: "MaximumProtocolVersion is the maximum TLS version this vhost shouldnegotiate.Values: '1.2', '1.3'(default).Other values will produce an error.",
+												Description:         "MaximumProtocolVersion is the maximum TLS version this vhost should negotiate. Values: '1.2', '1.3'(default). Other values will produce an error.",
+												MarkdownDescription: "MaximumProtocolVersion is the maximum TLS version this vhost should negotiate. Values: '1.2', '1.3'(default). Other values will produce an error.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"minimum_protocol_version": schema.StringAttribute{
-												Description:         "MinimumProtocolVersion is the minimum TLS version this vhost shouldnegotiate.Values: '1.2' (default), '1.3'.Other values will produce an error.",
-												MarkdownDescription: "MinimumProtocolVersion is the minimum TLS version this vhost shouldnegotiate.Values: '1.2' (default), '1.3'.Other values will produce an error.",
+												Description:         "MinimumProtocolVersion is the minimum TLS version this vhost should negotiate. Values: '1.2' (default), '1.3'. Other values will produce an error.",
+												MarkdownDescription: "MinimumProtocolVersion is the minimum TLS version this vhost should negotiate. Values: '1.2' (default), '1.3'. Other values will produce an error.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -535,8 +535,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"default_http_versions": schema.ListAttribute{
-								Description:         "DefaultHTTPVersions defines the default set of HTTPSversions the proxy should accept. HTTP versions arestrings of the form 'HTTP/xx'. Supported versions are'HTTP/1.1' and 'HTTP/2'.Values: 'HTTP/1.1', 'HTTP/2' (default: both).Other values will produce an error.",
-								MarkdownDescription: "DefaultHTTPVersions defines the default set of HTTPSversions the proxy should accept. HTTP versions arestrings of the form 'HTTP/xx'. Supported versions are'HTTP/1.1' and 'HTTP/2'.Values: 'HTTP/1.1', 'HTTP/2' (default: both).Other values will produce an error.",
+								Description:         "DefaultHTTPVersions defines the default set of HTTPS versions the proxy should accept. HTTP versions are strings of the form 'HTTP/xx'. Supported versions are 'HTTP/1.1' and 'HTTP/2'. Values: 'HTTP/1.1', 'HTTP/2' (default: both). Other values will produce an error.",
+								MarkdownDescription: "DefaultHTTPVersions defines the default set of HTTPS versions the proxy should accept. HTTP versions are strings of the form 'HTTP/xx'. Supported versions are 'HTTP/1.1' and 'HTTP/2'. Values: 'HTTP/1.1', 'HTTP/2' (default: both). Other values will produce an error.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -544,8 +544,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"health": schema.SingleNestedAttribute{
-								Description:         "Health defines the endpoint Envoy uses to serve health checks.Contour's default is { address: '0.0.0.0', port: 8002 }.",
-								MarkdownDescription: "Health defines the endpoint Envoy uses to serve health checks.Contour's default is { address: '0.0.0.0', port: 8002 }.",
+								Description:         "Health defines the endpoint Envoy uses to serve health checks. Contour's default is { address: '0.0.0.0', port: 8002 }.",
+								MarkdownDescription: "Health defines the endpoint Envoy uses to serve health checks. Contour's default is { address: '0.0.0.0', port: 8002 }.",
 								Attributes: map[string]schema.Attribute{
 									"address": schema.StringAttribute{
 										Description:         "Defines the health address interface.",
@@ -572,8 +572,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"http": schema.SingleNestedAttribute{
-								Description:         "Defines the HTTP Listener for Envoy.Contour's default is { address: '0.0.0.0', port: 8080, accessLog: '/dev/stdout' }.",
-								MarkdownDescription: "Defines the HTTP Listener for Envoy.Contour's default is { address: '0.0.0.0', port: 8080, accessLog: '/dev/stdout' }.",
+								Description:         "Defines the HTTP Listener for Envoy. Contour's default is { address: '0.0.0.0', port: 8080, accessLog: '/dev/stdout' }.",
+								MarkdownDescription: "Defines the HTTP Listener for Envoy. Contour's default is { address: '0.0.0.0', port: 8080, accessLog: '/dev/stdout' }.",
 								Attributes: map[string]schema.Attribute{
 									"access_log": schema.StringAttribute{
 										Description:         "AccessLog defines where Envoy logs are outputted for this listener.",
@@ -608,8 +608,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"https": schema.SingleNestedAttribute{
-								Description:         "Defines the HTTPS Listener for Envoy.Contour's default is { address: '0.0.0.0', port: 8443, accessLog: '/dev/stdout' }.",
-								MarkdownDescription: "Defines the HTTPS Listener for Envoy.Contour's default is { address: '0.0.0.0', port: 8443, accessLog: '/dev/stdout' }.",
+								Description:         "Defines the HTTPS Listener for Envoy. Contour's default is { address: '0.0.0.0', port: 8443, accessLog: '/dev/stdout' }.",
+								MarkdownDescription: "Defines the HTTPS Listener for Envoy. Contour's default is { address: '0.0.0.0', port: 8443, accessLog: '/dev/stdout' }.",
 								Attributes: map[string]schema.Attribute{
 									"access_log": schema.StringAttribute{
 										Description:         "AccessLog defines where Envoy logs are outputted for this listener.",
@@ -648,32 +648,32 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 								MarkdownDescription: "Listener hold various configurable Envoy listener values.",
 								Attributes: map[string]schema.Attribute{
 									"connection_balancer": schema.StringAttribute{
-										Description:         "ConnectionBalancer. If the value is exact, the listener will use the exact connection balancerSee https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/listener.proto#envoy-api-msg-listener-connectionbalanceconfigfor more information.Values: (empty string): use the default ConnectionBalancer, 'exact': use the Exact ConnectionBalancer.Other values will produce an error.",
-										MarkdownDescription: "ConnectionBalancer. If the value is exact, the listener will use the exact connection balancerSee https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/listener.proto#envoy-api-msg-listener-connectionbalanceconfigfor more information.Values: (empty string): use the default ConnectionBalancer, 'exact': use the Exact ConnectionBalancer.Other values will produce an error.",
+										Description:         "ConnectionBalancer. If the value is exact, the listener will use the exact connection balancer See https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/listener.proto#envoy-api-msg-listener-connectionbalanceconfig for more information. Values: (empty string): use the default ConnectionBalancer, 'exact': use the Exact ConnectionBalancer. Other values will produce an error.",
+										MarkdownDescription: "ConnectionBalancer. If the value is exact, the listener will use the exact connection balancer See https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/listener.proto#envoy-api-msg-listener-connectionbalanceconfig for more information. Values: (empty string): use the default ConnectionBalancer, 'exact': use the Exact ConnectionBalancer. Other values will produce an error.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"disable_allow_chunked_length": schema.BoolAttribute{
-										Description:         "DisableAllowChunkedLength disables the RFC-compliant Envoy behavior tostrip the 'Content-Length' header if 'Transfer-Encoding: chunked' isalso set. This is an emergency off-switch to revert back to Envoy'sdefault behavior in case of failures. Please file an issue if failuresare encountered.See: https://github.com/projectcontour/contour/issues/3221Contour's default is false.",
-										MarkdownDescription: "DisableAllowChunkedLength disables the RFC-compliant Envoy behavior tostrip the 'Content-Length' header if 'Transfer-Encoding: chunked' isalso set. This is an emergency off-switch to revert back to Envoy'sdefault behavior in case of failures. Please file an issue if failuresare encountered.See: https://github.com/projectcontour/contour/issues/3221Contour's default is false.",
+										Description:         "DisableAllowChunkedLength disables the RFC-compliant Envoy behavior to strip the 'Content-Length' header if 'Transfer-Encoding: chunked' is also set. This is an emergency off-switch to revert back to Envoy's default behavior in case of failures. Please file an issue if failures are encountered. See: https://github.com/projectcontour/contour/issues/3221 Contour's default is false.",
+										MarkdownDescription: "DisableAllowChunkedLength disables the RFC-compliant Envoy behavior to strip the 'Content-Length' header if 'Transfer-Encoding: chunked' is also set. This is an emergency off-switch to revert back to Envoy's default behavior in case of failures. Please file an issue if failures are encountered. See: https://github.com/projectcontour/contour/issues/3221 Contour's default is false.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"disable_merge_slashes": schema.BoolAttribute{
-										Description:         "DisableMergeSlashes disables Envoy's non-standard merge_slashes path transformation optionwhich strips duplicate slashes from request URL paths.Contour's default is false.",
-										MarkdownDescription: "DisableMergeSlashes disables Envoy's non-standard merge_slashes path transformation optionwhich strips duplicate slashes from request URL paths.Contour's default is false.",
+										Description:         "DisableMergeSlashes disables Envoy's non-standard merge_slashes path transformation option which strips duplicate slashes from request URL paths. Contour's default is false.",
+										MarkdownDescription: "DisableMergeSlashes disables Envoy's non-standard merge_slashes path transformation option which strips duplicate slashes from request URL paths. Contour's default is false.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"http_max_concurrent_streams": schema.Int64Attribute{
-										Description:         "Defines the value for SETTINGS_MAX_CONCURRENT_STREAMS Envoy will advertise in theSETTINGS frame in HTTP/2 connections and the limit for concurrent streams allowedfor a peer on a single HTTP/2 connection. It is recommended to not set this lowerthan 100 but this field can be used to bound resource usage by HTTP/2 connectionsand mitigate attacks like CVE-2023-44487. The default value when this is not set isunlimited.",
-										MarkdownDescription: "Defines the value for SETTINGS_MAX_CONCURRENT_STREAMS Envoy will advertise in theSETTINGS frame in HTTP/2 connections and the limit for concurrent streams allowedfor a peer on a single HTTP/2 connection. It is recommended to not set this lowerthan 100 but this field can be used to bound resource usage by HTTP/2 connectionsand mitigate attacks like CVE-2023-44487. The default value when this is not set isunlimited.",
+										Description:         "Defines the value for SETTINGS_MAX_CONCURRENT_STREAMS Envoy will advertise in the SETTINGS frame in HTTP/2 connections and the limit for concurrent streams allowed for a peer on a single HTTP/2 connection. It is recommended to not set this lower than 100 but this field can be used to bound resource usage by HTTP/2 connections and mitigate attacks like CVE-2023-44487. The default value when this is not set is unlimited.",
+										MarkdownDescription: "Defines the value for SETTINGS_MAX_CONCURRENT_STREAMS Envoy will advertise in the SETTINGS frame in HTTP/2 connections and the limit for concurrent streams allowed for a peer on a single HTTP/2 connection. It is recommended to not set this lower than 100 but this field can be used to bound resource usage by HTTP/2 connections and mitigate attacks like CVE-2023-44487. The default value when this is not set is unlimited.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -683,8 +683,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"max_connections_per_listener": schema.Int64Attribute{
-										Description:         "Defines the limit on number of active connections to a listener. The limit is appliedper listener. The default value when this is not set is unlimited.",
-										MarkdownDescription: "Defines the limit on number of active connections to a listener. The limit is appliedper listener. The default value when this is not set is unlimited.",
+										Description:         "Defines the limit on number of active connections to a listener. The limit is applied per listener. The default value when this is not set is unlimited.",
+										MarkdownDescription: "Defines the limit on number of active connections to a listener. The limit is applied per listener. The default value when this is not set is unlimited.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -694,8 +694,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"max_requests_per_connection": schema.Int64Attribute{
-										Description:         "Defines the maximum requests for downstream connections. If not specified, there is no limit.see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-msg-config-core-v3-httpprotocoloptionsfor more information.",
-										MarkdownDescription: "Defines the maximum requests for downstream connections. If not specified, there is no limit.see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-msg-config-core-v3-httpprotocoloptionsfor more information.",
+										Description:         "Defines the maximum requests for downstream connections. If not specified, there is no limit. see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-msg-config-core-v3-httpprotocoloptions for more information.",
+										MarkdownDescription: "Defines the maximum requests for downstream connections. If not specified, there is no limit. see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-msg-config-core-v3-httpprotocoloptions for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -705,8 +705,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"max_requests_per_io_cycle": schema.Int64Attribute{
-										Description:         "Defines the limit on number of HTTP requests that Envoy will process from a singleconnection in a single I/O cycle. Requests over this limit are processed in subsequentI/O cycles. Can be used as a mitigation for CVE-2023-44487 when abusive traffic isdetected. Configures the http.max_requests_per_io_cycle Envoy runtime setting. The defaultvalue when this is not set is no limit.",
-										MarkdownDescription: "Defines the limit on number of HTTP requests that Envoy will process from a singleconnection in a single I/O cycle. Requests over this limit are processed in subsequentI/O cycles. Can be used as a mitigation for CVE-2023-44487 when abusive traffic isdetected. Configures the http.max_requests_per_io_cycle Envoy runtime setting. The defaultvalue when this is not set is no limit.",
+										Description:         "Defines the limit on number of HTTP requests that Envoy will process from a single connection in a single I/O cycle. Requests over this limit are processed in subsequent I/O cycles. Can be used as a mitigation for CVE-2023-44487 when abusive traffic is detected. Configures the http.max_requests_per_io_cycle Envoy runtime setting. The default value when this is not set is no limit.",
+										MarkdownDescription: "Defines the limit on number of HTTP requests that Envoy will process from a single connection in a single I/O cycle. Requests over this limit are processed in subsequent I/O cycles. Can be used as a mitigation for CVE-2023-44487 when abusive traffic is detected. Configures the http.max_requests_per_io_cycle Envoy runtime setting. The default value when this is not set is no limit.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -716,8 +716,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"per_connection_buffer_limit_bytes": schema.Int64Attribute{
-										Description:         "Defines the soft limit on size of the listener’s new connection read and write buffers in bytes.If unspecified, an implementation defined default is applied (1MiB).see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/listener/v3/listener.proto#envoy-v3-api-field-config-listener-v3-listener-per-connection-buffer-limit-bytesfor more information.",
-										MarkdownDescription: "Defines the soft limit on size of the listener’s new connection read and write buffers in bytes.If unspecified, an implementation defined default is applied (1MiB).see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/listener/v3/listener.proto#envoy-v3-api-field-config-listener-v3-listener-per-connection-buffer-limit-bytesfor more information.",
+										Description:         "Defines the soft limit on size of the listener’s new connection read and write buffers in bytes. If unspecified, an implementation defined default is applied (1MiB). see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/listener/v3/listener.proto#envoy-v3-api-field-config-listener-v3-listener-per-connection-buffer-limit-bytes for more information.",
+										MarkdownDescription: "Defines the soft limit on size of the listener’s new connection read and write buffers in bytes. If unspecified, an implementation defined default is applied (1MiB). see https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/listener/v3/listener.proto#envoy-v3-api-field-config-listener-v3-listener-per-connection-buffer-limit-bytes for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -727,20 +727,20 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"server_header_transformation": schema.StringAttribute{
-										Description:         "Defines the action to be applied to the Server header on the response path.When configured as overwrite, overwrites any Server header with 'envoy'.When configured as append_if_absent, if a Server header is present, pass it through, otherwise set it to 'envoy'.When configured as pass_through, pass through the value of the Server header, and do not append a header if none is present.Values: 'overwrite' (default), 'append_if_absent', 'pass_through'Other values will produce an error.Contour's default is overwrite.",
-										MarkdownDescription: "Defines the action to be applied to the Server header on the response path.When configured as overwrite, overwrites any Server header with 'envoy'.When configured as append_if_absent, if a Server header is present, pass it through, otherwise set it to 'envoy'.When configured as pass_through, pass through the value of the Server header, and do not append a header if none is present.Values: 'overwrite' (default), 'append_if_absent', 'pass_through'Other values will produce an error.Contour's default is overwrite.",
+										Description:         "Defines the action to be applied to the Server header on the response path. When configured as overwrite, overwrites any Server header with 'envoy'. When configured as append_if_absent, if a Server header is present, pass it through, otherwise set it to 'envoy'. When configured as pass_through, pass through the value of the Server header, and do not append a header if none is present. Values: 'overwrite' (default), 'append_if_absent', 'pass_through' Other values will produce an error. Contour's default is overwrite.",
+										MarkdownDescription: "Defines the action to be applied to the Server header on the response path. When configured as overwrite, overwrites any Server header with 'envoy'. When configured as append_if_absent, if a Server header is present, pass it through, otherwise set it to 'envoy'. When configured as pass_through, pass through the value of the Server header, and do not append a header if none is present. Values: 'overwrite' (default), 'append_if_absent', 'pass_through' Other values will produce an error. Contour's default is overwrite.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"socket_options": schema.SingleNestedAttribute{
-										Description:         "SocketOptions defines configurable socket options for the listeners.Single set of options are applied to all listeners.",
-										MarkdownDescription: "SocketOptions defines configurable socket options for the listeners.Single set of options are applied to all listeners.",
+										Description:         "SocketOptions defines configurable socket options for the listeners. Single set of options are applied to all listeners.",
+										MarkdownDescription: "SocketOptions defines configurable socket options for the listeners. Single set of options are applied to all listeners.",
 										Attributes: map[string]schema.Attribute{
 											"tos": schema.Int64Attribute{
-												Description:         "Defines the value for IPv4 TOS field (including 6 bit DSCP field) for IP packets originating from Envoy listeners.Single value is applied to all listeners.If listeners are bound to IPv6-only addresses, setting this option will cause an error.",
-												MarkdownDescription: "Defines the value for IPv4 TOS field (including 6 bit DSCP field) for IP packets originating from Envoy listeners.Single value is applied to all listeners.If listeners are bound to IPv6-only addresses, setting this option will cause an error.",
+												Description:         "Defines the value for IPv4 TOS field (including 6 bit DSCP field) for IP packets originating from Envoy listeners. Single value is applied to all listeners. If listeners are bound to IPv6-only addresses, setting this option will cause an error.",
+												MarkdownDescription: "Defines the value for IPv4 TOS field (including 6 bit DSCP field) for IP packets originating from Envoy listeners. Single value is applied to all listeners. If listeners are bound to IPv6-only addresses, setting this option will cause an error.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -751,8 +751,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 											},
 
 											"traffic_class": schema.Int64Attribute{
-												Description:         "Defines the value for IPv6 Traffic Class field (including 6 bit DSCP field) for IP packets originating from the Envoy listeners.Single value is applied to all listeners.If listeners are bound to IPv4-only addresses, setting this option will cause an error.",
-												MarkdownDescription: "Defines the value for IPv6 Traffic Class field (including 6 bit DSCP field) for IP packets originating from the Envoy listeners.Single value is applied to all listeners.If listeners are bound to IPv4-only addresses, setting this option will cause an error.",
+												Description:         "Defines the value for IPv6 Traffic Class field (including 6 bit DSCP field) for IP packets originating from the Envoy listeners. Single value is applied to all listeners. If listeners are bound to IPv4-only addresses, setting this option will cause an error.",
+												MarkdownDescription: "Defines the value for IPv6 Traffic Class field (including 6 bit DSCP field) for IP packets originating from the Envoy listeners. Single value is applied to all listeners. If listeners are bound to IPv4-only addresses, setting this option will cause an error.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -772,8 +772,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 										MarkdownDescription: "TLS holds various configurable Envoy TLS listener values.",
 										Attributes: map[string]schema.Attribute{
 											"cipher_suites": schema.ListAttribute{
-												Description:         "CipherSuites defines the TLS ciphers to be supported by Envoy TLSlisteners when negotiating TLS 1.2. Ciphers are validated against theset that Envoy supports by default. This parameter should only be usedby advanced users. Note that these will be ignored when TLS 1.3 is inuse.This field is optional; when it is undefined, a Contour-managed ciphersuite listwill be used, which may be updated to keep it secure.Contour's default list is:  - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]'  - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]'  - 'ECDHE-ECDSA-AES256-GCM-SHA384'  - 'ECDHE-RSA-AES256-GCM-SHA384'Ciphers provided are validated against the following list:  - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]'  - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]'  - 'ECDHE-ECDSA-AES128-GCM-SHA256'  - 'ECDHE-RSA-AES128-GCM-SHA256'  - 'ECDHE-ECDSA-AES128-SHA'  - 'ECDHE-RSA-AES128-SHA'  - 'AES128-GCM-SHA256'  - 'AES128-SHA'  - 'ECDHE-ECDSA-AES256-GCM-SHA384'  - 'ECDHE-RSA-AES256-GCM-SHA384'  - 'ECDHE-ECDSA-AES256-SHA'  - 'ECDHE-RSA-AES256-SHA'  - 'AES256-GCM-SHA384'  - 'AES256-SHA'Contour recommends leaving this undefined unless you are sure you must.See: https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/transport_sockets/tls/v3/common.proto#extensions-transport-sockets-tls-v3-tlsparametersNote: This list is a superset of what is valid for stock Envoy builds and those using BoringSSL FIPS.",
-												MarkdownDescription: "CipherSuites defines the TLS ciphers to be supported by Envoy TLSlisteners when negotiating TLS 1.2. Ciphers are validated against theset that Envoy supports by default. This parameter should only be usedby advanced users. Note that these will be ignored when TLS 1.3 is inuse.This field is optional; when it is undefined, a Contour-managed ciphersuite listwill be used, which may be updated to keep it secure.Contour's default list is:  - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]'  - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]'  - 'ECDHE-ECDSA-AES256-GCM-SHA384'  - 'ECDHE-RSA-AES256-GCM-SHA384'Ciphers provided are validated against the following list:  - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]'  - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]'  - 'ECDHE-ECDSA-AES128-GCM-SHA256'  - 'ECDHE-RSA-AES128-GCM-SHA256'  - 'ECDHE-ECDSA-AES128-SHA'  - 'ECDHE-RSA-AES128-SHA'  - 'AES128-GCM-SHA256'  - 'AES128-SHA'  - 'ECDHE-ECDSA-AES256-GCM-SHA384'  - 'ECDHE-RSA-AES256-GCM-SHA384'  - 'ECDHE-ECDSA-AES256-SHA'  - 'ECDHE-RSA-AES256-SHA'  - 'AES256-GCM-SHA384'  - 'AES256-SHA'Contour recommends leaving this undefined unless you are sure you must.See: https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/transport_sockets/tls/v3/common.proto#extensions-transport-sockets-tls-v3-tlsparametersNote: This list is a superset of what is valid for stock Envoy builds and those using BoringSSL FIPS.",
+												Description:         "CipherSuites defines the TLS ciphers to be supported by Envoy TLS listeners when negotiating TLS 1.2. Ciphers are validated against the set that Envoy supports by default. This parameter should only be used by advanced users. Note that these will be ignored when TLS 1.3 is in use. This field is optional; when it is undefined, a Contour-managed ciphersuite list will be used, which may be updated to keep it secure. Contour's default list is: - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]' - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]' - 'ECDHE-ECDSA-AES256-GCM-SHA384' - 'ECDHE-RSA-AES256-GCM-SHA384' Ciphers provided are validated against the following list: - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]' - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]' - 'ECDHE-ECDSA-AES128-GCM-SHA256' - 'ECDHE-RSA-AES128-GCM-SHA256' - 'ECDHE-ECDSA-AES128-SHA' - 'ECDHE-RSA-AES128-SHA' - 'AES128-GCM-SHA256' - 'AES128-SHA' - 'ECDHE-ECDSA-AES256-GCM-SHA384' - 'ECDHE-RSA-AES256-GCM-SHA384' - 'ECDHE-ECDSA-AES256-SHA' - 'ECDHE-RSA-AES256-SHA' - 'AES256-GCM-SHA384' - 'AES256-SHA' Contour recommends leaving this undefined unless you are sure you must. See: https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/transport_sockets/tls/v3/common.proto#extensions-transport-sockets-tls-v3-tlsparameters Note: This list is a superset of what is valid for stock Envoy builds and those using BoringSSL FIPS.",
+												MarkdownDescription: "CipherSuites defines the TLS ciphers to be supported by Envoy TLS listeners when negotiating TLS 1.2. Ciphers are validated against the set that Envoy supports by default. This parameter should only be used by advanced users. Note that these will be ignored when TLS 1.3 is in use. This field is optional; when it is undefined, a Contour-managed ciphersuite list will be used, which may be updated to keep it secure. Contour's default list is: - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]' - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]' - 'ECDHE-ECDSA-AES256-GCM-SHA384' - 'ECDHE-RSA-AES256-GCM-SHA384' Ciphers provided are validated against the following list: - '[ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]' - '[ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]' - 'ECDHE-ECDSA-AES128-GCM-SHA256' - 'ECDHE-RSA-AES128-GCM-SHA256' - 'ECDHE-ECDSA-AES128-SHA' - 'ECDHE-RSA-AES128-SHA' - 'AES128-GCM-SHA256' - 'AES128-SHA' - 'ECDHE-ECDSA-AES256-GCM-SHA384' - 'ECDHE-RSA-AES256-GCM-SHA384' - 'ECDHE-ECDSA-AES256-SHA' - 'ECDHE-RSA-AES256-SHA' - 'AES256-GCM-SHA384' - 'AES256-SHA' Contour recommends leaving this undefined unless you are sure you must. See: https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/transport_sockets/tls/v3/common.proto#extensions-transport-sockets-tls-v3-tlsparameters Note: This list is a superset of what is valid for stock Envoy builds and those using BoringSSL FIPS.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -781,16 +781,16 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 											},
 
 											"maximum_protocol_version": schema.StringAttribute{
-												Description:         "MaximumProtocolVersion is the maximum TLS version this vhost shouldnegotiate.Values: '1.2', '1.3'(default).Other values will produce an error.",
-												MarkdownDescription: "MaximumProtocolVersion is the maximum TLS version this vhost shouldnegotiate.Values: '1.2', '1.3'(default).Other values will produce an error.",
+												Description:         "MaximumProtocolVersion is the maximum TLS version this vhost should negotiate. Values: '1.2', '1.3'(default). Other values will produce an error.",
+												MarkdownDescription: "MaximumProtocolVersion is the maximum TLS version this vhost should negotiate. Values: '1.2', '1.3'(default). Other values will produce an error.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"minimum_protocol_version": schema.StringAttribute{
-												Description:         "MinimumProtocolVersion is the minimum TLS version this vhost shouldnegotiate.Values: '1.2' (default), '1.3'.Other values will produce an error.",
-												MarkdownDescription: "MinimumProtocolVersion is the minimum TLS version this vhost shouldnegotiate.Values: '1.2' (default), '1.3'.Other values will produce an error.",
+												Description:         "MinimumProtocolVersion is the minimum TLS version this vhost should negotiate. Values: '1.2' (default), '1.3'. Other values will produce an error.",
+												MarkdownDescription: "MinimumProtocolVersion is the minimum TLS version this vhost should negotiate. Values: '1.2' (default), '1.3'. Other values will produce an error.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -802,8 +802,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"use_proxy_protocol": schema.BoolAttribute{
-										Description:         "Use PROXY protocol for all listeners.Contour's default is false.",
-										MarkdownDescription: "Use PROXY protocol for all listeners.Contour's default is false.",
+										Description:         "Use PROXY protocol for all listeners. Contour's default is false.",
+										MarkdownDescription: "Use PROXY protocol for all listeners. Contour's default is false.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -819,24 +819,24 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 								MarkdownDescription: "Logging defines how Envoy's logs can be configured.",
 								Attributes: map[string]schema.Attribute{
 									"access_log_format": schema.StringAttribute{
-										Description:         "AccessLogFormat sets the global access log format.Values: 'envoy' (default), 'json'.Other values will produce an error.",
-										MarkdownDescription: "AccessLogFormat sets the global access log format.Values: 'envoy' (default), 'json'.Other values will produce an error.",
+										Description:         "AccessLogFormat sets the global access log format. Values: 'envoy' (default), 'json'. Other values will produce an error.",
+										MarkdownDescription: "AccessLogFormat sets the global access log format. Values: 'envoy' (default), 'json'. Other values will produce an error.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"access_log_format_string": schema.StringAttribute{
-										Description:         "AccessLogFormatString sets the access log format when format is set to 'envoy'.When empty, Envoy's default format is used.",
-										MarkdownDescription: "AccessLogFormatString sets the access log format when format is set to 'envoy'.When empty, Envoy's default format is used.",
+										Description:         "AccessLogFormatString sets the access log format when format is set to 'envoy'. When empty, Envoy's default format is used.",
+										MarkdownDescription: "AccessLogFormatString sets the access log format when format is set to 'envoy'. When empty, Envoy's default format is used.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"access_log_json_fields": schema.ListAttribute{
-										Description:         "AccessLogJSONFields sets the fields that JSON logging willoutput when AccessLogFormat is json.",
-										MarkdownDescription: "AccessLogJSONFields sets the fields that JSON logging willoutput when AccessLogFormat is json.",
+										Description:         "AccessLogJSONFields sets the fields that JSON logging will output when AccessLogFormat is json.",
+										MarkdownDescription: "AccessLogJSONFields sets the fields that JSON logging will output when AccessLogFormat is json.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -844,8 +844,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"access_log_level": schema.StringAttribute{
-										Description:         "AccessLogLevel sets the verbosity level of the access log.Values: 'info' (default, all requests are logged), 'error' (all non-success requests, i.e. 300+ response code, are logged), 'critical' (all 5xx requests are logged) and 'disabled'.Other values will produce an error.",
-										MarkdownDescription: "AccessLogLevel sets the verbosity level of the access log.Values: 'info' (default, all requests are logged), 'error' (all non-success requests, i.e. 300+ response code, are logged), 'critical' (all 5xx requests are logged) and 'disabled'.Other values will produce an error.",
+										Description:         "AccessLogLevel sets the verbosity level of the access log. Values: 'info' (default, all requests are logged), 'error' (all non-success requests, i.e. 300+ response code, are logged), 'critical' (all 5xx requests are logged) and 'disabled'. Other values will produce an error.",
+										MarkdownDescription: "AccessLogLevel sets the verbosity level of the access log. Values: 'info' (default, all requests are logged), 'error' (all non-success requests, i.e. 300+ response code, are logged), 'critical' (all 5xx requests are logged) and 'disabled'. Other values will produce an error.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -857,8 +857,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"metrics": schema.SingleNestedAttribute{
-								Description:         "Metrics defines the endpoint Envoy uses to serve metrics.Contour's default is { address: '0.0.0.0', port: 8002 }.",
-								MarkdownDescription: "Metrics defines the endpoint Envoy uses to serve metrics.Contour's default is { address: '0.0.0.0', port: 8002 }.",
+								Description:         "Metrics defines the endpoint Envoy uses to serve metrics. Contour's default is { address: '0.0.0.0', port: 8002 }.",
+								MarkdownDescription: "Metrics defines the endpoint Envoy uses to serve metrics. Contour's default is { address: '0.0.0.0', port: 8002 }.",
 								Attributes: map[string]schema.Attribute{
 									"address": schema.StringAttribute{
 										Description:         "Defines the metrics address interface.",
@@ -881,8 +881,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"tls": schema.SingleNestedAttribute{
-										Description:         "TLS holds TLS file config details.Metrics and health endpoints cannot have same port number when metrics is served over HTTPS.",
-										MarkdownDescription: "TLS holds TLS file config details.Metrics and health endpoints cannot have same port number when metrics is served over HTTPS.",
+										Description:         "TLS holds TLS file config details. Metrics and health endpoints cannot have same port number when metrics is served over HTTPS.",
+										MarkdownDescription: "TLS holds TLS file config details. Metrics and health endpoints cannot have same port number when metrics is served over HTTPS.",
 										Attributes: map[string]schema.Attribute{
 											"ca_file": schema.StringAttribute{
 												Description:         "CA filename.",
@@ -923,16 +923,16 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 								MarkdownDescription: "Network holds various configurable Envoy network values.",
 								Attributes: map[string]schema.Attribute{
 									"admin_port": schema.Int64Attribute{
-										Description:         "Configure the port used to access the Envoy Admin interface.If configured to port '0' then the admin interface is disabled.Contour's default is 9001.",
-										MarkdownDescription: "Configure the port used to access the Envoy Admin interface.If configured to port '0' then the admin interface is disabled.Contour's default is 9001.",
+										Description:         "Configure the port used to access the Envoy Admin interface. If configured to port '0' then the admin interface is disabled. Contour's default is 9001.",
+										MarkdownDescription: "Configure the port used to access the Envoy Admin interface. If configured to port '0' then the admin interface is disabled. Contour's default is 9001.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"num_trusted_hops": schema.Int64Attribute{
-										Description:         "XffNumTrustedHops defines the number of additional ingress proxy hops from theright side of the x-forwarded-for HTTP header to trust when determining the originclient’s IP address.See https://www.envoyproxy.io/docs/envoy/v1.17.0/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto?highlight=xff_num_trusted_hopsfor more information.Contour's default is 0.",
-										MarkdownDescription: "XffNumTrustedHops defines the number of additional ingress proxy hops from theright side of the x-forwarded-for HTTP header to trust when determining the originclient’s IP address.See https://www.envoyproxy.io/docs/envoy/v1.17.0/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto?highlight=xff_num_trusted_hopsfor more information.Contour's default is 0.",
+										Description:         "XffNumTrustedHops defines the number of additional ingress proxy hops from the right side of the x-forwarded-for HTTP header to trust when determining the origin client’s IP address. See https://www.envoyproxy.io/docs/envoy/v1.17.0/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto?highlight=xff_num_trusted_hops for more information. Contour's default is 0.",
+										MarkdownDescription: "XffNumTrustedHops defines the number of additional ingress proxy hops from the right side of the x-forwarded-for HTTP header to trust when determining the origin client’s IP address. See https://www.envoyproxy.io/docs/envoy/v1.17.0/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto?highlight=xff_num_trusted_hops for more information. Contour's default is 0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -944,8 +944,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"service": schema.SingleNestedAttribute{
-								Description:         "Service holds Envoy service parameters for setting Ingress status.Contour's default is { namespace: 'projectcontour', name: 'envoy' }.",
-								MarkdownDescription: "Service holds Envoy service parameters for setting Ingress status.Contour's default is { namespace: 'projectcontour', name: 'envoy' }.",
+								Description:         "Service holds Envoy service parameters for setting Ingress status. Contour's default is { namespace: 'projectcontour', name: 'envoy' }.",
+								MarkdownDescription: "Service holds Envoy service parameters for setting Ingress status. Contour's default is { namespace: 'projectcontour', name: 'envoy' }.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -969,60 +969,60 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"timeouts": schema.SingleNestedAttribute{
-								Description:         "Timeouts holds various configurable timeouts that canbe set in the config file.",
-								MarkdownDescription: "Timeouts holds various configurable timeouts that canbe set in the config file.",
+								Description:         "Timeouts holds various configurable timeouts that can be set in the config file.",
+								MarkdownDescription: "Timeouts holds various configurable timeouts that can be set in the config file.",
 								Attributes: map[string]schema.Attribute{
 									"connect_timeout": schema.StringAttribute{
-										Description:         "ConnectTimeout defines how long the proxy should wait when establishing connection to upstream service.If not set, a default value of 2 seconds will be used.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#envoy-v3-api-field-config-cluster-v3-cluster-connect-timeoutfor more information.",
-										MarkdownDescription: "ConnectTimeout defines how long the proxy should wait when establishing connection to upstream service.If not set, a default value of 2 seconds will be used.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#envoy-v3-api-field-config-cluster-v3-cluster-connect-timeoutfor more information.",
+										Description:         "ConnectTimeout defines how long the proxy should wait when establishing connection to upstream service. If not set, a default value of 2 seconds will be used. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#envoy-v3-api-field-config-cluster-v3-cluster-connect-timeout for more information.",
+										MarkdownDescription: "ConnectTimeout defines how long the proxy should wait when establishing connection to upstream service. If not set, a default value of 2 seconds will be used. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#envoy-v3-api-field-config-cluster-v3-cluster-connect-timeout for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"connection_idle_timeout": schema.StringAttribute{
-										Description:         "ConnectionIdleTimeout defines how long the proxy should wait while there areno active requests (for HTTP/1.1) or streams (for HTTP/2) before terminatingan HTTP connection. Set to 'infinity' to disable the timeout entirely.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-field-config-core-v3-httpprotocoloptions-idle-timeoutfor more information.",
-										MarkdownDescription: "ConnectionIdleTimeout defines how long the proxy should wait while there areno active requests (for HTTP/1.1) or streams (for HTTP/2) before terminatingan HTTP connection. Set to 'infinity' to disable the timeout entirely.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-field-config-core-v3-httpprotocoloptions-idle-timeoutfor more information.",
+										Description:         "ConnectionIdleTimeout defines how long the proxy should wait while there are no active requests (for HTTP/1.1) or streams (for HTTP/2) before terminating an HTTP connection. Set to 'infinity' to disable the timeout entirely. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-field-config-core-v3-httpprotocoloptions-idle-timeout for more information.",
+										MarkdownDescription: "ConnectionIdleTimeout defines how long the proxy should wait while there are no active requests (for HTTP/1.1) or streams (for HTTP/2) before terminating an HTTP connection. Set to 'infinity' to disable the timeout entirely. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-field-config-core-v3-httpprotocoloptions-idle-timeout for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"connection_shutdown_grace_period": schema.StringAttribute{
-										Description:         "ConnectionShutdownGracePeriod defines how long the proxy will wait between sending aninitial GOAWAY frame and a second, final GOAWAY frame when terminating an HTTP/2 connection.During this grace period, the proxy will continue to respond to new streams. After the finalGOAWAY frame has been sent, the proxy will refuse new streams.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-drain-timeoutfor more information.",
-										MarkdownDescription: "ConnectionShutdownGracePeriod defines how long the proxy will wait between sending aninitial GOAWAY frame and a second, final GOAWAY frame when terminating an HTTP/2 connection.During this grace period, the proxy will continue to respond to new streams. After the finalGOAWAY frame has been sent, the proxy will refuse new streams.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-drain-timeoutfor more information.",
+										Description:         "ConnectionShutdownGracePeriod defines how long the proxy will wait between sending an initial GOAWAY frame and a second, final GOAWAY frame when terminating an HTTP/2 connection. During this grace period, the proxy will continue to respond to new streams. After the final GOAWAY frame has been sent, the proxy will refuse new streams. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-drain-timeout for more information.",
+										MarkdownDescription: "ConnectionShutdownGracePeriod defines how long the proxy will wait between sending an initial GOAWAY frame and a second, final GOAWAY frame when terminating an HTTP/2 connection. During this grace period, the proxy will continue to respond to new streams. After the final GOAWAY frame has been sent, the proxy will refuse new streams. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-drain-timeout for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"delayed_close_timeout": schema.StringAttribute{
-										Description:         "DelayedCloseTimeout defines how long envoy will wait, once connectionclose processing has been initiated, for the downstream peer to closethe connection before Envoy closes the socket associated with the connection.Setting this timeout to 'infinity' will disable it, equivalent to setting it to '0'in Envoy. Leaving it unset will result in the Envoy default value being used.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-delayed-close-timeoutfor more information.",
-										MarkdownDescription: "DelayedCloseTimeout defines how long envoy will wait, once connectionclose processing has been initiated, for the downstream peer to closethe connection before Envoy closes the socket associated with the connection.Setting this timeout to 'infinity' will disable it, equivalent to setting it to '0'in Envoy. Leaving it unset will result in the Envoy default value being used.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-delayed-close-timeoutfor more information.",
+										Description:         "DelayedCloseTimeout defines how long envoy will wait, once connection close processing has been initiated, for the downstream peer to close the connection before Envoy closes the socket associated with the connection. Setting this timeout to 'infinity' will disable it, equivalent to setting it to '0' in Envoy. Leaving it unset will result in the Envoy default value being used. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-delayed-close-timeout for more information.",
+										MarkdownDescription: "DelayedCloseTimeout defines how long envoy will wait, once connection close processing has been initiated, for the downstream peer to close the connection before Envoy closes the socket associated with the connection. Setting this timeout to 'infinity' will disable it, equivalent to setting it to '0' in Envoy. Leaving it unset will result in the Envoy default value being used. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-delayed-close-timeout for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"max_connection_duration": schema.StringAttribute{
-										Description:         "MaxConnectionDuration defines the maximum period of time after an HTTP connectionhas been established from the client to the proxy before it is closed by the proxy,regardless of whether there has been activity or not. Omit or set to 'infinity' forno max duration.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-field-config-core-v3-httpprotocoloptions-max-connection-durationfor more information.",
-										MarkdownDescription: "MaxConnectionDuration defines the maximum period of time after an HTTP connectionhas been established from the client to the proxy before it is closed by the proxy,regardless of whether there has been activity or not. Omit or set to 'infinity' forno max duration.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-field-config-core-v3-httpprotocoloptions-max-connection-durationfor more information.",
+										Description:         "MaxConnectionDuration defines the maximum period of time after an HTTP connection has been established from the client to the proxy before it is closed by the proxy, regardless of whether there has been activity or not. Omit or set to 'infinity' for no max duration. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-field-config-core-v3-httpprotocoloptions-max-connection-duration for more information.",
+										MarkdownDescription: "MaxConnectionDuration defines the maximum period of time after an HTTP connection has been established from the client to the proxy before it is closed by the proxy, regardless of whether there has been activity or not. Omit or set to 'infinity' for no max duration. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/core/v3/protocol.proto#envoy-v3-api-field-config-core-v3-httpprotocoloptions-max-connection-duration for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"request_timeout": schema.StringAttribute{
-										Description:         "RequestTimeout sets the client request timeout globally for Contour. Note thatthis is a timeout for the entire request, not an idle timeout. Omit or set to'infinity' to disable the timeout entirely.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-request-timeoutfor more information.",
-										MarkdownDescription: "RequestTimeout sets the client request timeout globally for Contour. Note thatthis is a timeout for the entire request, not an idle timeout. Omit or set to'infinity' to disable the timeout entirely.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-request-timeoutfor more information.",
+										Description:         "RequestTimeout sets the client request timeout globally for Contour. Note that this is a timeout for the entire request, not an idle timeout. Omit or set to 'infinity' to disable the timeout entirely. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-request-timeout for more information.",
+										MarkdownDescription: "RequestTimeout sets the client request timeout globally for Contour. Note that this is a timeout for the entire request, not an idle timeout. Omit or set to 'infinity' to disable the timeout entirely. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-request-timeout for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"stream_idle_timeout": schema.StringAttribute{
-										Description:         "StreamIdleTimeout defines how long the proxy should wait while there is norequest activity (for HTTP/1.1) or stream activity (for HTTP/2) beforeterminating the HTTP request or stream. Set to 'infinity' to disable thetimeout entirely.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-stream-idle-timeoutfor more information.",
-										MarkdownDescription: "StreamIdleTimeout defines how long the proxy should wait while there is norequest activity (for HTTP/1.1) or stream activity (for HTTP/2) beforeterminating the HTTP request or stream. Set to 'infinity' to disable thetimeout entirely.See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-stream-idle-timeoutfor more information.",
+										Description:         "StreamIdleTimeout defines how long the proxy should wait while there is no request activity (for HTTP/1.1) or stream activity (for HTTP/2) before terminating the HTTP request or stream. Set to 'infinity' to disable the timeout entirely. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-stream-idle-timeout for more information.",
+										MarkdownDescription: "StreamIdleTimeout defines how long the proxy should wait while there is no request activity (for HTTP/1.1) or stream activity (for HTTP/2) before terminating the HTTP request or stream. Set to 'infinity' to disable the timeout entirely. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-stream-idle-timeout for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1039,8 +1039,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"feature_flags": schema.ListAttribute{
-						Description:         "FeatureFlags defines toggle to enable new contour features.Available toggles are:useEndpointSlices - Configures contour to fetch endpoint datafrom k8s endpoint slices. defaults to true,If false then reads endpoint data from the k8s endpoints.",
-						MarkdownDescription: "FeatureFlags defines toggle to enable new contour features.Available toggles are:useEndpointSlices - Configures contour to fetch endpoint datafrom k8s endpoint slices. defaults to true,If false then reads endpoint data from the k8s endpoints.",
+						Description:         "FeatureFlags defines toggle to enable new contour features. Available toggles are: useEndpointSlices - Configures contour to fetch endpoint data from k8s endpoint slices. defaults to true, If false then reads endpoint data from the k8s endpoints.",
+						MarkdownDescription: "FeatureFlags defines toggle to enable new contour features. Available toggles are: useEndpointSlices - Configures contour to fetch endpoint data from k8s endpoint slices. defaults to true, If false then reads endpoint data from the k8s endpoints.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1048,12 +1048,12 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"gateway": schema.SingleNestedAttribute{
-						Description:         "Gateway contains parameters for the gateway-api Gateway that Contouris configured to serve traffic.",
-						MarkdownDescription: "Gateway contains parameters for the gateway-api Gateway that Contouris configured to serve traffic.",
+						Description:         "Gateway contains parameters for the gateway-api Gateway that Contour is configured to serve traffic.",
+						MarkdownDescription: "Gateway contains parameters for the gateway-api Gateway that Contour is configured to serve traffic.",
 						Attributes: map[string]schema.Attribute{
 							"gateway_ref": schema.SingleNestedAttribute{
-								Description:         "GatewayRef defines the specific Gateway that this Contourinstance corresponds to.",
-								MarkdownDescription: "GatewayRef defines the specific Gateway that this Contourinstance corresponds to.",
+								Description:         "GatewayRef defines the specific Gateway that this Contour instance corresponds to.",
+								MarkdownDescription: "GatewayRef defines the specific Gateway that this Contour instance corresponds to.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -1082,16 +1082,16 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"global_ext_auth": schema.SingleNestedAttribute{
-						Description:         "GlobalExternalAuthorization allows envoys external authorization filterto be enabled for all virtual hosts.",
-						MarkdownDescription: "GlobalExternalAuthorization allows envoys external authorization filterto be enabled for all virtual hosts.",
+						Description:         "GlobalExternalAuthorization allows envoys external authorization filter to be enabled for all virtual hosts.",
+						MarkdownDescription: "GlobalExternalAuthorization allows envoys external authorization filter to be enabled for all virtual hosts.",
 						Attributes: map[string]schema.Attribute{
 							"auth_policy": schema.SingleNestedAttribute{
-								Description:         "AuthPolicy sets a default authorization policy for client requests.This policy will be used unless overridden by individual routes.",
-								MarkdownDescription: "AuthPolicy sets a default authorization policy for client requests.This policy will be used unless overridden by individual routes.",
+								Description:         "AuthPolicy sets a default authorization policy for client requests. This policy will be used unless overridden by individual routes.",
+								MarkdownDescription: "AuthPolicy sets a default authorization policy for client requests. This policy will be used unless overridden by individual routes.",
 								Attributes: map[string]schema.Attribute{
 									"context": schema.MapAttribute{
-										Description:         "Context is a set of key/value pairs that are sent to theauthentication server in the check request. If a contextis provided at an enclosing scope, the entries are mergedsuch that the inner scope overrides matching keys from theouter scope.",
-										MarkdownDescription: "Context is a set of key/value pairs that are sent to theauthentication server in the check request. If a contextis provided at an enclosing scope, the entries are mergedsuch that the inner scope overrides matching keys from theouter scope.",
+										Description:         "Context is a set of key/value pairs that are sent to the authentication server in the check request. If a context is provided at an enclosing scope, the entries are merged such that the inner scope overrides matching keys from the outer scope.",
+										MarkdownDescription: "Context is a set of key/value pairs that are sent to the authentication server in the check request. If a context is provided at an enclosing scope, the entries are merged such that the inner scope overrides matching keys from the outer scope.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1099,8 +1099,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"disabled": schema.BoolAttribute{
-										Description:         "When true, this field disables client request authenticationfor the scope of the policy.",
-										MarkdownDescription: "When true, this field disables client request authenticationfor the scope of the policy.",
+										Description:         "When true, this field disables client request authentication for the scope of the policy.",
+										MarkdownDescription: "When true, this field disables client request authentication for the scope of the policy.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1116,8 +1116,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 								MarkdownDescription: "ExtensionServiceRef specifies the extension resource that will authorize client requests.",
 								Attributes: map[string]schema.Attribute{
 									"api_version": schema.StringAttribute{
-										Description:         "API version of the referent.If this field is not specified, the default 'projectcontour.io/v1alpha1' will be used",
-										MarkdownDescription: "API version of the referent.If this field is not specified, the default 'projectcontour.io/v1alpha1' will be used",
+										Description:         "API version of the referent. If this field is not specified, the default 'projectcontour.io/v1alpha1' will be used",
+										MarkdownDescription: "API version of the referent. If this field is not specified, the default 'projectcontour.io/v1alpha1' will be used",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1127,8 +1127,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1138,8 +1138,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"namespace": schema.StringAttribute{
-										Description:         "Namespace of the referent.If this field is not specifies, the namespace of the resource that targets the referent will be used.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-										MarkdownDescription: "Namespace of the referent.If this field is not specifies, the namespace of the resource that targets the referent will be used.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+										Description:         "Namespace of the referent. If this field is not specifies, the namespace of the resource that targets the referent will be used. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+										MarkdownDescription: "Namespace of the referent. If this field is not specifies, the namespace of the resource that targets the referent will be used. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1154,16 +1154,16 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"fail_open": schema.BoolAttribute{
-								Description:         "If FailOpen is true, the client request is forwarded to the upstream serviceeven if the authorization server fails to respond. This field should not beset in most cases. It is intended for use only while migrating applicationsfrom internal authorization to Contour external authorization.",
-								MarkdownDescription: "If FailOpen is true, the client request is forwarded to the upstream serviceeven if the authorization server fails to respond. This field should not beset in most cases. It is intended for use only while migrating applicationsfrom internal authorization to Contour external authorization.",
+								Description:         "If FailOpen is true, the client request is forwarded to the upstream service even if the authorization server fails to respond. This field should not be set in most cases. It is intended for use only while migrating applications from internal authorization to Contour external authorization.",
+								MarkdownDescription: "If FailOpen is true, the client request is forwarded to the upstream service even if the authorization server fails to respond. This field should not be set in most cases. It is intended for use only while migrating applications from internal authorization to Contour external authorization.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"response_timeout": schema.StringAttribute{
-								Description:         "ResponseTimeout configures maximum time to wait for a check response from the authorization server.Timeout durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration).Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.The string 'infinity' is also a valid input and specifies no timeout.",
-								MarkdownDescription: "ResponseTimeout configures maximum time to wait for a check response from the authorization server.Timeout durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration).Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.The string 'infinity' is also a valid input and specifies no timeout.",
+								Description:         "ResponseTimeout configures maximum time to wait for a check response from the authorization server. Timeout durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration). Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. The string 'infinity' is also a valid input and specifies no timeout.",
+								MarkdownDescription: "ResponseTimeout configures maximum time to wait for a check response from the authorization server. Timeout durations are expressed in the Go [Duration format](https://godoc.org/time#ParseDuration). Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. The string 'infinity' is also a valid input and specifies no timeout.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1214,8 +1214,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"health": schema.SingleNestedAttribute{
-						Description:         "Health defines the endpoints Contour uses to serve health checks.Contour's default is { address: '0.0.0.0', port: 8000 }.",
-						MarkdownDescription: "Health defines the endpoints Contour uses to serve health checks.Contour's default is { address: '0.0.0.0', port: 8000 }.",
+						Description:         "Health defines the endpoints Contour uses to serve health checks. Contour's default is { address: '0.0.0.0', port: 8000 }.",
+						MarkdownDescription: "Health defines the endpoints Contour uses to serve health checks. Contour's default is { address: '0.0.0.0', port: 8000 }.",
 						Attributes: map[string]schema.Attribute{
 							"address": schema.StringAttribute{
 								Description:         "Defines the health address interface.",
@@ -1246,16 +1246,16 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 						MarkdownDescription: "HTTPProxy defines parameters on HTTPProxy.",
 						Attributes: map[string]schema.Attribute{
 							"disable_permit_insecure": schema.BoolAttribute{
-								Description:         "DisablePermitInsecure disables the use of thepermitInsecure field in HTTPProxy.Contour's default is false.",
-								MarkdownDescription: "DisablePermitInsecure disables the use of thepermitInsecure field in HTTPProxy.Contour's default is false.",
+								Description:         "DisablePermitInsecure disables the use of the permitInsecure field in HTTPProxy. Contour's default is false.",
+								MarkdownDescription: "DisablePermitInsecure disables the use of the permitInsecure field in HTTPProxy. Contour's default is false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"fallback_certificate": schema.SingleNestedAttribute{
-								Description:         "FallbackCertificate defines the namespace/name of the Kubernetes secret touse as fallback when a non-SNI request is received.",
-								MarkdownDescription: "FallbackCertificate defines the namespace/name of the Kubernetes secret touse as fallback when a non-SNI request is received.",
+								Description:         "FallbackCertificate defines the namespace/name of the Kubernetes secret to use as fallback when a non-SNI request is received.",
+								MarkdownDescription: "FallbackCertificate defines the namespace/name of the Kubernetes secret to use as fallback when a non-SNI request is received.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -1319,8 +1319,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"metrics": schema.SingleNestedAttribute{
-						Description:         "Metrics defines the endpoint Contour uses to serve metrics.Contour's default is { address: '0.0.0.0', port: 8000 }.",
-						MarkdownDescription: "Metrics defines the endpoint Contour uses to serve metrics.Contour's default is { address: '0.0.0.0', port: 8000 }.",
+						Description:         "Metrics defines the endpoint Contour uses to serve metrics. Contour's default is { address: '0.0.0.0', port: 8000 }.",
+						MarkdownDescription: "Metrics defines the endpoint Contour uses to serve metrics. Contour's default is { address: '0.0.0.0', port: 8000 }.",
 						Attributes: map[string]schema.Attribute{
 							"address": schema.StringAttribute{
 								Description:         "Defines the metrics address interface.",
@@ -1343,8 +1343,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"tls": schema.SingleNestedAttribute{
-								Description:         "TLS holds TLS file config details.Metrics and health endpoints cannot have same port number when metrics is served over HTTPS.",
-								MarkdownDescription: "TLS holds TLS file config details.Metrics and health endpoints cannot have same port number when metrics is served over HTTPS.",
+								Description:         "TLS holds TLS file config details. Metrics and health endpoints cannot have same port number when metrics is served over HTTPS.",
+								MarkdownDescription: "TLS holds TLS file config details. Metrics and health endpoints cannot have same port number when metrics is served over HTTPS.",
 								Attributes: map[string]schema.Attribute{
 									"ca_file": schema.StringAttribute{
 										Description:         "CA filename.",
@@ -1385,8 +1385,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 						MarkdownDescription: "Policy specifies default policy applied if not overridden by the user",
 						Attributes: map[string]schema.Attribute{
 							"apply_to_ingress": schema.BoolAttribute{
-								Description:         "ApplyToIngress determines if the Policies will apply to ingress objectsContour's default is false.",
-								MarkdownDescription: "ApplyToIngress determines if the Policies will apply to ingress objectsContour's default is false.",
+								Description:         "ApplyToIngress determines if the Policies will apply to ingress objects Contour's default is false.",
+								MarkdownDescription: "ApplyToIngress determines if the Policies will apply to ingress objects Contour's default is false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1452,16 +1452,16 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"rate_limit_service": schema.SingleNestedAttribute{
-						Description:         "RateLimitService optionally holds properties of the Rate Limit Serviceto be used for global rate limiting.",
-						MarkdownDescription: "RateLimitService optionally holds properties of the Rate Limit Serviceto be used for global rate limiting.",
+						Description:         "RateLimitService optionally holds properties of the Rate Limit Service to be used for global rate limiting.",
+						MarkdownDescription: "RateLimitService optionally holds properties of the Rate Limit Service to be used for global rate limiting.",
 						Attributes: map[string]schema.Attribute{
 							"default_global_rate_limit_policy": schema.SingleNestedAttribute{
-								Description:         "DefaultGlobalRateLimitPolicy allows setting a default global rate limit policy for every HTTPProxy.HTTPProxy can overwrite this configuration.",
-								MarkdownDescription: "DefaultGlobalRateLimitPolicy allows setting a default global rate limit policy for every HTTPProxy.HTTPProxy can overwrite this configuration.",
+								Description:         "DefaultGlobalRateLimitPolicy allows setting a default global rate limit policy for every HTTPProxy. HTTPProxy can overwrite this configuration.",
+								MarkdownDescription: "DefaultGlobalRateLimitPolicy allows setting a default global rate limit policy for every HTTPProxy. HTTPProxy can overwrite this configuration.",
 								Attributes: map[string]schema.Attribute{
 									"descriptors": schema.ListNestedAttribute{
-										Description:         "Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries.",
-										MarkdownDescription: "Descriptors defines the list of descriptors that willbe generated and sent to the rate limit service. Eachdescriptor contains 1+ key-value pair entries.",
+										Description:         "Descriptors defines the list of descriptors that will be generated and sent to the rate limit service. Each descriptor contains 1+ key-value pair entries.",
+										MarkdownDescription: "Descriptors defines the list of descriptors that will be generated and sent to the rate limit service. Each descriptor contains 1+ key-value pair entries.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"entries": schema.ListNestedAttribute{
@@ -1474,8 +1474,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 																MarkdownDescription: "GenericKey defines a descriptor entry with a static key and value.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "Key defines the key of the descriptor entry. If not set, thekey is set to 'generic_key'.",
-																		MarkdownDescription: "Key defines the key of the descriptor entry. If not set, thekey is set to 'generic_key'.",
+																		Description:         "Key defines the key of the descriptor entry. If not set, the key is set to 'generic_key'.",
+																		MarkdownDescription: "Key defines the key of the descriptor entry. If not set, the key is set to 'generic_key'.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1498,8 +1498,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"remote_address": schema.MapAttribute{
-																Description:         "RemoteAddress defines a descriptor entry with a key of 'remote_address'and a value equal to the client's IP address (from x-forwarded-for).",
-																MarkdownDescription: "RemoteAddress defines a descriptor entry with a key of 'remote_address'and a value equal to the client's IP address (from x-forwarded-for).",
+																Description:         "RemoteAddress defines a descriptor entry with a key of 'remote_address' and a value equal to the client's IP address (from x-forwarded-for).",
+																MarkdownDescription: "RemoteAddress defines a descriptor entry with a key of 'remote_address' and a value equal to the client's IP address (from x-forwarded-for).",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1507,8 +1507,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"request_header": schema.SingleNestedAttribute{
-																Description:         "RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header.",
-																MarkdownDescription: "RequestHeader defines a descriptor entry that's populated only ifa given header is present on the request. The descriptor key is static,and the descriptor value is equal to the value of the header.",
+																Description:         "RequestHeader defines a descriptor entry that's populated only if a given header is present on the request. The descriptor key is static, and the descriptor value is equal to the value of the header.",
+																MarkdownDescription: "RequestHeader defines a descriptor entry that's populated only if a given header is present on the request. The descriptor key is static, and the descriptor value is equal to the value of the header.",
 																Attributes: map[string]schema.Attribute{
 																	"descriptor_key": schema.StringAttribute{
 																		Description:         "DescriptorKey defines the key to use on the descriptor entry.",
@@ -1538,25 +1538,25 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 															},
 
 															"request_header_value_match": schema.SingleNestedAttribute{
-																Description:         "RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static.",
-																MarkdownDescription: "RequestHeaderValueMatch defines a descriptor entry that's populatedif the request's headers match a set of 1+ match criteria. Thedescriptor key is 'header_match', and the descriptor value is static.",
+																Description:         "RequestHeaderValueMatch defines a descriptor entry that's populated if the request's headers match a set of 1+ match criteria. The descriptor key is 'header_match', and the descriptor value is static.",
+																MarkdownDescription: "RequestHeaderValueMatch defines a descriptor entry that's populated if the request's headers match a set of 1+ match criteria. The descriptor key is 'header_match', and the descriptor value is static.",
 																Attributes: map[string]schema.Attribute{
 																	"expect_match": schema.BoolAttribute{
-																		Description:         "ExpectMatch defines whether the request must positively match the matchcriteria in order to generate a descriptor entry (i.e. true), or notmatch the match criteria in order to generate a descriptor entry (i.e. false).The default is true.",
-																		MarkdownDescription: "ExpectMatch defines whether the request must positively match the matchcriteria in order to generate a descriptor entry (i.e. true), or notmatch the match criteria in order to generate a descriptor entry (i.e. false).The default is true.",
+																		Description:         "ExpectMatch defines whether the request must positively match the match criteria in order to generate a descriptor entry (i.e. true), or not match the match criteria in order to generate a descriptor entry (i.e. false). The default is true.",
+																		MarkdownDescription: "ExpectMatch defines whether the request must positively match the match criteria in order to generate a descriptor entry (i.e. true), or not match the match criteria in order to generate a descriptor entry (i.e. false). The default is true.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"headers": schema.ListNestedAttribute{
-																		Description:         "Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not.",
-																		MarkdownDescription: "Headers is a list of 1+ match criteria to apply against the requestto determine whether to populate the descriptor entry or not.",
+																		Description:         "Headers is a list of 1+ match criteria to apply against the request to determine whether to populate the descriptor entry or not.",
+																		MarkdownDescription: "Headers is a list of 1+ match criteria to apply against the request to determine whether to populate the descriptor entry or not.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"contains": schema.StringAttribute{
-																					Description:         "Contains specifies a substring that must be present inthe header value.",
-																					MarkdownDescription: "Contains specifies a substring that must be present inthe header value.",
+																					Description:         "Contains specifies a substring that must be present in the header value.",
+																					MarkdownDescription: "Contains specifies a substring that must be present in the header value.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -1571,64 +1571,64 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 																				},
 
 																				"ignore_case": schema.BoolAttribute{
-																					Description:         "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
-																					MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive.Note that this has no effect on the Regex parameter.",
+																					Description:         "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
+																					MarkdownDescription: "IgnoreCase specifies that string matching should be case insensitive. Note that this has no effect on the Regex parameter.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name is the name of the header to match against. Name is required.Header names are case insensitive.",
-																					MarkdownDescription: "Name is the name of the header to match against. Name is required.Header names are case insensitive.",
+																					Description:         "Name is the name of the header to match against. Name is required. Header names are case insensitive.",
+																					MarkdownDescription: "Name is the name of the header to match against. Name is required. Header names are case insensitive.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"notcontains": schema.StringAttribute{
-																					Description:         "NotContains specifies a substring that must not be presentin the header value.",
-																					MarkdownDescription: "NotContains specifies a substring that must not be presentin the header value.",
+																					Description:         "NotContains specifies a substring that must not be present in the header value.",
+																					MarkdownDescription: "NotContains specifies a substring that must not be present in the header value.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"notexact": schema.StringAttribute{
-																					Description:         "NoExact specifies a string that the header value must not beequal to. The condition is true if the header has any other value.",
-																					MarkdownDescription: "NoExact specifies a string that the header value must not beequal to. The condition is true if the header has any other value.",
+																					Description:         "NoExact specifies a string that the header value must not be equal to. The condition is true if the header has any other value.",
+																					MarkdownDescription: "NoExact specifies a string that the header value must not be equal to. The condition is true if the header has any other value.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"notpresent": schema.BoolAttribute{
-																					Description:         "NotPresent specifies that condition is true when the named headeris not present. Note that setting NotPresent to false does notmake the condition true if the named header is present.",
-																					MarkdownDescription: "NotPresent specifies that condition is true when the named headeris not present. Note that setting NotPresent to false does notmake the condition true if the named header is present.",
+																					Description:         "NotPresent specifies that condition is true when the named header is not present. Note that setting NotPresent to false does not make the condition true if the named header is present.",
+																					MarkdownDescription: "NotPresent specifies that condition is true when the named header is not present. Note that setting NotPresent to false does not make the condition true if the named header is present.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"present": schema.BoolAttribute{
-																					Description:         "Present specifies that condition is true when the named headeris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named headeris absent.",
-																					MarkdownDescription: "Present specifies that condition is true when the named headeris present, regardless of its value. Note that setting Presentto false does not make the condition true if the named headeris absent.",
+																					Description:         "Present specifies that condition is true when the named header is present, regardless of its value. Note that setting Present to false does not make the condition true if the named header is absent.",
+																					MarkdownDescription: "Present specifies that condition is true when the named header is present, regardless of its value. Note that setting Present to false does not make the condition true if the named header is absent.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"regex": schema.StringAttribute{
-																					Description:         "Regex specifies a regular expression pattern that must match the headervalue.",
-																					MarkdownDescription: "Regex specifies a regular expression pattern that must match the headervalue.",
+																					Description:         "Regex specifies a regular expression pattern that must match the header value.",
+																					MarkdownDescription: "Regex specifies a regular expression pattern that must match the header value.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"treat_missing_as_empty": schema.BoolAttribute{
-																					Description:         "TreatMissingAsEmpty specifies if the header match rule specified headerdoes not exist, this header value will be treated as empty. Defaults to false.Unlike the underlying Envoy implementation this is **only** supported fornegative matches (e.g. NotContains, NotExact).",
-																					MarkdownDescription: "TreatMissingAsEmpty specifies if the header match rule specified headerdoes not exist, this header value will be treated as empty. Defaults to false.Unlike the underlying Envoy implementation this is **only** supported fornegative matches (e.g. NotContains, NotExact).",
+																					Description:         "TreatMissingAsEmpty specifies if the header match rule specified header does not exist, this header value will be treated as empty. Defaults to false. Unlike the underlying Envoy implementation this is **only** supported for negative matches (e.g. NotContains, NotExact).",
+																					MarkdownDescription: "TreatMissingAsEmpty specifies if the header match rule specified header does not exist, this header value will be treated as empty. Defaults to false. Unlike the underlying Envoy implementation this is **only** supported for negative matches (e.g. NotContains, NotExact).",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -1669,8 +1669,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"disabled": schema.BoolAttribute{
-										Description:         "Disabled configures the HTTPProxy to not usethe default global rate limit policy defined by the Contour configuration.",
-										MarkdownDescription: "Disabled configures the HTTPProxy to not usethe default global rate limit policy defined by the Contour configuration.",
+										Description:         "Disabled configures the HTTPProxy to not use the default global rate limit policy defined by the Contour configuration.",
+										MarkdownDescription: "Disabled configures the HTTPProxy to not use the default global rate limit policy defined by the Contour configuration.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1690,16 +1690,16 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"enable_resource_exhausted_code": schema.BoolAttribute{
-								Description:         "EnableResourceExhaustedCode enables translating error code 429 togrpc code RESOURCE_EXHAUSTED. When disabled it's translated to UNAVAILABLE",
-								MarkdownDescription: "EnableResourceExhaustedCode enables translating error code 429 togrpc code RESOURCE_EXHAUSTED. When disabled it's translated to UNAVAILABLE",
+								Description:         "EnableResourceExhaustedCode enables translating error code 429 to grpc code RESOURCE_EXHAUSTED. When disabled it's translated to UNAVAILABLE",
+								MarkdownDescription: "EnableResourceExhaustedCode enables translating error code 429 to grpc code RESOURCE_EXHAUSTED. When disabled it's translated to UNAVAILABLE",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"enable_x_rate_limit_headers": schema.BoolAttribute{
-								Description:         "EnableXRateLimitHeaders defines whether to include the X-RateLimitheaders X-RateLimit-Limit, X-RateLimit-Remaining, and X-RateLimit-Reset(as defined by the IETF Internet-Draft linked below), on responsesto clients when the Rate Limit Service is consulted for a request.ref. https://tools.ietf.org/id/draft-polli-ratelimit-headers-03.html",
-								MarkdownDescription: "EnableXRateLimitHeaders defines whether to include the X-RateLimitheaders X-RateLimit-Limit, X-RateLimit-Remaining, and X-RateLimit-Reset(as defined by the IETF Internet-Draft linked below), on responsesto clients when the Rate Limit Service is consulted for a request.ref. https://tools.ietf.org/id/draft-polli-ratelimit-headers-03.html",
+								Description:         "EnableXRateLimitHeaders defines whether to include the X-RateLimit headers X-RateLimit-Limit, X-RateLimit-Remaining, and X-RateLimit-Reset (as defined by the IETF Internet-Draft linked below), on responses to clients when the Rate Limit Service is consulted for a request. ref. https://tools.ietf.org/id/draft-polli-ratelimit-headers-03.html",
+								MarkdownDescription: "EnableXRateLimitHeaders defines whether to include the X-RateLimit headers X-RateLimit-Limit, X-RateLimit-Remaining, and X-RateLimit-Reset (as defined by the IETF Internet-Draft linked below), on responses to clients when the Rate Limit Service is consulted for a request. ref. https://tools.ietf.org/id/draft-polli-ratelimit-headers-03.html",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1731,8 +1731,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"fail_open": schema.BoolAttribute{
-								Description:         "FailOpen defines whether to allow requests to proceed when theRate Limit Service fails to respond with a valid rate limitdecision within the timeout defined on the extension service.",
-								MarkdownDescription: "FailOpen defines whether to allow requests to proceed when theRate Limit Service fails to respond with a valid rate limitdecision within the timeout defined on the extension service.",
+								Description:         "FailOpen defines whether to allow requests to proceed when the Rate Limit Service fails to respond with a valid rate limit decision within the timeout defined on the extension service.",
+								MarkdownDescription: "FailOpen defines whether to allow requests to proceed when the Rate Limit Service fails to respond with a valid rate limit decision within the timeout defined on the extension service.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1753,16 +1753,16 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"literal": schema.StringAttribute{
-											Description:         "Literal is a static custom tag value.Precisely one of Literal, RequestHeaderName must be set.",
-											MarkdownDescription: "Literal is a static custom tag value.Precisely one of Literal, RequestHeaderName must be set.",
+											Description:         "Literal is a static custom tag value. Precisely one of Literal, RequestHeaderName must be set.",
+											MarkdownDescription: "Literal is a static custom tag value. Precisely one of Literal, RequestHeaderName must be set.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"request_header_name": schema.StringAttribute{
-											Description:         "RequestHeaderName indicates which request headerthe label value is obtained from.Precisely one of Literal, RequestHeaderName must be set.",
-											MarkdownDescription: "RequestHeaderName indicates which request headerthe label value is obtained from.Precisely one of Literal, RequestHeaderName must be set.",
+											Description:         "RequestHeaderName indicates which request header the label value is obtained from. Precisely one of Literal, RequestHeaderName must be set.",
+											MarkdownDescription: "RequestHeaderName indicates which request header the label value is obtained from. Precisely one of Literal, RequestHeaderName must be set.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1808,32 +1808,32 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"include_pod_detail": schema.BoolAttribute{
-								Description:         "IncludePodDetail defines a flag.If it is true, contour will add the pod name and namespace to the span of the trace.the default is true.Note: The Envoy pods MUST have the HOSTNAME and CONTOUR_NAMESPACE environment variables set for this to work properly.",
-								MarkdownDescription: "IncludePodDetail defines a flag.If it is true, contour will add the pod name and namespace to the span of the trace.the default is true.Note: The Envoy pods MUST have the HOSTNAME and CONTOUR_NAMESPACE environment variables set for this to work properly.",
+								Description:         "IncludePodDetail defines a flag. If it is true, contour will add the pod name and namespace to the span of the trace. the default is true. Note: The Envoy pods MUST have the HOSTNAME and CONTOUR_NAMESPACE environment variables set for this to work properly.",
+								MarkdownDescription: "IncludePodDetail defines a flag. If it is true, contour will add the pod name and namespace to the span of the trace. the default is true. Note: The Envoy pods MUST have the HOSTNAME and CONTOUR_NAMESPACE environment variables set for this to work properly.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"max_path_tag_length": schema.Int64Attribute{
-								Description:         "MaxPathTagLength defines maximum length of the request pathto extract and include in the HttpUrl tag.contour's default is 256.",
-								MarkdownDescription: "MaxPathTagLength defines maximum length of the request pathto extract and include in the HttpUrl tag.contour's default is 256.",
+								Description:         "MaxPathTagLength defines maximum length of the request path to extract and include in the HttpUrl tag. contour's default is 256.",
+								MarkdownDescription: "MaxPathTagLength defines maximum length of the request path to extract and include in the HttpUrl tag. contour's default is 256.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"overall_sampling": schema.StringAttribute{
-								Description:         "OverallSampling defines the sampling rate of trace data.contour's default is 100.",
-								MarkdownDescription: "OverallSampling defines the sampling rate of trace data.contour's default is 100.",
+								Description:         "OverallSampling defines the sampling rate of trace data. contour's default is 100.",
+								MarkdownDescription: "OverallSampling defines the sampling rate of trace data. contour's default is 100.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"service_name": schema.StringAttribute{
-								Description:         "ServiceName defines the name for the service.contour's default is contour.",
-								MarkdownDescription: "ServiceName defines the name for the service.contour's default is contour.",
+								Description:         "ServiceName defines the name for the service. contour's default is contour.",
+								MarkdownDescription: "ServiceName defines the name for the service. contour's default is contour.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1849,8 +1849,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 						MarkdownDescription: "XDSServer contains parameters for the xDS server.",
 						Attributes: map[string]schema.Attribute{
 							"address": schema.StringAttribute{
-								Description:         "Defines the xDS gRPC API address which Contour will serve.Contour's default is '0.0.0.0'.",
-								MarkdownDescription: "Defines the xDS gRPC API address which Contour will serve.Contour's default is '0.0.0.0'.",
+								Description:         "Defines the xDS gRPC API address which Contour will serve. Contour's default is '0.0.0.0'.",
+								MarkdownDescription: "Defines the xDS gRPC API address which Contour will serve. Contour's default is '0.0.0.0'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1860,16 +1860,16 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"port": schema.Int64Attribute{
-								Description:         "Defines the xDS gRPC API port which Contour will serve.Contour's default is 8001.",
-								MarkdownDescription: "Defines the xDS gRPC API port which Contour will serve.Contour's default is 8001.",
+								Description:         "Defines the xDS gRPC API port which Contour will serve. Contour's default is 8001.",
+								MarkdownDescription: "Defines the xDS gRPC API port which Contour will serve. Contour's default is 8001.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tls": schema.SingleNestedAttribute{
-								Description:         "TLS holds TLS file config details.Contour's default is { caFile: '/certs/ca.crt', certFile: '/certs/tls.cert', keyFile: '/certs/tls.key', insecure: false }.",
-								MarkdownDescription: "TLS holds TLS file config details.Contour's default is { caFile: '/certs/ca.crt', certFile: '/certs/tls.cert', keyFile: '/certs/tls.key', insecure: false }.",
+								Description:         "TLS holds TLS file config details. Contour's default is { caFile: '/certs/ca.crt', certFile: '/certs/tls.cert', keyFile: '/certs/tls.key', insecure: false }.",
+								MarkdownDescription: "TLS holds TLS file config details. Contour's default is { caFile: '/certs/ca.crt', certFile: '/certs/tls.cert', keyFile: '/certs/tls.key', insecure: false }.",
 								Attributes: map[string]schema.Attribute{
 									"ca_file": schema.StringAttribute{
 										Description:         "CA filename.",
@@ -1909,8 +1909,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "Defines the XDSServer to use for 'contour serve'.Values: 'envoy' (default), 'contour (deprecated)'.Other values will produce an error.Deprecated: this field will be removed in a future release whenthe 'contour' xDS server implementation is removed.",
-								MarkdownDescription: "Defines the XDSServer to use for 'contour serve'.Values: 'envoy' (default), 'contour (deprecated)'.Other values will produce an error.Deprecated: this field will be removed in a future release whenthe 'contour' xDS server implementation is removed.",
+								Description:         "Defines the XDSServer to use for 'contour serve'. Values: 'envoy' (default), 'contour (deprecated)'. Other values will produce an error. Deprecated: this field will be removed in a future release when the 'contour' xDS server implementation is removed.",
+								MarkdownDescription: "Defines the XDSServer to use for 'contour serve'. Values: 'envoy' (default), 'contour (deprecated)'. Other values will produce an error. Deprecated: this field will be removed in a future release when the 'contour' xDS server implementation is removed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -30,7 +30,7 @@ data "k8s_source_toolkit_fluxcd_io_bucket_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) BucketSpec specifies the required configuration to produce an Artifact foran object storage bucket. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) BucketSpec specifies the required configuration to produce an Artifact for an object storage bucket. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -57,20 +57,20 @@ Required:
 
 - `bucket_name` (String) BucketName is the name of the object storage bucket.
 - `endpoint` (String) Endpoint is the object storage address the BucketName is located at.
-- `interval` (String) Interval at which the Bucket Endpoint is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.
+- `interval` (String) Interval at which the Bucket Endpoint is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.
 
 Optional:
 
-- `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to thebucket. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'generic' provider. (see [below for nested schema](#nestedatt--spec--cert_secret_ref))
-- `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.
+- `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a Secret containing either or both of - a PEM-encoded client certificate ('tls.crt') and private key ('tls.key'); - a PEM-encoded CA certificate ('ca.crt') and whichever are supplied, will be used for connecting to the bucket. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type 'Opaque' or 'kubernetes.io/tls'. This field is only supported for the 'generic' provider. (see [below for nested schema](#nestedatt--spec--cert_secret_ref))
+- `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.
 - `insecure` (Boolean) Insecure allows connecting to a non-TLS HTTP Endpoint.
 - `prefix` (String) Prefix to use for server-side filtering of files in the Bucket.
-- `provider` (String) Provider of the object storage bucket.Defaults to 'generic', which expects an S3 (API) compatible objectstorage.
-- `proxy_secret_ref` (Attributes) ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server. (see [below for nested schema](#nestedatt--spec--proxy_secret_ref))
+- `provider` (String) Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.
+- `proxy_secret_ref` (Attributes) ProxySecretRef specifies the Secret containing the proxy configuration to use while communicating with the Bucket server. (see [below for nested schema](#nestedatt--spec--proxy_secret_ref))
 - `region` (String) Region of the Endpoint where the BucketName is located in.
-- `secret_ref` (Attributes) SecretRef specifies the Secret containing authentication credentialsfor the Bucket. (see [below for nested schema](#nestedatt--spec--secret_ref))
-- `sts` (Attributes) STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' and 'generic' providers. (see [below for nested schema](#nestedatt--spec--sts))
-- `suspend` (Boolean) Suspend tells the controller to suspend the reconciliation of thisBucket.
+- `secret_ref` (Attributes) SecretRef specifies the Secret containing authentication credentials for the Bucket. (see [below for nested schema](#nestedatt--spec--secret_ref))
+- `sts` (Attributes) STS specifies the required configuration to use a Security Token Service for fetching temporary credentials to authenticate in a Bucket provider. This field is only supported for the 'aws' and 'generic' providers. (see [below for nested schema](#nestedatt--spec--sts))
+- `suspend` (Boolean) Suspend tells the controller to suspend the reconciliation of this Bucket.
 - `timeout` (String) Timeout for fetch operations, defaults to 60s.
 
 <a id="nestedatt--spec--cert_secret_ref"></a>
@@ -102,13 +102,13 @@ Required:
 
 Required:
 
-- `endpoint` (String) Endpoint is the HTTP/S endpoint of the Security Token Service fromwhere temporary credentials will be fetched.
+- `endpoint` (String) Endpoint is the HTTP/S endpoint of the Security Token Service from where temporary credentials will be fetched.
 - `provider` (String) Provider of the Security Token Service.
 
 Optional:
 
-- `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theSTS endpoint. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'ldap' provider. (see [below for nested schema](#nestedatt--spec--sts--cert_secret_ref))
-- `secret_ref` (Attributes) SecretRef specifies the Secret containing authentication credentialsfor the STS endpoint. This Secret must contain the fields 'username'and 'password' and is supported only for the 'ldap' provider. (see [below for nested schema](#nestedatt--spec--sts--secret_ref))
+- `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a Secret containing either or both of - a PEM-encoded client certificate ('tls.crt') and private key ('tls.key'); - a PEM-encoded CA certificate ('ca.crt') and whichever are supplied, will be used for connecting to the STS endpoint. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate. The Secret must be of type 'Opaque' or 'kubernetes.io/tls'. This field is only supported for the 'ldap' provider. (see [below for nested schema](#nestedatt--spec--sts--cert_secret_ref))
+- `secret_ref` (Attributes) SecretRef specifies the Secret containing authentication credentials for the STS endpoint. This Secret must contain the fields 'username' and 'password' and is supported only for the 'ldap' provider. (see [below for nested schema](#nestedatt--spec--sts--secret_ref))
 
 <a id="nestedatt--spec--sts--cert_secret_ref"></a>
 ### Nested Schema for `spec.sts.cert_secret_ref`

@@ -128,16 +128,16 @@ func (r *RulesKubeedgeIoRuleV1Manifest) Schema(_ context.Context, _ datasource.S
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"source": schema.StringAttribute{
-						Description:         "source is a string value representing where the messages come from. Itsvalue is the same with ruleendpoint name. For example, my-rest or my-eventbus.",
-						MarkdownDescription: "source is a string value representing where the messages come from. Itsvalue is the same with ruleendpoint name. For example, my-rest or my-eventbus.",
+						Description:         "source is a string value representing where the messages come from. Its value is the same with ruleendpoint name. For example, my-rest or my-eventbus. ",
+						MarkdownDescription: "source is a string value representing where the messages come from. Its value is the same with ruleendpoint name. For example, my-rest or my-eventbus. ",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"source_resource": schema.MapAttribute{
-						Description:         "sourceResource is a map representing the resource info of source. For restrule-endpoint type its value is {'path':'/test'}. For eventbus ruleendpoint type itsvalue is {'topic':'<user define string>','node_name':'edge-node'}",
-						MarkdownDescription: "sourceResource is a map representing the resource info of source. For restrule-endpoint type its value is {'path':'/test'}. For eventbus ruleendpoint type itsvalue is {'topic':'<user define string>','node_name':'edge-node'}",
+						Description:         "sourceResource is a map representing the resource info of source. For rest rule-endpoint type its value is {'path':'/test'}. For eventbus ruleendpoint type its value is {'topic':'<user define string>','node_name':'edge-node'} ",
+						MarkdownDescription: "sourceResource is a map representing the resource info of source. For rest rule-endpoint type its value is {'path':'/test'}. For eventbus ruleendpoint type its value is {'topic':'<user define string>','node_name':'edge-node'} ",
 						ElementType:         types.StringType,
 						Required:            true,
 						Optional:            false,
@@ -145,16 +145,16 @@ func (r *RulesKubeedgeIoRuleV1Manifest) Schema(_ context.Context, _ datasource.S
 					},
 
 					"target": schema.StringAttribute{
-						Description:         "target is a string value representing where the messages go to. its value isthe same with ruleendpoint name. For example, my-eventbus or my-rest or my-servicebus.",
-						MarkdownDescription: "target is a string value representing where the messages go to. its value isthe same with ruleendpoint name. For example, my-eventbus or my-rest or my-servicebus.",
+						Description:         "target is a string value representing where the messages go to. its value is the same with ruleendpoint name. For example, my-eventbus or my-rest or my-servicebus. ",
+						MarkdownDescription: "target is a string value representing where the messages go to. its value is the same with ruleendpoint name. For example, my-eventbus or my-rest or my-servicebus. ",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"target_resource": schema.MapAttribute{
-						Description:         "targetResource is a map representing the resource info of target. For restrule-endpoint type its value is {'resource':'http://a.com'}. For eventbus ruleendpointtype its value is {'topic':'/test'}. For servicebus rule-endpoint type its value is{'path':'/request_path'}.",
-						MarkdownDescription: "targetResource is a map representing the resource info of target. For restrule-endpoint type its value is {'resource':'http://a.com'}. For eventbus ruleendpointtype its value is {'topic':'/test'}. For servicebus rule-endpoint type its value is{'path':'/request_path'}.",
+						Description:         "targetResource is a map representing the resource info of target. For rest rule-endpoint type its value is {'resource':'http://a.com'}. For eventbus ruleendpoint type its value is {'topic':'/test'}. For servicebus rule-endpoint type its value is {'path':'/request_path'}. ",
+						MarkdownDescription: "targetResource is a map representing the resource info of target. For rest rule-endpoint type its value is {'resource':'http://a.com'}. For eventbus ruleendpoint type its value is {'topic':'/test'}. For servicebus rule-endpoint type its value is {'path':'/request_path'}. ",
 						ElementType:         types.StringType,
 						Required:            true,
 						Optional:            false,

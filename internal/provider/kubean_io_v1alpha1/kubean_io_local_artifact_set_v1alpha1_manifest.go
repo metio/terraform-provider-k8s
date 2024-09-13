@@ -121,8 +121,8 @@ func (r *KubeanIoLocalArtifactSetV1Alpha1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"arch": schema.ListAttribute{
-						Description:         "Arch for x86_64  aarch64... , represent for the arch of this offline package",
-						MarkdownDescription: "Arch for x86_64  aarch64... , represent for the arch of this offline package",
+						Description:         "Arch for x86_64 aarch64... , represent for the arch of this offline package",
+						MarkdownDescription: "Arch for x86_64 aarch64... , represent for the arch of this offline package",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

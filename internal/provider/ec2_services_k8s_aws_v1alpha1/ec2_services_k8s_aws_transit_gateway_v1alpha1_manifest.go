@@ -135,8 +135,8 @@ func (r *Ec2ServicesK8SAwsTransitGatewayV1Alpha1Manifest) Schema(_ context.Conte
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "TransitGatewaySpec defines the desired state of TransitGateway.Describes a transit gateway.",
-				MarkdownDescription: "TransitGatewaySpec defines the desired state of TransitGateway.Describes a transit gateway.",
+				Description:         "TransitGatewaySpec defines the desired state of TransitGateway. Describes a transit gateway.",
+				MarkdownDescription: "TransitGatewaySpec defines the desired state of TransitGateway. Describes a transit gateway.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
 						Description:         "A description of the transit gateway.",
@@ -221,8 +221,8 @@ func (r *Ec2ServicesK8SAwsTransitGatewayV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
-						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
+						Description:         "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
+						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

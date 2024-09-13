@@ -62,7 +62,7 @@ Optional:
 Optional:
 
 - `series` (Attributes List) series is a series of class definitions. (see [below for nested schema](#nestedatt--spec--groups--series))
-- `template` (String) template is a class definition template that uses the Go template syntax and allows for variable declaration. When defining a class in Series, specifying the variable's value is sufficient, as the complete class definition will be generated through rendering the template.  For example:  '''yaml template: | cpu: '{{ or .cpu 1 }}' memory: '{{ or .memory 4 }}Gi' '''
+- `template` (String) template is a class definition template that uses the Go template syntax and allows for variable declaration. When defining a class in Series, specifying the variable's value is sufficient, as the complete class definition will be generated through rendering the template. For example: '''yaml template: | cpu: '{{ or .cpu 1 }}' memory: '{{ or .memory 4 }}Gi' '''
 - `vars` (List of String) vars defines the variables declared in the template and will be used to generating the complete class definition by render the template.
 
 <a id="nestedatt--spec--groups--series"></a>

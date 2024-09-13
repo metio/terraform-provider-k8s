@@ -156,16 +156,16 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Manifest) Schema(_ context.Context, 
 						MarkdownDescription: "EgressGateway is the gateway node responsible for SNATing traffic.",
 						Attributes: map[string]schema.Attribute{
 							"egress_ip": schema.StringAttribute{
-								Description:         "EgressIP is the source IP address that the egress traffic is SNATed with.  Example: When set to '192.168.1.100', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with IP address 192.168.1.100.  When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
-								MarkdownDescription: "EgressIP is the source IP address that the egress traffic is SNATed with.  Example: When set to '192.168.1.100', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with IP address 192.168.1.100.  When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
+								Description:         "EgressIP is the source IP address that the egress traffic is SNATed with. Example: When set to '192.168.1.100', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with IP address 192.168.1.100. When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
+								MarkdownDescription: "EgressIP is the source IP address that the egress traffic is SNATed with. Example: When set to '192.168.1.100', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with IP address 192.168.1.100. When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"interface": schema.StringAttribute{
-								Description:         "Interface is the network interface to which the egress IP address that the traffic is SNATed with is assigned.  Example: When set to 'eth1', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with the first IPv4 address assigned to the eth1 interface.  When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
-								MarkdownDescription: "Interface is the network interface to which the egress IP address that the traffic is SNATed with is assigned.  Example: When set to 'eth1', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with the first IPv4 address assigned to the eth1 interface.  When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
+								Description:         "Interface is the network interface to which the egress IP address that the traffic is SNATed with is assigned. Example: When set to 'eth1', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with the first IPv4 address assigned to the eth1 interface. When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
+								MarkdownDescription: "Interface is the network interface to which the egress IP address that the traffic is SNATed with is assigned. Example: When set to 'eth1', matching egress traffic will be redirected to the node matching the NodeSelector field and SNATed with the first IPv4 address assigned to the eth1 interface. When none of the Interface or EgressIP fields is specified, the policy will use the first IPv4 assigned to the interface with the default route.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

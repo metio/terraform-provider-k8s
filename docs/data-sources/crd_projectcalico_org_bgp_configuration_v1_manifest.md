@@ -60,7 +60,7 @@ Optional:
 - `ignored_interfaces` (List of String) IgnoredInterfaces indicates the network interfaces that needs to be excluded when reading device routes.
 - `listen_port` (Number) ListenPort is the port where BGP protocol should listen. Defaults to 179
 - `log_severity_screen` (String) LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: INFO]
-- `node_mesh_max_restart_time` (String) Time to allow for software restart for node-to-mesh peerings.  When specified, this is configured as the graceful restart timeout.  When not specified, the BIRD default of 120s is used. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled
+- `node_mesh_max_restart_time` (String) Time to allow for software restart for node-to-mesh peerings. When specified, this is configured as the graceful restart timeout. When not specified, the BIRD default of 120s is used. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled
 - `node_mesh_password` (Attributes) Optional BGP password for full node-to-mesh peerings. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled (see [below for nested schema](#nestedatt--spec--node_mesh_password))
 - `node_to_node_mesh_enabled` (Boolean) NodeToNodeMeshEnabled sets whether full node to node BGP mesh is enabled. [Default: true]
 - `prefix_advertisements` (Attributes List) PrefixAdvertisements contains per-prefix advertisement configuration. (see [below for nested schema](#nestedatt--spec--prefix_advertisements))
@@ -89,7 +89,7 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 

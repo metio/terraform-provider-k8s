@@ -934,8 +934,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -1284,8 +1284,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -1666,8 +1666,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																							MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 																							Attributes: map[string]schema.Attribute{
 																								"key": schema.StringAttribute{
-																									Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																									MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																									Description:         "The key of the secret to select from. Must be a valid secret key.",
+																									MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -1839,8 +1839,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"mount_path": schema.StringAttribute{
-																					Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'.",
-																					MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'.",
+																					Description:         "Path within the container at which the volume should be mounted. Must not contain ':'.",
+																					MarkdownDescription: "Path within the container at which the volume should be mounted. Must not contain ':'.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -1975,8 +1975,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						},
 
 																						"kind": schema.StringAttribute{
-																							Description:         "Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
-																							MarkdownDescription: "Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
+																							Description:         "Expected values Shared: multiple blob disks per storage account Dedicated: single blob disk per storage account Managed: azure managed data disk (only in managed availability set). defaults to shared",
+																							MarkdownDescription: "Expected values Shared: multiple blob disks per storage account Dedicated: single blob disk per storage account Managed: azure managed data disk (only in managed availability set). defaults to shared",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2234,8 +2234,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						},
 
 																						"node_publish_secret_ref": schema.SingleNestedAttribute{
-																							Description:         "NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
-																							MarkdownDescription: "NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
+																							Description:         "NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
+																							MarkdownDescription: "NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
 																							Attributes: map[string]schema.Attribute{
 																								"name": schema.StringAttribute{
 																									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -2323,8 +2323,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																									},
 
 																									"path": schema.StringAttribute{
-																										Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
-																										MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																										Description:         "Required: Path is the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																										MarkdownDescription: "Required: Path is the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -2580,8 +2580,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																					MarkdownDescription: "GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 																					Attributes: map[string]schema.Attribute{
 																						"directory": schema.StringAttribute{
-																							Description:         "Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
-																							MarkdownDescription: "Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
+																							Description:         "Target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
+																							MarkdownDescription: "Target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -3017,8 +3017,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																														},
 
 																														"path": schema.StringAttribute{
-																															Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
-																															MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																															Description:         "Required: Path is the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																															MarkdownDescription: "Required: Path is the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
 																															Required:            true,
 																															Optional:            false,
 																															Computed:            false,
@@ -3499,8 +3499,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						},
 
 																						"secret_ref": schema.SingleNestedAttribute{
-																							Description:         "SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
-																							MarkdownDescription: "SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
+																							Description:         "SecretRef specifies the secret to use for obtaining the StorageOS API credentials. If not specified, default values will be attempted.",
+																							MarkdownDescription: "SecretRef specifies the secret to use for obtaining the StorageOS API credentials. If not specified, default values will be attempted.",
 																							Attributes: map[string]schema.Attribute{
 																								"name": schema.StringAttribute{
 																									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -3516,16 +3516,16 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																						},
 
 																						"volume_name": schema.StringAttribute{
-																							Description:         "VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
-																							MarkdownDescription: "VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
+																							Description:         "VolumeName is the human-readable name of the StorageOS volume. Volume names are only unique within a namespace.",
+																							MarkdownDescription: "VolumeName is the human-readable name of the StorageOS volume. Volume names are only unique within a namespace.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"volume_namespace": schema.StringAttribute{
-																							Description:         "VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
-																							MarkdownDescription: "VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
+																							Description:         "VolumeNamespace specifies the scope of the volume within StorageOS. If no namespace is specified then the Pod's namespace will be used. This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
+																							MarkdownDescription: "VolumeNamespace specifies the scope of the volume within StorageOS. If no namespace is specified then the Pod's namespace will be used. This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,

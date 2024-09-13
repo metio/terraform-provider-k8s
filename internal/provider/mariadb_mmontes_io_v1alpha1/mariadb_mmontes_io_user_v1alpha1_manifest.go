@@ -72,8 +72,8 @@ func (r *MariadbMmontesIoUserV1Alpha1Manifest) Metadata(_ context.Context, reque
 
 func (r *MariadbMmontesIoUserV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "User is the Schema for the users API.  It is used to define grants as if you were running a 'CREATE USER' statement.",
-		MarkdownDescription: "User is the Schema for the users API.  It is used to define grants as if you were running a 'CREATE USER' statement.",
+		Description:         "User is the Schema for the users API. It is used to define grants as if you were running a 'CREATE USER' statement.",
+		MarkdownDescription: "User is the Schema for the users API. It is used to define grants as if you were running a 'CREATE USER' statement.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -251,8 +251,8 @@ func (r *MariadbMmontesIoUserV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to be used by the User.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
-								Description:         "The key of the secret to select from.  Must be a valid secret key.",
-								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+								Description:         "The key of the secret to select from. Must be a valid secret key.",
+								MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

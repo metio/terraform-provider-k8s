@@ -231,8 +231,8 @@ func (r *CoreKubeadmiralIoFederatedTypeConfigV1Alpha1Manifest) Schema(_ context.
 							},
 
 							"plural_name": schema.StringAttribute{
-								Description:         "Lower-cased plural name of the resource (e.g. configmaps).  If not provided, it will be computed by lower-casing the kind and suffixing an 's'.",
-								MarkdownDescription: "Lower-cased plural name of the resource (e.g. configmaps).  If not provided, it will be computed by lower-casing the kind and suffixing an 's'.",
+								Description:         "Lower-cased plural name of the resource (e.g. configmaps). If not provided, it will be computed by lower-casing the kind and suffixing an 's'.",
+								MarkdownDescription: "Lower-cased plural name of the resource (e.g. configmaps). If not provided, it will be computed by lower-casing the kind and suffixing an 's'.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

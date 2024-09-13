@@ -74,7 +74,7 @@ Optional:
 - `request_headers` (Map of String) RequestHeaders is a rule to select target by http headers in request. The key-value pairs represent header name and header value pairs.
 - `response_headers` (Map of String) ResponseHeaders is a rule to select target by http headers in response. The key-value pairs represent header name and header value pairs.
 - `tls` (Attributes) TLS is the tls config, will override PodHttpChaos if there are multiple HTTPChaos experiments are applied (see [below for nested schema](#nestedatt--spec--tls))
-- `value` (String) Value is required when the mode is set to 'FixedMode' / 'FixedPercentMode' / 'RandomMaxPercentMode'. If 'FixedMode', provide an integer of pods to do chaos action. If 'FixedPercentMode', provide a number from 0-100 to specify the percent of pods the server can do chaos action. IF 'RandomMaxPercentMode',  provide a number from 0-100 to specify the max percent of pods to do chaos action
+- `value` (String) Value is required when the mode is set to 'FixedMode' / 'FixedPercentMode' / 'RandomMaxPercentMode'. If 'FixedMode', provide an integer of pods to do chaos action. If 'FixedPercentMode', provide a number from 0-100 to specify the percent of pods the server can do chaos action. IF 'RandomMaxPercentMode', provide a number from 0-100 to specify the max percent of pods to do chaos action
 
 <a id="nestedatt--spec--selector"></a>
 ### Nested Schema for `spec.selector`

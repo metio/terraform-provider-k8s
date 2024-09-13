@@ -91,7 +91,7 @@ Optional:
 Optional:
 
 - `delay` (String) delay duration in time units
-- `execution_request` (Attributes) TestSuiteStepExecutionRequest contains parameters to be used by the executions.These fields will be passed to the execution when a Test Suite is queued for execution.TestSuiteStepExecutionRequest parameters have the highest priority. They override thevalues coming from Test Suites, Tests, and Test Executions. (see [below for nested schema](#nestedatt--spec--after--execute--execution_request))
+- `execution_request` (Attributes) TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions. (see [below for nested schema](#nestedatt--spec--after--execute--execution_request))
 - `test` (String) object name
 
 <a id="nestedatt--spec--after--execute--execution_request"></a>
@@ -104,7 +104,7 @@ Optional:
 - `command` (List of String) executor binary command
 - `cron_job_template` (String) cron job template extensions
 - `cron_job_template_reference` (String) cron job template extensions reference
-- `disable_webhooks` (Boolean) whether webhooks should be called on executionDeprecated: field is not used
+- `disable_webhooks` (Boolean) whether webhooks should be called on execution Deprecated: field is not used
 - `execution_labels` (Map of String) test execution labels
 - `http_proxy` (String) http proxy for executor containers
 - `https_proxy` (String) https proxy for executor containers
@@ -147,8 +147,8 @@ Optional:
 Optional:
 
 - `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables--value_from--resource_field_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables--value_from--resource_field_ref))
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--after--execute--execution_request--variables--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--after--execute--execution_request--variables--value_from--config_map_key_ref"></a>
@@ -160,7 +160,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -194,11 +194,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -235,7 +235,7 @@ Optional:
 Optional:
 
 - `delay` (String) delay duration in time units
-- `execution_request` (Attributes) TestSuiteStepExecutionRequest contains parameters to be used by the executions.These fields will be passed to the execution when a Test Suite is queued for execution.TestSuiteStepExecutionRequest parameters have the highest priority. They override thevalues coming from Test Suites, Tests, and Test Executions. (see [below for nested schema](#nestedatt--spec--before--execute--execution_request))
+- `execution_request` (Attributes) TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions. (see [below for nested schema](#nestedatt--spec--before--execute--execution_request))
 - `test` (String) object name
 
 <a id="nestedatt--spec--before--execute--execution_request"></a>
@@ -248,7 +248,7 @@ Optional:
 - `command` (List of String) executor binary command
 - `cron_job_template` (String) cron job template extensions
 - `cron_job_template_reference` (String) cron job template extensions reference
-- `disable_webhooks` (Boolean) whether webhooks should be called on executionDeprecated: field is not used
+- `disable_webhooks` (Boolean) whether webhooks should be called on execution Deprecated: field is not used
 - `execution_labels` (Map of String) test execution labels
 - `http_proxy` (String) http proxy for executor containers
 - `https_proxy` (String) https proxy for executor containers
@@ -291,8 +291,8 @@ Optional:
 Optional:
 
 - `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables--value_from--resource_field_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables--value_from--resource_field_ref))
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--before--execute--execution_request--variables--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--before--execute--execution_request--variables--value_from--config_map_key_ref"></a>
@@ -304,7 +304,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -338,11 +338,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -358,7 +358,7 @@ Optional:
 
 - `cron_job_template` (String) cron job template extensions
 - `cron_job_template_reference` (String) name of the template resource
-- `disable_webhooks` (Boolean) whether webhooks should be called on executionDeprecated: field is not used
+- `disable_webhooks` (Boolean) whether webhooks should be called on execution Deprecated: field is not used
 - `execution_labels` (Map of String) execution labels
 - `http_proxy` (String) http proxy for executor containers
 - `https_proxy` (String) https proxy for executor containers
@@ -392,8 +392,8 @@ Optional:
 Optional:
 
 - `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--execution_request--variables--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--execution_request--variables--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--execution_request--variables--value_from--resource_field_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--execution_request--variables--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--execution_request--variables--value_from--resource_field_ref))
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--execution_request--variables--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--execution_request--variables--value_from--config_map_key_ref"></a>
@@ -405,7 +405,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -439,11 +439,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -478,7 +478,7 @@ Optional:
 Optional:
 
 - `delay` (String) delay duration in time units
-- `execution_request` (Attributes) TestSuiteStepExecutionRequest contains parameters to be used by the executions.These fields will be passed to the execution when a Test Suite is queued for execution.TestSuiteStepExecutionRequest parameters have the highest priority. They override thevalues coming from Test Suites, Tests, and Test Executions. (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request))
+- `execution_request` (Attributes) TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions. (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request))
 - `test` (String) object name
 
 <a id="nestedatt--spec--steps--execute--execution_request"></a>
@@ -491,7 +491,7 @@ Optional:
 - `command` (List of String) executor binary command
 - `cron_job_template` (String) cron job template extensions
 - `cron_job_template_reference` (String) cron job template extensions reference
-- `disable_webhooks` (Boolean) whether webhooks should be called on executionDeprecated: field is not used
+- `disable_webhooks` (Boolean) whether webhooks should be called on execution Deprecated: field is not used
 - `execution_labels` (Map of String) test execution labels
 - `http_proxy` (String) http proxy for executor containers
 - `https_proxy` (String) https proxy for executor containers
@@ -534,8 +534,8 @@ Optional:
 Optional:
 
 - `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables--value_from--resource_field_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables--value_from--resource_field_ref))
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request--variables--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--steps--execute--execution_request--variables--value_from--config_map_key_ref"></a>
@@ -547,7 +547,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -581,9 +581,9 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined

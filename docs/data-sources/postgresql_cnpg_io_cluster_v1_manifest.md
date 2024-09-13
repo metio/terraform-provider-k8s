@@ -30,7 +30,7 @@ data "k8s_postgresql_cnpg_io_cluster_v1_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) Specification of the desired behavior of the cluster.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Specification of the desired behavior of the cluster. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -64,48 +64,48 @@ Optional:
 - `bootstrap` (Attributes) Instructions to bootstrap this cluster (see [below for nested schema](#nestedatt--spec--bootstrap))
 - `certificates` (Attributes) The configuration for the CA and related certificates (see [below for nested schema](#nestedatt--spec--certificates))
 - `description` (String) Description of this PostgreSQL cluster
-- `enable_pdb` (Boolean) Manage the 'PodDisruptionBudget' resources within the cluster. Whenconfigured as 'true' (default setting), the pod disruption budgetswill safeguard the primary node from being terminated. Conversely,setting it to 'false' will result in the absence of any'PodDisruptionBudget' resource, permitting the shutdown of all nodeshosting the PostgreSQL cluster. This latter configuration isadvisable for any PostgreSQL cluster employed fordevelopment/staging purposes.
-- `enable_superuser_access` (Boolean) When this option is enabled, the operator will use the 'SuperuserSecret'to update the 'postgres' user password (if the secret isnot present, the operator will automatically create one). When thisoption is disabled, the operator will ignore the 'SuperuserSecret' content, deleteit when automatically created, and then blank the password of the 'postgres'user by setting it to 'NULL'. Disabled by default.
-- `env` (Attributes List) Env follows the Env format to pass environment variablesto the pods created in the cluster (see [below for nested schema](#nestedatt--spec--env))
-- `env_from` (Attributes List) EnvFrom follows the EnvFrom format to pass environment variablessources to the pods to be used by Env (see [below for nested schema](#nestedatt--spec--env_from))
+- `enable_pdb` (Boolean) Manage the 'PodDisruptionBudget' resources within the cluster. When configured as 'true' (default setting), the pod disruption budgets will safeguard the primary node from being terminated. Conversely, setting it to 'false' will result in the absence of any 'PodDisruptionBudget' resource, permitting the shutdown of all nodes hosting the PostgreSQL cluster. This latter configuration is advisable for any PostgreSQL cluster employed for development/staging purposes.
+- `enable_superuser_access` (Boolean) When this option is enabled, the operator will use the 'SuperuserSecret' to update the 'postgres' user password (if the secret is not present, the operator will automatically create one). When this option is disabled, the operator will ignore the 'SuperuserSecret' content, delete it when automatically created, and then blank the password of the 'postgres' user by setting it to 'NULL'. Disabled by default.
+- `env` (Attributes List) Env follows the Env format to pass environment variables to the pods created in the cluster (see [below for nested schema](#nestedatt--spec--env))
+- `env_from` (Attributes List) EnvFrom follows the EnvFrom format to pass environment variables sources to the pods to be used by Env (see [below for nested schema](#nestedatt--spec--env_from))
 - `ephemeral_volume_source` (Attributes) EphemeralVolumeSource allows the user to configure the source of ephemeral volumes. (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source))
-- `ephemeral_volumes_size_limit` (Attributes) EphemeralVolumesSizeLimit allows the user to set the limits for the ephemeralvolumes (see [below for nested schema](#nestedatt--spec--ephemeral_volumes_size_limit))
+- `ephemeral_volumes_size_limit` (Attributes) EphemeralVolumesSizeLimit allows the user to set the limits for the ephemeral volumes (see [below for nested schema](#nestedatt--spec--ephemeral_volumes_size_limit))
 - `external_clusters` (Attributes List) The list of external clusters which are used in the configuration (see [below for nested schema](#nestedatt--spec--external_clusters))
-- `failover_delay` (Number) The amount of time (in seconds) to wait before triggering a failoverafter the primary PostgreSQL instance in the cluster was detectedto be unhealthy
+- `failover_delay` (Number) The amount of time (in seconds) to wait before triggering a failover after the primary PostgreSQL instance in the cluster was detected to be unhealthy
 - `image_catalog_ref` (Attributes) Defines the major PostgreSQL version we want to use within an ImageCatalog (see [below for nested schema](#nestedatt--spec--image_catalog_ref))
-- `image_name` (String) Name of the container image, supporting both tags ('<image>:<tag>')and digests for deterministic and repeatable deployments('<image>:<tag>@sha256:<digestValue>')
-- `image_pull_policy` (String) Image pull policy.One of 'Always', 'Never' or 'IfNotPresent'.If not defined, it defaults to 'IfNotPresent'.Cannot be updated.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
+- `image_name` (String) Name of the container image, supporting both tags ('<image>:<tag>') and digests for deterministic and repeatable deployments ('<image>:<tag>@sha256:<digestValue>')
+- `image_pull_policy` (String) Image pull policy. One of 'Always', 'Never' or 'IfNotPresent'. If not defined, it defaults to 'IfNotPresent'. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
 - `image_pull_secrets` (Attributes List) The list of pull secrets to be used to pull the images (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `inherited_metadata` (Attributes) Metadata that will be inherited by all objects related to the Cluster (see [below for nested schema](#nestedatt--spec--inherited_metadata))
-- `liveness_probe_timeout` (Number) LivenessProbeTimeout is the time (in seconds) that is allowed for a PostgreSQL instanceto successfully respond to the liveness probe (default 30).The Liveness probe failure threshold is derived from this value using the formula:ceiling(livenessProbe / 10).
+- `liveness_probe_timeout` (Number) LivenessProbeTimeout is the time (in seconds) that is allowed for a PostgreSQL instance to successfully respond to the liveness probe (default 30). The Liveness probe failure threshold is derived from this value using the formula: ceiling(livenessProbe / 10).
 - `log_level` (String) The instances' log level, one of the following values: error, warning, info (default), debug, trace
 - `managed` (Attributes) The configuration that is used by the portions of PostgreSQL that are managed by the instance manager (see [below for nested schema](#nestedatt--spec--managed))
-- `max_sync_replicas` (Number) The target value for the synchronous replication quorum, that can bedecreased if the number of ready standbys is lower than this.Undefined or 0 disable synchronous replication.
-- `min_sync_replicas` (Number) Minimum number of instances required in synchronous replication with theprimary. Undefined or 0 allow writes to complete when no standby isavailable.
+- `max_sync_replicas` (Number) The target value for the synchronous replication quorum, that can be decreased if the number of ready standbys is lower than this. Undefined or 0 disable synchronous replication.
+- `min_sync_replicas` (Number) Minimum number of instances required in synchronous replication with the primary. Undefined or 0 allow writes to complete when no standby is available.
 - `monitoring` (Attributes) The configuration of the monitoring infrastructure of this cluster (see [below for nested schema](#nestedatt--spec--monitoring))
 - `node_maintenance_window` (Attributes) Define a maintenance window for the Kubernetes nodes (see [below for nested schema](#nestedatt--spec--node_maintenance_window))
-- `plugins` (Attributes List) The plugins configuration, containingany plugin to be loaded with the corresponding configuration (see [below for nested schema](#nestedatt--spec--plugins))
+- `plugins` (Attributes List) The plugins configuration, containing any plugin to be loaded with the corresponding configuration (see [below for nested schema](#nestedatt--spec--plugins))
 - `postgres_gid` (Number) The GID of the 'postgres' user inside the image, defaults to '26'
 - `postgres_uid` (Number) The UID of the 'postgres' user inside the image, defaults to '26'
 - `postgresql` (Attributes) Configuration of the PostgreSQL server (see [below for nested schema](#nestedatt--spec--postgresql))
-- `primary_update_method` (String) Method to follow to upgrade the primary server during a rollingupdate procedure, after all replicas have been successfully updated:it can be with a switchover ('switchover') or in-place ('restart' - default)
-- `primary_update_strategy` (String) Deployment strategy to follow to upgrade the primary server during a rollingupdate procedure, after all replicas have been successfully updated:it can be automated ('unsupervised' - default) or manual ('supervised')
-- `priority_class_name` (String) Name of the priority class which will be used in every generated Pod, if the PriorityClassspecified does not exist, the pod will not be able to schedule.  Please refer tohttps://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclassfor more information
-- `projected_volume_template` (Attributes) Template to be used to define projected volumes, projected volumes will be mountedunder '/projected' base folder (see [below for nested schema](#nestedatt--spec--projected_volume_template))
+- `primary_update_method` (String) Method to follow to upgrade the primary server during a rolling update procedure, after all replicas have been successfully updated: it can be with a switchover ('switchover') or in-place ('restart' - default)
+- `primary_update_strategy` (String) Deployment strategy to follow to upgrade the primary server during a rolling update procedure, after all replicas have been successfully updated: it can be automated ('unsupervised' - default) or manual ('supervised')
+- `priority_class_name` (String) Name of the priority class which will be used in every generated Pod, if the PriorityClass specified does not exist, the pod will not be able to schedule. Please refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass for more information
+- `projected_volume_template` (Attributes) Template to be used to define projected volumes, projected volumes will be mounted under '/projected' base folder (see [below for nested schema](#nestedatt--spec--projected_volume_template))
 - `replica` (Attributes) Replica cluster configuration (see [below for nested schema](#nestedatt--spec--replica))
 - `replication_slots` (Attributes) Replication slots management configuration (see [below for nested schema](#nestedatt--spec--replication_slots))
-- `resources` (Attributes) Resources requirements of every generated Pod. Please refer tohttps://kubernetes.io/docs/concepts/configuration/manage-resources-containers/for more information. (see [below for nested schema](#nestedatt--spec--resources))
-- `scheduler_name` (String) If specified, the pod will be dispatched by specified Kubernetesscheduler. If not specified, the pod will be dispatched by the defaultscheduler. More info:https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/
-- `seccomp_profile` (Attributes) The SeccompProfile applied to every Pod and Container.Defaults to: 'RuntimeDefault' (see [below for nested schema](#nestedatt--spec--seccomp_profile))
+- `resources` (Attributes) Resources requirements of every generated Pod. Please refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more information. (see [below for nested schema](#nestedatt--spec--resources))
+- `scheduler_name` (String) If specified, the pod will be dispatched by specified Kubernetes scheduler. If not specified, the pod will be dispatched by the default scheduler. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/
+- `seccomp_profile` (Attributes) The SeccompProfile applied to every Pod and Container. Defaults to: 'RuntimeDefault' (see [below for nested schema](#nestedatt--spec--seccomp_profile))
 - `service_account_template` (Attributes) Configure the generation of the service account (see [below for nested schema](#nestedatt--spec--service_account_template))
-- `smart_shutdown_timeout` (Number) The time in seconds that controls the window of time reserved for the smart shutdown of Postgres to complete.Make sure you reserve enough time for the operator to request a fast shutdown of Postgres(that is: 'stopDelay' - 'smartShutdownTimeout').
-- `start_delay` (Number) The time in seconds that is allowed for a PostgreSQL instance tosuccessfully start up (default 3600).The startup probe failure threshold is derived from this value using the formula:ceiling(startDelay / 10).
-- `stop_delay` (Number) The time in seconds that is allowed for a PostgreSQL instance togracefully shutdown (default 1800)
+- `smart_shutdown_timeout` (Number) The time in seconds that controls the window of time reserved for the smart shutdown of Postgres to complete. Make sure you reserve enough time for the operator to request a fast shutdown of Postgres (that is: 'stopDelay' - 'smartShutdownTimeout').
+- `start_delay` (Number) The time in seconds that is allowed for a PostgreSQL instance to successfully start up (default 3600). The startup probe failure threshold is derived from this value using the formula: ceiling(startDelay / 10).
+- `stop_delay` (Number) The time in seconds that is allowed for a PostgreSQL instance to gracefully shutdown (default 1800)
 - `storage` (Attributes) Configuration of the storage of the instances (see [below for nested schema](#nestedatt--spec--storage))
-- `superuser_secret` (Attributes) The secret containing the superuser password. If not defined a newsecret will be created with a randomly generated password (see [below for nested schema](#nestedatt--spec--superuser_secret))
-- `switchover_delay` (Number) The time in seconds that is allowed for a primary PostgreSQL instanceto gracefully shutdown during a switchover.Default value is 3600 seconds (1 hour).
+- `superuser_secret` (Attributes) The secret containing the superuser password. If not defined a new secret will be created with a randomly generated password (see [below for nested schema](#nestedatt--spec--superuser_secret))
+- `switchover_delay` (Number) The time in seconds that is allowed for a primary PostgreSQL instance to gracefully shutdown during a switchover. Default value is 3600 seconds (1 hour).
 - `tablespaces` (Attributes List) The tablespaces configuration (see [below for nested schema](#nestedatt--spec--tablespaces))
-- `topology_spread_constraints` (Attributes List) TopologySpreadConstraints specifies how to spread matching pods among the given topology.More info:https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/ (see [below for nested schema](#nestedatt--spec--topology_spread_constraints))
+- `topology_spread_constraints` (Attributes List) TopologySpreadConstraints specifies how to spread matching pods among the given topology. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/ (see [below for nested schema](#nestedatt--spec--topology_spread_constraints))
 - `wal_storage` (Attributes) Configuration of the storage for PostgreSQL WAL (Write-Ahead Log) (see [below for nested schema](#nestedatt--spec--wal_storage))
 
 <a id="nestedatt--spec--affinity"></a>
@@ -114,21 +114,21 @@ Optional:
 Optional:
 
 - `additional_pod_affinity` (Attributes) AdditionalPodAffinity allows to specify pod affinity terms to be passed to all the cluster's pods. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity))
-- `additional_pod_anti_affinity` (Attributes) AdditionalPodAntiAffinity allows to specify pod anti-affinity terms to be added to the ones generatedby the operator if EnablePodAntiAffinity is set to true (default) or to be used exclusively if set to false. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity))
-- `enable_pod_anti_affinity` (Boolean) Activates anti-affinity for the pods. The operator will define podsanti-affinity unless this field is explicitly set to false
-- `node_affinity` (Attributes) NodeAffinity describes node affinity scheduling rules for the pod.More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity (see [below for nested schema](#nestedatt--spec--affinity--node_affinity))
-- `node_selector` (Map of String) NodeSelector is map of key-value pairs used to define the nodes on whichthe pods can run.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-- `pod_anti_affinity_type` (String) PodAntiAffinityType allows the user to decide whether pod anti-affinity between cluster instance has to beconsidered a strong requirement during scheduling or not. Allowed values are: 'preferred' (default if empty) or'required'. Setting it to 'required', could lead to instances remaining pending until new kubernetes nodes areadded if all the existing nodes don't match the required pod anti-affinity rule.More info:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
-- `tolerations` (Attributes List) Tolerations is a list of Tolerations that should be set for all the pods, in order to allow them to runon tainted nodes.More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/ (see [below for nested schema](#nestedatt--spec--affinity--tolerations))
-- `topology_key` (String) TopologyKey to use for anti-affinity configuration. See k8s documentationfor more info on that
+- `additional_pod_anti_affinity` (Attributes) AdditionalPodAntiAffinity allows to specify pod anti-affinity terms to be added to the ones generated by the operator if EnablePodAntiAffinity is set to true (default) or to be used exclusively if set to false. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity))
+- `enable_pod_anti_affinity` (Boolean) Activates anti-affinity for the pods. The operator will define pods anti-affinity unless this field is explicitly set to false
+- `node_affinity` (Attributes) NodeAffinity describes node affinity scheduling rules for the pod. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity (see [below for nested schema](#nestedatt--spec--affinity--node_affinity))
+- `node_selector` (Map of String) NodeSelector is map of key-value pairs used to define the nodes on which the pods can run. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+- `pod_anti_affinity_type` (String) PodAntiAffinityType allows the user to decide whether pod anti-affinity between cluster instance has to be considered a strong requirement during scheduling or not. Allowed values are: 'preferred' (default if empty) or 'required'. Setting it to 'required', could lead to instances remaining pending until new kubernetes nodes are added if all the existing nodes don't match the required pod anti-affinity rule. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+- `tolerations` (Attributes List) Tolerations is a list of Tolerations that should be set for all the pods, in order to allow them to run on tainted nodes. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/ (see [below for nested schema](#nestedatt--spec--affinity--tolerations))
+- `topology_key` (String) TopologyKey to use for anti-affinity configuration. See k8s documentation for more info on that
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity"></a>
 ### Nested Schema for `spec.affinity.additional_pod_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.affinity.additional_pod_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -136,22 +136,22 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.affinity.additional_pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.affinity.additional_pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -159,7 +159,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.additional_pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
@@ -167,11 +167,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -181,7 +181,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.additional_pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
@@ -189,11 +189,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -204,15 +204,15 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -220,7 +220,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -228,11 +228,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -242,7 +242,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.additional_pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -250,11 +250,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -265,8 +265,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.affinity.additional_pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -274,22 +274,22 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.affinity.additional_pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.affinity.additional_pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -297,7 +297,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.additional_pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
@@ -305,11 +305,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -319,7 +319,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.additional_pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
@@ -327,11 +327,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -342,15 +342,15 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -358,7 +358,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -366,11 +366,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -380,7 +380,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--affinity--additional_pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.additional_pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -388,11 +388,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -403,8 +403,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -428,11 +428,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -441,11 +441,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 
@@ -471,11 +471,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -484,11 +484,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 
@@ -499,11 +499,11 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -513,8 +513,8 @@ Optional:
 Optional:
 
 - `barman_object_store` (Attributes) The configuration for the barman-cloud tool suite (see [below for nested schema](#nestedatt--spec--backup--barman_object_store))
-- `retention_policy` (String) RetentionPolicy is the retention policy to be used for backupsand WALs (i.e. '60d'). The retention policy is expressed in the formof 'XXu' where 'XX' is a positive integer and 'u' is in '[dwm]' -days, weeks, months.It's currently only applicable when using the BarmanObjectStore method.
-- `target` (String) The policy to decide which instance should perform backups. Availableoptions are empty string, which will default to 'prefer-standby' policy,'primary' to have backups run always on primary instances, 'prefer-standby'to have backups run preferably on the most updated standby, if available.
+- `retention_policy` (String) RetentionPolicy is the retention policy to be used for backups and WALs (i.e. '60d'). The retention policy is expressed in the form of 'XXu' where 'XX' is a positive integer and 'u' is in '[dwm]' - days, weeks, months. It's currently only applicable when using the BarmanObjectStore method.
+- `target` (String) The policy to decide which instance should perform backups. Available options are empty string, which will default to 'prefer-standby' policy, 'primary' to have backups run always on primary instances, 'prefer-standby' to have backups run preferably on the most updated standby, if available.
 - `volume_snapshot` (Attributes) VolumeSnapshot provides the configuration for the execution of volume snapshot backups. (see [below for nested schema](#nestedatt--spec--backup--volume_snapshot))
 
 <a id="nestedatt--spec--backup--barman_object_store"></a>
@@ -522,20 +522,20 @@ Optional:
 
 Required:
 
-- `destination_path` (String) The path where to store the backup (i.e. s3://bucket/path/to/folder)this path, with different destination folders, will be used for WALsand for data
+- `destination_path` (String) The path where to store the backup (i.e. s3://bucket/path/to/folder) this path, with different destination folders, will be used for WALs and for data
 
 Optional:
 
 - `azure_credentials` (Attributes) The credentials to use to upload data to Azure Blob Storage (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--azure_credentials))
-- `data` (Attributes) The configuration to be used to backup the data filesWhen not defined, base backups files will be stored uncompressed and maybe unencrypted in the object store, according to the bucket defaultpolicy. (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--data))
-- `endpoint_ca` (Attributes) EndpointCA store the CA bundle of the barman endpoint.Useful when using self-signed certificates to avoiderrors with certificate issuer and barman-cloud-wal-archive (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--endpoint_ca))
-- `endpoint_url` (String) Endpoint to be used to upload data to the cloud,overriding the automatic endpoint discovery
+- `data` (Attributes) The configuration to be used to backup the data files When not defined, base backups files will be stored uncompressed and may be unencrypted in the object store, according to the bucket default policy. (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--data))
+- `endpoint_ca` (Attributes) EndpointCA store the CA bundle of the barman endpoint. Useful when using self-signed certificates to avoid errors with certificate issuer and barman-cloud-wal-archive (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--endpoint_ca))
+- `endpoint_url` (String) Endpoint to be used to upload data to the cloud, overriding the automatic endpoint discovery
 - `google_credentials` (Attributes) The credentials to use to upload data to Google Cloud Storage (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--google_credentials))
-- `history_tags` (Map of String) HistoryTags is a list of key value pairs that will be passed to theBarman --history-tags option.
+- `history_tags` (Map of String) HistoryTags is a list of key value pairs that will be passed to the Barman --history-tags option.
 - `s3_credentials` (Attributes) The credentials to use to upload data to S3 (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--s3_credentials))
-- `server_name` (String) The server name on S3, the cluster name is used if thisparameter is omitted
-- `tags` (Map of String) Tags is a list of key value pairs that will be passed to theBarman --tags option.
-- `wal` (Attributes) The configuration for the backup of the WAL stream.When not defined, WAL files will be stored uncompressed and may beunencrypted in the object store, according to the bucket default policy. (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--wal))
+- `server_name` (String) The server name on S3, the cluster name is used if this parameter is omitted
+- `tags` (Map of String) Tags is a list of key value pairs that will be passed to the Barman --tags option.
+- `wal` (Attributes) The configuration for the backup of the WAL stream. When not defined, WAL files will be stored uncompressed and may be unencrypted in the object store, according to the bucket default policy. (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--wal))
 
 <a id="nestedatt--spec--backup--barman_object_store--azure_credentials"></a>
 ### Nested Schema for `spec.backup.barman_object_store.azure_credentials`
@@ -545,8 +545,8 @@ Optional:
 - `connection_string` (Attributes) The connection string to be used (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--azure_credentials--connection_string))
 - `inherit_from_azure_ad` (Boolean) Use the Azure AD based authentication without providing explicitly the keys.
 - `storage_account` (Attributes) The storage account where to upload data (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--azure_credentials--storage_account))
-- `storage_key` (Attributes) The storage account key to be used in conjunctionwith the storage account name (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--azure_credentials--storage_key))
-- `storage_sas_token` (Attributes) A shared-access-signature to be used in conjunction withthe storage account name (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--azure_credentials--storage_sas_token))
+- `storage_key` (Attributes) The storage account key to be used in conjunction with the storage account name (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--azure_credentials--storage_key))
+- `storage_sas_token` (Attributes) A shared-access-signature to be used in conjunction with the storage account name (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--azure_credentials--storage_sas_token))
 
 <a id="nestedatt--spec--backup--barman_object_store--azure_credentials--connection_string"></a>
 ### Nested Schema for `spec.backup.barman_object_store.azure_credentials.connection_string`
@@ -590,11 +590,11 @@ Required:
 
 Optional:
 
-- `additional_command_args` (List of String) AdditionalCommandArgs represents additional arguments that can be appendedto the 'barman-cloud-backup' command-line invocation. These argumentsprovide flexibility to customize the backup process further according tospecific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-backup' command, to avoid potential errors or unintendedbehavior during execution.
-- `compression` (String) Compress a backup file (a tar file per tablespace) while streaming itto the object store. Available options are empty string (nocompression, default), 'gzip', 'bzip2' or 'snappy'.
-- `encryption` (String) Whenever to force the encryption of files (if the bucket isnot already configured for that).Allowed options are empty string (use the bucket policy, default),'AES256' and 'aws:kms'
-- `immediate_checkpoint` (Boolean) Control whether the I/O workload for the backup initial checkpoint willbe limited, according to the 'checkpoint_completion_target' setting onthe PostgreSQL server. If set to true, an immediate checkpoint will beused, meaning PostgreSQL will complete the checkpoint as soon aspossible. 'false' by default.
-- `jobs` (Number) The number of parallel jobs to be used to upload the backup, defaultsto 2
+- `additional_command_args` (List of String) AdditionalCommandArgs represents additional arguments that can be appended to the 'barman-cloud-backup' command-line invocation. These arguments provide flexibility to customize the backup process further according to specific requirements or configurations. Example: In a scenario where specialized backup options are required, such as setting a specific timeout or defining custom behavior, users can use this field to specify additional command arguments. Note: It's essential to ensure that the provided arguments are valid and supported by the 'barman-cloud-backup' command, to avoid potential errors or unintended behavior during execution.
+- `compression` (String) Compress a backup file (a tar file per tablespace) while streaming it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.
+- `encryption` (String) Whenever to force the encryption of files (if the bucket is not already configured for that). Allowed options are empty string (use the bucket policy, default), 'AES256' and 'aws:kms'
+- `immediate_checkpoint` (Boolean) Control whether the I/O workload for the backup initial checkpoint will be limited, according to the 'checkpoint_completion_target' setting on the PostgreSQL server. If set to true, an immediate checkpoint will be used, meaning PostgreSQL will complete the checkpoint as soon as possible. 'false' by default.
+- `jobs` (Number) The number of parallel jobs to be used to upload the backup, defaults to 2
 
 
 <a id="nestedatt--spec--backup--barman_object_store--endpoint_ca"></a>
@@ -612,7 +612,7 @@ Required:
 Optional:
 
 - `application_credentials` (Attributes) The secret containing the Google Cloud Storage JSON file with the credentials (see [below for nested schema](#nestedatt--spec--backup--barman_object_store--google_credentials--application_credentials))
-- `gke_environment` (Boolean) If set to true, will presume that it's running inside a GKE environment,default to false.
+- `gke_environment` (Boolean) If set to true, will presume that it's running inside a GKE environment, default to false.
 
 <a id="nestedatt--spec--backup--barman_object_store--google_credentials--application_credentials"></a>
 ### Nested Schema for `spec.backup.barman_object_store.google_credentials.application_credentials`
@@ -677,11 +677,11 @@ Required:
 
 Optional:
 
-- `archive_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-archive'command-line invocation. These arguments provide flexibility to customizethe WAL archive process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.
-- `compression` (String) Compress a WAL file before sending it to the object store. Availableoptions are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.
-- `encryption` (String) Whenever to force the encryption of files (if the bucket isnot already configured for that).Allowed options are empty string (use the bucket policy, default),'AES256' and 'aws:kms'
-- `max_parallel` (Number) Number of WAL files to be either archived in parallel (when thePostgreSQL instance is archiving to a backup object store) orrestored in parallel (when a PostgreSQL standby is fetching WALfiles from a recovery object store). If not specified, WAL fileswill be processed one at a time. It accepts a positive integer as avalue - with 1 being the minimum accepted value.
-- `restore_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-restore'command-line invocation. These arguments provide flexibility to customizethe WAL restore process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-restore' command, to avoid potential errors or unintendedbehavior during execution.
+- `archive_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-archive' command-line invocation. These arguments provide flexibility to customize the WAL archive process further, according to specific requirements or configurations. Example: In a scenario where specialized backup options are required, such as setting a specific timeout or defining custom behavior, users can use this field to specify additional command arguments. Note: It's essential to ensure that the provided arguments are valid and supported by the 'barman-cloud-wal-archive' command, to avoid potential errors or unintended behavior during execution.
+- `compression` (String) Compress a WAL file before sending it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.
+- `encryption` (String) Whenever to force the encryption of files (if the bucket is not already configured for that). Allowed options are empty string (use the bucket policy, default), 'AES256' and 'aws:kms'
+- `max_parallel` (Number) Number of WAL files to be either archived in parallel (when the PostgreSQL instance is archiving to a backup object store) or restored in parallel (when a PostgreSQL standby is fetching WAL files from a recovery object store). If not specified, WAL files will be processed one at a time. It accepts a positive integer as a value - with 1 being the minimum accepted value.
+- `restore_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-restore' command-line invocation. These arguments provide flexibility to customize the WAL restore process further, according to specific requirements or configurations. Example: In a scenario where specialized backup options are required, such as setting a specific timeout or defining custom behavior, users can use this field to specify additional command arguments. Note: It's essential to ensure that the provided arguments are valid and supported by the 'barman-cloud-wal-restore' command, to avoid potential errors or unintended behavior during execution.
 
 
 
@@ -691,12 +691,12 @@ Optional:
 Optional:
 
 - `annotations` (Map of String) Annotations key-value pairs that will be added to .metadata.annotations snapshot resources.
-- `class_name` (String) ClassName specifies the Snapshot Class to be used for PG_DATA PersistentVolumeClaim.It is the default class for the other types if no specific class is present
+- `class_name` (String) ClassName specifies the Snapshot Class to be used for PG_DATA PersistentVolumeClaim. It is the default class for the other types if no specific class is present
 - `labels` (Map of String) Labels are key-value pairs that will be added to .metadata.labels snapshot resources.
-- `online` (Boolean) Whether the default type of backup with volume snapshots isonline/hot ('true', default) or offline/cold ('false')
+- `online` (Boolean) Whether the default type of backup with volume snapshots is online/hot ('true', default) or offline/cold ('false')
 - `online_configuration` (Attributes) Configuration parameters to control the online/hot backup with volume snapshots (see [below for nested schema](#nestedatt--spec--backup--volume_snapshot--online_configuration))
 - `snapshot_owner_reference` (String) SnapshotOwnerReference indicates the type of owner reference the snapshot should have
-- `tablespace_class_name` (Map of String) TablespaceClassName specifies the Snapshot Class to be used for the tablespaces.defaults to the PGDATA Snapshot Class, if set
+- `tablespace_class_name` (Map of String) TablespaceClassName specifies the Snapshot Class to be used for the tablespaces. defaults to the PGDATA Snapshot Class, if set
 - `wal_class_name` (String) WalClassName specifies the Snapshot Class to be used for the PG_WAL PersistentVolumeClaim.
 
 <a id="nestedatt--spec--backup--volume_snapshot--online_configuration"></a>
@@ -704,8 +704,8 @@ Optional:
 
 Optional:
 
-- `immediate_checkpoint` (Boolean) Control whether the I/O workload for the backup initial checkpoint willbe limited, according to the 'checkpoint_completion_target' setting onthe PostgreSQL server. If set to true, an immediate checkpoint will beused, meaning PostgreSQL will complete the checkpoint as soon aspossible. 'false' by default.
-- `wait_for_archive` (Boolean) If false, the function will return immediately after the backup is completed,without waiting for WAL to be archived.This behavior is only useful with backup software that independently monitors WAL archiving.Otherwise, WAL required to make the backup consistent might be missing and make the backup useless.By default, or when this parameter is true, pg_backup_stop will wait for WAL to be archived when archiving isenabled.On a standby, this means that it will wait only when archive_mode = always.If write activity on the primary is low, it may be useful to run pg_switch_wal on the primary in order to triggeran immediate segment switch.
+- `immediate_checkpoint` (Boolean) Control whether the I/O workload for the backup initial checkpoint will be limited, according to the 'checkpoint_completion_target' setting on the PostgreSQL server. If set to true, an immediate checkpoint will be used, meaning PostgreSQL will complete the checkpoint as soon as possible. 'false' by default.
+- `wait_for_archive` (Boolean) If false, the function will return immediately after the backup is completed, without waiting for WAL to be archived. This behavior is only useful with backup software that independently monitors WAL archiving. Otherwise, WAL required to make the backup consistent might be missing and make the backup useless. By default, or when this parameter is true, pg_backup_stop will wait for WAL to be archived when archiving is enabled. On a standby, this means that it will wait only when archive_mode = always. If write activity on the primary is low, it may be useful to run pg_switch_wal on the primary in order to trigger an immediate segment switch.
 
 
 
@@ -716,7 +716,7 @@ Optional:
 Optional:
 
 - `initdb` (Attributes) Bootstrap the cluster via initdb (see [below for nested schema](#nestedatt--spec--bootstrap--initdb))
-- `pg_basebackup` (Attributes) Bootstrap the cluster taking a physical backup of another compatiblePostgreSQL instance (see [below for nested schema](#nestedatt--spec--bootstrap--pg_basebackup))
+- `pg_basebackup` (Attributes) Bootstrap the cluster taking a physical backup of another compatible PostgreSQL instance (see [below for nested schema](#nestedatt--spec--bootstrap--pg_basebackup))
 - `recovery` (Attributes) Bootstrap the cluster from a backup (see [below for nested schema](#nestedatt--spec--bootstrap--recovery))
 
 <a id="nestedatt--spec--bootstrap--initdb"></a>
@@ -724,22 +724,22 @@ Optional:
 
 Optional:
 
-- `data_checksums` (Boolean) Whether the '-k' option should be passed to initdb,enabling checksums on data pages (default: 'false')
+- `data_checksums` (Boolean) Whether the '-k' option should be passed to initdb, enabling checksums on data pages (default: 'false')
 - `database` (String) Name of the database used by the application. Default: 'app'.
 - `encoding` (String) The value to be passed as option '--encoding' for initdb (default:'UTF8')
-- `import` (Attributes) Bootstraps the new cluster by importing data from an existing PostgreSQLinstance using logical backup ('pg_dump' and 'pg_restore') (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--import))
+- `import` (Attributes) Bootstraps the new cluster by importing data from an existing PostgreSQL instance using logical backup ('pg_dump' and 'pg_restore') (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--import))
 - `locale_c_type` (String) The value to be passed as option '--lc-ctype' for initdb (default:'C')
 - `locale_collate` (String) The value to be passed as option '--lc-collate' for initdb (default:'C')
-- `options` (List of String) The list of options that must be passed to initdb when creating the cluster.Deprecated: This could lead to inconsistent configurations,please use the explicit provided parameters instead.If defined, explicit values will be ignored.
-- `owner` (String) Name of the owner of the database in the instance to be usedby applications. Defaults to the value of the 'database' key.
-- `post_init_application_sql` (List of String) List of SQL queries to be executed as a superuser in the applicationdatabase right after the cluster has been created - to be used with extreme care(by default empty)
-- `post_init_application_sql_refs` (Attributes) List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the application database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty) (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_application_sql_refs))
-- `post_init_sql` (List of String) List of SQL queries to be executed as a superuser in the 'postgres'database right after the cluster has been created - to be used with extreme care(by default empty)
-- `post_init_sql_refs` (Attributes) List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the 'postgres' database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty) (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_sql_refs))
-- `post_init_template_sql` (List of String) List of SQL queries to be executed as a superuser in the 'template1'database right after the cluster has been created - to be used with extreme care(by default empty)
-- `post_init_template_sql_refs` (Attributes) List of references to ConfigMaps or Secrets containing SQL filesto be executed as a superuser in the 'template1' database right afterthe cluster has been created. The references are processed in a specific order:first, all Secrets are processed, followed by all ConfigMaps.Within each group, the processing order follows the sequence specifiedin their respective arrays.(by default empty) (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_template_sql_refs))
-- `secret` (Attributes) Name of the secret containing the initial credentials for theowner of the user database. If empty a new secret will becreated from scratch (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--secret))
-- `wal_segment_size` (Number) The value in megabytes (1 to 1024) to be passed to the '--wal-segsize'option for initdb (default: empty, resulting in PostgreSQL default: 16MB)
+- `options` (List of String) The list of options that must be passed to initdb when creating the cluster. Deprecated: This could lead to inconsistent configurations, please use the explicit provided parameters instead. If defined, explicit values will be ignored.
+- `owner` (String) Name of the owner of the database in the instance to be used by applications. Defaults to the value of the 'database' key.
+- `post_init_application_sql` (List of String) List of SQL queries to be executed as a superuser in the application database right after the cluster has been created - to be used with extreme care (by default empty)
+- `post_init_application_sql_refs` (Attributes) List of references to ConfigMaps or Secrets containing SQL files to be executed as a superuser in the application database right after the cluster has been created. The references are processed in a specific order: first, all Secrets are processed, followed by all ConfigMaps. Within each group, the processing order follows the sequence specified in their respective arrays. (by default empty) (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_application_sql_refs))
+- `post_init_sql` (List of String) List of SQL queries to be executed as a superuser in the 'postgres' database right after the cluster has been created - to be used with extreme care (by default empty)
+- `post_init_sql_refs` (Attributes) List of references to ConfigMaps or Secrets containing SQL files to be executed as a superuser in the 'postgres' database right after the cluster has been created. The references are processed in a specific order: first, all Secrets are processed, followed by all ConfigMaps. Within each group, the processing order follows the sequence specified in their respective arrays. (by default empty) (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_sql_refs))
+- `post_init_template_sql` (List of String) List of SQL queries to be executed as a superuser in the 'template1' database right after the cluster has been created - to be used with extreme care (by default empty)
+- `post_init_template_sql_refs` (Attributes) List of references to ConfigMaps or Secrets containing SQL files to be executed as a superuser in the 'template1' database right after the cluster has been created. The references are processed in a specific order: first, all Secrets are processed, followed by all ConfigMaps. Within each group, the processing order follows the sequence specified in their respective arrays. (by default empty) (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--post_init_template_sql_refs))
+- `secret` (Attributes) Name of the secret containing the initial credentials for the owner of the user database. If empty a new secret will be created from scratch (see [below for nested schema](#nestedatt--spec--bootstrap--initdb--secret))
+- `wal_segment_size` (Number) The value in megabytes (1 to 1024) to be passed to the '--wal-segsize' option for initdb (default: empty, resulting in PostgreSQL default: 16MB)
 
 <a id="nestedatt--spec--bootstrap--initdb--import"></a>
 ### Nested Schema for `spec.bootstrap.initdb.import`
@@ -752,9 +752,9 @@ Required:
 
 Optional:
 
-- `post_import_application_sql` (List of String) List of SQL queries to be executed as a superuser in the applicationdatabase right after is imported - to be used with extreme care(by default empty). Only available in microservice type.
+- `post_import_application_sql` (List of String) List of SQL queries to be executed as a superuser in the application database right after is imported - to be used with extreme care (by default empty). Only available in microservice type.
 - `roles` (List of String) The roles to import
-- `schema_only` (Boolean) When set to true, only the 'pre-data' and 'post-data' sections of'pg_restore' are invoked, avoiding data import. Default: 'false'.
+- `schema_only` (Boolean) When set to true, only the 'pre-data' and 'post-data' sections of 'pg_restore' are invoked, avoiding data import. Default: 'false'.
 
 <a id="nestedatt--spec--bootstrap--initdb--import--source"></a>
 ### Nested Schema for `spec.bootstrap.initdb.import.source`
@@ -865,8 +865,8 @@ Required:
 Optional:
 
 - `database` (String) Name of the database used by the application. Default: 'app'.
-- `owner` (String) Name of the owner of the database in the instance to be usedby applications. Defaults to the value of the 'database' key.
-- `secret` (Attributes) Name of the secret containing the initial credentials for theowner of the user database. If empty a new secret will becreated from scratch (see [below for nested schema](#nestedatt--spec--bootstrap--pg_basebackup--secret))
+- `owner` (String) Name of the owner of the database in the instance to be used by applications. Defaults to the value of the 'database' key.
+- `secret` (Attributes) Name of the secret containing the initial credentials for the owner of the user database. If empty a new secret will be created from scratch (see [below for nested schema](#nestedatt--spec--bootstrap--pg_basebackup--secret))
 
 <a id="nestedatt--spec--bootstrap--pg_basebackup--secret"></a>
 ### Nested Schema for `spec.bootstrap.pg_basebackup.secret`
@@ -882,13 +882,13 @@ Required:
 
 Optional:
 
-- `backup` (Attributes) The backup object containing the physical base backup from which toinitiate the recovery procedure.Mutually exclusive with 'source' and 'volumeSnapshots'. (see [below for nested schema](#nestedatt--spec--bootstrap--recovery--backup))
+- `backup` (Attributes) The backup object containing the physical base backup from which to initiate the recovery procedure. Mutually exclusive with 'source' and 'volumeSnapshots'. (see [below for nested schema](#nestedatt--spec--bootstrap--recovery--backup))
 - `database` (String) Name of the database used by the application. Default: 'app'.
-- `owner` (String) Name of the owner of the database in the instance to be usedby applications. Defaults to the value of the 'database' key.
-- `recovery_target` (Attributes) By default, the recovery process applies all the availableWAL files in the archive (full recovery). However, you can alsoend the recovery as soon as a consistent state is reached orrecover to a point-in-time (PITR) by specifying a 'RecoveryTarget' object,as expected by PostgreSQL (i.e., timestamp, transaction Id, LSN, ...).More info: https://www.postgresql.org/docs/current/runtime-config-wal.html#RUNTIME-CONFIG-WAL-RECOVERY-TARGET (see [below for nested schema](#nestedatt--spec--bootstrap--recovery--recovery_target))
-- `secret` (Attributes) Name of the secret containing the initial credentials for theowner of the user database. If empty a new secret will becreated from scratch (see [below for nested schema](#nestedatt--spec--bootstrap--recovery--secret))
-- `source` (String) The external cluster whose backup we will restore. This is alsoused as the name of the folder under which the backup is stored,so it must be set to the name of the source clusterMutually exclusive with 'backup'.
-- `volume_snapshots` (Attributes) The static PVC data source(s) from which to initiate therecovery procedure. Currently supporting 'VolumeSnapshot'and 'PersistentVolumeClaim' resources that map an existingPVC group, compatible with CloudNativePG, and taken witha cold backup copy on a fenced Postgres instance (limitationwhich will be removed in the future when online backupwill be implemented).Mutually exclusive with 'backup'. (see [below for nested schema](#nestedatt--spec--bootstrap--recovery--volume_snapshots))
+- `owner` (String) Name of the owner of the database in the instance to be used by applications. Defaults to the value of the 'database' key.
+- `recovery_target` (Attributes) By default, the recovery process applies all the available WAL files in the archive (full recovery). However, you can also end the recovery as soon as a consistent state is reached or recover to a point-in-time (PITR) by specifying a 'RecoveryTarget' object, as expected by PostgreSQL (i.e., timestamp, transaction Id, LSN, ...). More info: https://www.postgresql.org/docs/current/runtime-config-wal.html#RUNTIME-CONFIG-WAL-RECOVERY-TARGET (see [below for nested schema](#nestedatt--spec--bootstrap--recovery--recovery_target))
+- `secret` (Attributes) Name of the secret containing the initial credentials for the owner of the user database. If empty a new secret will be created from scratch (see [below for nested schema](#nestedatt--spec--bootstrap--recovery--secret))
+- `source` (String) The external cluster whose backup we will restore. This is also used as the name of the folder under which the backup is stored, so it must be set to the name of the source cluster Mutually exclusive with 'backup'.
+- `volume_snapshots` (Attributes) The static PVC data source(s) from which to initiate the recovery procedure. Currently supporting 'VolumeSnapshot' and 'PersistentVolumeClaim' resources that map an existing PVC group, compatible with CloudNativePG, and taken with a cold backup copy on a fenced Postgres instance (limitation which will be removed in the future when online backup will be implemented). Mutually exclusive with 'backup'. (see [below for nested schema](#nestedatt--spec--bootstrap--recovery--volume_snapshots))
 
 <a id="nestedatt--spec--bootstrap--recovery--backup"></a>
 ### Nested Schema for `spec.bootstrap.recovery.backup`
@@ -899,7 +899,7 @@ Required:
 
 Optional:
 
-- `endpoint_ca` (Attributes) EndpointCA store the CA bundle of the barman endpoint.Useful when using self-signed certificates to avoiderrors with certificate issuer and barman-cloud-wal-archive. (see [below for nested schema](#nestedatt--spec--bootstrap--recovery--backup--endpoint_ca))
+- `endpoint_ca` (Attributes) EndpointCA store the CA bundle of the barman endpoint. Useful when using self-signed certificates to avoid errors with certificate issuer and barman-cloud-wal-archive. (see [below for nested schema](#nestedatt--spec--bootstrap--recovery--backup--endpoint_ca))
 
 <a id="nestedatt--spec--bootstrap--recovery--backup--endpoint_ca"></a>
 ### Nested Schema for `spec.bootstrap.recovery.backup.endpoint_ca`
@@ -916,11 +916,11 @@ Required:
 
 Optional:
 
-- `backup_id` (String) The ID of the backup from which to start the recovery process.If empty (default) the operator will automatically detect the backupbased on targetTime or targetLSN if specified. Otherwise use thelatest available backup in chronological order.
-- `exclusive` (Boolean) Set the target to be exclusive. If omitted, defaults to false, so thatin Postgres, 'recovery_target_inclusive' will be true
+- `backup_id` (String) The ID of the backup from which to start the recovery process. If empty (default) the operator will automatically detect the backup based on targetTime or targetLSN if specified. Otherwise use the latest available backup in chronological order.
+- `exclusive` (Boolean) Set the target to be exclusive. If omitted, defaults to false, so that in Postgres, 'recovery_target_inclusive' will be true
 - `target_immediate` (Boolean) End recovery as soon as a consistent state is reached
 - `target_lsn` (String) The target LSN (Log Sequence Number)
-- `target_name` (String) The target name (to be previously createdwith 'pg_create_restore_point')
+- `target_name` (String) The target name (to be previously created with 'pg_create_restore_point')
 - `target_time` (String) The target time as a timestamp in the RFC3339 standard
 - `target_tli` (String) The target timeline ('latest' or a positive integer)
 - `target_xid` (String) The target transaction ID
@@ -956,7 +956,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--bootstrap--recovery--volume_snapshots--tablespace_storage"></a>
@@ -969,7 +969,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--bootstrap--recovery--volume_snapshots--wal_storage"></a>
@@ -982,7 +982,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 
@@ -993,11 +993,11 @@ Optional:
 
 Optional:
 
-- `client_ca_secret` (String) The secret containing the Client CA certificate. If not defined, a new secret will be createdwith a self-signed CA and will be used to generate all the client certificates.<br /><br />Contains:<br /><br />- 'ca.crt': CA that should be used to validate the client certificates,used as 'ssl_ca_file' of all the instances.<br />- 'ca.key': key used to generate client certificates, if ReplicationTLSSecret is provided,this can be omitted.<br />
-- `replication_tls_secret` (String) The secret of type kubernetes.io/tls containing the client certificate to authenticate asthe 'streaming_replica' user.If not defined, ClientCASecret must provide also 'ca.key', and a new secret will becreated using the provided CA.
+- `client_ca_secret` (String) The secret containing the Client CA certificate. If not defined, a new secret will be created with a self-signed CA and will be used to generate all the client certificates.<br /> <br /> Contains:<br /> <br /> - 'ca.crt': CA that should be used to validate the client certificates, used as 'ssl_ca_file' of all the instances.<br /> - 'ca.key': key used to generate client certificates, if ReplicationTLSSecret is provided, this can be omitted.<br />
+- `replication_tls_secret` (String) The secret of type kubernetes.io/tls containing the client certificate to authenticate as the 'streaming_replica' user. If not defined, ClientCASecret must provide also 'ca.key', and a new secret will be created using the provided CA.
 - `server_alt_dns_names` (List of String) The list of the server alternative DNS names to be added to the generated server TLS certificates, when required.
-- `server_ca_secret` (String) The secret containing the Server CA certificate. If not defined, a new secret will be createdwith a self-signed CA and will be used to generate the TLS certificate ServerTLSSecret.<br /><br />Contains:<br /><br />- 'ca.crt': CA that should be used to validate the server certificate,used as 'sslrootcert' in client connection strings.<br />- 'ca.key': key used to generate Server SSL certs, if ServerTLSSecret is provided,this can be omitted.<br />
-- `server_tls_secret` (String) The secret of type kubernetes.io/tls containing the server TLS certificate and key that will be set as'ssl_cert_file' and 'ssl_key_file' so that clients can connect to postgres securely.If not defined, ServerCASecret must provide also 'ca.key' and a new secret will becreated using the provided CA.
+- `server_ca_secret` (String) The secret containing the Server CA certificate. If not defined, a new secret will be created with a self-signed CA and will be used to generate the TLS certificate ServerTLSSecret.<br /> <br /> Contains:<br /> <br /> - 'ca.crt': CA that should be used to validate the server certificate, used as 'sslrootcert' in client connection strings.<br /> - 'ca.key': key used to generate Server SSL certs, if ServerTLSSecret is provided, this can be omitted.<br />
+- `server_tls_secret` (String) The secret of type kubernetes.io/tls containing the server TLS certificate and key that will be set as 'ssl_cert_file' and 'ssl_key_file' so that clients can connect to postgres securely. If not defined, ServerCASecret must provide also 'ca.key' and a new secret will be created using the provided CA.
 
 
 <a id="nestedatt--spec--env"></a>
@@ -1009,7 +1009,7 @@ Required:
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.
+- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
 - `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--env--value_from))
 
 <a id="nestedatt--spec--env--value_from"></a>
@@ -1018,8 +1018,8 @@ Optional:
 Optional:
 
 - `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--env--value_from--resource_field_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--env--value_from--resource_field_ref))
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--env--value_from--config_map_key_ref"></a>
@@ -1031,7 +1031,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1065,11 +1065,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1089,7 +1089,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
@@ -1098,7 +1098,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret must be defined
 
 
@@ -1108,32 +1108,32 @@ Optional:
 
 Optional:
 
-- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume.The pod in which this EphemeralVolumeSource is embedded will be theowner of the PVC, i.e. the PVC will be deleted together with thepod.  The name of the PVC will be '<pod name>-<volume name>' where'<volume name>' is the name from the 'PodSpec.Volumes' arrayentry. Pod validation will reject the pod if the concatenated nameis not valid for a PVC (for example, too long).An existing PVC with that name that is not owned by the podwill *not* be used for the pod to avoid using an unrelatedvolume by mistake. Starting the pod is then blocked untilthe unrelated PVC is removed. If such a pre-created PVC ismeant to be used by the pod, the PVC has to updated with anowner reference to the pod once the pod exists. Normallythis should not be necessary, but it may be useful whenmanually reconstructing a broken cluster.This field is read-only and no changes will be made by Kubernetesto the PVC after it has been created.Required, must not be nil. (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template))
+- `volume_claim_template` (Attributes) Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod. The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long). An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster. This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created. Required, must not be nil. (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template))
 
 <a id="nestedatt--spec--ephemeral_volume_source--volume_claim_template"></a>
 ### Nested Schema for `spec.ephemeral_volume_source.volume_claim_template`
 
 Required:
 
-- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content iscopied unchanged into the PVC that gets created from thistemplate. The same fields as in a PersistentVolumeClaimare also valid here. (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec))
+- `spec` (Attributes) The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec))
 
 Optional:
 
-- `metadata` (Map of String) May contain labels and annotations that will be copied into the PVCwhen creating it. No other fields are allowed and will be rejected duringvalidation.
+- `metadata` (Map of String) May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
 <a id="nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec"></a>
 ### Nested Schema for `spec.ephemeral_volume_source.volume_claim_template.spec`
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--resources))
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--selector))
-- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
-- `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--data_source"></a>
@@ -1146,7 +1146,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--data_source_ref"></a>
@@ -1159,8 +1159,8 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
-- `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--resources"></a>
@@ -1168,8 +1168,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 <a id="nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--selector"></a>
@@ -1178,7 +1178,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--ephemeral_volume_source--volume_claim_template--spec--selector--match_expressions"></a>
 ### Nested Schema for `spec.ephemeral_volume_source.volume_claim_template.spec.selector.match_expressions`
@@ -1186,11 +1186,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1217,30 +1217,30 @@ Optional:
 
 - `barman_object_store` (Attributes) The configuration for the barman-cloud tool suite (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store))
 - `connection_parameters` (Map of String) The list of connection parameters, such as dbname, host, username, etc
-- `password` (Attributes) The reference to the password to be used to connect to the server.If a password is provided, CloudNativePG creates a PostgreSQLpassfile at '/controller/external/NAME/pass' (where 'NAME' is thecluster's name). This passfile is automatically referenced in theconnection string when establishing a connection to the remotePostgreSQL server from the current PostgreSQL 'Cluster'. This ensuressecure and efficient password management for external clusters. (see [below for nested schema](#nestedatt--spec--external_clusters--password))
-- `ssl_cert` (Attributes) The reference to an SSL certificate to be used to connect to thisinstance (see [below for nested schema](#nestedatt--spec--external_clusters--ssl_cert))
-- `ssl_key` (Attributes) The reference to an SSL private key to be used to connect to thisinstance (see [below for nested schema](#nestedatt--spec--external_clusters--ssl_key))
-- `ssl_root_cert` (Attributes) The reference to an SSL CA public key to be used to connect to thisinstance (see [below for nested schema](#nestedatt--spec--external_clusters--ssl_root_cert))
+- `password` (Attributes) The reference to the password to be used to connect to the server. If a password is provided, CloudNativePG creates a PostgreSQL passfile at '/controller/external/NAME/pass' (where 'NAME' is the cluster's name). This passfile is automatically referenced in the connection string when establishing a connection to the remote PostgreSQL server from the current PostgreSQL 'Cluster'. This ensures secure and efficient password management for external clusters. (see [below for nested schema](#nestedatt--spec--external_clusters--password))
+- `ssl_cert` (Attributes) The reference to an SSL certificate to be used to connect to this instance (see [below for nested schema](#nestedatt--spec--external_clusters--ssl_cert))
+- `ssl_key` (Attributes) The reference to an SSL private key to be used to connect to this instance (see [below for nested schema](#nestedatt--spec--external_clusters--ssl_key))
+- `ssl_root_cert` (Attributes) The reference to an SSL CA public key to be used to connect to this instance (see [below for nested schema](#nestedatt--spec--external_clusters--ssl_root_cert))
 
 <a id="nestedatt--spec--external_clusters--barman_object_store"></a>
 ### Nested Schema for `spec.external_clusters.barman_object_store`
 
 Required:
 
-- `destination_path` (String) The path where to store the backup (i.e. s3://bucket/path/to/folder)this path, with different destination folders, will be used for WALsand for data
+- `destination_path` (String) The path where to store the backup (i.e. s3://bucket/path/to/folder) this path, with different destination folders, will be used for WALs and for data
 
 Optional:
 
 - `azure_credentials` (Attributes) The credentials to use to upload data to Azure Blob Storage (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--azure_credentials))
-- `data` (Attributes) The configuration to be used to backup the data filesWhen not defined, base backups files will be stored uncompressed and maybe unencrypted in the object store, according to the bucket defaultpolicy. (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--data))
-- `endpoint_ca` (Attributes) EndpointCA store the CA bundle of the barman endpoint.Useful when using self-signed certificates to avoiderrors with certificate issuer and barman-cloud-wal-archive (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--endpoint_ca))
-- `endpoint_url` (String) Endpoint to be used to upload data to the cloud,overriding the automatic endpoint discovery
+- `data` (Attributes) The configuration to be used to backup the data files When not defined, base backups files will be stored uncompressed and may be unencrypted in the object store, according to the bucket default policy. (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--data))
+- `endpoint_ca` (Attributes) EndpointCA store the CA bundle of the barman endpoint. Useful when using self-signed certificates to avoid errors with certificate issuer and barman-cloud-wal-archive (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--endpoint_ca))
+- `endpoint_url` (String) Endpoint to be used to upload data to the cloud, overriding the automatic endpoint discovery
 - `google_credentials` (Attributes) The credentials to use to upload data to Google Cloud Storage (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--google_credentials))
-- `history_tags` (Map of String) HistoryTags is a list of key value pairs that will be passed to theBarman --history-tags option.
+- `history_tags` (Map of String) HistoryTags is a list of key value pairs that will be passed to the Barman --history-tags option.
 - `s3_credentials` (Attributes) The credentials to use to upload data to S3 (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--s3_credentials))
-- `server_name` (String) The server name on S3, the cluster name is used if thisparameter is omitted
-- `tags` (Map of String) Tags is a list of key value pairs that will be passed to theBarman --tags option.
-- `wal` (Attributes) The configuration for the backup of the WAL stream.When not defined, WAL files will be stored uncompressed and may beunencrypted in the object store, according to the bucket default policy. (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--wal))
+- `server_name` (String) The server name on S3, the cluster name is used if this parameter is omitted
+- `tags` (Map of String) Tags is a list of key value pairs that will be passed to the Barman --tags option.
+- `wal` (Attributes) The configuration for the backup of the WAL stream. When not defined, WAL files will be stored uncompressed and may be unencrypted in the object store, according to the bucket default policy. (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--wal))
 
 <a id="nestedatt--spec--external_clusters--barman_object_store--azure_credentials"></a>
 ### Nested Schema for `spec.external_clusters.barman_object_store.azure_credentials`
@@ -1250,8 +1250,8 @@ Optional:
 - `connection_string` (Attributes) The connection string to be used (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--azure_credentials--connection_string))
 - `inherit_from_azure_ad` (Boolean) Use the Azure AD based authentication without providing explicitly the keys.
 - `storage_account` (Attributes) The storage account where to upload data (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--azure_credentials--storage_account))
-- `storage_key` (Attributes) The storage account key to be used in conjunctionwith the storage account name (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--azure_credentials--storage_key))
-- `storage_sas_token` (Attributes) A shared-access-signature to be used in conjunction withthe storage account name (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--azure_credentials--storage_sas_token))
+- `storage_key` (Attributes) The storage account key to be used in conjunction with the storage account name (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--azure_credentials--storage_key))
+- `storage_sas_token` (Attributes) A shared-access-signature to be used in conjunction with the storage account name (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--azure_credentials--storage_sas_token))
 
 <a id="nestedatt--spec--external_clusters--barman_object_store--azure_credentials--connection_string"></a>
 ### Nested Schema for `spec.external_clusters.barman_object_store.azure_credentials.connection_string`
@@ -1295,11 +1295,11 @@ Required:
 
 Optional:
 
-- `additional_command_args` (List of String) AdditionalCommandArgs represents additional arguments that can be appendedto the 'barman-cloud-backup' command-line invocation. These argumentsprovide flexibility to customize the backup process further according tospecific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-backup' command, to avoid potential errors or unintendedbehavior during execution.
-- `compression` (String) Compress a backup file (a tar file per tablespace) while streaming itto the object store. Available options are empty string (nocompression, default), 'gzip', 'bzip2' or 'snappy'.
-- `encryption` (String) Whenever to force the encryption of files (if the bucket isnot already configured for that).Allowed options are empty string (use the bucket policy, default),'AES256' and 'aws:kms'
-- `immediate_checkpoint` (Boolean) Control whether the I/O workload for the backup initial checkpoint willbe limited, according to the 'checkpoint_completion_target' setting onthe PostgreSQL server. If set to true, an immediate checkpoint will beused, meaning PostgreSQL will complete the checkpoint as soon aspossible. 'false' by default.
-- `jobs` (Number) The number of parallel jobs to be used to upload the backup, defaultsto 2
+- `additional_command_args` (List of String) AdditionalCommandArgs represents additional arguments that can be appended to the 'barman-cloud-backup' command-line invocation. These arguments provide flexibility to customize the backup process further according to specific requirements or configurations. Example: In a scenario where specialized backup options are required, such as setting a specific timeout or defining custom behavior, users can use this field to specify additional command arguments. Note: It's essential to ensure that the provided arguments are valid and supported by the 'barman-cloud-backup' command, to avoid potential errors or unintended behavior during execution.
+- `compression` (String) Compress a backup file (a tar file per tablespace) while streaming it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.
+- `encryption` (String) Whenever to force the encryption of files (if the bucket is not already configured for that). Allowed options are empty string (use the bucket policy, default), 'AES256' and 'aws:kms'
+- `immediate_checkpoint` (Boolean) Control whether the I/O workload for the backup initial checkpoint will be limited, according to the 'checkpoint_completion_target' setting on the PostgreSQL server. If set to true, an immediate checkpoint will be used, meaning PostgreSQL will complete the checkpoint as soon as possible. 'false' by default.
+- `jobs` (Number) The number of parallel jobs to be used to upload the backup, defaults to 2
 
 
 <a id="nestedatt--spec--external_clusters--barman_object_store--endpoint_ca"></a>
@@ -1317,7 +1317,7 @@ Required:
 Optional:
 
 - `application_credentials` (Attributes) The secret containing the Google Cloud Storage JSON file with the credentials (see [below for nested schema](#nestedatt--spec--external_clusters--barman_object_store--google_credentials--application_credentials))
-- `gke_environment` (Boolean) If set to true, will presume that it's running inside a GKE environment,default to false.
+- `gke_environment` (Boolean) If set to true, will presume that it's running inside a GKE environment, default to false.
 
 <a id="nestedatt--spec--external_clusters--barman_object_store--google_credentials--application_credentials"></a>
 ### Nested Schema for `spec.external_clusters.barman_object_store.google_credentials.application_credentials`
@@ -1382,11 +1382,11 @@ Required:
 
 Optional:
 
-- `archive_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-archive'command-line invocation. These arguments provide flexibility to customizethe WAL archive process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-archive' command, to avoid potential errors or unintendedbehavior during execution.
-- `compression` (String) Compress a WAL file before sending it to the object store. Availableoptions are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.
-- `encryption` (String) Whenever to force the encryption of files (if the bucket isnot already configured for that).Allowed options are empty string (use the bucket policy, default),'AES256' and 'aws:kms'
-- `max_parallel` (Number) Number of WAL files to be either archived in parallel (when thePostgreSQL instance is archiving to a backup object store) orrestored in parallel (when a PostgreSQL standby is fetching WALfiles from a recovery object store). If not specified, WAL fileswill be processed one at a time. It accepts a positive integer as avalue - with 1 being the minimum accepted value.
-- `restore_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-restore'command-line invocation. These arguments provide flexibility to customizethe WAL restore process further, according to specific requirements or configurations.Example:In a scenario where specialized backup options are required, such as settinga specific timeout or defining custom behavior, users can use this fieldto specify additional command arguments.Note:It's essential to ensure that the provided arguments are valid and supportedby the 'barman-cloud-wal-restore' command, to avoid potential errors or unintendedbehavior during execution.
+- `archive_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-archive' command-line invocation. These arguments provide flexibility to customize the WAL archive process further, according to specific requirements or configurations. Example: In a scenario where specialized backup options are required, such as setting a specific timeout or defining custom behavior, users can use this field to specify additional command arguments. Note: It's essential to ensure that the provided arguments are valid and supported by the 'barman-cloud-wal-archive' command, to avoid potential errors or unintended behavior during execution.
+- `compression` (String) Compress a WAL file before sending it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.
+- `encryption` (String) Whenever to force the encryption of files (if the bucket is not already configured for that). Allowed options are empty string (use the bucket policy, default), 'AES256' and 'aws:kms'
+- `max_parallel` (Number) Number of WAL files to be either archived in parallel (when the PostgreSQL instance is archiving to a backup object store) or restored in parallel (when a PostgreSQL standby is fetching WAL files from a recovery object store). If not specified, WAL files will be processed one at a time. It accepts a positive integer as a value - with 1 being the minimum accepted value.
+- `restore_additional_command_args` (List of String) Additional arguments that can be appended to the 'barman-cloud-wal-restore' command-line invocation. These arguments provide flexibility to customize the WAL restore process further, according to specific requirements or configurations. Example: In a scenario where specialized backup options are required, such as setting a specific timeout or defining custom behavior, users can use this field to specify additional command arguments. Note: It's essential to ensure that the provided arguments are valid and supported by the 'barman-cloud-wal-restore' command, to avoid potential errors or unintended behavior during execution.
 
 
 
@@ -1395,11 +1395,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1408,11 +1408,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1421,11 +1421,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1434,11 +1434,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1454,7 +1454,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--image_pull_secrets"></a>
@@ -1491,20 +1491,20 @@ Required:
 
 Optional:
 
-- `bypassrls` (Boolean) Whether a role bypasses every row-level security (RLS) policy.Default is 'false'.
+- `bypassrls` (Boolean) Whether a role bypasses every row-level security (RLS) policy. Default is 'false'.
 - `comment` (String) Description of the role
-- `connection_limit` (Number) If the role can log in, this specifies how many concurrentconnections the role can make. '-1' (the default) means no limit.
-- `createdb` (Boolean) When set to 'true', the role being defined will be allowed to createnew databases. Specifying 'false' (default) will deny a role theability to create databases.
-- `createrole` (Boolean) Whether the role will be permitted to create, alter, drop, commenton, change the security label for, and grant or revoke membership inother roles. Default is 'false'.
+- `connection_limit` (Number) If the role can log in, this specifies how many concurrent connections the role can make. '-1' (the default) means no limit.
+- `createdb` (Boolean) When set to 'true', the role being defined will be allowed to create new databases. Specifying 'false' (default) will deny a role the ability to create databases.
+- `createrole` (Boolean) Whether the role will be permitted to create, alter, drop, comment on, change the security label for, and grant or revoke membership in other roles. Default is 'false'.
 - `disable_password` (Boolean) DisablePassword indicates that a role's password should be set to NULL in Postgres
 - `ensure` (String) Ensure the role is 'present' or 'absent' - defaults to 'present'
-- `in_roles` (List of String) List of one or more existing roles to which this role will beimmediately added as a new member. Default empty.
-- `inherit` (Boolean) Whether a role 'inherits' the privileges of roles it is a member of.Defaults is 'true'.
-- `login` (Boolean) Whether the role is allowed to log in. A role having the 'login'attribute can be thought of as a user. Roles without this attributeare useful for managing database privileges, but are not users inthe usual sense of the word. Default is 'false'.
-- `password_secret` (Attributes) Secret containing the password of the role (if present)If null, the password will be ignored unless DisablePassword is set (see [below for nested schema](#nestedatt--spec--managed--roles--password_secret))
-- `replication` (Boolean) Whether a role is a replication role. A role must have thisattribute (or be a superuser) in order to be able to connect to theserver in replication mode (physical or logical replication) and inorder to be able to create or drop replication slots. A role havingthe 'replication' attribute is a very highly privileged role, andshould only be used on roles actually used for replication. Defaultis 'false'.
-- `superuser` (Boolean) Whether the role is a 'superuser' who can override all accessrestrictions within the database - superuser status is dangerous andshould be used only when really needed. You must yourself be asuperuser to create a new superuser. Defaults is 'false'.
-- `valid_until` (String) Date and time after which the role's password is no longer valid.When omitted, the password will never expire (default).
+- `in_roles` (List of String) List of one or more existing roles to which this role will be immediately added as a new member. Default empty.
+- `inherit` (Boolean) Whether a role 'inherits' the privileges of roles it is a member of. Defaults is 'true'.
+- `login` (Boolean) Whether the role is allowed to log in. A role having the 'login' attribute can be thought of as a user. Roles without this attribute are useful for managing database privileges, but are not users in the usual sense of the word. Default is 'false'.
+- `password_secret` (Attributes) Secret containing the password of the role (if present) If null, the password will be ignored unless DisablePassword is set (see [below for nested schema](#nestedatt--spec--managed--roles--password_secret))
+- `replication` (Boolean) Whether a role is a replication role. A role must have this attribute (or be a superuser) in order to be able to connect to the server in replication mode (physical or logical replication) and in order to be able to create or drop replication slots. A role having the 'replication' attribute is a very highly privileged role, and should only be used on roles actually used for replication. Default is 'false'.
+- `superuser` (Boolean) Whether the role is a 'superuser' who can override all access restrictions within the database - superuser status is dangerous and should be used only when really needed. You must yourself be a superuser to create a new superuser. Defaults is 'false'.
+- `valid_until` (String) Date and time after which the role's password is no longer valid. When omitted, the password will never expire (default).
 
 <a id="nestedatt--spec--managed--roles--password_secret"></a>
 ### Nested Schema for `spec.managed.roles.password_secret`
@@ -1521,14 +1521,14 @@ Required:
 Optional:
 
 - `additional` (Attributes List) Additional is a list of additional managed services specified by the user. (see [below for nested schema](#nestedatt--spec--managed--services--additional))
-- `disabled_default_services` (List of String) DisabledDefaultServices is a list of service types that are disabled by default.Valid values are 'r', and 'ro', representing read, and read-only services.
+- `disabled_default_services` (List of String) DisabledDefaultServices is a list of service types that are disabled by default. Valid values are 'r', and 'ro', representing read, and read-only services.
 
 <a id="nestedatt--spec--managed--services--additional"></a>
 ### Nested Schema for `spec.managed.services.additional`
 
 Required:
 
-- `selector_type` (String) SelectorType specifies the type of selectors that the service will have.Valid values are 'rw', 'r', and 'ro', representing read-write, read, and read-only services.
+- `selector_type` (String) SelectorType specifies the type of selectors that the service will have. Valid values are 'rw', 'r', and 'ro', representing read-write, read, and read-only services.
 - `service_template` (Attributes) ServiceTemplate is the template specification for the service. (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template))
 
 Optional:
@@ -1540,16 +1540,16 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--metadata))
-- `spec` (Attributes) Specification of the desired behavior of the service.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--spec))
+- `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--metadata))
+- `spec` (Attributes) Specification of the desired behavior of the service. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--spec))
 
 <a id="nestedatt--spec--managed--services--additional--service_template--metadata"></a>
 ### Nested Schema for `spec.managed.services.additional.service_template.metadata`
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
 - `name` (String) The name of the resource. Only supported for certain types
 
 
@@ -1558,26 +1558,26 @@ Optional:
 
 Optional:
 
-- `allocate_load_balancer_node_ports` (Boolean) allocateLoadBalancerNodePorts defines if NodePorts will be automaticallyallocated for services with type LoadBalancer.  Default is 'true'. Itmay be set to 'false' if the cluster load-balancer does not rely onNodePorts.  If the caller requests specific NodePorts (by specifying avalue), those requests will be respected, regardless of this field.This field may only be set for services with type LoadBalancer and willbe cleared if the type is changed to any other type.
-- `cluster_i_ps` (List of String) ClusterIPs is a list of IP addresses assigned to this service, and areusually assigned randomly.  If an address is specified manually, isin-range (as per system configuration), and is not in use, it will beallocated to the service; otherwise creation of the service will fail.This field may not be changed through updates unless the type field isalso being changed to ExternalName (which requires this field to beempty) or the type field is being changed from ExternalName (in whichcase this field may optionally be specified, as describe above).  Validvalues are 'None', empty string (''), or a valid IP address.  Settingthis to 'None' makes a 'headless service' (no virtual IP), which isuseful when direct endpoint connections are preferred and proxying isnot required.  Only applies to types ClusterIP, NodePort, andLoadBalancer. If this field is specified when creating a Service of typeExternalName, creation will fail. This field will be wiped when updatinga Service to type ExternalName.  If this field is not specified, it willbe initialized from the clusterIP field.  If this field is specified,clients must ensure that clusterIPs[0] and clusterIP have the samevalue.This field may hold a maximum of two entries (dual-stack IPs, in either order).These IPs must correspond to the values of the ipFamilies field. BothclusterIPs and ipFamilies are governed by the ipFamilyPolicy field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
-- `cluster_ip` (String) clusterIP is the IP address of the service and is usually assignedrandomly. If an address is specified manually, is in-range (as persystem configuration), and is not in use, it will be allocated to theservice; otherwise creation of the service will fail. This field may notbe changed through updates unless the type field is also being changedto ExternalName (which requires this field to be blank) or the typefield is being changed from ExternalName (in which case this field mayoptionally be specified, as describe above).  Valid values are 'None',empty string (''), or a valid IP address. Setting this to 'None' makes a'headless service' (no virtual IP), which is useful when direct endpointconnections are preferred and proxying is not required.  Only applies totypes ClusterIP, NodePort, and LoadBalancer. If this field is specifiedwhen creating a Service of type ExternalName, creation will fail. Thisfield will be wiped when updating a Service to type ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
-- `external_i_ps` (List of String) externalIPs is a list of IP addresses for which nodes in the clusterwill also accept traffic for this service.  These IPs are not managed byKubernetes.  The user is responsible for ensuring that traffic arrivesat a node with this IP.  A common example is external load-balancersthat are not part of the Kubernetes system.
-- `external_name` (String) externalName is the external reference that discovery mechanisms willreturn as an alias for this service (e.g. a DNS CNAME record). Noproxying will be involved.  Must be a lowercase RFC-1123 hostname(https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.
-- `external_traffic_policy` (String) externalTrafficPolicy describes how nodes distribute service traffic theyreceive on one of the Service's 'externally-facing' addresses (NodePorts,ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configurethe service in a way that assumes that external load balancers will take careof balancing the service traffic between nodes, and so each node will delivertraffic only to the node-local endpoints of the service, without masqueradingthe client source IP. (Traffic mistakenly sent to a node with no endpoints willbe dropped.) The default value, 'Cluster', uses the standard behavior ofrouting to all endpoints evenly (possibly modified by topology and otherfeatures). Note that traffic sent to an External IP or LoadBalancer IP fromwithin the cluster will always get 'Cluster' semantics, but clients sending toa NodePort from within the cluster may need to take traffic policy into accountwhen picking a node.
-- `health_check_node_port` (Number) healthCheckNodePort specifies the healthcheck nodePort for the service.This only applies when type is set to LoadBalancer andexternalTrafficPolicy is set to Local. If a value is specified, isin-range, and is not in use, it will be used.  If not specified, a valuewill be automatically allocated.  External systems (e.g. load-balancers)can use this port to determine if a given node holds endpoints for thisservice or not.  If this field is specified when creating a Servicewhich does not need it, creation will fail. This field will be wipedwhen updating a Service to no longer need it (e.g. changing type).This field cannot be updated once set.
-- `internal_traffic_policy` (String) InternalTrafficPolicy describes how nodes distribute service traffic theyreceive on the ClusterIP. If set to 'Local', the proxy will assume that podsonly want to talk to endpoints of the service on the same node as the pod,dropping the traffic if there are no local endpoints. The default value,'Cluster', uses the standard behavior of routing to all endpoints evenly(possibly modified by topology and other features).
-- `ip_families` (List of String) IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to thisservice. This field is usually assigned automatically based on clusterconfiguration and the ipFamilyPolicy field. If this field is specifiedmanually, the requested family is available in the cluster,and ipFamilyPolicy allows it, it will be used; otherwise creation ofthe service will fail. This field is conditionally mutable: it allowsfor adding or removing a secondary IP family, but it does not allowchanging the primary IP family of the Service. Valid values are 'IPv4'and 'IPv6'.  This field only applies to Services of types ClusterIP,NodePort, and LoadBalancer, and does apply to 'headless' services.This field will be wiped when updating a Service to type ExternalName.This field may hold a maximum of two entries (dual-stack families, ineither order).  These families must correspond to the values of theclusterIPs field, if specified. Both clusterIPs and ipFamilies aregoverned by the ipFamilyPolicy field.
-- `ip_family_policy` (String) IPFamilyPolicy represents the dual-stack-ness requested or required bythis Service. If there is no value provided, then this field will be setto SingleStack. Services can be 'SingleStack' (a single IP family),'PreferDualStack' (two IP families on dual-stack configured clusters ora single IP family on single-stack clusters), or 'RequireDualStack'(two IP families on dual-stack configured clusters, otherwise fail). TheipFamilies and clusterIPs fields depend on the value of this field. Thisfield will be wiped when updating a service to type ExternalName.
-- `load_balancer_class` (String) loadBalancerClass is the class of the load balancer implementation this Service belongs to.If specified, the value of this field must be a label-style identifier, with an optional prefix,e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users.This field can only be set when the Service type is 'LoadBalancer'. If not set, the default loadbalancer implementation is used, today this is typically done through the cloud provider integration,but should apply for any default implementation. If set, it is assumed that a load balancerimplementation is watching for Services with a matching class. Any default load balancerimplementation (e.g. cloud providers) should ignore Services that set this field.This field can only be set when creating or updating a Service to type 'LoadBalancer'.Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.
-- `load_balancer_ip` (String) Only applies to Service Type: LoadBalancer.This feature depends on whether the underlying cloud-provider supports specifyingthe loadBalancerIP when a load balancer is created.This field will be ignored if the cloud-provider does not support the feature.Deprecated: This field was under-specified and its meaning varies across implementations.Using it is non-portable and it may not support dual-stack.Users are encouraged to use implementation-specific annotations when available.
-- `load_balancer_source_ranges` (List of String) If specified and supported by the platform, this will restrict traffic through the cloud-providerload-balancer will be restricted to the specified client IPs. This field will be ignored if thecloud-provider does not support the feature.'More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
-- `ports` (Attributes List) The list of ports that are exposed by this service.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--spec--ports))
-- `publish_not_ready_addresses` (Boolean) publishNotReadyAddresses indicates that any agent which deals with endpoints for thisService should disregard any indications of ready/not-ready.The primary use case for setting this field is for a StatefulSet's Headless Service topropagate SRV DNS records for its Pods for the purpose of peer discovery.The Kubernetes controllers that generate Endpoints and EndpointSlice resources forServices interpret this to mean that all endpoints are considered 'ready' even if thePods themselves are not. Agents which consume only Kubernetes generated endpointsthrough the Endpoints or EndpointSlice resources can safely assume this behavior.
-- `selector` (Map of String) Route service traffic to pods with label keys and values matching thisselector. If empty or not present, the service is assumed to have anexternal process managing its endpoints, which Kubernetes will notmodify. Only applies to types ClusterIP, NodePort, and LoadBalancer.Ignored if type is ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/
-- `session_affinity` (String) Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `allocate_load_balancer_node_ports` (Boolean) allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer. Default is 'true'. It may be set to 'false' if the cluster load-balancer does not rely on NodePorts. If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type.
+- `cluster_i_ps` (List of String) ClusterIPs is a list of IP addresses assigned to this service, and are usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be empty) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above). Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. If this field is not specified, it will be initialized from the clusterIP field. If this field is specified, clients must ensure that clusterIPs[0] and clusterIP have the same value. This field may hold a maximum of two entries (dual-stack IPs, in either order). These IPs must correspond to the values of the ipFamilies field. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `cluster_ip` (String) clusterIP is the IP address of the service and is usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be blank) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above). Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `external_i_ps` (List of String) externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service. These IPs are not managed by Kubernetes. The user is responsible for ensuring that traffic arrives at a node with this IP. A common example is external load-balancers that are not part of the Kubernetes system.
+- `external_name` (String) externalName is the external reference that discovery mechanisms will return as an alias for this service (e.g. a DNS CNAME record). No proxying will be involved. Must be a lowercase RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.
+- `external_traffic_policy` (String) externalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service's 'externally-facing' addresses (NodePorts, ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configure the service in a way that assumes that external load balancers will take care of balancing the service traffic between nodes, and so each node will deliver traffic only to the node-local endpoints of the service, without masquerading the client source IP. (Traffic mistakenly sent to a node with no endpoints will be dropped.) The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features). Note that traffic sent to an External IP or LoadBalancer IP from within the cluster will always get 'Cluster' semantics, but clients sending to a NodePort from within the cluster may need to take traffic policy into account when picking a node.
+- `health_check_node_port` (Number) healthCheckNodePort specifies the healthcheck nodePort for the service. This only applies when type is set to LoadBalancer and externalTrafficPolicy is set to Local. If a value is specified, is in-range, and is not in use, it will be used. If not specified, a value will be automatically allocated. External systems (e.g. load-balancers) can use this port to determine if a given node holds endpoints for this service or not. If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type). This field cannot be updated once set.
+- `internal_traffic_policy` (String) InternalTrafficPolicy describes how nodes distribute service traffic they receive on the ClusterIP. If set to 'Local', the proxy will assume that pods only want to talk to endpoints of the service on the same node as the pod, dropping the traffic if there are no local endpoints. The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features).
+- `ip_families` (List of String) IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'. This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName. This field may hold a maximum of two entries (dual-stack families, in either order). These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.
+- `ip_family_policy` (String) IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.
+- `load_balancer_class` (String) loadBalancerClass is the class of the load balancer implementation this Service belongs to. If specified, the value of this field must be a label-style identifier, with an optional prefix, e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users. This field can only be set when the Service type is 'LoadBalancer'. If not set, the default load balancer implementation is used, today this is typically done through the cloud provider integration, but should apply for any default implementation. If set, it is assumed that a load balancer implementation is watching for Services with a matching class. Any default load balancer implementation (e.g. cloud providers) should ignore Services that set this field. This field can only be set when creating or updating a Service to type 'LoadBalancer'. Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.
+- `load_balancer_ip` (String) Only applies to Service Type: LoadBalancer. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations. Using it is non-portable and it may not support dual-stack. Users are encouraged to use implementation-specific annotations when available.
+- `load_balancer_source_ranges` (List of String) If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature.' More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
+- `ports` (Attributes List) The list of ports that are exposed by this service. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--spec--ports))
+- `publish_not_ready_addresses` (Boolean) publishNotReadyAddresses indicates that any agent which deals with endpoints for this Service should disregard any indications of ready/not-ready. The primary use case for setting this field is for a StatefulSet's Headless Service to propagate SRV DNS records for its Pods for the purpose of peer discovery. The Kubernetes controllers that generate Endpoints and EndpointSlice resources for Services interpret this to mean that all endpoints are considered 'ready' even if the Pods themselves are not. Agents which consume only Kubernetes generated endpoints through the Endpoints or EndpointSlice resources can safely assume this behavior.
+- `selector` (Map of String) Route service traffic to pods with label keys and values matching this selector. If empty or not present, the service is assumed to have an external process managing its endpoints, which Kubernetes will not modify. Only applies to types ClusterIP, NodePort, and LoadBalancer. Ignored if type is ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/
+- `session_affinity` (String) Supports 'ClientIP' and 'None'. Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
 - `session_affinity_config` (Attributes) sessionAffinityConfig contains the configurations of session affinity. (see [below for nested schema](#nestedatt--spec--managed--services--additional--service_template--spec--session_affinity_config))
-- `traffic_distribution` (String) TrafficDistribution offers a way to express preferences for how traffic isdistributed to Service endpoints. Implementations can use this field as ahint, but are not required to guarantee strict adherence. If the field isnot set, the implementation will apply its default routing strategy. If setto 'PreferClose', implementations should prioritize endpoints that aretopologically close (e.g., same zone).This is an alpha field and requires enabling ServiceTrafficDistribution feature.
-- `type` (String) type determines how the Service is exposed. Defaults to ClusterIP. Validoptions are ExternalName, ClusterIP, NodePort, and LoadBalancer.'ClusterIP' allocates a cluster-internal IP address for load-balancingto endpoints. Endpoints are determined by the selector or if that is notspecified, by manual construction of an Endpoints object orEndpointSlice objects. If clusterIP is 'None', no virtual IP isallocated and the endpoints are published as a set of endpoints ratherthan a virtual IP.'NodePort' builds on ClusterIP and allocates a port on every node whichroutes to the same endpoints as the clusterIP.'LoadBalancer' builds on NodePort and creates an external load-balancer(if supported in the current cloud) which routes to the same endpointsas the clusterIP.'ExternalName' aliases this service to the specified externalName.Several other fields do not apply to ExternalName services.More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+- `traffic_distribution` (String) TrafficDistribution offers a way to express preferences for how traffic is distributed to Service endpoints. Implementations can use this field as a hint, but are not required to guarantee strict adherence. If the field is not set, the implementation will apply its default routing strategy. If set to 'PreferClose', implementations should prioritize endpoints that are topologically close (e.g., same zone). This is an alpha field and requires enabling ServiceTrafficDistribution feature.
+- `type` (String) type determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. 'ExternalName' aliases this service to the specified externalName. Several other fields do not apply to ExternalName services. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
 
 <a id="nestedatt--spec--managed--services--additional--service_template--spec--ports"></a>
 ### Nested Schema for `spec.managed.services.additional.service_template.spec.ports`
@@ -1588,11 +1588,11 @@ Required:
 
 Optional:
 
-- `app_protocol` (String) The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-  * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455  * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.
-- `name` (String) The name of this port within the service. This must be a DNS_LABEL.All ports within a ServiceSpec must have unique names. When consideringthe endpoints for a Service, this must match the 'name' field in theEndpointPort.Optional if only one ServicePort is defined on this service.
-- `node_port` (Number) The port on each node on which this service is exposed when type isNodePort or LoadBalancer.  Usually assigned by the system. If a value isspecified, in-range, and not in use it will be used, otherwise theoperation will fail.  If not specified, a port will be allocated if thisService requires one.  If this field is specified when creating aService which does not need it, creation will fail. This field will bewiped when updating a Service to no longer need it (e.g. changing typefrom NodePort to ClusterIP).More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-- `protocol` (String) The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'.Default is TCP.
-- `target_port` (String) Number or name of the port to access on the pods targeted by the service.Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.If this is a string, it will be looked up as a named port in thetarget Pod's container ports. If this is not specified, the valueof the 'port' field is used (an identity map).This field is ignored for services with clusterIP=None, and should beomitted or set equal to the 'port' field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
+- `app_protocol` (String) The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: * Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). * Kubernetes-defined prefixed names: * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior- * 'kubernetes.io/ws' - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 * Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.
+- `name` (String) The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the 'name' field in the EndpointPort. Optional if only one ServicePort is defined on this service.
+- `node_port` (Number) The port on each node on which this service is exposed when type is NodePort or LoadBalancer. Usually assigned by the system. If a value is specified, in-range, and not in use it will be used, otherwise the operation will fail. If not specified, a port will be allocated if this Service requires one. If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type from NodePort to ClusterIP). More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+- `protocol` (String) The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'. Default is TCP.
+- `target_port` (String) Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod's container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
 
 
 <a id="nestedatt--spec--managed--services--additional--service_template--spec--session_affinity_config"></a>
@@ -1607,7 +1607,7 @@ Optional:
 
 Optional:
 
-- `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).
+- `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).
 
 
 
@@ -1623,11 +1623,11 @@ Optional:
 
 - `custom_queries_config_map` (Attributes List) The list of config maps containing the custom queries (see [below for nested schema](#nestedatt--spec--monitoring--custom_queries_config_map))
 - `custom_queries_secret` (Attributes List) The list of secrets containing the custom queries (see [below for nested schema](#nestedatt--spec--monitoring--custom_queries_secret))
-- `disable_default_queries` (Boolean) Whether the default queries should be injected.Set it to 'true' if you don't want to inject default queries into the cluster.Default: false.
+- `disable_default_queries` (Boolean) Whether the default queries should be injected. Set it to 'true' if you don't want to inject default queries into the cluster. Default: false.
 - `enable_pod_monitor` (Boolean) Enable or disable the 'PodMonitor'
 - `pod_monitor_metric_relabelings` (Attributes List) The list of metric relabelings for the 'PodMonitor'. Applied to samples before ingestion. (see [below for nested schema](#nestedatt--spec--monitoring--pod_monitor_metric_relabelings))
 - `pod_monitor_relabelings` (Attributes List) The list of relabelings for the 'PodMonitor'. Applied to samples before scraping. (see [below for nested schema](#nestedatt--spec--monitoring--pod_monitor_relabelings))
-- `tls` (Attributes) Configure TLS communication for the metrics endpoint.Changing tls.enabled option will force a rollout of all instances. (see [below for nested schema](#nestedatt--spec--monitoring--tls))
+- `tls` (Attributes) Configure TLS communication for the metrics endpoint. Changing tls.enabled option will force a rollout of all instances. (see [below for nested schema](#nestedatt--spec--monitoring--tls))
 
 <a id="nestedatt--spec--monitoring--custom_queries_config_map"></a>
 ### Nested Schema for `spec.monitoring.custom_queries_config_map`
@@ -1652,13 +1652,13 @@ Required:
 
 Optional:
 
-- `action` (String) Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'
-- `modulus` (Number) Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.
+- `action` (String) Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.
 - `regex` (String) Regular expression against which the extracted value is matched.
-- `replacement` (String) Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.
+- `replacement` (String) Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.
 - `separator` (String) Separator is the string between concatenated SourceLabels.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
-- `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--monitoring--pod_monitor_relabelings"></a>
@@ -1666,13 +1666,13 @@ Optional:
 
 Optional:
 
-- `action` (String) Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'
-- `modulus` (Number) Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.
+- `action` (String) Action to perform based on the regex matching. 'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0. Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values. Only applicable when the action is 'HashMod'.
 - `regex` (String) Regular expression against which the extracted value is matched.
-- `replacement` (String) Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.
+- `replacement` (String) Replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available.
 - `separator` (String) Separator is the string between concatenated SourceLabels.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
-- `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement. It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions. Regex capture groups are available.
 
 
 <a id="nestedatt--spec--monitoring--tls"></a>
@@ -1680,7 +1680,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Enable TLS for the monitoring endpoint.Changing this option will force a rollout of all instances.
+- `enabled` (Boolean) Enable TLS for the monitoring endpoint. Changing this option will force a rollout of all instances.
 
 
 
@@ -1690,7 +1690,7 @@ Optional:
 Optional:
 
 - `in_progress` (Boolean) Is there a node maintenance activity in progress?
-- `reuse_pvc` (Boolean) Reuse the existing PVC (wait for the node to comeup again) or not (recreate it elsewhere - when 'instances' >1)
+- `reuse_pvc` (Boolean) Reuse the existing PVC (wait for the node to come up again) or not (recreate it elsewhere - when 'instances' >1)
 
 
 <a id="nestedatt--spec--plugins"></a>
@@ -1702,6 +1702,7 @@ Required:
 
 Optional:
 
+- `enabled` (Boolean) Enabled is true if this plugin will be used
 - `parameters` (Map of String) Parameters is the configuration of the plugin
 
 
@@ -1710,14 +1711,14 @@ Optional:
 
 Optional:
 
-- `enable_alter_system` (Boolean) If this parameter is true, the user will be able to invoke 'ALTER SYSTEM'on this CloudNativePG Cluster.This should only be used for debugging and troubleshooting.Defaults to false.
+- `enable_alter_system` (Boolean) If this parameter is true, the user will be able to invoke 'ALTER SYSTEM' on this CloudNativePG Cluster. This should only be used for debugging and troubleshooting. Defaults to false.
 - `ldap` (Attributes) Options to specify LDAP configuration (see [below for nested schema](#nestedatt--spec--postgresql--ldap))
 - `parameters` (Map of String) PostgreSQL configuration options (postgresql.conf)
-- `pg_hba` (List of String) PostgreSQL Host Based Authentication rules (lines to be appendedto the pg_hba.conf file)
-- `pg_ident` (List of String) PostgreSQL User Name Maps rules (lines to be appendedto the pg_ident.conf file)
-- `promotion_timeout` (Number) Specifies the maximum number of seconds to wait when promoting an instance to primary.Default value is 40000000, greater than one year in seconds,big enough to simulate an infinite timeout
+- `pg_hba` (List of String) PostgreSQL Host Based Authentication rules (lines to be appended to the pg_hba.conf file)
+- `pg_ident` (List of String) PostgreSQL User Name Maps rules (lines to be appended to the pg_ident.conf file)
+- `promotion_timeout` (Number) Specifies the maximum number of seconds to wait when promoting an instance to primary. Default value is 40000000, greater than one year in seconds, big enough to simulate an infinite timeout
 - `shared_preload_libraries` (List of String) Lists of shared preload libraries to add to the default ones
-- `sync_replica_election_constraint` (Attributes) Requirements to be met by sync replicas. This will affect how the 'synchronous_standby_names' parameter will beset up. (see [below for nested schema](#nestedatt--spec--postgresql--sync_replica_election_constraint))
+- `sync_replica_election_constraint` (Attributes) Requirements to be met by sync replicas. This will affect how the 'synchronous_standby_names' parameter will be set up. (see [below for nested schema](#nestedatt--spec--postgresql--sync_replica_election_constraint))
 - `synchronous` (Attributes) Configuration of the PostgreSQL synchronous replication feature (see [below for nested schema](#nestedatt--spec--postgresql--synchronous))
 
 <a id="nestedatt--spec--postgresql--ldap"></a>
@@ -1757,11 +1758,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1784,14 +1785,14 @@ Optional:
 
 Required:
 
-- `method` (String) Method to select synchronous replication standbys from the listedservers, accepting 'any' (quorum-based synchronous replication) or'first' (priority-based synchronous replication) as values.
-- `number` (Number) Specifies the number of synchronous standby servers thattransactions must wait for responses from.
+- `method` (String) Method to select synchronous replication standbys from the listed servers, accepting 'any' (quorum-based synchronous replication) or 'first' (priority-based synchronous replication) as values.
+- `number` (Number) Specifies the number of synchronous standby servers that transactions must wait for responses from.
 
 Optional:
 
-- `max_standby_names_from_cluster` (Number) Specifies the maximum number of local cluster pods that can beautomatically included in the 'synchronous_standby_names' option inPostgreSQL.
-- `standby_names_post` (List of String) A user-defined list of application names to be added to'synchronous_standby_names' after local cluster pods (the order isonly useful for priority-based synchronous replication).
-- `standby_names_pre` (List of String) A user-defined list of application names to be added to'synchronous_standby_names' before local cluster pods (the order isonly useful for priority-based synchronous replication).
+- `max_standby_names_from_cluster` (Number) Specifies the maximum number of local cluster pods that can be automatically included in the 'synchronous_standby_names' option in PostgreSQL.
+- `standby_names_post` (List of String) A user-defined list of application names to be added to 'synchronous_standby_names' after local cluster pods (the order is only useful for priority-based synchronous replication).
+- `standby_names_pre` (List of String) A user-defined list of application names to be added to 'synchronous_standby_names' before local cluster pods (the order is only useful for priority-based synchronous replication).
 
 
 
@@ -1800,7 +1801,7 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 - `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources))
 
 <a id="nestedatt--spec--projected_volume_template--sources"></a>
@@ -1808,7 +1809,7 @@ Optional:
 
 Optional:
 
-- `cluster_trust_bundle` (Attributes) ClusterTrustBundle allows a pod to access the '.spec.trustBundle' fieldof ClusterTrustBundle objects in an auto-updating file.Alpha, gated by the ClusterTrustBundleProjection feature gate.ClusterTrustBundle objects can either be selected by name, or by thecombination of signer name and a label selector.Kubelet performs aggressive normalization of the PEM contents writteninto the pod filesystem.  Esoteric PEM features such as inter-blockcomments and block headers are stripped.  Certificates are deduplicated.The ordering of certificates within the file is arbitrary, and Kubeletmay change the order over time. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--cluster_trust_bundle))
+- `cluster_trust_bundle` (Attributes) ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--cluster_trust_bundle))
 - `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--config_map))
 - `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--downward_api))
 - `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--secret))
@@ -1823,10 +1824,10 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) Select all ClusterTrustBundles that match this label selector.  Only haseffect if signerName is set.  Mutually-exclusive with name.  If unset,interpreted as 'match nothing'.  If set but empty, interpreted as 'matcheverything'. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--cluster_trust_bundle--label_selector))
-- `name` (String) Select a single ClusterTrustBundle by object name.  Mutually-exclusivewith signerName and labelSelector.
-- `optional` (Boolean) If true, don't block pod startup if the referenced ClusterTrustBundle(s)aren't available.  If using name, then the named ClusterTrustBundle isallowed not to exist.  If using signerName, then the combination ofsignerName and labelSelector is allowed to match zeroClusterTrustBundles.
-- `signer_name` (String) Select all ClusterTrustBundles that match this signer name.Mutually-exclusive with name.  The contents of all selectedClusterTrustBundles will be unified and deduplicated.
+- `label_selector` (Attributes) Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as 'match nothing'. If set but empty, interpreted as 'match everything'. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--cluster_trust_bundle--label_selector))
+- `name` (String) Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector.
+- `optional` (Boolean) If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.
+- `signer_name` (String) Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated.
 
 <a id="nestedatt--spec--projected_volume_template--sources--cluster_trust_bundle--label_selector"></a>
 ### Nested Schema for `spec.projected_volume_template.sources.cluster_trust_bundle.label_selector`
@@ -1834,7 +1835,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--cluster_trust_bundle--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--projected_volume_template--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.projected_volume_template.sources.cluster_trust_bundle.label_selector.match_expressions`
@@ -1842,11 +1843,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1856,8 +1857,8 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--config_map--items))
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--config_map--items))
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--projected_volume_template--sources--config_map--items"></a>
@@ -1866,11 +1867,11 @@ Optional:
 Required:
 
 - `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -1886,13 +1887,13 @@ Optional:
 
 Required:
 
-- `path` (String) Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+- `path` (String) Required: Path is the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
 
 Optional:
 
 - `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--downward_api--items--field_ref))
-- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal valuebetween 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--downward_api--items--resource_field_ref))
+- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--projected_volume_template--sources--downward_api--items--field_ref"></a>
 ### Nested Schema for `spec.projected_volume_template.sources.downward_api.items.field_ref`
@@ -1926,8 +1927,8 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--secret--items))
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--projected_volume_template--sources--secret--items))
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--projected_volume_template--sources--secret--items"></a>
@@ -1936,11 +1937,11 @@ Optional:
 Required:
 
 - `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.
+- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
 
 
 
@@ -1949,12 +1950,12 @@ Optional:
 
 Required:
 
-- `path` (String) path is the path relative to the mount point of the file to project thetoken into.
+- `path` (String) path is the path relative to the mount point of the file to project the token into.
 
 Optional:
 
-- `audience` (String) audience is the intended audience of the token. A recipient of a tokenmust identify itself with an identifier specified in the audience of thetoken, and otherwise should reject the token. The audience defaults to theidentifier of the apiserver.
-- `expiration_seconds` (Number) expirationSeconds is the requested duration of validity of the serviceaccount token. As the token approaches expiration, the kubelet volumeplugin will proactively rotate the service account token. The kubelet willstart trying to rotate the token if the token is older than 80 percent ofits time to live or if the token is older than 24 hours.Defaults to 1 hourand must be at least 10 minutes.
+- `audience` (String) audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
+- `expiration_seconds` (Number) expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
 
 
 
@@ -1968,11 +1969,11 @@ Required:
 
 Optional:
 
-- `enabled` (Boolean) If replica mode is enabled, this cluster will be a replica of anexisting cluster. Replica cluster can be created from a recoveryobject store or via streaming through pg_basebackup.Refer to the Replica clusters page of the documentation for more information.
-- `min_apply_delay` (String) When replica mode is enabled, this parameter allows you to replaytransactions only when the system time is at least the configuredtime past the commit time. This provides an opportunity to correctdata loss errors. Note that when this parameter is set, a promotiontoken cannot be used.
-- `primary` (String) Primary defines which Cluster is defined to be the primary in the distributed PostgreSQL cluster, based on thetopology specified in externalClusters
-- `promotion_token` (String) A demotion token generated by an external cluster used tocheck if the promotion requirements are met.
-- `self` (String) Self defines the name of this cluster. It is used to determine if this is a primaryor a replica cluster, comparing it with 'primary'
+- `enabled` (Boolean) If replica mode is enabled, this cluster will be a replica of an existing cluster. Replica cluster can be created from a recovery object store or via streaming through pg_basebackup. Refer to the Replica clusters page of the documentation for more information.
+- `min_apply_delay` (String) When replica mode is enabled, this parameter allows you to replay transactions only when the system time is at least the configured time past the commit time. This provides an opportunity to correct data loss errors. Note that when this parameter is set, a promotion token cannot be used.
+- `primary` (String) Primary defines which Cluster is defined to be the primary in the distributed PostgreSQL cluster, based on the topology specified in externalClusters
+- `promotion_token` (String) A demotion token generated by an external cluster used to check if the promotion requirements are met.
+- `self` (String) Self defines the name of this cluster. It is used to determine if this is a primary or a replica cluster, comparing it with 'primary'
 
 
 <a id="nestedatt--spec--replication_slots"></a>
@@ -1982,15 +1983,15 @@ Optional:
 
 - `high_availability` (Attributes) Replication slots for high availability configuration (see [below for nested schema](#nestedatt--spec--replication_slots--high_availability))
 - `synchronize_replicas` (Attributes) Configures the synchronization of the user defined physical replication slots (see [below for nested schema](#nestedatt--spec--replication_slots--synchronize_replicas))
-- `update_interval` (Number) Standby will update the status of the local replication slotsevery 'updateInterval' seconds (default 30).
+- `update_interval` (Number) Standby will update the status of the local replication slots every 'updateInterval' seconds (default 30).
 
 <a id="nestedatt--spec--replication_slots--high_availability"></a>
 ### Nested Schema for `spec.replication_slots.high_availability`
 
 Optional:
 
-- `enabled` (Boolean) If enabled (default), the operator will automatically manage replication slotson the primary instance and use them in streaming replicationconnections with all the standby instances that are part of the HAcluster. If disabled, the operator will not take advantageof replication slots in streaming connections with the replicas.This feature also controls replication slots in replica cluster,from the designated primary to its cascading replicas.
-- `slot_prefix` (String) Prefix for replication slots managed by the operator for HA.It may only contain lower case letters, numbers, and the underscore character.This can only be set at creation time. By default set to '_cnpg_'.
+- `enabled` (Boolean) If enabled (default), the operator will automatically manage replication slots on the primary instance and use them in streaming replication connections with all the standby instances that are part of the HA cluster. If disabled, the operator will not take advantage of replication slots in streaming connections with the replicas. This feature also controls replication slots in replica cluster, from the designated primary to its cascading replicas.
+- `slot_prefix` (String) Prefix for replication slots managed by the operator for HA. It may only contain lower case letters, numbers, and the underscore character. This can only be set at creation time. By default set to '_cnpg_'.
 
 
 <a id="nestedatt--spec--replication_slots--synchronize_replicas"></a>
@@ -2011,16 +2012,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resources--claims"></a>
 ### Nested Schema for `spec.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -2029,11 +2030,11 @@ Required:
 
 Required:
 
-- `type` (String) type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.
+- `type` (String) type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--service_account_template"></a>
@@ -2041,15 +2042,15 @@ Optional:
 
 Required:
 
-- `metadata` (Attributes) Metadata are the metadata to be used for the generatedservice account (see [below for nested schema](#nestedatt--spec--service_account_template--metadata))
+- `metadata` (Attributes) Metadata are the metadata to be used for the generated service account (see [below for nested schema](#nestedatt--spec--service_account_template--metadata))
 
 <a id="nestedatt--spec--service_account_template--metadata"></a>
 ### Nested Schema for `spec.service_account_template.metadata`
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
 - `name` (String) The name of the resource. Only supported for certain types
 
 
@@ -2061,22 +2062,22 @@ Optional:
 
 - `pvc_template` (Attributes) Template to be used to generate the Persistent Volume Claim (see [below for nested schema](#nestedatt--spec--storage--pvc_template))
 - `resize_in_use_volumes` (Boolean) Resize existent PVCs, defaults to true
-- `size` (String) Size of the storage. Required if not already specified in the PVC template.Changes to this field are automatically reapplied to the created PVCs.Size cannot be decreased.
-- `storage_class` (String) StorageClass to use for PVCs. Applied afterevaluating the PVC template, if available.If not specified, the generated PVCs will use thedefault storage class
+- `size` (String) Size of the storage. Required if not already specified in the PVC template. Changes to this field are automatically reapplied to the created PVCs. Size cannot be decreased.
+- `storage_class` (String) StorageClass to use for PVCs. Applied after evaluating the PVC template, if available. If not specified, the generated PVCs will use the default storage class
 
 <a id="nestedatt--spec--storage--pvc_template"></a>
 ### Nested Schema for `spec.storage.pvc_template`
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--storage--pvc_template--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--storage--pvc_template--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--pvc_template--resources))
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--storage--pvc_template--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--storage--pvc_template--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--pvc_template--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--pvc_template--selector))
-- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
-- `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--storage--pvc_template--data_source"></a>
@@ -2089,7 +2090,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--storage--pvc_template--data_source_ref"></a>
@@ -2102,8 +2103,8 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
-- `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--storage--pvc_template--resources"></a>
@@ -2111,8 +2112,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 <a id="nestedatt--spec--storage--pvc_template--selector"></a>
@@ -2121,7 +2122,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--pvc_template--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--storage--pvc_template--selector--match_expressions"></a>
 ### Nested Schema for `spec.storage.pvc_template.selector.match_expressions`
@@ -2129,11 +2130,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -2158,7 +2159,7 @@ Required:
 Optional:
 
 - `owner` (Attributes) Owner is the PostgreSQL user owning the tablespace (see [below for nested schema](#nestedatt--spec--tablespaces--owner))
-- `temporary` (Boolean) When set to true, the tablespace will be added as a 'temp_tablespaces'entry in PostgreSQL, and will be available to automatically house tempdatabase objects, or other temporary files. Please refer to PostgreSQLdocumentation for more information on the 'temp_tablespaces' GUC.
+- `temporary` (Boolean) When set to true, the tablespace will be added as a 'temp_tablespaces' entry in PostgreSQL, and will be available to automatically house temp database objects, or other temporary files. Please refer to PostgreSQL documentation for more information on the 'temp_tablespaces' GUC.
 
 <a id="nestedatt--spec--tablespaces--storage"></a>
 ### Nested Schema for `spec.tablespaces.storage`
@@ -2167,22 +2168,22 @@ Optional:
 
 - `pvc_template` (Attributes) Template to be used to generate the Persistent Volume Claim (see [below for nested schema](#nestedatt--spec--tablespaces--storage--pvc_template))
 - `resize_in_use_volumes` (Boolean) Resize existent PVCs, defaults to true
-- `size` (String) Size of the storage. Required if not already specified in the PVC template.Changes to this field are automatically reapplied to the created PVCs.Size cannot be decreased.
-- `storage_class` (String) StorageClass to use for PVCs. Applied afterevaluating the PVC template, if available.If not specified, the generated PVCs will use thedefault storage class
+- `size` (String) Size of the storage. Required if not already specified in the PVC template. Changes to this field are automatically reapplied to the created PVCs. Size cannot be decreased.
+- `storage_class` (String) StorageClass to use for PVCs. Applied after evaluating the PVC template, if available. If not specified, the generated PVCs will use the default storage class
 
 <a id="nestedatt--spec--tablespaces--storage--pvc_template"></a>
 ### Nested Schema for `spec.tablespaces.storage.pvc_template`
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--tablespaces--storage--pvc_template--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--tablespaces--storage--pvc_template--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--tablespaces--storage--pvc_template--resources))
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--tablespaces--storage--pvc_template--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--tablespaces--storage--pvc_template--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--tablespaces--storage--pvc_template--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--tablespaces--storage--pvc_template--selector))
-- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
-- `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--tablespaces--storage--pvc_template--data_source"></a>
@@ -2195,7 +2196,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--tablespaces--storage--pvc_template--data_source_ref"></a>
@@ -2208,8 +2209,8 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
-- `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--tablespaces--storage--pvc_template--resources"></a>
@@ -2217,8 +2218,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 <a id="nestedatt--spec--tablespaces--storage--pvc_template--selector"></a>
@@ -2227,7 +2228,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--tablespaces--storage--pvc_template--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--tablespaces--storage--pvc_template--selector--match_expressions"></a>
 ### Nested Schema for `spec.tablespaces.storage.pvc_template.selector.match_expressions`
@@ -2235,11 +2236,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -2259,17 +2260,17 @@ Optional:
 
 Required:
 
-- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed.When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted differencebetween the number of matching pods in the target topology and the global minimum.The global minimum is the minimum number of matching pods in an eligible domainor zero if the number of eligible domains is less than MinDomains.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 2/2/1:In this case, the global minimum is 1.| zone1 | zone2 | zone3 ||  P P  |  P P  |   P   |- if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2;scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2)violate MaxSkew(1).- if MaxSkew is 2, incoming pod can be scheduled onto any zone.When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedenceto topologies that satisfy it.It's a required field. Default value is 1 and 0 is not allowed.
-- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this keyand identical values are considered to be in the same topology.We consider each <key, value> as a 'bucket', and try to put balanced numberof pods into each bucket.We define a domain as a particular instance of a topology.Also, we define an eligible domain as a domain whose nodes meet the requirements ofnodeAffinityPolicy and nodeTaintsPolicy.e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology.And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology.It's a required field.
-- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfythe spread constraint.- DoNotSchedule (default) tells the scheduler not to schedule it.- ScheduleAnyway tells the scheduler to schedule the pod in any location,  but giving higher precedence to topologies that would help reduce the  skew.A constraint is considered 'Unsatisfiable' for an incoming podif and only if every possible node assignment for that pod would violate'MaxSkew' on some topology.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 3/1/1:| zone1 | zone2 | zone3 || P P P |   P   |   P   |If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduledto zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfiesMaxSkew(1). In other words, the cluster can still be imbalanced, but schedulerwon't make it *more* imbalanced.It's a required field.
+- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | | P P | P P | P | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
+- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.
+- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P | P | P | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
 
 Optional:
 
-- `label_selector` (Attributes) LabelSelector is used to find matching pods.Pods that match this label selector are counted to determine the number of podsin their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--topology_spread_constraints--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
-- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.
-- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelectorwhen calculating pod topology spread skew. Options are:- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculatingpod topology spread skew. Options are:- Honor: nodes without taints, along with tainted nodes for which the incoming podhas a toleration, are included.- Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector. This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
+- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.
+- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--topology_spread_constraints--label_selector"></a>
 ### Nested Schema for `spec.topology_spread_constraints.label_selector`
@@ -2277,7 +2278,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--topology_spread_constraints--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--topology_spread_constraints--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.topology_spread_constraints.label_selector.match_expressions`
@@ -2285,11 +2286,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -2301,22 +2302,22 @@ Optional:
 
 - `pvc_template` (Attributes) Template to be used to generate the Persistent Volume Claim (see [below for nested schema](#nestedatt--spec--wal_storage--pvc_template))
 - `resize_in_use_volumes` (Boolean) Resize existent PVCs, defaults to true
-- `size` (String) Size of the storage. Required if not already specified in the PVC template.Changes to this field are automatically reapplied to the created PVCs.Size cannot be decreased.
-- `storage_class` (String) StorageClass to use for PVCs. Applied afterevaluating the PVC template, if available.If not specified, the generated PVCs will use thedefault storage class
+- `size` (String) Size of the storage. Required if not already specified in the PVC template. Changes to this field are automatically reapplied to the created PVCs. Size cannot be decreased.
+- `storage_class` (String) StorageClass to use for PVCs. Applied after evaluating the PVC template, if available. If not specified, the generated PVCs will use the default storage class
 
 <a id="nestedatt--spec--wal_storage--pvc_template"></a>
 ### Nested Schema for `spec.wal_storage.pvc_template`
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either:* An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot)* An existing PVC (PersistentVolumeClaim)If the provisioner or an external controller can support the specified data source,it will create a new volume based on the contents of the specified data source.When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef,and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified.If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--wal_storage--pvc_template--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--wal_storage--pvc_template--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--wal_storage--pvc_template--resources))
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--wal_storage--pvc_template--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--wal_storage--pvc_template--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--wal_storage--pvc_template--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--wal_storage--pvc_template--selector))
-- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
-- `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--wal_storage--pvc_template--data_source"></a>
@@ -2329,7 +2330,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--wal_storage--pvc_template--data_source_ref"></a>
@@ -2342,8 +2343,8 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
-- `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--wal_storage--pvc_template--resources"></a>
@@ -2351,8 +2352,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 <a id="nestedatt--spec--wal_storage--pvc_template--selector"></a>
@@ -2361,7 +2362,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--wal_storage--pvc_template--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--wal_storage--pvc_template--selector--match_expressions"></a>
 ### Nested Schema for `spec.wal_storage.pvc_template.selector.match_expressions`
@@ -2369,8 +2370,8 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.

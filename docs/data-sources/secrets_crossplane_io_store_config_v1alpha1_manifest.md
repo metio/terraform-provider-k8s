@@ -3,12 +3,12 @@
 page_title: "k8s_secrets_crossplane_io_store_config_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "secrets.crossplane.io"
 description: |-
-  A StoreConfig configures how Crossplane controllers should store connectiondetails in an external secret store.
+  A StoreConfig configures how Crossplane controllers should store connection details in an external secret store.
 ---
 
 # k8s_secrets_crossplane_io_store_config_v1alpha1_manifest (Data Source)
 
-A StoreConfig configures how Crossplane controllers should store connectiondetails in an external secret store.
+A StoreConfig configures how Crossplane controllers should store connection details in an external secret store.
 
 ## Example Usage
 
@@ -53,13 +53,13 @@ Optional:
 
 Required:
 
-- `default_scope` (String) DefaultScope used for scoping secrets for 'cluster-scoped' resources.If store type is 'Kubernetes', this would mean the default namespace tostore connection secrets for cluster scoped resources.In case of 'Vault', this would be used as the default parent path.Typically, should be set as Crossplane installation namespace.
+- `default_scope` (String) DefaultScope used for scoping secrets for 'cluster-scoped' resources. If store type is 'Kubernetes', this would mean the default namespace to store connection secrets for cluster scoped resources. In case of 'Vault', this would be used as the default parent path. Typically, should be set as Crossplane installation namespace.
 
 Optional:
 
-- `kubernetes` (Attributes) Kubernetes configures a Kubernetes secret store.If the 'type' is 'Kubernetes' but no config provided, in cluster configwill be used. (see [below for nested schema](#nestedatt--spec--kubernetes))
+- `kubernetes` (Attributes) Kubernetes configures a Kubernetes secret store. If the 'type' is 'Kubernetes' but no config provided, in cluster config will be used. (see [below for nested schema](#nestedatt--spec--kubernetes))
 - `plugin` (Attributes) Plugin configures External secret store as a plugin. (see [below for nested schema](#nestedatt--spec--plugin))
-- `type` (String) Type configures which secret store to be used. Only the configurationblock for this store will be used and others will be ignored if provided.Default is Kubernetes.
+- `type` (String) Type configures which secret store to be used. Only the configuration block for this store will be used and others will be ignored if provided. Default is Kubernetes.
 
 <a id="nestedatt--spec--kubernetes"></a>
 ### Nested Schema for `spec.kubernetes`
@@ -77,9 +77,9 @@ Required:
 
 Optional:
 
-- `env` (Attributes) Env is a reference to an environment variable that contains credentialsthat must be used to connect to the provider. (see [below for nested schema](#nestedatt--spec--kubernetes--auth--env))
-- `fs` (Attributes) Fs is a reference to a filesystem location that contains credentials thatmust be used to connect to the provider. (see [below for nested schema](#nestedatt--spec--kubernetes--auth--fs))
-- `secret_ref` (Attributes) A SecretRef is a reference to a secret key that contains the credentialsthat must be used to connect to the provider. (see [below for nested schema](#nestedatt--spec--kubernetes--auth--secret_ref))
+- `env` (Attributes) Env is a reference to an environment variable that contains credentials that must be used to connect to the provider. (see [below for nested schema](#nestedatt--spec--kubernetes--auth--env))
+- `fs` (Attributes) Fs is a reference to a filesystem location that contains credentials that must be used to connect to the provider. (see [below for nested schema](#nestedatt--spec--kubernetes--auth--fs))
+- `secret_ref` (Attributes) A SecretRef is a reference to a secret key that contains the credentials that must be used to connect to the provider. (see [below for nested schema](#nestedatt--spec--kubernetes--auth--secret_ref))
 
 <a id="nestedatt--spec--kubernetes--auth--env"></a>
 ### Nested Schema for `spec.kubernetes.auth.env`

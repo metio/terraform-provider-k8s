@@ -3,12 +3,12 @@
 page_title: "k8s_apps_kubeblocks_io_backup_policy_template_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apps.kubeblocks.io"
 description: |-
-  BackupPolicyTemplate should be provided by addon developers and is linked to a ClusterDefinitionand its associated ComponentDefinitions.It is responsible for generating BackupPolicies for Components that require backup operations,also determining the suitable backup methods and strategies.This template is automatically selected based on the specified ClusterDefinition and ComponentDefinitionswhen a Cluster is created.
+  BackupPolicyTemplate should be provided by addon developers and is linked to a ClusterDefinition and its associated ComponentDefinitions. It is responsible for generating BackupPolicies for Components that require backup operations, also determining the suitable backup methods and strategies. This template is automatically selected based on the specified ClusterDefinition and ComponentDefinitions when a Cluster is created.
 ---
 
 # k8s_apps_kubeblocks_io_backup_policy_template_v1alpha1_manifest (Data Source)
 
-BackupPolicyTemplate should be provided by addon developers and is linked to a ClusterDefinitionand its associated ComponentDefinitions.It is responsible for generating BackupPolicies for Components that require backup operations,also determining the suitable backup methods and strategies.This template is automatically selected based on the specified ClusterDefinition and ComponentDefinitionswhen a Cluster is created.
+BackupPolicyTemplate should be provided by addon developers and is linked to a ClusterDefinition and its associated ComponentDefinitions. It is responsible for generating BackupPolicies for Components that require backup operations, also determining the suitable backup methods and strategies. This template is automatically selected based on the specified ClusterDefinition and ComponentDefinitions when a Cluster is created.
 
 ## Example Usage
 
@@ -54,11 +54,11 @@ Optional:
 
 Required:
 
-- `backup_policies` (Attributes List) Represents an array of BackupPolicy templates, with each template corresponding to a specified ComponentDefinitionor to a group of ComponentDefinitions that are different versions of definitions of the same component. (see [below for nested schema](#nestedatt--spec--backup_policies))
+- `backup_policies` (Attributes List) Represents an array of BackupPolicy templates, with each template corresponding to a specified ComponentDefinition or to a group of ComponentDefinitions that are different versions of definitions of the same component. (see [below for nested schema](#nestedatt--spec--backup_policies))
 
 Optional:
 
-- `identifier` (String) Specifies a unique identifier for the BackupPolicyTemplate.This identifier will be used as the suffix of the name of automatically generated BackupPolicy.This prevents unintended overwriting of BackupPolicies due to name conflicts when multiple BackupPolicyTemplatesare present.For instance, using 'backup-policy' for regular backups and 'backup-policy-hscale' for horizontal-scale opscan differentiate the policies.
+- `identifier` (String) Specifies a unique identifier for the BackupPolicyTemplate. This identifier will be used as the suffix of the name of automatically generated BackupPolicy. This prevents unintended overwriting of BackupPolicies due to name conflicts when multiple BackupPolicyTemplates are present. For instance, using 'backup-policy' for regular backups and 'backup-policy-hscale' for horizontal-scale ops can differentiate the policies.
 
 <a id="nestedatt--spec--backup_policies"></a>
 ### Nested Schema for `spec.backup_policies`
@@ -70,9 +70,9 @@ Required:
 Optional:
 
 - `backoff_limit` (Number) Specifies the maximum number of retry attempts for a backup before it is considered a failure.
-- `component_defs` (List of String) Specifies a list of names of ComponentDefinitions that the specified ClusterDefinition references.They should be different versions of definitions of the same component,thus allowing them to share a single BackupPolicy.Each name must adhere to the IANA Service Naming rule.
-- `schedules` (Attributes List) Defines the execution plans for backup tasks, specifying when and how backups should occur,and the retention period of backup files. (see [below for nested schema](#nestedatt--spec--backup_policies--schedules))
-- `target` (Attributes) Defines the selection criteria of instance to be backed up, and the connection credential to be usedduring the backup process. (see [below for nested schema](#nestedatt--spec--backup_policies--target))
+- `component_defs` (List of String) Specifies a list of names of ComponentDefinitions that the specified ClusterDefinition references. They should be different versions of definitions of the same component, thus allowing them to share a single BackupPolicy. Each name must adhere to the IANA Service Naming rule.
+- `schedules` (Attributes List) Defines the execution plans for backup tasks, specifying when and how backups should occur, and the retention period of backup files. (see [below for nested schema](#nestedatt--spec--backup_policies--schedules))
+- `target` (Attributes) Defines the selection criteria of instance to be backed up, and the connection credential to be used during the backup process. (see [below for nested schema](#nestedatt--spec--backup_policies--target))
 
 <a id="nestedatt--spec--backup_policies--backup_methods"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods`
@@ -83,14 +83,14 @@ Required:
 
 Optional:
 
-- `action_set_name` (String) Refers to the ActionSet object that defines the backup actions.For volume snapshot backup, the actionSet is not required, the controllerwill use the CSI volume snapshotter to create the snapshot.
+- `action_set_name` (String) Refers to the ActionSet object that defines the backup actions. For volume snapshot backup, the actionSet is not required, the controller will use the CSI volume snapshotter to create the snapshot.
 - `env` (Attributes List) Specifies the environment variables for the backup workload. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env))
-- `env_mapping` (Attributes List) Specifies a mapping of an environment variable key to the appropriate version of the tool imagerequired for backups, as determined by ClusterVersion and ComponentDefinition.The environment variable is then injected into the container executing the backup task. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env_mapping))
+- `env_mapping` (Attributes List) Specifies a mapping of an environment variable key to the appropriate version of the tool image required for backups, as determined by ClusterVersion and ComponentDefinition. The environment variable is then injected into the container executing the backup task. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env_mapping))
 - `runtime_settings` (Attributes) Specifies runtime settings for the backup workload container. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--runtime_settings))
-- `snapshot_volumes` (Boolean) Specifies whether to take snapshots of persistent volumes. If true,the ActionSetName is not required, the controller will use the CSI volumesnapshotter to create the snapshot.
+- `snapshot_volumes` (Boolean) Specifies whether to take snapshots of persistent volumes. If true, the ActionSetName is not required, the controller will use the CSI volume snapshotter to create the snapshot.
 - `target` (Attributes) Specifies the target information to back up, it will override the target in backup policy. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target))
 - `target_volumes` (Attributes) Specifies which volumes from the target should be mounted in the backup workload. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target_volumes))
-- `targets` (Attributes List) Specifies multiple target information for backup operations. This includes detailssuch as the target pod and cluster connection credentials. All specified targetswill be backed up collectively. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets))
+- `targets` (Attributes List) Specifies multiple target information for backup operations. This includes details such as the target pod and cluster connection credentials. All specified targets will be backed up collectively. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets))
 
 <a id="nestedatt--spec--backup_policies--backup_methods--env"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.env`
@@ -101,7 +101,7 @@ Required:
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.
+- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
 - `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env--value_from))
 
 <a id="nestedatt--spec--backup_policies--backup_methods--env--value_from"></a>
@@ -110,8 +110,8 @@ Optional:
 Optional:
 
 - `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env--value_from--resource_field_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env--value_from--resource_field_ref))
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--backup_policies--backup_methods--env--value_from--config_map_key_ref"></a>
@@ -123,7 +123,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -157,11 +157,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -173,14 +173,14 @@ Optional:
 Required:
 
 - `key` (String) Specifies the environment variable key in the mapping.
-- `value_from` (Attributes) Specifies the source used to derive the value of the environment variable,which typically represents the tool image required for backup operation. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env_mapping--value_from))
+- `value_from` (Attributes) Specifies the source used to derive the value of the environment variable, which typically represents the tool image required for backup operation. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env_mapping--value_from))
 
 <a id="nestedatt--spec--backup_policies--backup_methods--env_mapping--value_from"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.env_mapping.value_from`
 
 Optional:
 
-- `cluster_version_ref` (Attributes List) Determine the appropriate version of the backup tool image from ClusterVersion.Deprecated since v0.9, since ClusterVersion is deprecated. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env_mapping--value_from--cluster_version_ref))
+- `cluster_version_ref` (Attributes List) Determine the appropriate version of the backup tool image from ClusterVersion. Deprecated since v0.9, since ClusterVersion is deprecated. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env_mapping--value_from--cluster_version_ref))
 - `component_def` (Attributes List) Determine the appropriate version of the backup tool image from ComponentDefinition. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--env_mapping--value_from--component_def))
 
 <a id="nestedatt--spec--backup_policies--backup_methods--env_mapping--value_from--cluster_version_ref"></a>
@@ -189,7 +189,7 @@ Optional:
 Required:
 
 - `mapping_value` (String) Specifies the appropriate version of the backup tool image.
-- `names` (List of String) Represents an array of names of ComponentDefinition that can be mapped to the appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.
+- `names` (List of String) Represents an array of names of ComponentDefinition that can be mapped to the appropriate version of the backup tool image. This mapping allows different versions of component images to correspond to specific versions of backup tool images.
 
 
 <a id="nestedatt--spec--backup_policies--backup_methods--env_mapping--value_from--component_def"></a>
@@ -198,7 +198,7 @@ Required:
 Required:
 
 - `mapping_value` (String) Specifies the appropriate version of the backup tool image.
-- `names` (List of String) Represents an array of names of ComponentDefinition that can be mapped to the appropriate version of the backup tool image.This mapping allows different versions of component images to correspond to specific versions of backup tool images.
+- `names` (List of String) Represents an array of names of ComponentDefinition that can be mapped to the appropriate version of the backup tool image. This mapping allows different versions of component images to correspond to specific versions of backup tool images.
 
 
 
@@ -208,23 +208,23 @@ Required:
 
 Optional:
 
-- `resources` (Attributes) Specifies the resource required by container.More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/ (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--runtime_settings--resources))
+- `resources` (Attributes) Specifies the resource required by container. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/ (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--runtime_settings--resources))
 
 <a id="nestedatt--spec--backup_policies--backup_methods--runtime_settings--resources"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.runtime_settings.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--runtime_settings--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--runtime_settings--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--backup_policies--backup_methods--runtime_settings--resources--claims"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.runtime_settings.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -234,19 +234,19 @@ Required:
 
 Required:
 
-- `role` (String) Specifies the role to select one or more replicas for backup.- If no replica with the specified role exists, the backup task will fail.  Special case: If there is only one replica in the cluster, it will be used for backup,  even if its role differs from the specified one.  For example, if you specify backing up on a secondary replica, but the cluster is single-node  with only one primary replica, the primary will be used for backup.  Future versions will address this special case using role priorities.- If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to  the 'strategy' field below.
+- `role` (String) Specifies the role to select one or more replicas for backup. - If no replica with the specified role exists, the backup task will fail. Special case: If there is only one replica in the cluster, it will be used for backup, even if its role differs from the specified one. For example, if you specify backing up on a secondary replica, but the cluster is single-node with only one primary replica, the primary will be used for backup. Future versions will address this special case using role priorities. - If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to the 'strategy' field below.
 
 Optional:
 
-- `account` (String) If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name.This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'.The corresponding secret created by this account is used to connect to the database.
+- `account` (String) If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name. This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'. The corresponding secret created by this account is used to connect to the database.
 - `connection_credential` (Attributes) Specifies the connection credential to connect to the target database cluster. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--connection_credential))
-- `container_port` (Attributes) Specifies the container port in the target pod.If not specified, the first container and its first port will be used. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--container_port))
-- `fallback_role` (String) Specifies the fallback role to select one replica for backup, this only takes effect when the'strategy' field below is set to 'Any'.
-- `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.
+- `container_port` (Attributes) Specifies the container port in the target pod. If not specified, the first container and its first port will be used. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--container_port))
+- `fallback_role` (String) Specifies the fallback role to select one replica for backup, this only takes effect when the 'strategy' field below is set to 'Any'.
+- `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.
 - `pod_selector` (Attributes) Used to find the target pod. The volumes of the target pod will be backed up. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--pod_selector))
 - `resources` (Attributes) Specifies the kubernetes resources to back up. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--resources))
 - `service_account_name` (String) Specifies the service account to run the backup workload.
-- `strategy` (String) Specifies the PodSelectionStrategy to use when multiple pods areselected for the backup target.Valid values are:- Any: Selects any one pod that matches the labelsSelector.- All: Selects all pods that match the labelsSelector.
+- `strategy` (String) Specifies the PodSelectionStrategy to use when multiple pods are selected for the backup target. Valid values are: - Any: Selects any one pod that matches the labelsSelector. - All: Selects all pods that match the labelsSelector.
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target--connection_credential"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.target.connection_credential`
@@ -258,7 +258,7 @@ Required:
 Optional:
 
 - `host_key` (String) Specifies the map key of the host in the connection credential secret.
-- `password_key` (String) Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.
+- `password_key` (String) Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.
 - `port_key` (String) Specifies the map key of the port in the connection credential secret.
 - `username_key` (String) Specifies the map key of the user in the connection credential secret.
 
@@ -277,10 +277,10 @@ Optional:
 
 Optional:
 
-- `fallback_label_selector` (Attributes) fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--pod_selector--fallback_label_selector))
+- `fallback_label_selector` (Attributes) fallbackLabelSelector is used to filter available pods when the labelSelector fails. This only takes effect when the 'strategy' field below is set to 'Any'. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--pod_selector--fallback_label_selector))
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--pod_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-- `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target--pod_selector--fallback_label_selector"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.target.pod_selector.fallback_label_selector`
@@ -288,7 +288,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--pod_selector--fallback_label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target--pod_selector--fallback_label_selector--match_expressions"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.target.pod_selector.fallback_label_selector.match_expressions`
@@ -296,11 +296,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -310,11 +310,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -323,9 +323,9 @@ Optional:
 
 Optional:
 
-- `excluded` (List of String) excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.
-- `included` (List of String) included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.
-- `selector` (Attributes) A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--resources--selector))
+- `excluded` (List of String) excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.
+- `included` (List of String) included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.
+- `selector` (Attributes) A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--resources--selector))
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target--resources--selector"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.target.resources.selector`
@@ -333,7 +333,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target--resources--selector--match_expressions"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.target.resources.selector.match_expressions`
@@ -341,11 +341,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -357,22 +357,22 @@ Optional:
 Optional:
 
 - `volume_mounts` (Attributes List) Specifies the mount for the volumes specified in 'volumes' section. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target_volumes--volume_mounts))
-- `volumes` (List of String) Specifies the list of volumes of targeted application that should be mountedon the backup workload.
+- `volumes` (List of String) Specifies the list of volumes of targeted application that should be mounted on the backup workload.
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target_volumes--volume_mounts"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.target_volumes.volume_mounts`
 
 Required:
 
-- `mount_path` (String) Path within the container at which the volume should be mounted.  Mustnot contain ':'.
+- `mount_path` (String) Path within the container at which the volume should be mounted. Must not contain ':'.
 - `name` (String) This must match the Name of a Volume.
 
 Optional:
 
-- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the hostto container and the other way around.When not set, MountPropagationNone is used.This field is beta in 1.10.
-- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified).Defaults to false.
-- `sub_path` (String) Path within the volume from which the container's volume should be mounted.Defaults to '' (volume's root).
-- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted.Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment.Defaults to '' (volume's root).SubPathExpr and SubPath are mutually exclusive.
+- `mount_propagation` (String) mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+- `read_only` (Boolean) Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+- `sub_path` (String) Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).
+- `sub_path_expr` (String) Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.
 
 
 
@@ -382,8 +382,8 @@ Optional:
 Optional:
 
 - `connection_credential` (Attributes) Specifies the connection credential to connect to the target database cluster. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--connection_credential))
-- `container_port` (Attributes) Specifies the container port in the target pod.If not specified, the first container and its first port will be used. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--container_port))
-- `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.
+- `container_port` (Attributes) Specifies the container port in the target pod. If not specified, the first container and its first port will be used. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--container_port))
+- `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field. The backup data for the current target is stored in a uniquely named subdirectory.
 - `pod_selector` (Attributes) Used to find the target pod. The volumes of the target pod will be backed up. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--pod_selector))
 - `resources` (Attributes) Specifies the kubernetes resources to back up. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--resources))
 - `service_account_name` (String) Specifies the service account to run the backup workload.
@@ -398,7 +398,7 @@ Required:
 Optional:
 
 - `host_key` (String) Specifies the map key of the host in the connection credential secret.
-- `password_key` (String) Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.
+- `password_key` (String) Specifies the map key of the password in the connection credential secret. This password will be saved in the backup annotation for full backup. You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.
 - `port_key` (String) Specifies the map key of the port in the connection credential secret.
 - `username_key` (String) Specifies the map key of the user in the connection credential secret.
 
@@ -417,10 +417,10 @@ Optional:
 
 Optional:
 
-- `fallback_label_selector` (Attributes) fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--fallback_label_selector))
+- `fallback_label_selector` (Attributes) fallbackLabelSelector is used to filter available pods when the labelSelector fails. This only takes effect when the 'strategy' field below is set to 'Any'. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--fallback_label_selector))
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-- `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected. Valid values are: - 'Any': select any one pod that match the labelsSelector. - 'All': select all pods that match the labelsSelector. The backup data for the current pod will be stored in a subdirectory named after the pod.
 
 <a id="nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--fallback_label_selector"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.targets.pod_selector.fallback_label_selector`
@@ -428,7 +428,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--fallback_label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--fallback_label_selector--match_expressions"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.targets.pod_selector.fallback_label_selector.match_expressions`
@@ -436,11 +436,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -450,11 +450,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -463,9 +463,9 @@ Optional:
 
 Optional:
 
-- `excluded` (List of String) excluded is a slice of namespaced-scoped resource type names to exclude inthe kubernetes resources.The default value is empty.
-- `included` (List of String) included is a slice of namespaced-scoped resource type names to include inthe kubernetes resources.The default value is empty.
-- `selector` (Attributes) A metav1.LabelSelector to filter the target kubernetes resources that needto be backed up. If not set, will do not back up any kubernetes resources. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--resources--selector))
+- `excluded` (List of String) excluded is a slice of namespaced-scoped resource type names to exclude in the kubernetes resources. The default value is empty.
+- `included` (List of String) included is a slice of namespaced-scoped resource type names to include in the kubernetes resources. The default value is empty.
+- `selector` (Attributes) A metav1.LabelSelector to filter the target kubernetes resources that need to be backed up. If not set, will do not back up any kubernetes resources. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--resources--selector))
 
 <a id="nestedatt--spec--backup_policies--backup_methods--targets--resources--selector"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.targets.resources.selector`
@@ -473,7 +473,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--resources--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backup_policies--backup_methods--targets--resources--selector--match_expressions"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.targets.resources.selector.match_expressions`
@@ -481,11 +481,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -498,12 +498,12 @@ Optional:
 Required:
 
 - `backup_method` (String) Defines the backup method name that is defined in backupPolicy.
-- `cron_expression` (String) Represents the cron expression for schedule, with the timezone set in UTC.Refer to https://en.wikipedia.org/wiki/Cron for more details.
+- `cron_expression` (String) Represents the cron expression for schedule, with the timezone set in UTC. Refer to https://en.wikipedia.org/wiki/Cron for more details.
 
 Optional:
 
 - `enabled` (Boolean) Specifies whether the backup schedule is enabled or not.
-- `retention_period` (String) Determines the duration for which the backup should be retained.The controller will remove all backups that are older than the RetentionPeriod.For instance, a RetentionPeriod of '30d' will retain only the backups from the last 30 days.Sample duration format:- years: 	2y- months: 	6mo- days: 		30d- hours: 	12h- minutes: 	30mThese durations can also be combined, for example: 30d12h30m.
+- `retention_period` (String) Determines the duration for which the backup should be retained. The controller will remove all backups that are older than the RetentionPeriod. For instance, a RetentionPeriod of '30d' will retain only the backups from the last 30 days. Sample duration format: - years: 2y - months: 6mo - days: 30d - hours: 12h - minutes: 30m These durations can also be combined, for example: 30d12h30m.
 
 
 <a id="nestedatt--spec--backup_policies--target"></a>
@@ -511,14 +511,14 @@ Optional:
 
 Required:
 
-- `role` (String) Specifies the role to select one or more replicas for backup.- If no replica with the specified role exists, the backup task will fail.  Special case: If there is only one replica in the cluster, it will be used for backup,  even if its role differs from the specified one.  For example, if you specify backing up on a secondary replica, but the cluster is single-node  with only one primary replica, the primary will be used for backup.  Future versions will address this special case using role priorities.- If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to  the 'strategy' field below.
+- `role` (String) Specifies the role to select one or more replicas for backup. - If no replica with the specified role exists, the backup task will fail. Special case: If there is only one replica in the cluster, it will be used for backup, even if its role differs from the specified one. For example, if you specify backing up on a secondary replica, but the cluster is single-node with only one primary replica, the primary will be used for backup. Future versions will address this special case using role priorities. - If multiple replicas satisfy the specified role, the choice ('Any' or 'All') will be made according to the 'strategy' field below.
 
 Optional:
 
-- `account` (String) If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name.This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'.The corresponding secret created by this account is used to connect to the database.
-- `container_port` (Attributes) Specifies the container port in the target pod.If not specified, the first container and its first port will be used. (see [below for nested schema](#nestedatt--spec--backup_policies--target--container_port))
-- `fallback_role` (String) Specifies the fallback role to select one replica for backup, this only takes effect when the'strategy' field below is set to 'Any'.
-- `strategy` (String) Specifies the PodSelectionStrategy to use when multiple pods areselected for the backup target.Valid values are:- Any: Selects any one pod that matches the labelsSelector.- All: Selects all pods that match the labelsSelector.
+- `account` (String) If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name. This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'. The corresponding secret created by this account is used to connect to the database.
+- `container_port` (Attributes) Specifies the container port in the target pod. If not specified, the first container and its first port will be used. (see [below for nested schema](#nestedatt--spec--backup_policies--target--container_port))
+- `fallback_role` (String) Specifies the fallback role to select one replica for backup, this only takes effect when the 'strategy' field below is set to 'Any'.
+- `strategy` (String) Specifies the PodSelectionStrategy to use when multiple pods are selected for the backup target. Valid values are: - Any: Selects any one pod that matches the labelsSelector. - All: Selects all pods that match the labelsSelector.
 
 <a id="nestedatt--spec--backup_policies--target--container_port"></a>
 ### Nested Schema for `spec.backup_policies.target.container_port`

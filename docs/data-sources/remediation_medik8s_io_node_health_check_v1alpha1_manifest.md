@@ -54,21 +54,21 @@ Optional:
 
 Optional:
 
-- `escalating_remediations` (Attributes List) EscalatingRemediations contain a list of ordered remediation templates with a timeout.The remediation templates will be used one after another, until the unhealthy nodegets healthy within the timeout of the currently processed remediation. The order ofremediation is defined by the 'order' field of each 'escalatingRemediation'.Mutually exclusive with RemediationTemplate (see [below for nested schema](#nestedatt--spec--escalating_remediations))
-- `min_healthy` (String) Remediation is allowed if at least 'MinHealthy' nodes selected by 'selector' are healthy.Expects either a positive integer value or a percentage value.Percentage values must be positive whole numbers and are capped at 100%.100% is valid and will block all remediation.
-- `pause_requests` (List of String) PauseRequests will prevent any new remediation to start, while in-flight remediationskeep running. Each entry is free form, and ideally represents the requested party reasonfor this pausing - i.e:    'imaginary-cluster-upgrade-manager-operator'
-- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.If a node needs remediation the controller will create an object from this templateand then it should be picked up by a remediation provider.Mutually exclusive with EscalatingRemediations (see [below for nested schema](#nestedatt--spec--remediation_template))
-- `selector` (Attributes) Label selector to match nodes whose health will be exercised.Selecting both control-plane and worker nodes in one NHC CR ishighly discouraged and can result in undesired behaviour.Note: mandatory now for above reason, but for backwards compatibility existingCRs will continue to work with an empty selector, which matches all nodes. (see [below for nested schema](#nestedatt--spec--selector))
-- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy.  The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--unhealthy_conditions))
+- `escalating_remediations` (Attributes List) EscalatingRemediations contain a list of ordered remediation templates with a timeout. The remediation templates will be used one after another, until the unhealthy node gets healthy within the timeout of the currently processed remediation. The order of remediation is defined by the 'order' field of each 'escalatingRemediation'. Mutually exclusive with RemediationTemplate (see [below for nested schema](#nestedatt--spec--escalating_remediations))
+- `min_healthy` (String) Remediation is allowed if at least 'MinHealthy' nodes selected by 'selector' are healthy. Expects either a positive integer value or a percentage value. Percentage values must be positive whole numbers and are capped at 100%. 100% is valid and will block all remediation.
+- `pause_requests` (List of String) PauseRequests will prevent any new remediation to start, while in-flight remediations keep running. Each entry is free form, and ideally represents the requested party reason for this pausing - i.e: 'imaginary-cluster-upgrade-manager-operator'
+- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation template provided by an infrastructure provider. If a node needs remediation the controller will create an object from this template and then it should be picked up by a remediation provider. Mutually exclusive with EscalatingRemediations (see [below for nested schema](#nestedatt--spec--remediation_template))
+- `selector` (Attributes) Label selector to match nodes whose health will be exercised. Selecting both control-plane and worker nodes in one NHC CR is highly discouraged and can result in undesired behaviour. Note: mandatory now for above reason, but for backwards compatibility existing CRs will continue to work with an empty selector, which matches all nodes. (see [below for nested schema](#nestedatt--spec--selector))
+- `unhealthy_conditions` (Attributes List) UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy. (see [below for nested schema](#nestedatt--spec--unhealthy_conditions))
 
 <a id="nestedatt--spec--escalating_remediations"></a>
 ### Nested Schema for `spec.escalating_remediations`
 
 Required:
 
-- `order` (Number) Order defines the order for this remediation.Remediations with lower order will be used before remediations with higher order.Remediations must not have the same order.
-- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation templateprovided by a remediation provider.If a node needs remediation the controller will create an object from this templateand then it should be picked up by a remediation provider. (see [below for nested schema](#nestedatt--spec--escalating_remediations--remediation_template))
-- `timeout` (String) Timeout defines how long NHC will wait for the node getting healthybefore the next remediation (if any) will be used. When the last remediation times out,the overall remediation is considered as failed.As a safeguard for preventing parallel remediations, a minimum of 60s is enforced.Expects a string of decimal numbers each with optionalfraction and a unit suffix, eg '300ms', '1.5h' or '2h45m'.Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.
+- `order` (Number) Order defines the order for this remediation. Remediations with lower order will be used before remediations with higher order. Remediations must not have the same order.
+- `remediation_template` (Attributes) RemediationTemplate is a reference to a remediation template provided by a remediation provider. If a node needs remediation the controller will create an object from this template and then it should be picked up by a remediation provider. (see [below for nested schema](#nestedatt--spec--escalating_remediations--remediation_template))
+- `timeout` (String) Timeout defines how long NHC will wait for the node getting healthy before the next remediation (if any) will be used. When the last remediation times out, the overall remediation is considered as failed. As a safeguard for preventing parallel remediations, a minimum of 60s is enforced. Expects a string of decimal numbers each with optional fraction and a unit suffix, eg '300ms', '1.5h' or '2h45m'. Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.
 
 <a id="nestedatt--spec--escalating_remediations--remediation_template"></a>
 ### Nested Schema for `spec.escalating_remediations.remediation_template`
@@ -76,12 +76,12 @@ Required:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 
@@ -91,12 +91,12 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
+- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 
 
 <a id="nestedatt--spec--selector"></a>
@@ -105,7 +105,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--selector--match_expressions"></a>
 ### Nested Schema for `spec.selector.match_expressions`
@@ -113,11 +113,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -126,6 +126,6 @@ Optional:
 
 Required:
 
-- `duration` (String) Duration of the condition specified when a node is considered unhealthy.Expects a string of decimal numbers each with optionalfraction and a unit suffix, eg '300ms', '1.5h' or '2h45m'.Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.
-- `status` (String) The condition status in the node's status to watch for.Typically False, True or Unknown.
+- `duration` (String) Duration of the condition specified when a node is considered unhealthy. Expects a string of decimal numbers each with optional fraction and a unit suffix, eg '300ms', '1.5h' or '2h45m'. Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.
+- `status` (String) The condition status in the node's status to watch for. Typically False, True or Unknown.
 - `type` (String) The condition type in the node's status to watch for.

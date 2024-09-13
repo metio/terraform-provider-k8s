@@ -151,8 +151,8 @@ func (r *Ec2ServicesK8SAwsSubnetV1Alpha1Manifest) Schema(_ context.Context, _ da
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "SubnetSpec defines the desired state of Subnet.Describes a subnet.",
-				MarkdownDescription: "SubnetSpec defines the desired state of Subnet.Describes a subnet.",
+				Description:         "SubnetSpec defines the desired state of Subnet. Describes a subnet.",
+				MarkdownDescription: "SubnetSpec defines the desired state of Subnet. Describes a subnet.",
 				Attributes: map[string]schema.Attribute{
 					"assign_i_pv6_address_on_creation": schema.BoolAttribute{
 						Description:         "",
@@ -163,8 +163,8 @@ func (r *Ec2ServicesK8SAwsSubnetV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"availability_zone": schema.StringAttribute{
-						Description:         "The Availability Zone or Local Zone for the subnet.Default: Amazon Web Services selects one for you. If you create more thanone subnet in your VPC, we do not necessarily select a different zone foreach subnet.To create a subnet in a Local Zone, set this value to the Local Zone ID,for example us-west-2-lax-1a. For information about the Regions that supportLocal Zones, see Available Regions (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions)in the Amazon Elastic Compute Cloud User Guide.To create a subnet in an Outpost, set this value to the Availability Zonefor the Outpost and specify the Outpost ARN.",
-						MarkdownDescription: "The Availability Zone or Local Zone for the subnet.Default: Amazon Web Services selects one for you. If you create more thanone subnet in your VPC, we do not necessarily select a different zone foreach subnet.To create a subnet in a Local Zone, set this value to the Local Zone ID,for example us-west-2-lax-1a. For information about the Regions that supportLocal Zones, see Available Regions (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions)in the Amazon Elastic Compute Cloud User Guide.To create a subnet in an Outpost, set this value to the Availability Zonefor the Outpost and specify the Outpost ARN.",
+						Description:         "The Availability Zone or Local Zone for the subnet. Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we do not necessarily select a different zone for each subnet. To create a subnet in a Local Zone, set this value to the Local Zone ID, for example us-west-2-lax-1a. For information about the Regions that support Local Zones, see Available Regions (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) in the Amazon Elastic Compute Cloud User Guide. To create a subnet in an Outpost, set this value to the Availability Zone for the Outpost and specify the Outpost ARN.",
+						MarkdownDescription: "The Availability Zone or Local Zone for the subnet. Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we do not necessarily select a different zone for each subnet. To create a subnet in a Local Zone, set this value to the Local Zone ID, for example us-west-2-lax-1a. For information about the Regions that support Local Zones, see Available Regions (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) in the Amazon Elastic Compute Cloud User Guide. To create a subnet in an Outpost, set this value to the Availability Zone for the Outpost and specify the Outpost ARN.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -179,8 +179,8 @@ func (r *Ec2ServicesK8SAwsSubnetV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"cidr_block": schema.StringAttribute{
-						Description:         "The IPv4 network range for the subnet, in CIDR notation. For example, 10.0.0.0/24.We modify the specified CIDR block to its canonical form; for example, ifyou specify 100.68.0.18/18, we modify it to 100.68.0.0/18.This parameter is not supported for an IPv6 only subnet.",
-						MarkdownDescription: "The IPv4 network range for the subnet, in CIDR notation. For example, 10.0.0.0/24.We modify the specified CIDR block to its canonical form; for example, ifyou specify 100.68.0.18/18, we modify it to 100.68.0.0/18.This parameter is not supported for an IPv6 only subnet.",
+						Description:         "The IPv4 network range for the subnet, in CIDR notation. For example, 10.0.0.0/24. We modify the specified CIDR block to its canonical form; for example, if you specify 100.68.0.18/18, we modify it to 100.68.0.0/18. This parameter is not supported for an IPv6 only subnet.",
+						MarkdownDescription: "The IPv4 network range for the subnet, in CIDR notation. For example, 10.0.0.0/24. We modify the specified CIDR block to its canonical form; for example, if you specify 100.68.0.18/18, we modify it to 100.68.0.0/18. This parameter is not supported for an IPv6 only subnet.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -227,8 +227,8 @@ func (r *Ec2ServicesK8SAwsSubnetV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"ipv6_cidr_block": schema.StringAttribute{
-						Description:         "The IPv6 network range for the subnet, in CIDR notation. The subnet sizemust use a /64 prefix length.This parameter is required for an IPv6 only subnet.",
-						MarkdownDescription: "The IPv6 network range for the subnet, in CIDR notation. The subnet sizemust use a /64 prefix length.This parameter is required for an IPv6 only subnet.",
+						Description:         "The IPv6 network range for the subnet, in CIDR notation. The subnet size must use a /64 prefix length. This parameter is required for an IPv6 only subnet.",
+						MarkdownDescription: "The IPv6 network range for the subnet, in CIDR notation. The subnet size must use a /64 prefix length. This parameter is required for an IPv6 only subnet.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -251,8 +251,8 @@ func (r *Ec2ServicesK8SAwsSubnetV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"outpost_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the Outpost. If you specify an OutpostARN, you must also specify the Availability Zone of the Outpost subnet.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the Outpost. If you specify an OutpostARN, you must also specify the Availability Zone of the Outpost subnet.",
+						Description:         "The Amazon Resource Name (ARN) of the Outpost. If you specify an Outpost ARN, you must also specify the Availability Zone of the Outpost subnet.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the Outpost. If you specify an Outpost ARN, you must also specify the Availability Zone of the Outpost subnet.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -264,8 +264,8 @@ func (r *Ec2ServicesK8SAwsSubnetV1Alpha1Manifest) Schema(_ context.Context, _ da
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -304,8 +304,8 @@ func (r *Ec2ServicesK8SAwsSubnetV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
-						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
+						Description:         "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
+						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -339,12 +339,12 @@ func (r *Ec2ServicesK8SAwsSubnetV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"vpc_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",

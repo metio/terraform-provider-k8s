@@ -63,4 +63,4 @@ Required:
 Optional:
 
 - `name` (String) The name of the temporal object to reference.
-- `namespace` (String) The namespace of the temporal object to reference.Defaults to the namespace of the requested resource if omitted.
+- `namespace` (String) The namespace of the temporal object to reference. Defaults to the namespace of the requested resource if omitted.

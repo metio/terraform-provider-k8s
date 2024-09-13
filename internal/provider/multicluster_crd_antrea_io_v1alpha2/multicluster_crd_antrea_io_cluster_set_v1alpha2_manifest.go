@@ -152,16 +152,16 @@ func (r *MulticlusterCrdAntreaIoClusterSetV1Alpha2Manifest) Schema(_ context.Con
 								},
 
 								"secret": schema.StringAttribute{
-									Description:         "Name of the Secret resource in the member cluster, which storesthe token to access the leader cluster's API server.",
-									MarkdownDescription: "Name of the Secret resource in the member cluster, which storesthe token to access the leader cluster's API server.",
+									Description:         "Name of the Secret resource in the member cluster, which stores the token to access the leader cluster's API server.",
+									MarkdownDescription: "Name of the Secret resource in the member cluster, which stores the token to access the leader cluster's API server.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"server": schema.StringAttribute{
-									Description:         "API server endpoint of the leader cluster.E.g. 'https://172.18.0.1:6443', 'https://example.com:6443'.",
-									MarkdownDescription: "API server endpoint of the leader cluster.E.g. 'https://172.18.0.1:6443', 'https://example.com:6443'.",
+									Description:         "API server endpoint of the leader cluster. E.g. 'https://172.18.0.1:6443', 'https://example.com:6443'.",
+									MarkdownDescription: "API server endpoint of the leader cluster. E.g. 'https://172.18.0.1:6443', 'https://example.com:6443'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -174,8 +174,8 @@ func (r *MulticlusterCrdAntreaIoClusterSetV1Alpha2Manifest) Schema(_ context.Con
 					},
 
 					"namespace": schema.StringAttribute{
-						Description:         "The leader cluster Namespace in which the ClusterSet is defined.Used in a member cluster.",
-						MarkdownDescription: "The leader cluster Namespace in which the ClusterSet is defined.Used in a member cluster.",
+						Description:         "The leader cluster Namespace in which the ClusterSet is defined. Used in a member cluster.",
+						MarkdownDescription: "The leader cluster Namespace in which the ClusterSet is defined. Used in a member cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

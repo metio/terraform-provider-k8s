@@ -125,8 +125,8 @@ func (r *GetambassadorIoKubernetesEndpointResolverV3Alpha1Manifest) Schema(_ con
 				MarkdownDescription: "KubernetesEndpointResolver tells Ambassador to use Kubernetes Endpoints resources to resolve services. It actually has no spec other than the AmbassadorID.",
 				Attributes: map[string]schema.Attribute{
 					"ambassador_id": schema.ListAttribute{
-						Description:         "AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is:  ambassador_id: - 'default'",
-						MarkdownDescription: "AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is:  ambassador_id: - 'default'",
+						Description:         "AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is: ambassador_id: - 'default'",
+						MarkdownDescription: "AmbassadorID declares which Ambassador instances should pay attention to this resource. If no value is provided, the default is: ambassador_id: - 'default'",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

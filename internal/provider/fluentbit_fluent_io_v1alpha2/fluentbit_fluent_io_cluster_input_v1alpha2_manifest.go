@@ -317,8 +317,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 				MarkdownDescription: "InputSpec defines the desired state of ClusterInput",
 				Attributes: map[string]schema.Attribute{
 					"alias": schema.StringAttribute{
-						Description:         "A user friendly alias name for this input plugin.Used in metrics for distinction of each configured input.",
-						MarkdownDescription: "A user friendly alias name for this input plugin.Used in metrics for distinction of each configured input.",
+						Description:         "A user friendly alias name for this input plugin. Used in metrics for distinction of each configured input.",
+						MarkdownDescription: "A user friendly alias name for this input plugin. Used in metrics for distinction of each configured input.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -366,8 +366,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 						MarkdownDescription: "CustomPlugin defines Custom Input configuration.",
 						Attributes: map[string]schema.Attribute{
 							"config": schema.StringAttribute{
-								Description:         "Config holds any unsupported plugins classic configurations,if ConfigFileFormat is set to yaml, this filed will be ignored",
-								MarkdownDescription: "Config holds any unsupported plugins classic configurations,if ConfigFileFormat is set to yaml, this filed will be ignored",
+								Description:         "Config holds any unsupported plugins classic configurations, if ConfigFileFormat is set to yaml, this filed will be ignored",
+								MarkdownDescription: "Config holds any unsupported plugins classic configurations, if ConfigFileFormat is set to yaml, this filed will be ignored",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -553,12 +553,12 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 					},
 
 					"forward": schema.SingleNestedAttribute{
-						Description:         "Forward defines forward  input plugin configuration",
-						MarkdownDescription: "Forward defines forward  input plugin configuration",
+						Description:         "Forward defines forward input plugin configuration",
+						MarkdownDescription: "Forward defines forward input plugin configuration",
 						Attributes: map[string]schema.Attribute{
 							"buffer_max_size": schema.StringAttribute{
-								Description:         "Specify maximum buffer memory size used to recieve a forward message.The value must be according to the Unit Size specification.",
-								MarkdownDescription: "Specify maximum buffer memory size used to recieve a forward message.The value must be according to the Unit Size specification.",
+								Description:         "Specify maximum buffer memory size used to recieve a forward message. The value must be according to the Unit Size specification.",
+								MarkdownDescription: "Specify maximum buffer memory size used to recieve a forward message. The value must be according to the Unit Size specification.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -568,8 +568,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"bufferchunk_size": schema.StringAttribute{
-								Description:         "Set the initial buffer size to store incoming data.This value is used too to increase buffer size as required.The value must be according to the Unit Size specification.",
-								MarkdownDescription: "Set the initial buffer size to store incoming data.This value is used too to increase buffer size as required.The value must be according to the Unit Size specification.",
+								Description:         "Set the initial buffer size to store incoming data. This value is used too to increase buffer size as required. The value must be according to the Unit Size specification.",
+								MarkdownDescription: "Set the initial buffer size to store incoming data. This value is used too to increase buffer size as required. The value must be according to the Unit Size specification.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -648,8 +648,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 						MarkdownDescription: "HTTP defines the HTTP input plugin configuration",
 						Attributes: map[string]schema.Attribute{
 							"buffer_chunk_size": schema.StringAttribute{
-								Description:         "This sets the chunk size for incoming incoming JSON messages.These chunks are then stored/managed in the space available by buffer_max_size,default 512K.",
-								MarkdownDescription: "This sets the chunk size for incoming incoming JSON messages.These chunks are then stored/managed in the space available by buffer_max_size,default 512K.",
+								Description:         "This sets the chunk size for incoming incoming JSON messages. These chunks are then stored/managed in the space available by buffer_max_size,default 512K.",
+								MarkdownDescription: "This sets the chunk size for incoming incoming JSON messages. These chunks are then stored/managed in the space available by buffer_max_size,default 512K.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -742,8 +742,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 									},
 
 									"debug": schema.Int64Attribute{
-										Description:         "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
-										MarkdownDescription: "Set TLS debug verbosity level.It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										Description:         "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
+										MarkdownDescription: "Set TLS debug verbosity level. It accept the following values: 0 (No debug), 1 (Error), 2 (State change), 3 (Informational) and 4 Verbose",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -773,16 +773,16 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 														MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -922,8 +922,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"kube_token_ttl": schema.StringAttribute{
-								Description:         "configurable 'time to live' for the K8s token. By default, it is set to 600 seconds.After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.",
-								MarkdownDescription: "configurable 'time to live' for the K8s token. By default, it is set to 600 seconds.After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.",
+								Description:         "configurable 'time to live' for the K8s token. By default, it is set to 600 seconds. After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.",
+								MarkdownDescription: "configurable 'time to live' for the K8s token. By default, it is set to 600 seconds. After this time, the token is reloaded from Kube_Token_File or the Kube_Token_Command.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1210,8 +1210,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 					},
 
 					"prometheus_scrape_metrics": schema.SingleNestedAttribute{
-						Description:         "PrometheusScrapeMetrics  defines Prometheus Scrape Metrics Input configuration.",
-						MarkdownDescription: "PrometheusScrapeMetrics  defines Prometheus Scrape Metrics Input configuration.",
+						Description:         "PrometheusScrapeMetrics defines Prometheus Scrape Metrics Input configuration.",
+						MarkdownDescription: "PrometheusScrapeMetrics defines Prometheus Scrape Metrics Input configuration.",
 						Attributes: map[string]schema.Attribute{
 							"host": schema.StringAttribute{
 								Description:         "The host of the prometheus metric endpoint that you want to scrape",
@@ -1296,8 +1296,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 						MarkdownDescription: "Syslog defines the Syslog input plugin configuration",
 						Attributes: map[string]schema.Attribute{
 							"buffer_chunk_size": schema.StringAttribute{
-								Description:         "By default the buffer to store the incoming Syslog messages, do not allocate the maximum memory allowed, instead it allocate memory when is required.The rounds of allocations are set by Buffer_Chunk_Size. If not set, Buffer_Chunk_Size is equal to 32000 bytes (32KB).",
-								MarkdownDescription: "By default the buffer to store the incoming Syslog messages, do not allocate the maximum memory allowed, instead it allocate memory when is required.The rounds of allocations are set by Buffer_Chunk_Size. If not set, Buffer_Chunk_Size is equal to 32000 bytes (32KB).",
+								Description:         "By default the buffer to store the incoming Syslog messages, do not allocate the maximum memory allowed, instead it allocate memory when is required. The rounds of allocations are set by Buffer_Chunk_Size. If not set, Buffer_Chunk_Size is equal to 32000 bytes (32KB).",
+								MarkdownDescription: "By default the buffer to store the incoming Syslog messages, do not allocate the maximum memory allowed, instead it allocate memory when is required. The rounds of allocations are set by Buffer_Chunk_Size. If not set, Buffer_Chunk_Size is equal to 32000 bytes (32KB).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1337,8 +1337,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"parser": schema.StringAttribute{
-								Description:         "Specify an alternative parser for the message. If Mode is set to tcp or udp then the default parser is syslog-rfc5424 otherwise syslog-rfc3164-local is used.If your syslog messages have fractional seconds set this Parser value to syslog-rfc5424 instead.",
-								MarkdownDescription: "Specify an alternative parser for the message. If Mode is set to tcp or udp then the default parser is syslog-rfc5424 otherwise syslog-rfc3164-local is used.If your syslog messages have fractional seconds set this Parser value to syslog-rfc5424 instead.",
+								Description:         "Specify an alternative parser for the message. If Mode is set to tcp or udp then the default parser is syslog-rfc5424 otherwise syslog-rfc3164-local is used. If your syslog messages have fractional seconds set this Parser value to syslog-rfc5424 instead.",
+								MarkdownDescription: "Specify an alternative parser for the message. If Mode is set to tcp or udp then the default parser is syslog-rfc5424 otherwise syslog-rfc3164-local is used. If your syslog messages have fractional seconds set this Parser value to syslog-rfc5424 instead.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1365,8 +1365,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"receive_buffer_size": schema.StringAttribute{
-								Description:         "Specify the maximum socket receive buffer size. If not set, the default value is OS-dependant,but generally too low to accept thousands of syslog messages per second without loss on udp or unix_udp sockets. Note that on Linux the value is capped by sysctl net.core.rmem_max.",
-								MarkdownDescription: "Specify the maximum socket receive buffer size. If not set, the default value is OS-dependant,but generally too low to accept thousands of syslog messages per second without loss on udp or unix_udp sockets. Note that on Linux the value is capped by sysctl net.core.rmem_max.",
+								Description:         "Specify the maximum socket receive buffer size. If not set, the default value is OS-dependant, but generally too low to accept thousands of syslog messages per second without loss on udp or unix_udp sockets. Note that on Linux the value is capped by sysctl net.core.rmem_max.",
+								MarkdownDescription: "Specify the maximum socket receive buffer size. If not set, the default value is OS-dependant, but generally too low to accept thousands of syslog messages per second without loss on udp or unix_udp sockets. Note that on Linux the value is capped by sysctl net.core.rmem_max.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1409,8 +1409,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"db_sync": schema.StringAttribute{
-								Description:         "Set a default synchronization (I/O) method. values: Extra, Full, Normal, Off.This flag affects how the internal SQLite engine do synchronization to disk,for more details about each option please refer to this section.note: this option was introduced on Fluent Bit v1.4.6.",
-								MarkdownDescription: "Set a default synchronization (I/O) method. values: Extra, Full, Normal, Off.This flag affects how the internal SQLite engine do synchronization to disk,for more details about each option please refer to this section.note: this option was introduced on Fluent Bit v1.4.6.",
+								Description:         "Set a default synchronization (I/O) method. values: Extra, Full, Normal, Off. This flag affects how the internal SQLite engine do synchronization to disk, for more details about each option please refer to this section. note: this option was introduced on Fluent Bit v1.4.6.",
+								MarkdownDescription: "Set a default synchronization (I/O) method. values: Extra, Full, Normal, Off. This flag affects how the internal SQLite engine do synchronization to disk, for more details about each option please refer to this section. note: this option was introduced on Fluent Bit v1.4.6.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1420,8 +1420,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"max_entries": schema.Int64Attribute{
-								Description:         "When Fluent Bit starts, the Journal might have a high number of logs in the queue.In order to avoid delays and reduce memory usage, this option allows to specify the maximum number of log entries that can be processed per round.Once the limit is reached, Fluent Bit will continue processing the remaining log entries once Journald performs the notification.",
-								MarkdownDescription: "When Fluent Bit starts, the Journal might have a high number of logs in the queue.In order to avoid delays and reduce memory usage, this option allows to specify the maximum number of log entries that can be processed per round.Once the limit is reached, Fluent Bit will continue processing the remaining log entries once Journald performs the notification.",
+								Description:         "When Fluent Bit starts, the Journal might have a high number of logs in the queue. In order to avoid delays and reduce memory usage, this option allows to specify the maximum number of log entries that can be processed per round. Once the limit is reached, Fluent Bit will continue processing the remaining log entries once Journald performs the notification.",
+								MarkdownDescription: "When Fluent Bit starts, the Journal might have a high number of logs in the queue. In order to avoid delays and reduce memory usage, this option allows to specify the maximum number of log entries that can be processed per round. Once the limit is reached, Fluent Bit will continue processing the remaining log entries once Journald performs the notification.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1436,8 +1436,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"path": schema.StringAttribute{
-								Description:         "Optional path to the Systemd journal directory,if not set, the plugin will use default paths to read local-only logs.",
-								MarkdownDescription: "Optional path to the Systemd journal directory,if not set, the plugin will use default paths to read local-only logs.",
+								Description:         "Optional path to the Systemd journal directory, if not set, the plugin will use default paths to read local-only logs.",
+								MarkdownDescription: "Optional path to the Systemd journal directory, if not set, the plugin will use default paths to read local-only logs.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1488,8 +1488,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"systemd_filter": schema.ListAttribute{
-								Description:         "Allows to perform a query over logs that contains a specific Journald key/value pairs, e.g: _SYSTEMD_UNIT=UNIT.The Systemd_Filter option can be specified multiple times in the input section to apply multiple filters as required.",
-								MarkdownDescription: "Allows to perform a query over logs that contains a specific Journald key/value pairs, e.g: _SYSTEMD_UNIT=UNIT.The Systemd_Filter option can be specified multiple times in the input section to apply multiple filters as required.",
+								Description:         "Allows to perform a query over logs that contains a specific Journald key/value pairs, e.g: _SYSTEMD_UNIT=UNIT. The Systemd_Filter option can be specified multiple times in the input section to apply multiple filters as required.",
+								MarkdownDescription: "Allows to perform a query over logs that contains a specific Journald key/value pairs, e.g: _SYSTEMD_UNIT=UNIT. The Systemd_Filter option can be specified multiple times in the input section to apply multiple filters as required.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1497,8 +1497,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"systemd_filter_type": schema.StringAttribute{
-								Description:         "Define the filter type when Systemd_Filter is specified multiple times. Allowed values are And and Or.With And a record is matched only when all of the Systemd_Filter have a match.With Or a record is matched when any of the Systemd_Filter has a match.",
-								MarkdownDescription: "Define the filter type when Systemd_Filter is specified multiple times. Allowed values are And and Or.With And a record is matched only when all of the Systemd_Filter have a match.With Or a record is matched when any of the Systemd_Filter has a match.",
+								Description:         "Define the filter type when Systemd_Filter is specified multiple times. Allowed values are And and Or. With And a record is matched only when all of the Systemd_Filter have a match. With Or a record is matched when any of the Systemd_Filter has a match.",
+								MarkdownDescription: "Define the filter type when Systemd_Filter is specified multiple times. Allowed values are And and Or. With And a record is matched only when all of the Systemd_Filter have a match. With Or a record is matched when any of the Systemd_Filter has a match.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1508,8 +1508,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"tag": schema.StringAttribute{
-								Description:         "The tag is used to route messages but on Systemd plugin there is an extra functionality:if the tag includes a star/wildcard, it will be expanded with the Systemd Unit file (e.g: host.* => host.UNIT_NAME).",
-								MarkdownDescription: "The tag is used to route messages but on Systemd plugin there is an extra functionality:if the tag includes a star/wildcard, it will be expanded with the Systemd Unit file (e.g: host.* => host.UNIT_NAME).",
+								Description:         "The tag is used to route messages but on Systemd plugin there is an extra functionality: if the tag includes a star/wildcard, it will be expanded with the Systemd Unit file (e.g: host.* => host.UNIT_NAME).",
+								MarkdownDescription: "The tag is used to route messages but on Systemd plugin there is an extra functionality: if the tag includes a star/wildcard, it will be expanded with the Systemd Unit file (e.g: host.* => host.UNIT_NAME).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1525,8 +1525,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 						MarkdownDescription: "Tail defines Tail Input configuration.",
 						Attributes: map[string]schema.Attribute{
 							"buffer_chunk_size": schema.StringAttribute{
-								Description:         "Set the initial buffer size to read files data.This value is used too to increase buffer size.The value must be according to the Unit Size specification.",
-								MarkdownDescription: "Set the initial buffer size to read files data.This value is used too to increase buffer size.The value must be according to the Unit Size specification.",
+								Description:         "Set the initial buffer size to read files data. This value is used too to increase buffer size. The value must be according to the Unit Size specification.",
+								MarkdownDescription: "Set the initial buffer size to read files data. This value is used too to increase buffer size. The value must be according to the Unit Size specification.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1536,8 +1536,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"buffer_max_size": schema.StringAttribute{
-								Description:         "Set the limit of the buffer size per monitored file.When a buffer needs to be increased (e.g: very long lines),this value is used to restrict how much the memory buffer can grow.If reading a file exceed this limit, the file is removed from the monitored file listThe value must be according to the Unit Size specification.",
-								MarkdownDescription: "Set the limit of the buffer size per monitored file.When a buffer needs to be increased (e.g: very long lines),this value is used to restrict how much the memory buffer can grow.If reading a file exceed this limit, the file is removed from the monitored file listThe value must be according to the Unit Size specification.",
+								Description:         "Set the limit of the buffer size per monitored file. When a buffer needs to be increased (e.g: very long lines), this value is used to restrict how much the memory buffer can grow. If reading a file exceed this limit, the file is removed from the monitored file list The value must be according to the Unit Size specification.",
+								MarkdownDescription: "Set the limit of the buffer size per monitored file. When a buffer needs to be increased (e.g: very long lines), this value is used to restrict how much the memory buffer can grow. If reading a file exceed this limit, the file is removed from the monitored file list The value must be according to the Unit Size specification.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1574,8 +1574,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"docker_mode": schema.BoolAttribute{
-								Description:         "If enabled, the plugin will recombine split Docker log lines before passing them to any parser as configured above.This mode cannot be used at the same time as Multiline.",
-								MarkdownDescription: "If enabled, the plugin will recombine split Docker log lines before passing them to any parser as configured above.This mode cannot be used at the same time as Multiline.",
+								Description:         "If enabled, the plugin will recombine split Docker log lines before passing them to any parser as configured above. This mode cannot be used at the same time as Multiline.",
+								MarkdownDescription: "If enabled, the plugin will recombine split Docker log lines before passing them to any parser as configured above. This mode cannot be used at the same time as Multiline.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1598,16 +1598,16 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"exclude_path": schema.StringAttribute{
-								Description:         "Set one or multiple shell patterns separated by commas to exclude files matching a certain criteria,e.g: exclude_path=*.gz,*.zip",
-								MarkdownDescription: "Set one or multiple shell patterns separated by commas to exclude files matching a certain criteria,e.g: exclude_path=*.gz,*.zip",
+								Description:         "Set one or multiple shell patterns separated by commas to exclude files matching a certain criteria, e.g: exclude_path=*.gz,*.zip",
+								MarkdownDescription: "Set one or multiple shell patterns separated by commas to exclude files matching a certain criteria, e.g: exclude_path=*.gz,*.zip",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"ignored_older": schema.StringAttribute{
-								Description:         "Ignores records which are older than this time in seconds.Supports m,h,d (minutes, hours, days) syntax.Default behavior is to read all records from specified files.Only available when a Parser is specificied and it can parse the time of a record.",
-								MarkdownDescription: "Ignores records which are older than this time in seconds.Supports m,h,d (minutes, hours, days) syntax.Default behavior is to read all records from specified files.Only available when a Parser is specificied and it can parse the time of a record.",
+								Description:         "Ignores records which are older than this time in seconds. Supports m,h,d (minutes, hours, days) syntax. Default behavior is to read all records from specified files. Only available when a Parser is specificied and it can parse the time of a record.",
+								MarkdownDescription: "Ignores records which are older than this time in seconds. Supports m,h,d (minutes, hours, days) syntax. Default behavior is to read all records from specified files. Only available when a Parser is specificied and it can parse the time of a record.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1617,24 +1617,24 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"key": schema.StringAttribute{
-								Description:         "When a message is unstructured (no parser applied), it's appended as a string under the key name log.This option allows to define an alternative name for that key.",
-								MarkdownDescription: "When a message is unstructured (no parser applied), it's appended as a string under the key name log.This option allows to define an alternative name for that key.",
+								Description:         "When a message is unstructured (no parser applied), it's appended as a string under the key name log. This option allows to define an alternative name for that key.",
+								MarkdownDescription: "When a message is unstructured (no parser applied), it's appended as a string under the key name log. This option allows to define an alternative name for that key.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"mem_buf_limit": schema.StringAttribute{
-								Description:         "Set a limit of memory that Tail plugin can use when appending data to the Engine.If the limit is reach, it will be paused; when the data is flushed it resumes.",
-								MarkdownDescription: "Set a limit of memory that Tail plugin can use when appending data to the Engine.If the limit is reach, it will be paused; when the data is flushed it resumes.",
+								Description:         "Set a limit of memory that Tail plugin can use when appending data to the Engine. If the limit is reach, it will be paused; when the data is flushed it resumes.",
+								MarkdownDescription: "Set a limit of memory that Tail plugin can use when appending data to the Engine. If the limit is reach, it will be paused; when the data is flushed it resumes.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"multiline": schema.BoolAttribute{
-								Description:         "If enabled, the plugin will try to discover multiline messagesand use the proper parsers to compose the outgoing messages.Note that when this option is enabled the Parser option is not used.",
-								MarkdownDescription: "If enabled, the plugin will try to discover multiline messagesand use the proper parsers to compose the outgoing messages.Note that when this option is enabled the Parser option is not used.",
+								Description:         "If enabled, the plugin will try to discover multiline messages and use the proper parsers to compose the outgoing messages. Note that when this option is enabled the Parser option is not used.",
+								MarkdownDescription: "If enabled, the plugin will try to discover multiline messages and use the proper parsers to compose the outgoing messages. Note that when this option is enabled the Parser option is not used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1649,8 +1649,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"multiline_parser": schema.StringAttribute{
-								Description:         "This will help to reassembly multiline messages originally split by Docker or CRISpecify one or Multiline Parser definition to apply to the content.",
-								MarkdownDescription: "This will help to reassembly multiline messages originally split by Docker or CRISpecify one or Multiline Parser definition to apply to the content.",
+								Description:         "This will help to reassembly multiline messages originally split by Docker or CRI Specify one or Multiline Parser definition to apply to the content.",
+								MarkdownDescription: "This will help to reassembly multiline messages originally split by Docker or CRI Specify one or Multiline Parser definition to apply to the content.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1665,16 +1665,16 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"parser_firstline": schema.StringAttribute{
-								Description:         "Name of the parser that matchs the beginning of a multiline message.Note that the regular expression defined in the parser must include a group name (named capture)",
-								MarkdownDescription: "Name of the parser that matchs the beginning of a multiline message.Note that the regular expression defined in the parser must include a group name (named capture)",
+								Description:         "Name of the parser that matchs the beginning of a multiline message. Note that the regular expression defined in the parser must include a group name (named capture)",
+								MarkdownDescription: "Name of the parser that matchs the beginning of a multiline message. Note that the regular expression defined in the parser must include a group name (named capture)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"parser_n": schema.ListAttribute{
-								Description:         "Optional-extra parser to interpret and structure multiline entries.This option can be used to define multiple parsers.",
-								MarkdownDescription: "Optional-extra parser to interpret and structure multiline entries.This option can be used to define multiple parsers.",
+								Description:         "Optional-extra parser to interpret and structure multiline entries. This option can be used to define multiple parsers.",
+								MarkdownDescription: "Optional-extra parser to interpret and structure multiline entries. This option can be used to define multiple parsers.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1690,8 +1690,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"path_key": schema.StringAttribute{
-								Description:         "If enabled, it appends the name of the monitored file as part of the record.The value assigned becomes the key in the map.",
-								MarkdownDescription: "If enabled, it appends the name of the monitored file as part of the record.The value assigned becomes the key in the map.",
+								Description:         "If enabled, it appends the name of the monitored file as part of the record. The value assigned becomes the key in the map.",
+								MarkdownDescription: "If enabled, it appends the name of the monitored file as part of the record. The value assigned becomes the key in the map.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1709,8 +1709,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"read_from_head": schema.BoolAttribute{
-								Description:         "For new discovered files on start (without a database offset/position),read the content from the head of the file, not tail.",
-								MarkdownDescription: "For new discovered files on start (without a database offset/position),read the content from the head of the file, not tail.",
+								Description:         "For new discovered files on start (without a database offset/position), read the content from the head of the file, not tail.",
+								MarkdownDescription: "For new discovered files on start (without a database offset/position), read the content from the head of the file, not tail.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1733,8 +1733,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"skip_long_lines": schema.BoolAttribute{
-								Description:         "When a monitored file reach it buffer capacity due to a very long line (Buffer_Max_Size),the default behavior is to stop monitoring that file.Skip_Long_Lines alter that behavior and instruct Fluent Bit to skip long linesand continue processing other lines that fits into the buffer size.",
-								MarkdownDescription: "When a monitored file reach it buffer capacity due to a very long line (Buffer_Max_Size),the default behavior is to stop monitoring that file.Skip_Long_Lines alter that behavior and instruct Fluent Bit to skip long linesand continue processing other lines that fits into the buffer size.",
+								Description:         "When a monitored file reach it buffer capacity due to a very long line (Buffer_Max_Size), the default behavior is to stop monitoring that file. Skip_Long_Lines alter that behavior and instruct Fluent Bit to skip long lines and continue processing other lines that fits into the buffer size.",
+								MarkdownDescription: "When a monitored file reach it buffer capacity due to a very long line (Buffer_Max_Size), the default behavior is to stop monitoring that file. Skip_Long_Lines alter that behavior and instruct Fluent Bit to skip long lines and continue processing other lines that fits into the buffer size.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1752,8 +1752,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"tag": schema.StringAttribute{
-								Description:         "Set a tag (with regex-extract fields) that will be placed on lines read.E.g. kube.<namespace_name>.<pod_name>.<container_name>",
-								MarkdownDescription: "Set a tag (with regex-extract fields) that will be placed on lines read.E.g. kube.<namespace_name>.<pod_name>.<container_name>",
+								Description:         "Set a tag (with regex-extract fields) that will be placed on lines read. E.g. kube.<namespace_name>.<pod_name>.<container_name>",
+								MarkdownDescription: "Set a tag (with regex-extract fields) that will be placed on lines read. E.g. kube.<namespace_name>.<pod_name>.<container_name>",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1788,8 +1788,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"chunk_size": schema.StringAttribute{
-								Description:         "By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed, instead it allocate memory when is required.The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).",
-								MarkdownDescription: "By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed, instead it allocate memory when is required.The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).",
+								Description:         "By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed, instead it allocate memory when is required. The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).",
+								MarkdownDescription: "By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed, instead it allocate memory when is required. The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1799,8 +1799,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"format": schema.StringAttribute{
-								Description:         "Specify the expected payload format. It support the options json and none.When using json, it expects JSON maps, when is set to none, it will split every record using the defined Separator (option below).",
-								MarkdownDescription: "Specify the expected payload format. It support the options json and none.When using json, it expects JSON maps, when is set to none, it will split every record using the defined Separator (option below).",
+								Description:         "Specify the expected payload format. It support the options json and none. When using json, it expects JSON maps, when is set to none, it will split every record using the defined Separator (option below).",
+								MarkdownDescription: "Specify the expected payload format. It support the options json and none. When using json, it expects JSON maps, when is set to none, it will split every record using the defined Separator (option below).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1844,8 +1844,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 						MarkdownDescription: "UDP defines the UDP input plugin configuration",
 						Attributes: map[string]schema.Attribute{
 							"buffer_size": schema.StringAttribute{
-								Description:         "BufferSize Specify the maximum buffer size in KB to receive a JSON message.If not set, the default size will be the value of Chunk_Size.",
-								MarkdownDescription: "BufferSize Specify the maximum buffer size in KB to receive a JSON message.If not set, the default size will be the value of Chunk_Size.",
+								Description:         "BufferSize Specify the maximum buffer size in KB to receive a JSON message. If not set, the default size will be the value of Chunk_Size.",
+								MarkdownDescription: "BufferSize Specify the maximum buffer size in KB to receive a JSON message. If not set, the default size will be the value of Chunk_Size.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1855,8 +1855,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"chunk_size": schema.StringAttribute{
-								Description:         "By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed,instead it allocate memory when is required.The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).",
-								MarkdownDescription: "By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed,instead it allocate memory when is required.The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).",
+								Description:         "By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed, instead it allocate memory when is required. The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).",
+								MarkdownDescription: "By default the buffer to store the incoming JSON messages, do not allocate the maximum memory allowed, instead it allocate memory when is required. The rounds of allocations are set by Chunk_Size in KB. If not set, Chunk_Size is equal to 32 (32KB).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1866,8 +1866,8 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							},
 
 							"format": schema.StringAttribute{
-								Description:         "Format Specify the expected payload format. It support the options json and none.When using json, it expects JSON maps, when is set to none,it will split every record using the defined Separator (option below).",
-								MarkdownDescription: "Format Specify the expected payload format. It support the options json and none.When using json, it expects JSON maps, when is set to none,it will split every record using the defined Separator (option below).",
+								Description:         "Format Specify the expected payload format. It support the options json and none. When using json, it expects JSON maps, when is set to none, it will split every record using the defined Separator (option below).",
+								MarkdownDescription: "Format Specify the expected payload format. It support the options json and none. When using json, it expects JSON maps, when is set to none, it will split every record using the defined Separator (option below).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

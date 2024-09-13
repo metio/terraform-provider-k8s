@@ -156,21 +156,21 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Manifest) Schema(_ context.Con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "GitRepositorySpec specifies the required configuration to produce anArtifact for a Git repository.",
-				MarkdownDescription: "GitRepositorySpec specifies the required configuration to produce anArtifact for a Git repository.",
+				Description:         "GitRepositorySpec specifies the required configuration to produce an Artifact for a Git repository.",
+				MarkdownDescription: "GitRepositorySpec specifies the required configuration to produce an Artifact for a Git repository.",
 				Attributes: map[string]schema.Attribute{
 					"access_from": schema.SingleNestedAttribute{
-						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespacereferences to this object.NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
-						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespacereferences to this object.NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
+						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
+						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
 						Attributes: map[string]schema.Attribute{
 							"namespace_selectors": schema.ListNestedAttribute{
-								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
-								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
+								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
+								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"match_labels": schema.MapAttribute{
-											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -189,8 +189,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"git_implementation": schema.StringAttribute{
-						Description:         "GitImplementation specifies which Git client library implementation touse. Defaults to 'go-git', valid values are ('go-git', 'libgit2').Deprecated: gitImplementation is deprecated now that 'go-git' is theonly supported implementation.",
-						MarkdownDescription: "GitImplementation specifies which Git client library implementation touse. Defaults to 'go-git', valid values are ('go-git', 'libgit2').Deprecated: gitImplementation is deprecated now that 'go-git' is theonly supported implementation.",
+						Description:         "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2'). Deprecated: gitImplementation is deprecated now that 'go-git' is the only supported implementation.",
+						MarkdownDescription: "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2'). Deprecated: gitImplementation is deprecated now that 'go-git' is the only supported implementation.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -200,29 +200,29 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"ignore": schema.StringAttribute{
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"include": schema.ListNestedAttribute{
-						Description:         "Include specifies a list of GitRepository resources which Artifactsshould be included in the Artifact produced for this GitRepository.",
-						MarkdownDescription: "Include specifies a list of GitRepository resources which Artifactsshould be included in the Artifact produced for this GitRepository.",
+						Description:         "Include specifies a list of GitRepository resources which Artifacts should be included in the Artifact produced for this GitRepository.",
+						MarkdownDescription: "Include specifies a list of GitRepository resources which Artifacts should be included in the Artifact produced for this GitRepository.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from_path": schema.StringAttribute{
-									Description:         "FromPath specifies the path to copy contents from, defaults to the rootof the Artifact.",
-									MarkdownDescription: "FromPath specifies the path to copy contents from, defaults to the rootof the Artifact.",
+									Description:         "FromPath specifies the path to copy contents from, defaults to the root of the Artifact.",
+									MarkdownDescription: "FromPath specifies the path to copy contents from, defaults to the root of the Artifact.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"repository": schema.SingleNestedAttribute{
-									Description:         "GitRepositoryRef specifies the GitRepository which Artifact contentsmust be included.",
-									MarkdownDescription: "GitRepositoryRef specifies the GitRepository which Artifact contentsmust be included.",
+									Description:         "GitRepositoryRef specifies the GitRepository which Artifact contents must be included.",
+									MarkdownDescription: "GitRepositoryRef specifies the GitRepository which Artifact contents must be included.",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "Name of the referent.",
@@ -238,8 +238,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"to_path": schema.StringAttribute{
-									Description:         "ToPath specifies the path to copy contents to, defaults to the name ofthe GitRepositoryRef.",
-									MarkdownDescription: "ToPath specifies the path to copy contents to, defaults to the name ofthe GitRepositoryRef.",
+									Description:         "ToPath specifies the path to copy contents to, defaults to the name of the GitRepositoryRef.",
+									MarkdownDescription: "ToPath specifies the path to copy contents to, defaults to the name of the GitRepositoryRef.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -263,16 +263,16 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"recurse_submodules": schema.BoolAttribute{
-						Description:         "RecurseSubmodules enables the initialization of all submodules withinthe GitRepository as cloned from the URL, using their default settings.",
-						MarkdownDescription: "RecurseSubmodules enables the initialization of all submodules withinthe GitRepository as cloned from the URL, using their default settings.",
+						Description:         "RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings.",
+						MarkdownDescription: "RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ref": schema.SingleNestedAttribute{
-						Description:         "Reference specifies the Git reference to resolve and monitor forchanges, defaults to the 'master' branch.",
-						MarkdownDescription: "Reference specifies the Git reference to resolve and monitor forchanges, defaults to the 'master' branch.",
+						Description:         "Reference specifies the Git reference to resolve and monitor for changes, defaults to the 'master' branch.",
+						MarkdownDescription: "Reference specifies the Git reference to resolve and monitor for changes, defaults to the 'master' branch.",
 						Attributes: map[string]schema.Attribute{
 							"branch": schema.StringAttribute{
 								Description:         "Branch to check out, defaults to 'master' if no other field is defined.",
@@ -283,16 +283,16 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Manifest) Schema(_ context.Con
 							},
 
 							"commit": schema.StringAttribute{
-								Description:         "Commit SHA to check out, takes precedence over all reference fields.This can be combined with Branch to shallow clone the branch, in whichthe commit is expected to exist.",
-								MarkdownDescription: "Commit SHA to check out, takes precedence over all reference fields.This can be combined with Branch to shallow clone the branch, in whichthe commit is expected to exist.",
+								Description:         "Commit SHA to check out, takes precedence over all reference fields. This can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.",
+								MarkdownDescription: "Commit SHA to check out, takes precedence over all reference fields. This can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the reference to check out; takes precedence over Branch, Tag and SemVer.It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_descriptionExamples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
-								MarkdownDescription: "Name of the reference to check out; takes precedence over Branch, Tag and SemVer.It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_descriptionExamples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
+								Description:         "Name of the reference to check out; takes precedence over Branch, Tag and SemVer. It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description Examples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
+								MarkdownDescription: "Name of the reference to check out; takes precedence over Branch, Tag and SemVer. It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description Examples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -320,8 +320,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "SecretRef specifies the Secret containing authentication credentials forthe GitRepository.For HTTPS repositories the Secret must contain 'username' and 'password'fields for basic auth or 'bearerToken' field for token auth.For SSH repositories the Secret must contain 'identity'and 'known_hosts' fields.",
-						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials forthe GitRepository.For HTTPS repositories the Secret must contain 'username' and 'password'fields for basic auth or 'bearerToken' field for token auth.For SSH repositories the Secret must contain 'identity'and 'known_hosts' fields.",
+						Description:         "SecretRef specifies the Secret containing authentication credentials for the GitRepository. For HTTPS repositories the Secret must contain 'username' and 'password' fields for basic auth or 'bearerToken' field for token auth. For SSH repositories the Secret must contain 'identity' and 'known_hosts' fields.",
+						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the GitRepository. For HTTPS repositories the Secret must contain 'username' and 'password' fields for basic auth or 'bearerToken' field for token auth. For SSH repositories the Secret must contain 'identity' and 'known_hosts' fields.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -337,8 +337,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "Suspend tells the controller to suspend the reconciliation of thisGitRepository.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of thisGitRepository.",
+						Description:         "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -367,8 +367,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Manifest) Schema(_ context.Con
 					},
 
 					"verify": schema.SingleNestedAttribute{
-						Description:         "Verification specifies the configuration to verify the Git commitsignature(s).",
-						MarkdownDescription: "Verification specifies the configuration to verify the Git commitsignature(s).",
+						Description:         "Verification specifies the configuration to verify the Git commit signature(s).",
+						MarkdownDescription: "Verification specifies the configuration to verify the Git commit signature(s).",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
 								Description:         "Mode specifies what Git object should be verified, currently ('head').",
@@ -382,8 +382,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Manifest) Schema(_ context.Con
 							},
 
 							"secret_ref": schema.SingleNestedAttribute{
-								Description:         "SecretRef specifies the Secret containing the public keys of trusted Gitauthors.",
-								MarkdownDescription: "SecretRef specifies the Secret containing the public keys of trusted Gitauthors.",
+								Description:         "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
+								MarkdownDescription: "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name of the referent.",

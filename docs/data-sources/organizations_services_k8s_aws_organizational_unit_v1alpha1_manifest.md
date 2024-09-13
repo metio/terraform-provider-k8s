@@ -30,7 +30,7 @@ data "k8s_organizations_services_k8s_aws_organizational_unit_v1alpha1_manifest" 
 
 ### Optional
 
-- `spec` (Attributes) OrganizationalUnitSpec defines the desired state of OrganizationalUnit.Contains details about an organizational unit (OU). An OU is a containerof Amazon Web Services accounts within a root of an organization. Policiesthat are attached to an OU apply to all accounts contained in that OU andin any child OUs. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) OrganizationalUnitSpec defines the desired state of OrganizationalUnit. Contains details about an organizational unit (OU). An OU is a container of Amazon Web Services accounts within a root of an organization. Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,11 +56,11 @@ Optional:
 Required:
 
 - `name` (String) The friendly name to assign to the new OU.
-- `parent_id` (String) The unique identifier (ID) of the parent root or OU that you want to createthe new OU in.The regex pattern (http://wikipedia.org/wiki/regex) for a parent ID stringrequires one of the following:   * Root - A string that begins with 'r-' followed by from 4 to 32 lowercase   letters or digits.   * Organizational unit (OU) - A string that begins with 'ou-' followed   by from 4 to 32 lowercase letters or digits (the ID of the root that the   OU is in). This string is followed by a second '-' dash and from 8 to   32 additional lowercase letters or digits.
+- `parent_id` (String) The unique identifier (ID) of the parent root or OU that you want to create the new OU in. The regex pattern (http://wikipedia.org/wiki/regex) for a parent ID string requires one of the following: * Root - A string that begins with 'r-' followed by from 4 to 32 lowercase letters or digits. * Organizational unit (OU) - A string that begins with 'ou-' followed by from 4 to 32 lowercase letters or digits (the ID of the root that the OU is in). This string is followed by a second '-' dash and from 8 to 32 additional lowercase letters or digits.
 
 Optional:
 
-- `tags` (Attributes List) A list of tags that you want to attach to the newly created OU. For eachtag in the list, you must specify both a tag key and a value. You can setthe value to an empty string, but you can't set it to null. For more informationabout tagging, see Tagging Organizations resources (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html)in the Organizations User Guide.If any one of the tags is invalid or if you exceed the allowed number oftags for an OU, then the entire request fails and the OU is not created. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) A list of tags that you want to attach to the newly created OU. For each tag in the list, you must specify both a tag key and a value. You can set the value to an empty string, but you can't set it to null. For more information about tagging, see Tagging Organizations resources (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html) in the Organizations User Guide. If any one of the tags is invalid or if you exceed the allowed number of tags for an OU, then the entire request fails and the OU is not created. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--tags"></a>
 ### Nested Schema for `spec.tags`

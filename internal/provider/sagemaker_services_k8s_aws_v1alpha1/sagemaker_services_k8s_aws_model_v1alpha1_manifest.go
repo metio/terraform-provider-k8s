@@ -190,8 +190,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ModelSpec defines the desired state of Model.The properties of a model as returned by the Search (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html)API.",
-				MarkdownDescription: "ModelSpec defines the desired state of Model.The properties of a model as returned by the Search (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html)API.",
+				Description:         "ModelSpec defines the desired state of Model. The properties of a model as returned by the Search (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html) API.",
+				MarkdownDescription: "ModelSpec defines the desired state of Model. The properties of a model as returned by the Search (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html) API.",
 				Attributes: map[string]schema.Attribute{
 					"containers": schema.ListNestedAttribute{
 						Description:         "Specifies the containers in the inference pipeline.",
@@ -224,8 +224,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 								},
 
 								"image_config": schema.SingleNestedAttribute{
-									Description:         "Specifies whether the model container is in Amazon ECR or a private Dockerregistry accessible from your Amazon Virtual Private Cloud (VPC).",
-									MarkdownDescription: "Specifies whether the model container is in Amazon ECR or a private Dockerregistry accessible from your Amazon Virtual Private Cloud (VPC).",
+									Description:         "Specifies whether the model container is in Amazon ECR or a private Docker registry accessible from your Amazon Virtual Private Cloud (VPC).",
+									MarkdownDescription: "Specifies whether the model container is in Amazon ECR or a private Docker registry accessible from your Amazon Virtual Private Cloud (VPC).",
 									Attributes: map[string]schema.Attribute{
 										"repository_access_mode": schema.StringAttribute{
 											Description:         "",
@@ -236,8 +236,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 										},
 
 										"repository_auth_config": schema.SingleNestedAttribute{
-											Description:         "Specifies an authentication configuration for the private docker registrywhere your model image is hosted. Specify a value for this property onlyif you specified Vpc as the value for the RepositoryAccessMode field of theImageConfig object that you passed to a call to CreateModel and the privateDocker registry where the model image is hosted requires authentication.",
-											MarkdownDescription: "Specifies an authentication configuration for the private docker registrywhere your model image is hosted. Specify a value for this property onlyif you specified Vpc as the value for the RepositoryAccessMode field of theImageConfig object that you passed to a call to CreateModel and the privateDocker registry where the model image is hosted requires authentication.",
+											Description:         "Specifies an authentication configuration for the private docker registry where your model image is hosted. Specify a value for this property only if you specified Vpc as the value for the RepositoryAccessMode field of the ImageConfig object that you passed to a call to CreateModel and the private Docker registry where the model image is hosted requires authentication.",
+											MarkdownDescription: "Specifies an authentication configuration for the private docker registry where your model image is hosted. Specify a value for this property only if you specified Vpc as the value for the RepositoryAccessMode field of the ImageConfig object that you passed to a call to CreateModel and the private Docker registry where the model image is hosted requires authentication.",
 											Attributes: map[string]schema.Attribute{
 												"repository_credentials_provider_arn": schema.StringAttribute{
 													Description:         "",
@@ -274,8 +274,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 								},
 
 								"model_data_source": schema.SingleNestedAttribute{
-									Description:         "Specifies the location of ML model data to deploy. If specified, you mustspecify one and only one of the available data sources.",
-									MarkdownDescription: "Specifies the location of ML model data to deploy. If specified, you mustspecify one and only one of the available data sources.",
+									Description:         "Specifies the location of ML model data to deploy. If specified, you must specify one and only one of the available data sources.",
+									MarkdownDescription: "Specifies the location of ML model data to deploy. If specified, you must specify one and only one of the available data sources.",
 									Attributes: map[string]schema.Attribute{
 										"s3_data_source": schema.SingleNestedAttribute{
 											Description:         "Specifies the S3 location of ML model data to deploy.",
@@ -290,8 +290,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 												},
 
 												"model_access_config": schema.SingleNestedAttribute{
-													Description:         "The access configuration file to control access to the ML model. You canexplicitly accept the model end-user license agreement (EULA) within theModelAccessConfig.   * If you are a Jumpstart user, see the End-user license agreements (https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-eula)   section for more details on accepting the EULA.   * If you are an AutoML user, see the Optional Parameters section of Create   an AutoML job to fine-tune text generation models using the API for details   on How to set the EULA acceptance when fine-tuning a model using the AutoML   API (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-create-experiment-finetune-llms.html#autopilot-llms-finetuning-api-optional-params).",
-													MarkdownDescription: "The access configuration file to control access to the ML model. You canexplicitly accept the model end-user license agreement (EULA) within theModelAccessConfig.   * If you are a Jumpstart user, see the End-user license agreements (https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-eula)   section for more details on accepting the EULA.   * If you are an AutoML user, see the Optional Parameters section of Create   an AutoML job to fine-tune text generation models using the API for details   on How to set the EULA acceptance when fine-tuning a model using the AutoML   API (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-create-experiment-finetune-llms.html#autopilot-llms-finetuning-api-optional-params).",
+													Description:         "The access configuration file to control access to the ML model. You can explicitly accept the model end-user license agreement (EULA) within the ModelAccessConfig. * If you are a Jumpstart user, see the End-user license agreements (https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-eula) section for more details on accepting the EULA. * If you are an AutoML user, see the Optional Parameters section of Create an AutoML job to fine-tune text generation models using the API for details on How to set the EULA acceptance when fine-tuning a model using the AutoML API (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-create-experiment-finetune-llms.html#autopilot-llms-finetuning-api-optional-params).",
+													MarkdownDescription: "The access configuration file to control access to the ML model. You can explicitly accept the model end-user license agreement (EULA) within the ModelAccessConfig. * If you are a Jumpstart user, see the End-user license agreements (https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-eula) section for more details on accepting the EULA. * If you are an AutoML user, see the Optional Parameters section of Create an AutoML job to fine-tune text generation models using the API for details on How to set the EULA acceptance when fine-tuning a model using the AutoML API (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-create-experiment-finetune-llms.html#autopilot-llms-finetuning-api-optional-params).",
 													Attributes: map[string]schema.Attribute{
 														"accept_eula": schema.BoolAttribute{
 															Description:         "",
@@ -372,16 +372,16 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"enable_network_isolation": schema.BoolAttribute{
-						Description:         "Isolates the model container. No inbound or outbound network calls can bemade to or from the model container.",
-						MarkdownDescription: "Isolates the model container. No inbound or outbound network calls can bemade to or from the model container.",
+						Description:         "Isolates the model container. No inbound or outbound network calls can be made to or from the model container.",
+						MarkdownDescription: "Isolates the model container. No inbound or outbound network calls can be made to or from the model container.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"execution_role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the IAM role that SageMaker can assumeto access model artifacts and docker image for deployment on ML compute instancesor for batch transform jobs. Deploying on ML compute instances is part ofmodel hosting. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).To be able to pass this role to SageMaker, the caller of this API must havethe iam:PassRole permission.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM role that SageMaker can assumeto access model artifacts and docker image for deployment on ML compute instancesor for batch transform jobs. Deploying on ML compute instances is part ofmodel hosting. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).To be able to pass this role to SageMaker, the caller of this API must havethe iam:PassRole permission.",
+						Description:         "The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute instances or for batch transform jobs. Deploying on ML compute instances is part of model hosting. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute instances or for batch transform jobs. Deploying on ML compute instances is part of model hosting. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -413,8 +413,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"primary_container": schema.SingleNestedAttribute{
-						Description:         "The location of the primary docker image containing inference code, associatedartifacts, and custom environment map that the inference code uses when themodel is deployed for predictions.",
-						MarkdownDescription: "The location of the primary docker image containing inference code, associatedartifacts, and custom environment map that the inference code uses when themodel is deployed for predictions.",
+						Description:         "The location of the primary docker image containing inference code, associated artifacts, and custom environment map that the inference code uses when the model is deployed for predictions.",
+						MarkdownDescription: "The location of the primary docker image containing inference code, associated artifacts, and custom environment map that the inference code uses when the model is deployed for predictions.",
 						Attributes: map[string]schema.Attribute{
 							"container_hostname": schema.StringAttribute{
 								Description:         "",
@@ -442,8 +442,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 							},
 
 							"image_config": schema.SingleNestedAttribute{
-								Description:         "Specifies whether the model container is in Amazon ECR or a private Dockerregistry accessible from your Amazon Virtual Private Cloud (VPC).",
-								MarkdownDescription: "Specifies whether the model container is in Amazon ECR or a private Dockerregistry accessible from your Amazon Virtual Private Cloud (VPC).",
+								Description:         "Specifies whether the model container is in Amazon ECR or a private Docker registry accessible from your Amazon Virtual Private Cloud (VPC).",
+								MarkdownDescription: "Specifies whether the model container is in Amazon ECR or a private Docker registry accessible from your Amazon Virtual Private Cloud (VPC).",
 								Attributes: map[string]schema.Attribute{
 									"repository_access_mode": schema.StringAttribute{
 										Description:         "",
@@ -454,8 +454,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 									},
 
 									"repository_auth_config": schema.SingleNestedAttribute{
-										Description:         "Specifies an authentication configuration for the private docker registrywhere your model image is hosted. Specify a value for this property onlyif you specified Vpc as the value for the RepositoryAccessMode field of theImageConfig object that you passed to a call to CreateModel and the privateDocker registry where the model image is hosted requires authentication.",
-										MarkdownDescription: "Specifies an authentication configuration for the private docker registrywhere your model image is hosted. Specify a value for this property onlyif you specified Vpc as the value for the RepositoryAccessMode field of theImageConfig object that you passed to a call to CreateModel and the privateDocker registry where the model image is hosted requires authentication.",
+										Description:         "Specifies an authentication configuration for the private docker registry where your model image is hosted. Specify a value for this property only if you specified Vpc as the value for the RepositoryAccessMode field of the ImageConfig object that you passed to a call to CreateModel and the private Docker registry where the model image is hosted requires authentication.",
+										MarkdownDescription: "Specifies an authentication configuration for the private docker registry where your model image is hosted. Specify a value for this property only if you specified Vpc as the value for the RepositoryAccessMode field of the ImageConfig object that you passed to a call to CreateModel and the private Docker registry where the model image is hosted requires authentication.",
 										Attributes: map[string]schema.Attribute{
 											"repository_credentials_provider_arn": schema.StringAttribute{
 												Description:         "",
@@ -492,8 +492,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 							},
 
 							"model_data_source": schema.SingleNestedAttribute{
-								Description:         "Specifies the location of ML model data to deploy. If specified, you mustspecify one and only one of the available data sources.",
-								MarkdownDescription: "Specifies the location of ML model data to deploy. If specified, you mustspecify one and only one of the available data sources.",
+								Description:         "Specifies the location of ML model data to deploy. If specified, you must specify one and only one of the available data sources.",
+								MarkdownDescription: "Specifies the location of ML model data to deploy. If specified, you must specify one and only one of the available data sources.",
 								Attributes: map[string]schema.Attribute{
 									"s3_data_source": schema.SingleNestedAttribute{
 										Description:         "Specifies the S3 location of ML model data to deploy.",
@@ -508,8 +508,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"model_access_config": schema.SingleNestedAttribute{
-												Description:         "The access configuration file to control access to the ML model. You canexplicitly accept the model end-user license agreement (EULA) within theModelAccessConfig.   * If you are a Jumpstart user, see the End-user license agreements (https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-eula)   section for more details on accepting the EULA.   * If you are an AutoML user, see the Optional Parameters section of Create   an AutoML job to fine-tune text generation models using the API for details   on How to set the EULA acceptance when fine-tuning a model using the AutoML   API (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-create-experiment-finetune-llms.html#autopilot-llms-finetuning-api-optional-params).",
-												MarkdownDescription: "The access configuration file to control access to the ML model. You canexplicitly accept the model end-user license agreement (EULA) within theModelAccessConfig.   * If you are a Jumpstart user, see the End-user license agreements (https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-eula)   section for more details on accepting the EULA.   * If you are an AutoML user, see the Optional Parameters section of Create   an AutoML job to fine-tune text generation models using the API for details   on How to set the EULA acceptance when fine-tuning a model using the AutoML   API (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-create-experiment-finetune-llms.html#autopilot-llms-finetuning-api-optional-params).",
+												Description:         "The access configuration file to control access to the ML model. You can explicitly accept the model end-user license agreement (EULA) within the ModelAccessConfig. * If you are a Jumpstart user, see the End-user license agreements (https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-eula) section for more details on accepting the EULA. * If you are an AutoML user, see the Optional Parameters section of Create an AutoML job to fine-tune text generation models using the API for details on How to set the EULA acceptance when fine-tuning a model using the AutoML API (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-create-experiment-finetune-llms.html#autopilot-llms-finetuning-api-optional-params).",
+												MarkdownDescription: "The access configuration file to control access to the ML model. You can explicitly accept the model end-user license agreement (EULA) within the ModelAccessConfig. * If you are a Jumpstart user, see the End-user license agreements (https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-eula) section for more details on accepting the EULA. * If you are an AutoML user, see the Optional Parameters section of Create an AutoML job to fine-tune text generation models using the API for details on How to set the EULA acceptance when fine-tuning a model using the AutoML API (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-create-experiment-finetune-llms.html#autopilot-llms-finetuning-api-optional-params).",
 												Attributes: map[string]schema.Attribute{
 													"accept_eula": schema.BoolAttribute{
 														Description:         "",
@@ -589,8 +589,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "An array of key-value pairs. You can use tags to categorize your Amazon WebServices resources in different ways, for example, by purpose, owner, orenvironment. For more information, see Tagging Amazon Web Services Resources(https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
-						MarkdownDescription: "An array of key-value pairs. You can use tags to categorize your Amazon WebServices resources in different ways, for example, by purpose, owner, orenvironment. For more information, see Tagging Amazon Web Services Resources(https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
+						Description:         "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
+						MarkdownDescription: "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -616,8 +616,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"vpc_config": schema.SingleNestedAttribute{
-						Description:         "A VpcConfig (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_VpcConfig.html)object that specifies the VPC that you want your model to connect to. Controlaccess to and from your model container by configuring the VPC. VpcConfigis used in hosting services and in batch transform. For more information,see Protect Endpoints by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html)and Protect Data in Batch Transform Jobs by Using an Amazon Virtual PrivateCloud (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-vpc.html).",
-						MarkdownDescription: "A VpcConfig (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_VpcConfig.html)object that specifies the VPC that you want your model to connect to. Controlaccess to and from your model container by configuring the VPC. VpcConfigis used in hosting services and in batch transform. For more information,see Protect Endpoints by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html)and Protect Data in Batch Transform Jobs by Using an Amazon Virtual PrivateCloud (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-vpc.html).",
+						Description:         "A VpcConfig (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_VpcConfig.html) object that specifies the VPC that you want your model to connect to. Control access to and from your model container by configuring the VPC. VpcConfig is used in hosting services and in batch transform. For more information, see Protect Endpoints by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html) and Protect Data in Batch Transform Jobs by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-vpc.html).",
+						MarkdownDescription: "A VpcConfig (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_VpcConfig.html) object that specifies the VPC that you want your model to connect to. Control access to and from your model container by configuring the VPC. VpcConfig is used in hosting services and in batch transform. For more information, see Protect Endpoints by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html) and Protect Data in Batch Transform Jobs by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-vpc.html).",
 						Attributes: map[string]schema.Attribute{
 							"security_group_i_ds": schema.ListAttribute{
 								Description:         "",

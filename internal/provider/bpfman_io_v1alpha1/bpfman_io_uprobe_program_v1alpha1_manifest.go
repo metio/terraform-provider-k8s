@@ -235,12 +235,12 @@ func (r *BpfmanIoUprobeProgramV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"containers": schema.SingleNestedAttribute{
-						Description:         "Containers identifes the set of containers in which to attach the uprobe. If Containers is not specified, the uprobe will be attached in the bpfman-agent container.  The ContainerSelector is very flexible and even allows the selection of all containers in a cluster.  If an attempt is made to attach uprobes to too many containers, it can have a negative impact on on the cluster.",
-						MarkdownDescription: "Containers identifes the set of containers in which to attach the uprobe. If Containers is not specified, the uprobe will be attached in the bpfman-agent container.  The ContainerSelector is very flexible and even allows the selection of all containers in a cluster.  If an attempt is made to attach uprobes to too many containers, it can have a negative impact on on the cluster.",
+						Description:         "Containers identifes the set of containers in which to attach the uprobe. If Containers is not specified, the uprobe will be attached in the bpfman-agent container. The ContainerSelector is very flexible and even allows the selection of all containers in a cluster. If an attempt is made to attach uprobes to too many containers, it can have a negative impact on on the cluster.",
+						MarkdownDescription: "Containers identifes the set of containers in which to attach the uprobe. If Containers is not specified, the uprobe will be attached in the bpfman-agent container. The ContainerSelector is very flexible and even allows the selection of all containers in a cluster. If an attempt is made to attach uprobes to too many containers, it can have a negative impact on on the cluster.",
 						Attributes: map[string]schema.Attribute{
 							"containernames": schema.ListAttribute{
-								Description:         "Name(s) of container(s).  If none are specified, all containers in the pod are selected.",
-								MarkdownDescription: "Name(s) of container(s).  If none are specified, all containers in the pod are selected.",
+								Description:         "Name(s) of container(s). If none are specified, all containers in the pod are selected.",
+								MarkdownDescription: "Name(s) of container(s). If none are specified, all containers in the pod are selected.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -386,8 +386,8 @@ func (r *BpfmanIoUprobeProgramV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"nodeselector": schema.SingleNestedAttribute{
-						Description:         "NodeSelector allows the user to specify which nodes to deploy the bpf program to.  This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty.",
-						MarkdownDescription: "NodeSelector allows the user to specify which nodes to deploy the bpf program to.  This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty.",
+						Description:         "NodeSelector allows the user to specify which nodes to deploy the bpf program to. This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty.",
+						MarkdownDescription: "NodeSelector allows the user to specify which nodes to deploy the bpf program to. This field must be specified, to select all nodes use standard metav1.LabelSelector semantics and make it empty.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -456,8 +456,8 @@ func (r *BpfmanIoUprobeProgramV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"retprobe": schema.BoolAttribute{
-						Description:         "Whether the program is a uretprobe.  Default is false",
-						MarkdownDescription: "Whether the program is a uretprobe.  Default is false",
+						Description:         "Whether the program is a uretprobe. Default is false",
+						MarkdownDescription: "Whether the program is a uretprobe. Default is false",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

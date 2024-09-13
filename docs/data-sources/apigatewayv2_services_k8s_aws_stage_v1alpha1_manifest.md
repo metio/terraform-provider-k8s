@@ -30,7 +30,7 @@ data "k8s_apigatewayv2_services_k8s_aws_stage_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) StageSpec defines the desired state of Stage.Represents an API stage. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) StageSpec defines the desired state of Stage. Represents an API stage. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -61,12 +61,12 @@ Optional:
 
 - `access_log_settings` (Attributes) Settings for logging access in a stage. (see [below for nested schema](#nestedatt--spec--access_log_settings))
 - `api_id` (String)
-- `api_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--api_ref))
+- `api_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--api_ref))
 - `auto_deploy` (Boolean)
 - `client_certificate_id` (String)
 - `default_route_settings` (Attributes) Represents a collection of route settings. (see [below for nested schema](#nestedatt--spec--default_route_settings))
 - `deployment_id` (String)
-- `deployment_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--deployment_ref))
+- `deployment_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--deployment_ref))
 - `description` (String)
 - `route_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--route_settings))
 - `stage_variables` (Map of String)
@@ -86,7 +86,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--api_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--api_ref--from))
 
 <a id="nestedatt--spec--api_ref--from"></a>
 ### Nested Schema for `spec.api_ref.from`
@@ -115,7 +115,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--deployment_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--deployment_ref--from))
 
 <a id="nestedatt--spec--deployment_ref--from"></a>
 ### Nested Schema for `spec.deployment_ref.from`

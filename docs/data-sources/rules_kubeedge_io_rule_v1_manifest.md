@@ -55,7 +55,7 @@ Optional:
 
 Required:
 
-- `source` (String) source is a string value representing where the messages come from. Itsvalue is the same with ruleendpoint name. For example, my-rest or my-eventbus.
-- `source_resource` (Map of String) sourceResource is a map representing the resource info of source. For restrule-endpoint type its value is {'path':'/test'}. For eventbus ruleendpoint type itsvalue is {'topic':'<user define string>','node_name':'edge-node'}
-- `target` (String) target is a string value representing where the messages go to. its value isthe same with ruleendpoint name. For example, my-eventbus or my-rest or my-servicebus.
-- `target_resource` (Map of String) targetResource is a map representing the resource info of target. For restrule-endpoint type its value is {'resource':'http://a.com'}. For eventbus ruleendpointtype its value is {'topic':'/test'}. For servicebus rule-endpoint type its value is{'path':'/request_path'}.
+- `source` (String) source is a string value representing where the messages come from. Its value is the same with ruleendpoint name. For example, my-rest or my-eventbus.
+- `source_resource` (Map of String) sourceResource is a map representing the resource info of source. For rest rule-endpoint type its value is {'path':'/test'}. For eventbus ruleendpoint type its value is {'topic':'<user define string>','node_name':'edge-node'}
+- `target` (String) target is a string value representing where the messages go to. its value is the same with ruleendpoint name. For example, my-eventbus or my-rest or my-servicebus.
+- `target_resource` (Map of String) targetResource is a map representing the resource info of target. For rest rule-endpoint type its value is {'resource':'http://a.com'}. For eventbus ruleendpoint type its value is {'topic':'/test'}. For servicebus rule-endpoint type its value is {'path':'/request_path'}.

@@ -132,8 +132,8 @@ func (r *AuthzedComSpiceDbclusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "ClusterSpec holds the desired state of the cluster.",
 				Attributes: map[string]schema.Attribute{
 					"channel": schema.StringAttribute{
-						Description:         "Channel is a defined series of updates that operator should follow.The operator is configured with a datasource that configures availablechannels and update paths.If 'version' is not specified, then the operator will keep SpiceDBup-to-date with the current head of the channel.If 'version' is specified, then the operator will write available updatesin the status.",
-						MarkdownDescription: "Channel is a defined series of updates that operator should follow.The operator is configured with a datasource that configures availablechannels and update paths.If 'version' is not specified, then the operator will keep SpiceDBup-to-date with the current head of the channel.If 'version' is specified, then the operator will write available updatesin the status.",
+						Description:         "Channel is a defined series of updates that operator should follow. The operator is configured with a datasource that configures available channels and update paths. If 'version' is not specified, then the operator will keep SpiceDB up-to-date with the current head of the channel. If 'version' is specified, then the operator will write available updates in the status.",
+						MarkdownDescription: "Channel is a defined series of updates that operator should follow. The operator is configured with a datasource that configures available channels and update paths. If 'version' is not specified, then the operator will keep SpiceDB up-to-date with the current head of the channel. If 'version' is specified, then the operator will write available updates in the status.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -149,8 +149,8 @@ func (r *AuthzedComSpiceDbclusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"patches": schema.ListNestedAttribute{
-						Description:         "Patches is a list of patches to apply to generated resources.If multiple patches apply to the same object and field, later patchesin the list take precedence over earlier ones.",
-						MarkdownDescription: "Patches is a list of patches to apply to generated resources.If multiple patches apply to the same object and field, later patchesin the list take precedence over earlier ones.",
+						Description:         "Patches is a list of patches to apply to generated resources. If multiple patches apply to the same object and field, later patches in the list take precedence over earlier ones.",
+						MarkdownDescription: "Patches is a list of patches to apply to generated resources. If multiple patches apply to the same object and field, later patches in the list take precedence over earlier ones.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"kind": schema.StringAttribute{
@@ -162,8 +162,8 @@ func (r *AuthzedComSpiceDbclusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"patch": schema.MapAttribute{
-									Description:         "Patch is an inlined representation of a structured merge patch (one thatjust specifies the structure and fields to be modified) or a an explicitJSON6902 patch operation.",
-									MarkdownDescription: "Patch is an inlined representation of a structured merge patch (one thatjust specifies the structure and fields to be modified) or a an explicitJSON6902 patch operation.",
+									Description:         "Patch is an inlined representation of a structured merge patch (one that just specifies the structure and fields to be modified) or a an explicit JSON6902 patch operation.",
+									MarkdownDescription: "Patch is an inlined representation of a structured merge patch (one that just specifies the structure and fields to be modified) or a an explicit JSON6902 patch operation.",
 									ElementType:         types.StringType,
 									Required:            true,
 									Optional:            false,
@@ -177,16 +177,16 @@ func (r *AuthzedComSpiceDbclusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"secret_name": schema.StringAttribute{
-						Description:         "SecretName points to a secret (in the same namespace) that holds secretconfig for the cluster like passwords, credentials, etc.If the secret is omitted, one will be generated",
-						MarkdownDescription: "SecretName points to a secret (in the same namespace) that holds secretconfig for the cluster like passwords, credentials, etc.If the secret is omitted, one will be generated",
+						Description:         "SecretName points to a secret (in the same namespace) that holds secret config for the cluster like passwords, credentials, etc. If the secret is omitted, one will be generated",
+						MarkdownDescription: "SecretName points to a secret (in the same namespace) that holds secret config for the cluster like passwords, credentials, etc. If the secret is omitted, one will be generated",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"version": schema.StringAttribute{
-						Description:         "Version is the name of the version of SpiceDB that will be run.The version is usually a simple version string like 'v1.13.0', but theoperator is configured with a data source that tells it what versionsare allowed, and they may have other names.If omitted, the newest version in the head of the channel will be used.Note that the 'config.image' field will take precedence overversion/channel, if it is specified",
-						MarkdownDescription: "Version is the name of the version of SpiceDB that will be run.The version is usually a simple version string like 'v1.13.0', but theoperator is configured with a data source that tells it what versionsare allowed, and they may have other names.If omitted, the newest version in the head of the channel will be used.Note that the 'config.image' field will take precedence overversion/channel, if it is specified",
+						Description:         "Version is the name of the version of SpiceDB that will be run. The version is usually a simple version string like 'v1.13.0', but the operator is configured with a data source that tells it what versions are allowed, and they may have other names. If omitted, the newest version in the head of the channel will be used. Note that the 'config.image' field will take precedence over version/channel, if it is specified",
+						MarkdownDescription: "Version is the name of the version of SpiceDB that will be run. The version is usually a simple version string like 'v1.13.0', but the operator is configured with a data source that tells it what versions are allowed, and they may have other names. If omitted, the newest version in the head of the channel will be used. Note that the 'config.image' field will take precedence over version/channel, if it is specified",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

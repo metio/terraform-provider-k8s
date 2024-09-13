@@ -3,12 +3,12 @@
 page_title: "k8s_operator_tigera_io_manager_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.tigera.io"
 description: |-
-  Manager installs the Calico Enterprise manager graphical user interface. At most one instanceof this resource is supported. It must be named 'tigera-secure'.
+  Manager installs the Calico Enterprise manager graphical user interface. At most one instance of this resource is supported. It must be named 'tigera-secure'.
 ---
 
 # k8s_operator_tigera_io_manager_v1_manifest (Data Source)
 
-Manager installs the Calico Enterprise manager graphical user interface. At most one instanceof this resource is supported. It must be named 'tigera-secure'.
+Manager installs the Calico Enterprise manager graphical user interface. At most one instance of this resource is supported. It must be named 'tigera-secure'.
 
 ## Example Usage
 
@@ -82,35 +82,35 @@ Optional:
 
 Optional:
 
-- `containers` (Attributes List) Containers is a list of Manager containers.If specified, this overrides the specified Manager Deployment containers.If omitted, the Manager Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--containers))
-- `init_containers` (Attributes List) InitContainers is a list of Manager init containers.If specified, this overrides the specified Manager Deployment init containers.If omitted, the Manager Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--init_containers))
+- `containers` (Attributes List) Containers is a list of Manager containers. If specified, this overrides the specified Manager Deployment containers. If omitted, the Manager Deployment will use its default values for its containers. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--containers))
+- `init_containers` (Attributes List) InitContainers is a list of Manager init containers. If specified, this overrides the specified Manager Deployment init containers. If omitted, the Manager Deployment will use its default values for its init containers. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--init_containers))
 
 <a id="nestedatt--spec--manager_deployment--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.manager_deployment.spec.template.spec.containers`
 
 Required:
 
-- `name` (String) Name is an enum which identifies the Manager Deployment container by name.Supported values are: tigera-voltron, tigera-manager, tigera-es-proxy
+- `name` (String) Name is an enum which identifies the Manager Deployment container by name. Supported values are: tigera-voltron, tigera-manager, tigera-es-proxy
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Manager Deployment container's resources.If omitted, the Manager Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Manager Deployment container's resources. If omitted, the Manager Deployment will use its default value for this container's resources. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--containers--resources))
 
 <a id="nestedatt--spec--manager_deployment--spec--template--spec--containers--resources"></a>
 ### Nested Schema for `spec.manager_deployment.spec.template.spec.containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--manager_deployment--spec--template--spec--containers--resources--claims"></a>
 ### Nested Schema for `spec.manager_deployment.spec.template.spec.containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -120,24 +120,24 @@ Required:
 
 Required:
 
-- `name` (String) Name is an enum which identifies the Manager Deployment init container by name.Supported values are: manager-tls-key-cert-provisioner, internal-manager-tls-key-cert-provisioner, tigera-voltron-linseed-tls-key-cert-provisioner
+- `name` (String) Name is an enum which identifies the Manager Deployment init container by name. Supported values are: manager-tls-key-cert-provisioner, internal-manager-tls-key-cert-provisioner, tigera-voltron-linseed-tls-key-cert-provisioner
 
 Optional:
 
-- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named Manager Deployment init container's resources.If omitted, the Manager Deployment will use its default value for this init container's resources.If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--init_containers--resources))
+- `resources` (Attributes) Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named Manager Deployment init container's resources. If omitted, the Manager Deployment will use its default value for this init container's resources. If used in conjunction with the deprecated ComponentResources, then this value takes precedence. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--init_containers--resources))
 
 <a id="nestedatt--spec--manager_deployment--spec--template--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.manager_deployment.spec.template.spec.init_containers.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--init_containers--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--manager_deployment--spec--template--spec--init_containers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--manager_deployment--spec--template--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.manager_deployment.spec.template.spec.init_containers.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.

@@ -185,8 +185,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterV1Beta1Manifest) Schema(_ c
 							},
 
 							"regex": schema.StringAttribute{
-								Description:         "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
-								MarkdownDescription: "Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+								Description:         "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+								MarkdownDescription: "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

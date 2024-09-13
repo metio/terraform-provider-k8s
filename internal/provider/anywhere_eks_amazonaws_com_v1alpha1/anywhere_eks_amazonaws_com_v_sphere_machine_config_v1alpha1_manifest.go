@@ -414,8 +414,8 @@ func (r *AnywhereEksAmazonawsComVsphereMachineConfigV1Alpha1Manifest) Schema(_ c
 											},
 
 											"kube_api_burst": schema.Int64Attribute{
-												Description:         "KubeAPIBurst  is the burst to allow while talking with kubernetes API server.",
-												MarkdownDescription: "KubeAPIBurst  is the burst to allow while talking with kubernetes API server.",
+												Description:         "KubeAPIBurst is the burst to allow while talking with kubernetes API server.",
+												MarkdownDescription: "KubeAPIBurst is the burst to allow while talking with kubernetes API server.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

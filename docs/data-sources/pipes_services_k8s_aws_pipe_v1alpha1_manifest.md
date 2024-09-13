@@ -30,7 +30,7 @@ data "k8s_pipes_services_k8s_aws_pipe_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) PipeSpec defines the desired state of Pipe.An object that represents a pipe. Amazon EventBridgePipes connect event sourcesto targets and reduces the need for specialized knowledge and integrationcode. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) PipeSpec defines the desired state of Pipe. An object that represents a pipe. Amazon EventBridgePipes connect event sources to targets and reduces the need for specialized knowledge and integration code. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -75,7 +75,7 @@ Optional:
 
 Optional:
 
-- `http_parameters` (Attributes) These are custom parameter to be used when the target is an API Gateway RESTAPIs or EventBridge ApiDestinations. In the latter case, these are mergedwith any InvocationParameters specified on the Connection, with any valuesfrom the Connection taking precedence. (see [below for nested schema](#nestedatt--spec--enrichment_parameters--http_parameters))
+- `http_parameters` (Attributes) These are custom parameter to be used when the target is an API Gateway REST APIs or EventBridge ApiDestinations. In the latter case, these are merged with any InvocationParameters specified on the Connection, with any values from the Connection taking precedence. (see [below for nested schema](#nestedatt--spec--enrichment_parameters--http_parameters))
 - `input_template` (String)
 
 <a id="nestedatt--spec--enrichment_parameters--http_parameters"></a>
@@ -96,7 +96,7 @@ Optional:
 
 - `active_mq_broker_parameters` (Attributes) The parameters for using an Active MQ broker as a source. (see [below for nested schema](#nestedatt--spec--source_parameters--active_mq_broker_parameters))
 - `dynamo_db_stream_parameters` (Attributes) The parameters for using a DynamoDB stream as a source. (see [below for nested schema](#nestedatt--spec--source_parameters--dynamo_db_stream_parameters))
-- `filter_criteria` (Attributes) The collection of event patterns used to filter events. For more information,see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)in the Amazon EventBridge User Guide. (see [below for nested schema](#nestedatt--spec--source_parameters--filter_criteria))
+- `filter_criteria` (Attributes) The collection of event patterns used to filter events. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the Amazon EventBridge User Guide. (see [below for nested schema](#nestedatt--spec--source_parameters--filter_criteria))
 - `kinesis_stream_parameters` (Attributes) The parameters for using a Kinesis stream as a source. (see [below for nested schema](#nestedatt--spec--source_parameters--kinesis_stream_parameters))
 - `managed_streaming_kafka_parameters` (Attributes) The parameters for using an MSK stream as a source. (see [below for nested schema](#nestedatt--spec--source_parameters--managed_streaming_kafka_parameters))
 - `rabbit_mq_broker_parameters` (Attributes) The parameters for using a Rabbit MQ broker as a source. (see [below for nested schema](#nestedatt--spec--source_parameters--rabbit_mq_broker_parameters))
@@ -128,7 +128,7 @@ Optional:
 Optional:
 
 - `batch_size` (Number)
-- `dead_letter_config` (Attributes) A DeadLetterConfig object that contains information about a dead-letter queueconfiguration. (see [below for nested schema](#nestedatt--spec--source_parameters--dynamo_db_stream_parameters--dead_letter_config))
+- `dead_letter_config` (Attributes) A DeadLetterConfig object that contains information about a dead-letter queue configuration. (see [below for nested schema](#nestedatt--spec--source_parameters--dynamo_db_stream_parameters--dead_letter_config))
 - `maximum_batching_window_in_seconds` (Number)
 - `maximum_record_age_in_seconds` (Number)
 - `maximum_retry_attempts` (Number)
@@ -167,7 +167,7 @@ Optional:
 Optional:
 
 - `batch_size` (Number)
-- `dead_letter_config` (Attributes) A DeadLetterConfig object that contains information about a dead-letter queueconfiguration. (see [below for nested schema](#nestedatt--spec--source_parameters--kinesis_stream_parameters--dead_letter_config))
+- `dead_letter_config` (Attributes) A DeadLetterConfig object that contains information about a dead-letter queue configuration. (see [below for nested schema](#nestedatt--spec--source_parameters--kinesis_stream_parameters--dead_letter_config))
 - `maximum_batching_window_in_seconds` (Number)
 - `maximum_record_age_in_seconds` (Number)
 - `maximum_retry_attempts` (Number)
@@ -240,7 +240,7 @@ Optional:
 - `server_root_ca_certificate` (String) // Optional SecretManager ARN which stores the database credentials
 - `starting_position` (String)
 - `topic_name` (String)
-- `vpc` (Attributes) This structure specifies the VPC subnets and security groups for the stream,and whether a public IP address is to be used. (see [below for nested schema](#nestedatt--spec--source_parameters--self_managed_kafka_parameters--vpc))
+- `vpc` (Attributes) This structure specifies the VPC subnets and security groups for the stream, and whether a public IP address is to be used. (see [below for nested schema](#nestedatt--spec--source_parameters--self_managed_kafka_parameters--vpc))
 
 <a id="nestedatt--spec--source_parameters--self_managed_kafka_parameters--credentials"></a>
 ### Nested Schema for `spec.source_parameters.self_managed_kafka_parameters.credentials`
@@ -282,11 +282,11 @@ Optional:
 - `cloud_watch_logs_parameters` (Attributes) The parameters for using an CloudWatch Logs log stream as a target. (see [below for nested schema](#nestedatt--spec--target_parameters--cloud_watch_logs_parameters))
 - `ecs_task_parameters` (Attributes) The parameters for using an Amazon ECS task as a target. (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters))
 - `event_bridge_event_bus_parameters` (Attributes) The parameters for using an EventBridge event bus as a target. (see [below for nested schema](#nestedatt--spec--target_parameters--event_bridge_event_bus_parameters))
-- `http_parameters` (Attributes) These are custom parameter to be used when the target is an API Gateway RESTAPIs or EventBridge ApiDestinations. (see [below for nested schema](#nestedatt--spec--target_parameters--http_parameters))
+- `http_parameters` (Attributes) These are custom parameter to be used when the target is an API Gateway REST APIs or EventBridge ApiDestinations. (see [below for nested schema](#nestedatt--spec--target_parameters--http_parameters))
 - `input_template` (String)
 - `kinesis_stream_parameters` (Attributes) The parameters for using a Kinesis stream as a source. (see [below for nested schema](#nestedatt--spec--target_parameters--kinesis_stream_parameters))
 - `lambda_function_parameters` (Attributes) The parameters for using a Lambda function as a target. (see [below for nested schema](#nestedatt--spec--target_parameters--lambda_function_parameters))
-- `redshift_data_parameters` (Attributes) These are custom parameters to be used when the target is a Amazon Redshiftcluster to invoke the Amazon Redshift Data API ExecuteStatement. (see [below for nested schema](#nestedatt--spec--target_parameters--redshift_data_parameters))
+- `redshift_data_parameters` (Attributes) These are custom parameters to be used when the target is a Amazon Redshift cluster to invoke the Amazon Redshift Data API ExecuteStatement. (see [below for nested schema](#nestedatt--spec--target_parameters--redshift_data_parameters))
 - `sage_maker_pipeline_parameters` (Attributes) The parameters for using a SageMaker pipeline as a target. (see [below for nested schema](#nestedatt--spec--target_parameters--sage_maker_pipeline_parameters))
 - `sqs_queue_parameters` (Attributes) The parameters for using a Amazon SQS stream as a source. (see [below for nested schema](#nestedatt--spec--target_parameters--sqs_queue_parameters))
 - `step_function_state_machine_parameters` (Attributes) The parameters for using a Step Functions state machine as a target. (see [below for nested schema](#nestedatt--spec--target_parameters--step_function_state_machine_parameters))
@@ -296,13 +296,13 @@ Optional:
 
 Optional:
 
-- `array_properties` (Attributes) The array properties for the submitted job, such as the size of the array.The array size can be between 2 and 10,000. If you specify array propertiesfor a job, it becomes an array job. This parameter is used only if the targetis an Batch job. (see [below for nested schema](#nestedatt--spec--target_parameters--batch_job_parameters--array_properties))
+- `array_properties` (Attributes) The array properties for the submitted job, such as the size of the array. The array size can be between 2 and 10,000. If you specify array properties for a job, it becomes an array job. This parameter is used only if the target is an Batch job. (see [below for nested schema](#nestedatt--spec--target_parameters--batch_job_parameters--array_properties))
 - `container_overrides` (Attributes) The overrides that are sent to a container. (see [below for nested schema](#nestedatt--spec--target_parameters--batch_job_parameters--container_overrides))
 - `depends_on` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--batch_job_parameters--depends_on))
 - `job_definition` (String)
 - `job_name` (String)
 - `parameters` (Map of String)
-- `retry_strategy` (Attributes) The retry strategy that's associated with a job. For more information, seeAutomated job retries (https://docs.aws.amazon.com/batch/latest/userguide/job_retries.html)in the Batch User Guide. (see [below for nested schema](#nestedatt--spec--target_parameters--batch_job_parameters--retry_strategy))
+- `retry_strategy` (Attributes) The retry strategy that's associated with a job. For more information, see Automated job retries (https://docs.aws.amazon.com/batch/latest/userguide/job_retries.html) in the Batch User Guide. (see [below for nested schema](#nestedatt--spec--target_parameters--batch_job_parameters--retry_strategy))
 
 <a id="nestedatt--spec--target_parameters--batch_job_parameters--array_properties"></a>
 ### Nested Schema for `spec.target_parameters.batch_job_parameters.array_properties`
@@ -404,7 +404,7 @@ Optional:
 
 Optional:
 
-- `aws_vpc_configuration` (Attributes) This structure specifies the VPC subnets and security groups for the task,and whether a public IP address is to be used. This structure is relevantonly for ECS tasks that use the awsvpc network mode. (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--network_configuration--aws_vpc_configuration))
+- `aws_vpc_configuration` (Attributes) This structure specifies the VPC subnets and security groups for the task, and whether a public IP address is to be used. This structure is relevant only for ECS tasks that use the awsvpc network mode. (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--network_configuration--aws_vpc_configuration))
 
 <a id="nestedatt--spec--target_parameters--ecs_task_parameters--network_configuration--aws_vpc_configuration"></a>
 ### Nested Schema for `spec.target_parameters.ecs_task_parameters.network_configuration.aws_vpc_configuration`
@@ -424,7 +424,7 @@ Optional:
 
 - `container_overrides` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--overrides--container_overrides))
 - `cpu` (String)
-- `ephemeral_storage` (Attributes) The amount of ephemeral storage to allocate for the task. This parameteris used to expand the total amount of ephemeral storage available, beyondthe default amount, for tasks hosted on Fargate. For more information, seeFargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html)in the Amazon ECS User Guide for Fargate.This parameter is only supported for tasks hosted on Fargate using Linuxplatform version 1.4.0 or later. This parameter is not supported for Windowscontainers on Fargate. (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--overrides--ephemeral_storage))
+- `ephemeral_storage` (Attributes) The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on Fargate. For more information, see Fargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html) in the Amazon ECS User Guide for Fargate. This parameter is only supported for tasks hosted on Fargate using Linux platform version 1.4.0 or later. This parameter is not supported for Windows containers on Fargate. (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--overrides--ephemeral_storage))
 - `execution_role_arn` (String)
 - `inference_accelerator_overrides` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_parameters--ecs_task_parameters--overrides--inference_accelerator_overrides))
 - `memory` (String)
@@ -565,7 +565,7 @@ Optional:
 - `db_user` (String) // Database user name
 - `secret_manager_arn` (String) // For targets, can either specify an ARN or a jsonpath pointing to the ARN.
 - `sqls` (List of String) // A list of SQLs.
-- `statement_name` (String) // A name for Redshift DataAPI statement which can be used as filter of //ListStatement.
+- `statement_name` (String) // A name for Redshift DataAPI statement which can be used as filter of // ListStatement.
 - `with_event` (Boolean)
 
 

@@ -153,12 +153,12 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 				MarkdownDescription: "NodeClaimSpec describes the desired state of the NodeClaim",
 				Attributes: map[string]schema.Attribute{
 					"kubelet": schema.SingleNestedAttribute{
-						Description:         "Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types.",
-						MarkdownDescription: "Kubelet defines args to be used when configuring kubelet on provisioned nodes.They are a subset of the upstream types, recognizing not all options may be supported.Wherever possible, the types and names should reflect the upstream kubelet types.",
+						Description:         "Kubelet defines args to be used when configuring kubelet on provisioned nodes. They are a subset of the upstream types, recognizing not all options may be supported. Wherever possible, the types and names should reflect the upstream kubelet types.",
+						MarkdownDescription: "Kubelet defines args to be used when configuring kubelet on provisioned nodes. They are a subset of the upstream types, recognizing not all options may be supported. Wherever possible, the types and names should reflect the upstream kubelet types.",
 						Attributes: map[string]schema.Attribute{
 							"cluster_dns": schema.ListAttribute{
-								Description:         "clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.",
-								MarkdownDescription: "clusterDNS is a list of IP addresses for the cluster DNS server.Note that not all providers may use all addresses.",
+								Description:         "clusterDNS is a list of IP addresses for the cluster DNS server. Note that not all providers may use all addresses.",
+								MarkdownDescription: "clusterDNS is a list of IP addresses for the cluster DNS server. Note that not all providers may use all addresses.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -183,8 +183,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"eviction_max_pod_grace_period": schema.Int64Attribute{
-								Description:         "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.",
-								MarkdownDescription: "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods inresponse to soft eviction thresholds being met.",
+								Description:         "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods in response to soft eviction thresholds being met.",
+								MarkdownDescription: "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods in response to soft eviction thresholds being met.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -209,8 +209,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"image_gc_high_threshold_percent": schema.Int64Attribute{
-								Description:         "ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.",
-								MarkdownDescription: "ImageGCHighThresholdPercent is the percent of disk usage after which imagegarbage collection is always run. The percent is calculated by dividing thisfield value by 100, so this field must be between 0 and 100, inclusive.When specified, the value must be greater than ImageGCLowThresholdPercent.",
+								Description:         "ImageGCHighThresholdPercent is the percent of disk usage after which image garbage collection is always run. The percent is calculated by dividing this field value by 100, so this field must be between 0 and 100, inclusive. When specified, the value must be greater than ImageGCLowThresholdPercent.",
+								MarkdownDescription: "ImageGCHighThresholdPercent is the percent of disk usage after which image garbage collection is always run. The percent is calculated by dividing this field value by 100, so this field must be between 0 and 100, inclusive. When specified, the value must be greater than ImageGCLowThresholdPercent.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -221,8 +221,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"image_gc_low_threshold_percent": schema.Int64Attribute{
-								Description:         "ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent",
-								MarkdownDescription: "ImageGCLowThresholdPercent is the percent of disk usage before which imagegarbage collection is never run. Lowest disk usage to garbage collect to.The percent is calculated by dividing this field value by 100,so the field value must be between 0 and 100, inclusive.When specified, the value must be less than imageGCHighThresholdPercent",
+								Description:         "ImageGCLowThresholdPercent is the percent of disk usage before which image garbage collection is never run. Lowest disk usage to garbage collect to. The percent is calculated by dividing this field value by 100, so the field value must be between 0 and 100, inclusive. When specified, the value must be less than imageGCHighThresholdPercent",
+								MarkdownDescription: "ImageGCLowThresholdPercent is the percent of disk usage before which image garbage collection is never run. Lowest disk usage to garbage collect to. The percent is calculated by dividing this field value by 100, so the field value must be between 0 and 100, inclusive. When specified, the value must be less than imageGCHighThresholdPercent",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -242,8 +242,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"max_pods": schema.Int64Attribute{
-								Description:         "MaxPods is an override for the maximum number of pods that can run ona worker node instance.",
-								MarkdownDescription: "MaxPods is an override for the maximum number of pods that can run ona worker node instance.",
+								Description:         "MaxPods is an override for the maximum number of pods that can run on a worker node instance.",
+								MarkdownDescription: "MaxPods is an override for the maximum number of pods that can run on a worker node instance.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -253,8 +253,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"pods_per_core": schema.Int64Attribute{
-								Description:         "PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.",
-								MarkdownDescription: "PodsPerCore is an override for the number of pods that can run on a worker nodeinstance based on the number of cpu cores. This value cannot exceed MaxPods, so, ifMaxPods is a lower value, that value will be used.",
+								Description:         "PodsPerCore is an override for the number of pods that can run on a worker node instance based on the number of cpu cores. This value cannot exceed MaxPods, so, if MaxPods is a lower value, that value will be used.",
+								MarkdownDescription: "PodsPerCore is an override for the number of pods that can run on a worker node instance based on the number of cpu cores. This value cannot exceed MaxPods, so, if MaxPods is a lower value, that value will be used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -328,8 +328,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"min_values": schema.Int64Attribute{
-									Description:         "This field is ALPHA and can be dropped or replaced at any timeMinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
-									MarkdownDescription: "This field is ALPHA and can be dropped or replaced at any timeMinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
+									Description:         "This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
+									MarkdownDescription: "This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -340,8 +340,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"operator": schema.StringAttribute{
-									Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-									MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+									Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+									MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -351,8 +351,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"values": schema.ListAttribute{
-									Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
-									MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+									Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+									MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -384,13 +384,13 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"startup_taints": schema.ListNestedAttribute{
-						Description:         "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automaticallywithin a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used bydaemonsets to allow initialization and enforce startup ordering.  StartupTaints are ignored for provisioningpurposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
-						MarkdownDescription: "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automaticallywithin a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used bydaemonsets to allow initialization and enforce startup ordering.  StartupTaints are ignored for provisioningpurposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
+						Description:         "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automatically within a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used by daemonsets to allow initialization and enforce startup ordering. StartupTaints are ignored for provisioning purposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
+						MarkdownDescription: "StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automatically within a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used by daemonsets to allow initialization and enforce startup ordering. StartupTaints are ignored for provisioning purposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"effect": schema.StringAttribute{
-									Description:         "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
-									MarkdownDescription: "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									Description:         "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									MarkdownDescription: "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -412,8 +412,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"time_added": schema.StringAttribute{
-									Description:         "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
-									MarkdownDescription: "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
+									Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+									MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -445,8 +445,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"effect": schema.StringAttribute{
-									Description:         "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
-									MarkdownDescription: "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									Description:         "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									MarkdownDescription: "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -468,8 +468,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"time_added": schema.StringAttribute{
-									Description:         "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
-									MarkdownDescription: "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
+									Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+									MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

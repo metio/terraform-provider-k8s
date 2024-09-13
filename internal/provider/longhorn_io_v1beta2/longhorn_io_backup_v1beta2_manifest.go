@@ -128,8 +128,8 @@ func (r *LonghornIoBackupV1Beta2Manifest) Schema(_ context.Context, _ datasource
 				MarkdownDescription: "BackupSpec defines the desired state of the Longhorn backup",
 				Attributes: map[string]schema.Attribute{
 					"backup_mode": schema.StringAttribute{
-						Description:         "The backup mode of this backup.Can be 'full' or 'incremental'",
-						MarkdownDescription: "The backup mode of this backup.Can be 'full' or 'incremental'",
+						Description:         "The backup mode of this backup. Can be 'full' or 'incremental'",
+						MarkdownDescription: "The backup mode of this backup. Can be 'full' or 'incremental'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

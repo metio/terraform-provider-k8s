@@ -3,12 +3,12 @@
 page_title: "k8s_argoproj_io_app_project_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "argoproj.io"
 description: |-
-  AppProject provides a logical grouping of applications, providing controls for:* where the apps may deploy to (cluster whitelist)* what may be deployed (repository whitelist, resource whitelist/blacklist)* who can access these applications (roles, OIDC group claims bindings)* and what they can do (RBAC policies)* automation access to these roles (JWT tokens)
+  AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster whitelist) * what may be deployed (repository whitelist, resource whitelist/blacklist) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens)
 ---
 
 # k8s_argoproj_io_app_project_v1alpha1_manifest (Data Source)
 
-AppProject provides a logical grouping of applications, providing controls for:* where the apps may deploy to (cluster whitelist)* what may be deployed (repository whitelist, resource whitelist/blacklist)* who can access these applications (roles, OIDC group claims bindings)* and what they can do (RBAC policies)* automation access to these roles (JWT tokens)
+AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster whitelist) * what may be deployed (repository whitelist, resource whitelist/blacklist) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens)
 
 ## Example Usage
 
@@ -91,7 +91,7 @@ Required:
 Optional:
 
 - `name` (String) Name is an alternate way of specifying the target cluster by its symbolic name. This must be set if Server is not set.
-- `namespace` (String) Namespace specifies the target namespace for the application's resources.The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
+- `namespace` (String) Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
 - `server` (String) Server specifies the URL of the target cluster's Kubernetes control plane API. This must be set if Name is not set.
 
 

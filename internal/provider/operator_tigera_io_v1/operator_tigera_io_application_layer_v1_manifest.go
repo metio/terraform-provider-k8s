@@ -81,6 +81,7 @@ type OperatorTigeraIoApplicationLayerV1ManifestData struct {
 			LogIntervalSeconds     *int64  `tfsdk:"log_interval_seconds" json:"logIntervalSeconds,omitempty"`
 			LogRequestsPerInterval *int64  `tfsdk:"log_requests_per_interval" json:"logRequestsPerInterval,omitempty"`
 		} `tfsdk:"log_collection" json:"logCollection,omitempty"`
+		SidecarInjection       *string `tfsdk:"sidecar_injection" json:"sidecarInjection,omitempty"`
 		WebApplicationFirewall *string `tfsdk:"web_application_firewall" json:"webApplicationFirewall,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -151,11 +152,14 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 				MarkdownDescription: "ApplicationLayerSpec defines the desired state of ApplicationLayer",
 				Attributes: map[string]schema.Attribute{
 					"application_layer_policy": schema.StringAttribute{
-						Description:         "Application Layer Policy controls whether or not ALP enforcement is enabled for the cluster.When enabled, NetworkPolicies with HTTP Match rules may be defined to opt-in workloads for traffic enforcement on the application layer.",
-						MarkdownDescription: "Application Layer Policy controls whether or not ALP enforcement is enabled for the cluster.When enabled, NetworkPolicies with HTTP Match rules may be defined to opt-in workloads for traffic enforcement on the application layer.",
+						Description:         "Application Layer Policy controls whether or not ALP enforcement is enabled for the cluster. When enabled, NetworkPolicies with HTTP Match rules may be defined to opt-in workloads for traffic enforcement on the application layer.",
+						MarkdownDescription: "Application Layer Policy controls whether or not ALP enforcement is enabled for the cluster. When enabled, NetworkPolicies with HTTP Match rules may be defined to opt-in workloads for traffic enforcement on the application layer.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Enabled", "Disabled"),
+						},
 					},
 
 					"envoy": schema.SingleNestedAttribute{
@@ -163,16 +167,16 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "User-configurable settings for the Envoy proxy.",
 						Attributes: map[string]schema.Attribute{
 							"use_remote_address": schema.BoolAttribute{
-								Description:         "If set to true, the Envoy connection manager will use the real remote addressof the client connection when determining internal versus external origin andmanipulating various headers.",
-								MarkdownDescription: "If set to true, the Envoy connection manager will use the real remote addressof the client connection when determining internal versus external origin andmanipulating various headers.",
+								Description:         "If set to true, the Envoy connection manager will use the real remote address of the client connection when determining internal versus external origin and manipulating various headers.",
+								MarkdownDescription: "If set to true, the Envoy connection manager will use the real remote address of the client connection when determining internal versus external origin and manipulating various headers.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"xff_num_trusted_hops": schema.Int64Attribute{
-								Description:         "The number of additional ingress proxy hops from the right side of thex-forwarded-for HTTP header to trust when determining the origin client’sIP address. 0 is permitted, but >=1 is the typical setting.",
-								MarkdownDescription: "The number of additional ingress proxy hops from the right side of thex-forwarded-for HTTP header to trust when determining the origin client’sIP address. 0 is permitted, but >=1 is the typical setting.",
+								Description:         "The number of additional ingress proxy hops from the right side of the x-forwarded-for HTTP header to trust when determining the origin client’s IP address. 0 is permitted, but >=1 is the typical setting.",
+								MarkdownDescription: "The number of additional ingress proxy hops from the right side of the x-forwarded-for HTTP header to trust when determining the origin client’s IP address. 0 is permitted, but >=1 is the typical setting.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -204,13 +208,13 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 												MarkdownDescription: "Spec is the L7LogCollector DaemonSet's PodSpec.",
 												Attributes: map[string]schema.Attribute{
 													"containers": schema.ListNestedAttribute{
-														Description:         "Containers is a list of L7LogCollector DaemonSet containers.If specified, this overrides the specified L7LogCollector DaemonSet containers.If omitted, the L7LogCollector DaemonSet will use its default values for its containers.",
-														MarkdownDescription: "Containers is a list of L7LogCollector DaemonSet containers.If specified, this overrides the specified L7LogCollector DaemonSet containers.If omitted, the L7LogCollector DaemonSet will use its default values for its containers.",
+														Description:         "Containers is a list of L7LogCollector DaemonSet containers. If specified, this overrides the specified L7LogCollector DaemonSet containers. If omitted, the L7LogCollector DaemonSet will use its default values for its containers.",
+														MarkdownDescription: "Containers is a list of L7LogCollector DaemonSet containers. If specified, this overrides the specified L7LogCollector DaemonSet containers. If omitted, the L7LogCollector DaemonSet will use its default values for its containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name is an enum which identifies the L7LogCollector DaemonSet container by name.Supported values are: l7-collector, envoy-proxy, dikastes",
-																	MarkdownDescription: "Name is an enum which identifies the L7LogCollector DaemonSet container by name.Supported values are: l7-collector, envoy-proxy, dikastes",
+																	Description:         "Name is an enum which identifies the L7LogCollector DaemonSet container by name. Supported values are: l7-collector, envoy-proxy, dikastes",
+																	MarkdownDescription: "Name is an enum which identifies the L7LogCollector DaemonSet container by name. Supported values are: l7-collector, envoy-proxy, dikastes",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -220,17 +224,17 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named L7LogCollector DaemonSet container's resources.If omitted, the L7LogCollector DaemonSet will use its default value for this container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named L7LogCollector DaemonSet container's resources.If omitted, the L7LogCollector DaemonSet will use its default value for this container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named L7LogCollector DaemonSet container's resources. If omitted, the L7LogCollector DaemonSet will use its default value for this container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named L7LogCollector DaemonSet container's resources. If omitted, the L7LogCollector DaemonSet will use its default value for this container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -243,8 +247,8 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -252,8 +256,8 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -272,8 +276,8 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 													},
 
 													"init_containers": schema.ListNestedAttribute{
-														Description:         "InitContainers is a list of L7LogCollector DaemonSet init containers.If specified, this overrides the specified L7LogCollector DaemonSet init containers.If omitted, the L7LogCollector DaemonSet will use its default values for its init containers.",
-														MarkdownDescription: "InitContainers is a list of L7LogCollector DaemonSet init containers.If specified, this overrides the specified L7LogCollector DaemonSet init containers.If omitted, the L7LogCollector DaemonSet will use its default values for its init containers.",
+														Description:         "InitContainers is a list of L7LogCollector DaemonSet init containers. If specified, this overrides the specified L7LogCollector DaemonSet init containers. If omitted, the L7LogCollector DaemonSet will use its default values for its init containers.",
+														MarkdownDescription: "InitContainers is a list of L7LogCollector DaemonSet init containers. If specified, this overrides the specified L7LogCollector DaemonSet init containers. If omitted, the L7LogCollector DaemonSet will use its default values for its init containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
@@ -285,17 +289,17 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named L7LogCollector DaemonSet init container's resources.If omitted, the L7LogCollector DaemonSet will use its default value for this init container's resources.",
-																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory.If specified, this overrides the named L7LogCollector DaemonSet init container's resources.If omitted, the L7LogCollector DaemonSet will use its default value for this init container's resources.",
+																	Description:         "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named L7LogCollector DaemonSet init container's resources. If omitted, the L7LogCollector DaemonSet will use its default value for this init container's resources.",
+																	MarkdownDescription: "Resources allows customization of limits and requests for compute resources such as cpu and memory. If specified, this overrides the named L7LogCollector DaemonSet init container's resources. If omitted, the L7LogCollector DaemonSet will use its default value for this init container's resources.",
 																	Attributes: map[string]schema.Attribute{
 																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -308,8 +312,8 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 																		},
 
 																		"limits": schema.MapAttribute{
-																			Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -317,8 +321,8 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -361,24 +365,27 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "Specification for application layer (L7) log collection.",
 						Attributes: map[string]schema.Attribute{
 							"collect_logs": schema.StringAttribute{
-								Description:         "This setting enables or disable log collection.Allowed values are Enabled or Disabled.",
-								MarkdownDescription: "This setting enables or disable log collection.Allowed values are Enabled or Disabled.",
+								Description:         "This setting enables or disable log collection. Allowed values are Enabled or Disabled.",
+								MarkdownDescription: "This setting enables or disable log collection. Allowed values are Enabled or Disabled.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Enabled", "Disabled"),
+								},
 							},
 
 							"log_interval_seconds": schema.Int64Attribute{
-								Description:         "Interval in seconds for sending L7 log information for processing.Default: 5 sec",
-								MarkdownDescription: "Interval in seconds for sending L7 log information for processing.Default: 5 sec",
+								Description:         "Interval in seconds for sending L7 log information for processing. Default: 5 sec",
+								MarkdownDescription: "Interval in seconds for sending L7 log information for processing. Default: 5 sec",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"log_requests_per_interval": schema.Int64Attribute{
-								Description:         "Maximum number of unique L7 logs that are sent LogIntervalSeconds.Adjust this to limit the number of L7 logs sent per LogIntervalSecondsto felix for further processing, use negative number to ignore limits.Default: -1",
-								MarkdownDescription: "Maximum number of unique L7 logs that are sent LogIntervalSeconds.Adjust this to limit the number of L7 logs sent per LogIntervalSecondsto felix for further processing, use negative number to ignore limits.Default: -1",
+								Description:         "Maximum number of unique L7 logs that are sent LogIntervalSeconds. Adjust this to limit the number of L7 logs sent per LogIntervalSeconds to felix for further processing, use negative number to ignore limits. Default: -1",
+								MarkdownDescription: "Maximum number of unique L7 logs that are sent LogIntervalSeconds. Adjust this to limit the number of L7 logs sent per LogIntervalSeconds to felix for further processing, use negative number to ignore limits. Default: -1",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -389,12 +396,26 @@ func (r *OperatorTigeraIoApplicationLayerV1Manifest) Schema(_ context.Context, _
 						Computed: false,
 					},
 
-					"web_application_firewall": schema.StringAttribute{
-						Description:         "WebApplicationFirewall controls whether or not ModSecurity enforcement is enabled for the cluster.When enabled, Services may opt-in to having ingress traffic examed by ModSecurity.",
-						MarkdownDescription: "WebApplicationFirewall controls whether or not ModSecurity enforcement is enabled for the cluster.When enabled, Services may opt-in to having ingress traffic examed by ModSecurity.",
+					"sidecar_injection": schema.StringAttribute{
+						Description:         "SidecarInjection controls whether or not sidecar injection is enabled for the cluster. When enabled, pods with the label 'applicationlayer.projectcalico.org/sidecar'='true' will have their L7 functionality such as WAF and ALP implemented using an injected sidecar instead of a per-host proxy. The per-host proxy will continue to be used for pods without this label.",
+						MarkdownDescription: "SidecarInjection controls whether or not sidecar injection is enabled for the cluster. When enabled, pods with the label 'applicationlayer.projectcalico.org/sidecar'='true' will have their L7 functionality such as WAF and ALP implemented using an injected sidecar instead of a per-host proxy. The per-host proxy will continue to be used for pods without this label.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Enabled", "Disabled"),
+						},
+					},
+
+					"web_application_firewall": schema.StringAttribute{
+						Description:         "WebApplicationFirewall controls whether or not ModSecurity enforcement is enabled for the cluster. When enabled, Services may opt-in to having ingress traffic examed by ModSecurity.",
+						MarkdownDescription: "WebApplicationFirewall controls whether or not ModSecurity enforcement is enabled for the cluster. When enabled, Services may opt-in to having ingress traffic examed by ModSecurity.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Enabled", "Disabled"),
+						},
 					},
 				},
 				Required: false,

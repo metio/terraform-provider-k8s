@@ -59,13 +59,13 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef points to the kubernetes Service resource that will have this policy attached.  This field is following the guidelines of Kubernetes Gateway API policy attachment. (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) TargetRef points to the kubernetes Service resource that will have this policy attached. This field is following the guidelines of Kubernetes Gateway API policy attachment. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 Optional:
 
-- `health_check` (Attributes) The health check configuration.  Changes to this value will update VPC Lattice resource in place. (see [below for nested schema](#nestedatt--spec--health_check))
-- `protocol` (String) The protocol to use for routing traffic to the targets. Supported values are HTTP (default), HTTPS and TCP.  Changes to this value results in a replacement of VPC Lattice target group.
-- `protocol_version` (String) The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy Protocol is TCP, you should not set this field. Otherwise, the whole TargetGroupPolicy will not take effect. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2.  Changes to this value results in a replacement of VPC Lattice target group.
+- `health_check` (Attributes) The health check configuration. Changes to this value will update VPC Lattice resource in place. (see [below for nested schema](#nestedatt--spec--health_check))
+- `protocol` (String) The protocol to use for routing traffic to the targets. Supported values are HTTP (default), HTTPS and TCP. Changes to this value results in a replacement of VPC Lattice target group.
+- `protocol_version` (String) The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy Protocol is TCP, you should not set this field. Otherwise, the whole TargetGroupPolicy will not take effect. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2. Changes to this value results in a replacement of VPC Lattice target group.
 
 <a id="nestedatt--spec--target_ref"></a>
 ### Nested Schema for `spec.target_ref`

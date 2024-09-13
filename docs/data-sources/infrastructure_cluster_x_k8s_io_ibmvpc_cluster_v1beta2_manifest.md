@@ -61,7 +61,7 @@ Required:
 Optional:
 
 - `control_plane_endpoint` (Attributes) ControlPlaneEndpoint represents the endpoint used to communicate with the control plane. (see [below for nested schema](#nestedatt--spec--control_plane_endpoint))
-- `control_plane_load_balancer` (Attributes) ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior.Use this for legacy support, use Network.LoadBalancers for the extended VPC support. (see [below for nested schema](#nestedatt--spec--control_plane_load_balancer))
+- `control_plane_load_balancer` (Attributes) ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior. Use this for legacy support, use Network.LoadBalancers for the extended VPC support. (see [below for nested schema](#nestedatt--spec--control_plane_load_balancer))
 - `image` (Attributes) image represents the Image details used for the cluster. (see [below for nested schema](#nestedatt--spec--image))
 - `network` (Attributes) network represents the VPC network to use for the cluster. (see [below for nested schema](#nestedatt--spec--network))
 - `vpc` (String) The Name of VPC.
@@ -86,8 +86,8 @@ Optional:
 - `id` (String) id of the loadbalancer
 - `name` (String) Name sets the name of the VPC load balancer.
 - `public` (Boolean) public indicates that load balancer is public or private
-- `security_groups` (Attributes List) securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer). (see [below for nested schema](#nestedatt--spec--control_plane_load_balancer--security_groups))
-- `subnets` (Attributes List) subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer). (see [below for nested schema](#nestedatt--spec--control_plane_load_balancer--subnets))
+- `security_groups` (Attributes List) securityGroups defines the Security Groups to attach to the load balancer. Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer). (see [below for nested schema](#nestedatt--spec--control_plane_load_balancer--security_groups))
+- `subnets` (Attributes List) subnets defines the VPC Subnets to attach to the load balancer. Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer). (see [below for nested schema](#nestedatt--spec--control_plane_load_balancer--subnets))
 
 <a id="nestedatt--spec--control_plane_load_balancer--additional_listeners"></a>
 ### Nested Schema for `spec.control_plane_load_balancer.additional_listeners`
@@ -99,7 +99,7 @@ Required:
 Optional:
 
 - `default_pool_name` (String) defaultPoolName defines the name of a VPC Load Balancer Backend Pool to use for the VPC Load Balancer Listener.
-- `protocol` (String) protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.
+- `protocol` (String) protocol defines the protocol to use for the VPC Load Balancer Listener. Will default to TCP protocol if not specified.
 
 
 <a id="nestedatt--spec--control_plane_load_balancer--backend_pools"></a>
@@ -185,7 +185,7 @@ Optional:
 
 - `control_plane_subnets` (Attributes List) controlPlaneSubnets is a set of Subnet's which define the Control Plane subnets. (see [below for nested schema](#nestedatt--spec--network--control_plane_subnets))
 - `load_balancers` (Attributes List) loadBalancers is a set of VPC Load Balancer definitions to use for the cluster. (see [below for nested schema](#nestedatt--spec--network--load_balancers))
-- `resource_group` (Attributes) resourceGroup is the Resource Group containing all of the newtork resources.This can be different than the Resource Group containing the remaining cluster resources. (see [below for nested schema](#nestedatt--spec--network--resource_group))
+- `resource_group` (Attributes) resourceGroup is the Resource Group containing all of the newtork resources. This can be different than the Resource Group containing the remaining cluster resources. (see [below for nested schema](#nestedatt--spec--network--resource_group))
 - `security_groups` (Attributes List) securityGroups is a set of VPCSecurityGroup's which define the VPC Security Groups that manage traffic within and out of the VPC. (see [below for nested schema](#nestedatt--spec--network--security_groups))
 - `vpc` (Attributes) vpc defines the IBM Cloud VPC for extended VPC Infrastructure support. (see [below for nested schema](#nestedatt--spec--network--vpc))
 - `worker_subnets` (Attributes List) workerSubnets is a set of Subnet's which define the Worker subnets. (see [below for nested schema](#nestedatt--spec--network--worker_subnets))
@@ -211,8 +211,8 @@ Optional:
 - `id` (String) id of the loadbalancer
 - `name` (String) Name sets the name of the VPC load balancer.
 - `public` (Boolean) public indicates that load balancer is public or private
-- `security_groups` (Attributes List) securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer). (see [below for nested schema](#nestedatt--spec--network--load_balancers--security_groups))
-- `subnets` (Attributes List) subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer). (see [below for nested schema](#nestedatt--spec--network--load_balancers--subnets))
+- `security_groups` (Attributes List) securityGroups defines the Security Groups to attach to the load balancer. Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer). (see [below for nested schema](#nestedatt--spec--network--load_balancers--security_groups))
+- `subnets` (Attributes List) subnets defines the VPC Subnets to attach to the load balancer. Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer). (see [below for nested schema](#nestedatt--spec--network--load_balancers--subnets))
 
 <a id="nestedatt--spec--network--load_balancers--additional_listeners"></a>
 ### Nested Schema for `spec.network.load_balancers.additional_listeners`
@@ -224,7 +224,7 @@ Required:
 Optional:
 
 - `default_pool_name` (String) defaultPoolName defines the name of a VPC Load Balancer Backend Pool to use for the VPC Load Balancer Listener.
-- `protocol` (String) protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.
+- `protocol` (String) protocol defines the protocol to use for the VPC Load Balancer Listener. Will default to TCP protocol if not specified.
 
 
 <a id="nestedatt--spec--network--load_balancers--backend_pools"></a>
@@ -308,9 +308,9 @@ Required:
 
 Optional:
 
-- `destination` (Attributes) destination is a VPCSecurityGroupRulePrototype which defines the destination of outbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionOutbound. (see [below for nested schema](#nestedatt--spec--network--security_groups--rules--destination))
+- `destination` (Attributes) destination is a VPCSecurityGroupRulePrototype which defines the destination of outbound traffic for the Security Group Rule. Only used when direction is VPCSecurityGroupRuleDirectionOutbound. (see [below for nested schema](#nestedatt--spec--network--security_groups--rules--destination))
 - `security_group_id` (String) securityGroupID is the ID of the Security Group for the Security Group Rule.
-- `source` (Attributes) source is a VPCSecurityGroupRulePrototype which defines the source of inbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionInbound. (see [below for nested schema](#nestedatt--spec--network--security_groups--rules--source))
+- `source` (Attributes) source is a VPCSecurityGroupRulePrototype which defines the source of inbound traffic for the Security Group Rule. Only used when direction is VPCSecurityGroupRuleDirectionInbound. (see [below for nested schema](#nestedatt--spec--network--security_groups--rules--source))
 
 <a id="nestedatt--spec--network--security_groups--rules--destination"></a>
 ### Nested Schema for `spec.network.security_groups.rules.destination`
@@ -318,12 +318,12 @@ Optional:
 Required:
 
 - `protocol` (String) protocol defines the traffic protocol used for the Security Group Rule.
-- `remotes` (Attributes List) remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc. (see [below for nested schema](#nestedatt--spec--network--security_groups--rules--destination--remotes))
+- `remotes` (Attributes List) remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote. Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc. This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc. (see [below for nested schema](#nestedatt--spec--network--security_groups--rules--destination--remotes))
 
 Optional:
 
-- `icmp_code` (Number) icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
-- `icmp_type` (Number) icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
+- `icmp_code` (Number) icmpCode is the ICMP code for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
+- `icmp_type` (Number) icmpType is the ICMP type for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
 - `port_range` (Attributes) portRange is a range of ports allowed for the Rule's remote. (see [below for nested schema](#nestedatt--spec--network--security_groups--rules--destination--port_range))
 
 <a id="nestedatt--spec--network--security_groups--rules--destination--remotes"></a>
@@ -335,9 +335,9 @@ Required:
 
 Optional:
 
-- `address` (String) address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.
-- `cidr_subnet_name` (String) cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.
-- `security_group_name` (String) securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG
+- `address` (String) address is the address to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.
+- `cidr_subnet_name` (String) cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.
+- `security_group_name` (String) securityGroupName is the name of the VPC Security Group to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG
 
 
 <a id="nestedatt--spec--network--security_groups--rules--destination--port_range"></a>
@@ -356,12 +356,12 @@ Optional:
 Required:
 
 - `protocol` (String) protocol defines the traffic protocol used for the Security Group Rule.
-- `remotes` (Attributes List) remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc. (see [below for nested schema](#nestedatt--spec--network--security_groups--rules--source--remotes))
+- `remotes` (Attributes List) remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote. Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc. This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc. (see [below for nested schema](#nestedatt--spec--network--security_groups--rules--source--remotes))
 
 Optional:
 
-- `icmp_code` (Number) icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
-- `icmp_type` (Number) icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
+- `icmp_code` (Number) icmpCode is the ICMP code for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
+- `icmp_type` (Number) icmpType is the ICMP type for the Rule. Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.
 - `port_range` (Attributes) portRange is a range of ports allowed for the Rule's remote. (see [below for nested schema](#nestedatt--spec--network--security_groups--rules--source--port_range))
 
 <a id="nestedatt--spec--network--security_groups--rules--source--remotes"></a>
@@ -373,9 +373,9 @@ Required:
 
 Optional:
 
-- `address` (String) address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.
-- `cidr_subnet_name` (String) cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.
-- `security_group_name` (String) securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG
+- `address` (String) address is the address to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.
+- `cidr_subnet_name` (String) cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.
+- `security_group_name` (String) securityGroupName is the name of the VPC Security Group to use for the remote's destination/source. Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG
 
 
 <a id="nestedatt--spec--network--security_groups--rules--source--port_range"></a>

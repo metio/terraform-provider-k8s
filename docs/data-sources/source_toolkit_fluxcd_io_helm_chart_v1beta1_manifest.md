@@ -62,18 +62,18 @@ Required:
 Optional:
 
 - `access_from` (Attributes) AccessFrom defines an Access Control List for allowing cross-namespace references to this object. (see [below for nested schema](#nestedatt--spec--access_from))
-- `reconcile_strategy` (String) Determines what enables the creation of a new artifact. Valid values are('ChartVersion', 'Revision').See the documentation of the values for an explanation on their behavior.Defaults to ChartVersion when omitted.
+- `reconcile_strategy` (String) Determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.
 - `suspend` (Boolean) This flag tells the controller to suspend the reconciliation of this source.
-- `values_file` (String) Alternative values file to use as the default chart values, expected tobe a relative path in the SourceRef. Deprecated in favor of ValuesFiles,for backwards compatibility the file defined here is merged before theValuesFiles items. Ignored when omitted.
-- `values_files` (List of String) Alternative list of values files to use as the chart values (values.yamlis not included by default), expected to be a relative path in the SourceRef.Values files are merged in the order of this list with the last file overridingthe first. Ignored when omitted.
-- `version` (String) The chart version semver expression, ignored for charts from GitRepositoryand Bucket sources. Defaults to latest when omitted.
+- `values_file` (String) Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.
+- `values_files` (List of String) Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.
+- `version` (String) The chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.
 
 <a id="nestedatt--spec--source_ref"></a>
 ### Nested Schema for `spec.source_ref`
 
 Required:
 
-- `kind` (String) Kind of the referent, valid values are ('HelmRepository', 'GitRepository','Bucket').
+- `kind` (String) Kind of the referent, valid values are ('HelmRepository', 'GitRepository', 'Bucket').
 - `name` (String) Name of the referent.
 
 Optional:
@@ -86,11 +86,11 @@ Optional:
 
 Required:
 
-- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
+- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
 
 <a id="nestedatt--spec--access_from--namespace_selectors"></a>
 ### Nested Schema for `spec.access_from.namespace_selectors`
 
 Optional:
 
-- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.

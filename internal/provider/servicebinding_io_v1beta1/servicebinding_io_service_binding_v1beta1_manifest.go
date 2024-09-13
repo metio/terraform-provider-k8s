@@ -177,8 +177,8 @@ func (r *ServicebindingIoServiceBindingV1Beta1Manifest) Schema(_ context.Context
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "Name is the name of the service as projected into the workload container.  Defaults to .metadata.name.",
-						MarkdownDescription: "Name is the name of the service as projected into the workload container.  Defaults to .metadata.name.",
+						Description:         "Name is the name of the service as projected into the workload container. Defaults to .metadata.name.",
+						MarkdownDescription: "Name is the name of the service as projected into the workload container. Defaults to .metadata.name.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

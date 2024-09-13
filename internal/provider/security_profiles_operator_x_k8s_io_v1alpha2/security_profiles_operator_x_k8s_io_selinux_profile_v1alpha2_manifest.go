@@ -148,13 +148,13 @@ func (r *SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Manifest) Schema(_ 
 					},
 
 					"inherit": schema.ListNestedAttribute{
-						Description:         "A SELinuxProfile or set of profiles that this inherits from.Note that they need to be in the same namespace.",
-						MarkdownDescription: "A SELinuxProfile or set of profiles that this inherits from.Note that they need to be in the same namespace.",
+						Description:         "A SELinuxProfile or set of profiles that this inherits from. Note that they need to be in the same namespace.",
+						MarkdownDescription: "A SELinuxProfile or set of profiles that this inherits from. Note that they need to be in the same namespace.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"kind": schema.StringAttribute{
-									Description:         "The Kind of the policy that this inherits from.Can be a SelinuxProfile object Or 'System' if an alreadyinstalled policy will be used.The allowed 'System' policies are available in theSecurityProfilesOperatorDaemon instance.",
-									MarkdownDescription: "The Kind of the policy that this inherits from.Can be a SelinuxProfile object Or 'System' if an alreadyinstalled policy will be used.The allowed 'System' policies are available in theSecurityProfilesOperatorDaemon instance.",
+									Description:         "The Kind of the policy that this inherits from. Can be a SelinuxProfile object Or 'System' if an already installed policy will be used. The allowed 'System' policies are available in the SecurityProfilesOperatorDaemon instance.",
+									MarkdownDescription: "The Kind of the policy that this inherits from. Can be a SelinuxProfile object Or 'System' if an already installed policy will be used. The allowed 'System' policies are available in the SecurityProfilesOperatorDaemon instance.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -178,8 +178,8 @@ func (r *SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Manifest) Schema(_ 
 					},
 
 					"permissive": schema.BoolAttribute{
-						Description:         "Permissive, when true will cause the SELinux profile to onlylog violations instead of enforcing them.",
-						MarkdownDescription: "Permissive, when true will cause the SELinux profile to onlylog violations instead of enforcing them.",
+						Description:         "Permissive, when true will cause the SELinux profile to only log violations instead of enforcing them.",
+						MarkdownDescription: "Permissive, when true will cause the SELinux profile to only log violations instead of enforcing them.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

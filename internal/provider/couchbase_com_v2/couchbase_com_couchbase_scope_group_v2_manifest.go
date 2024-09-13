@@ -70,8 +70,8 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Manifest) Metadata(_ context.Context, 
 
 func (r *CouchbaseComCouchbaseScopeGroupV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CouchbaseScopeGroup represents a logical unit of data storage that sits between buckets andcollections e.g. a bucket may contain multiple scopes, and a scope may contain multiplecollections.  At present, scopes are not nested, so provide only a single level ofabstraction.  Scopes provide a coarser grained basis for role-based access control (RBAC)and cross-datacenter replication (XDCR) than collections, but finer that buckets.In order to be considered by the Operator, a scope must be referenced by either a'CouchbaseBucket' or 'CouchbaseEphemeralBucket' resource.Unlike 'CouchbaseScope' resources, scope groups represents multiple scopes, with the samecommon set of collections, to be expressed as a single resource, minimizing requiredconfiguration and Kubernetes API traffic.  It also forms the basis of Couchbase RBACsecurity boundaries.",
-		MarkdownDescription: "CouchbaseScopeGroup represents a logical unit of data storage that sits between buckets andcollections e.g. a bucket may contain multiple scopes, and a scope may contain multiplecollections.  At present, scopes are not nested, so provide only a single level ofabstraction.  Scopes provide a coarser grained basis for role-based access control (RBAC)and cross-datacenter replication (XDCR) than collections, but finer that buckets.In order to be considered by the Operator, a scope must be referenced by either a'CouchbaseBucket' or 'CouchbaseEphemeralBucket' resource.Unlike 'CouchbaseScope' resources, scope groups represents multiple scopes, with the samecommon set of collections, to be expressed as a single resource, minimizing requiredconfiguration and Kubernetes API traffic.  It also forms the basis of Couchbase RBACsecurity boundaries.",
+		Description:         "CouchbaseScopeGroup represents a logical unit of data storage that sits between buckets and collections e.g. a bucket may contain multiple scopes, and a scope may contain multiple collections. At present, scopes are not nested, so provide only a single level of abstraction. Scopes provide a coarser grained basis for role-based access control (RBAC) and cross-datacenter replication (XDCR) than collections, but finer that buckets. In order to be considered by the Operator, a scope must be referenced by either a 'CouchbaseBucket' or 'CouchbaseEphemeralBucket' resource. Unlike 'CouchbaseScope' resources, scope groups represents multiple scopes, with the same common set of collections, to be expressed as a single resource, minimizing required configuration and Kubernetes API traffic. It also forms the basis of Couchbase RBAC security boundaries.",
+		MarkdownDescription: "CouchbaseScopeGroup represents a logical unit of data storage that sits between buckets and collections e.g. a bucket may contain multiple scopes, and a scope may contain multiple collections. At present, scopes are not nested, so provide only a single level of abstraction. Scopes provide a coarser grained basis for role-based access control (RBAC) and cross-datacenter replication (XDCR) than collections, but finer that buckets. In order to be considered by the Operator, a scope must be referenced by either a 'CouchbaseBucket' or 'CouchbaseEphemeralBucket' resource. Unlike 'CouchbaseScope' resources, scope groups represents multiple scopes, with the same common set of collections, to be expressed as a single resource, minimizing required configuration and Kubernetes API traffic. It also forms the basis of Couchbase RBAC security boundaries.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -142,33 +142,33 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Manifest) Schema(_ context.Context, _ 
 				MarkdownDescription: "Spec defines the desired state of the resource.",
 				Attributes: map[string]schema.Attribute{
 					"collections": schema.SingleNestedAttribute{
-						Description:         "Collections defines how to collate collections included in this scope or scope group.Any of the provided methods may be used to collate a set of collections tomanage.  Collated collections must have unique names, otherwise it isconsidered ambiguous, and an error condition.",
-						MarkdownDescription: "Collections defines how to collate collections included in this scope or scope group.Any of the provided methods may be used to collate a set of collections tomanage.  Collated collections must have unique names, otherwise it isconsidered ambiguous, and an error condition.",
+						Description:         "Collections defines how to collate collections included in this scope or scope group. Any of the provided methods may be used to collate a set of collections to manage. Collated collections must have unique names, otherwise it is considered ambiguous, and an error condition.",
+						MarkdownDescription: "Collections defines how to collate collections included in this scope or scope group. Any of the provided methods may be used to collate a set of collections to manage. Collated collections must have unique names, otherwise it is considered ambiguous, and an error condition.",
 						Attributes: map[string]schema.Attribute{
 							"managed": schema.BoolAttribute{
-								Description:         "Managed indicates whether collections within this scope are managed.If not then you can dynamically create and delete collections withthe Couchbase UI or SDKs.",
-								MarkdownDescription: "Managed indicates whether collections within this scope are managed.If not then you can dynamically create and delete collections withthe Couchbase UI or SDKs.",
+								Description:         "Managed indicates whether collections within this scope are managed. If not then you can dynamically create and delete collections with the Couchbase UI or SDKs.",
+								MarkdownDescription: "Managed indicates whether collections within this scope are managed. If not then you can dynamically create and delete collections with the Couchbase UI or SDKs.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"preserve_default_collection": schema.BoolAttribute{
-								Description:         "PreserveDefaultCollection indicates whether the Operator should manage thedefault collection within the default scope.  The default collection canbe deleted, but can not be recreated by Couchbase Server.  By setting thisfield to 'true', the Operator will implicitly manage the default collectionwithin the default scope.  The default collection cannot be modified andwill have no document time-to-live (TTL).  When set to 'false', the operatorwill not manage the default collection, which will be deleted and cannot beused or recreated.",
-								MarkdownDescription: "PreserveDefaultCollection indicates whether the Operator should manage thedefault collection within the default scope.  The default collection canbe deleted, but can not be recreated by Couchbase Server.  By setting thisfield to 'true', the Operator will implicitly manage the default collectionwithin the default scope.  The default collection cannot be modified andwill have no document time-to-live (TTL).  When set to 'false', the operatorwill not manage the default collection, which will be deleted and cannot beused or recreated.",
+								Description:         "PreserveDefaultCollection indicates whether the Operator should manage the default collection within the default scope. The default collection can be deleted, but can not be recreated by Couchbase Server. By setting this field to 'true', the Operator will implicitly manage the default collection within the default scope. The default collection cannot be modified and will have no document time-to-live (TTL). When set to 'false', the operator will not manage the default collection, which will be deleted and cannot be used or recreated.",
+								MarkdownDescription: "PreserveDefaultCollection indicates whether the Operator should manage the default collection within the default scope. The default collection can be deleted, but can not be recreated by Couchbase Server. By setting this field to 'true', the Operator will implicitly manage the default collection within the default scope. The default collection cannot be modified and will have no document time-to-live (TTL). When set to 'false', the operator will not manage the default collection, which will be deleted and cannot be used or recreated.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resources": schema.ListNestedAttribute{
-								Description:         "Resources is an explicit list of named resources that will be consideredfor inclusion in this scope or scopes.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency.",
-								MarkdownDescription: "Resources is an explicit list of named resources that will be consideredfor inclusion in this scope or scopes.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency.",
+								Description:         "Resources is an explicit list of named resources that will be considered for inclusion in this scope or scopes. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
+								MarkdownDescription: "Resources is an explicit list of named resources that will be considered for inclusion in this scope or scopes. If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
-											Description:         "Kind indicates the kind of resource that is being referenced.  A scopecan only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup'resource kinds.  This field defaults to 'CouchbaseCollection' if notspecified.",
-											MarkdownDescription: "Kind indicates the kind of resource that is being referenced.  A scopecan only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup'resource kinds.  This field defaults to 'CouchbaseCollection' if notspecified.",
+											Description:         "Kind indicates the kind of resource that is being referenced. A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds. This field defaults to 'CouchbaseCollection' if not specified.",
+											MarkdownDescription: "Kind indicates the kind of resource that is being referenced. A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds. This field defaults to 'CouchbaseCollection' if not specified.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -178,8 +178,8 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Manifest) Schema(_ context.Context, _ 
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name is the name of the Kubernetes resource name that is being referenced.Legal collection names have a maximum length of 251characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
-											MarkdownDescription: "Name is the name of the Kubernetes resource name that is being referenced.Legal collection names have a maximum length of 251characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
+											Description:         "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
+											MarkdownDescription: "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -197,8 +197,8 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Manifest) Schema(_ context.Context, _ 
 							},
 
 							"selector": schema.SingleNestedAttribute{
-								Description:         "Selector allows resources to be implicitly considered for inclusion in thisscope or scopes.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
-								MarkdownDescription: "Selector allows resources to be implicitly considered for inclusion in thisscope or scopes.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
+								Description:         "Selector allows resources to be implicitly considered for inclusion in this scope or scopes. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
+								MarkdownDescription: "Selector allows resources to be implicitly considered for inclusion in this scope or scopes. More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -214,16 +214,16 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Manifest) Schema(_ context.Context, _ 
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -237,8 +237,8 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Manifest) Schema(_ context.Context, _ 
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -256,8 +256,8 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Manifest) Schema(_ context.Context, _ 
 					},
 
 					"names": schema.ListAttribute{
-						Description:         "Names specifies the names of the scopes.  Unlike CouchbaseScope, whichspecifies a single scope, a scope group specifies multiple, and thescope group must specify at least one scope name.Any scope names specified must be unique.Scope names must be 1-251 characters in length, contain only [a-zA-Z0-9_-%]and not start with either _ or %.",
-						MarkdownDescription: "Names specifies the names of the scopes.  Unlike CouchbaseScope, whichspecifies a single scope, a scope group specifies multiple, and thescope group must specify at least one scope name.Any scope names specified must be unique.Scope names must be 1-251 characters in length, contain only [a-zA-Z0-9_-%]and not start with either _ or %.",
+						Description:         "Names specifies the names of the scopes. Unlike CouchbaseScope, which specifies a single scope, a scope group specifies multiple, and the scope group must specify at least one scope name. Any scope names specified must be unique. Scope names must be 1-251 characters in length, contain only [a-zA-Z0-9_-%] and not start with either _ or %.",
+						MarkdownDescription: "Names specifies the names of the scopes. Unlike CouchbaseScope, which specifies a single scope, a scope group specifies multiple, and the scope group must specify at least one scope name. Any scope names specified must be unique. Scope names must be 1-251 characters in length, contain only [a-zA-Z0-9_-%] and not start with either _ or %.",
 						ElementType:         types.StringType,
 						Required:            true,
 						Optional:            false,

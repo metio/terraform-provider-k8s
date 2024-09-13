@@ -67,8 +67,8 @@ func (r *TinkerbellOrgTemplateV1Alpha2Manifest) Metadata(_ context.Context, requ
 
 func (r *TinkerbellOrgTemplateV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Template defines a set of actions to be run on a target machine. The template is renderedprior to execution where it is exposed to Hardware and user defined data. Most fields within theTemplateSpec may contain templates values excluding .TemplateSpec.Actions[].Name.See https://pkg.go.dev/text/template for more details.",
-		MarkdownDescription: "Template defines a set of actions to be run on a target machine. The template is renderedprior to execution where it is exposed to Hardware and user defined data. Most fields within theTemplateSpec may contain templates values excluding .TemplateSpec.Actions[].Name.See https://pkg.go.dev/text/template for more details.",
+		Description:         "Template defines a set of actions to be run on a target machine. The template is rendered prior to execution where it is exposed to Hardware and user defined data. Most fields within the TemplateSpec may contain templates values excluding .TemplateSpec.Actions[].Name. See https://pkg.go.dev/text/template for more details.",
+		MarkdownDescription: "Template defines a set of actions to be run on a target machine. The template is rendered prior to execution where it is exposed to Hardware and user defined data. Most fields within the TemplateSpec may contain templates values excluding .TemplateSpec.Actions[].Name. See https://pkg.go.dev/text/template for more details.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -139,13 +139,13 @@ func (r *TinkerbellOrgTemplateV1Alpha2Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"actions": schema.ListNestedAttribute{
-						Description:         "Actions defines the set of actions to be run on a target machine. Actions are run sequentiallyin the order they are specified. At least 1 action must be specified. Names of actionsmust be unique within a Template.",
-						MarkdownDescription: "Actions defines the set of actions to be run on a target machine. Actions are run sequentiallyin the order they are specified. At least 1 action must be specified. Names of actionsmust be unique within a Template.",
+						Description:         "Actions defines the set of actions to be run on a target machine. Actions are run sequentially in the order they are specified. At least 1 action must be specified. Names of actions must be unique within a Template.",
+						MarkdownDescription: "Actions defines the set of actions to be run on a target machine. Actions are run sequentially in the order they are specified. At least 1 action must be specified. Names of actions must be unique within a Template.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"args": schema.ListAttribute{
-									Description:         "Args are a set of arguments to be passed to the command executed by the container onlaunch.",
-									MarkdownDescription: "Args are a set of arguments to be passed to the command executed by the container onlaunch.",
+									Description:         "Args are a set of arguments to be passed to the command executed by the container on launch.",
+									MarkdownDescription: "Args are a set of arguments to be passed to the command executed by the container on launch.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -153,8 +153,8 @@ func (r *TinkerbellOrgTemplateV1Alpha2Manifest) Schema(_ context.Context, _ data
 								},
 
 								"cmd": schema.StringAttribute{
-									Description:         "Cmd defines the command to use when launching the image. It overrides the default commandof the action. It must be a unix path to an executable program.",
-									MarkdownDescription: "Cmd defines the command to use when launching the image. It overrides the default commandof the action. It must be a unix path to an executable program.",
+									Description:         "Cmd defines the command to use when launching the image. It overrides the default command of the action. It must be a unix path to an executable program.",
+									MarkdownDescription: "Cmd defines the command to use when launching the image. It overrides the default command of the action. It must be a unix path to an executable program.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -229,8 +229,8 @@ func (r *TinkerbellOrgTemplateV1Alpha2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"env": schema.MapAttribute{
-						Description:         "Env defines environment variables to be available in all actions. If an action specifiesthe same environment variable it will take precedence.",
-						MarkdownDescription: "Env defines environment variables to be available in all actions. If an action specifiesthe same environment variable it will take precedence.",
+						Description:         "Env defines environment variables to be available in all actions. If an action specifies the same environment variable it will take precedence.",
+						MarkdownDescription: "Env defines environment variables to be available in all actions. If an action specifies the same environment variable it will take precedence.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -238,8 +238,8 @@ func (r *TinkerbellOrgTemplateV1Alpha2Manifest) Schema(_ context.Context, _ data
 					},
 
 					"volumes": schema.ListAttribute{
-						Description:         "Volumes to be mounted on all actions. If an action specifies the same volume it will takeprecedence.",
-						MarkdownDescription: "Volumes to be mounted on all actions. If an action specifies the same volume it will takeprecedence.",
+						Description:         "Volumes to be mounted on all actions. If an action specifies the same volume it will take precedence.",
+						MarkdownDescription: "Volumes to be mounted on all actions. If an action specifies the same volume it will take precedence.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

@@ -3,12 +3,12 @@
 page_title: "k8s_operator_open_cluster_management_io_klusterlet_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.open-cluster-management.io"
 description: |-
-  Klusterlet represents controllers to install the resources for a managed cluster.When configured, the Klusterlet requires a secret named bootstrap-hub-kubeconfig in theagent namespace to allow API requests to the hub for the registration protocol.In Hosted mode, the Klusterlet requires an additional secret named external-managed-kubeconfigin the agent namespace to allow API requests to the managed cluster for resources installation.
+  Klusterlet represents controllers to install the resources for a managed cluster. When configured, the Klusterlet requires a secret named bootstrap-hub-kubeconfig in the agent namespace to allow API requests to the hub for the registration protocol. In Hosted mode, the Klusterlet requires an additional secret named external-managed-kubeconfig in the agent namespace to allow API requests to the managed cluster for resources installation.
 ---
 
 # k8s_operator_open_cluster_management_io_klusterlet_v1_manifest (Data Source)
 
-Klusterlet represents controllers to install the resources for a managed cluster.When configured, the Klusterlet requires a secret named bootstrap-hub-kubeconfig in theagent namespace to allow API requests to the hub for the registration protocol.In Hosted mode, the Klusterlet requires an additional secret named external-managed-kubeconfigin the agent namespace to allow API requests to the managed cluster for resources installation.
+Klusterlet represents controllers to install the resources for a managed cluster. When configured, the Klusterlet requires a secret named bootstrap-hub-kubeconfig in the agent namespace to allow API requests to the hub for the registration protocol. In Hosted mode, the Klusterlet requires an additional secret named external-managed-kubeconfig in the agent namespace to allow API requests to the managed cluster for resources installation.
 
 ## Example Usage
 
@@ -54,26 +54,26 @@ Optional:
 
 Optional:
 
-- `cluster_name` (String) ClusterName is the name of the managed cluster to be created on hub.The Klusterlet agent generates a random name if it is not set, or discovers the appropriate cluster name on OpenShift.
+- `cluster_name` (String) ClusterName is the name of the managed cluster to be created on hub. The Klusterlet agent generates a random name if it is not set, or discovers the appropriate cluster name on OpenShift.
 - `deploy_option` (Attributes) DeployOption contains the options of deploying a klusterlet (see [below for nested schema](#nestedatt--spec--deploy_option))
-- `external_server_urls` (Attributes List) ExternalServerURLs represents a list of apiserver urls and ca bundles that is accessible externallyIf it is set empty, managed cluster has no externally accessible url that hub cluster can visit. (see [below for nested schema](#nestedatt--spec--external_server_urls))
-- `hub_api_server_host_alias` (Attributes) HubApiServerHostAlias contains the host alias for hub api server.registration-agent and work-agent will use it to communicate with hub api server. (see [below for nested schema](#nestedatt--spec--hub_api_server_host_alias))
-- `image_pull_spec` (String) ImagePullSpec represents the desired image configuration of agent, it takes effect only whensingleton mode is set. quay.io/open-cluster-management.io/registration-operator:latest willbe used if unspecified
-- `namespace` (String) Namespace is the namespace to deploy the agent on the managed cluster.The namespace must have a prefix of 'open-cluster-management-', and if it is not set,the namespace of 'open-cluster-management-agent' is used to deploy agent.In addition, the add-ons are deployed to the namespace of '{Namespace}-addon'.In the Hosted mode, this namespace still exists on the managed cluster to containnecessary resources, like service accounts, roles and rolebindings, while the agentis deployed to the namespace with the same name as klusterlet on the management cluster.
+- `external_server_urls` (Attributes List) ExternalServerURLs represents a list of apiserver urls and ca bundles that is accessible externally If it is set empty, managed cluster has no externally accessible url that hub cluster can visit. (see [below for nested schema](#nestedatt--spec--external_server_urls))
+- `hub_api_server_host_alias` (Attributes) HubApiServerHostAlias contains the host alias for hub api server. registration-agent and work-agent will use it to communicate with hub api server. (see [below for nested schema](#nestedatt--spec--hub_api_server_host_alias))
+- `image_pull_spec` (String) ImagePullSpec represents the desired image configuration of agent, it takes effect only when singleton mode is set. quay.io/open-cluster-management.io/registration-operator:latest will be used if unspecified
+- `namespace` (String) Namespace is the namespace to deploy the agent on the managed cluster. The namespace must have a prefix of 'open-cluster-management-', and if it is not set, the namespace of 'open-cluster-management-agent' is used to deploy agent. In addition, the add-ons are deployed to the namespace of '{Namespace}-addon'. In the Hosted mode, this namespace still exists on the managed cluster to contain necessary resources, like service accounts, roles and rolebindings, while the agent is deployed to the namespace with the same name as klusterlet on the management cluster.
 - `node_placement` (Attributes) NodePlacement enables explicit control over the scheduling of the deployed pods. (see [below for nested schema](#nestedatt--spec--node_placement))
-- `priority_class_name` (String) PriorityClassName is the name of the PriorityClass that will be used by thedeployed klusterlet agent. It will be ignored when the PriorityClass/v1 APIis not available on the managed cluster.
+- `priority_class_name` (String) PriorityClassName is the name of the PriorityClass that will be used by the deployed klusterlet agent. It will be ignored when the PriorityClass/v1 API is not available on the managed cluster.
 - `registration_configuration` (Attributes) RegistrationConfiguration contains the configuration of registration (see [below for nested schema](#nestedatt--spec--registration_configuration))
-- `registration_image_pull_spec` (String) RegistrationImagePullSpec represents the desired image configuration of registration agent.quay.io/open-cluster-management.io/registration:latest will be used if unspecified.
-- `resource_requirement` (Attributes) ResourceRequirement specify QoS classes of deployments managed by klusterlet.It applies to all the containers in the deployments. (see [below for nested schema](#nestedatt--spec--resource_requirement))
+- `registration_image_pull_spec` (String) RegistrationImagePullSpec represents the desired image configuration of registration agent. quay.io/open-cluster-management.io/registration:latest will be used if unspecified.
+- `resource_requirement` (Attributes) ResourceRequirement specify QoS classes of deployments managed by klusterlet. It applies to all the containers in the deployments. (see [below for nested schema](#nestedatt--spec--resource_requirement))
 - `work_configuration` (Attributes) WorkConfiguration contains the configuration of work (see [below for nested schema](#nestedatt--spec--work_configuration))
-- `work_image_pull_spec` (String) WorkImagePullSpec represents the desired image configuration of work agent.quay.io/open-cluster-management.io/work:latest will be used if unspecified.
+- `work_image_pull_spec` (String) WorkImagePullSpec represents the desired image configuration of work agent. quay.io/open-cluster-management.io/work:latest will be used if unspecified.
 
 <a id="nestedatt--spec--deploy_option"></a>
 ### Nested Schema for `spec.deploy_option`
 
 Optional:
 
-- `mode` (String) Mode can be Default, Hosted, Singleton or SingletonHosted. It is Default mode if not specifiedIn Default mode, all klusterlet related resources are deployed on the managed cluster.In Hosted mode, only crd and configurations are installed on the spoke/managed cluster. Controllers run in anothercluster (defined as management-cluster) and connect to the mangaged cluster with the kubeconfig in secret of'external-managed-kubeconfig'(a kubeconfig of managed-cluster with cluster-admin permission).In Singleton mode, registration/work agent is started as a single deployment.In SingletonHosted mode, agent is started as a single deployment in hosted mode.Note: Do not modify the Mode field once it's applied.
+- `mode` (String) Mode can be Default, Hosted, Singleton or SingletonHosted. It is Default mode if not specified In Default mode, all klusterlet related resources are deployed on the managed cluster. In Hosted mode, only crd and configurations are installed on the spoke/managed cluster. Controllers run in another cluster (defined as management-cluster) and connect to the mangaged cluster with the kubeconfig in secret of 'external-managed-kubeconfig'(a kubeconfig of managed-cluster with cluster-admin permission). In Singleton mode, registration/work agent is started as a single deployment. In SingletonHosted mode, agent is started as a single deployment in hosted mode. Note: Do not modify the Mode field once it's applied.
 
 
 <a id="nestedatt--spec--external_server_urls"></a>
@@ -81,7 +81,7 @@ Optional:
 
 Optional:
 
-- `ca_bundle` (String) CABundle is the ca bundle to connect to apiserver of the managed cluster.System certs are used if it is not set.
+- `ca_bundle` (String) CABundle is the ca bundle to connect to apiserver of the managed cluster. System certs are used if it is not set.
 - `url` (String) URL is the url of apiserver endpoint of the managed cluster.
 
 
@@ -100,18 +100,18 @@ Required:
 Optional:
 
 - `node_selector` (Map of String) NodeSelector defines which Nodes the Pods are scheduled on. The default is an empty list.
-- `tolerations` (Attributes List) Tolerations are attached by pods to tolerate any taint that matchesthe triple <key,value,effect> using the matching operator <operator>.The default is an empty list. (see [below for nested schema](#nestedatt--spec--node_placement--tolerations))
+- `tolerations` (Attributes List) Tolerations are attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list. (see [below for nested schema](#nestedatt--spec--node_placement--tolerations))
 
 <a id="nestedatt--spec--node_placement--tolerations"></a>
 ### Nested Schema for `spec.node_placement.tolerations`
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -120,27 +120,27 @@ Optional:
 
 Optional:
 
-- `bootstrap_kube_configs` (Attributes) BootstrapKubeConfigs defines the ordered list of bootstrap kubeconfigs. The order decides which bootstrap kubeconfig to use first when rebootstrap.When the agent loses the connection to the current hub over HubConnectionTimeoutSeconds, or the managedcluster CRis set 'hubAcceptsClient=false' on the hub, the controller marks the related bootstrap kubeconfig as 'failed'.A failed bootstrapkubeconfig won't be used for the duration specified by SkipFailedBootstrapKubeConfigSeconds.But if the user updates the content of a failed bootstrapkubeconfig, the 'failed' mark will be cleared. (see [below for nested schema](#nestedatt--spec--registration_configuration--bootstrap_kube_configs))
-- `client_cert_expiration_seconds` (Number) clientCertExpirationSeconds represents the seconds of a client certificate to expire. If it is not set or 0, the defaultduration seconds will be set by the hub cluster. If the value is larger than the max signing duration seconds set onthe hub cluster, the max signing duration seconds will be set.
-- `cluster_annotations` (Map of String) ClusterAnnotations is annotations with the reserve prefix 'agent.open-cluster-management.io' set onManagedCluster when creating only, other actors can update it afterwards.
-- `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for registrationIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--registration_configuration--feature_gates))
-- `kube_api_burst` (Number) KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 100
-- `kube_apiqps` (Number) KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 50
+- `bootstrap_kube_configs` (Attributes) BootstrapKubeConfigs defines the ordered list of bootstrap kubeconfigs. The order decides which bootstrap kubeconfig to use first when rebootstrap. When the agent loses the connection to the current hub over HubConnectionTimeoutSeconds, or the managedcluster CR is set 'hubAcceptsClient=false' on the hub, the controller marks the related bootstrap kubeconfig as 'failed'. A failed bootstrapkubeconfig won't be used for the duration specified by SkipFailedBootstrapKubeConfigSeconds. But if the user updates the content of a failed bootstrapkubeconfig, the 'failed' mark will be cleared. (see [below for nested schema](#nestedatt--spec--registration_configuration--bootstrap_kube_configs))
+- `client_cert_expiration_seconds` (Number) clientCertExpirationSeconds represents the seconds of a client certificate to expire. If it is not set or 0, the default duration seconds will be set by the hub cluster. If the value is larger than the max signing duration seconds set on the hub cluster, the max signing duration seconds will be set.
+- `cluster_annotations` (Map of String) ClusterAnnotations is annotations with the reserve prefix 'agent.open-cluster-management.io' set on ManagedCluster when creating only, other actors can update it afterwards.
+- `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for registration If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--registration_configuration--feature_gates))
+- `kube_api_burst` (Number) KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100
+- `kube_apiqps` (Number) KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50
 
 <a id="nestedatt--spec--registration_configuration--bootstrap_kube_configs"></a>
 ### Nested Schema for `spec.registration_configuration.bootstrap_kube_configs`
 
 Optional:
 
-- `local_secrets_config` (Attributes) LocalSecretsConfig include a list of secrets that contains the kubeconfigs for ordered bootstrap kubeconifigs.The secrets must be in the same namespace where the agent controller runs. (see [below for nested schema](#nestedatt--spec--registration_configuration--bootstrap_kube_configs--local_secrets_config))
-- `type` (String) Type specifies the type of priority bootstrap kubeconfigs.By default, it is set to None, representing no priority bootstrap kubeconfigs are set.
+- `local_secrets_config` (Attributes) LocalSecretsConfig include a list of secrets that contains the kubeconfigs for ordered bootstrap kubeconifigs. The secrets must be in the same namespace where the agent controller runs. (see [below for nested schema](#nestedatt--spec--registration_configuration--bootstrap_kube_configs--local_secrets_config))
+- `type` (String) Type specifies the type of priority bootstrap kubeconfigs. By default, it is set to None, representing no priority bootstrap kubeconfigs are set.
 
 <a id="nestedatt--spec--registration_configuration--bootstrap_kube_configs--local_secrets_config"></a>
 ### Nested Schema for `spec.registration_configuration.bootstrap_kube_configs.local_secrets_config`
 
 Optional:
 
-- `hub_connection_timeout_seconds` (Number) HubConnectionTimeoutSeconds is used to set the timeout of connecting to the hub cluster.When agent loses the connection to the hub over the timeout seconds, the agent do a rebootstrap.By default is 10 mins.
+- `hub_connection_timeout_seconds` (Number) HubConnectionTimeoutSeconds is used to set the timeout of connecting to the hub cluster. When agent loses the connection to the hub over the timeout seconds, the agent do a rebootstrap. By default is 10 mins.
 - `kube_config_secrets` (Attributes List) KubeConfigSecrets is a list of secret names. The secrets are in the same namespace where the agent controller runs. (see [below for nested schema](#nestedatt--spec--registration_configuration--bootstrap_kube_configs--local_secrets_config--kube_config_secrets))
 
 <a id="nestedatt--spec--registration_configuration--bootstrap_kube_configs--local_secrets_config--kube_config_secrets"></a>
@@ -162,7 +162,7 @@ Required:
 
 Optional:
 
-- `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.
+- `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.
 
 
 
@@ -179,16 +179,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resource_requirement--resource_requirements--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resource_requirement--resource_requirements--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resource_requirement--resource_requirements--claims"></a>
 ### Nested Schema for `spec.resource_requirement.resource_requirements.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -198,10 +198,10 @@ Required:
 
 Optional:
 
-- `applied_manifest_work_eviction_grace_period` (String) AppliedManifestWorkEvictionGracePeriod is the eviction grace period the work agent will wait beforeevicting the AppliedManifestWorks, whose corresponding ManifestWorks are missing on the hub cluster, fromthe managed cluster. If not present, the default value of the work agent will be used.
-- `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for workIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--work_configuration--feature_gates))
-- `kube_api_burst` (Number) KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 100
-- `kube_apiqps` (Number) KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster.If it is set empty, use the default value: 50
+- `applied_manifest_work_eviction_grace_period` (String) AppliedManifestWorkEvictionGracePeriod is the eviction grace period the work agent will wait before evicting the AppliedManifestWorks, whose corresponding ManifestWorks are missing on the hub cluster, from the managed cluster. If not present, the default value of the work agent will be used.
+- `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for work If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--work_configuration--feature_gates))
+- `kube_api_burst` (Number) KubeAPIBurst indicates the maximum burst of the throttle while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 100
+- `kube_apiqps` (Number) KubeAPIQPS indicates the maximum QPS while talking with apiserver of hub cluster from the spoke cluster. If it is set empty, use the default value: 50
 
 <a id="nestedatt--spec--work_configuration--feature_gates"></a>
 ### Nested Schema for `spec.work_configuration.feature_gates`
@@ -212,4 +212,4 @@ Required:
 
 Optional:
 
-- `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.
+- `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.

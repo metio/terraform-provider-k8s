@@ -210,8 +210,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterSpec defines the desired state of Cluster.Returns information about a cluster of either the provisioned or the serverlesstype.",
-				MarkdownDescription: "ClusterSpec defines the desired state of Cluster.Returns information about a cluster of either the provisioned or the serverlesstype.",
+				Description:         "ClusterSpec defines the desired state of Cluster. Returns information about a cluster of either the provisioned or the serverless type.",
+				MarkdownDescription: "ClusterSpec defines the desired state of Cluster. Returns information about a cluster of either the provisioned or the serverless type.",
 				Attributes: map[string]schema.Attribute{
 					"associated_scram_secret_refs": schema.ListNestedAttribute{
 						Description:         "",
@@ -219,8 +219,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -263,8 +263,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "Information about the brokers.",
 						Attributes: map[string]schema.Attribute{
 							"broker_az_distribution": schema.StringAttribute{
-								Description:         "The distribution of broker nodes across Availability Zones. By default, brokernodes are distributed among the Availability Zones of your Region. Currently,the only supported value is DEFAULT. You can either specify this value explicitlyor leave it out.",
-								MarkdownDescription: "The distribution of broker nodes across Availability Zones. By default, brokernodes are distributed among the Availability Zones of your Region. Currently,the only supported value is DEFAULT. You can either specify this value explicitlyor leave it out.",
+								Description:         "The distribution of broker nodes across Availability Zones. By default, broker nodes are distributed among the Availability Zones of your Region. Currently, the only supported value is DEFAULT. You can either specify this value explicitly or leave it out.",
+								MarkdownDescription: "The distribution of broker nodes across Availability Zones. By default, broker nodes are distributed among the Availability Zones of your Region. Currently, the only supported value is DEFAULT. You can either specify this value explicitly or leave it out.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -327,12 +327,12 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "Contains information about storage volumes attached to MSK broker nodes.",
 								Attributes: map[string]schema.Attribute{
 									"ebs_storage_info": schema.SingleNestedAttribute{
-										Description:         "Contains information about the EBS storage volumes attached to Apache Kafkabroker nodes.",
-										MarkdownDescription: "Contains information about the EBS storage volumes attached to Apache Kafkabroker nodes.",
+										Description:         "Contains information about the EBS storage volumes attached to Apache Kafka broker nodes.",
+										MarkdownDescription: "Contains information about the EBS storage volumes attached to Apache Kafka broker nodes.",
 										Attributes: map[string]schema.Attribute{
 											"provisioned_throughput": schema.SingleNestedAttribute{
-												Description:         "Contains information about provisioned throughput for EBS storage volumesattached to kafka broker nodes.",
-												MarkdownDescription: "Contains information about provisioned throughput for EBS storage volumesattached to kafka broker nodes.",
+												Description:         "Contains information about provisioned throughput for EBS storage volumes attached to kafka broker nodes.",
+												MarkdownDescription: "Contains information about provisioned throughput for EBS storage volumes attached to kafka broker nodes.",
 												Attributes: map[string]schema.Attribute{
 													"enabled": schema.BoolAttribute{
 														Description:         "",
@@ -550,8 +550,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"enhanced_monitoring": schema.StringAttribute{
-						Description:         "Specifies the level of monitoring for the MSK cluster. The possible valuesare DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION.",
-						MarkdownDescription: "Specifies the level of monitoring for the MSK cluster. The possible valuesare DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION.",
+						Description:         "Specifies the level of monitoring for the MSK cluster. The possible values are DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION.",
+						MarkdownDescription: "Specifies the level of monitoring for the MSK cluster. The possible values are DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

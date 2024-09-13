@@ -62,14 +62,14 @@ Optional:
 
 - `tags` (Map of String) Optional, user-provided tags for this rule groups namespace.
 - `workspace_id` (String) The ID of the workspace in which to create the rule group namespace.
-- `workspace_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--workspace_ref))
+- `workspace_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--workspace_ref))
 
 <a id="nestedatt--spec--workspace_ref"></a>
 ### Nested Schema for `spec.workspace_ref`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--workspace_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--workspace_ref--from))
 
 <a id="nestedatt--spec--workspace_ref--from"></a>
 ### Nested Schema for `spec.workspace_ref.from`

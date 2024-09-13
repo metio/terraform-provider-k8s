@@ -55,20 +55,20 @@ Optional:
 
 Required:
 
-- `network` (Attributes) Network is the reference to the Network to use for this instance.supported network identifier in IBMPowerVSResourceReference are Name, ID and RegEx and that can be obtained from IBM Cloud UI or IBM Cloud cli. (see [below for nested schema](#nestedatt--spec--network))
-- `service_instance_id` (String) ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed.Deprecated: use ServiceInstance instead
+- `network` (Attributes) Network is the reference to the Network to use for this instance. supported network identifier in IBMPowerVSResourceReference are Name, ID and RegEx and that can be obtained from IBM Cloud UI or IBM Cloud cli. (see [below for nested schema](#nestedatt--spec--network))
+- `service_instance_id` (String) ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed. Deprecated: use ServiceInstance instead
 
 Optional:
 
-- `image` (Attributes) Image the reference to the image which is used to create the instance.supported image identifier in IBMPowerVSResourceReference are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli. (see [below for nested schema](#nestedatt--spec--image))
-- `image_ref` (Attributes) ImageRef is an optional reference to a provider-specific resource that holdsthe details for provisioning the Image for a Cluster. (see [below for nested schema](#nestedatt--spec--image_ref))
-- `memory_gi_b` (Number) memoryGiB is the size of a virtual machine's memory, in GiB.maximum value for the MemoryGiB depends on the selected SystemType.when SystemType is set to e880 maximum MemoryGiB value is 7463 GiB.when SystemType is set to e980 maximum MemoryGiB value is 15307 GiB.when SystemType is set to s922 maximum MemoryGiB value is 942 GiB.The minimum memory is 2 GiB.When omitted, this means the user has no opinion and the platform is left to choose a reasonabledefault, which is subject to change over time. The current default is 2.
-- `processor_type` (String) processorType is the VM instance processor type.It must be set to one of the following values: Dedicated, Capped or Shared.Dedicated: resources are allocated for a specific client, The hypervisor makes a 1:1 binding of a partition’s processor to a physical processor core.Shared: Shared among other clients.Capped: Shared, but resources do not expand beyond those that are requested, the amount of CPU time is Capped to the value specified for the entitlement.if the processorType is selected as Dedicated, then processors value cannot be fractional.When omitted, this means that the user has no opinion and the platform is left to choose areasonable default, which is subject to change over time. The current default is Shared.
-- `processors` (String) processors is the number of virtual processors in a virtual machine.when the processorType is selected as Dedicated the processors value cannot be fractional.maximum value for the Processors depends on the selected SystemType.when SystemType is set to e880 or e980 maximum Processors value is 143.when SystemType is set to s922 maximum Processors value is 15.minimum value for Processors depends on the selected ProcessorType.when ProcessorType is set as Shared or Capped, The minimum processors is 0.25.when ProcessorType is set as Dedicated, The minimum processors is 1.When omitted, this means that the user has no opinion and the platform is left to choose areasonable default, which is subject to change over time. The default is set based on the selected ProcessorType.when ProcessorType selected as Dedicated, the default is set to 1.when ProcessorType selected as Shared or Capped, the default is set to 0.25.
+- `image` (Attributes) Image the reference to the image which is used to create the instance. supported image identifier in IBMPowerVSResourceReference are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli. (see [below for nested schema](#nestedatt--spec--image))
+- `image_ref` (Attributes) ImageRef is an optional reference to a provider-specific resource that holds the details for provisioning the Image for a Cluster. (see [below for nested schema](#nestedatt--spec--image_ref))
+- `memory_gi_b` (Number) memoryGiB is the size of a virtual machine's memory, in GiB. maximum value for the MemoryGiB depends on the selected SystemType. when SystemType is set to e880 maximum MemoryGiB value is 7463 GiB. when SystemType is set to e980 maximum MemoryGiB value is 15307 GiB. when SystemType is set to s922 maximum MemoryGiB value is 942 GiB. The minimum memory is 2 GiB. When omitted, this means the user has no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default is 2.
+- `processor_type` (String) processorType is the VM instance processor type. It must be set to one of the following values: Dedicated, Capped or Shared. Dedicated: resources are allocated for a specific client, The hypervisor makes a 1:1 binding of a partition’s processor to a physical processor core. Shared: Shared among other clients. Capped: Shared, but resources do not expand beyond those that are requested, the amount of CPU time is Capped to the value specified for the entitlement. if the processorType is selected as Dedicated, then processors value cannot be fractional. When omitted, this means that the user has no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default is Shared.
+- `processors` (String) processors is the number of virtual processors in a virtual machine. when the processorType is selected as Dedicated the processors value cannot be fractional. maximum value for the Processors depends on the selected SystemType. when SystemType is set to e880 or e980 maximum Processors value is 143. when SystemType is set to s922 maximum Processors value is 15. minimum value for Processors depends on the selected ProcessorType. when ProcessorType is set as Shared or Capped, The minimum processors is 0.25. when ProcessorType is set as Dedicated, The minimum processors is 1. When omitted, this means that the user has no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The default is set based on the selected ProcessorType. when ProcessorType selected as Dedicated, the default is set to 1. when ProcessorType selected as Shared or Capped, the default is set to 0.25.
 - `provider_id` (String) ProviderID is the unique identifier as specified by the cloud provider.
-- `service_instance` (Attributes) serviceInstance is the reference to the Power VS workspace on which the server instance(VM) will be created.Power VS workspace is a container for all Power VS instances at a specific geographic region.serviceInstance can be created via IBM Cloud catalog or CLI.supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli.More detail about Power VS service instance.https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-serverwhen omitted system will dynamically create the service instance (see [below for nested schema](#nestedatt--spec--service_instance))
+- `service_instance` (Attributes) serviceInstance is the reference to the Power VS workspace on which the server instance(VM) will be created. Power VS workspace is a container for all Power VS instances at a specific geographic region. serviceInstance can be created via IBM Cloud catalog or CLI. supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli. More detail about Power VS service instance. https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server when omitted system will dynamically create the service instance (see [below for nested schema](#nestedatt--spec--service_instance))
 - `ssh_key` (String) SSHKey is the name of the SSH key pair provided to the vsi for authenticating users.
-- `system_type` (String) systemType is the System type used to host the instance.systemType determines the number of cores and memory that is available.Few of the supported SystemTypes are s922,e880,e980.e880 systemType available only in Dallas Datacenters.e980 systemType available in Datacenters except Dallas and Washington.When omitted, this means that the user has no opinion and the platform is left to choose areasonable default, which is subject to change over time. The current default is s922 which is generally available.
+- `system_type` (String) systemType is the System type used to host the instance. systemType determines the number of cores and memory that is available. Few of the supported SystemTypes are s922,e880,e980. e880 systemType available only in Dallas Datacenters. e980 systemType available in Datacenters except Dallas and Washington. When omitted, this means that the user has no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default is s922 which is generally available.
 
 <a id="nestedatt--spec--network"></a>
 ### Nested Schema for `spec.network`
@@ -77,7 +77,7 @@ Optional:
 
 - `id` (String) ID of resource
 - `name` (String) Name of resource
-- `regex` (String) Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected
+- `regex` (String) Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected
 
 
 <a id="nestedatt--spec--image"></a>
@@ -87,7 +87,7 @@ Optional:
 
 - `id` (String) ID of resource
 - `name` (String) Name of resource
-- `regex` (String) Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected
+- `regex` (String) Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected
 
 
 <a id="nestedatt--spec--image_ref"></a>
@@ -95,7 +95,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 
 
 <a id="nestedatt--spec--service_instance"></a>
@@ -105,4 +105,4 @@ Optional:
 
 - `id` (String) ID of resource
 - `name` (String) Name of resource
-- `regex` (String) Regular expression to match resource,In case of multiple resources matches the provided regular expression the first matched resource will be selected
+- `regex` (String) Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected

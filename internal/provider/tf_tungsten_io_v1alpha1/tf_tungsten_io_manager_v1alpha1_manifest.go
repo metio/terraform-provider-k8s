@@ -5559,8 +5559,8 @@ func (r *TfTungstenIoManagerV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"env_variables_config": schema.MapAttribute{
-															Description:         "What is it doing? VrouterEncryption   bool              'json:'vrouterEncryption,omitempty'' What is it doing? What is it doing?",
-															MarkdownDescription: "What is it doing? VrouterEncryption   bool              'json:'vrouterEncryption,omitempty'' What is it doing? What is it doing?",
+															Description:         "What is it doing? VrouterEncryption bool 'json:'vrouterEncryption,omitempty'' What is it doing? What is it doing?",
+															MarkdownDescription: "What is it doing? VrouterEncryption bool 'json:'vrouterEncryption,omitempty'' What is it doing? What is it doing?",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,

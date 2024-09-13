@@ -54,4 +54,4 @@ Optional:
 
 Optional:
 
-- `order` (Number) Order is an optional field that specifies the order in which the tier is applied. Tiers with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the tier will be applied last.  Tiers with identical order will be applied in alphanumerical order based on the Tier 'Name'.
+- `order` (Number) Order is an optional field that specifies the order in which the tier is applied. Tiers with higher 'order' are applied after those with lower order. If the order is omitted, it may be considered to be 'infinite' - i.e. the tier will be applied last. Tiers with identical order will be applied in alphanumerical order based on the Tier 'Name'.

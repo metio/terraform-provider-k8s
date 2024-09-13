@@ -65,8 +65,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Metadata(_ context.C
 
 func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ClusterDefinition defines the topology for databases or storage systems,offering a variety of topological configurations to meet diverse deployment needs and scenarios.It includes a list of Components, each linked to a ComponentDefinition, which enhances reusability and reduce redundancy.For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions,simplifying the setup of new systems.Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown for Components,ensuring a controlled and predictable management of component lifecycles.",
-		MarkdownDescription: "ClusterDefinition defines the topology for databases or storage systems,offering a variety of topological configurations to meet diverse deployment needs and scenarios.It includes a list of Components, each linked to a ComponentDefinition, which enhances reusability and reduce redundancy.For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions,simplifying the setup of new systems.Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown for Components,ensuring a controlled and predictable management of component lifecycles.",
+		Description:         "ClusterDefinition defines the topology for databases or storage systems, offering a variety of topological configurations to meet diverse deployment needs and scenarios. It includes a list of Components, each linked to a ComponentDefinition, which enhances reusability and reduce redundancy. For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions, simplifying the setup of new systems. Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown for Components, ensuring a controlled and predictable management of component lifecycles.",
+		MarkdownDescription: "ClusterDefinition defines the topology for databases or storage systems, offering a variety of topological configurations to meet diverse deployment needs and scenarios. It includes a list of Components, each linked to a ComponentDefinition, which enhances reusability and reduce redundancy. For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions, simplifying the setup of new systems. Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown for Components, ensuring a controlled and predictable management of component lifecycles.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -135,8 +135,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"comp_def": schema.StringAttribute{
-												Description:         "Specifies the name or prefix of the ComponentDefinition custom resource(CR) thatdefines the Component's characteristics and behavior.When a prefix is used, the system selects the ComponentDefinition CR with the latest version that matches the prefix.This approach allows:1. Precise selection by providing the exact name of a ComponentDefinition CR.2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a prefix.Once set, this field cannot be updated.",
-												MarkdownDescription: "Specifies the name or prefix of the ComponentDefinition custom resource(CR) thatdefines the Component's characteristics and behavior.When a prefix is used, the system selects the ComponentDefinition CR with the latest version that matches the prefix.This approach allows:1. Precise selection by providing the exact name of a ComponentDefinition CR.2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a prefix.Once set, this field cannot be updated.",
+												Description:         "Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinition custom resource (CR) that defines the Component's characteristics and behavior. The system selects the ComponentDefinition CR with the latest version that matches the pattern. This approach allows: 1. Precise selection by providing the exact name of a ComponentDefinition CR. 2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a name prefix or regular expression pattern. Once set, this field cannot be updated.",
+												MarkdownDescription: "Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinition custom resource (CR) that defines the Component's characteristics and behavior. The system selects the ComponentDefinition CR with the latest version that matches the pattern. This approach allows: 1. Precise selection by providing the exact name of a ComponentDefinition CR. 2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a name prefix or regular expression pattern. Once set, this field cannot be updated.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -146,8 +146,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Defines the unique identifier of the component within the cluster topology.It follows IANA Service naming rules and is used as part of the Service's DNS name.The name must start with a lowercase letter, can contain lowercase letters, numbers,and hyphens, and must end with a lowercase letter or number.Cannot be updated once set.",
-												MarkdownDescription: "Defines the unique identifier of the component within the cluster topology.It follows IANA Service naming rules and is used as part of the Service's DNS name.The name must start with a lowercase letter, can contain lowercase letters, numbers,and hyphens, and must end with a lowercase letter or number.Cannot be updated once set.",
+												Description:         "Defines the unique identifier of the component within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number. Cannot be updated once set.",
+												MarkdownDescription: "Defines the unique identifier of the component within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number. Cannot be updated once set.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -164,16 +164,16 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 								},
 
 								"default": schema.BoolAttribute{
-									Description:         "Default indicates whether this topology serves as the default configuration.When set to true, this topology is automatically used unless another is explicitly specified.",
-									MarkdownDescription: "Default indicates whether this topology serves as the default configuration.When set to true, this topology is automatically used unless another is explicitly specified.",
+									Description:         "Default indicates whether this topology serves as the default configuration. When set to true, this topology is automatically used unless another is explicitly specified.",
+									MarkdownDescription: "Default indicates whether this topology serves as the default configuration. When set to true, this topology is automatically used unless another is explicitly specified.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name is the unique identifier for the cluster topology.Cannot be updated.",
-									MarkdownDescription: "Name is the unique identifier for the cluster topology.Cannot be updated.",
+									Description:         "Name is the unique identifier for the cluster topology. Cannot be updated.",
+									MarkdownDescription: "Name is the unique identifier for the cluster topology. Cannot be updated.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -183,12 +183,12 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 								},
 
 								"orders": schema.SingleNestedAttribute{
-									Description:         "Specifies the sequence in which components within a cluster topology arestarted, stopped, and upgraded.This ordering is crucial for maintaining the correct dependencies and operational flow across components.",
-									MarkdownDescription: "Specifies the sequence in which components within a cluster topology arestarted, stopped, and upgraded.This ordering is crucial for maintaining the correct dependencies and operational flow across components.",
+									Description:         "Specifies the sequence in which components within a cluster topology are started, stopped, and upgraded. This ordering is crucial for maintaining the correct dependencies and operational flow across components.",
+									MarkdownDescription: "Specifies the sequence in which components within a cluster topology are started, stopped, and upgraded. This ordering is crucial for maintaining the correct dependencies and operational flow across components.",
 									Attributes: map[string]schema.Attribute{
 										"provision": schema.ListAttribute{
-											Description:         "Specifies the order for creating and initializing components.This is designed for components that depend on one another. Components without dependencies can be grouped together.Components that can be provisioned independently or have no dependencies can be listed together in the same stage,separated by commas.",
-											MarkdownDescription: "Specifies the order for creating and initializing components.This is designed for components that depend on one another. Components without dependencies can be grouped together.Components that can be provisioned independently or have no dependencies can be listed together in the same stage,separated by commas.",
+											Description:         "Specifies the order for creating and initializing components. This is designed for components that depend on one another. Components without dependencies can be grouped together. Components that can be provisioned independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											MarkdownDescription: "Specifies the order for creating and initializing components. This is designed for components that depend on one another. Components without dependencies can be grouped together. Components that can be provisioned independently or have no dependencies can be listed together in the same stage, separated by commas.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -196,8 +196,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"terminate": schema.ListAttribute{
-											Description:         "Outlines the order for stopping and deleting components.This sequence is designed for components that require a graceful shutdown or have interdependencies.Components that can be terminated independently or have no dependencies can be listed together in the same stage,separated by commas.",
-											MarkdownDescription: "Outlines the order for stopping and deleting components.This sequence is designed for components that require a graceful shutdown or have interdependencies.Components that can be terminated independently or have no dependencies can be listed together in the same stage,separated by commas.",
+											Description:         "Outlines the order for stopping and deleting components. This sequence is designed for components that require a graceful shutdown or have interdependencies. Components that can be terminated independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											MarkdownDescription: "Outlines the order for stopping and deleting components. This sequence is designed for components that require a graceful shutdown or have interdependencies. Components that can be terminated independently or have no dependencies can be listed together in the same stage, separated by commas.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -205,8 +205,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"update": schema.ListAttribute{
-											Description:         "Update determines the order for updating components' specifications, such as image upgrades or resource scaling.This sequence is designed for components that have dependencies or require specific update procedures.Components that can be updated independently or have no dependencies can be listed together in the same stage,separated by commas.",
-											MarkdownDescription: "Update determines the order for updating components' specifications, such as image upgrades or resource scaling.This sequence is designed for components that have dependencies or require specific update procedures.Components that can be updated independently or have no dependencies can be listed together in the same stage,separated by commas.",
+											Description:         "Update determines the order for updating components' specifications, such as image upgrades or resource scaling. This sequence is designed for components that have dependencies or require specific update procedures. Components that can be updated independently or have no dependencies can be listed together in the same stage, separated by commas.",
+											MarkdownDescription: "Update determines the order for updating components' specifications, such as image upgrades or resource scaling. This sequence is designed for components that have dependencies or require specific update procedures. Components that can be updated independently or have no dependencies can be listed together in the same stage, separated by commas.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

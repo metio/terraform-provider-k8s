@@ -54,9 +54,9 @@ Optional:
 Optional:
 
 - `override_rules` (Attributes List) OverrideRules defines a collection of override rules on target clusters. (see [below for nested schema](#nestedatt--spec--override_rules))
-- `overriders` (Attributes) Overriders represents the override rules that would apply on resourcesDeprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead. (see [below for nested schema](#nestedatt--spec--overriders))
-- `resource_selectors` (Attributes List) ResourceSelectors restricts resource types that this override policy applies to.nil means matching all resources. (see [below for nested schema](#nestedatt--spec--resource_selectors))
-- `target_cluster` (Attributes) TargetCluster defines restrictions on this override policythat only applies to resources propagated to the matching clusters.nil means matching all clusters.Deprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead. (see [below for nested schema](#nestedatt--spec--target_cluster))
+- `overriders` (Attributes) Overriders represents the override rules that would apply on resources Deprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead. (see [below for nested schema](#nestedatt--spec--overriders))
+- `resource_selectors` (Attributes List) ResourceSelectors restricts resource types that this override policy applies to. nil means matching all resources. (see [below for nested schema](#nestedatt--spec--resource_selectors))
+- `target_cluster` (Attributes) TargetCluster defines restrictions on this override policy that only applies to resources propagated to the matching clusters. nil means matching all clusters. Deprecated: This filed is deprecated in v1.0 and please use the OverrideRules instead. (see [below for nested schema](#nestedatt--spec--target_cluster))
 
 <a id="nestedatt--spec--override_rules"></a>
 ### Nested Schema for `spec.override_rules`
@@ -67,7 +67,7 @@ Required:
 
 Optional:
 
-- `target_cluster` (Attributes) TargetCluster defines restrictions on this override policythat only applies to resources propagated to the matching clusters.nil means matching all clusters. (see [below for nested schema](#nestedatt--spec--override_rules--target_cluster))
+- `target_cluster` (Attributes) TargetCluster defines restrictions on this override policy that only applies to resources propagated to the matching clusters. nil means matching all clusters. (see [below for nested schema](#nestedatt--spec--override_rules--target_cluster))
 
 <a id="nestedatt--spec--override_rules--overriders"></a>
 ### Nested Schema for `spec.override_rules.overriders`
@@ -90,7 +90,7 @@ Required:
 
 Optional:
 
-- `value` (Map of String) Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.
+- `value` (Map of String) Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.
 
 
 <a id="nestedatt--spec--override_rules--overriders--args_overrider"></a>
@@ -103,7 +103,7 @@ Required:
 
 Optional:
 
-- `value` (List of String) Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.
+- `value` (List of String) Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.
 
 
 <a id="nestedatt--spec--override_rules--overriders--command_overrider"></a>
@@ -116,7 +116,7 @@ Required:
 
 Optional:
 
-- `value` (List of String) Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.
+- `value` (List of String) Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.
 
 
 <a id="nestedatt--spec--override_rules--overriders--image_overrider"></a>
@@ -124,13 +124,13 @@ Optional:
 
 Required:
 
-- `component` (String) Component is part of image name.Basically we presume an image can be made of '[registry/]repository[:tag]'.The registry could be:- registry.k8s.io- fictional.registry.example:10443The repository could be:- kube-apiserver- fictional/nginxThe tag cloud be:- latest- v1.19.1- @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c
+- `component` (String) Component is part of image name. Basically we presume an image can be made of '[registry/]repository[:tag]'. The registry could be: - registry.k8s.io - fictional.registry.example:10443 The repository could be: - kube-apiserver - fictional/nginx The tag cloud be: - latest - v1.19.1 - @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c
 - `operator` (String) Operator represents the operator which will apply on the image.
 
 Optional:
 
-- `predicate` (Attributes) Predicate filters images before applying the rule.Defaults to nil, in that case, the system will automatically detect image fields if the resource type isPod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule:  - Pod: /spec/containers/<N>/image  - ReplicaSet: /spec/template/spec/containers/<N>/image  - Deployment: /spec/template/spec/containers/<N>/image  - DaemonSet: /spec/template/spec/containers/<N>/image  - StatefulSet: /spec/template/spec/containers/<N>/image  - Job: /spec/template/spec/containers/<N>/imageIn addition, all images will be processed if the resource object has more than one container.If not nil, only images matches the filters will be processed. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--image_overrider--predicate))
-- `value` (String) Value to be applied to image.Must not be empty when operator is 'add' or 'replace'.Defaults to empty and ignored when operator is 'remove'.
+- `predicate` (Attributes) Predicate filters images before applying the rule. Defaults to nil, in that case, the system will automatically detect image fields if the resource type is Pod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule: - Pod: /spec/containers/<N>/image - ReplicaSet: /spec/template/spec/containers/<N>/image - Deployment: /spec/template/spec/containers/<N>/image - DaemonSet: /spec/template/spec/containers/<N>/image - StatefulSet: /spec/template/spec/containers/<N>/image - Job: /spec/template/spec/containers/<N>/image In addition, all images will be processed if the resource object has more than one container. If not nil, only images matches the filters will be processed. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--image_overrider--predicate))
+- `value` (String) Value to be applied to image. Must not be empty when operator is 'add' or 'replace'. Defaults to empty and ignored when operator is 'remove'.
 
 <a id="nestedatt--spec--override_rules--overriders--image_overrider--predicate"></a>
 ### Nested Schema for `spec.override_rules.overriders.image_overrider.predicate`
@@ -150,7 +150,7 @@ Required:
 
 Optional:
 
-- `value` (Map of String) Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.
+- `value` (Map of String) Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.
 
 
 <a id="nestedatt--spec--override_rules--overriders--plaintext"></a>
@@ -158,12 +158,12 @@ Optional:
 
 Required:
 
-- `operator` (String) Operator indicates the operation on target field.Available operators are: add, replace and remove.
+- `operator` (String) Operator indicates the operation on target field. Available operators are: add, replace and remove.
 - `path` (String) Path indicates the path of target field
 
 Optional:
 
-- `value` (Map of String) Value to be applied to target field.Must be empty when operator is Remove.
+- `value` (Map of String) Value to be applied to target field. Must be empty when operator is Remove.
 
 
 
@@ -174,8 +174,8 @@ Optional:
 
 - `cluster_names` (List of String) ClusterNames is the list of clusters to be selected.
 - `exclude` (List of String) ExcludedClusters is the list of clusters to be ignored.
-- `field_selector` (Attributes) FieldSelector is a filter to select member clusters by fields.The key(field) of the match expression should be 'provider', 'region', or 'zone',and the operator of the match expression should be 'In' or 'NotIn'.If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--override_rules--target_cluster--field_selector))
-- `label_selector` (Attributes) LabelSelector is a filter to select member clusters by labels.If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--override_rules--target_cluster--label_selector))
+- `field_selector` (Attributes) FieldSelector is a filter to select member clusters by fields. The key(field) of the match expression should be 'provider', 'region', or 'zone', and the operator of the match expression should be 'In' or 'NotIn'. If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--override_rules--target_cluster--field_selector))
+- `label_selector` (Attributes) LabelSelector is a filter to select member clusters by labels. If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--override_rules--target_cluster--label_selector))
 
 <a id="nestedatt--spec--override_rules--target_cluster--field_selector"></a>
 ### Nested Schema for `spec.override_rules.target_cluster.field_selector`
@@ -190,11 +190,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 
@@ -204,7 +204,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--override_rules--target_cluster--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--override_rules--target_cluster--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.override_rules.target_cluster.label_selector.match_expressions`
@@ -212,11 +212,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -243,7 +243,7 @@ Required:
 
 Optional:
 
-- `value` (Map of String) Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.
+- `value` (Map of String) Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.
 
 
 <a id="nestedatt--spec--overriders--args_overrider"></a>
@@ -256,7 +256,7 @@ Required:
 
 Optional:
 
-- `value` (List of String) Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.
+- `value` (List of String) Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.
 
 
 <a id="nestedatt--spec--overriders--command_overrider"></a>
@@ -269,7 +269,7 @@ Required:
 
 Optional:
 
-- `value` (List of String) Value to be applied to command/args.Items in Value which will be appended after command/args when Operator is 'add'.Items in Value which match in command/args will be deleted when Operator is 'remove'.If Value is empty, then the command/args will remain the same.
+- `value` (List of String) Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.
 
 
 <a id="nestedatt--spec--overriders--image_overrider"></a>
@@ -277,13 +277,13 @@ Optional:
 
 Required:
 
-- `component` (String) Component is part of image name.Basically we presume an image can be made of '[registry/]repository[:tag]'.The registry could be:- registry.k8s.io- fictional.registry.example:10443The repository could be:- kube-apiserver- fictional/nginxThe tag cloud be:- latest- v1.19.1- @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c
+- `component` (String) Component is part of image name. Basically we presume an image can be made of '[registry/]repository[:tag]'. The registry could be: - registry.k8s.io - fictional.registry.example:10443 The repository could be: - kube-apiserver - fictional/nginx The tag cloud be: - latest - v1.19.1 - @sha256:dbcc1c35ac38df41fd2f5e4130b32ffdb93ebae8b3dbe638c23575912276fc9c
 - `operator` (String) Operator represents the operator which will apply on the image.
 
 Optional:
 
-- `predicate` (Attributes) Predicate filters images before applying the rule.Defaults to nil, in that case, the system will automatically detect image fields if the resource type isPod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule:  - Pod: /spec/containers/<N>/image  - ReplicaSet: /spec/template/spec/containers/<N>/image  - Deployment: /spec/template/spec/containers/<N>/image  - DaemonSet: /spec/template/spec/containers/<N>/image  - StatefulSet: /spec/template/spec/containers/<N>/image  - Job: /spec/template/spec/containers/<N>/imageIn addition, all images will be processed if the resource object has more than one container.If not nil, only images matches the filters will be processed. (see [below for nested schema](#nestedatt--spec--overriders--image_overrider--predicate))
-- `value` (String) Value to be applied to image.Must not be empty when operator is 'add' or 'replace'.Defaults to empty and ignored when operator is 'remove'.
+- `predicate` (Attributes) Predicate filters images before applying the rule. Defaults to nil, in that case, the system will automatically detect image fields if the resource type is Pod, ReplicaSet, Deployment, StatefulSet, DaemonSet or Job by following rule: - Pod: /spec/containers/<N>/image - ReplicaSet: /spec/template/spec/containers/<N>/image - Deployment: /spec/template/spec/containers/<N>/image - DaemonSet: /spec/template/spec/containers/<N>/image - StatefulSet: /spec/template/spec/containers/<N>/image - Job: /spec/template/spec/containers/<N>/image In addition, all images will be processed if the resource object has more than one container. If not nil, only images matches the filters will be processed. (see [below for nested schema](#nestedatt--spec--overriders--image_overrider--predicate))
+- `value` (String) Value to be applied to image. Must not be empty when operator is 'add' or 'replace'. Defaults to empty and ignored when operator is 'remove'.
 
 <a id="nestedatt--spec--overriders--image_overrider--predicate"></a>
 ### Nested Schema for `spec.overriders.image_overrider.predicate`
@@ -303,7 +303,7 @@ Required:
 
 Optional:
 
-- `value` (Map of String) Value to be applied to annotations/labels of workload.Items in Value which will be appended after annotations/labels when Operator is 'add'.Items in Value which match in annotations/labels will be deleted when Operator is 'remove'.Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.
+- `value` (Map of String) Value to be applied to annotations/labels of workload. Items in Value which will be appended after annotations/labels when Operator is 'add'. Items in Value which match in annotations/labels will be deleted when Operator is 'remove'. Items in Value which match in annotations/labels will be replaced when Operator is 'replace'.
 
 
 <a id="nestedatt--spec--overriders--plaintext"></a>
@@ -311,12 +311,12 @@ Optional:
 
 Required:
 
-- `operator` (String) Operator indicates the operation on target field.Available operators are: add, replace and remove.
+- `operator` (String) Operator indicates the operation on target field. Available operators are: add, replace and remove.
 - `path` (String) Path indicates the path of target field
 
 Optional:
 
-- `value` (Map of String) Value to be applied to target field.Must be empty when operator is Remove.
+- `value` (Map of String) Value to be applied to target field. Must be empty when operator is Remove.
 
 
 
@@ -330,9 +330,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources.If name is not empty, labelSelector will be ignored. (see [below for nested schema](#nestedatt--spec--resource_selectors--label_selector))
-- `name` (String) Name of the target resource.Default is empty, which means selecting all resources.
-- `namespace` (String) Namespace of the target resource.Default is empty, which means inherit from the parent object scope.
+- `label_selector` (Attributes) A label query over a set of resources. If name is not empty, labelSelector will be ignored. (see [below for nested schema](#nestedatt--spec--resource_selectors--label_selector))
+- `name` (String) Name of the target resource. Default is empty, which means selecting all resources.
+- `namespace` (String) Namespace of the target resource. Default is empty, which means inherit from the parent object scope.
 
 <a id="nestedatt--spec--resource_selectors--label_selector"></a>
 ### Nested Schema for `spec.resource_selectors.label_selector`
@@ -340,7 +340,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--resource_selectors--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--resource_selectors--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.resource_selectors.label_selector.match_expressions`
@@ -348,11 +348,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -364,8 +364,8 @@ Optional:
 
 - `cluster_names` (List of String) ClusterNames is the list of clusters to be selected.
 - `exclude` (List of String) ExcludedClusters is the list of clusters to be ignored.
-- `field_selector` (Attributes) FieldSelector is a filter to select member clusters by fields.The key(field) of the match expression should be 'provider', 'region', or 'zone',and the operator of the match expression should be 'In' or 'NotIn'.If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--target_cluster--field_selector))
-- `label_selector` (Attributes) LabelSelector is a filter to select member clusters by labels.If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--target_cluster--label_selector))
+- `field_selector` (Attributes) FieldSelector is a filter to select member clusters by fields. The key(field) of the match expression should be 'provider', 'region', or 'zone', and the operator of the match expression should be 'In' or 'NotIn'. If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--target_cluster--field_selector))
+- `label_selector` (Attributes) LabelSelector is a filter to select member clusters by labels. If non-nil and non-empty, only the clusters match this filter will be selected. (see [below for nested schema](#nestedatt--spec--target_cluster--label_selector))
 
 <a id="nestedatt--spec--target_cluster--field_selector"></a>
 ### Nested Schema for `spec.target_cluster.field_selector`
@@ -380,11 +380,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
 
 
 
@@ -394,7 +394,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--target_cluster--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--target_cluster--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.target_cluster.label_selector.match_expressions`
@@ -402,8 +402,8 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.

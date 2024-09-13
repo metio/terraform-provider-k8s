@@ -55,33 +55,33 @@ Optional:
 
 Required:
 
-- `gitlab_url` (String) The fully qualified domain name for the GitLab instance.For example, https://gitlab.example.com
+- `gitlab_url` (String) The fully qualified domain name for the GitLab instance. For example, https://gitlab.example.com
 - `token` (String) Name of secret containing the 'runner-registration-token' key used to register the runner
 
 Optional:
 
-- `azure` (Attributes) options used to setup Azure blobstorage as GitLab Runner Cache (see [below for nested schema](#nestedatt--spec--azure))
-- `build_image` (String) The name of the default image to use to runbuild jobs, when none is specified
-- `ca` (String) Name of tls secret containing the custom certificateauthority (CA) certificates
+- `azure` (Attributes) options used to setup Azure blob storage as GitLab Runner Cache (see [below for nested schema](#nestedatt--spec--azure))
+- `build_image` (String) The name of the default image to use to run build jobs, when none is specified
+- `ca` (String) Name of tls secret containing the custom certificate authority (CA) certificates
 - `cache_path` (String) Path defines the Runner Cache path
 - `cache_shared` (Boolean) Enable sharing of cache between Runners
-- `cache_type` (String) Type of cache used for Runner artifactsOptions are: gcs, s3, azure
+- `cache_type` (String) Type of cache used for Runner artifacts Options are: gcs, s3, azure
 - `clone_url` (String) If specified, overrides the default URL used to clone or fetch the Git ref
-- `concurrent` (Number) Option to limit the number of jobs globally that can run concurrently.The operator sets this to 10, if not specified
-- `config` (String) allow user to provide configmap namecontaining the user provided config.toml
-- `env` (String) Accepts configmap name. Provides user mechanism to inject environmentvariables in the GitLab Runner pod via the key value pairs in the ConfigMap
-- `gcs` (Attributes) options used to setup GCS (GoogleContainer Storage) as GitLab Runner Cache (see [below for nested schema](#nestedatt--spec--gcs))
+- `concurrent` (Number) Option to limit the number of jobs globally that can run concurrently. The operator sets this to 10, if not specified
+- `config` (String) allow user to provide configmap name containing the user provided config.toml
+- `env` (String) Accepts configmap name. Provides user mechanism to inject environment variables in the GitLab Runner pod via the key value pairs in the ConfigMap
+- `gcs` (Attributes) options used to setup GCS (Google Container Storage) as GitLab Runner Cache (see [below for nested schema](#nestedatt--spec--gcs))
 - `helper_image` (String) If specified, overrides the default GitLab Runner helper image
-- `image_pull_policy` (String) ImagePullPolicy sets the Image pull policy.One of Always, Never, IfNotPresent.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
-- `interval` (Number) Option to define the number of seconds between checks for new jobs.This is set to a default of 30s by operator if not set
+- `image_pull_policy` (String) ImagePullPolicy sets the Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
+- `interval` (Number) Option to define the number of seconds between checks for new jobs. This is set to a default of 30s by operator if not set
 - `locked` (Boolean) Specify whether the runner should be locked to a specific project. Defaults to false.
 - `pod_spec` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_spec))
 - `protected` (Boolean) Specify whether the runner should only run protected branches. Defaults to false.
-- `run_untagged` (Boolean) Specify if jobs without tags should be run.If not specified, runner will default to true if no tags were specified.In other case it will default to false.
+- `run_untagged` (Boolean) Specify if jobs without tags should be run. If not specified, runner will default to true if no tags were specified. In other case it will default to false.
 - `runner_image` (String) If specified, overrides the default GitLab Runner image. Default is the Runner image the operator was bundled with.
-- `s3` (Attributes) options used to setup S3object store as GitLab Runner Cache (see [below for nested schema](#nestedatt--spec--s3))
-- `serviceaccount` (String) allow user to override service accountused by GitLab Runner
-- `tags` (String) List of comma separated tags to be applied to the runnerMore info: https://docs.gitlab.com/ee/ci/runners/#use-tags-to-limit-the-number-of-jobs-using-the-runner
+- `s3` (Attributes) options used to setup S3 object store as GitLab Runner Cache (see [below for nested schema](#nestedatt--spec--s3))
+- `serviceaccount` (String) allow user to override service account used by GitLab Runner
+- `tags` (String) List of comma separated tags to be applied to the runner More info: https://docs.gitlab.com/ee/ci/runners/#use-tags-to-limit-the-number-of-jobs-using-the-runner
 
 <a id="nestedatt--spec--azure"></a>
 ### Nested Schema for `spec.azure`
@@ -89,8 +89,8 @@ Optional:
 Optional:
 
 - `container` (String) Name of the Azure container in which the cache will be stored
-- `credentials` (String) Credentials secret contains 'accountName' and 'privateKey'used to authenticate against Azure blob storage
-- `storage_domain` (String) The domain name of the Azure blob storagee.g. blob.core.windows.net
+- `credentials` (String) Credentials secret contains 'accountName' and 'privateKey' used to authenticate against Azure blob storage
+- `storage_domain` (String) The domain name of the Azure blob storage e.g. blob.core.windows.net
 
 
 <a id="nestedatt--spec--gcs"></a>
@@ -109,12 +109,12 @@ Optional:
 Required:
 
 - `name` (String) Name is the name given to the custom Pod Spec
-- `patch_type` (String) The strategy the runner uses to apply the specified changes to the PodSpec object generated by GitLab Runner.The accepted values are merge, json, and strategic (default value).
+- `patch_type` (String) The strategy the runner uses to apply the specified changes to the PodSpec object generated by GitLab Runner. The accepted values are merge, json, and strategic (default value).
 
 Optional:
 
-- `patch` (String) A JSON or YAML format string that describes the changes which must be appliedto the final PodSpec object before it is generated.You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.
-- `patch_file` (String) Path to the file that defines the changes to apply to the final PodSpec object before it is generated.The file must be a JSON or YAML file.You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.
+- `patch` (String) A JSON or YAML format string that describes the changes which must be applied to the final PodSpec object before it is generated. You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.
+- `patch_file` (String) Path to the file that defines the changes to apply to the final PodSpec object before it is generated. The file must be a JSON or YAML file. You cannot set the patch_path and patch in the same pod_spec configuration, otherwise an error occurs.
 
 
 <a id="nestedatt--spec--s3"></a>
@@ -123,7 +123,7 @@ Optional:
 Optional:
 
 - `bucket` (String) Name of the bucket in which the cache will be stored
-- `credentials` (String) Name of the secret containing the'accesskey' and 'secretkey' used to access the object storage
+- `credentials` (String) Name of the secret containing the 'accesskey' and 'secretkey' used to access the object storage
 - `insecure` (Boolean) Use insecure connections or HTTP
 - `location` (String) Name of the S3 region in use
 - `server` (String)

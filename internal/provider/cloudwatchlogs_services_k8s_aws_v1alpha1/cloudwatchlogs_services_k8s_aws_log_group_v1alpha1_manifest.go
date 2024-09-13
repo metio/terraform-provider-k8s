@@ -137,24 +137,24 @@ func (r *CloudwatchlogsServicesK8SAwsLogGroupV1Alpha1Manifest) Schema(_ context.
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "LogGroupSpec defines the desired state of LogGroup.Represents a log group.",
-				MarkdownDescription: "LogGroupSpec defines the desired state of LogGroup.Represents a log group.",
+				Description:         "LogGroupSpec defines the desired state of LogGroup. Represents a log group.",
+				MarkdownDescription: "LogGroupSpec defines the desired state of LogGroup. Represents a log group.",
 				Attributes: map[string]schema.Attribute{
 					"kms_key_id": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the KMS key to use when encrypting logdata. For more information, see Amazon Resource Names (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms).",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the KMS key to use when encrypting logdata. For more information, see Amazon Resource Names (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms).",
+						Description:         "The Amazon Resource Name (ARN) of the KMS key to use when encrypting log data. For more information, see Amazon Resource Names (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms).",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the KMS key to use when encrypting log data. For more information, see Amazon Resource Names (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"kms_key_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -212,8 +212,8 @@ func (r *CloudwatchlogsServicesK8SAwsLogGroupV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"distribution": schema.StringAttribute{
-									Description:         "The method used to distribute log data to the destination, which can be eitherrandom or grouped by log stream.",
-									MarkdownDescription: "The method used to distribute log data to the destination, which can be eitherrandom or grouped by log stream.",
+									Description:         "The method used to distribute log data to the destination, which can be either random or grouped by log stream.",
+									MarkdownDescription: "The method used to distribute log data to the destination, which can be either random or grouped by log stream.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -228,8 +228,8 @@ func (r *CloudwatchlogsServicesK8SAwsLogGroupV1Alpha1Manifest) Schema(_ context.
 								},
 
 								"filter_pattern": schema.StringAttribute{
-									Description:         "A symbolic description of how CloudWatch Logs should interpret the data ineach log event. For example, a log event can contain timestamps, IP addresses,strings, and so on. You use the filter pattern to specify what to look forin the log event message.",
-									MarkdownDescription: "A symbolic description of how CloudWatch Logs should interpret the data ineach log event. For example, a log event can contain timestamps, IP addresses,strings, and so on. You use the filter pattern to specify what to look forin the log event message.",
+									Description:         "A symbolic description of how CloudWatch Logs should interpret the data in each log event. For example, a log event can contain timestamps, IP addresses, strings, and so on. You use the filter pattern to specify what to look for in the log event message.",
+									MarkdownDescription: "A symbolic description of how CloudWatch Logs should interpret the data in each log event. For example, a log event can contain timestamps, IP addresses, strings, and so on. You use the filter pattern to specify what to look for in the log event message.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -250,8 +250,8 @@ func (r *CloudwatchlogsServicesK8SAwsLogGroupV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "The key-value pairs to use for the tags.You can grant users access to certain log groups while preventing them fromaccessing other log groups. To do so, tag your groups and use IAM policiesthat refer to those tags. To assign tags when you create a log group, youmust have either the logs:TagResource or logs:TagLogGroup permission. Formore information about tagging, see Tagging Amazon Web Services resources(https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html). For moreinformation about using tags to control access, see Controlling access toAmazon Web Services resources using tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html).",
-						MarkdownDescription: "The key-value pairs to use for the tags.You can grant users access to certain log groups while preventing them fromaccessing other log groups. To do so, tag your groups and use IAM policiesthat refer to those tags. To assign tags when you create a log group, youmust have either the logs:TagResource or logs:TagLogGroup permission. Formore information about tagging, see Tagging Amazon Web Services resources(https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html). For moreinformation about using tags to control access, see Controlling access toAmazon Web Services resources using tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html).",
+						Description:         "The key-value pairs to use for the tags. You can grant users access to certain log groups while preventing them from accessing other log groups. To do so, tag your groups and use IAM policies that refer to those tags. To assign tags when you create a log group, you must have either the logs:TagResource or logs:TagLogGroup permission. For more information about tagging, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html). For more information about using tags to control access, see Controlling access to Amazon Web Services resources using tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html).",
+						MarkdownDescription: "The key-value pairs to use for the tags. You can grant users access to certain log groups while preventing them from accessing other log groups. To do so, tag your groups and use IAM policies that refer to those tags. To assign tags when you create a log group, you must have either the logs:TagResource or logs:TagLogGroup permission. For more information about tagging, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html). For more information about using tags to control access, see Controlling access to Amazon Web Services resources using tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html).",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

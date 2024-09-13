@@ -110,8 +110,8 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Metadata(_ context.Context, re
 
 func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "MachineSet is the Schema for the machinesets API.Deprecated: This type will be removed in one of the next releases.",
-		MarkdownDescription: "MachineSet is the Schema for the machinesets API.Deprecated: This type will be removed in one of the next releases.",
+		Description:         "MachineSet is the Schema for the machinesets API. Deprecated: This type will be removed in one of the next releases.",
+		MarkdownDescription: "MachineSet is the Schema for the machinesets API. Deprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -193,8 +193,8 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 					},
 
 					"delete_policy": schema.StringAttribute{
-						Description:         "DeletePolicy defines the policy used to identify nodes to delete when downscaling.Defaults to 'Random'.  Valid values are 'Random, 'Newest', 'Oldest'",
-						MarkdownDescription: "DeletePolicy defines the policy used to identify nodes to delete when downscaling.Defaults to 'Random'.  Valid values are 'Random, 'Newest', 'Oldest'",
+						Description:         "DeletePolicy defines the policy used to identify nodes to delete when downscaling. Defaults to 'Random'. Valid values are 'Random, 'Newest', 'Oldest'",
+						MarkdownDescription: "DeletePolicy defines the policy used to identify nodes to delete when downscaling. Defaults to 'Random'. Valid values are 'Random, 'Newest', 'Oldest'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -204,24 +204,24 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 					},
 
 					"min_ready_seconds": schema.Int64Attribute{
-						Description:         "MinReadySeconds is the minimum number of seconds for which a newly created machine should be ready.Defaults to 0 (machine will be considered available as soon as it is ready)",
-						MarkdownDescription: "MinReadySeconds is the minimum number of seconds for which a newly created machine should be ready.Defaults to 0 (machine will be considered available as soon as it is ready)",
+						Description:         "MinReadySeconds is the minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready)",
+						MarkdownDescription: "MinReadySeconds is the minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready)",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"replicas": schema.Int64Attribute{
-						Description:         "Replicas is the number of desired replicas.This is a pointer to distinguish between explicit zero and unspecified.Defaults to 1.",
-						MarkdownDescription: "Replicas is the number of desired replicas.This is a pointer to distinguish between explicit zero and unspecified.Defaults to 1.",
+						Description:         "Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1.",
+						MarkdownDescription: "Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"selector": schema.SingleNestedAttribute{
-						Description:         "Selector is a label query over machines that should match the replica count.Label keys and values that must match in order to be controlled by this MachineSet.It must match the machine template's labels.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors",
-						MarkdownDescription: "Selector is a label query over machines that should match the replica count.Label keys and values that must match in order to be controlled by this MachineSet.It must match the machine template's labels.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors",
+						Description:         "Selector is a label query over machines that should match the replica count. Label keys and values that must match in order to be controlled by this MachineSet. It must match the machine template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors",
+						MarkdownDescription: "Selector is a label query over machines that should match the replica count. Label keys and values that must match in order to be controlled by this MachineSet. It must match the machine template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -237,16 +237,16 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -260,8 +260,8 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -274,16 +274,16 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 					},
 
 					"template": schema.SingleNestedAttribute{
-						Description:         "Template is the object that describes the machine that will be created ifinsufficient replicas are detected.Object references to custom resources are treated as templates.",
-						MarkdownDescription: "Template is the object that describes the machine that will be created ifinsufficient replicas are detected.Object references to custom resources are treated as templates.",
+						Description:         "Template is the object that describes the machine that will be created if insufficient replicas are detected. Object references to custom resources are treated as templates.",
+						MarkdownDescription: "Template is the object that describes the machine that will be created if insufficient replicas are detected. Object references to custom resources are treated as templates.",
 						Attributes: map[string]schema.Attribute{
 							"metadata": schema.SingleNestedAttribute{
-								Description:         "Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
-								MarkdownDescription: "Standard object's metadata.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+								Description:         "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+								MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
-										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
+										Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -291,16 +291,16 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 									},
 
 									"generate_name": schema.StringAttribute{
-										Description:         "GenerateName is an optional prefix, used by the server, to generate a uniquename ONLY IF the Name field has not been provided.If this field is used, the name returned to the client will be differentthan the name passed. This value will also be combined with a unique suffix.The provided value has the same validation rules as the Name field,and may be truncated by the length of the suffix required to make the valueunique on the server.If this field is specified and the generated name exists, the server willNOT return a 409 - instead, it will either return 201 Created or 500 with ReasonServerTimeout indicating a unique name could not be found in the time allotted, and the clientshould retry (optionally after the time indicated in the Retry-After header).Applied only if Name is not specified.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotencyDeprecated: This field has no function and is going to be removed in a next release.",
-										MarkdownDescription: "GenerateName is an optional prefix, used by the server, to generate a uniquename ONLY IF the Name field has not been provided.If this field is used, the name returned to the client will be differentthan the name passed. This value will also be combined with a unique suffix.The provided value has the same validation rules as the Name field,and may be truncated by the length of the suffix required to make the valueunique on the server.If this field is specified and the generated name exists, the server willNOT return a 409 - instead, it will either return 201 Created or 500 with ReasonServerTimeout indicating a unique name could not be found in the time allotted, and the clientshould retry (optionally after the time indicated in the Retry-After header).Applied only if Name is not specified.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotencyDeprecated: This field has no function and is going to be removed in a next release.",
+										Description:         "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server. If this field is specified and the generated name exists, the server will NOT return a 409 - instead, it will either return 201 Created or 500 with Reason ServerTimeout indicating a unique name could not be found in the time allotted, and the client should retry (optionally after the time indicated in the Retry-After header). Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency Deprecated: This field has no function and is going to be removed in a next release.",
+										MarkdownDescription: "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server. If this field is specified and the generated name exists, the server will NOT return a 409 - instead, it will either return 201 Created or 500 with Reason ServerTimeout indicating a unique name could not be found in the time allotted, and the client should retry (optionally after the time indicated in the Retry-After header). Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency Deprecated: This field has no function and is going to be removed in a next release.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
-										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
+										Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -308,24 +308,24 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Name must be unique within a namespace. Is required when creating resources, althoughsome resources may allow a client to request the generation of an appropriate nameautomatically. Name is primarily intended for creation idempotence and configurationdefinition.Cannot be updated.More info: http://kubernetes.io/docs/user-guide/identifiers#namesDeprecated: This field has no function and is going to be removed in a next release.",
-										MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, althoughsome resources may allow a client to request the generation of an appropriate nameautomatically. Name is primarily intended for creation idempotence and configurationdefinition.Cannot be updated.More info: http://kubernetes.io/docs/user-guide/identifiers#namesDeprecated: This field has no function and is going to be removed in a next release.",
+										Description:         "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names Deprecated: This field has no function and is going to be removed in a next release.",
+										MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names Deprecated: This field has no function and is going to be removed in a next release.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"namespace": schema.StringAttribute{
-										Description:         "Namespace defines the space within each name must be unique. An empty namespace isequivalent to the 'default' namespace, but 'default' is the canonical representation.Not all objects are required to be scoped to a namespace - the value of this field forthose objects will be empty.Must be a DNS_LABEL.Cannot be updated.More info: http://kubernetes.io/docs/user-guide/namespacesDeprecated: This field has no function and is going to be removed in a next release.",
-										MarkdownDescription: "Namespace defines the space within each name must be unique. An empty namespace isequivalent to the 'default' namespace, but 'default' is the canonical representation.Not all objects are required to be scoped to a namespace - the value of this field forthose objects will be empty.Must be a DNS_LABEL.Cannot be updated.More info: http://kubernetes.io/docs/user-guide/namespacesDeprecated: This field has no function and is going to be removed in a next release.",
+										Description:         "Namespace defines the space within each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces Deprecated: This field has no function and is going to be removed in a next release.",
+										MarkdownDescription: "Namespace defines the space within each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces Deprecated: This field has no function and is going to be removed in a next release.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"owner_references": schema.ListNestedAttribute{
-										Description:         "List of objects depended by this object. If ALL objects in the list havebeen deleted, this object will be garbage collected. If this object is managed by a controller,then an entry in this list will point to this controller, with the controller field set to true.There cannot be more than one managing controller.Deprecated: This field has no function and is going to be removed in a next release.",
-										MarkdownDescription: "List of objects depended by this object. If ALL objects in the list havebeen deleted, this object will be garbage collected. If this object is managed by a controller,then an entry in this list will point to this controller, with the controller field set to true.There cannot be more than one managing controller.Deprecated: This field has no function and is going to be removed in a next release.",
+										Description:         "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller. Deprecated: This field has no function and is going to be removed in a next release.",
+										MarkdownDescription: "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller. Deprecated: This field has no function and is going to be removed in a next release.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"api_version": schema.StringAttribute{
@@ -337,8 +337,8 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 												},
 
 												"block_owner_deletion": schema.BoolAttribute{
-													Description:         "If true, AND if the owner has the 'foregroundDeletion' finalizer, thenthe owner cannot be deleted from the key-value store until thisreference is removed.See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletionfor how the garbage collector interacts with this field and enforces the foreground deletion.Defaults to false.To set this field, a user needs 'delete' permission of the owner,otherwise 422 (Unprocessable Entity) will be returned.",
-													MarkdownDescription: "If true, AND if the owner has the 'foregroundDeletion' finalizer, thenthe owner cannot be deleted from the key-value store until thisreference is removed.See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletionfor how the garbage collector interacts with this field and enforces the foreground deletion.Defaults to false.To set this field, a user needs 'delete' permission of the owner,otherwise 422 (Unprocessable Entity) will be returned.",
+													Description:         "If true, AND if the owner has the 'foregroundDeletion' finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs 'delete' permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
+													MarkdownDescription: "If true, AND if the owner has the 'foregroundDeletion' finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs 'delete' permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -353,24 +353,24 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 												},
 
 												"kind": schema.StringAttribute{
-													Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-													MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+													Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+													MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"uid": schema.StringAttribute{
-													Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
-													MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+													Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+													MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -388,16 +388,16 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 							},
 
 							"spec": schema.SingleNestedAttribute{
-								Description:         "Specification of the desired behavior of the machine.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
-								MarkdownDescription: "Specification of the desired behavior of the machine.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+								Description:         "Specification of the desired behavior of the machine. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+								MarkdownDescription: "Specification of the desired behavior of the machine. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
 								Attributes: map[string]schema.Attribute{
 									"bootstrap": schema.SingleNestedAttribute{
-										Description:         "Bootstrap is a reference to a local struct which encapsulatesfields to configure the Machine’s bootstrapping mechanism.",
-										MarkdownDescription: "Bootstrap is a reference to a local struct which encapsulatesfields to configure the Machine’s bootstrapping mechanism.",
+										Description:         "Bootstrap is a reference to a local struct which encapsulates fields to configure the Machine’s bootstrapping mechanism.",
+										MarkdownDescription: "Bootstrap is a reference to a local struct which encapsulates fields to configure the Machine’s bootstrapping mechanism.",
 										Attributes: map[string]schema.Attribute{
 											"config_ref": schema.SingleNestedAttribute{
-												Description:         "ConfigRef is a reference to a bootstrap provider-specific resourcethat holds configuration details. The reference is optional toallow users/operators to specify Bootstrap.Data withoutthe need of a controller.",
-												MarkdownDescription: "ConfigRef is a reference to a bootstrap provider-specific resourcethat holds configuration details. The reference is optional toallow users/operators to specify Bootstrap.Data withoutthe need of a controller.",
+												Description:         "ConfigRef is a reference to a bootstrap provider-specific resource that holds configuration details. The reference is optional to allow users/operators to specify Bootstrap.Data without the need of a controller.",
+												MarkdownDescription: "ConfigRef is a reference to a bootstrap provider-specific resource that holds configuration details. The reference is optional to allow users/operators to specify Bootstrap.Data without the need of a controller.",
 												Attributes: map[string]schema.Attribute{
 													"api_version": schema.StringAttribute{
 														Description:         "API version of the referent.",
@@ -408,48 +408,48 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 													},
 
 													"field_path": schema.StringAttribute{
-														Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
-														MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
+														Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+														MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"kind": schema.StringAttribute{
-														Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-														MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-														MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+														Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+														MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"resource_version": schema.StringAttribute{
-														Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-														MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+														Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+														MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"uid": schema.StringAttribute{
-														Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-														MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+														Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+														MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -461,16 +461,16 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 											},
 
 											"data": schema.StringAttribute{
-												Description:         "Data contains the bootstrap data, such as cloud-init details scripts.If nil, the Machine should remain in the Pending state.Deprecated: Switch to DataSecretName.",
-												MarkdownDescription: "Data contains the bootstrap data, such as cloud-init details scripts.If nil, the Machine should remain in the Pending state.Deprecated: Switch to DataSecretName.",
+												Description:         "Data contains the bootstrap data, such as cloud-init details scripts. If nil, the Machine should remain in the Pending state. Deprecated: Switch to DataSecretName.",
+												MarkdownDescription: "Data contains the bootstrap data, such as cloud-init details scripts. If nil, the Machine should remain in the Pending state. Deprecated: Switch to DataSecretName.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"data_secret_name": schema.StringAttribute{
-												Description:         "DataSecretName is the name of the secret that stores the bootstrap data script.If nil, the Machine should remain in the Pending state.",
-												MarkdownDescription: "DataSecretName is the name of the secret that stores the bootstrap data script.If nil, the Machine should remain in the Pending state.",
+												Description:         "DataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.",
+												MarkdownDescription: "DataSecretName is the name of the secret that stores the bootstrap data script. If nil, the Machine should remain in the Pending state.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -493,16 +493,16 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 									},
 
 									"failure_domain": schema.StringAttribute{
-										Description:         "FailureDomain is the failure domain the machine will be created in.Must match a key in the FailureDomains map stored on the cluster object.",
-										MarkdownDescription: "FailureDomain is the failure domain the machine will be created in.Must match a key in the FailureDomains map stored on the cluster object.",
+										Description:         "FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.",
+										MarkdownDescription: "FailureDomain is the failure domain the machine will be created in. Must match a key in the FailureDomains map stored on the cluster object.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"infrastructure_ref": schema.SingleNestedAttribute{
-										Description:         "InfrastructureRef is a required reference to a custom resourceoffered by an infrastructure provider.",
-										MarkdownDescription: "InfrastructureRef is a required reference to a custom resourceoffered by an infrastructure provider.",
+										Description:         "InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.",
+										MarkdownDescription: "InfrastructureRef is a required reference to a custom resource offered by an infrastructure provider.",
 										Attributes: map[string]schema.Attribute{
 											"api_version": schema.StringAttribute{
 												Description:         "API version of the referent.",
@@ -513,48 +513,48 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 											},
 
 											"field_path": schema.StringAttribute{
-												Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
-												MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
+												Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+												MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"kind": schema.StringAttribute{
-												Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-												MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+												Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+												MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-												MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+												Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+												MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"resource_version": schema.StringAttribute{
-												Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-												MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+												Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+												MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"uid": schema.StringAttribute{
-												Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-												MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+												Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+												MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -566,24 +566,24 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 									},
 
 									"node_drain_timeout": schema.StringAttribute{
-										Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
-										MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
+										Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
+										MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"provider_id": schema.StringAttribute{
-										Description:         "ProviderID is the identification ID of the machine provided by the provider.This field must match the provider ID as seen on the node object corresponding to this machine.This field is required by higher level consumers of cluster-api. Example use case is cluster autoscalerwith cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find outmachines at provider which could not get registered as Kubernetes nodes. With cluster-api as ageneric out-of-tree provider for autoscaler, this field is required by autoscaler to beable to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserverand then a comparison is done to find out unregistered machines and are marked for delete.This field will be set by the actuators and consumed by higher level entities like autoscaler that willbe interfacing with cluster-api as generic provider.",
-										MarkdownDescription: "ProviderID is the identification ID of the machine provided by the provider.This field must match the provider ID as seen on the node object corresponding to this machine.This field is required by higher level consumers of cluster-api. Example use case is cluster autoscalerwith cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find outmachines at provider which could not get registered as Kubernetes nodes. With cluster-api as ageneric out-of-tree provider for autoscaler, this field is required by autoscaler to beable to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserverand then a comparison is done to find out unregistered machines and are marked for delete.This field will be set by the actuators and consumed by higher level entities like autoscaler that willbe interfacing with cluster-api as generic provider.",
+										Description:         "ProviderID is the identification ID of the machine provided by the provider. This field must match the provider ID as seen on the node object corresponding to this machine. This field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler with cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out machines at provider which could not get registered as Kubernetes nodes. With cluster-api as a generic out-of-tree provider for autoscaler, this field is required by autoscaler to be able to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver and then a comparison is done to find out unregistered machines and are marked for delete. This field will be set by the actuators and consumed by higher level entities like autoscaler that will be interfacing with cluster-api as generic provider.",
+										MarkdownDescription: "ProviderID is the identification ID of the machine provided by the provider. This field must match the provider ID as seen on the node object corresponding to this machine. This field is required by higher level consumers of cluster-api. Example use case is cluster autoscaler with cluster-api as provider. Clean-up logic in the autoscaler compares machines to nodes to find out machines at provider which could not get registered as Kubernetes nodes. With cluster-api as a generic out-of-tree provider for autoscaler, this field is required by autoscaler to be able to have a provider view of the list of machines. Another list of nodes is queried from the k8s apiserver and then a comparison is done to find out unregistered machines and are marked for delete. This field will be set by the actuators and consumed by higher level entities like autoscaler that will be interfacing with cluster-api as generic provider.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"version": schema.StringAttribute{
-										Description:         "Version defines the desired Kubernetes version.This field is meant to be optionally used by bootstrap providers.",
-										MarkdownDescription: "Version defines the desired Kubernetes version.This field is meant to be optionally used by bootstrap providers.",
+										Description:         "Version defines the desired Kubernetes version. This field is meant to be optionally used by bootstrap providers.",
+										MarkdownDescription: "Version defines the desired Kubernetes version. This field is meant to be optionally used by bootstrap providers.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

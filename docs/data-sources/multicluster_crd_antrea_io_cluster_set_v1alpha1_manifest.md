@@ -59,8 +59,8 @@ Required:
 
 Optional:
 
-- `members` (Attributes List) Members include member clusters known to the leader clusters.Used in leader cluster. (see [below for nested schema](#nestedatt--spec--members))
-- `namespace` (String) The leader cluster Namespace in which the ClusterSet is defined.Used in member cluster.
+- `members` (Attributes List) Members include member clusters known to the leader clusters. Used in leader cluster. (see [below for nested schema](#nestedatt--spec--members))
+- `namespace` (String) The leader cluster Namespace in which the ClusterSet is defined. Used in member cluster.
 
 <a id="nestedatt--spec--leaders"></a>
 ### Nested Schema for `spec.leaders`

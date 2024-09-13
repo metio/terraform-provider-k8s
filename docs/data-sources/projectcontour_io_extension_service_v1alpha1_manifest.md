@@ -3,12 +3,12 @@
 page_title: "k8s_projectcontour_io_extension_service_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "projectcontour.io"
 description: |-
-  ExtensionService is the schema for the Contour extension services API.An ExtensionService resource binds a network service to the ContourAPI so that Contour API features can be implemented by collaboratingcomponents.
+  ExtensionService is the schema for the Contour extension services API. An ExtensionService resource binds a network service to the Contour API so that Contour API features can be implemented by collaborating components.
 ---
 
 # k8s_projectcontour_io_extension_service_v1alpha1_manifest (Data Source)
 
-ExtensionService is the schema for the Contour extension services API.An ExtensionService resource binds a network service to the ContourAPI so that Contour API features can be implemented by collaboratingcomponents.
+ExtensionService is the schema for the Contour extension services API. An ExtensionService resource binds a network service to the Contour API so that Contour API features can be implemented by collaborating components.
 
 ## Example Usage
 
@@ -55,14 +55,14 @@ Optional:
 
 Required:
 
-- `services` (Attributes List) Services specifies the set of Kubernetes Service resources thatreceive GRPC extension API requests.If no weights are specified for any of the entries inthis array, traffic will be spread evenly across all theservices.Otherwise, traffic is balanced proportionally to theWeight field in each entry. (see [below for nested schema](#nestedatt--spec--services))
+- `services` (Attributes List) Services specifies the set of Kubernetes Service resources that receive GRPC extension API requests. If no weights are specified for any of the entries in this array, traffic will be spread evenly across all the services. Otherwise, traffic is balanced proportionally to the Weight field in each entry. (see [below for nested schema](#nestedatt--spec--services))
 
 Optional:
 
-- `circuit_breaker_policy` (Attributes) CircuitBreakerPolicy specifies the circuit breaker budget across the extension service.If defined this overrides the global circuit breaker budget. (see [below for nested schema](#nestedatt--spec--circuit_breaker_policy))
-- `load_balancer_policy` (Attributes) The policy for load balancing GRPC service requests. Note that the'Cookie' and 'RequestHash' load balancing strategies cannot be usedhere. (see [below for nested schema](#nestedatt--spec--load_balancer_policy))
-- `protocol` (String) Protocol may be used to specify (or override) the protocol used to reach this Service.Values may be h2 or h2c. If omitted, protocol-selection falls back on Service annotations.
-- `protocol_version` (String) This field sets the version of the GRPC protocol that Envoy uses tosend requests to the extension service. Since Contour always uses thev3 Envoy API, this is currently fixed at 'v3'. However, otherprotocol options will be available in future.
+- `circuit_breaker_policy` (Attributes) CircuitBreakerPolicy specifies the circuit breaker budget across the extension service. If defined this overrides the global circuit breaker budget. (see [below for nested schema](#nestedatt--spec--circuit_breaker_policy))
+- `load_balancer_policy` (Attributes) The policy for load balancing GRPC service requests. Note that the 'Cookie' and 'RequestHash' load balancing strategies cannot be used here. (see [below for nested schema](#nestedatt--spec--load_balancer_policy))
+- `protocol` (String) Protocol may be used to specify (or override) the protocol used to reach this Service. Values may be h2 or h2c. If omitted, protocol-selection falls back on Service annotations.
+- `protocol_version` (String) This field sets the version of the GRPC protocol that Envoy uses to send requests to the extension service. Since Contour always uses the v3 Envoy API, this is currently fixed at 'v3'. However, other protocol options will be available in future.
 - `timeout_policy` (Attributes) The timeout policy for requests to the services. (see [below for nested schema](#nestedatt--spec--timeout_policy))
 - `validation` (Attributes) UpstreamValidation defines how to verify the backend service's certificate (see [below for nested schema](#nestedatt--spec--validation))
 
@@ -71,7 +71,7 @@ Optional:
 
 Required:
 
-- `name` (String) Name is the name of Kubernetes service that will accept servicetraffic.
+- `name` (String) Name is the name of Kubernetes service that will accept service traffic.
 - `port` (Number) Port (defined as Integer) to proxy traffic to since a service can have multiple defined.
 
 Optional:
@@ -88,7 +88,7 @@ Optional:
 - `max_pending_requests` (Number) The maximum number of pending requests that a single Envoy instance allows to the Kubernetes Service; defaults to 1024.
 - `max_requests` (Number) The maximum parallel requests a single Envoy instance allows to the Kubernetes Service; defaults to 1024
 - `max_retries` (Number) The maximum number of parallel retries a single Envoy instance allows to the Kubernetes Service; defaults to 3.
-- `per_host_max_connections` (Number) PerHostMaxConnections is the maximum number of connectionsthat Envoy will allow to each individual host in a cluster.
+- `per_host_max_connections` (Number) PerHostMaxConnections is the maximum number of connections that Envoy will allow to each individual host in a cluster.
 
 
 <a id="nestedatt--spec--load_balancer_policy"></a>
@@ -96,25 +96,25 @@ Optional:
 
 Optional:
 
-- `request_hash_policies` (Attributes List) RequestHashPolicies contains a list of hash policies to apply when the'RequestHash' load balancing strategy is chosen. If an element of thesupplied list of hash policies is invalid, it will be ignored. If thelist of hash policies is empty after validation, the load balancingstrategy will fall back to the default 'RoundRobin'. (see [below for nested schema](#nestedatt--spec--load_balancer_policy--request_hash_policies))
-- `strategy` (String) Strategy specifies the policy used to balance requestsacross the pool of backend pods. Valid policy names are'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie',and 'RequestHash'. If an unknown strategy name is specifiedor no policy is supplied, the default 'RoundRobin' policyis used.
+- `request_hash_policies` (Attributes List) RequestHashPolicies contains a list of hash policies to apply when the 'RequestHash' load balancing strategy is chosen. If an element of the supplied list of hash policies is invalid, it will be ignored. If the list of hash policies is empty after validation, the load balancing strategy will fall back to the default 'RoundRobin'. (see [below for nested schema](#nestedatt--spec--load_balancer_policy--request_hash_policies))
+- `strategy` (String) Strategy specifies the policy used to balance requests across the pool of backend pods. Valid policy names are 'Random', 'RoundRobin', 'WeightedLeastRequest', 'Cookie', and 'RequestHash'. If an unknown strategy name is specified or no policy is supplied, the default 'RoundRobin' policy is used.
 
 <a id="nestedatt--spec--load_balancer_policy--request_hash_policies"></a>
 ### Nested Schema for `spec.load_balancer_policy.request_hash_policies`
 
 Optional:
 
-- `hash_source_ip` (Boolean) HashSourceIP should be set to true when request source IP hash basedload balancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored.
-- `header_hash_options` (Attributes) HeaderHashOptions should be set when request header hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--load_balancer_policy--request_hash_policies--header_hash_options))
-- `query_parameter_hash_options` (Attributes) QueryParameterHashOptions should be set when request query parameter hash based loadbalancing is desired. It must be the only hash option field set,otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--load_balancer_policy--request_hash_policies--query_parameter_hash_options))
-- `terminal` (Boolean) Terminal is a flag that allows for short-circuiting computing of a hashfor a given request. If set to true, and the request attribute specifiedin the attribute hash options is present, no further hash policies willbe used to calculate a hash for the request.
+- `hash_source_ip` (Boolean) HashSourceIP should be set to true when request source IP hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored.
+- `header_hash_options` (Attributes) HeaderHashOptions should be set when request header hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--load_balancer_policy--request_hash_policies--header_hash_options))
+- `query_parameter_hash_options` (Attributes) QueryParameterHashOptions should be set when request query parameter hash based load balancing is desired. It must be the only hash option field set, otherwise this request hash policy object will be ignored. (see [below for nested schema](#nestedatt--spec--load_balancer_policy--request_hash_policies--query_parameter_hash_options))
+- `terminal` (Boolean) Terminal is a flag that allows for short-circuiting computing of a hash for a given request. If set to true, and the request attribute specified in the attribute hash options is present, no further hash policies will be used to calculate a hash for the request.
 
 <a id="nestedatt--spec--load_balancer_policy--request_hash_policies--header_hash_options"></a>
 ### Nested Schema for `spec.load_balancer_policy.request_hash_policies.header_hash_options`
 
 Optional:
 
-- `header_name` (String) HeaderName is the name of the HTTP request header that will be used tocalculate the hash key. If the header specified is not present on arequest, no hash will be produced.
+- `header_name` (String) HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.
 
 
 <a id="nestedatt--spec--load_balancer_policy--request_hash_policies--query_parameter_hash_options"></a>
@@ -122,7 +122,7 @@ Optional:
 
 Optional:
 
-- `parameter_name` (String) ParameterName is the name of the HTTP request query parameter that will be used tocalculate the hash key. If the query parameter specified is not present on arequest, no hash will be produced.
+- `parameter_name` (String) ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.
 
 
 
@@ -132,9 +132,9 @@ Optional:
 
 Optional:
 
-- `idle` (String) Timeout for how long the proxy should wait while there is no activity during single request/response (for HTTP/1.1) or stream (for HTTP/2).Timeout will not trigger while HTTP/1.1 connection is idle between two consecutive requests.If not specified, there is no per-route idle timeout, though a connection manager-widestream_idle_timeout default of 5m still applies.
-- `idle_connection` (String) Timeout for how long connection from the proxy to the upstream service is kept when there are no active requests.If not supplied, Envoy's default value of 1h applies.
-- `response` (String) Timeout for receiving a response from the server after processing a request from client.If not supplied, Envoy's default value of 15s applies.
+- `idle` (String) Timeout for how long the proxy should wait while there is no activity during single request/response (for HTTP/1.1) or stream (for HTTP/2). Timeout will not trigger while HTTP/1.1 connection is idle between two consecutive requests. If not specified, there is no per-route idle timeout, though a connection manager-wide stream_idle_timeout default of 5m still applies.
+- `idle_connection` (String) Timeout for how long connection from the proxy to the upstream service is kept when there are no active requests. If not supplied, Envoy's default value of 1h applies.
+- `response` (String) Timeout for receiving a response from the server after processing a request from client. If not supplied, Envoy's default value of 15s applies.
 
 
 <a id="nestedatt--spec--validation"></a>
@@ -142,9 +142,9 @@ Optional:
 
 Required:
 
-- `ca_secret` (String) Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend.The secret must contain key named ca.crt.The name can be optionally prefixed with namespace 'namespace/name'.When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret.Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)
-- `subject_name` (String) Key which is expected to be present in the 'subjectAltName' of the presented certificate.Deprecated: migrate to using the plural field subjectNames.
+- `ca_secret` (String) Name or namespaced name of the Kubernetes secret used to validate the certificate presented by the backend. The secret must contain key named ca.crt. The name can be optionally prefixed with namespace 'namespace/name'. When cross-namespace reference is used, TLSCertificateDelegation resource must exist in the namespace to grant access to the secret. Max length should be the actual max possible length of a namespaced name (63 + 253 + 1 = 317)
+- `subject_name` (String) Key which is expected to be present in the 'subjectAltName' of the presented certificate. Deprecated: migrate to using the plural field subjectNames.
 
 Optional:
 
-- `subject_names` (List of String) List of keys, of which at least one is expected to be present in the 'subjectAltName of thepresented certificate.
+- `subject_names` (List of String) List of keys, of which at least one is expected to be present in the 'subjectAltName of the presented certificate.

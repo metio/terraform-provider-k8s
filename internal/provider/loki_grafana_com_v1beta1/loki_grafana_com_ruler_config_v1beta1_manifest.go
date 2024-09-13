@@ -395,8 +395,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"endpoints": schema.ListAttribute{
-								Description:         "List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated asa separate group in the configuration. Multiple Alertmanagers in HA per group can besupported by using DNS resolution (See EnableDNSDiscovery).",
-								MarkdownDescription: "List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated asa separate group in the configuration. Multiple Alertmanagers in HA per group can besupported by using DNS resolution (See EnableDNSDiscovery).",
+								Description:         "List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated as a separate group in the configuration. Multiple Alertmanagers in HA per group can be supported by using DNS resolution (See EnableDNSDiscovery).",
+								MarkdownDescription: "List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated as a separate group in the configuration. Multiple Alertmanagers in HA per group can be supported by using DNS resolution (See EnableDNSDiscovery).",
 								ElementType:         types.StringType,
 								Required:            true,
 								Optional:            false,
@@ -433,8 +433,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"for_grace_period": schema.StringAttribute{
-										Description:         "Minimum duration between alert and restored 'for' state. This is maintainedonly for alerts with configured 'for' time greater than the grace period.",
-										MarkdownDescription: "Minimum duration between alert and restored 'for' state. This is maintainedonly for alerts with configured 'for' time greater than the grace period.",
+										Description:         "Minimum duration between alert and restored 'for' state. This is maintained only for alerts with configured 'for' time greater than the grace period.",
+										MarkdownDescription: "Minimum duration between alert and restored 'for' state. This is maintained only for alerts with configured 'for' time greater than the grace period.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -514,8 +514,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"replacement": schema.StringAttribute{
-											Description:         "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
-											MarkdownDescription: "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
+											Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+											MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -530,8 +530,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"source_labels": schema.ListAttribute{
-											Description:         "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
-											MarkdownDescription: "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
+											Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+											MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,
@@ -539,8 +539,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"target_label": schema.StringAttribute{
-											Description:         "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
-											MarkdownDescription: "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
+											Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+											MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -721,8 +721,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"endpoints": schema.ListAttribute{
-										Description:         "List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated asa separate group in the configuration. Multiple Alertmanagers in HA per group can besupported by using DNS resolution (See EnableDNSDiscovery).",
-										MarkdownDescription: "List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated asa separate group in the configuration. Multiple Alertmanagers in HA per group can besupported by using DNS resolution (See EnableDNSDiscovery).",
+										Description:         "List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated as a separate group in the configuration. Multiple Alertmanagers in HA per group can be supported by using DNS resolution (See EnableDNSDiscovery).",
+										MarkdownDescription: "List of AlertManager URLs to send notifications to. Each Alertmanager URL is treated as a separate group in the configuration. Multiple Alertmanagers in HA per group can be supported by using DNS resolution (See EnableDNSDiscovery).",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -759,8 +759,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"for_grace_period": schema.StringAttribute{
-												Description:         "Minimum duration between alert and restored 'for' state. This is maintainedonly for alerts with configured 'for' time greater than the grace period.",
-												MarkdownDescription: "Minimum duration between alert and restored 'for' state. This is maintainedonly for alerts with configured 'for' time greater than the grace period.",
+												Description:         "Minimum duration between alert and restored 'for' state. This is maintained only for alerts with configured 'for' time greater than the grace period.",
+												MarkdownDescription: "Minimum duration between alert and restored 'for' state. This is maintained only for alerts with configured 'for' time greater than the grace period.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -840,8 +840,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"replacement": schema.StringAttribute{
-													Description:         "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
-													MarkdownDescription: "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
+													Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+													MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -856,8 +856,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"source_labels": schema.ListAttribute{
-													Description:         "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
-													MarkdownDescription: "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
+													Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+													MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
 													ElementType:         types.StringType,
 													Required:            true,
 													Optional:            false,
@@ -865,8 +865,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"target_label": schema.StringAttribute{
-													Description:         "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
-													MarkdownDescription: "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
+													Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+													MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -992,8 +992,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"replacement": schema.StringAttribute{
-													Description:         "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
-													MarkdownDescription: "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
+													Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+													MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1008,8 +1008,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"source_labels": schema.ListAttribute{
-													Description:         "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
-													MarkdownDescription: "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
+													Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+													MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
 													ElementType:         types.StringType,
 													Required:            true,
 													Optional:            false,
@@ -1017,8 +1017,8 @@ func (r *LokiGrafanaComRulerConfigV1Beta1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"target_label": schema.StringAttribute{
-													Description:         "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
-													MarkdownDescription: "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
+													Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+													MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

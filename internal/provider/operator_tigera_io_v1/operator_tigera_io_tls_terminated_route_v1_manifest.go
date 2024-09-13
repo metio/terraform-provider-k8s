@@ -147,8 +147,8 @@ func (r *OperatorTigeraIoTlsterminatedRouteV1Manifest) Schema(_ context.Context,
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"ca_bundle": schema.SingleNestedAttribute{
-						Description:         "CABundle is where we read the CA bundle from to authenticate thedestination (if non-empty)",
-						MarkdownDescription: "CABundle is where we read the CA bundle from to authenticate thedestination (if non-empty)",
+						Description:         "CABundle is where we read the CA bundle from to authenticate the destination (if non-empty)",
+						MarkdownDescription: "CABundle is where we read the CA bundle from to authenticate the destination (if non-empty)",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key to select.",
@@ -159,8 +159,8 @@ func (r *OperatorTigeraIoTlsterminatedRouteV1Manifest) Schema(_ context.Context,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -188,20 +188,20 @@ func (r *OperatorTigeraIoTlsterminatedRouteV1Manifest) Schema(_ context.Context,
 					},
 
 					"mtls_cert": schema.SingleNestedAttribute{
-						Description:         "ForwardingMTLSCert is the certificate used for mTLS between voltron and the destination. Either both ForwardingMTLSCertand ForwardingMTLSKey must be specified, or neither can be specified.",
-						MarkdownDescription: "ForwardingMTLSCert is the certificate used for mTLS between voltron and the destination. Either both ForwardingMTLSCertand ForwardingMTLSKey must be specified, or neither can be specified.",
+						Description:         "ForwardingMTLSCert is the certificate used for mTLS between voltron and the destination. Either both ForwardingMTLSCert and ForwardingMTLSKey must be specified, or neither can be specified.",
+						MarkdownDescription: "ForwardingMTLSCert is the certificate used for mTLS between voltron and the destination. Either both ForwardingMTLSCert and ForwardingMTLSKey must be specified, or neither can be specified.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
-								Description:         "The key of the secret to select from.  Must be a valid secret key.",
-								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+								Description:         "The key of the secret to select from. Must be a valid secret key.",
+								MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -221,20 +221,20 @@ func (r *OperatorTigeraIoTlsterminatedRouteV1Manifest) Schema(_ context.Context,
 					},
 
 					"mtls_key": schema.SingleNestedAttribute{
-						Description:         "ForwardingMTLSKey is the key used for mTLS between voltron and the destination. Either both ForwardingMTLSCertand ForwardingMTLSKey must be specified, or neither can be specified.",
-						MarkdownDescription: "ForwardingMTLSKey is the key used for mTLS between voltron and the destination. Either both ForwardingMTLSCertand ForwardingMTLSKey must be specified, or neither can be specified.",
+						Description:         "ForwardingMTLSKey is the key used for mTLS between voltron and the destination. Either both ForwardingMTLSCert and ForwardingMTLSKey must be specified, or neither can be specified.",
+						MarkdownDescription: "ForwardingMTLSKey is the key used for mTLS between voltron and the destination. Either both ForwardingMTLSCert and ForwardingMTLSKey must be specified, or neither can be specified.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
-								Description:         "The key of the secret to select from.  Must be a valid secret key.",
-								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+								Description:         "The key of the secret to select from. Must be a valid secret key.",
+								MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -254,8 +254,8 @@ func (r *OperatorTigeraIoTlsterminatedRouteV1Manifest) Schema(_ context.Context,
 					},
 
 					"path_match": schema.SingleNestedAttribute{
-						Description:         "PathMatch is used to match requests based on what's in the path. Matching requests will be proxied to the Destinationdefined in this structure.",
-						MarkdownDescription: "PathMatch is used to match requests based on what's in the path. Matching requests will be proxied to the Destinationdefined in this structure.",
+						Description:         "PathMatch is used to match requests based on what's in the path. Matching requests will be proxied to the Destination defined in this structure.",
+						MarkdownDescription: "PathMatch is used to match requests based on what's in the path. Matching requests will be proxied to the Destination defined in this structure.",
 						Attributes: map[string]schema.Attribute{
 							"path": schema.StringAttribute{
 								Description:         "Path is the path portion of the URL based on which we proxy.",
@@ -298,8 +298,8 @@ func (r *OperatorTigeraIoTlsterminatedRouteV1Manifest) Schema(_ context.Context,
 					},
 
 					"unauthenticated": schema.BoolAttribute{
-						Description:         "Unauthenticated says whether the request should go through authentication. This is only applicable if the Targetis UI.",
-						MarkdownDescription: "Unauthenticated says whether the request should go through authentication. This is only applicable if the Targetis UI.",
+						Description:         "Unauthenticated says whether the request should go through authentication. This is only applicable if the Target is UI.",
+						MarkdownDescription: "Unauthenticated says whether the request should go through authentication. This is only applicable if the Target is UI.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

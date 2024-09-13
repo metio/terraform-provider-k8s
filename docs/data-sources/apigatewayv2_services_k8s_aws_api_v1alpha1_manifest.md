@@ -30,7 +30,7 @@ data "k8s_apigatewayv2_services_k8s_aws_api_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) ApiSpec defines the desired state of Api.Represents an API. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ApiSpec defines the desired state of Api. Represents an API. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -58,7 +58,7 @@ Optional:
 - `api_key_selection_expression` (String)
 - `basepath` (String)
 - `body` (String)
-- `cors_configuration` (Attributes) Represents a CORS configuration. Supported only for HTTP APIs. See ConfiguringCORS (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html)for more information. (see [below for nested schema](#nestedatt--spec--cors_configuration))
+- `cors_configuration` (Attributes) Represents a CORS configuration. Supported only for HTTP APIs. See Configuring CORS (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html) for more information. (see [below for nested schema](#nestedatt--spec--cors_configuration))
 - `credentials_arn` (String)
 - `description` (String)
 - `disable_execute_api_endpoint` (Boolean)

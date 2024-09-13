@@ -55,7 +55,7 @@ Optional:
 
 Optional:
 
-- `action` (String) Optional.Valid Options: ALLOW, DENY, AUDIT, CUSTOM
+- `action` (String) Optional. Valid Options: ALLOW, DENY, AUDIT, CUSTOM
 - `provider` (Attributes) Specifies detailed configuration of the CUSTOM action. (see [below for nested schema](#nestedatt--spec--provider))
 - `rules` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--rules))
 - `selector` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--selector))

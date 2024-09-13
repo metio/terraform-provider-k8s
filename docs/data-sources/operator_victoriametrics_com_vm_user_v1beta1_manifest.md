@@ -60,43 +60,43 @@ Required:
 Optional:
 
 - `bearer_token` (String) BearerToken Authorization header value for accessing protected endpoint.
-- `default_url` (List of String) DefaultURLs backend url for non-matching paths filterusually used for default backend with error message
+- `default_url` (List of String) DefaultURLs backend url for non-matching paths filter usually used for default backend with error message
 - `disable_secret_creation` (Boolean) DisableSecretCreation skips related secret creation for vmuser
 - `discover_backend_ips` (Boolean) DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.
-- `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
-- `generate_password` (Boolean) GeneratePassword instructs operator to generate password for userif spec.password if empty.
-- `headers` (List of String) Headers represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth
-- `ip_filters` (Attributes) IPFilters defines per target src ip filterssupported only with enterprise version of vmauthhttps://docs.victoriametrics.com/vmauth.html#ip-filters (see [below for nested schema](#nestedatt--spec--ip_filters))
-- `load_balancing_policy` (String) LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')
-- `max_concurrent_requests` (Number) MaxConcurrentRequests defines max concurrent requests per user300 is default value for vmauth
+- `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
+- `generate_password` (Boolean) GeneratePassword instructs operator to generate password for user if spec.password if empty.
+- `headers` (List of String) Headers represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth
+- `ip_filters` (Attributes) IPFilters defines per target src ip filters supported only with enterprise version of vmauth https://docs.victoriametrics.com/vmauth.html#ip-filters (see [below for nested schema](#nestedatt--spec--ip_filters))
+- `load_balancing_policy` (String) LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')
+- `max_concurrent_requests` (Number) MaxConcurrentRequests defines max concurrent requests per user 300 is default value for vmauth
 - `metric_labels` (Map of String) MetricLabels - additional labels for metrics exported by vmauth for given user.
 - `name` (String) Name of the VMUser object.
 - `password` (String) Password basic auth password for accessing protected endpoint.
 - `password_ref` (Attributes) PasswordRef allows fetching password from user-create secret by its name and key. (see [below for nested schema](#nestedatt--spec--password_ref))
-- `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth
-- `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retriese.g. [429,503]
+- `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth
+- `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retries e.g. [429,503]
 - `tls_config` (Attributes) TLSConfig specifies TLSConfig configuration parameters. (see [below for nested schema](#nestedatt--spec--tls_config))
 - `token_ref` (Attributes) TokenRef allows fetching token from user-created secrets by its name and key. (see [below for nested schema](#nestedatt--spec--token_ref))
-- `username` (String) UserName basic auth user name for accessing protected endpoint,will be replaced with metadata.name of VMUser if omitted.
+- `username` (String) UserName basic auth user name for accessing protected endpoint, will be replaced with metadata.name of VMUser if omitted.
 
 <a id="nestedatt--spec--target_refs"></a>
 ### Nested Schema for `spec.target_refs`
 
 Optional:
 
-- `crd` (Attributes) CRD describes exist operator's CRD object,operator generates access url based on CRD params. (see [below for nested schema](#nestedatt--spec--target_refs--crd))
+- `crd` (Attributes) CRD describes exist operator's CRD object, operator generates access url based on CRD params. (see [below for nested schema](#nestedatt--spec--target_refs--crd))
 - `discover_backend_ips` (Boolean) DiscoverBackendIPs instructs discovering URLPrefix backend IPs via DNS.
-- `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend.See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
-- `headers` (List of String) RequestHeaders represent additional http headers, that vmauth usesin form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.68.0 version of vmauth
+- `drop_src_path_prefix_parts` (Number) DropSrcPathPrefixParts is the number of '/'-delimited request path prefix parts to drop before proxying the request to backend. See https://docs.victoriametrics.com/vmauth.html#dropping-request-path-prefix for more details.
+- `headers` (List of String) RequestHeaders represent additional http headers, that vmauth uses in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.68.0 version of vmauth
 - `hosts` (List of String)
-- `load_balancing_policy` (String) LoadBalancingPolicy defines load balancing policy to use for backend urls.Supported policies: least_loaded, first_available.See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')
+- `load_balancing_policy` (String) LoadBalancingPolicy defines load balancing policy to use for backend urls. Supported policies: least_loaded, first_available. See https://docs.victoriametrics.com/vmauth.html#load-balancing for more details (default 'least_loaded')
 - `paths` (List of String) Paths - matched path to route.
-- `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request responsein form of ['header_key: header_value']multiple values for header key:['header_key: value1,value2']it's available since 1.93.0 version of vmauth
-- `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retriesCan be defined per target or at VMUser.spec levele.g. [429,503]
+- `response_headers` (List of String) ResponseHeaders represent additional http headers, that vmauth adds for request response in form of ['header_key: header_value'] multiple values for header key: ['header_key: value1,value2'] it's available since 1.93.0 version of vmauth
+- `retry_status_codes` (List of String) RetryStatusCodes defines http status codes in numeric format for request retries Can be defined per target or at VMUser.spec level e.g. [429,503]
 - `src_headers` (List of String) SrcHeaders is an optional list of headers, which must match request headers.
 - `src_query_args` (List of String) SrcQueryArgs is an optional list of query args, which must match request URL query args.
-- `static` (Attributes) Static - user defined url for traffic forward,for instance http://vmsingle:8429 (see [below for nested schema](#nestedatt--spec--target_refs--static))
-- `target_path_suffix` (String) TargetPathSuffix allows to add some suffix to the target pathIt allows to hide tenant configuration from user with crd as ref.it also may contain any url encoded params.
+- `static` (Attributes) Static - user defined url for traffic forward, for instance http://vmsingle:8429 (see [below for nested schema](#nestedatt--spec--target_refs--static))
+- `target_path_suffix` (String) TargetPathSuffix allows to add some suffix to the target path It allows to hide tenant configuration from user with crd as ref. it also may contain any url encoded params.
 - `target_ref_basic_auth` (Attributes) TargetRefBasicAuth allow an target endpoint to authenticate over basic authentication (see [below for nested schema](#nestedatt--spec--target_refs--target_ref_basic_auth))
 
 <a id="nestedatt--spec--target_refs--crd"></a>
@@ -104,7 +104,7 @@ Optional:
 
 Required:
 
-- `kind` (String) Kind one of:VMAgent VMAlert VMCluster VMSingle or VMAlertManager
+- `kind` (String) Kind one of: VMAgent VMAlert VMCluster VMSingle or VMAlertManager
 - `name` (String) Name target CRD object name
 - `namespace` (String) Namespace target CRD object namespace.
 
@@ -123,19 +123,19 @@ Optional:
 
 Required:
 
-- `password` (Attributes) The secret in the service scrape namespace that contains the passwordfor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--target_refs--target_ref_basic_auth--password))
-- `username` (Attributes) The secret in the service scrape namespace that contains the usernamefor authentication.It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--target_refs--target_ref_basic_auth--username))
+- `password` (Attributes) The secret in the service scrape namespace that contains the password for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--target_refs--target_ref_basic_auth--password))
+- `username` (Attributes) The secret in the service scrape namespace that contains the username for authentication. It must be at them same namespace as CRD (see [below for nested schema](#nestedatt--spec--target_refs--target_ref_basic_auth--username))
 
 <a id="nestedatt--spec--target_refs--target_ref_basic_auth--password"></a>
 ### Nested Schema for `spec.target_refs.target_ref_basic_auth.password`
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -144,11 +144,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -168,11 +168,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -207,7 +207,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -216,11 +216,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -242,7 +242,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -251,11 +251,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -265,11 +265,11 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -279,9 +279,9 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String) The key of the secret to select from. Must be a valid secret key.
 
 Optional:
 
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined

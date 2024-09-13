@@ -30,7 +30,7 @@ data "k8s_iam_services_k8s_aws_user_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) UserSpec defines the desired state of User.Contains information about an IAM user entity.This data type is used as a response element in the following operations:   * CreateUser   * GetUser   * ListUsers (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) UserSpec defines the desired state of User. Contains information about an IAM user entity. This data type is used as a response element in the following operations: * CreateUser * GetUser * ListUsers (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,24 +55,24 @@ Optional:
 
 Required:
 
-- `name` (String) The name of the user to create.IAM user, group, role, and policy names must be unique within the account.Names are not distinguished by case. For example, you cannot create resourcesnamed both 'MyResource' and 'myresource'.
+- `name` (String) The name of the user to create. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both 'MyResource' and 'myresource'.
 
 Optional:
 
 - `inline_policies` (Map of String)
-- `path` (String) The path for the user name. For more information about paths, see IAM identifiers(https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)in the IAM User Guide.This parameter is optional. If it is not included, it defaults to a slash(/).This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))a string of characters consisting of either a forward slash (/) by itselfor a string that must begin and end with forward slashes. In addition, itcan contain any ASCII character from the ! (u0021) through the DEL character(u007F), including most punctuation characters, digits, and upper and lowercasedletters.
-- `permissions_boundary` (String) The ARN of the managed policy that is used to set the permissions boundaryfor the user.A permissions boundary policy defines the maximum permissions that identity-basedpolicies can grant to an entity, but does not grant permissions. Permissionsboundaries do not define the maximum permissions that a resource-based policycan grant to an entity. To learn more, see Permissions boundaries for IAMentities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html)in the IAM User Guide.For more information about policy types, see Policy types (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policy-types)in the IAM User Guide.
-- `permissions_boundary_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--permissions_boundary_ref))
+- `path` (String) The path for the user name. For more information about paths, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex)) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (u0021) through the DEL character (u007F), including most punctuation characters, digits, and upper and lowercased letters.
+- `permissions_boundary` (String) The ARN of the managed policy that is used to set the permissions boundary for the user. A permissions boundary policy defines the maximum permissions that identity-based policies can grant to an entity, but does not grant permissions. Permissions boundaries do not define the maximum permissions that a resource-based policy can grant to an entity. To learn more, see Permissions boundaries for IAM entities (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) in the IAM User Guide. For more information about policy types, see Policy types (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policy-types) in the IAM User Guide.
+- `permissions_boundary_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--permissions_boundary_ref))
 - `policies` (List of String)
 - `policy_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--policy_refs))
-- `tags` (Attributes List) A list of tags that you want to attach to the new user. Each tag consistsof a key name and an associated value. For more information about tagging,see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html)in the IAM User Guide.If any one of the tags is invalid or if you exceed the allowed maximum numberof tags, then the entire request fails and the resource is not created. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) A list of tags that you want to attach to the new user. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html) in the IAM User Guide. If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--permissions_boundary_ref"></a>
 ### Nested Schema for `spec.permissions_boundary_ref`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--permissions_boundary_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--permissions_boundary_ref--from))
 
 <a id="nestedatt--spec--permissions_boundary_ref--from"></a>
 ### Nested Schema for `spec.permissions_boundary_ref.from`
@@ -89,7 +89,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--policy_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--policy_refs--from))
 
 <a id="nestedatt--spec--policy_refs--from"></a>
 ### Nested Schema for `spec.policy_refs.from`

@@ -107,8 +107,8 @@ func (r *KumaIoMeshV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sche
 			},
 
 			"mesh": schema.StringAttribute{
-				Description:         "Mesh is the name of the Kuma mesh this resource belongs to.It may be omitted for cluster-scoped resources.",
-				MarkdownDescription: "Mesh is the name of the Kuma mesh this resource belongs to.It may be omitted for cluster-scoped resources.",
+				Description:         "Mesh is the name of the Kuma mesh this resource belongs to. It may be omitted for cluster-scoped resources.",
+				MarkdownDescription: "Mesh is the name of the Kuma mesh this resource belongs to. It may be omitted for cluster-scoped resources.",
 				Required:            false,
 				Optional:            true,
 				Computed:            false,

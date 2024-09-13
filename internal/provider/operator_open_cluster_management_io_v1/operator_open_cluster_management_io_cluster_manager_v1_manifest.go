@@ -110,8 +110,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Metadata(_ con
 
 func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ClusterManager configures the controllers on the hub that govern registration and work distribution for attached Klusterlets.In Default mode, ClusterManager will only be deployed in open-cluster-management-hub namespace.In Hosted mode, ClusterManager will be deployed in the namespace with the same name as cluster manager.",
-		MarkdownDescription: "ClusterManager configures the controllers on the hub that govern registration and work distribution for attached Klusterlets.In Default mode, ClusterManager will only be deployed in open-cluster-management-hub namespace.In Hosted mode, ClusterManager will be deployed in the namespace with the same name as cluster manager.",
+		Description:         "ClusterManager configures the controllers on the hub that govern registration and work distribution for attached Klusterlets. In Default mode, ClusterManager will only be deployed in open-cluster-management-hub namespace. In Hosted mode, ClusterManager will be deployed in the namespace with the same name as cluster manager.",
+		MarkdownDescription: "ClusterManager configures the controllers on the hub that govern registration and work distribution for attached Klusterlets. In Default mode, ClusterManager will only be deployed in open-cluster-management-hub namespace. In Hosted mode, ClusterManager will be deployed in the namespace with the same name as cluster manager.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -174,8 +174,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 						MarkdownDescription: "AddOnManagerConfiguration contains the configuration of addon manager",
 						Attributes: map[string]schema.Attribute{
 							"feature_gates": schema.ListNestedAttribute{
-								Description:         "FeatureGates represents the list of feature gates for addon managerIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
-								MarkdownDescription: "FeatureGates represents the list of feature gates for addon managerIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
+								Description:         "FeatureGates represents the list of feature gates for addon manager If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
+								MarkdownDescription: "FeatureGates represents the list of feature gates for addon manager If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"feature": schema.StringAttribute{
@@ -187,8 +187,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 										},
 
 										"mode": schema.StringAttribute{
-											Description:         "Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
-											MarkdownDescription: "Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
+											Description:         "Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
+											MarkdownDescription: "Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -217,8 +217,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 					},
 
 					"deploy_option": schema.SingleNestedAttribute{
-						Description:         "DeployOption contains the options of deploying a cluster-managerDefault mode is used if DeployOption is not set.",
-						MarkdownDescription: "DeployOption contains the options of deploying a cluster-managerDefault mode is used if DeployOption is not set.",
+						Description:         "DeployOption contains the options of deploying a cluster-manager Default mode is used if DeployOption is not set.",
+						MarkdownDescription: "DeployOption contains the options of deploying a cluster-manager Default mode is used if DeployOption is not set.",
 						Attributes: map[string]schema.Attribute{
 							"hosted": schema.SingleNestedAttribute{
 								Description:         "Hosted includes configurations we need for clustermanager in the Hosted mode.",
@@ -229,8 +229,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 										MarkdownDescription: "RegistrationWebhookConfiguration represents the customized webhook-server configuration of registration.",
 										Attributes: map[string]schema.Attribute{
 											"address": schema.StringAttribute{
-												Description:         "Address represents the address of a webhook-server.It could be in IP format or fqdn format.The Address must be reachable by apiserver of the hub cluster.",
-												MarkdownDescription: "Address represents the address of a webhook-server.It could be in IP format or fqdn format.The Address must be reachable by apiserver of the hub cluster.",
+												Description:         "Address represents the address of a webhook-server. It could be in IP format or fqdn format. The Address must be reachable by apiserver of the hub cluster.",
+												MarkdownDescription: "Address represents the address of a webhook-server. It could be in IP format or fqdn format. The Address must be reachable by apiserver of the hub cluster.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -260,8 +260,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 										MarkdownDescription: "WorkWebhookConfiguration represents the customized webhook-server configuration of work.",
 										Attributes: map[string]schema.Attribute{
 											"address": schema.StringAttribute{
-												Description:         "Address represents the address of a webhook-server.It could be in IP format or fqdn format.The Address must be reachable by apiserver of the hub cluster.",
-												MarkdownDescription: "Address represents the address of a webhook-server.It could be in IP format or fqdn format.The Address must be reachable by apiserver of the hub cluster.",
+												Description:         "Address represents the address of a webhook-server. It could be in IP format or fqdn format. The Address must be reachable by apiserver of the hub cluster.",
+												MarkdownDescription: "Address represents the address of a webhook-server. It could be in IP format or fqdn format. The Address must be reachable by apiserver of the hub cluster.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -292,8 +292,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 							},
 
 							"mode": schema.StringAttribute{
-								Description:         "Mode can be Default or Hosted.In Default mode, the Hub is installed as a whole and all parts of Hub are deployed in the same cluster.In Hosted mode, only crd and configurations are installed on one cluster(defined as hub-cluster). Controllers run in anothercluster (defined as management-cluster) and connect to the hub with the kubeconfig in secret of 'external-hub-kubeconfig'(a kubeconfigof hub-cluster with cluster-admin permission).Note: Do not modify the Mode field once it's applied.",
-								MarkdownDescription: "Mode can be Default or Hosted.In Default mode, the Hub is installed as a whole and all parts of Hub are deployed in the same cluster.In Hosted mode, only crd and configurations are installed on one cluster(defined as hub-cluster). Controllers run in anothercluster (defined as management-cluster) and connect to the hub with the kubeconfig in secret of 'external-hub-kubeconfig'(a kubeconfigof hub-cluster with cluster-admin permission).Note: Do not modify the Mode field once it's applied.",
+								Description:         "Mode can be Default or Hosted. In Default mode, the Hub is installed as a whole and all parts of Hub are deployed in the same cluster. In Hosted mode, only crd and configurations are installed on one cluster(defined as hub-cluster). Controllers run in another cluster (defined as management-cluster) and connect to the hub with the kubeconfig in secret of 'external-hub-kubeconfig'(a kubeconfig of hub-cluster with cluster-admin permission). Note: Do not modify the Mode field once it's applied.",
+								MarkdownDescription: "Mode can be Default or Hosted. In Default mode, the Hub is installed as a whole and all parts of Hub are deployed in the same cluster. In Hosted mode, only crd and configurations are installed on one cluster(defined as hub-cluster). Controllers run in another cluster (defined as management-cluster) and connect to the hub with the kubeconfig in secret of 'external-hub-kubeconfig'(a kubeconfig of hub-cluster with cluster-admin permission). Note: Do not modify the Mode field once it's applied.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -321,45 +321,45 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 							},
 
 							"tolerations": schema.ListNestedAttribute{
-								Description:         "Tolerations are attached by pods to tolerate any taint that matchesthe triple <key,value,effect> using the matching operator <operator>.The default is an empty list.",
-								MarkdownDescription: "Tolerations are attached by pods to tolerate any taint that matchesthe triple <key,value,effect> using the matching operator <operator>.The default is an empty list.",
+								Description:         "Tolerations are attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
+								MarkdownDescription: "Tolerations are attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"effect": schema.StringAttribute{
-											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"key": schema.StringAttribute{
-											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
-											MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+											Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+											MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"toleration_seconds": schema.Int64Attribute{
-											Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
-											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+											Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
-											MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -389,8 +389,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 						MarkdownDescription: "RegistrationConfiguration contains the configuration of registration",
 						Attributes: map[string]schema.Attribute{
 							"auto_approve_users": schema.ListAttribute{
-								Description:         "AutoApproveUser represents a list of users that can auto approve CSR and accept client. If the credential of thebootstrap-hub-kubeconfig matches to the users, the cluster created by the bootstrap-hub-kubeconfig willbe auto-registered into the hub cluster. This takes effect only when ManagedClusterAutoApproval feature gateis enabled.",
-								MarkdownDescription: "AutoApproveUser represents a list of users that can auto approve CSR and accept client. If the credential of thebootstrap-hub-kubeconfig matches to the users, the cluster created by the bootstrap-hub-kubeconfig willbe auto-registered into the hub cluster. This takes effect only when ManagedClusterAutoApproval feature gateis enabled.",
+								Description:         "AutoApproveUser represents a list of users that can auto approve CSR and accept client. If the credential of the bootstrap-hub-kubeconfig matches to the users, the cluster created by the bootstrap-hub-kubeconfig will be auto-registered into the hub cluster. This takes effect only when ManagedClusterAutoApproval feature gate is enabled.",
+								MarkdownDescription: "AutoApproveUser represents a list of users that can auto approve CSR and accept client. If the credential of the bootstrap-hub-kubeconfig matches to the users, the cluster created by the bootstrap-hub-kubeconfig will be auto-registered into the hub cluster. This takes effect only when ManagedClusterAutoApproval feature gate is enabled.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -398,8 +398,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 							},
 
 							"feature_gates": schema.ListNestedAttribute{
-								Description:         "FeatureGates represents the list of feature gates for registrationIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
-								MarkdownDescription: "FeatureGates represents the list of feature gates for registrationIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
+								Description:         "FeatureGates represents the list of feature gates for registration If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
+								MarkdownDescription: "FeatureGates represents the list of feature gates for registration If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"feature": schema.StringAttribute{
@@ -411,8 +411,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 										},
 
 										"mode": schema.StringAttribute{
-											Description:         "Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
-											MarkdownDescription: "Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
+											Description:         "Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
+											MarkdownDescription: "Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -441,21 +441,21 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 					},
 
 					"resource_requirement": schema.SingleNestedAttribute{
-						Description:         "ResourceRequirement specify QoS classes of deployments managed by clustermanager.It applies to all the containers in the deployments.",
-						MarkdownDescription: "ResourceRequirement specify QoS classes of deployments managed by clustermanager.It applies to all the containers in the deployments.",
+						Description:         "ResourceRequirement specify QoS classes of deployments managed by clustermanager. It applies to all the containers in the deployments.",
+						MarkdownDescription: "ResourceRequirement specify QoS classes of deployments managed by clustermanager. It applies to all the containers in the deployments.",
 						Attributes: map[string]schema.Attribute{
 							"resource_requirements": schema.SingleNestedAttribute{
 								Description:         "ResourceRequirements defines resource requests and limits when Type is ResourceQosClassResourceRequirement",
 								MarkdownDescription: "ResourceRequirements defines resource requests and limits when Type is ResourceQosClassResourceRequirement",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -468,8 +468,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -477,8 +477,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -511,8 +511,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 						MarkdownDescription: "WorkConfiguration contains the configuration of work",
 						Attributes: map[string]schema.Attribute{
 							"feature_gates": schema.ListNestedAttribute{
-								Description:         "FeatureGates represents the list of feature gates for workIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
-								MarkdownDescription: "FeatureGates represents the list of feature gates for workIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
+								Description:         "FeatureGates represents the list of feature gates for work If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
+								MarkdownDescription: "FeatureGates represents the list of feature gates for work If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"feature": schema.StringAttribute{
@@ -524,8 +524,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 										},
 
 										"mode": schema.StringAttribute{
-											Description:         "Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
-											MarkdownDescription: "Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
+											Description:         "Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
+											MarkdownDescription: "Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -541,8 +541,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 							},
 
 							"work_driver": schema.StringAttribute{
-								Description:         "WorkDriver represents the type of work driver. Possible values are 'kube', 'mqtt', or 'grpc'.If not provided, the default value is 'kube'.If set to non-'kube' drivers, the klusterlet need to use the same driver.and the driver configuration must be provided in a secret named 'work-driver-config'in the namespace where the cluster manager is running, adhering to the following structure:config.yaml: |  <driver-config-in-yaml>For detailed driver configuration, please refer to the sdk-go documentation: https://github.com/open-cluster-management-io/sdk-go/blob/main/pkg/cloudevents/README.md#supported-protocols-and-drivers",
-								MarkdownDescription: "WorkDriver represents the type of work driver. Possible values are 'kube', 'mqtt', or 'grpc'.If not provided, the default value is 'kube'.If set to non-'kube' drivers, the klusterlet need to use the same driver.and the driver configuration must be provided in a secret named 'work-driver-config'in the namespace where the cluster manager is running, adhering to the following structure:config.yaml: |  <driver-config-in-yaml>For detailed driver configuration, please refer to the sdk-go documentation: https://github.com/open-cluster-management-io/sdk-go/blob/main/pkg/cloudevents/README.md#supported-protocols-and-drivers",
+								Description:         "WorkDriver represents the type of work driver. Possible values are 'kube', 'mqtt', or 'grpc'. If not provided, the default value is 'kube'. If set to non-'kube' drivers, the klusterlet need to use the same driver. and the driver configuration must be provided in a secret named 'work-driver-config' in the namespace where the cluster manager is running, adhering to the following structure: config.yaml: | <driver-config-in-yaml> For detailed driver configuration, please refer to the sdk-go documentation: https://github.com/open-cluster-management-io/sdk-go/blob/main/pkg/cloudevents/README.md#supported-protocols-and-drivers",
+								MarkdownDescription: "WorkDriver represents the type of work driver. Possible values are 'kube', 'mqtt', or 'grpc'. If not provided, the default value is 'kube'. If set to non-'kube' drivers, the klusterlet need to use the same driver. and the driver configuration must be provided in a secret named 'work-driver-config' in the namespace where the cluster manager is running, adhering to the following structure: config.yaml: | <driver-config-in-yaml> For detailed driver configuration, please refer to the sdk-go documentation: https://github.com/open-cluster-management-io/sdk-go/blob/main/pkg/cloudevents/README.md#supported-protocols-and-drivers",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

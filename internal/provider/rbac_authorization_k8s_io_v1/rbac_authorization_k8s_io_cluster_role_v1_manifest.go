@@ -192,8 +192,8 @@ func (r *RbacAuthorizationK8SIoClusterRoleV1Manifest) Schema(_ context.Context, 
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"api_groups": schema.ListAttribute{
-							Description:         "APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. '' represents the core API group and '*' represents all API groups.",
-							MarkdownDescription: "APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. '' represents the core API group and '*' represents all API groups.",
+							Description:         "APIGroups is the name of the APIGroup that contains the resources. If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. '' represents the core API group and '*' represents all API groups.",
+							MarkdownDescription: "APIGroups is the name of the APIGroup that contains the resources. If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. '' represents the core API group and '*' represents all API groups.",
 							ElementType:         types.StringType,
 							Required:            false,
 							Optional:            true,
@@ -201,8 +201,8 @@ func (r *RbacAuthorizationK8SIoClusterRoleV1Manifest) Schema(_ context.Context, 
 						},
 
 						"non_resource_urls": schema.ListAttribute{
-							Description:         "NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as 'pods' or 'secrets') or non-resource URL paths (such as '/api'),  but not both.",
-							MarkdownDescription: "NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as 'pods' or 'secrets') or non-resource URL paths (such as '/api'),  but not both.",
+							Description:         "NonResourceURLs is a set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as 'pods' or 'secrets') or non-resource URL paths (such as '/api'), but not both.",
+							MarkdownDescription: "NonResourceURLs is a set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as 'pods' or 'secrets') or non-resource URL paths (such as '/api'), but not both.",
 							ElementType:         types.StringType,
 							Required:            false,
 							Optional:            true,
@@ -210,8 +210,8 @@ func (r *RbacAuthorizationK8SIoClusterRoleV1Manifest) Schema(_ context.Context, 
 						},
 
 						"resource_names": schema.ListAttribute{
-							Description:         "ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed.",
-							MarkdownDescription: "ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed.",
+							Description:         "ResourceNames is an optional white list of names that the rule applies to. An empty set means that everything is allowed.",
+							MarkdownDescription: "ResourceNames is an optional white list of names that the rule applies to. An empty set means that everything is allowed.",
 							ElementType:         types.StringType,
 							Required:            false,
 							Optional:            true,

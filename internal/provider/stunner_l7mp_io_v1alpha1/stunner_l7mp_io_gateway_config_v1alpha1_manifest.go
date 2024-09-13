@@ -153,12 +153,12 @@ func (r *StunnerL7MpIoGatewayConfigV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"auth_ref": schema.SingleNestedAttribute{
-						Description:         "Note that externally set credentials override any inline auth credentials (AuthType,AuthUsername, etc.): if AuthRef is nonempty then it is expected that the referencedSecret exists and *all* authentication credentials are correctly set in the referencedSecret (username/password or shared secret). Mixing of credential sources(inline/external) is not supported.",
-						MarkdownDescription: "Note that externally set credentials override any inline auth credentials (AuthType,AuthUsername, etc.): if AuthRef is nonempty then it is expected that the referencedSecret exists and *all* authentication credentials are correctly set in the referencedSecret (username/password or shared secret). Mixing of credential sources(inline/external) is not supported.",
+						Description:         "Note that externally set credentials override any inline auth credentials (AuthType, AuthUsername, etc.): if AuthRef is nonempty then it is expected that the referenced Secret exists and *all* authentication credentials are correctly set in the referenced Secret (username/password or shared secret). Mixing of credential sources (inline/external) is not supported.",
+						MarkdownDescription: "Note that externally set credentials override any inline auth credentials (AuthType, AuthUsername, etc.): if AuthRef is nonempty then it is expected that the referenced Secret exists and *all* authentication credentials are correctly set in the referenced Secret (username/password or shared secret). Mixing of credential sources (inline/external) is not supported.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
-								Description:         "Group is the group of the referent. For example, 'gateway.networking.k8s.io'.When unspecified or empty string, core API group is inferred.",
-								MarkdownDescription: "Group is the group of the referent. For example, 'gateway.networking.k8s.io'.When unspecified or empty string, core API group is inferred.",
+								Description:         "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
+								MarkdownDescription: "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -194,8 +194,8 @@ func (r *StunnerL7MpIoGatewayConfigV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace is the namespace of the referenced object. When unspecified, the localnamespace is inferred.Note that when a namespace different than the local namespace is specified,a ReferenceGrant object is required in the referent namespace to allow thatnamespace's owner to accept the reference. See the ReferenceGrantdocumentation for details.Support: Core",
-								MarkdownDescription: "Namespace is the namespace of the referenced object. When unspecified, the localnamespace is inferred.Note that when a namespace different than the local namespace is specified,a ReferenceGrant object is required in the referent namespace to allow thatnamespace's owner to accept the reference. See the ReferenceGrantdocumentation for details.Support: Core",
+								Description:         "Namespace is the namespace of the referenced object. When unspecified, the local namespace is inferred. Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. Support: Core",
+								MarkdownDescription: "Namespace is the namespace of the referenced object. When unspecified, the local namespace is inferred. Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. Support: Core",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -223,24 +223,24 @@ func (r *StunnerL7MpIoGatewayConfigV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"dataplane": schema.StringAttribute{
-						Description:         "Dataplane defines the TURN server to set up for the STUNner Gateways using thisGatewayConfig. Can be used to select the stunnerd image repo and version or deploy intothe host-network namespace.",
-						MarkdownDescription: "Dataplane defines the TURN server to set up for the STUNner Gateways using thisGatewayConfig. Can be used to select the stunnerd image repo and version or deploy intothe host-network namespace.",
+						Description:         "Dataplane defines the TURN server to set up for the STUNner Gateways using this GatewayConfig. Can be used to select the stunnerd image repo and version or deploy into the host-network namespace.",
+						MarkdownDescription: "Dataplane defines the TURN server to set up for the STUNner Gateways using this GatewayConfig. Can be used to select the stunnerd image repo and version or deploy into the host-network namespace.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"health_check_endpoint": schema.StringAttribute{
-						Description:         "HealthCheckEndpoint is the URI of the form 'http://address:port' exposed for externalHTTP health-checking. A liveness probe responder will be exposed on path '/live' andreadiness probe on path '/ready'. The scheme ('http://') is mandatory, default is toenable health-checking at 'http://0.0.0.0:8086'.",
-						MarkdownDescription: "HealthCheckEndpoint is the URI of the form 'http://address:port' exposed for externalHTTP health-checking. A liveness probe responder will be exposed on path '/live' andreadiness probe on path '/ready'. The scheme ('http://') is mandatory, default is toenable health-checking at 'http://0.0.0.0:8086'.",
+						Description:         "HealthCheckEndpoint is the URI of the form 'http://address:port' exposed for external HTTP health-checking. A liveness probe responder will be exposed on path '/live' and readiness probe on path '/ready'. The scheme ('http://') is mandatory, default is to enable health-checking at 'http://0.0.0.0:8086'.",
+						MarkdownDescription: "HealthCheckEndpoint is the URI of the form 'http://address:port' exposed for external HTTP health-checking. A liveness probe responder will be exposed on path '/live' and readiness probe on path '/ready'. The scheme ('http://') is mandatory, default is to enable health-checking at 'http://0.0.0.0:8086'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"load_balancer_service_annotations": schema.MapAttribute{
-						Description:         "LoadBalancerServiceAnnotations is a list of annotations that will go into theLoadBalancer services created automatically by the operator to wrap Gateways.NOTE: removing annotations from a GatewayConfig will not result in the removal of thecorresponding annotations from the LoadBalancer service, in order to prevent theaccidental removal of an annotation installed there by Kubernetes or the cloudprovider. If you really want to remove an annotation, do this manually or simply removeall Gateways (which will remove the corresponding LoadBalancer services), update theGatewayConfig and then recreate the Gateways, so that the newly created LoadBalancerservices will contain the required annotations.",
-						MarkdownDescription: "LoadBalancerServiceAnnotations is a list of annotations that will go into theLoadBalancer services created automatically by the operator to wrap Gateways.NOTE: removing annotations from a GatewayConfig will not result in the removal of thecorresponding annotations from the LoadBalancer service, in order to prevent theaccidental removal of an annotation installed there by Kubernetes or the cloudprovider. If you really want to remove an annotation, do this manually or simply removeall Gateways (which will remove the corresponding LoadBalancer services), update theGatewayConfig and then recreate the Gateways, so that the newly created LoadBalancerservices will contain the required annotations.",
+						Description:         "LoadBalancerServiceAnnotations is a list of annotations that will go into the LoadBalancer services created automatically by the operator to wrap Gateways. NOTE: removing annotations from a GatewayConfig will not result in the removal of the corresponding annotations from the LoadBalancer service, in order to prevent the accidental removal of an annotation installed there by Kubernetes or the cloud provider. If you really want to remove an annotation, do this manually or simply remove all Gateways (which will remove the corresponding LoadBalancer services), update the GatewayConfig and then recreate the Gateways, so that the newly created LoadBalancer services will contain the required annotations.",
+						MarkdownDescription: "LoadBalancerServiceAnnotations is a list of annotations that will go into the LoadBalancer services created automatically by the operator to wrap Gateways. NOTE: removing annotations from a GatewayConfig will not result in the removal of the corresponding annotations from the LoadBalancer service, in order to prevent the accidental removal of an annotation installed there by Kubernetes or the cloud provider. If you really want to remove an annotation, do this manually or simply remove all Gateways (which will remove the corresponding LoadBalancer services), update the GatewayConfig and then recreate the Gateways, so that the newly created LoadBalancer services will contain the required annotations.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -264,8 +264,8 @@ func (r *StunnerL7MpIoGatewayConfigV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"metrics_endpoint": schema.StringAttribute{
-						Description:         "MetricsEndpoint is the URI in the form 'http://address:port/path' exposed for metricscraping (Prometheus). The scheme ('http://') is mandatory. Default is to expose nometric endpoint.",
-						MarkdownDescription: "MetricsEndpoint is the URI in the form 'http://address:port/path' exposed for metricscraping (Prometheus). The scheme ('http://') is mandatory. Default is to expose nometric endpoint.",
+						Description:         "MetricsEndpoint is the URI in the form 'http://address:port/path' exposed for metric scraping (Prometheus). The scheme ('http://') is mandatory. Default is to expose no metric endpoint.",
+						MarkdownDescription: "MetricsEndpoint is the URI in the form 'http://address:port/path' exposed for metric scraping (Prometheus). The scheme ('http://') is mandatory. Default is to expose no metric endpoint.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -291,8 +291,8 @@ func (r *StunnerL7MpIoGatewayConfigV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"realm": schema.StringAttribute{
-						Description:         "Realm defines the STUN/TURN authentication realm to be used for clients toauthenticatewith STUNner.The realm must consist of lower case alphanumeric characters or '-', and must start andend with an alphanumeric character. No other punctuation is allowed.",
-						MarkdownDescription: "Realm defines the STUN/TURN authentication realm to be used for clients toauthenticatewith STUNner.The realm must consist of lower case alphanumeric characters or '-', and must start andend with an alphanumeric character. No other punctuation is allowed.",
+						Description:         "Realm defines the STUN/TURN authentication realm to be used for clients toauthenticate with STUNner. The realm must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character. No other punctuation is allowed.",
+						MarkdownDescription: "Realm defines the STUN/TURN authentication realm to be used for clients toauthenticate with STUNner. The realm must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character. No other punctuation is allowed.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -310,8 +310,8 @@ func (r *StunnerL7MpIoGatewayConfigV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"stunner_config": schema.StringAttribute{
-						Description:         "StunnerConfig specifies the name of the ConfigMap into which the operator renders thestunnerd configfile.",
-						MarkdownDescription: "StunnerConfig specifies the name of the ConfigMap into which the operator renders thestunnerd configfile.",
+						Description:         "StunnerConfig specifies the name of the ConfigMap into which the operator renders the stunnerd configfile.",
+						MarkdownDescription: "StunnerConfig specifies the name of the ConfigMap into which the operator renders the stunnerd configfile.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

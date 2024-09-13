@@ -64,7 +64,7 @@ Optional:
 - `data_source` (Attributes) DataSource defines a data source for bootstraping a new cluster (see [below for nested schema](#nestedatt--spec--data_source))
 - `monitoring` (Attributes) Monitoring is the monitoring configuration (see [below for nested schema](#nestedatt--spec--monitoring))
 - `paused` (Boolean) Paused is a flag to stop the cluster
-- `proxy` (Attributes) Proxy is the proxy specification. If not set, an appropriateproxy specification will be applied for the given engine. Acommon use case for setting this field is to control theexternal access to the database cluster. (see [below for nested schema](#nestedatt--spec--proxy))
+- `proxy` (Attributes) Proxy is the proxy specification. If not set, an appropriate proxy specification will be applied for the given engine. A common use case for setting this field is to control the external access to the database cluster. (see [below for nested schema](#nestedatt--spec--proxy))
 - `sharding` (Attributes) Sharding is the sharding configuration. PSMDB-only (see [below for nested schema](#nestedatt--spec--sharding))
 
 <a id="nestedatt--spec--engine"></a>
@@ -78,9 +78,9 @@ Required:
 Optional:
 
 - `config` (String) Config is the engine configuration
-- `cr_version` (String) CRVersion is the desired version of the CR to use with theunderlying operator.If unspecified, everest-operator will use the same version as the operator.NOTE: Updating this property post installation may lead to a restart of the cluster.
+- `cr_version` (String) CRVersion is the desired version of the CR to use with the underlying operator. If unspecified, everest-operator will use the same version as the operator. NOTE: Updating this property post installation may lead to a restart of the cluster.
 - `replicas` (Number) Replicas is the number of engine replicas
-- `resources` (Attributes) Resources are the resource limits for each engine replica.If not set, resource limits are not imposed (see [below for nested schema](#nestedatt--spec--engine--resources))
+- `resources` (Attributes) Resources are the resource limits for each engine replica. If not set, resource limits are not imposed (see [below for nested schema](#nestedatt--spec--engine--resources))
 - `user_secrets_name` (String) UserSecretsName is the name of the secret containing the user secrets
 - `version` (String) Version is the engine version
 
@@ -127,7 +127,7 @@ Required:
 
 Optional:
 
-- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage where the PITR is enabledThe BackupStorage must be created in the same namespace as the DatabaseCluster.
+- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage where the PITR is enabled The BackupStorage must be created in the same namespace as the DatabaseCluster.
 - `upload_interval_sec` (Number) UploadIntervalSec number of seconds between the binlogs uploads
 
 
@@ -136,7 +136,7 @@ Optional:
 
 Required:
 
-- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage CR that defines thestorage location.The BackupStorage must be created in the same namespace as the DatabaseCluster.
+- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage CR that defines the storage location. The BackupStorage must be created in the same namespace as the DatabaseCluster.
 - `enabled` (Boolean) Enabled is a flag to enable the schedule
 - `name` (String) Name is the name of the schedule
 - `schedule` (String) Schedule is the cron schedule
@@ -161,7 +161,7 @@ Optional:
 
 Required:
 
-- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage used for backups.The BackupStorage must be created in the same namespace as the DatabaseCluster.
+- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage used for backups. The BackupStorage must be created in the same namespace as the DatabaseCluster.
 - `path` (String) Path is the path to the backup file/directory.
 
 
@@ -180,7 +180,7 @@ Optional:
 
 Optional:
 
-- `monitoring_config_name` (String) MonitoringConfigName is the name of a monitoringConfig CR.The MonitoringConfig must be created in the same namespace as the DatabaseCluster.
+- `monitoring_config_name` (String) MonitoringConfigName is the name of a monitoringConfig CR. The MonitoringConfig must be created in the same namespace as the DatabaseCluster.
 - `resources` (Attributes) Resources defines resource limitations for the monitoring. (see [below for nested schema](#nestedatt--spec--monitoring--resources))
 
 <a id="nestedatt--spec--monitoring--resources"></a>
@@ -188,16 +188,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--monitoring--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--monitoring--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--monitoring--resources--claims"></a>
 ### Nested Schema for `spec.monitoring.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -210,7 +210,7 @@ Optional:
 - `config` (String) Config is the proxy configuration
 - `expose` (Attributes) Expose is the proxy expose configuration (see [below for nested schema](#nestedatt--spec--proxy--expose))
 - `replicas` (Number) Replicas is the number of proxy replicas
-- `resources` (Attributes) Resources are the resource limits for each proxy replica.If not set, resource limits are not imposed (see [below for nested schema](#nestedatt--spec--proxy--resources))
+- `resources` (Attributes) Resources are the resource limits for each proxy replica. If not set, resource limits are not imposed (see [below for nested schema](#nestedatt--spec--proxy--resources))
 - `type` (String) Type is the proxy type
 
 <a id="nestedatt--spec--proxy--expose"></a>
@@ -218,7 +218,7 @@ Optional:
 
 Optional:
 
-- `ip_source_ranges` (List of String) IPSourceRanges is the list of IP source ranges (CIDR notation)to allow access from. If not set, there is no limitations
+- `ip_source_ranges` (List of String) IPSourceRanges is the list of IP source ranges (CIDR notation) to allow access from. If not set, there is no limitations
 - `type` (String) Type is the expose type, can be internal or external
 
 

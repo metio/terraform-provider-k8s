@@ -146,8 +146,8 @@ func (r *ApplicationNetworkingK8SAwsTargetGroupPolicyV1Alpha1Manifest) Schema(_ 
 				MarkdownDescription: "TargetGroupPolicySpec defines the desired state of TargetGroupPolicy.",
 				Attributes: map[string]schema.Attribute{
 					"health_check": schema.SingleNestedAttribute{
-						Description:         "The health check configuration.  Changes to this value will update VPC Lattice resource in place.",
-						MarkdownDescription: "The health check configuration.  Changes to this value will update VPC Lattice resource in place.",
+						Description:         "The health check configuration. Changes to this value will update VPC Lattice resource in place.",
+						MarkdownDescription: "The health check configuration. Changes to this value will update VPC Lattice resource in place.",
 						Attributes: map[string]schema.Attribute{
 							"enabled": schema.BoolAttribute{
 								Description:         "Indicates whether health checking is enabled.",
@@ -261,24 +261,24 @@ func (r *ApplicationNetworkingK8SAwsTargetGroupPolicyV1Alpha1Manifest) Schema(_ 
 					},
 
 					"protocol": schema.StringAttribute{
-						Description:         "The protocol to use for routing traffic to the targets. Supported values are HTTP (default), HTTPS and TCP.  Changes to this value results in a replacement of VPC Lattice target group.",
-						MarkdownDescription: "The protocol to use for routing traffic to the targets. Supported values are HTTP (default), HTTPS and TCP.  Changes to this value results in a replacement of VPC Lattice target group.",
+						Description:         "The protocol to use for routing traffic to the targets. Supported values are HTTP (default), HTTPS and TCP. Changes to this value results in a replacement of VPC Lattice target group.",
+						MarkdownDescription: "The protocol to use for routing traffic to the targets. Supported values are HTTP (default), HTTPS and TCP. Changes to this value results in a replacement of VPC Lattice target group.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"protocol_version": schema.StringAttribute{
-						Description:         "The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy Protocol is TCP, you should not set this field. Otherwise, the whole TargetGroupPolicy will not take effect. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2.  Changes to this value results in a replacement of VPC Lattice target group.",
-						MarkdownDescription: "The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy Protocol is TCP, you should not set this field. Otherwise, the whole TargetGroupPolicy will not take effect. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2.  Changes to this value results in a replacement of VPC Lattice target group.",
+						Description:         "The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy Protocol is TCP, you should not set this field. Otherwise, the whole TargetGroupPolicy will not take effect. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2. Changes to this value results in a replacement of VPC Lattice target group.",
+						MarkdownDescription: "The protocol version to use. Supported values are HTTP1 (default) and HTTP2. When a policy Protocol is TCP, you should not set this field. Otherwise, the whole TargetGroupPolicy will not take effect. When a policy is behind GRPCRoute, this field value will be ignored as GRPC is only supported through HTTP/2. Changes to this value results in a replacement of VPC Lattice target group.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef points to the kubernetes Service resource that will have this policy attached.  This field is following the guidelines of Kubernetes Gateway API policy attachment.",
-						MarkdownDescription: "TargetRef points to the kubernetes Service resource that will have this policy attached.  This field is following the guidelines of Kubernetes Gateway API policy attachment.",
+						Description:         "TargetRef points to the kubernetes Service resource that will have this policy attached. This field is following the guidelines of Kubernetes Gateway API policy attachment.",
+						MarkdownDescription: "TargetRef points to the kubernetes Service resource that will have this policy attached. This field is following the guidelines of Kubernetes Gateway API policy attachment.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "Group is the group of the target resource.",

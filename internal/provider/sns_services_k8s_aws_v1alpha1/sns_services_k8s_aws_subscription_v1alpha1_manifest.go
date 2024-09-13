@@ -135,8 +135,8 @@ func (r *SnsServicesK8SAwsSubscriptionV1Alpha1Manifest) Schema(_ context.Context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "SubscriptionSpec defines the desired state of Subscription.A wrapper type for the attributes of an Amazon SNS subscription.",
-				MarkdownDescription: "SubscriptionSpec defines the desired state of Subscription.A wrapper type for the attributes of an Amazon SNS subscription.",
+				Description:         "SubscriptionSpec defines the desired state of Subscription. A wrapper type for the attributes of an Amazon SNS subscription.",
+				MarkdownDescription: "SubscriptionSpec defines the desired state of Subscription. A wrapper type for the attributes of an Amazon SNS subscription.",
 				Attributes: map[string]schema.Attribute{
 					"delivery_policy": schema.StringAttribute{
 						Description:         "",
@@ -147,8 +147,8 @@ func (r *SnsServicesK8SAwsSubscriptionV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"endpoint": schema.StringAttribute{
-						Description:         "The endpoint that you want to receive notifications. Endpoints vary by protocol:   * For the http protocol, the (public) endpoint is a URL beginning with   http://.   * For the https protocol, the (public) endpoint is a URL beginning with   https://.   * For the email protocol, the endpoint is an email address.   * For the email-json protocol, the endpoint is an email address.   * For the sms protocol, the endpoint is a phone number of an SMS-enabled   device.   * For the sqs protocol, the endpoint is the ARN of an Amazon SQS queue.   * For the application protocol, the endpoint is the EndpointArn of a mobile   app and device.   * For the lambda protocol, the endpoint is the ARN of an Lambda function.   * For the firehose protocol, the endpoint is the ARN of an Amazon Kinesis   Data Firehose delivery stream.",
-						MarkdownDescription: "The endpoint that you want to receive notifications. Endpoints vary by protocol:   * For the http protocol, the (public) endpoint is a URL beginning with   http://.   * For the https protocol, the (public) endpoint is a URL beginning with   https://.   * For the email protocol, the endpoint is an email address.   * For the email-json protocol, the endpoint is an email address.   * For the sms protocol, the endpoint is a phone number of an SMS-enabled   device.   * For the sqs protocol, the endpoint is the ARN of an Amazon SQS queue.   * For the application protocol, the endpoint is the EndpointArn of a mobile   app and device.   * For the lambda protocol, the endpoint is the ARN of an Lambda function.   * For the firehose protocol, the endpoint is the ARN of an Amazon Kinesis   Data Firehose delivery stream.",
+						Description:         "The endpoint that you want to receive notifications. Endpoints vary by protocol: * For the http protocol, the (public) endpoint is a URL beginning with http://. * For the https protocol, the (public) endpoint is a URL beginning with https://. * For the email protocol, the endpoint is an email address. * For the email-json protocol, the endpoint is an email address. * For the sms protocol, the endpoint is a phone number of an SMS-enabled device. * For the sqs protocol, the endpoint is the ARN of an Amazon SQS queue. * For the application protocol, the endpoint is the EndpointArn of a mobile app and device. * For the lambda protocol, the endpoint is the ARN of an Lambda function. * For the firehose protocol, the endpoint is the ARN of an Amazon Kinesis Data Firehose delivery stream.",
+						MarkdownDescription: "The endpoint that you want to receive notifications. Endpoints vary by protocol: * For the http protocol, the (public) endpoint is a URL beginning with http://. * For the https protocol, the (public) endpoint is a URL beginning with https://. * For the email protocol, the endpoint is an email address. * For the email-json protocol, the endpoint is an email address. * For the sms protocol, the endpoint is a phone number of an SMS-enabled device. * For the sqs protocol, the endpoint is the ARN of an Amazon SQS queue. * For the application protocol, the endpoint is the EndpointArn of a mobile app and device. * For the lambda protocol, the endpoint is the ARN of an Lambda function. * For the firehose protocol, the endpoint is the ARN of an Amazon Kinesis Data Firehose delivery stream.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -171,8 +171,8 @@ func (r *SnsServicesK8SAwsSubscriptionV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"protocol": schema.StringAttribute{
-						Description:         "The protocol that you want to use. Supported protocols include:   * http – delivery of JSON-encoded message via HTTP POST   * https – delivery of JSON-encoded message via HTTPS POST   * email – delivery of message via SMTP   * email-json – delivery of JSON-encoded message via SMTP   * sms – delivery of message via SMS   * sqs – delivery of JSON-encoded message to an Amazon SQS queue   * application – delivery of JSON-encoded message to an EndpointArn for   a mobile app and device   * lambda – delivery of JSON-encoded message to an Lambda function   * firehose – delivery of JSON-encoded message to an Amazon Kinesis Data   Firehose delivery stream.",
-						MarkdownDescription: "The protocol that you want to use. Supported protocols include:   * http – delivery of JSON-encoded message via HTTP POST   * https – delivery of JSON-encoded message via HTTPS POST   * email – delivery of message via SMTP   * email-json – delivery of JSON-encoded message via SMTP   * sms – delivery of message via SMS   * sqs – delivery of JSON-encoded message to an Amazon SQS queue   * application – delivery of JSON-encoded message to an EndpointArn for   a mobile app and device   * lambda – delivery of JSON-encoded message to an Lambda function   * firehose – delivery of JSON-encoded message to an Amazon Kinesis Data   Firehose delivery stream.",
+						Description:         "The protocol that you want to use. Supported protocols include: * http – delivery of JSON-encoded message via HTTP POST * https – delivery of JSON-encoded message via HTTPS POST * email – delivery of message via SMTP * email-json – delivery of JSON-encoded message via SMTP * sms – delivery of message via SMS * sqs – delivery of JSON-encoded message to an Amazon SQS queue * application – delivery of JSON-encoded message to an EndpointArn for a mobile app and device * lambda – delivery of JSON-encoded message to an Lambda function * firehose – delivery of JSON-encoded message to an Amazon Kinesis Data Firehose delivery stream.",
+						MarkdownDescription: "The protocol that you want to use. Supported protocols include: * http – delivery of JSON-encoded message via HTTP POST * https – delivery of JSON-encoded message via HTTPS POST * email – delivery of message via SMTP * email-json – delivery of JSON-encoded message via SMTP * sms – delivery of message via SMS * sqs – delivery of JSON-encoded message to an Amazon SQS queue * application – delivery of JSON-encoded message to an EndpointArn for a mobile app and device * lambda – delivery of JSON-encoded message to an Lambda function * firehose – delivery of JSON-encoded message to an Amazon Kinesis Data Firehose delivery stream.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -211,12 +211,12 @@ func (r *SnsServicesK8SAwsSubscriptionV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"topic_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",

@@ -148,9 +148,19 @@ type CephRookIoCephObjectZoneV1ManifestData struct {
 		} `tfsdk:"metadata_pool" json:"metadataPool,omitempty"`
 		PreservePoolsOnDelete *bool `tfsdk:"preserve_pools_on_delete" json:"preservePoolsOnDelete,omitempty"`
 		SharedPools           *struct {
-			DataPoolName                       *string `tfsdk:"data_pool_name" json:"dataPoolName,omitempty"`
-			MetadataPoolName                   *string `tfsdk:"metadata_pool_name" json:"metadataPoolName,omitempty"`
-			PreserveRadosNamespaceDataOnDelete *bool   `tfsdk:"preserve_rados_namespace_data_on_delete" json:"preserveRadosNamespaceDataOnDelete,omitempty"`
+			DataPoolName     *string `tfsdk:"data_pool_name" json:"dataPoolName,omitempty"`
+			MetadataPoolName *string `tfsdk:"metadata_pool_name" json:"metadataPoolName,omitempty"`
+			PoolPlacements   *[]struct {
+				DataNonECPoolName *string `tfsdk:"data_non_ec_pool_name" json:"dataNonECPoolName,omitempty"`
+				DataPoolName      *string `tfsdk:"data_pool_name" json:"dataPoolName,omitempty"`
+				MetadataPoolName  *string `tfsdk:"metadata_pool_name" json:"metadataPoolName,omitempty"`
+				Name              *string `tfsdk:"name" json:"name,omitempty"`
+				StorageClasses    *[]struct {
+					DataPoolName *string `tfsdk:"data_pool_name" json:"dataPoolName,omitempty"`
+					Name         *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"storage_classes" json:"storageClasses,omitempty"`
+			} `tfsdk:"pool_placements" json:"poolPlacements,omitempty"`
+			PreserveRadosNamespaceDataOnDelete *bool `tfsdk:"preserve_rados_namespace_data_on_delete" json:"preserveRadosNamespaceDataOnDelete,omitempty"`
 		} `tfsdk:"shared_pools" json:"sharedPools,omitempty"`
 		ZoneGroup *string `tfsdk:"zone_group" json:"zoneGroup,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -234,8 +244,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "ObjectZoneSpec represent the spec of an ObjectZone",
 				Attributes: map[string]schema.Attribute{
 					"custom_endpoints": schema.ListAttribute{
-						Description:         "If this zone cannot be accessed from other peer Ceph clusters via the ClusterIP Serviceendpoint created by Rook, you must set this to the externally reachable endpoint(s). You mayinclude the port in the definition. For example: 'https://my-object-store.my-domain.net:443'.In many cases, you should set this to the endpoint of the ingress resource that makes theCephObjectStore associated with this CephObjectStoreZone reachable to peer clusters.The list can have one or more endpoints pointing to different RGW servers in the zone.If a CephObjectStore endpoint is omitted from this list, that object store's gateways willnot receive multisite replication data(see CephObjectStore.spec.gateway.disableMultisiteSyncTraffic).",
-						MarkdownDescription: "If this zone cannot be accessed from other peer Ceph clusters via the ClusterIP Serviceendpoint created by Rook, you must set this to the externally reachable endpoint(s). You mayinclude the port in the definition. For example: 'https://my-object-store.my-domain.net:443'.In many cases, you should set this to the endpoint of the ingress resource that makes theCephObjectStore associated with this CephObjectStoreZone reachable to peer clusters.The list can have one or more endpoints pointing to different RGW servers in the zone.If a CephObjectStore endpoint is omitted from this list, that object store's gateways willnot receive multisite replication data(see CephObjectStore.spec.gateway.disableMultisiteSyncTraffic).",
+						Description:         "If this zone cannot be accessed from other peer Ceph clusters via the ClusterIP Service endpoint created by Rook, you must set this to the externally reachable endpoint(s). You may include the port in the definition. For example: 'https://my-object-store.my-domain.net:443'. In many cases, you should set this to the endpoint of the ingress resource that makes the CephObjectStore associated with this CephObjectStoreZone reachable to peer clusters. The list can have one or more endpoints pointing to different RGW servers in the zone. If a CephObjectStore endpoint is omitted from this list, that object store's gateways will not receive multisite replication data (see CephObjectStore.spec.gateway.disableMultisiteSyncTraffic).",
+						MarkdownDescription: "If this zone cannot be accessed from other peer Ceph clusters via the ClusterIP Service endpoint created by Rook, you must set this to the externally reachable endpoint(s). You may include the port in the definition. For example: 'https://my-object-store.my-domain.net:443'. In many cases, you should set this to the endpoint of the ingress resource that makes the CephObjectStore associated with this CephObjectStoreZone reachable to peer clusters. The list can have one or more endpoints pointing to different RGW servers in the zone. If a CephObjectStore endpoint is omitted from this list, that object store's gateways will not receive multisite replication data (see CephObjectStore.spec.gateway.disableMultisiteSyncTraffic).",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -255,8 +265,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"compression_mode": schema.StringAttribute{
-								Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters",
-								MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters",
+								Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
+								MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -310,8 +320,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"coding_chunks": schema.Int64Attribute{
-										Description:         "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
-										MarkdownDescription: "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
+										Description:         "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
+										MarkdownDescription: "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -321,8 +331,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"data_chunks": schema.Int64Attribute{
-										Description:         "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
-										MarkdownDescription: "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
+										Description:         "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
+										MarkdownDescription: "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -436,8 +446,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 								MarkdownDescription: "The quota settings",
 								Attributes: map[string]schema.Attribute{
 									"max_bytes": schema.Int64Attribute{
-										Description:         "MaxBytes represents the quota in bytesDeprecated in favor of MaxSize",
-										MarkdownDescription: "MaxBytes represents the quota in bytesDeprecated in favor of MaxSize",
+										Description:         "MaxBytes represents the quota in bytes Deprecated in favor of MaxSize",
+										MarkdownDescription: "MaxBytes represents the quota in bytes Deprecated in favor of MaxSize",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -613,8 +623,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"compression_mode": schema.StringAttribute{
-								Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters",
-								MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force'The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force)Do NOT set a default value for kubebuilder as this will override the Parameters",
+								Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
+								MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -668,8 +678,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"coding_chunks": schema.Int64Attribute{
-										Description:         "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
-										MarkdownDescription: "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type).This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
+										Description:         "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
+										MarkdownDescription: "Number of coding chunks per object in an erasure coded storage pool (required for erasure-coded pool type). This is the number of OSDs that can be lost simultaneously before data cannot be recovered.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -679,8 +689,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"data_chunks": schema.Int64Attribute{
-										Description:         "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
-										MarkdownDescription: "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type).The number of chunks required to recover an object when any single OSD is lost is the sameas dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
+										Description:         "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
+										MarkdownDescription: "Number of data chunks per object in an erasure coded storage pool (required for erasure-coded pool type). The number of chunks required to recover an object when any single OSD is lost is the same as dataChunks so be aware that the larger the number of data chunks, the higher the cost of recovery.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -794,8 +804,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 								MarkdownDescription: "The quota settings",
 								Attributes: map[string]schema.Attribute{
 									"max_bytes": schema.Int64Attribute{
-										Description:         "MaxBytes represents the quota in bytesDeprecated in favor of MaxSize",
-										MarkdownDescription: "MaxBytes represents the quota in bytesDeprecated in favor of MaxSize",
+										Description:         "MaxBytes represents the quota in bytes Deprecated in favor of MaxSize",
+										MarkdownDescription: "MaxBytes represents the quota in bytes Deprecated in favor of MaxSize",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -973,17 +983,104 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 							"data_pool_name": schema.StringAttribute{
 								Description:         "The data pool used for creating RADOS namespaces in the object store",
 								MarkdownDescription: "The data pool used for creating RADOS namespaces in the object store",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 
 							"metadata_pool_name": schema.StringAttribute{
 								Description:         "The metadata pool used for creating RADOS namespaces in the object store",
 								MarkdownDescription: "The metadata pool used for creating RADOS namespaces in the object store",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
+							},
+
+							"pool_placements": schema.ListNestedAttribute{
+								Description:         "PoolPlacements control which Pools are associated with a particular RGW bucket. Once PoolPlacements are defined, RGW client will be able to associate pool with ObjectStore bucket by providing '<LocationConstraint>' during s3 bucket creation or 'X-Storage-Policy' header during swift container creation. See: https://docs.ceph.com/en/latest/radosgw/placement/#placement-targets PoolPlacement with name: 'default' will be used as a default pool if no option is provided during bucket creation. If default placement is not provided, spec.sharedPools.dataPoolName and spec.sharedPools.MetadataPoolName will be used as default pools. If spec.sharedPools are also empty, then RGW pools (spec.dataPool and spec.metadataPool) will be used as defaults.",
+								MarkdownDescription: "PoolPlacements control which Pools are associated with a particular RGW bucket. Once PoolPlacements are defined, RGW client will be able to associate pool with ObjectStore bucket by providing '<LocationConstraint>' during s3 bucket creation or 'X-Storage-Policy' header during swift container creation. See: https://docs.ceph.com/en/latest/radosgw/placement/#placement-targets PoolPlacement with name: 'default' will be used as a default pool if no option is provided during bucket creation. If default placement is not provided, spec.sharedPools.dataPoolName and spec.sharedPools.MetadataPoolName will be used as default pools. If spec.sharedPools are also empty, then RGW pools (spec.dataPool and spec.metadataPool) will be used as defaults.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"data_non_ec_pool_name": schema.StringAttribute{
+											Description:         "The data pool used to store ObjectStore data that cannot use erasure coding (ex: multi-part uploads). If dataPoolName is not erasure coded, then there is no need for dataNonECPoolName.",
+											MarkdownDescription: "The data pool used to store ObjectStore data that cannot use erasure coding (ex: multi-part uploads). If dataPoolName is not erasure coded, then there is no need for dataNonECPoolName.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"data_pool_name": schema.StringAttribute{
+											Description:         "The data pool used to store ObjectStore objects data.",
+											MarkdownDescription: "The data pool used to store ObjectStore objects data.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+
+										"metadata_pool_name": schema.StringAttribute{
+											Description:         "The metadata pool used to store ObjectStore bucket index.",
+											MarkdownDescription: "The metadata pool used to store ObjectStore bucket index.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Pool placement name. Name can be arbitrary. Placement with name 'default' will be used as default.",
+											MarkdownDescription: "Pool placement name. Name can be arbitrary. Placement with name 'default' will be used as default.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9._/-]+$`), ""),
+											},
+										},
+
+										"storage_classes": schema.ListNestedAttribute{
+											Description:         "StorageClasses can be selected by user to override dataPoolName during object creation. Each placement has default STANDARD StorageClass pointing to dataPoolName. This list allows defining additional StorageClasses on top of default STANDARD storage class.",
+											MarkdownDescription: "StorageClasses can be selected by user to override dataPoolName during object creation. Each placement has default STANDARD StorageClass pointing to dataPoolName. This list allows defining additional StorageClasses on top of default STANDARD storage class.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"data_pool_name": schema.StringAttribute{
+														Description:         "DataPoolName is the data pool used to store ObjectStore objects data.",
+														MarkdownDescription: "DataPoolName is the data pool used to store ObjectStore objects data.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+														},
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name is the StorageClass name. Ceph allows arbitrary name for StorageClasses, however most clients/libs insist on AWS names so it is recommended to use one of the valid x-amz-storage-class values for better compatibility: REDUCED_REDUNDANCY | STANDARD_IA | ONEZONE_IA | INTELLIGENT_TIERING | GLACIER | DEEP_ARCHIVE | OUTPOSTS | GLACIER_IR | SNOW | EXPRESS_ONEZONE See AWS docs: https://aws.amazon.com/de/s3/storage-classes/",
+														MarkdownDescription: "Name is the StorageClass name. Ceph allows arbitrary name for StorageClasses, however most clients/libs insist on AWS names so it is recommended to use one of the valid x-amz-storage-class values for better compatibility: REDUCED_REDUNDANCY | STANDARD_IA | ONEZONE_IA | INTELLIGENT_TIERING | GLACIER | DEEP_ARCHIVE | OUTPOSTS | GLACIER_IR | SNOW | EXPRESS_ONEZONE See AWS docs: https://aws.amazon.com/de/s3/storage-classes/",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9._/-]+$`), ""),
+														},
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"preserve_rados_namespace_data_on_delete": schema.BoolAttribute{

@@ -59,10 +59,10 @@ Required:
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap is a reference (by name) to a ConfigMap's 'data' key, or to alist of ConfigMap's 'data' key using label selector, in the trust Namespace. (see [below for nested schema](#nestedatt--spec--sources--config_map))
+- `config_map` (Attributes) ConfigMap is a reference (by name) to a ConfigMap's 'data' key, or to a list of ConfigMap's 'data' key using label selector, in the trust Namespace. (see [below for nested schema](#nestedatt--spec--sources--config_map))
 - `in_line` (String) InLine is a simple string to append as the source data.
-- `secret` (Attributes) Secret is a reference (by name) to a Secret's 'data' key, or to alist of Secret's 'data' key using label selector, in the trust Namespace. (see [below for nested schema](#nestedatt--spec--sources--secret))
-- `use_default_c_as` (Boolean) UseDefaultCAs, when true, requests the default CA bundle to be used as a source.Default CAs are available if trust-manager was installed via Helmor was otherwise set up to include a package-injecting init container by using the'--default-package-location' flag when starting the trust-manager controller.If default CAs were not configured at start-up, any request to use the defaultCAs will fail.The version of the default CA package which is used for a Bundle is stored in thedefaultCAPackageVersion field of the Bundle's status field.
+- `secret` (Attributes) Secret is a reference (by name) to a Secret's 'data' key, or to a list of Secret's 'data' key using label selector, in the trust Namespace. (see [below for nested schema](#nestedatt--spec--sources--secret))
+- `use_default_c_as` (Boolean) UseDefaultCAs, when true, requests the default CA bundle to be used as a source. Default CAs are available if trust-manager was installed via Helm or was otherwise set up to include a package-injecting init container by using the '--default-package-location' flag when starting the trust-manager controller. If default CAs were not configured at start-up, any request to use the default CAs will fail. The version of the default CA package which is used for a Bundle is stored in the defaultCAPackageVersion field of the Bundle's status field.
 
 <a id="nestedatt--spec--sources--config_map"></a>
 ### Nested Schema for `spec.sources.config_map`
@@ -73,8 +73,8 @@ Required:
 
 Optional:
 
-- `name` (String) Name is the name of the source object in the trust Namespace.This field must be left empty when 'selector' is set
-- `selector` (Attributes) Selector is the label selector to use to fetch a list of objects. Must not be setwhen 'Name' is set. (see [below for nested schema](#nestedatt--spec--sources--config_map--selector))
+- `name` (String) Name is the name of the source object in the trust Namespace. This field must be left empty when 'selector' is set
+- `selector` (Attributes) Selector is the label selector to use to fetch a list of objects. Must not be set when 'Name' is set. (see [below for nested schema](#nestedatt--spec--sources--config_map--selector))
 
 <a id="nestedatt--spec--sources--config_map--selector"></a>
 ### Nested Schema for `spec.sources.config_map.selector`
@@ -82,7 +82,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sources--config_map--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--sources--config_map--selector--match_expressions"></a>
 ### Nested Schema for `spec.sources.config_map.selector.match_expressions`
@@ -90,11 +90,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -108,8 +108,8 @@ Required:
 
 Optional:
 
-- `name` (String) Name is the name of the source object in the trust Namespace.This field must be left empty when 'selector' is set
-- `selector` (Attributes) Selector is the label selector to use to fetch a list of objects. Must not be setwhen 'Name' is set. (see [below for nested schema](#nestedatt--spec--sources--secret--selector))
+- `name` (String) Name is the name of the source object in the trust Namespace. This field must be left empty when 'selector' is set
+- `selector` (Attributes) Selector is the label selector to use to fetch a list of objects. Must not be set when 'Name' is set. (see [below for nested schema](#nestedatt--spec--sources--secret--selector))
 
 <a id="nestedatt--spec--sources--secret--selector"></a>
 ### Nested Schema for `spec.sources.secret.selector`
@@ -117,7 +117,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--sources--secret--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--sources--secret--selector--match_expressions"></a>
 ### Nested Schema for `spec.sources.secret.selector.match_expressions`
@@ -125,11 +125,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -141,17 +141,17 @@ Optional:
 Optional:
 
 - `additional_formats` (Attributes) AdditionalFormats specifies any additional formats to write to the target (see [below for nested schema](#nestedatt--spec--target--additional_formats))
-- `config_map` (Attributes) ConfigMap is the target ConfigMap in Namespaces that all Bundle sourcedata will be synced to. (see [below for nested schema](#nestedatt--spec--target--config_map))
-- `namespace_selector` (Attributes) NamespaceSelector will, if set, only sync the target resource inNamespaces which match the selector. (see [below for nested schema](#nestedatt--spec--target--namespace_selector))
-- `secret` (Attributes) Secret is the target Secret that all Bundle source data will be synced to.Using Secrets as targets is only supported if enabled at trust-manager startup.By default, trust-manager has no permissions for writing to secrets and can only read secrets in the trust namespace. (see [below for nested schema](#nestedatt--spec--target--secret))
+- `config_map` (Attributes) ConfigMap is the target ConfigMap in Namespaces that all Bundle source data will be synced to. (see [below for nested schema](#nestedatt--spec--target--config_map))
+- `namespace_selector` (Attributes) NamespaceSelector will, if set, only sync the target resource in Namespaces which match the selector. (see [below for nested schema](#nestedatt--spec--target--namespace_selector))
+- `secret` (Attributes) Secret is the target Secret that all Bundle source data will be synced to. Using Secrets as targets is only supported if enabled at trust-manager startup. By default, trust-manager has no permissions for writing to secrets and can only read secrets in the trust namespace. (see [below for nested schema](#nestedatt--spec--target--secret))
 
 <a id="nestedatt--spec--target--additional_formats"></a>
 ### Nested Schema for `spec.target.additional_formats`
 
 Optional:
 
-- `jks` (Attributes) JKS requests a JKS-formatted binary trust bundle to be written to the target.The bundle has 'changeit' as the default password.For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords (see [below for nested schema](#nestedatt--spec--target--additional_formats--jks))
-- `pkcs12` (Attributes) PKCS12 requests a PKCS12-formatted binary trust bundle to be written to the target.The bundle is by default created without a password. (see [below for nested schema](#nestedatt--spec--target--additional_formats--pkcs12))
+- `jks` (Attributes) JKS requests a JKS-formatted binary trust bundle to be written to the target. The bundle has 'changeit' as the default password. For more information refer to this link https://cert-manager.io/docs/faq/#keystore-passwords (see [below for nested schema](#nestedatt--spec--target--additional_formats--jks))
+- `pkcs12` (Attributes) PKCS12 requests a PKCS12-formatted binary trust bundle to be written to the target. The bundle is by default created without a password. (see [below for nested schema](#nestedatt--spec--target--additional_formats--pkcs12))
 
 <a id="nestedatt--spec--target--additional_formats--jks"></a>
 ### Nested Schema for `spec.target.additional_formats.jks`
@@ -191,7 +191,7 @@ Required:
 
 Optional:
 
-- `match_labels` (Map of String) MatchLabels matches on the set of labels that must be present on aNamespace for the Bundle target to be synced there.
+- `match_labels` (Map of String) MatchLabels matches on the set of labels that must be present on a Namespace for the Bundle target to be synced there.
 
 
 <a id="nestedatt--spec--target--secret"></a>

@@ -177,8 +177,8 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"extra_parameters": schema.ListNestedAttribute{
-						Description:         ".Name is dot separated per the helm --set syntax, such as:  global.something.field",
-						MarkdownDescription: ".Name is dot separated per the helm --set syntax, such as:  global.something.field",
+						Description:         ".Name is dot separated per the helm --set syntax, such as: global.something.field",
+						MarkdownDescription: ".Name is dot separated per the helm --set syntax, such as: global.something.field",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -250,8 +250,8 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"origin_repo": schema.StringAttribute{
-								Description:         "Upstream git repo containing the pattern to deploy. Used when in-cluster fork to point to the upstream pattern repository.Takes precedence over TargetRepo",
-								MarkdownDescription: "Upstream git repo containing the pattern to deploy. Used when in-cluster fork to point to the upstream pattern repository.Takes precedence over TargetRepo",
+								Description:         "Upstream git repo containing the pattern to deploy. Used when in-cluster fork to point to the upstream pattern repository. Takes precedence over TargetRepo",
+								MarkdownDescription: "Upstream git repo containing the pattern to deploy. Used when in-cluster fork to point to the upstream pattern repository. Takes precedence over TargetRepo",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -282,16 +282,16 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"target_revision": schema.StringAttribute{
-								Description:         "Branch, tag, or commit to deploy.  Does not support short-sha's. Default: HEAD",
-								MarkdownDescription: "Branch, tag, or commit to deploy.  Does not support short-sha's. Default: HEAD",
+								Description:         "Branch, tag, or commit to deploy. Does not support short-sha's. Default: HEAD",
+								MarkdownDescription: "Branch, tag, or commit to deploy. Does not support short-sha's. Default: HEAD",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"token_secret": schema.StringAttribute{
-								Description:         "Optional. K8s secret name where the info for connecting to git can be found. The supported secrets are modeled after theprivate repositories in argo (https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories)currently ssh and username+password are supported",
-								MarkdownDescription: "Optional. K8s secret name where the info for connecting to git can be found. The supported secrets are modeled after theprivate repositories in argo (https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories)currently ssh and username+password are supported",
+								Description:         "Optional. K8s secret name where the info for connecting to git can be found. The supported secrets are modeled after the private repositories in argo (https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories) currently ssh and username+password are supported",
+								MarkdownDescription: "Optional. K8s secret name where the info for connecting to git can be found. The supported secrets are modeled after the private repositories in argo (https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories) currently ssh and username+password are supported",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -315,8 +315,8 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"cluster_group_chart_git_revision": schema.StringAttribute{
-								Description:         "The git reference when deploying the clustergroup helm chart directly from a git repoDefaults to 'main'. (Only used when developing the clustergroup helm chart)",
-								MarkdownDescription: "The git reference when deploying the clustergroup helm chart directly from a git repoDefaults to 'main'. (Only used when developing the clustergroup helm chart)",
+								Description:         "The git reference when deploying the clustergroup helm chart directly from a git repo Defaults to 'main'. (Only used when developing the clustergroup helm chart)",
+								MarkdownDescription: "The git reference when deploying the clustergroup helm chart directly from a git repo Defaults to 'main'. (Only used when developing the clustergroup helm chart)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -331,8 +331,8 @@ func (r *GitopsHybridCloudPatternsIoPatternV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"cluster_group_git_repo_url": schema.StringAttribute{
-								Description:         "The url when deploying the clustergroup helm chart directly from a git repoDefaults to '' which means not used (Only used when developing the clustergroup helm chart)",
-								MarkdownDescription: "The url when deploying the clustergroup helm chart directly from a git repoDefaults to '' which means not used (Only used when developing the clustergroup helm chart)",
+								Description:         "The url when deploying the clustergroup helm chart directly from a git repo Defaults to '' which means not used (Only used when developing the clustergroup helm chart)",
+								MarkdownDescription: "The url when deploying the clustergroup helm chart directly from a git repo Defaults to '' which means not used (Only used when developing the clustergroup helm chart)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

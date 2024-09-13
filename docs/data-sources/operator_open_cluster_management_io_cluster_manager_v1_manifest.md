@@ -3,12 +3,12 @@
 page_title: "k8s_operator_open_cluster_management_io_cluster_manager_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "operator.open-cluster-management.io"
 description: |-
-  ClusterManager configures the controllers on the hub that govern registration and work distribution for attached Klusterlets.In Default mode, ClusterManager will only be deployed in open-cluster-management-hub namespace.In Hosted mode, ClusterManager will be deployed in the namespace with the same name as cluster manager.
+  ClusterManager configures the controllers on the hub that govern registration and work distribution for attached Klusterlets. In Default mode, ClusterManager will only be deployed in open-cluster-management-hub namespace. In Hosted mode, ClusterManager will be deployed in the namespace with the same name as cluster manager.
 ---
 
 # k8s_operator_open_cluster_management_io_cluster_manager_v1_manifest (Data Source)
 
-ClusterManager configures the controllers on the hub that govern registration and work distribution for attached Klusterlets.In Default mode, ClusterManager will only be deployed in open-cluster-management-hub namespace.In Hosted mode, ClusterManager will be deployed in the namespace with the same name as cluster manager.
+ClusterManager configures the controllers on the hub that govern registration and work distribution for attached Klusterlets. In Default mode, ClusterManager will only be deployed in open-cluster-management-hub namespace. In Hosted mode, ClusterManager will be deployed in the namespace with the same name as cluster manager.
 
 ## Example Usage
 
@@ -56,12 +56,12 @@ Optional:
 
 - `add_on_manager_configuration` (Attributes) AddOnManagerConfiguration contains the configuration of addon manager (see [below for nested schema](#nestedatt--spec--add_on_manager_configuration))
 - `add_on_manager_image_pull_spec` (String) AddOnManagerImagePullSpec represents the desired image configuration of addon manager controller/webhook installed on hub.
-- `deploy_option` (Attributes) DeployOption contains the options of deploying a cluster-managerDefault mode is used if DeployOption is not set. (see [below for nested schema](#nestedatt--spec--deploy_option))
+- `deploy_option` (Attributes) DeployOption contains the options of deploying a cluster-manager Default mode is used if DeployOption is not set. (see [below for nested schema](#nestedatt--spec--deploy_option))
 - `node_placement` (Attributes) NodePlacement enables explicit control over the scheduling of the deployed pods. (see [below for nested schema](#nestedatt--spec--node_placement))
 - `placement_image_pull_spec` (String) PlacementImagePullSpec represents the desired image configuration of placement controller/webhook installed on hub.
 - `registration_configuration` (Attributes) RegistrationConfiguration contains the configuration of registration (see [below for nested schema](#nestedatt--spec--registration_configuration))
 - `registration_image_pull_spec` (String) RegistrationImagePullSpec represents the desired image of registration controller/webhook installed on hub.
-- `resource_requirement` (Attributes) ResourceRequirement specify QoS classes of deployments managed by clustermanager.It applies to all the containers in the deployments. (see [below for nested schema](#nestedatt--spec--resource_requirement))
+- `resource_requirement` (Attributes) ResourceRequirement specify QoS classes of deployments managed by clustermanager. It applies to all the containers in the deployments. (see [below for nested schema](#nestedatt--spec--resource_requirement))
 - `work_configuration` (Attributes) WorkConfiguration contains the configuration of work (see [below for nested schema](#nestedatt--spec--work_configuration))
 - `work_image_pull_spec` (String) WorkImagePullSpec represents the desired image configuration of work controller/webhook installed on hub.
 
@@ -70,7 +70,7 @@ Optional:
 
 Optional:
 
-- `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for addon managerIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--add_on_manager_configuration--feature_gates))
+- `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for addon manager If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--add_on_manager_configuration--feature_gates))
 
 <a id="nestedatt--spec--add_on_manager_configuration--feature_gates"></a>
 ### Nested Schema for `spec.add_on_manager_configuration.feature_gates`
@@ -81,7 +81,7 @@ Required:
 
 Optional:
 
-- `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.
+- `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.
 
 
 
@@ -90,7 +90,7 @@ Optional:
 
 Required:
 
-- `mode` (String) Mode can be Default or Hosted.In Default mode, the Hub is installed as a whole and all parts of Hub are deployed in the same cluster.In Hosted mode, only crd and configurations are installed on one cluster(defined as hub-cluster). Controllers run in anothercluster (defined as management-cluster) and connect to the hub with the kubeconfig in secret of 'external-hub-kubeconfig'(a kubeconfigof hub-cluster with cluster-admin permission).Note: Do not modify the Mode field once it's applied.
+- `mode` (String) Mode can be Default or Hosted. In Default mode, the Hub is installed as a whole and all parts of Hub are deployed in the same cluster. In Hosted mode, only crd and configurations are installed on one cluster(defined as hub-cluster). Controllers run in another cluster (defined as management-cluster) and connect to the hub with the kubeconfig in secret of 'external-hub-kubeconfig'(a kubeconfig of hub-cluster with cluster-admin permission). Note: Do not modify the Mode field once it's applied.
 
 Optional:
 
@@ -109,7 +109,7 @@ Optional:
 
 Required:
 
-- `address` (String) Address represents the address of a webhook-server.It could be in IP format or fqdn format.The Address must be reachable by apiserver of the hub cluster.
+- `address` (String) Address represents the address of a webhook-server. It could be in IP format or fqdn format. The Address must be reachable by apiserver of the hub cluster.
 
 Optional:
 
@@ -121,7 +121,7 @@ Optional:
 
 Required:
 
-- `address` (String) Address represents the address of a webhook-server.It could be in IP format or fqdn format.The Address must be reachable by apiserver of the hub cluster.
+- `address` (String) Address represents the address of a webhook-server. It could be in IP format or fqdn format. The Address must be reachable by apiserver of the hub cluster.
 
 Optional:
 
@@ -136,18 +136,18 @@ Optional:
 Optional:
 
 - `node_selector` (Map of String) NodeSelector defines which Nodes the Pods are scheduled on. The default is an empty list.
-- `tolerations` (Attributes List) Tolerations are attached by pods to tolerate any taint that matchesthe triple <key,value,effect> using the matching operator <operator>.The default is an empty list. (see [below for nested schema](#nestedatt--spec--node_placement--tolerations))
+- `tolerations` (Attributes List) Tolerations are attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list. (see [below for nested schema](#nestedatt--spec--node_placement--tolerations))
 
 <a id="nestedatt--spec--node_placement--tolerations"></a>
 ### Nested Schema for `spec.node_placement.tolerations`
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -156,8 +156,8 @@ Optional:
 
 Optional:
 
-- `auto_approve_users` (List of String) AutoApproveUser represents a list of users that can auto approve CSR and accept client. If the credential of thebootstrap-hub-kubeconfig matches to the users, the cluster created by the bootstrap-hub-kubeconfig willbe auto-registered into the hub cluster. This takes effect only when ManagedClusterAutoApproval feature gateis enabled.
-- `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for registrationIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--registration_configuration--feature_gates))
+- `auto_approve_users` (List of String) AutoApproveUser represents a list of users that can auto approve CSR and accept client. If the credential of the bootstrap-hub-kubeconfig matches to the users, the cluster created by the bootstrap-hub-kubeconfig will be auto-registered into the hub cluster. This takes effect only when ManagedClusterAutoApproval feature gate is enabled.
+- `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for registration If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--registration_configuration--feature_gates))
 
 <a id="nestedatt--spec--registration_configuration--feature_gates"></a>
 ### Nested Schema for `spec.registration_configuration.feature_gates`
@@ -168,7 +168,7 @@ Required:
 
 Optional:
 
-- `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.
+- `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.
 
 
 
@@ -185,16 +185,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resource_requirement--resource_requirements--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resource_requirement--resource_requirements--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resource_requirement--resource_requirements--claims"></a>
 ### Nested Schema for `spec.resource_requirement.resource_requirements.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
 
 
@@ -204,8 +204,8 @@ Required:
 
 Optional:
 
-- `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for workIf it is set empty, default feature gates will be used.If it is set, featuregate/Foo is an example of one item in FeatureGates:  1. If featuregate/Foo does not exist, registration-operator will discard it  2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true]  3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, 	he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--work_configuration--feature_gates))
-- `work_driver` (String) WorkDriver represents the type of work driver. Possible values are 'kube', 'mqtt', or 'grpc'.If not provided, the default value is 'kube'.If set to non-'kube' drivers, the klusterlet need to use the same driver.and the driver configuration must be provided in a secret named 'work-driver-config'in the namespace where the cluster manager is running, adhering to the following structure:config.yaml: |  <driver-config-in-yaml>For detailed driver configuration, please refer to the sdk-go documentation: https://github.com/open-cluster-management-io/sdk-go/blob/main/pkg/cloudevents/README.md#supported-protocols-and-drivers
+- `feature_gates` (Attributes List) FeatureGates represents the list of feature gates for work If it is set empty, default feature gates will be used. If it is set, featuregate/Foo is an example of one item in FeatureGates: 1. If featuregate/Foo does not exist, registration-operator will discard it 2. If featuregate/Foo exists and is false by default. It is now possible to set featuregate/Foo=[false|true] 3. If featuregate/Foo exists and is true by default. If a cluster-admin upgrading from 1 to 2 wants to continue having featuregate/Foo=false, he can set featuregate/Foo=false before upgrading. Let's say the cluster-admin wants featuregate/Foo=false. (see [below for nested schema](#nestedatt--spec--work_configuration--feature_gates))
+- `work_driver` (String) WorkDriver represents the type of work driver. Possible values are 'kube', 'mqtt', or 'grpc'. If not provided, the default value is 'kube'. If set to non-'kube' drivers, the klusterlet need to use the same driver. and the driver configuration must be provided in a secret named 'work-driver-config' in the namespace where the cluster manager is running, adhering to the following structure: config.yaml: | <driver-config-in-yaml> For detailed driver configuration, please refer to the sdk-go documentation: https://github.com/open-cluster-management-io/sdk-go/blob/main/pkg/cloudevents/README.md#supported-protocols-and-drivers
 
 <a id="nestedatt--spec--work_configuration--feature_gates"></a>
 ### Nested Schema for `spec.work_configuration.feature_gates`
@@ -216,4 +216,4 @@ Required:
 
 Optional:
 
-- `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default.In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'.In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.
+- `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.

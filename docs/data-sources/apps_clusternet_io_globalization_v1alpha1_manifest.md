@@ -51,11 +51,11 @@ Optional:
 
 Optional:
 
-- `cluster_affinity` (Attributes) ClusterAffinity is a label query over managed clusters by labels.If no labels are specified, all clusters will be selected. (see [below for nested schema](#nestedatt--spec--cluster_affinity))
+- `cluster_affinity` (Attributes) ClusterAffinity is a label query over managed clusters by labels. If no labels are specified, all clusters will be selected. (see [below for nested schema](#nestedatt--spec--cluster_affinity))
 - `feed` (Attributes) Feed holds references to the objects the Globalization applies to. (see [below for nested schema](#nestedatt--spec--feed))
 - `override_policy` (String) OverridePolicy specifies the override policy for this Globalization.
 - `overrides` (Attributes List) Overrides holds all the OverrideConfig. (see [below for nested schema](#nestedatt--spec--overrides))
-- `priority` (Number) Priority is an integer defining the relative importance of this Globalization compared to others.Lower numbers are considered lower priority.And these Globalization(s) will be applied by order from lower priority to higher.That means override values in lower Globalization will be overridden by those in higher Globalization.
+- `priority` (Number) Priority is an integer defining the relative importance of this Globalization compared to others. Lower numbers are considered lower priority. And these Globalization(s) will be applied by order from lower priority to higher. That means override values in lower Globalization will be overridden by those in higher Globalization.
 
 <a id="nestedatt--spec--cluster_affinity"></a>
 ### Nested Schema for `spec.cluster_affinity`
@@ -63,7 +63,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--cluster_affinity--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--cluster_affinity--match_expressions"></a>
 ### Nested Schema for `spec.cluster_affinity.match_expressions`
@@ -71,11 +71,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -85,7 +85,7 @@ Optional:
 Required:
 
 - `api_version` (String) APIVersion defines the versioned schema of this representation of an object.
-- `kind` (String) Kind is a string value representing the REST resource this object represents.In CamelCase.
+- `kind` (String) Kind is a string value representing the REST resource this object represents. In CamelCase.
 - `name` (String) Name of the target resource.
 
 Optional:

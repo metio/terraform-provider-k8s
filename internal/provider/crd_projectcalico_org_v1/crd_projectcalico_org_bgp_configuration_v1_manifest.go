@@ -219,8 +219,8 @@ func (r *CrdProjectcalicoOrgBgpconfigurationV1Manifest) Schema(_ context.Context
 					},
 
 					"node_mesh_max_restart_time": schema.StringAttribute{
-						Description:         "Time to allow for software restart for node-to-mesh peerings.  When specified, this is configured as the graceful restart timeout.  When not specified, the BIRD default of 120s is used. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled",
-						MarkdownDescription: "Time to allow for software restart for node-to-mesh peerings.  When specified, this is configured as the graceful restart timeout.  When not specified, the BIRD default of 120s is used. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled",
+						Description:         "Time to allow for software restart for node-to-mesh peerings. When specified, this is configured as the graceful restart timeout. When not specified, the BIRD default of 120s is used. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled",
+						MarkdownDescription: "Time to allow for software restart for node-to-mesh peerings. When specified, this is configured as the graceful restart timeout. When not specified, the BIRD default of 120s is used. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -235,8 +235,8 @@ func (r *CrdProjectcalicoOrgBgpconfigurationV1Manifest) Schema(_ context.Context
 								MarkdownDescription: "Selects a key of a secret in the node pod's namespace.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Description:         "The key of the secret to select from. Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,

@@ -145,20 +145,20 @@ func (r *Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest) Schema(_
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ResolverEndpointSpec defines the desired state of ResolverEndpoint.In the response to a CreateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html),DeleteResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html),GetResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html),Updates the name, or ResolverEndpointType for an endpoint, or UpdateResolverEndpoint(https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html)request, a complex type that contains settings for an existing inbound oroutbound Resolver endpoint.",
-				MarkdownDescription: "ResolverEndpointSpec defines the desired state of ResolverEndpoint.In the response to a CreateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html),DeleteResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html),GetResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html),Updates the name, or ResolverEndpointType for an endpoint, or UpdateResolverEndpoint(https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html)request, a complex type that contains settings for an existing inbound oroutbound Resolver endpoint.",
+				Description:         "ResolverEndpointSpec defines the desired state of ResolverEndpoint. In the response to a CreateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html), DeleteResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html), GetResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html), Updates the name, or ResolverEndpointType for an endpoint, or UpdateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html) request, a complex type that contains settings for an existing inbound or outbound Resolver endpoint.",
+				MarkdownDescription: "ResolverEndpointSpec defines the desired state of ResolverEndpoint. In the response to a CreateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html), DeleteResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html), GetResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_GetResolverEndpoint.html), Updates the name, or ResolverEndpointType for an endpoint, or UpdateResolverEndpoint (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_UpdateResolverEndpoint.html) request, a complex type that contains settings for an existing inbound or outbound Resolver endpoint.",
 				Attributes: map[string]schema.Attribute{
 					"direction": schema.StringAttribute{
-						Description:         "Specify the applicable value:   * INBOUND: Resolver forwards DNS queries to the DNS service for a VPC   from your network   * OUTBOUND: Resolver forwards DNS queries from the DNS service for a VPC   to your network",
-						MarkdownDescription: "Specify the applicable value:   * INBOUND: Resolver forwards DNS queries to the DNS service for a VPC   from your network   * OUTBOUND: Resolver forwards DNS queries from the DNS service for a VPC   to your network",
+						Description:         "Specify the applicable value: * INBOUND: Resolver forwards DNS queries to the DNS service for a VPC from your network * OUTBOUND: Resolver forwards DNS queries from the DNS service for a VPC to your network",
+						MarkdownDescription: "Specify the applicable value: * INBOUND: Resolver forwards DNS queries to the DNS service for a VPC from your network * OUTBOUND: Resolver forwards DNS queries from the DNS service for a VPC to your network",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"ip_addresses": schema.ListNestedAttribute{
-						Description:         "The subnets and IP addresses in your VPC that DNS queries originate from(for outbound endpoints) or that you forward DNS queries to (for inboundendpoints). The subnet ID uniquely identifies a VPC.",
-						MarkdownDescription: "The subnets and IP addresses in your VPC that DNS queries originate from(for outbound endpoints) or that you forward DNS queries to (for inboundendpoints). The subnet ID uniquely identifies a VPC.",
+						Description:         "The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC.",
+						MarkdownDescription: "The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"ip": schema.StringAttribute{
@@ -190,8 +190,8 @@ func (r *Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest) Schema(_
 									MarkdownDescription: "Reference field for SubnetID",
 									Attributes: map[string]schema.Attribute{
 										"from": schema.SingleNestedAttribute{
-											Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+											Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "",
@@ -226,24 +226,24 @@ func (r *Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest) Schema(_
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "A friendly name that lets you easily find a configuration in the Resolverdashboard in the Route 53 console.",
-						MarkdownDescription: "A friendly name that lets you easily find a configuration in the Resolverdashboard in the Route 53 console.",
+						Description:         "A friendly name that lets you easily find a configuration in the Resolver dashboard in the Route 53 console.",
+						MarkdownDescription: "A friendly name that lets you easily find a configuration in the Resolver dashboard in the Route 53 console.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"resolver_endpoint_type": schema.StringAttribute{
-						Description:         "For the endpoint type you can choose either IPv4, IPv6. or dual-stack. Adual-stack endpoint means that it will resolve via both IPv4 and IPv6. Thisendpoint type is applied to all IP addresses.",
-						MarkdownDescription: "For the endpoint type you can choose either IPv4, IPv6. or dual-stack. Adual-stack endpoint means that it will resolve via both IPv4 and IPv6. Thisendpoint type is applied to all IP addresses.",
+						Description:         "For the endpoint type you can choose either IPv4, IPv6. or dual-stack. A dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This endpoint type is applied to all IP addresses.",
+						MarkdownDescription: "For the endpoint type you can choose either IPv4, IPv6. or dual-stack. A dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This endpoint type is applied to all IP addresses.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"security_group_i_ds": schema.ListAttribute{
-						Description:         "The ID of one or more security groups that you want to use to control accessto this VPC. The security group that you specify must include one or moreinbound rules (for inbound Resolver endpoints) or outbound rules (for outboundResolver endpoints). Inbound and outbound rules must allow TCP and UDP access.For inbound access, open port 53. For outbound access, open the port thatyou're using for DNS queries on your network.",
-						MarkdownDescription: "The ID of one or more security groups that you want to use to control accessto this VPC. The security group that you specify must include one or moreinbound rules (for inbound Resolver endpoints) or outbound rules (for outboundResolver endpoints). Inbound and outbound rules must allow TCP and UDP access.For inbound access, open port 53. For outbound access, open the port thatyou're using for DNS queries on your network.",
+						Description:         "The ID of one or more security groups that you want to use to control access to this VPC. The security group that you specify must include one or more inbound rules (for inbound Resolver endpoints) or outbound rules (for outbound Resolver endpoints). Inbound and outbound rules must allow TCP and UDP access. For inbound access, open port 53. For outbound access, open the port that you're using for DNS queries on your network.",
+						MarkdownDescription: "The ID of one or more security groups that you want to use to control access to this VPC. The security group that you specify must include one or more inbound rules (for inbound Resolver endpoints) or outbound rules (for outbound Resolver endpoints). Inbound and outbound rules must allow TCP and UDP access. For inbound access, open port 53. For outbound access, open the port that you're using for DNS queries on your network.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -256,8 +256,8 @@ func (r *Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest) Schema(_
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",

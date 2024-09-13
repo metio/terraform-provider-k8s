@@ -72,7 +72,7 @@ Optional:
 - `producer` (Attributes) Kafka producer related configuration. (see [below for nested schema](#nestedatt--spec--producer))
 - `rack` (Attributes) Configuration of the node label which will be used as the client.rack consumer configuration. (see [below for nested schema](#nestedatt--spec--rack))
 - `readiness_probe` (Attributes) Pod readiness checking. (see [below for nested schema](#nestedatt--spec--readiness_probe))
-- `replicas` (Number) The number of pods in the 'Deployment'.  Defaults to '1'.
+- `replicas` (Number) The number of pods in the 'Deployment'. Defaults to '1'.
 - `resources` (Attributes) CPU and memory resources to reserve. (see [below for nested schema](#nestedatt--spec--resources))
 - `template` (Attributes) Template for Kafka Bridge resources. The template allows users to specify how a 'Deployment' and 'Pod' is generated. (see [below for nested schema](#nestedatt--spec--template))
 - `tls` (Attributes) TLS configuration for connecting Kafka Bridge to the cluster. (see [below for nested schema](#nestedatt--spec--tls))

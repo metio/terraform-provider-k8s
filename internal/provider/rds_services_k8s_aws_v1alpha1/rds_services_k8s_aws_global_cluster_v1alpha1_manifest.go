@@ -127,20 +127,20 @@ func (r *RdsServicesK8SAwsGlobalClusterV1Alpha1Manifest) Schema(_ context.Contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "GlobalClusterSpec defines the desired state of GlobalCluster.A data type representing an Aurora global database.",
-				MarkdownDescription: "GlobalClusterSpec defines the desired state of GlobalCluster.A data type representing an Aurora global database.",
+				Description:         "GlobalClusterSpec defines the desired state of GlobalCluster. A data type representing an Aurora global database.",
+				MarkdownDescription: "GlobalClusterSpec defines the desired state of GlobalCluster. A data type representing an Aurora global database.",
 				Attributes: map[string]schema.Attribute{
 					"database_name": schema.StringAttribute{
-						Description:         "The name for your database of up to 64 alphanumeric characters. If you donot provide a name, Amazon Aurora will not create a database in the globaldatabase cluster you are creating.",
-						MarkdownDescription: "The name for your database of up to 64 alphanumeric characters. If you donot provide a name, Amazon Aurora will not create a database in the globaldatabase cluster you are creating.",
+						Description:         "The name for your database of up to 64 alphanumeric characters. If you do not provide a name, Amazon Aurora will not create a database in the global database cluster you are creating.",
+						MarkdownDescription: "The name for your database of up to 64 alphanumeric characters. If you do not provide a name, Amazon Aurora will not create a database in the global database cluster you are creating.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"deletion_protection": schema.BoolAttribute{
-						Description:         "The deletion protection setting for the new global database. The global databasecan't be deleted when deletion protection is enabled.",
-						MarkdownDescription: "The deletion protection setting for the new global database. The global databasecan't be deleted when deletion protection is enabled.",
+						Description:         "The deletion protection setting for the new global database. The global database can't be deleted when deletion protection is enabled.",
+						MarkdownDescription: "The deletion protection setting for the new global database. The global database can't be deleted when deletion protection is enabled.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -171,8 +171,8 @@ func (r *RdsServicesK8SAwsGlobalClusterV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"source_db_cluster_identifier": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) to use as the primary cluster of the globaldatabase. This parameter is optional.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) to use as the primary cluster of the globaldatabase. This parameter is optional.",
+						Description:         "The Amazon Resource Name (ARN) to use as the primary cluster of the global database. This parameter is optional.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) to use as the primary cluster of the global database. This parameter is optional.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

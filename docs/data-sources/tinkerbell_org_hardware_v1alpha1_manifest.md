@@ -55,14 +55,14 @@ Optional:
 
 Optional:
 
-- `bmc_ref` (Attributes) BMCRef contains a relation to a BMC state management type in the samenamespace as the Hardware. This may be used for BMC management byorchestrators. (see [below for nested schema](#nestedatt--spec--bmc_ref))
+- `bmc_ref` (Attributes) BMCRef contains a relation to a BMC state management type in the same namespace as the Hardware. This may be used for BMC management by orchestrators. (see [below for nested schema](#nestedatt--spec--bmc_ref))
 - `disks` (Attributes List) (see [below for nested schema](#nestedatt--spec--disks))
 - `interfaces` (Attributes List) (see [below for nested schema](#nestedatt--spec--interfaces))
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--metadata))
-- `resources` (Map of String) Resources represents known resources that are available on a machine.Resources may be used for scheduling by orchestrators.
+- `resources` (Map of String) Resources represents known resources that are available on a machine. Resources may be used for scheduling by orchestrators.
 - `tink_version` (Number)
-- `user_data` (String) UserData is the user data to configure in the hardware'smetadata
-- `vendor_data` (String) VendorData is the vendor data to configure in the hardware'smetadata
+- `user_data` (String) UserData is the user data to configure in the hardware's metadata
+- `vendor_data` (String) VendorData is the vendor data to configure in the hardware's metadata
 
 <a id="nestedatt--spec--bmc_ref"></a>
 ### Nested Schema for `spec.bmc_ref`
@@ -74,7 +74,7 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
 <a id="nestedatt--spec--disks"></a>

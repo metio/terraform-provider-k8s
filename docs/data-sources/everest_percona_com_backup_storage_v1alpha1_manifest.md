@@ -61,9 +61,9 @@ Required:
 
 Optional:
 
-- `allowed_namespaces` (List of String) AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName.Deprecated: BackupStorages are now used only in the namespaces where they are created.
+- `allowed_namespaces` (List of String) AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName. Deprecated: BackupStorages are now used only in the namespaces where they are created.
 - `description` (String) Description stores description of a backup storage.
 - `endpoint_url` (String) EndpointURL is an endpoint URL of backup storage.
-- `force_path_style` (Boolean) ForcePathStyle is set to use path-style URLs.If unspecified, the default value is false.
+- `force_path_style` (Boolean) ForcePathStyle is set to use path-style URLs. If unspecified, the default value is false.
 - `region` (String) Region is a region where the bucket is located.
-- `verify_tls` (Boolean) VerifyTLS is set to ensure TLS/SSL verification.If unspecified, the default value is true.
+- `verify_tls` (Boolean) VerifyTLS is set to ensure TLS/SSL verification. If unspecified, the default value is true.

@@ -3,12 +3,12 @@
 page_title: "k8s_traefik_io_tls_option_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection.More info: https://doc.traefik.io/traefik/v3.1/https/tls/#tls-options
+  TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection. More info: https://doc.traefik.io/traefik/v3.1/https/tls/#tls-options
 ---
 
 # k8s_traefik_io_tls_option_v1alpha1_manifest (Data Source)
 
-TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection.More info: https://doc.traefik.io/traefik/v3.1/https/tls/#tls-options
+TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection. More info: https://doc.traefik.io/traefik/v3.1/https/tls/#tls-options
 
 ## Example Usage
 
@@ -55,13 +55,13 @@ Optional:
 
 Optional:
 
-- `alpn_protocols` (List of String) ALPNProtocols defines the list of supported application level protocols for the TLS handshake, in order of preference.More info: https://doc.traefik.io/traefik/v3.1/https/tls/#alpn-protocols
-- `cipher_suites` (List of String) CipherSuites defines the list of supported cipher suites for TLS versions up to TLS 1.2.More info: https://doc.traefik.io/traefik/v3.1/https/tls/#cipher-suites
+- `alpn_protocols` (List of String) ALPNProtocols defines the list of supported application level protocols for the TLS handshake, in order of preference. More info: https://doc.traefik.io/traefik/v3.1/https/tls/#alpn-protocols
+- `cipher_suites` (List of String) CipherSuites defines the list of supported cipher suites for TLS versions up to TLS 1.2. More info: https://doc.traefik.io/traefik/v3.1/https/tls/#cipher-suites
 - `client_auth` (Attributes) ClientAuth defines the server's policy for TLS Client Authentication. (see [below for nested schema](#nestedatt--spec--client_auth))
-- `curve_preferences` (List of String) CurvePreferences defines the preferred elliptic curves in a specific order.More info: https://doc.traefik.io/traefik/v3.1/https/tls/#curve-preferences
-- `max_version` (String) MaxVersion defines the maximum TLS version that Traefik will accept.Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13.Default: None.
-- `min_version` (String) MinVersion defines the minimum TLS version that Traefik will accept.Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13.Default: VersionTLS10.
-- `prefer_server_cipher_suites` (Boolean) PreferServerCipherSuites defines whether the server chooses a cipher suite among his own instead of among the client's.It is enabled automatically when minVersion or maxVersion is set.Deprecated: https://github.com/golang/go/issues/45430
+- `curve_preferences` (List of String) CurvePreferences defines the preferred elliptic curves in a specific order. More info: https://doc.traefik.io/traefik/v3.1/https/tls/#curve-preferences
+- `max_version` (String) MaxVersion defines the maximum TLS version that Traefik will accept. Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13. Default: None.
+- `min_version` (String) MinVersion defines the minimum TLS version that Traefik will accept. Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13. Default: VersionTLS10.
+- `prefer_server_cipher_suites` (Boolean) PreferServerCipherSuites defines whether the server chooses a cipher suite among his own instead of among the client's. It is enabled automatically when minVersion or maxVersion is set. Deprecated: https://github.com/golang/go/issues/45430
 - `sni_strict` (Boolean) SniStrict defines whether Traefik allows connections from clients connections that do not specify a server_name extension.
 
 <a id="nestedatt--spec--client_auth"></a>

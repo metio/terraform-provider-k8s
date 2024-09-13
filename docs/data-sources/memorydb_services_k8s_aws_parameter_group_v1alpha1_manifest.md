@@ -30,7 +30,7 @@ data "k8s_memorydb_services_k8s_aws_parameter_group_v1alpha1_manifest" "example"
 
 ### Optional
 
-- `spec` (Attributes) ParameterGroupSpec defines the desired state of ParameterGroup.Represents the output of a CreateParameterGroup operation. A parameter grouprepresents a combination of specific values for the parameters that are passedto the engine software during startup. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ParameterGroupSpec defines the desired state of ParameterGroup. Represents the output of a CreateParameterGroup operation. A parameter group represents a combination of specific values for the parameters that are passed to the engine software during startup. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,14 +55,14 @@ Optional:
 
 Required:
 
-- `family` (String) The name of the parameter group family that the parameter group can be usedwith.
+- `family` (String) The name of the parameter group family that the parameter group can be used with.
 - `name` (String) The name of the parameter group.
 
 Optional:
 
 - `description` (String) An optional description of the parameter group.
-- `parameter_name_values` (Attributes List) An array of parameter names and values for the parameter update. You mustsupply at least one parameter name and value; subsequent arguments are optional.A maximum of 20 parameters may be updated per request. (see [below for nested schema](#nestedatt--spec--parameter_name_values))
-- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. Atag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
+- `parameter_name_values` (Attributes List) An array of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional. A maximum of 20 parameters may be updated per request. (see [below for nested schema](#nestedatt--spec--parameter_name_values))
+- `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--parameter_name_values"></a>
 ### Nested Schema for `spec.parameter_name_values`

@@ -59,7 +59,7 @@ Optional:
 - `inbound_cidrs` (List of String) InboundCIDRs specifies the CIDRs that are allowed to access the Ingresses that belong to IngressClass with this IngressClassParams.
 - `ip_address_type` (String) IPAddressType defines the ip address type for all Ingresses that belong to IngressClass with this IngressClassParams.
 - `load_balancer_attributes` (Attributes List) LoadBalancerAttributes define the custom attributes to LoadBalancers for all Ingress that that belong to IngressClass with this IngressClassParams. (see [below for nested schema](#nestedatt--spec--load_balancer_attributes))
-- `namespace_selector` (Attributes) NamespaceSelector restrict the namespaces of Ingresses that are allowed to specify the IngressClass with this IngressClassParams.* if absent or present but empty, it selects all namespaces. (see [below for nested schema](#nestedatt--spec--namespace_selector))
+- `namespace_selector` (Attributes) NamespaceSelector restrict the namespaces of Ingresses that are allowed to specify the IngressClass with this IngressClassParams. * if absent or present but empty, it selects all namespaces. (see [below for nested schema](#nestedatt--spec--namespace_selector))
 - `scheme` (String) Scheme defines the scheme for all Ingresses that belong to IngressClass with this IngressClassParams.
 - `ssl_policy` (String) SSLPolicy specifies the SSL Policy for all Ingresses that belong to IngressClass with this IngressClassParams.
 - `subnets` (Attributes) Subnets defines the subnets for all Ingresses that belong to IngressClass with this IngressClassParams. (see [below for nested schema](#nestedatt--spec--subnets))
@@ -88,7 +88,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.namespace_selector.match_expressions`
@@ -96,11 +96,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -110,7 +110,7 @@ Optional:
 Optional:
 
 - `ids` (List of String) IDs specify the resource IDs of subnets. Exactly one of this or 'tags' must be specified.
-- `tags` (Map of List of String) Tags specifies subnets in the load balancer's VPC where eachtag specified in the map key contains one of the values in the correspondingvalue list.Exactly one of this or 'ids' must be specified.
+- `tags` (Map of List of String) Tags specifies subnets in the load balancer's VPC where each tag specified in the map key contains one of the values in the corresponding value list. Exactly one of this or 'ids' must be specified.
 
 
 <a id="nestedatt--spec--tags"></a>

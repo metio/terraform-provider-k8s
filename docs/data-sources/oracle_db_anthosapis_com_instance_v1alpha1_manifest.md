@@ -56,7 +56,7 @@ Optional:
 Optional:
 
 - `admin_user` (Attributes) AdminUser represents the admin user specification (see [below for nested schema](#nestedatt--spec--admin_user))
-- `cdb_name` (String) CDBName is the intended name of the CDB attribute. If the CDBName is different from the original name (with which the CDB was created) the CDB will be renamed.  The CDBName should meet Oracle SID requirements: uppercase, alphanumeric, max 8 characters, and not start with a number.
+- `cdb_name` (String) CDBName is the intended name of the CDB attribute. If the CDBName is different from the original name (with which the CDB was created) the CDB will be renamed. The CDBName should meet Oracle SID requirements: uppercase, alphanumeric, max 8 characters, and not start with a number.
 - `character_set` (String) CharacterSet used to create a database (the default is AL32UTF8).
 - `cloud_provider` (String) CloudProvider is only relevant if the hosting type is Cloud, MultiCloud, Hybrid or Bare Metal.
 - `database_gid` (Number) DatabaseGID represents an OS group ID of a user running a database.

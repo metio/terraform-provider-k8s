@@ -45,7 +45,7 @@ Optional:
 - `encryption` (Attributes) EncryptionSpec defines the encryption relevant configuration of a node. (see [below for nested schema](#nestedatt--endpoints--encryption))
 - `id` (Number) IdentityID is the numeric identity of the endpoint
 - `name` (String) Name indicate as CiliumEndpoint name.
-- `named_ports` (Attributes List) NamedPorts List of named Layer 4 port and protocol pairs which will be used in Network Policy specs.  swagger:model NamedPorts (see [below for nested schema](#nestedatt--endpoints--named_ports))
+- `named_ports` (Attributes List) NamedPorts List of named Layer 4 port and protocol pairs which will be used in Network Policy specs. swagger:model NamedPorts (see [below for nested schema](#nestedatt--endpoints--named_ports))
 - `networking` (Attributes) EndpointNetworking is the addressing information of an endpoint. (see [below for nested schema](#nestedatt--endpoints--networking))
 
 <a id="nestedatt--endpoints--encryption"></a>

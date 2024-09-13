@@ -359,8 +359,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "PipeSpec defines the desired state of Pipe.An object that represents a pipe. Amazon EventBridgePipes connect event sourcesto targets and reduces the need for specialized knowledge and integrationcode.",
-				MarkdownDescription: "PipeSpec defines the desired state of Pipe.An object that represents a pipe. Amazon EventBridgePipes connect event sourcesto targets and reduces the need for specialized knowledge and integrationcode.",
+				Description:         "PipeSpec defines the desired state of Pipe. An object that represents a pipe. Amazon EventBridgePipes connect event sources to targets and reduces the need for specialized knowledge and integration code.",
+				MarkdownDescription: "PipeSpec defines the desired state of Pipe. An object that represents a pipe. Amazon EventBridgePipes connect event sources to targets and reduces the need for specialized knowledge and integration code.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
 						Description:         "A description of the pipe.",
@@ -391,8 +391,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "The parameters required to set up enrichment on your pipe.",
 						Attributes: map[string]schema.Attribute{
 							"http_parameters": schema.SingleNestedAttribute{
-								Description:         "These are custom parameter to be used when the target is an API Gateway RESTAPIs or EventBridge ApiDestinations. In the latter case, these are mergedwith any InvocationParameters specified on the Connection, with any valuesfrom the Connection taking precedence.",
-								MarkdownDescription: "These are custom parameter to be used when the target is an API Gateway RESTAPIs or EventBridge ApiDestinations. In the latter case, these are mergedwith any InvocationParameters specified on the Connection, with any valuesfrom the Connection taking precedence.",
+								Description:         "These are custom parameter to be used when the target is an API Gateway REST APIs or EventBridge ApiDestinations. In the latter case, these are merged with any InvocationParameters specified on the Connection, with any values from the Connection taking precedence.",
+								MarkdownDescription: "These are custom parameter to be used when the target is an API Gateway REST APIs or EventBridge ApiDestinations. In the latter case, these are merged with any InvocationParameters specified on the Connection, with any values from the Connection taking precedence.",
 								Attributes: map[string]schema.Attribute{
 									"header_parameters": schema.MapAttribute{
 										Description:         "",
@@ -530,8 +530,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"dead_letter_config": schema.SingleNestedAttribute{
-										Description:         "A DeadLetterConfig object that contains information about a dead-letter queueconfiguration.",
-										MarkdownDescription: "A DeadLetterConfig object that contains information about a dead-letter queueconfiguration.",
+										Description:         "A DeadLetterConfig object that contains information about a dead-letter queue configuration.",
+										MarkdownDescription: "A DeadLetterConfig object that contains information about a dead-letter queue configuration.",
 										Attributes: map[string]schema.Attribute{
 											"arn": schema.StringAttribute{
 												Description:         "",
@@ -600,8 +600,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"filter_criteria": schema.SingleNestedAttribute{
-								Description:         "The collection of event patterns used to filter events. For more information,see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)in the Amazon EventBridge User Guide.",
-								MarkdownDescription: "The collection of event patterns used to filter events. For more information,see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)in the Amazon EventBridge User Guide.",
+								Description:         "The collection of event patterns used to filter events. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the Amazon EventBridge User Guide.",
+								MarkdownDescription: "The collection of event patterns used to filter events. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the Amazon EventBridge User Guide.",
 								Attributes: map[string]schema.Attribute{
 									"filters": schema.ListNestedAttribute{
 										Description:         "",
@@ -640,8 +640,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"dead_letter_config": schema.SingleNestedAttribute{
-										Description:         "A DeadLetterConfig object that contains information about a dead-letter queueconfiguration.",
-										MarkdownDescription: "A DeadLetterConfig object that contains information about a dead-letter queueconfiguration.",
+										Description:         "A DeadLetterConfig object that contains information about a dead-letter queue configuration.",
+										MarkdownDescription: "A DeadLetterConfig object that contains information about a dead-letter queue configuration.",
 										Attributes: map[string]schema.Attribute{
 											"arn": schema.StringAttribute{
 												Description:         "",
@@ -955,8 +955,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"vpc": schema.SingleNestedAttribute{
-										Description:         "This structure specifies the VPC subnets and security groups for the stream,and whether a public IP address is to be used.",
-										MarkdownDescription: "This structure specifies the VPC subnets and security groups for the stream,and whether a public IP address is to be used.",
+										Description:         "This structure specifies the VPC subnets and security groups for the stream, and whether a public IP address is to be used.",
+										MarkdownDescription: "This structure specifies the VPC subnets and security groups for the stream, and whether a public IP address is to be used.",
 										Attributes: map[string]schema.Attribute{
 											"security_group": schema.ListAttribute{
 												Description:         "List of SecurityGroupId.",
@@ -1042,8 +1042,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 								MarkdownDescription: "The parameters for using an Batch job as a target.",
 								Attributes: map[string]schema.Attribute{
 									"array_properties": schema.SingleNestedAttribute{
-										Description:         "The array properties for the submitted job, such as the size of the array.The array size can be between 2 and 10,000. If you specify array propertiesfor a job, it becomes an array job. This parameter is used only if the targetis an Batch job.",
-										MarkdownDescription: "The array properties for the submitted job, such as the size of the array.The array size can be between 2 and 10,000. If you specify array propertiesfor a job, it becomes an array job. This parameter is used only if the targetis an Batch job.",
+										Description:         "The array properties for the submitted job, such as the size of the array. The array size can be between 2 and 10,000. If you specify array properties for a job, it becomes an array job. This parameter is used only if the target is an Batch job.",
+										MarkdownDescription: "The array properties for the submitted job, such as the size of the array. The array size can be between 2 and 10,000. If you specify array properties for a job, it becomes an array job. This parameter is used only if the target is an Batch job.",
 										Attributes: map[string]schema.Attribute{
 											"size": schema.Int64Attribute{
 												Description:         "",
@@ -1191,8 +1191,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"retry_strategy": schema.SingleNestedAttribute{
-										Description:         "The retry strategy that's associated with a job. For more information, seeAutomated job retries (https://docs.aws.amazon.com/batch/latest/userguide/job_retries.html)in the Batch User Guide.",
-										MarkdownDescription: "The retry strategy that's associated with a job. For more information, seeAutomated job retries (https://docs.aws.amazon.com/batch/latest/userguide/job_retries.html)in the Batch User Guide.",
+										Description:         "The retry strategy that's associated with a job. For more information, see Automated job retries (https://docs.aws.amazon.com/batch/latest/userguide/job_retries.html) in the Batch User Guide.",
+										MarkdownDescription: "The retry strategy that's associated with a job. For more information, see Automated job retries (https://docs.aws.amazon.com/batch/latest/userguide/job_retries.html) in the Batch User Guide.",
 										Attributes: map[string]schema.Attribute{
 											"attempts": schema.Int64Attribute{
 												Description:         "",
@@ -1313,8 +1313,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "This structure specifies the network configuration for an Amazon ECS task.",
 										Attributes: map[string]schema.Attribute{
 											"aws_vpc_configuration": schema.SingleNestedAttribute{
-												Description:         "This structure specifies the VPC subnets and security groups for the task,and whether a public IP address is to be used. This structure is relevantonly for ECS tasks that use the awsvpc network mode.",
-												MarkdownDescription: "This structure specifies the VPC subnets and security groups for the task,and whether a public IP address is to be used. This structure is relevantonly for ECS tasks that use the awsvpc network mode.",
+												Description:         "This structure specifies the VPC subnets and security groups for the task, and whether a public IP address is to be used. This structure is relevant only for ECS tasks that use the awsvpc network mode.",
+												MarkdownDescription: "This structure specifies the VPC subnets and security groups for the task, and whether a public IP address is to be used. This structure is relevant only for ECS tasks that use the awsvpc network mode.",
 												Attributes: map[string]schema.Attribute{
 													"assign_public_ip": schema.StringAttribute{
 														Description:         "",
@@ -1498,8 +1498,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"ephemeral_storage": schema.SingleNestedAttribute{
-												Description:         "The amount of ephemeral storage to allocate for the task. This parameteris used to expand the total amount of ephemeral storage available, beyondthe default amount, for tasks hosted on Fargate. For more information, seeFargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html)in the Amazon ECS User Guide for Fargate.This parameter is only supported for tasks hosted on Fargate using Linuxplatform version 1.4.0 or later. This parameter is not supported for Windowscontainers on Fargate.",
-												MarkdownDescription: "The amount of ephemeral storage to allocate for the task. This parameteris used to expand the total amount of ephemeral storage available, beyondthe default amount, for tasks hosted on Fargate. For more information, seeFargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html)in the Amazon ECS User Guide for Fargate.This parameter is only supported for tasks hosted on Fargate using Linuxplatform version 1.4.0 or later. This parameter is not supported for Windowscontainers on Fargate.",
+												Description:         "The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on Fargate. For more information, see Fargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html) in the Amazon ECS User Guide for Fargate. This parameter is only supported for tasks hosted on Fargate using Linux platform version 1.4.0 or later. This parameter is not supported for Windows containers on Fargate.",
+												MarkdownDescription: "The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on Fargate. For more information, see Fargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html) in the Amazon ECS User Guide for Fargate. This parameter is only supported for tasks hosted on Fargate using Linux platform version 1.4.0 or later. This parameter is not supported for Windows containers on Fargate.",
 												Attributes: map[string]schema.Attribute{
 													"size_in_gi_b": schema.Int64Attribute{
 														Description:         "",
@@ -1747,8 +1747,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"http_parameters": schema.SingleNestedAttribute{
-								Description:         "These are custom parameter to be used when the target is an API Gateway RESTAPIs or EventBridge ApiDestinations.",
-								MarkdownDescription: "These are custom parameter to be used when the target is an API Gateway RESTAPIs or EventBridge ApiDestinations.",
+								Description:         "These are custom parameter to be used when the target is an API Gateway REST APIs or EventBridge ApiDestinations.",
+								MarkdownDescription: "These are custom parameter to be used when the target is an API Gateway REST APIs or EventBridge ApiDestinations.",
 								Attributes: map[string]schema.Attribute{
 									"header_parameters": schema.MapAttribute{
 										Description:         "",
@@ -1825,8 +1825,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"redshift_data_parameters": schema.SingleNestedAttribute{
-								Description:         "These are custom parameters to be used when the target is a Amazon Redshiftcluster to invoke the Amazon Redshift Data API ExecuteStatement.",
-								MarkdownDescription: "These are custom parameters to be used when the target is a Amazon Redshiftcluster to invoke the Amazon Redshift Data API ExecuteStatement.",
+								Description:         "These are custom parameters to be used when the target is a Amazon Redshift cluster to invoke the Amazon Redshift Data API ExecuteStatement.",
+								MarkdownDescription: "These are custom parameters to be used when the target is a Amazon Redshift cluster to invoke the Amazon Redshift Data API ExecuteStatement.",
 								Attributes: map[string]schema.Attribute{
 									"database": schema.StringAttribute{
 										Description:         "// Redshift Database",
@@ -1862,8 +1862,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"statement_name": schema.StringAttribute{
-										Description:         "// A name for Redshift DataAPI statement which can be used as filter of //ListStatement.",
-										MarkdownDescription: "// A name for Redshift DataAPI statement which can be used as filter of //ListStatement.",
+										Description:         "// A name for Redshift DataAPI statement which can be used as filter of // ListStatement.",
+										MarkdownDescription: "// A name for Redshift DataAPI statement which can be used as filter of // ListStatement.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

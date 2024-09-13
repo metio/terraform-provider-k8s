@@ -98,7 +98,8 @@ type FlowsNetobservIoFlowCollectorV1Beta1ManifestData struct {
 				Privileged *bool `tfsdk:"privileged" json:"privileged,omitempty"`
 				Resources  *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -228,7 +229,8 @@ type FlowsNetobservIoFlowCollectorV1Beta1ManifestData struct {
 			Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -507,7 +509,8 @@ type FlowsNetobservIoFlowCollectorV1Beta1ManifestData struct {
 			ProfilePort            *int64 `tfsdk:"profile_port" json:"profilePort,omitempty"`
 			Resources              *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -614,20 +617,20 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Defines the desired state of the FlowCollector resource.<br><br>*: the mention of 'unsupported', or 'deprecated' for a feature throughout this document means that this featureis not officially supported by Red Hat. It might have been, for example, contributed by the communityand accepted without a formal agreement for maintenance. The product maintainers might provide some supportfor these features as a best effort only.",
-				MarkdownDescription: "Defines the desired state of the FlowCollector resource.<br><br>*: the mention of 'unsupported', or 'deprecated' for a feature throughout this document means that this featureis not officially supported by Red Hat. It might have been, for example, contributed by the communityand accepted without a formal agreement for maintenance. The product maintainers might provide some supportfor these features as a best effort only.",
+				Description:         "Defines the desired state of the FlowCollector resource. <br><br> *: the mention of 'unsupported', or 'deprecated' for a feature throughout this document means that this feature is not officially supported by Red Hat. It might have been, for example, contributed by the community and accepted without a formal agreement for maintenance. The product maintainers might provide some support for these features as a best effort only.",
+				MarkdownDescription: "Defines the desired state of the FlowCollector resource. <br><br> *: the mention of 'unsupported', or 'deprecated' for a feature throughout this document means that this feature is not officially supported by Red Hat. It might have been, for example, contributed by the community and accepted without a formal agreement for maintenance. The product maintainers might provide some support for these features as a best effort only.",
 				Attributes: map[string]schema.Attribute{
 					"agent": schema.SingleNestedAttribute{
 						Description:         "Agent configuration for flows extraction.",
 						MarkdownDescription: "Agent configuration for flows extraction.",
 						Attributes: map[string]schema.Attribute{
 							"ebpf": schema.SingleNestedAttribute{
-								Description:         "'ebpf' describes the settings related to the eBPF-based flow reporter when 'spec.agent.type'is set to 'EBPF'.",
-								MarkdownDescription: "'ebpf' describes the settings related to the eBPF-based flow reporter when 'spec.agent.type'is set to 'EBPF'.",
+								Description:         "'ebpf' describes the settings related to the eBPF-based flow reporter when 'spec.agent.type' is set to 'EBPF'.",
+								MarkdownDescription: "'ebpf' describes the settings related to the eBPF-based flow reporter when 'spec.agent.type' is set to 'EBPF'.",
 								Attributes: map[string]schema.Attribute{
 									"cache_active_timeout": schema.StringAttribute{
-										Description:         "'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending.Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load,however you can expect higher memory consumption and an increased latency in the flow collection.",
-										MarkdownDescription: "'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending.Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load,however you can expect higher memory consumption and an increased latency in the flow collection.",
+										Description:         "'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending. Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load, however you can expect higher memory consumption and an increased latency in the flow collection.",
+										MarkdownDescription: "'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending. Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load, however you can expect higher memory consumption and an increased latency in the flow collection.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -637,8 +640,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"cache_max_flows": schema.Int64Attribute{
-										Description:         "'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows.Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load,however you can expect higher memory consumption and an increased latency in the flow collection.",
-										MarkdownDescription: "'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows.Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load,however you can expect higher memory consumption and an increased latency in the flow collection.",
+										Description:         "'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows. Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load, however you can expect higher memory consumption and an increased latency in the flow collection.",
+										MarkdownDescription: "'cacheMaxFlows' is the max number of flows in an aggregate; when reached, the reporter sends the flows. Increasing 'cacheMaxFlows' and 'cacheActiveTimeout' can decrease the network traffic overhead and the CPU load, however you can expect higher memory consumption and an increased latency in the flow collection.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -648,12 +651,12 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"debug": schema.SingleNestedAttribute{
-										Description:         "'debug' allows setting some aspects of the internal configuration of the eBPF agent.This section is aimed exclusively for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
-										MarkdownDescription: "'debug' allows setting some aspects of the internal configuration of the eBPF agent.This section is aimed exclusively for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
+										Description:         "'debug' allows setting some aspects of the internal configuration of the eBPF agent. This section is aimed exclusively for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
+										MarkdownDescription: "'debug' allows setting some aspects of the internal configuration of the eBPF agent. This section is aimed exclusively for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
 										Attributes: map[string]schema.Attribute{
 											"env": schema.MapAttribute{
-												Description:         "'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
-												MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
+												Description:         "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
+												MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -666,8 +669,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"exclude_interfaces": schema.ListAttribute{
-										Description:         "'excludeInterfaces' contains the interface names that are excluded from flow tracing.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
-										MarkdownDescription: "'excludeInterfaces' contains the interface names that are excluded from flow tracing.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
+										Description:         "'excludeInterfaces' contains the interface names that are excluded from flow tracing. An entry enclosed by slashes, such as '/br-/', is matched as a regular expression. Otherwise it is matched as a case-sensitive string.",
+										MarkdownDescription: "'excludeInterfaces' contains the interface names that are excluded from flow tracing. An entry enclosed by slashes, such as '/br-/', is matched as a regular expression. Otherwise it is matched as a case-sensitive string.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -675,8 +678,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"features": schema.ListAttribute{
-										Description:         "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br>- 'PacketDrop': enable the packets drop flows logging feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br>- 'DNSTracking': enable the DNS tracking feature.<br>- 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br>- 'NetworkEvents': enable the Network events monitoring feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.",
-										MarkdownDescription: "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br>- 'PacketDrop': enable the packets drop flows logging feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br>- 'DNSTracking': enable the DNS tracking feature.<br>- 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br>- 'NetworkEvents': enable the Network events monitoring feature. This feature requires mountingthe kernel debug filesystem, so the eBPF pod has to run as privileged.",
+										Description:         "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': enable the DNS tracking feature.<br> - 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br> - 'NetworkEvents': enable the Network events monitoring feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged.",
+										MarkdownDescription: "List of additional features to enable. They are all disabled by default. Enabling additional features might have performance impacts. Possible values are:<br> - 'PacketDrop': enable the packets drop flows logging feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged. If the 'spec.agent.ebpf.privileged' parameter is not set, an error is reported.<br> - 'DNSTracking': enable the DNS tracking feature.<br> - 'FlowRTT': enable flow latency (sRTT) extraction in the eBPF agent from TCP traffic.<br> - 'NetworkEvents': enable the Network events monitoring feature. This feature requires mounting the kernel debug filesystem, so the eBPF pod has to run as privileged.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -699,16 +702,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"cidr": schema.StringAttribute{
-												Description:         "CIDR defines the IP CIDR to filter flows by.Example: 10.10.10.0/24 or 100:100:100:100::/64",
-												MarkdownDescription: "CIDR defines the IP CIDR to filter flows by.Example: 10.10.10.0/24 or 100:100:100:100::/64",
+												Description:         "CIDR defines the IP CIDR to filter flows by. Example: 10.10.10.0/24 or 100:100:100:100::/64",
+												MarkdownDescription: "CIDR defines the IP CIDR to filter flows by. Example: 10.10.10.0/24 or 100:100:100:100::/64",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"dest_ports": schema.StringAttribute{
-												Description:         "DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example destPorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example destPorts: '80-100'.",
-												MarkdownDescription: "DestPorts defines the destination ports to filter flows by.To filter a single port, set a single port as an integer value. For example destPorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example destPorts: '80-100'.",
+												Description:         "DestPorts defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, destPorts: 80. To filter a range of ports, use a 'start-end' range in string format. For example, destPorts: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												MarkdownDescription: "DestPorts defines the destination ports to filter flows by. To filter a single port, set a single port as an integer value. For example, destPorts: 80. To filter a range of ports, use a 'start-end' range in string format. For example, destPorts: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -750,16 +753,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"peer_ip": schema.StringAttribute{
-												Description:         "PeerIP defines the IP address to filter flows by.Example: 10.10.10.10",
-												MarkdownDescription: "PeerIP defines the IP address to filter flows by.Example: 10.10.10.10",
+												Description:         "PeerIP defines the IP address to filter flows by. Example: 10.10.10.10",
+												MarkdownDescription: "PeerIP defines the IP address to filter flows by. Example: 10.10.10.10",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"ports": schema.StringAttribute{
-												Description:         "Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10",
-												MarkdownDescription: "Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10",
+												Description:         "Ports defines the ports to filter flows by. it can be user for either source or destination ports. To filter a single port, set a single port as an integer value. For example, ports: 80. To filter a range of ports, use a 'start-end' range in string format. For example, ports: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												MarkdownDescription: "Ports defines the ports to filter flows by. it can be user for either source or destination ports. To filter a single port, set a single port as an integer value. For example, ports: 80. To filter a range of ports, use a 'start-end' range in string format. For example, ports: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -777,8 +780,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"source_ports": schema.StringAttribute{
-												Description:         "SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.",
-												MarkdownDescription: "SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.",
+												Description:         "SourcePorts defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, sourcePorts: 80. To filter a range of ports, use a 'start-end' range in string format. For example, sourcePorts: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
+												MarkdownDescription: "SourcePorts defines the source ports to filter flows by. To filter a single port, set a single port as an integer value. For example, sourcePorts: 80. To filter a range of ports, use a 'start-end' range in string format. For example, sourcePorts: '80-100'. To filter two ports, use a 'port1,port2' in string format. For example, 'ports: '80,100''.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -812,8 +815,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"interfaces": schema.ListAttribute{
-										Description:         "'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
-										MarkdownDescription: "'interfaces' contains the interface names from where flows are collected. If empty, the agentfetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces.An entry enclosed by slashes, such as '/br-/', is matched as a regular expression.Otherwise it is matched as a case-sensitive string.",
+										Description:         "'interfaces' contains the interface names from where flows are collected. If empty, the agent fetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces. An entry enclosed by slashes, such as '/br-/', is matched as a regular expression. Otherwise it is matched as a case-sensitive string.",
+										MarkdownDescription: "'interfaces' contains the interface names from where flows are collected. If empty, the agent fetches all the interfaces in the system, excepting the ones listed in ExcludeInterfaces. An entry enclosed by slashes, such as '/br-/', is matched as a regular expression. Otherwise it is matched as a case-sensitive string.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -844,8 +847,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 										MarkdownDescription: "'metrics' defines the eBPF agent configuration regarding metrics",
 										Attributes: map[string]schema.Attribute{
 											"disable_alerts": schema.ListAttribute{
-												Description:         "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is missing packets or flows, such as when the BPF hashmap is busy or full, or the capacity limiter being triggered.<br>",
-												MarkdownDescription: "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservDroppedFlows', which is triggered when the eBPF agent is missing packets or flows, such as when the BPF hashmap is busy or full, or the capacity limiter being triggered.<br>",
+												Description:         "'disableAlerts' is a list of alerts that should be disabled. Possible values are:<br> 'NetObservDroppedFlows', which is triggered when the eBPF agent is missing packets or flows, such as when the BPF hashmap is busy or full, or the capacity limiter being triggered.<br>",
+												MarkdownDescription: "'disableAlerts' is a list of alerts that should be disabled. Possible values are:<br> 'NetObservDroppedFlows', which is triggered when the eBPF agent is missing packets or flows, such as when the BPF hashmap is busy or full, or the capacity limiter being triggered.<br>",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -881,8 +884,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 														MarkdownDescription: "TLS configuration.",
 														Attributes: map[string]schema.Attribute{
 															"insecure_skip_verify": schema.BoolAttribute{
-																Description:         "'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.",
-																MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.",
+																Description:         "'insecureSkipVerify' allows skipping client-side verification of the provided certificate. If set to 'true', the 'providedCaFile' field is ignored.",
+																MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the provided certificate. If set to 'true', the 'providedCaFile' field is ignored.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -917,8 +920,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 																	},
 
 																	"namespace": schema.StringAttribute{
-																		Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-																		MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																		Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																		MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -961,8 +964,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 																	},
 
 																	"namespace": schema.StringAttribute{
-																		Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-																		MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																		Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																		MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -985,10 +988,10 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.",
-																MarkdownDescription: "Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.",
-																Required:            false,
-																Optional:            true,
+																Description:         "Select the type of TLS configuration:<br> - 'DISABLED' (default) to not configure TLS for the endpoint. - 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)]. - 'AUTO' to use OpenShift auto generated certificate using annotations.",
+																MarkdownDescription: "Select the type of TLS configuration:<br> - 'DISABLED' (default) to not configure TLS for the endpoint. - 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)]. - 'AUTO' to use OpenShift auto generated certificate using annotations.",
+																Required:            true,
+																Optional:            false,
 																Computed:            false,
 																Validators: []validator.String{
 																	stringvalidator.OneOf("DISABLED", "PROVIDED", "AUTO"),
@@ -1011,27 +1014,35 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"privileged": schema.BoolAttribute{
-										Description:         "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator setsgranular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container.If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPFis in use, then you can turn on this mode for more global privileges.Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
-										MarkdownDescription: "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator setsgranular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container.If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPFis in use, then you can turn on this mode for more global privileges.Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
+										Description:         "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator sets granular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container. If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPF is in use, then you can turn on this mode for more global privileges. Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
+										MarkdownDescription: "Privileged mode for the eBPF Agent container. When ignored or set to 'false', the operator sets granular capabilities (BPF, PERFMON, NET_ADMIN, SYS_RESOURCE) to the container. If for some reason these capabilities cannot be set, such as if an old kernel version not knowing CAP_BPF is in use, then you can turn on this mode for more global privileges. Some agent features require the privileged mode, such as packet drops tracking (see 'features') and SR-IOV support.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "'resources' are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "'resources' are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										Attributes: map[string]schema.Attribute{
 											"claims": schema.ListNestedAttribute{
-												Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},
@@ -1042,8 +1053,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"limits": schema.MapAttribute{
-												Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1051,8 +1062,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"requests": schema.MapAttribute{
-												Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1081,8 +1092,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"ipfix": schema.SingleNestedAttribute{
-								Description:         "'ipfix' [deprecated (*)] - describes the settings related to the IPFIX-based flow reporter when 'spec.agent.type'is set to 'IPFIX'.",
-								MarkdownDescription: "'ipfix' [deprecated (*)] - describes the settings related to the IPFIX-based flow reporter when 'spec.agent.type'is set to 'IPFIX'.",
+								Description:         "'ipfix' [deprecated (*)] - describes the settings related to the IPFIX-based flow reporter when 'spec.agent.type' is set to 'IPFIX'.",
+								MarkdownDescription: "'ipfix' [deprecated (*)] - describes the settings related to the IPFIX-based flow reporter when 'spec.agent.type' is set to 'IPFIX'.",
 								Attributes: map[string]schema.Attribute{
 									"cache_active_timeout": schema.StringAttribute{
 										Description:         "'cacheActiveTimeout' is the max period during which the reporter aggregates flows before sending.",
@@ -1111,8 +1122,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 										MarkdownDescription: "'clusterNetworkOperator' defines the settings related to the OpenShift Cluster Network Operator, when available.",
 										Attributes: map[string]schema.Attribute{
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace  where the config map is going to be deployed.",
-												MarkdownDescription: "Namespace  where the config map is going to be deployed.",
+												Description:         "Namespace where the config map is going to be deployed.",
+												MarkdownDescription: "Namespace where the config map is going to be deployed.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1124,8 +1135,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"force_sample_all": schema.BoolAttribute{
-										Description:         "'forceSampleAll' allows disabling sampling in the IPFIX-based flow reporter.It is not recommended to sample all the traffic with IPFIX, as it might generate cluster instability.If you REALLY want to do that, set this flag to 'true'. Use at your own risk.When it is set to 'true', the value of 'sampling' is ignored.",
-										MarkdownDescription: "'forceSampleAll' allows disabling sampling in the IPFIX-based flow reporter.It is not recommended to sample all the traffic with IPFIX, as it might generate cluster instability.If you REALLY want to do that, set this flag to 'true'. Use at your own risk.When it is set to 'true', the value of 'sampling' is ignored.",
+										Description:         "'forceSampleAll' allows disabling sampling in the IPFIX-based flow reporter. It is not recommended to sample all the traffic with IPFIX, as it might generate cluster instability. If you REALLY want to do that, set this flag to 'true'. Use at your own risk. When it is set to 'true', the value of 'sampling' is ignored.",
+										MarkdownDescription: "'forceSampleAll' allows disabling sampling in the IPFIX-based flow reporter. It is not recommended to sample all the traffic with IPFIX, as it might generate cluster instability. If you REALLY want to do that, set this flag to 'true'. Use at your own risk. When it is set to 'true', the value of 'sampling' is ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1165,8 +1176,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"sampling": schema.Int64Attribute{
-										Description:         "'sampling' is the sampling rate on the reporter. 100 means one flow on 100 is sent.To ensure cluster stability, it is not possible to set a value below 2.If you really want to sample every packet, which might impact the cluster stability,refer to 'forceSampleAll'. Alternatively, you can use the eBPF Agent instead of IPFIX.",
-										MarkdownDescription: "'sampling' is the sampling rate on the reporter. 100 means one flow on 100 is sent.To ensure cluster stability, it is not possible to set a value below 2.If you really want to sample every packet, which might impact the cluster stability,refer to 'forceSampleAll'. Alternatively, you can use the eBPF Agent instead of IPFIX.",
+										Description:         "'sampling' is the sampling rate on the reporter. 100 means one flow on 100 is sent. To ensure cluster stability, it is not possible to set a value below 2. If you really want to sample every packet, which might impact the cluster stability, refer to 'forceSampleAll'. Alternatively, you can use the eBPF Agent instead of IPFIX.",
+										MarkdownDescription: "'sampling' is the sampling rate on the reporter. 100 means one flow on 100 is sent. To ensure cluster stability, it is not possible to set a value below 2. If you really want to sample every packet, which might impact the cluster stability, refer to 'forceSampleAll'. Alternatively, you can use the eBPF Agent instead of IPFIX.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1181,8 +1192,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'EBPF' (default), to use NetObserv eBPF agent.<br>Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br>Setting 'IPFIX' is ignored and still use the eBPF Agent.Since there is only a single option here, this field will be remove in a future API version.",
-								MarkdownDescription: "'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'EBPF' (default), to use NetObserv eBPF agent.<br>Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br>Setting 'IPFIX' is ignored and still use the eBPF Agent.Since there is only a single option here, this field will be remove in a future API version.",
+								Description:         "'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'EBPF' (default), to use NetObserv eBPF agent.<br> Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br> Setting 'IPFIX' is ignored and still use the eBPF Agent. Since there is only a single option here, this field will be remove in a future API version.",
+								MarkdownDescription: "'type' [deprecated (*)] selects the flows tracing agent. The only possible value is 'EBPF' (default), to use NetObserv eBPF agent.<br> Previously, using an IPFIX collector was allowed, but was deprecated and it is now removed.<br> Setting 'IPFIX' is ignored and still use the eBPF Agent. Since there is only a single option here, this field will be remove in a future API version.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1752,16 +1763,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"min_replicas": schema.Int64Attribute{
-										Description:         "'minReplicas' is the lower limit for the number of replicas to which the autoscalercan scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if thealpha feature gate HPAScaleToZero is enabled and at least one Object or Externalmetric is configured. Scaling is active as long as at least one metric value isavailable.",
-										MarkdownDescription: "'minReplicas' is the lower limit for the number of replicas to which the autoscalercan scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if thealpha feature gate HPAScaleToZero is enabled and at least one Object or Externalmetric is configured. Scaling is active as long as at least one metric value isavailable.",
+										Description:         "'minReplicas' is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
+										MarkdownDescription: "'minReplicas' is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"status": schema.StringAttribute{
-										Description:         "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br>- 'DISABLED' does not deploy an horizontal pod autoscaler.<br>- 'ENABLED' deploys an horizontal pod autoscaler.<br>",
-										MarkdownDescription: "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br>- 'DISABLED' does not deploy an horizontal pod autoscaler.<br>- 'ENABLED' deploys an horizontal pod autoscaler.<br>",
+										Description:         "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br> - 'DISABLED' does not deploy an horizontal pod autoscaler.<br> - 'ENABLED' deploys an horizontal pod autoscaler.<br>",
+										MarkdownDescription: "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br> - 'DISABLED' does not deploy an horizontal pod autoscaler.<br> - 'ENABLED' deploys an horizontal pod autoscaler.<br>",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1776,8 +1787,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"enable": schema.BoolAttribute{
-								Description:         "Enables the console plugin deployment.'spec.loki.enable' must also be 'true'",
-								MarkdownDescription: "Enables the console plugin deployment.'spec.loki.enable' must also be 'true'",
+								Description:         "Enables the console plugin deployment. 'spec.loki.enable' must also be 'true'",
+								MarkdownDescription: "Enables the console plugin deployment. 'spec.loki.enable' must also be 'true'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1830,8 +1841,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"port_names": schema.MapAttribute{
-										Description:         "'portNames' defines additional port names to use in the console,for example, 'portNames: {'3100': 'loki'}'.",
-										MarkdownDescription: "'portNames' defines additional port names to use in the console,for example, 'portNames: {'3100': 'loki'}'.",
+										Description:         "'portNames' defines additional port names to use in the console, for example, 'portNames: {'3100': 'loki'}'.",
+										MarkdownDescription: "'portNames' defines additional port names to use in the console, for example, 'portNames: {'3100': 'loki'}'.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1857,8 +1868,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 										},
 
 										"filter": schema.MapAttribute{
-											Description:         "'filter' is a set of keys and values to be set when this filter is selected. Each key can relate to a list of values using a coma-separated string,for example, 'filter: {'src_namespace': 'namespace1,namespace2'}'.",
-											MarkdownDescription: "'filter' is a set of keys and values to be set when this filter is selected. Each key can relate to a list of values using a coma-separated string,for example, 'filter: {'src_namespace': 'namespace1,namespace2'}'.",
+											Description:         "'filter' is a set of keys and values to be set when this filter is selected. Each key can relate to a list of values using a coma-separated string, for example, 'filter: {'src_namespace': 'namespace1,namespace2'}'.",
+											MarkdownDescription: "'filter' is a set of keys and values to be set when this filter is selected. Each key can relate to a list of values using a coma-separated string, for example, 'filter: {'src_namespace': 'namespace1,namespace2'}'.",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,
@@ -1880,8 +1891,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"register": schema.BoolAttribute{
-								Description:         "'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator.When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command:'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''",
-								MarkdownDescription: "'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator.When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command:'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''",
+								Description:         "'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator. When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command: 'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''",
+								MarkdownDescription: "'register' allows, when set to 'true', to automatically register the provided console plugin with the OpenShift Console operator. When set to 'false', you can still register it manually by editing console.operator.openshift.io/cluster with the following command: 'oc patch console.operator.openshift.io cluster --type='json' -p '[{'op': 'add', 'path': '/spec/plugins/-', 'value': 'netobserv-plugin'}]''",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1899,19 +1910,27 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"resources": schema.SingleNestedAttribute{
-								Description:         "'resources', in terms of compute resources, required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "'resources', in terms of compute resources, required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "'resources', in terms of compute resources, required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "'resources', in terms of compute resources, required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -1922,8 +1941,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1931,8 +1950,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1950,8 +1969,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 					},
 
 					"deployment_model": schema.StringAttribute{
-						Description:         "'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br>- 'DIRECT' (default) to make the flow processor listening directly from the agents.<br>- 'KAFKA' to make flows sent to a Kafka pipeline before consumption by the processor.<br>Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).",
-						MarkdownDescription: "'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br>- 'DIRECT' (default) to make the flow processor listening directly from the agents.<br>- 'KAFKA' to make flows sent to a Kafka pipeline before consumption by the processor.<br>Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).",
+						Description:         "'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br> - 'DIRECT' (default) to make the flow processor listening directly from the agents.<br> - 'KAFKA' to make flows sent to a Kafka pipeline before consumption by the processor.<br> Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).",
+						MarkdownDescription: "'deploymentModel' defines the desired type of deployment for flow processing. Possible values are:<br> - 'DIRECT' (default) to make the flow processor listening directly from the agents.<br> - 'KAFKA' to make flows sent to a Kafka pipeline before consumption by the processor.<br> Kafka can provide better scalability, resiliency, and high availability (for more details, see https://www.redhat.com/en/topics/integration/what-is-apache-kafka).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2038,8 +2057,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-															MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2082,8 +2101,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-															MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2154,8 +2173,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-															MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2186,8 +2205,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 												},
 
 												"insecure_skip_verify": schema.BoolAttribute{
-													Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
-													MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+													Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
+													MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2222,8 +2241,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-															MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+															MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2317,8 +2336,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2361,8 +2380,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2433,8 +2452,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2465,8 +2484,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"insecure_skip_verify": schema.BoolAttribute{
-										Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
-										MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+										Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
+										MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2501,8 +2520,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2547,8 +2566,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 						MarkdownDescription: "'loki', the flow store, client settings.",
 						Attributes: map[string]schema.Attribute{
 							"auth_token": schema.StringAttribute{
-								Description:         "'authToken' describes the way to get a token to authenticate to Loki.<br>- 'DISABLED' does not send any token with the request.<br>- 'FORWARD' forwards the user token for authorization.<br>- 'HOST' [deprecated (*)] - uses the local pod service account to authenticate to Loki.<br>When using the Loki Operator, this must be set to 'FORWARD'.",
-								MarkdownDescription: "'authToken' describes the way to get a token to authenticate to Loki.<br>- 'DISABLED' does not send any token with the request.<br>- 'FORWARD' forwards the user token for authorization.<br>- 'HOST' [deprecated (*)] - uses the local pod service account to authenticate to Loki.<br>When using the Loki Operator, this must be set to 'FORWARD'.",
+								Description:         "'authToken' describes the way to get a token to authenticate to Loki.<br> - 'DISABLED' does not send any token with the request.<br> - 'FORWARD' forwards the user token for authorization.<br> - 'HOST' [deprecated (*)] - uses the local pod service account to authenticate to Loki.<br> When using the Loki Operator, this must be set to 'FORWARD'.",
+								MarkdownDescription: "'authToken' describes the way to get a token to authenticate to Loki.<br> - 'DISABLED' does not send any token with the request.<br> - 'FORWARD' forwards the user token for authorization.<br> - 'HOST' [deprecated (*)] - uses the local pod service account to authenticate to Loki.<br> When using the Loki Operator, this must be set to 'FORWARD'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2577,8 +2596,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"enable": schema.BoolAttribute{
-								Description:         "Set 'enable' to 'true' to store flows in Loki.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.prometheus.querier'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
-								MarkdownDescription: "Set 'enable' to 'true' to store flows in Loki.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.prometheus.querier'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
+								Description:         "Set 'enable' to 'true' to store flows in Loki. The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.prometheus.querier'), or both. Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well, such as getting per-pod information or viewing raw flows. If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle. If they are both disabled, the Console plugin is not deployed.",
+								MarkdownDescription: "Set 'enable' to 'true' to store flows in Loki. The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.prometheus.querier'), or both. Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well, such as getting per-pod information or viewing raw flows. If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle. If they are both disabled, the Console plugin is not deployed.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2612,16 +2631,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"querier_url": schema.StringAttribute{
-								Description:         "'querierURL' specifies the address of the Loki querier service, in case it is different from theLoki ingester URL. If empty, the URL value is used (assuming that the Loki ingesterand querier are in the same server). When using the Loki Operator, do not set it, sinceingestion and queries use the Loki gateway.",
-								MarkdownDescription: "'querierURL' specifies the address of the Loki querier service, in case it is different from theLoki ingester URL. If empty, the URL value is used (assuming that the Loki ingesterand querier are in the same server). When using the Loki Operator, do not set it, sinceingestion and queries use the Loki gateway.",
+								Description:         "'querierURL' specifies the address of the Loki querier service, in case it is different from the Loki ingester URL. If empty, the URL value is used (assuming that the Loki ingester and querier are in the same server). When using the Loki Operator, do not set it, since ingestion and queries use the Loki gateway.",
+								MarkdownDescription: "'querierURL' specifies the address of the Loki querier service, in case it is different from the Loki ingester URL. If empty, the URL value is used (assuming that the Loki ingester and querier are in the same server). When using the Loki Operator, do not set it, since ingestion and queries use the Loki gateway.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"read_timeout": schema.StringAttribute{
-								Description:         "'readTimeout' is the maximum loki query total time limit.A timeout of zero means no timeout.",
-								MarkdownDescription: "'readTimeout' is the maximum loki query total time limit.A timeout of zero means no timeout.",
+								Description:         "'readTimeout' is the maximum loki query total time limit. A timeout of zero means no timeout.",
+								MarkdownDescription: "'readTimeout' is the maximum loki query total time limit. A timeout of zero means no timeout.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2669,8 +2688,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2701,8 +2720,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"insecure_skip_verify": schema.BoolAttribute{
-										Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
-										MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+										Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
+										MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2737,8 +2756,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2766,24 +2785,24 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"status_url": schema.StringAttribute{
-								Description:         "'statusURL' specifies the address of the Loki '/ready', '/metrics' and '/config' endpoints, in case it is different from theLoki querier URL. If empty, the 'querierURL' value is used.This is useful to show error messages and some context in the frontend.When using the Loki Operator, set it to the Loki HTTP query frontend service, for examplehttps://loki-query-frontend-http.netobserv.svc:3100/.'statusTLS' configuration is used when 'statusUrl' is set.",
-								MarkdownDescription: "'statusURL' specifies the address of the Loki '/ready', '/metrics' and '/config' endpoints, in case it is different from theLoki querier URL. If empty, the 'querierURL' value is used.This is useful to show error messages and some context in the frontend.When using the Loki Operator, set it to the Loki HTTP query frontend service, for examplehttps://loki-query-frontend-http.netobserv.svc:3100/.'statusTLS' configuration is used when 'statusUrl' is set.",
+								Description:         "'statusURL' specifies the address of the Loki '/ready', '/metrics' and '/config' endpoints, in case it is different from the Loki querier URL. If empty, the 'querierURL' value is used. This is useful to show error messages and some context in the frontend. When using the Loki Operator, set it to the Loki HTTP query frontend service, for example https://loki-query-frontend-http.netobserv.svc:3100/. 'statusTLS' configuration is used when 'statusUrl' is set.",
+								MarkdownDescription: "'statusURL' specifies the address of the Loki '/ready', '/metrics' and '/config' endpoints, in case it is different from the Loki querier URL. If empty, the 'querierURL' value is used. This is useful to show error messages and some context in the frontend. When using the Loki Operator, set it to the Loki HTTP query frontend service, for example https://loki-query-frontend-http.netobserv.svc:3100/. 'statusTLS' configuration is used when 'statusUrl' is set.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tenant_id": schema.StringAttribute{
-								Description:         "'tenantID' is the Loki 'X-Scope-OrgID' that identifies the tenant for each request.When using the Loki Operator, set it to 'network', which corresponds to a special tenant mode.",
-								MarkdownDescription: "'tenantID' is the Loki 'X-Scope-OrgID' that identifies the tenant for each request.When using the Loki Operator, set it to 'network', which corresponds to a special tenant mode.",
+								Description:         "'tenantID' is the Loki 'X-Scope-OrgID' that identifies the tenant for each request. When using the Loki Operator, set it to 'network', which corresponds to a special tenant mode.",
+								MarkdownDescription: "'tenantID' is the Loki 'X-Scope-OrgID' that identifies the tenant for each request. When using the Loki Operator, set it to 'network', which corresponds to a special tenant mode.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"timeout": schema.StringAttribute{
-								Description:         "'timeout' is the maximum processor time connection / request limit.A timeout of zero means no timeout.",
-								MarkdownDescription: "'timeout' is the maximum processor time connection / request limit.A timeout of zero means no timeout.",
+								Description:         "'timeout' is the maximum processor time connection / request limit. A timeout of zero means no timeout.",
+								MarkdownDescription: "'timeout' is the maximum processor time connection / request limit. A timeout of zero means no timeout.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2822,8 +2841,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2854,8 +2873,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"insecure_skip_verify": schema.BoolAttribute{
-										Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
-										MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+										Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
+										MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2890,8 +2909,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+												MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2919,8 +2938,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"url": schema.StringAttribute{
-								Description:         "'url' is the address of an existing Loki service to push the flows to. When using the Loki Operator,set it to the Loki gateway service with the 'network' tenant set in path, for examplehttps://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
-								MarkdownDescription: "'url' is the address of an existing Loki service to push the flows to. When using the Loki Operator,set it to the Loki gateway service with the 'network' tenant set in path, for examplehttps://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
+								Description:         "'url' is the address of an existing Loki service to push the flows to. When using the Loki Operator, set it to the Loki gateway service with the 'network' tenant set in path, for example https://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
+								MarkdownDescription: "'url' is the address of an existing Loki service to push the flows to. When using the Loki Operator, set it to the Loki gateway service with the 'network' tenant set in path, for example https://loki-gateway-http.netobserv.svc:8080/api/logs/v1/network.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2940,12 +2959,12 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 					},
 
 					"processor": schema.SingleNestedAttribute{
-						Description:         "'processor' defines the settings of the component that receives the flows from the agent,enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter.",
-						MarkdownDescription: "'processor' defines the settings of the component that receives the flows from the agent,enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter.",
+						Description:         "'processor' defines the settings of the component that receives the flows from the agent, enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter.",
+						MarkdownDescription: "'processor' defines the settings of the component that receives the flows from the agent, enriches them, generates metrics, and forwards them to the Loki persistence layer and/or any available exporter.",
 						Attributes: map[string]schema.Attribute{
 							"add_zone": schema.BoolAttribute{
-								Description:         "'addZone' allows availability zone awareness by labelling flows with their source and destination zones.This feature requires the 'topology.kubernetes.io/zone' label to be set on nodes.",
-								MarkdownDescription: "'addZone' allows availability zone awareness by labelling flows with their source and destination zones.This feature requires the 'topology.kubernetes.io/zone' label to be set on nodes.",
+								Description:         "'addZone' allows availability zone awareness by labelling flows with their source and destination zones. This feature requires the 'topology.kubernetes.io/zone' label to be set on nodes.",
+								MarkdownDescription: "'addZone' allows availability zone awareness by labelling flows with their source and destination zones. This feature requires the 'topology.kubernetes.io/zone' label to be set on nodes.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2960,8 +2979,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"conversation_end_timeout": schema.StringAttribute{
-								Description:         "'conversationEndTimeout' is the time to wait after a network flow is received, to consider the conversation ended.This delay is ignored when a FIN packet is collected for TCP flows (see 'conversationTerminatingTimeout' instead).",
-								MarkdownDescription: "'conversationEndTimeout' is the time to wait after a network flow is received, to consider the conversation ended.This delay is ignored when a FIN packet is collected for TCP flows (see 'conversationTerminatingTimeout' instead).",
+								Description:         "'conversationEndTimeout' is the time to wait after a network flow is received, to consider the conversation ended. This delay is ignored when a FIN packet is collected for TCP flows (see 'conversationTerminatingTimeout' instead).",
+								MarkdownDescription: "'conversationEndTimeout' is the time to wait after a network flow is received, to consider the conversation ended. This delay is ignored when a FIN packet is collected for TCP flows (see 'conversationTerminatingTimeout' instead).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2984,12 +3003,12 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"debug": schema.SingleNestedAttribute{
-								Description:         "'debug' allows setting some aspects of the internal configuration of the flow processor.This section is aimed exclusively for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
-								MarkdownDescription: "'debug' allows setting some aspects of the internal configuration of the flow processor.This section is aimed exclusively for debugging and fine-grained performance optimizations,such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
+								Description:         "'debug' allows setting some aspects of the internal configuration of the flow processor. This section is aimed exclusively for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
+								MarkdownDescription: "'debug' allows setting some aspects of the internal configuration of the flow processor. This section is aimed exclusively for debugging and fine-grained performance optimizations, such as 'GOGC' and 'GOMAXPROCS' env vars. Set these values at your own risk.",
 								Attributes: map[string]schema.Attribute{
 									"env": schema.MapAttribute{
-										Description:         "'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
-										MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passingsome very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not bepublicly exposed as part of the FlowCollector descriptor, as they are only usefulin edge debug or support scenarios.",
+										Description:         "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
+										MarkdownDescription: "'env' allows passing custom environment variables to underlying components. Useful for passing some very concrete performance-tuning options, such as 'GOGC' and 'GOMAXPROCS', that should not be publicly exposed as part of the FlowCollector descriptor, as they are only useful in edge debug or support scenarios.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3041,8 +3060,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"kafka_consumer_autoscaler": schema.SingleNestedAttribute{
-								Description:         "'kafkaConsumerAutoscaler' is the spec of a horizontal pod autoscaler to set up for 'flowlogs-pipeline-transformer', which consumes Kafka messages.This setting is ignored when Kafka is disabled.",
-								MarkdownDescription: "'kafkaConsumerAutoscaler' is the spec of a horizontal pod autoscaler to set up for 'flowlogs-pipeline-transformer', which consumes Kafka messages.This setting is ignored when Kafka is disabled.",
+								Description:         "'kafkaConsumerAutoscaler' is the spec of a horizontal pod autoscaler to set up for 'flowlogs-pipeline-transformer', which consumes Kafka messages. This setting is ignored when Kafka is disabled.",
+								MarkdownDescription: "'kafkaConsumerAutoscaler' is the spec of a horizontal pod autoscaler to set up for 'flowlogs-pipeline-transformer', which consumes Kafka messages. This setting is ignored when Kafka is disabled.",
 								Attributes: map[string]schema.Attribute{
 									"max_replicas": schema.Int64Attribute{
 										Description:         "'maxReplicas' is the upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.",
@@ -3592,16 +3611,16 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"min_replicas": schema.Int64Attribute{
-										Description:         "'minReplicas' is the lower limit for the number of replicas to which the autoscalercan scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if thealpha feature gate HPAScaleToZero is enabled and at least one Object or Externalmetric is configured. Scaling is active as long as at least one metric value isavailable.",
-										MarkdownDescription: "'minReplicas' is the lower limit for the number of replicas to which the autoscalercan scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if thealpha feature gate HPAScaleToZero is enabled and at least one Object or Externalmetric is configured. Scaling is active as long as at least one metric value isavailable.",
+										Description:         "'minReplicas' is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
+										MarkdownDescription: "'minReplicas' is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"status": schema.StringAttribute{
-										Description:         "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br>- 'DISABLED' does not deploy an horizontal pod autoscaler.<br>- 'ENABLED' deploys an horizontal pod autoscaler.<br>",
-										MarkdownDescription: "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br>- 'DISABLED' does not deploy an horizontal pod autoscaler.<br>- 'ENABLED' deploys an horizontal pod autoscaler.<br>",
+										Description:         "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br> - 'DISABLED' does not deploy an horizontal pod autoscaler.<br> - 'ENABLED' deploys an horizontal pod autoscaler.<br>",
+										MarkdownDescription: "'status' describes the desired status regarding deploying an horizontal pod autoscaler.<br> - 'DISABLED' does not deploy an horizontal pod autoscaler.<br> - 'ENABLED' deploys an horizontal pod autoscaler.<br>",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3632,8 +3651,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"kafka_consumer_replicas": schema.Int64Attribute{
-								Description:         "'kafkaConsumerReplicas' defines the number of replicas (pods) to start for 'flowlogs-pipeline-transformer', which consumes Kafka messages.This setting is ignored when Kafka is disabled.",
-								MarkdownDescription: "'kafkaConsumerReplicas' defines the number of replicas (pods) to start for 'flowlogs-pipeline-transformer', which consumes Kafka messages.This setting is ignored when Kafka is disabled.",
+								Description:         "'kafkaConsumerReplicas' defines the number of replicas (pods) to start for 'flowlogs-pipeline-transformer', which consumes Kafka messages. This setting is ignored when Kafka is disabled.",
+								MarkdownDescription: "'kafkaConsumerReplicas' defines the number of replicas (pods) to start for 'flowlogs-pipeline-transformer', which consumes Kafka messages. This setting is ignored when Kafka is disabled.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3654,8 +3673,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"log_types": schema.StringAttribute{
-								Description:         "'logTypes' defines the desired record types to generate. Possible values are:<br>- 'FLOWS' (default) to export regular network flows<br>- 'CONVERSATIONS' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br>- 'ENDED_CONVERSATIONS' to generate only ended conversations events<br>- 'ALL' to generate both network flows and all conversations events<br>",
-								MarkdownDescription: "'logTypes' defines the desired record types to generate. Possible values are:<br>- 'FLOWS' (default) to export regular network flows<br>- 'CONVERSATIONS' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br>- 'ENDED_CONVERSATIONS' to generate only ended conversations events<br>- 'ALL' to generate both network flows and all conversations events<br>",
+								Description:         "'logTypes' defines the desired record types to generate. Possible values are:<br> - 'FLOWS' (default) to export regular network flows<br> - 'CONVERSATIONS' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br> - 'ENDED_CONVERSATIONS' to generate only ended conversations events<br> - 'ALL' to generate both network flows and all conversations events<br>",
+								MarkdownDescription: "'logTypes' defines the desired record types to generate. Possible values are:<br> - 'FLOWS' (default) to export regular network flows<br> - 'CONVERSATIONS' to generate events for started conversations, ended conversations as well as periodic 'tick' updates<br> - 'ENDED_CONVERSATIONS' to generate only ended conversations events<br> - 'ALL' to generate both network flows and all conversations events<br>",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3669,8 +3688,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 								MarkdownDescription: "'Metrics' define the processor configuration regarding metrics",
 								Attributes: map[string]schema.Attribute{
 									"disable_alerts": schema.ListAttribute{
-										Description:         "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservNoFlows', which is triggered when no flows are being observed for a certain period.<br>'NetObservLokiError', which is triggered when flows are being dropped due to Loki errors.<br>",
-										MarkdownDescription: "'disableAlerts' is a list of alerts that should be disabled.Possible values are:<br>'NetObservNoFlows', which is triggered when no flows are being observed for a certain period.<br>'NetObservLokiError', which is triggered when flows are being dropped due to Loki errors.<br>",
+										Description:         "'disableAlerts' is a list of alerts that should be disabled. Possible values are:<br> 'NetObservNoFlows', which is triggered when no flows are being observed for a certain period.<br> 'NetObservLokiError', which is triggered when flows are being dropped due to Loki errors.<br>",
+										MarkdownDescription: "'disableAlerts' is a list of alerts that should be disabled. Possible values are:<br> 'NetObservNoFlows', which is triggered when no flows are being observed for a certain period.<br> 'NetObservLokiError', which is triggered when flows are being dropped due to Loki errors.<br>",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3678,8 +3697,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"ignore_tags": schema.ListAttribute{
-										Description:         "'ignoreTags' [deprecated (*)] is a list of tags to specify which metrics to ignore. Each metric is associated with a list of tags. More details in https://github.com/netobserv/network-observability-operator/tree/main/controllers/flowlogspipeline/metrics_definitions .Available tags are: 'egress', 'ingress', 'flows', 'bytes', 'packets', 'namespaces', 'nodes', 'workloads', 'nodes-flows', 'namespaces-flows', 'workloads-flows'.Namespace-based metrics are covered by both 'workloads' and 'namespaces' tags, hence it is recommended to always ignore one of them ('workloads' offering a finer granularity).<br>Deprecation notice: use 'includeList' instead.",
-										MarkdownDescription: "'ignoreTags' [deprecated (*)] is a list of tags to specify which metrics to ignore. Each metric is associated with a list of tags. More details in https://github.com/netobserv/network-observability-operator/tree/main/controllers/flowlogspipeline/metrics_definitions .Available tags are: 'egress', 'ingress', 'flows', 'bytes', 'packets', 'namespaces', 'nodes', 'workloads', 'nodes-flows', 'namespaces-flows', 'workloads-flows'.Namespace-based metrics are covered by both 'workloads' and 'namespaces' tags, hence it is recommended to always ignore one of them ('workloads' offering a finer granularity).<br>Deprecation notice: use 'includeList' instead.",
+										Description:         "'ignoreTags' [deprecated (*)] is a list of tags to specify which metrics to ignore. Each metric is associated with a list of tags. More details in https://github.com/netobserv/network-observability-operator/tree/main/controllers/flowlogspipeline/metrics_definitions . Available tags are: 'egress', 'ingress', 'flows', 'bytes', 'packets', 'namespaces', 'nodes', 'workloads', 'nodes-flows', 'namespaces-flows', 'workloads-flows'. Namespace-based metrics are covered by both 'workloads' and 'namespaces' tags, hence it is recommended to always ignore one of them ('workloads' offering a finer granularity).<br> Deprecation notice: use 'includeList' instead.",
+										MarkdownDescription: "'ignoreTags' [deprecated (*)] is a list of tags to specify which metrics to ignore. Each metric is associated with a list of tags. More details in https://github.com/netobserv/network-observability-operator/tree/main/controllers/flowlogspipeline/metrics_definitions . Available tags are: 'egress', 'ingress', 'flows', 'bytes', 'packets', 'namespaces', 'nodes', 'workloads', 'nodes-flows', 'namespaces-flows', 'workloads-flows'. Namespace-based metrics are covered by both 'workloads' and 'namespaces' tags, hence it is recommended to always ignore one of them ('workloads' offering a finer granularity).<br> Deprecation notice: use 'includeList' instead.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3687,8 +3706,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"include_list": schema.ListAttribute{
-										Description:         "'includeList' is a list of metric names to specify which ones to generate.The names correspond to the names in Prometheus without the prefix. For example,'namespace_egress_packets_total' will show up as 'netobserv_namespace_egress_packets_total' in Prometheus.Note that the more metrics you add, the bigger is the impact on Prometheus workload resources.Metrics enabled by default are:'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled),'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled).More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
-										MarkdownDescription: "'includeList' is a list of metric names to specify which ones to generate.The names correspond to the names in Prometheus without the prefix. For example,'namespace_egress_packets_total' will show up as 'netobserv_namespace_egress_packets_total' in Prometheus.Note that the more metrics you add, the bigger is the impact on Prometheus workload resources.Metrics enabled by default are:'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled),'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled).More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
+										Description:         "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' will show up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
+										MarkdownDescription: "'includeList' is a list of metric names to specify which ones to generate. The names correspond to the names in Prometheus without the prefix. For example, 'namespace_egress_packets_total' will show up as 'netobserv_namespace_egress_packets_total' in Prometheus. Note that the more metrics you add, the bigger is the impact on Prometheus workload resources. Metrics enabled by default are: 'namespace_flows_total', 'node_ingress_bytes_total', 'workload_ingress_bytes_total', 'namespace_drop_packets_total' (when 'PacketDrop' feature is enabled), 'namespace_rtt_seconds' (when 'FlowRTT' feature is enabled), 'namespace_dns_latency_seconds' (when 'DNSTracking' feature is enabled). More information, with full list of available metrics: https://github.com/netobserv/network-observability-operator/blob/main/docs/Metrics.md",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3716,8 +3735,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 												MarkdownDescription: "TLS configuration.",
 												Attributes: map[string]schema.Attribute{
 													"insecure_skip_verify": schema.BoolAttribute{
-														Description:         "'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.",
-														MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the provided certificate.If set to 'true', the 'providedCaFile' field is ignored.",
+														Description:         "'insecureSkipVerify' allows skipping client-side verification of the provided certificate. If set to 'true', the 'providedCaFile' field is ignored.",
+														MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the provided certificate. If set to 'true', the 'providedCaFile' field is ignored.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3752,8 +3771,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3796,8 +3815,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-																MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																Description:         "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																MarkdownDescription: "Namespace of the config map or secret containing the file. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3820,10 +3839,10 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 													},
 
 													"type": schema.StringAttribute{
-														Description:         "Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.",
-														MarkdownDescription: "Select the type of TLS configuration:<br>- 'DISABLED' (default) to not configure TLS for the endpoint.- 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)].- 'AUTO' to use OpenShift auto generated certificate using annotations.",
-														Required:            false,
-														Optional:            true,
+														Description:         "Select the type of TLS configuration:<br> - 'DISABLED' (default) to not configure TLS for the endpoint. - 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)]. - 'AUTO' to use OpenShift auto generated certificate using annotations.",
+														MarkdownDescription: "Select the type of TLS configuration:<br> - 'DISABLED' (default) to not configure TLS for the endpoint. - 'PROVIDED' to manually provide cert file and a key file. [Unsupported (*)]. - 'AUTO' to use OpenShift auto generated certificate using annotations.",
+														Required:            true,
+														Optional:            false,
 														Computed:            false,
 														Validators: []validator.String{
 															stringvalidator.OneOf("DISABLED", "PROVIDED", "AUTO"),
@@ -3854,8 +3873,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"port": schema.Int64Attribute{
-								Description:         "Port of the flow collector (host port).By convention, some values are forbidden. It must be greater than 1024 and different from4500, 4789 and 6081.",
-								MarkdownDescription: "Port of the flow collector (host port).By convention, some values are forbidden. It must be greater than 1024 and different from4500, 4789 and 6081.",
+								Description:         "Port of the flow collector (host port). By convention, some values are forbidden. It must be greater than 1024 and different from 4500, 4789 and 6081.",
+								MarkdownDescription: "Port of the flow collector (host port). By convention, some values are forbidden. It must be greater than 1024 and different from 4500, 4789 and 6081.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3878,19 +3897,27 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"resources": schema.SingleNestedAttribute{
-								Description:         "'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "'resources' are the compute resources required by this container.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "'resources' are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "'resources' are the compute resources required by this container. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -3901,8 +3928,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3910,8 +3937,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3924,28 +3951,28 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"subnet_labels": schema.SingleNestedAttribute{
-								Description:         "'subnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'.",
-								MarkdownDescription: "'subnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift.When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'.",
+								Description:         "'subnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift. When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'.",
+								MarkdownDescription: "'subnetLabels' allows to define custom labels on subnets and IPs or to enable automatic labelling of recognized subnets in OpenShift. When a subnet matches the source or destination IP of a flow, a corresponding field is added: 'SrcSubnetLabel' or 'DstSubnetLabel'.",
 								Attributes: map[string]schema.Attribute{
 									"custom_labels": schema.ListNestedAttribute{
-										Description:         "'customLabels' allows to customize subnets and IPs labelling, such as to identify cluster-external workloads or web services.If you enable 'openShiftAutoDetect', 'customLabels' can override the detected subnets in case they overlap.",
-										MarkdownDescription: "'customLabels' allows to customize subnets and IPs labelling, such as to identify cluster-external workloads or web services.If you enable 'openShiftAutoDetect', 'customLabels' can override the detected subnets in case they overlap.",
+										Description:         "'customLabels' allows to customize subnets and IPs labelling, such as to identify cluster-external workloads or web services. If you enable 'openShiftAutoDetect', 'customLabels' can override the detected subnets in case they overlap.",
+										MarkdownDescription: "'customLabels' allows to customize subnets and IPs labelling, such as to identify cluster-external workloads or web services. If you enable 'openShiftAutoDetect', 'customLabels' can override the detected subnets in case they overlap.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"cidrs": schema.ListAttribute{
 													Description:         "List of CIDRs, such as '['1.2.3.4/32']'.",
 													MarkdownDescription: "List of CIDRs, such as '['1.2.3.4/32']'.",
 													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
 													Description:         "Label name, used to flag matching flows.",
 													MarkdownDescription: "Label name, used to flag matching flows.",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 											},
@@ -3956,8 +3983,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"open_shift_auto_detect": schema.BoolAttribute{
-										Description:         "'openShiftAutoDetect' allows, when set to 'true', to detect automatically the machines, pods and services subnets based on theOpenShift install configuration and the Cluster Network Operator configuration. Indirectly, this is a way to accurately detectexternal traffic: flows that are not labeled for those subnets are external to the cluster. Enabled by default on OpenShift.",
-										MarkdownDescription: "'openShiftAutoDetect' allows, when set to 'true', to detect automatically the machines, pods and services subnets based on theOpenShift install configuration and the Cluster Network Operator configuration. Indirectly, this is a way to accurately detectexternal traffic: flows that are not labeled for those subnets are external to the cluster. Enabled by default on OpenShift.",
+										Description:         "'openShiftAutoDetect' allows, when set to 'true', to detect automatically the machines, pods and services subnets based on the OpenShift install configuration and the Cluster Network Operator configuration. Indirectly, this is a way to accurately detect external traffic: flows that are not labeled for those subnets are external to the cluster. Enabled by default on OpenShift.",
+										MarkdownDescription: "'openShiftAutoDetect' allows, when set to 'true', to detect automatically the machines, pods and services subnets based on the OpenShift install configuration and the Cluster Network Operator configuration. Indirectly, this is a way to accurately detect external traffic: flows that are not labeled for those subnets are external to the cluster. Enabled by default on OpenShift.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3982,8 +4009,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 								MarkdownDescription: "Prometheus querying configuration, such as client settings, used in the Console plugin.",
 								Attributes: map[string]schema.Attribute{
 									"enable": schema.BoolAttribute{
-										Description:         "Set 'enable' to 'true' to make the Console plugin querying flow metrics from Prometheus instead of Loki whenever possible.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.loki'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
-										MarkdownDescription: "Set 'enable' to 'true' to make the Console plugin querying flow metrics from Prometheus instead of Loki whenever possible.The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.loki'), or both.Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well,such as getting per-pod information or viewing raw flows.If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle.If they are both disabled, the Console plugin is not deployed.",
+										Description:         "Set 'enable' to 'true' to make the Console plugin querying flow metrics from Prometheus instead of Loki whenever possible. The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.loki'), or both. Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well, such as getting per-pod information or viewing raw flows. If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle. If they are both disabled, the Console plugin is not deployed.",
+										MarkdownDescription: "Set 'enable' to 'true' to make the Console plugin querying flow metrics from Prometheus instead of Loki whenever possible. The Console plugin can use either Loki or Prometheus as a data source for metrics (see also 'spec.loki'), or both. Not all queries are transposable from Loki to Prometheus. Hence, if Loki is disabled, some features of the plugin are disabled as well, such as getting per-pod information or viewing raw flows. If both Prometheus and Loki are enabled, Prometheus takes precedence and Loki is used as a fallback for queries that Prometheus cannot handle. If they are both disabled, the Console plugin is not deployed.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4034,8 +4061,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4066,8 +4093,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 													},
 
 													"insecure_skip_verify": schema.BoolAttribute{
-														Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
-														MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate.If set to 'true', the 'caCert' field is ignored.",
+														Description:         "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
+														MarkdownDescription: "'insecureSkipVerify' allows skipping client-side verification of the server certificate. If set to 'true', the 'caCert' field is ignored.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4102,8 +4129,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
-																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed.If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																Description:         "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
+																MarkdownDescription: "Namespace of the config map or secret containing certificates. If omitted, the default is to use the same namespace as where NetObserv is deployed. If the namespace is different, the config map or the secret is copied so that it can be mounted as required.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4144,10 +4171,10 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"mode": schema.StringAttribute{
-										Description:         "'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>",
-										MarkdownDescription: "'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br>- Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br>- Use 'Manual' for a manual setup<br>",
-										Required:            false,
-										Optional:            true,
+										Description:         "'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br> - Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br> - Use 'Manual' for a manual setup<br>",
+										MarkdownDescription: "'mode' must be set according to the type of Prometheus installation that stores NetObserv metrics:<br> - Use 'Auto' to try configuring automatically. In OpenShift, it uses the Thanos querier from OpenShift Cluster Monitoring<br> - Use 'Manual' for a manual setup<br>",
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 										Validators: []validator.String{
 											stringvalidator.OneOf("Manual", "Auto"),
@@ -4155,8 +4182,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 									},
 
 									"timeout": schema.StringAttribute{
-										Description:         "'timeout' is the read timeout for console plugin queries to Prometheus.A timeout of zero means no timeout.",
-										MarkdownDescription: "'timeout' is the read timeout for console plugin queries to Prometheus.A timeout of zero means no timeout.",
+										Description:         "'timeout' is the read timeout for console plugin queries to Prometheus. A timeout of zero means no timeout.",
+										MarkdownDescription: "'timeout' is the read timeout for console plugin queries to Prometheus. A timeout of zero means no timeout.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

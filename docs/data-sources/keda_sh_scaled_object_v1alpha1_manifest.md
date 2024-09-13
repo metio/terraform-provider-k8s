@@ -90,8 +90,8 @@ Required:
 
 Optional:
 
-- `authentication_ref` (Attributes) AuthenticationRef points to the TriggerAuthentication or ClusterTriggerAuthentication object thatis used to authenticate the scaler with the environment (see [below for nested schema](#nestedatt--spec--triggers--authentication_ref))
-- `metric_type` (String) MetricTargetType specifies the type of metric being targeted, and should be either'Value', 'AverageValue', or 'Utilization'
+- `authentication_ref` (Attributes) AuthenticationRef points to the TriggerAuthentication or ClusterTriggerAuthentication object that is used to authenticate the scaler with the environment (see [below for nested schema](#nestedatt--spec--triggers--authentication_ref))
+- `metric_type` (String) MetricTargetType specifies the type of metric being targeted, and should be either 'Value', 'AverageValue', or 'Utilization'
 - `name` (String)
 - `use_cached_metrics` (Boolean)
 
@@ -122,7 +122,7 @@ Optional:
 
 Optional:
 
-- `behavior` (Attributes) HorizontalPodAutoscalerBehavior configures the scaling behavior of the targetin both Up and Down directions (scaleUp and scaleDown fields respectively). (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior))
+- `behavior` (Attributes) HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively). (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior))
 - `name` (String)
 
 <a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior"></a>
@@ -130,26 +130,26 @@ Optional:
 
 Optional:
 
-- `scale_down` (Attributes) scaleDown is scaling policy for scaling Down.If not set, the default value is to allow to scale down to minReplicas pods, with a300 second stabilization window (i.e., the highest recommendation forthe last 300sec is used). (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_down))
-- `scale_up` (Attributes) scaleUp is scaling policy for scaling Up.If not set, the default value is the higher of:  * increase no more than 4 pods per 60 seconds  * double the number of pods per 60 secondsNo stabilization is used. (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_up))
+- `scale_down` (Attributes) scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used). (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_down))
+- `scale_up` (Attributes) scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of: * increase no more than 4 pods per 60 seconds * double the number of pods per 60 seconds No stabilization is used. (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_up))
 
 <a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_down"></a>
 ### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.behavior.scale_down`
 
 Optional:
 
-- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_down--policies))
-- `select_policy` (String) selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.
-- `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).
+- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_down--policies))
+- `select_policy` (String) selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.
+- `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
 <a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_down--policies"></a>
 ### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.behavior.scale_down.policies`
 
 Required:
 
-- `period_seconds` (Number) periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
+- `period_seconds` (Number) periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
 - `type` (String) type is used to specify the scaling policy.
-- `value` (Number) value contains the amount of change which is permitted by the policy.It must be greater than zero
+- `value` (Number) value contains the amount of change which is permitted by the policy. It must be greater than zero
 
 
 
@@ -158,18 +158,18 @@ Required:
 
 Optional:
 
-- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_up--policies))
-- `select_policy` (String) selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.
-- `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).
+- `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_up--policies))
+- `select_policy` (String) selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.
+- `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
 <a id="nestedatt--spec--advanced--horizontal_pod_autoscaler_config--behavior--scale_up--policies"></a>
 ### Nested Schema for `spec.advanced.horizontal_pod_autoscaler_config.behavior.scale_up.policies`
 
 Required:
 
-- `period_seconds` (Number) periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
+- `period_seconds` (Number) periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
 - `type` (String) type is used to specify the scaling policy.
-- `value` (Number) value contains the amount of change which is permitted by the policy.It must be greater than zero
+- `value` (Number) value contains the amount of change which is permitted by the policy. It must be greater than zero
 
 
 
@@ -182,7 +182,7 @@ Optional:
 
 - `activation_target` (String)
 - `formula` (String)
-- `metric_type` (String) MetricTargetType specifies the type of metric being targeted, and should be either'Value', 'AverageValue', or 'Utilization'
+- `metric_type` (String) MetricTargetType specifies the type of metric being targeted, and should be either 'Value', 'AverageValue', or 'Utilization'
 - `target` (String)
 
 

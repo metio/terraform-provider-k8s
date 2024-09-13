@@ -176,8 +176,8 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "KogitoBuildSpec defines the desired state of KogitoBuild.",
 				Attributes: map[string]schema.Attribute{
 					"artifact": schema.SingleNestedAttribute{
-						Description:         "Artifact contains override information for building the Maven artifact (used for Local Source builds).  You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
-						MarkdownDescription: "Artifact contains override information for building the Maven artifact (used for Local Source builds).  You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
+						Description:         "Artifact contains override information for building the Maven artifact (used for Local Source builds). You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
+						MarkdownDescription: "Artifact contains override information for building the Maven artifact (used for Local Source builds). You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
 						Attributes: map[string]schema.Attribute{
 							"artifact_id": schema.StringAttribute{
 								Description:         "Indicates the unique base name of the primary artifact being generated.",
@@ -209,8 +209,8 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"build_image": schema.StringAttribute{
-						Description:         "Image used to build the Kogito Service from source (Local and Remote).  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
-						MarkdownDescription: "Image used to build the Kogito Service from source (Local and Remote).  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+						Description:         "Image used to build the Kogito Service from source (Local and Remote). If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field. Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'. On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+						MarkdownDescription: "Image used to build the Kogito Service from source (Local and Remote). If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field. Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'. On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -353,8 +353,8 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Manifest) Schema(_ context.Context, _ d
 											MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -393,8 +393,8 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"git_source": schema.SingleNestedAttribute{
-						Description:         "Information about the git repository where the Kogito Service source code resides.  Ignored for binary builds.",
-						MarkdownDescription: "Information about the git repository where the Kogito Service source code resides.  Ignored for binary builds.",
+						Description:         "Information about the git repository where the Kogito Service source code resides. Ignored for binary builds.",
+						MarkdownDescription: "Information about the git repository where the Kogito Service source code resides. Ignored for binary builds.",
 						Attributes: map[string]schema.Attribute{
 							"context_dir": schema.StringAttribute{
 								Description:         "Context/subdirectory where the code is located, relative to the repo root.",
@@ -434,8 +434,8 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"native": schema.BoolAttribute{
-						Description:         "Native indicates if the Kogito Service built should be compiled to run on native mode when Runtime is Quarkus (Source to Image build only).  For more information, see https://www.graalvm.org/docs/reference-manual/aot-compilation/.",
-						MarkdownDescription: "Native indicates if the Kogito Service built should be compiled to run on native mode when Runtime is Quarkus (Source to Image build only).  For more information, see https://www.graalvm.org/docs/reference-manual/aot-compilation/.",
+						Description:         "Native indicates if the Kogito Service built should be compiled to run on native mode when Runtime is Quarkus (Source to Image build only). For more information, see https://www.graalvm.org/docs/reference-manual/aot-compilation/.",
+						MarkdownDescription: "Native indicates if the Kogito Service built should be compiled to run on native mode when Runtime is Quarkus (Source to Image build only). For more information, see https://www.graalvm.org/docs/reference-manual/aot-compilation/.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -480,24 +480,24 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"runtime_image": schema.StringAttribute{
-						Description:         "Image used as the base image for the final Kogito service. This image only has the required packages to run the application.  For example: quarkus based services will have only JVM installed, native services only the packages required by the OS.  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
-						MarkdownDescription: "Image used as the base image for the final Kogito service. This image only has the required packages to run the application.  For example: quarkus based services will have only JVM installed, native services only the packages required by the OS.  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+						Description:         "Image used as the base image for the final Kogito service. This image only has the required packages to run the application. For example: quarkus based services will have only JVM installed, native services only the packages required by the OS. If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field. Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'. On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+						MarkdownDescription: "Image used as the base image for the final Kogito service. This image only has the required packages to run the application. For example: quarkus based services will have only JVM installed, native services only the packages required by the OS. If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field. Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'. On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"target_kogito_runtime": schema.StringAttribute{
-						Description:         "Set this field targeting the desired KogitoRuntime when this KogitoBuild instance has a different name than the KogitoRuntime.  By default this KogitoBuild instance will generate a final image named after its own name (.metadata.name).  On OpenShift, an ImageStream will be created causing a redeployment on any KogitoRuntime with the same name. On Kubernetes, the final image will be pushed to the KogitoRuntime deployment.  If you have multiple KogitoBuild instances (let's say BinaryBuildType and Remote Source), you might need that both target the same KogitoRuntime. Both KogitoBuilds will update the same ImageStream or generate a final image to the same KogitoRuntime deployment.",
-						MarkdownDescription: "Set this field targeting the desired KogitoRuntime when this KogitoBuild instance has a different name than the KogitoRuntime.  By default this KogitoBuild instance will generate a final image named after its own name (.metadata.name).  On OpenShift, an ImageStream will be created causing a redeployment on any KogitoRuntime with the same name. On Kubernetes, the final image will be pushed to the KogitoRuntime deployment.  If you have multiple KogitoBuild instances (let's say BinaryBuildType and Remote Source), you might need that both target the same KogitoRuntime. Both KogitoBuilds will update the same ImageStream or generate a final image to the same KogitoRuntime deployment.",
+						Description:         "Set this field targeting the desired KogitoRuntime when this KogitoBuild instance has a different name than the KogitoRuntime. By default this KogitoBuild instance will generate a final image named after its own name (.metadata.name). On OpenShift, an ImageStream will be created causing a redeployment on any KogitoRuntime with the same name. On Kubernetes, the final image will be pushed to the KogitoRuntime deployment. If you have multiple KogitoBuild instances (let's say BinaryBuildType and Remote Source), you might need that both target the same KogitoRuntime. Both KogitoBuilds will update the same ImageStream or generate a final image to the same KogitoRuntime deployment.",
+						MarkdownDescription: "Set this field targeting the desired KogitoRuntime when this KogitoBuild instance has a different name than the KogitoRuntime. By default this KogitoBuild instance will generate a final image named after its own name (.metadata.name). On OpenShift, an ImageStream will be created causing a redeployment on any KogitoRuntime with the same name. On Kubernetes, the final image will be pushed to the KogitoRuntime deployment. If you have multiple KogitoBuild instances (let's say BinaryBuildType and Remote Source), you might need that both target the same KogitoRuntime. Both KogitoBuilds will update the same ImageStream or generate a final image to the same KogitoRuntime deployment.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "Sets the type of build that this instance will handle:  Binary - takes an uploaded binary file already compiled and creates a Kogito service image from it.  RemoteSource - pulls the source code from a Git repository, builds the binary and then the final Kogito service image.  LocalSource - takes an uploaded resource file such as DRL (rules), DMN (decision) or BPMN (process), builds the binary and the final Kogito service image.",
-						MarkdownDescription: "Sets the type of build that this instance will handle:  Binary - takes an uploaded binary file already compiled and creates a Kogito service image from it.  RemoteSource - pulls the source code from a Git repository, builds the binary and then the final Kogito service image.  LocalSource - takes an uploaded resource file such as DRL (rules), DMN (decision) or BPMN (process), builds the binary and the final Kogito service image.",
+						Description:         "Sets the type of build that this instance will handle: Binary - takes an uploaded binary file already compiled and creates a Kogito service image from it. RemoteSource - pulls the source code from a Git repository, builds the binary and then the final Kogito service image. LocalSource - takes an uploaded resource file such as DRL (rules), DMN (decision) or BPMN (process), builds the binary and the final Kogito service image.",
+						MarkdownDescription: "Sets the type of build that this instance will handle: Binary - takes an uploaded binary file already compiled and creates a Kogito service image from it. RemoteSource - pulls the source code from a Git repository, builds the binary and then the final Kogito service image. LocalSource - takes an uploaded resource file such as DRL (rules), DMN (decision) or BPMN (process), builds the binary and the final Kogito service image.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

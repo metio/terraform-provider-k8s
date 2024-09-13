@@ -55,8 +55,8 @@ func (r *CouchbaseComCouchbaseAutoscalerV2Manifest) Metadata(_ context.Context, 
 
 func (r *CouchbaseComCouchbaseAutoscalerV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CouchbaseAutoscaler provides an interface for the Kubernetes Horizontal Pod Autoscalerto interact with the Couchbase cluster and provide autoscaling.  This resource isnot defined by the end user, and is managed by the Operator.",
-		MarkdownDescription: "CouchbaseAutoscaler provides an interface for the Kubernetes Horizontal Pod Autoscalerto interact with the Couchbase cluster and provide autoscaling.  This resource isnot defined by the end user, and is managed by the Operator.",
+		Description:         "CouchbaseAutoscaler provides an interface for the Kubernetes Horizontal Pod Autoscaler to interact with the Couchbase cluster and provide autoscaling. This resource is not defined by the end user, and is managed by the Operator.",
+		MarkdownDescription: "CouchbaseAutoscaler provides an interface for the Kubernetes Horizontal Pod Autoscaler to interact with the Couchbase cluster and provide autoscaling. This resource is not defined by the end user, and is managed by the Operator.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",

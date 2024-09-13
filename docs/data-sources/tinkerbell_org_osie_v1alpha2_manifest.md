@@ -3,12 +3,12 @@
 page_title: "k8s_tinkerbell_org_osie_v1alpha2_manifest Data Source - terraform-provider-k8s"
 subcategory: "tinkerbell.org"
 description: |-
-  OSIE describes an Operating System Installation Environment. It is used by Tinkerbellto provision machines and should launch the Tink Worker component.
+  OSIE describes an Operating System Installation Environment. It is used by Tinkerbell to provision machines and should launch the Tink Worker component.
 ---
 
 # k8s_tinkerbell_org_osie_v1alpha2_manifest (Data Source)
 
-OSIE describes an Operating System Installation Environment. It is used by Tinkerbellto provision machines and should launch the Tink Worker component.
+OSIE describes an Operating System Installation Environment. It is used by Tinkerbell to provision machines and should launch the Tink Worker component.
 
 ## Example Usage
 

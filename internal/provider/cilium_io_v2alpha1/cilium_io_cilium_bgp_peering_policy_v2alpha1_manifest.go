@@ -176,8 +176,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 				MarkdownDescription: "Spec is a human readable description of a BGP peering policy",
 				Attributes: map[string]schema.Attribute{
 					"node_selector": schema.SingleNestedAttribute{
-						Description:         "NodeSelector selects a group of nodes where this BGP Peering Policy applies.  If empty / nil this policy applies to all nodes.",
-						MarkdownDescription: "NodeSelector selects a group of nodes where this BGP Peering Policy applies.  If empty / nil this policy applies to all nodes.",
+						Description:         "NodeSelector selects a group of nodes where this BGP Peering Policy applies. If empty / nil this policy applies to all nodes.",
+						MarkdownDescription: "NodeSelector selects a group of nodes where this BGP Peering Policy applies. If empty / nil this policy applies to all nodes.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -422,8 +422,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"families": schema.ListNestedAttribute{
-												Description:         "Families, if provided, defines a set of AFI/SAFIs the speaker will negotiate with it's peer.  If this slice is not provided the default families of IPv6 and IPv4 will be provided.",
-												MarkdownDescription: "Families, if provided, defines a set of AFI/SAFIs the speaker will negotiate with it's peer.  If this slice is not provided the default families of IPv6 and IPv4 will be provided.",
+												Description:         "Families, if provided, defines a set of AFI/SAFIs the speaker will negotiate with it's peer. If this slice is not provided the default families of IPv6 and IPv4 will be provided.",
+												MarkdownDescription: "Families, if provided, defines a set of AFI/SAFIs the speaker will negotiate with it's peer. If this slice is not provided the default families of IPv6 and IPv4 will be provided.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"afi": schema.StringAttribute{
@@ -546,8 +546,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 								},
 
 								"pod_ip_pool_selector": schema.SingleNestedAttribute{
-									Description:         "PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools.  If empty / nil no CiliumPodIPPools will be announced.",
-									MarkdownDescription: "PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools.  If empty / nil no CiliumPodIPPools will be announced.",
+									Description:         "PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools. If empty / nil no CiliumPodIPPools will be announced.",
+									MarkdownDescription: "PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools. If empty / nil no CiliumPodIPPools will be announced.",
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
 											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -612,8 +612,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 								},
 
 								"service_selector": schema.SingleNestedAttribute{
-									Description:         "ServiceSelector selects a group of load balancer services which this virtual router will announce. The loadBalancerClass for a service must be nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If empty / nil no services will be announced.",
-									MarkdownDescription: "ServiceSelector selects a group of load balancer services which this virtual router will announce. The loadBalancerClass for a service must be nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If empty / nil no services will be announced.",
+									Description:         "ServiceSelector selects a group of load balancer services which this virtual router will announce. The loadBalancerClass for a service must be nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'. Refer to the following document for additional details regarding load balancer classes: https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class If empty / nil no services will be announced.",
+									MarkdownDescription: "ServiceSelector selects a group of load balancer services which this virtual router will announce. The loadBalancerClass for a service must be nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'. Refer to the following document for additional details regarding load balancer classes: https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class If empty / nil no services will be announced.",
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
 											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",

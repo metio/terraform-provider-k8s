@@ -61,6 +61,8 @@ type SubmarinerIoSubmarinerV1Alpha1ManifestData struct {
 		CeIPSecPreferredServer   *bool   `tfsdk:"ce_ip_sec_preferred_server" json:"ceIPSecPreferredServer,omitempty"`
 		ClusterCIDR              *string `tfsdk:"cluster_cidr" json:"clusterCIDR,omitempty"`
 		ClusterID                *string `tfsdk:"cluster_id" json:"clusterID,omitempty"`
+		ClustersetIPCIDR         *string `tfsdk:"clusterset_ip_cidr" json:"clustersetIPCIDR,omitempty"`
+		ClustersetIPEnabled      *bool   `tfsdk:"clusterset_ip_enabled" json:"clustersetIPEnabled,omitempty"`
 		ColorCodes               *string `tfsdk:"color_codes" json:"colorCodes,omitempty"`
 		ConnectionHealthCheck    *struct {
 			Enabled            *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -312,6 +314,22 @@ func (r *SubmarinerIoSubmarinerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						MarkdownDescription: "The cluster ID used to identify the tunnels.",
 						Required:            true,
 						Optional:            false,
+						Computed:            false,
+					},
+
+					"clusterset_ip_cidr": schema.StringAttribute{
+						Description:         "ClustersetIP CIDR for allocating ClustersetIPs to exported services.",
+						MarkdownDescription: "ClustersetIP CIDR for allocating ClustersetIPs to exported services.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"clusterset_ip_enabled": schema.BoolAttribute{
+						Description:         "Enable ClustersetIP default for services exported on this cluster.",
+						MarkdownDescription: "Enable ClustersetIP default for services exported on this cluster.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 

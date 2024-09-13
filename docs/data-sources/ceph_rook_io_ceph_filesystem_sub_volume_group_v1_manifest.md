@@ -55,13 +55,13 @@ Optional:
 
 Required:
 
-- `filesystem_name` (String) FilesystemName is the name of Ceph Filesystem SubVolumeGroup volume name. Typically it's the name ofthe CephFilesystem CR. If not coming from the CephFilesystem CR, it can be retrieved from thelist of Ceph Filesystem volumes with 'ceph fs volume ls'. To learn more about Ceph Filesystemabstractions see https://docs.ceph.com/en/latest/cephfs/fs-volumes/#fs-volumes-and-subvolumes
+- `filesystem_name` (String) FilesystemName is the name of Ceph Filesystem SubVolumeGroup volume name. Typically it's the name of the CephFilesystem CR. If not coming from the CephFilesystem CR, it can be retrieved from the list of Ceph Filesystem volumes with 'ceph fs volume ls'. To learn more about Ceph Filesystem abstractions see https://docs.ceph.com/en/latest/cephfs/fs-volumes/#fs-volumes-and-subvolumes
 
 Optional:
 
 - `data_pool_name` (String) The data pool name for the Ceph Filesystem subvolume group layout, if the default CephFS pool is not desired.
 - `name` (String) The name of the subvolume group. If not set, the default is the name of the subvolumeGroup CR.
-- `pinning` (Attributes) Pinning configuration of CephFilesystemSubVolumeGroup,reference https://docs.ceph.com/en/latest/cephfs/fs-volumes/#pinning-subvolumes-and-subvolume-groupsonly one out of (export, distributed, random) can be set at a time (see [below for nested schema](#nestedatt--spec--pinning))
+- `pinning` (Attributes) Pinning configuration of CephFilesystemSubVolumeGroup, reference https://docs.ceph.com/en/latest/cephfs/fs-volumes/#pinning-subvolumes-and-subvolume-groups only one out of (export, distributed, random) can be set at a time (see [below for nested schema](#nestedatt--spec--pinning))
 - `quota` (String) Quota size of the Ceph Filesystem subvolume group.
 
 <a id="nestedatt--spec--pinning"></a>

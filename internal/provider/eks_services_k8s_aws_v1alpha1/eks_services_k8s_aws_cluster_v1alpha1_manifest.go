@@ -183,8 +183,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterSpec defines the desired state of Cluster.An object representing an Amazon EKS cluster.",
-				MarkdownDescription: "ClusterSpec defines the desired state of Cluster.An object representing an Amazon EKS cluster.",
+				Description:         "ClusterSpec defines the desired state of Cluster. An object representing an Amazon EKS cluster.",
+				MarkdownDescription: "ClusterSpec defines the desired state of Cluster. An object representing an Amazon EKS cluster.",
 				Attributes: map[string]schema.Attribute{
 					"access_config": schema.SingleNestedAttribute{
 						Description:         "The access configuration for the cluster.",
@@ -212,8 +212,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"client_request_token": schema.StringAttribute{
-						Description:         "A unique, case-sensitive identifier that you provide to ensure the idempotencyof the request.",
-						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensure the idempotencyof the request.",
+						Description:         "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -241,8 +241,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 											MarkdownDescription: "Reference field for KeyARN",
 											Attributes: map[string]schema.Attribute{
 												"from": schema.SingleNestedAttribute{
-													Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-													MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+													Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+													MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
 															Description:         "",
@@ -316,8 +316,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"logging": schema.SingleNestedAttribute{
-						Description:         "Enable or disable exporting the Kubernetes control plane logs for your clusterto CloudWatch Logs. By default, cluster control plane logs aren't exportedto CloudWatch Logs. For more information, see Amazon EKS Cluster controlplane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)in the Amazon EKS User Guide .CloudWatch Logs ingestion, archive storage, and data scanning rates applyto exported control plane logs. For more information, see CloudWatch Pricing(http://aws.amazon.com/cloudwatch/pricing/).",
-						MarkdownDescription: "Enable or disable exporting the Kubernetes control plane logs for your clusterto CloudWatch Logs. By default, cluster control plane logs aren't exportedto CloudWatch Logs. For more information, see Amazon EKS Cluster controlplane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)in the Amazon EKS User Guide .CloudWatch Logs ingestion, archive storage, and data scanning rates applyto exported control plane logs. For more information, see CloudWatch Pricing(http://aws.amazon.com/cloudwatch/pricing/).",
+						Description:         "Enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs. By default, cluster control plane logs aren't exported to CloudWatch Logs. For more information, see Amazon EKS Cluster control plane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html) in the Amazon EKS User Guide . CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see CloudWatch Pricing (http://aws.amazon.com/cloudwatch/pricing/).",
+						MarkdownDescription: "Enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs. By default, cluster control plane logs aren't exported to CloudWatch Logs. For more information, see Amazon EKS Cluster control plane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html) in the Amazon EKS User Guide . CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see CloudWatch Pricing (http://aws.amazon.com/cloudwatch/pricing/).",
 						Attributes: map[string]schema.Attribute{
 							"cluster_logging": schema.ListNestedAttribute{
 								Description:         "",
@@ -361,8 +361,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"outpost_config": schema.SingleNestedAttribute{
-						Description:         "An object representing the configuration of your local Amazon EKS clusteron an Amazon Web Services Outpost. Before creating a local cluster on anOutpost, review Local clusters for Amazon EKS on Amazon Web Services Outposts(https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-local-cluster-overview.html)in the Amazon EKS User Guide. This object isn't available for creating AmazonEKS clusters on the Amazon Web Services cloud.",
-						MarkdownDescription: "An object representing the configuration of your local Amazon EKS clusteron an Amazon Web Services Outpost. Before creating a local cluster on anOutpost, review Local clusters for Amazon EKS on Amazon Web Services Outposts(https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-local-cluster-overview.html)in the Amazon EKS User Guide. This object isn't available for creating AmazonEKS clusters on the Amazon Web Services cloud.",
+						Description:         "An object representing the configuration of your local Amazon EKS cluster on an Amazon Web Services Outpost. Before creating a local cluster on an Outpost, review Local clusters for Amazon EKS on Amazon Web Services Outposts (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-local-cluster-overview.html) in the Amazon EKS User Guide. This object isn't available for creating Amazon EKS clusters on the Amazon Web Services cloud.",
+						MarkdownDescription: "An object representing the configuration of your local Amazon EKS cluster on an Amazon Web Services Outpost. Before creating a local cluster on an Outpost, review Local clusters for Amazon EKS on Amazon Web Services Outposts (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-local-cluster-overview.html) in the Amazon EKS User Guide. This object isn't available for creating Amazon EKS clusters on the Amazon Web Services cloud.",
 						Attributes: map[string]schema.Attribute{
 							"control_plane_instance_type": schema.StringAttribute{
 								Description:         "",
@@ -373,8 +373,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"control_plane_placement": schema.SingleNestedAttribute{
-								Description:         "The placement configuration for all the control plane instances of your localAmazon EKS cluster on an Amazon Web Services Outpost. For more information,see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)in the Amazon EKS User Guide.",
-								MarkdownDescription: "The placement configuration for all the control plane instances of your localAmazon EKS cluster on an Amazon Web Services Outpost. For more information,see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)in the Amazon EKS User Guide.",
+								Description:         "The placement configuration for all the control plane instances of your local Amazon EKS cluster on an Amazon Web Services Outpost. For more information, see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html) in the Amazon EKS User Guide.",
+								MarkdownDescription: "The placement configuration for all the control plane instances of your local Amazon EKS cluster on an Amazon Web Services Outpost. For more information, see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html) in the Amazon EKS User Guide.",
 								Attributes: map[string]schema.Attribute{
 									"group_name": schema.StringAttribute{
 										Description:         "",
@@ -404,8 +404,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"resources_vpc_config": schema.SingleNestedAttribute{
-						Description:         "The VPC configuration that's used by the cluster control plane. Amazon EKSVPC resources have specific requirements to work properly with Kubernetes.For more information, see Cluster VPC Considerations (https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)and Cluster Security Group Considerations (https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html)in the Amazon EKS User Guide. You must specify at least two subnets. Youcan specify up to five security groups. However, we recommend that you usea dedicated security group for your cluster control plane.",
-						MarkdownDescription: "The VPC configuration that's used by the cluster control plane. Amazon EKSVPC resources have specific requirements to work properly with Kubernetes.For more information, see Cluster VPC Considerations (https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)and Cluster Security Group Considerations (https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html)in the Amazon EKS User Guide. You must specify at least two subnets. Youcan specify up to five security groups. However, we recommend that you usea dedicated security group for your cluster control plane.",
+						Description:         "The VPC configuration that's used by the cluster control plane. Amazon EKS VPC resources have specific requirements to work properly with Kubernetes. For more information, see Cluster VPC Considerations (https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html) and Cluster Security Group Considerations (https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html) in the Amazon EKS User Guide. You must specify at least two subnets. You can specify up to five security groups. However, we recommend that you use a dedicated security group for your cluster control plane.",
+						MarkdownDescription: "The VPC configuration that's used by the cluster control plane. Amazon EKS VPC resources have specific requirements to work properly with Kubernetes. For more information, see Cluster VPC Considerations (https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html) and Cluster Security Group Considerations (https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html) in the Amazon EKS User Guide. You must specify at least two subnets. You can specify up to five security groups. However, we recommend that you use a dedicated security group for your cluster control plane.",
 						Attributes: map[string]schema.Attribute{
 							"endpoint_private_access": schema.BoolAttribute{
 								Description:         "",
@@ -447,8 +447,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"from": schema.SingleNestedAttribute{
-											Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+											Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "",
@@ -492,8 +492,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"from": schema.SingleNestedAttribute{
-											Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+											Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "",
@@ -528,20 +528,20 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the IAM role that provides permissionsfor the Kubernetes control plane to make calls to Amazon Web Services APIoperations on your behalf. For more information, see Amazon EKS Service IAMRole (https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html)in the Amazon EKS User Guide .",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM role that provides permissionsfor the Kubernetes control plane to make calls to Amazon Web Services APIoperations on your behalf. For more information, see Amazon EKS Service IAMRole (https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html)in the Amazon EKS User Guide .",
+						Description:         "The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to Amazon Web Services API operations on your behalf. For more information, see Amazon EKS Service IAM Role (https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html) in the Amazon EKS User Guide .",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to Amazon Web Services API operations on your behalf. For more information, see Amazon EKS Service IAM Role (https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html) in the Amazon EKS User Guide .",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"role_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -570,8 +570,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "Metadata that assists with categorization and organization. Each tag consistsof a key and an optional value. You define both. Tags don't propagate toany other cluster or Amazon Web Services resources.",
-						MarkdownDescription: "Metadata that assists with categorization and organization. Each tag consistsof a key and an optional value. You define both. Tags don't propagate toany other cluster or Amazon Web Services resources.",
+						Description:         "Metadata that assists with categorization and organization. Each tag consists of a key and an optional value. You define both. Tags don't propagate to any other cluster or Amazon Web Services resources.",
+						MarkdownDescription: "Metadata that assists with categorization and organization. Each tag consists of a key and an optional value. You define both. Tags don't propagate to any other cluster or Amazon Web Services resources.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -579,8 +579,8 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"version": schema.StringAttribute{
-						Description:         "The desired Kubernetes version for your cluster. If you don't specify a valuehere, the default version available in Amazon EKS is used.The default version might not be the latest version available.",
-						MarkdownDescription: "The desired Kubernetes version for your cluster. If you don't specify a valuehere, the default version available in Amazon EKS is used.The default version might not be the latest version available.",
+						Description:         "The desired Kubernetes version for your cluster. If you don't specify a value here, the default version available in Amazon EKS is used. The default version might not be the latest version available.",
+						MarkdownDescription: "The desired Kubernetes version for your cluster. If you don't specify a value here, the default version available in Amazon EKS is used. The default version might not be the latest version available.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

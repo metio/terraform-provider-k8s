@@ -97,9 +97,9 @@ Optional:
 - `cipher_suites` (List of String) Optional: If specified, only support the specified cipher list.
 - `credential_name` (String) For gateways running on Kubernetes, the name of the secret that holds the TLS certs including the CA certificates.
 - `https_redirect` (Boolean) If set to true, the load balancer will send a 301 redirect for all http connections, asking the clients to use HTTPS.
-- `max_protocol_version` (String) Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
-- `min_protocol_version` (String) Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
-- `mode` (String) Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL
+- `max_protocol_version` (String) Optional: Maximum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
+- `min_protocol_version` (String) Optional: Minimum TLS protocol version. Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
+- `mode` (String) Optional: Indicates whether connections to this port should be secured using TLS. Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.
 - `server_certificate` (String) REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.
 - `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate presented by the client.
